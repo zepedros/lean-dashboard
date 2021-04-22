@@ -11,16 +11,14 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}))
 
-auth.initialize(app);
-
 const db = require('./etl-db');
 const data = require('./etl-data.js');
 
 const servicesCreator = require('./etl-services.js');
 const webApiCreator = require('./etl-web-api.js');
 
-const services = servicesCreator(data, db, auth);
-const webapi = webApiCreator(app, auth, services);
+const services = servicesCreator(data, db);
+const webapi = webApiCreator(app, services);
 
 app.use(express.static('../client/dist'));
 
