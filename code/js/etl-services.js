@@ -4,9 +4,18 @@ function services(data, db){
  
     const theServices = {
     
-    getIssues: async function(){
-      return data.getIssues()
-    }
+    getIssuesJira: async function(){
+      return data.getIssuesJira()
+    },
+    getIssuesByIdJira : async function(id){
+      return data.getIssuesByIdJira(id)
+    },
+    getProjectsJira : function() {
+      return data.getProjectsJira()
+    },
+    getProjectByIdJira : function(id){
+      return data.getProjectByIdJira(id)
+    } 
   };
   return theServices;
 }

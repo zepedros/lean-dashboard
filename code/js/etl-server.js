@@ -23,4 +23,4 @@ const webapi = webApiCreator(app, services);
 app.use(express.static('../client/dist'));
 
 app.listen(PORT);
-console.log(`Listening at port ${PORT}\nAccess http://localhost:8000 to start`);
+console.log(`Listening at port ${PORT}\nAccess http://localhost:8000/leanDashboard to start`);

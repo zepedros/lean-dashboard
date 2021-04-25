@@ -1,0 +1,100 @@
+{
+	"info": {
+		"_postman_id": "a36e40e4-c132-4a96-9931-9f983b572351",
+		"name": "Lean Dashboard",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "ETL",
+			"item": [
+				{
+					"name": "GET /leanDasboard/issuesJira",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/leanDasboard/issuesJira",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"leanDasboard",
+								"issuesJira"
+							]
+						},
+						"description": "Get all Issues from a Project (JIRA) "
+					},
+					"response": []
+				},
+				{
+					"name": "GET leanDasboard/issueByIdJira/10003",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/leanDasboard/issueByIdJira/10003",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"leanDasboard",
+								"issueByIdJira",
+								"10003"
+							]
+						},
+						"description": "Get a specific issue from a project (JIRA)"
+					},
+					"response": []
+				},
+				{
+					"name": "GET leanDashboard/projectsJira",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/leanDashboard/projectsJira",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"leanDashboard",
+								"projectsJira"
+							]
+						},
+						"description": "Get all project from a user (JIRA)"
+					},
+					"response": []
+				},
+				{
+					"name": "GET leanDashboard/projectsJira/10000",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/leanDashboard/projectsJira/10000",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"leanDashboard",
+								"projectsJira",
+								"10000"
+							]
+						},
+						"description": "Get specific Project from a user (JIRA)"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

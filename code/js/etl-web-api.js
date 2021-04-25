@@ -3,17 +3,46 @@
 function webapi(app,services){
 
   const theWebApi = {
-      getIssues: function(req, res) {
-      services.getIssues()
+
+      getIssuesJira: function(req, res) {
+      services.getIssuesJira()
       .then(resp => {
         console.log("Get Issues")
         answerHandler(resp,res)
     })
     .catch(err => errHandler(err,res))
+    },
+
+    getIssuesByIdJira : function(req,res){
+        services.getIssuesByIdJira(req.params.id)
+        .then(resp => {
+          console.log("Get Issue")
+          answerHandler(resp,res)
+        })
+        .catch(err => errHandler(err,res))
+    },
+    getProjectsJira : function(req,res){
+      services.getProjectsJira()
+      .then(resp => {
+        console.log("Get Projects")
+        answerHandler(resp,res)
+    })
+    },
+    getProjectByIdJira : function(req,res) {
+      services.getProjectByIdJira(req.params.id)
+      .then(resp => {
+        console.log("Get Project")
+        answerHandler(resp,res)
+      })
+      .catch(err => errHandler(err,res))
     }
   };
 
-  app.get('/issues',theWebApi.getIssues);
+  app.get('/leanDasboard/issuesJira',theWebApi.getIssuesJira);
+  app.get('/leanDasboard/issueByIdJira/:id',theWebApi.getIssuesByIdJira)
+
+  app.get('/leanDashboard/projectsJira',theWebApi.getProjectsJira)
+  app.get('/leanDashboard/projectsJira/:id',theWebApi.getProjectByIdJira)
 
   return theWebApi;
 }
