@@ -58,6 +58,9 @@ function processBody(body) {
         getIssuesObject(body);
 }
 
+/*
+* TODO add project name/id
+*/
 function getIssuesObject(refObject) {
 
     var jsonData = {
@@ -77,7 +80,9 @@ function getIssuesObject(refObject) {
             //"assignee" : item.fields.assignee,  
             "reportes" : item.fields.reporter.accountId,
             "state" : item.fields.status.name,
-            "created" : item.fields.created
+            "created" : item.fields.created,
+            "idProject" : item.fields.project.id,
+            "projectName" : item.fields.project.name
         })
           
     }
@@ -85,6 +90,7 @@ function getIssuesObject(refObject) {
 }
 
 //missing stuff
+//priority missing
 function getIssueObject(refObject) {
     
     var jsonData = {
@@ -99,6 +105,10 @@ function getIssueObject(refObject) {
     jsonData.state = refObject.fields.status.name
     jsonData.creator = refObject.fields.creator.accountId
     jsonData.creator = refObject.fields.subtasks
+    jsonData.priorityName = refObject.fields.priority.name
+    jsonData.priorityId = refObject.fields.priority.id
+    jsonData.idProject = refObject.fields.project.id
+    jsonData.nameProject = refObject.fields.project.name
     //jsonData.creator = refObject.fields.comment
 
     return jsonData
@@ -122,7 +132,7 @@ function getProjectsObject(refObject) {
         })
 
    }
-   return jsonData
+   return refObject
 }
 
 function getProjectObject(refObject){

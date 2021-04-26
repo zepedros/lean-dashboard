@@ -35,14 +35,25 @@ function webapi(app,services){
         answerHandler(resp,res)
       })
       .catch(err => errHandler(err,res))
+    },
+
+    postIssues : function(req,res) {
+      services.postIssues()
+      .then(resp => {
+        console.log("Post Issues")
+        answerHandler(resp,res)
+      })
+      .catch(err => errHandler(err,res))
     }
   };
 
-  app.get('/leanDasboard/issuesJira',theWebApi.getIssuesJira);
-  app.get('/leanDasboard/issueByIdJira/:id',theWebApi.getIssuesByIdJira)
+  app.get('/leanDasboard/issuesJira',theWebApi.getIssuesJira) //testing 
+  app.get('/leanDasboard/issueByIdJira/:id',theWebApi.getIssuesByIdJira)//testing 
 
-  app.get('/leanDashboard/projectsJira',theWebApi.getProjectsJira)
-  app.get('/leanDashboard/projectsJira/:id',theWebApi.getProjectByIdJira)
+  app.get('/leanDashboard/projectsJira',theWebApi.getProjectsJira)//testing 
+  app.get('/leanDashboard/projectsJira/:id',theWebApi.getProjectByIdJira)//testing 
+
+  app.post('/leanDashboard/issues',theWebApi.postIssues)
 
   return theWebApi;
 }

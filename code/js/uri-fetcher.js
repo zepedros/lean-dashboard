@@ -1,6 +1,6 @@
 'use strict'
 const fetch = require('node-fetch')
-//const header = { 'Content-Type': 'application/json' }
+const header = { 'Content-type': 'application/json'}
 const error = require("./error")
 const URI_METHOD = {GET: "get",POST:"post",PUT:"put",DELETE: "delete"}
 
@@ -10,7 +10,7 @@ module.exports = {
     },
 
     makePostRequest:async function makePostRequest(uri, body) {
-        return makeRequest(uri, URI_METHOD.POST, body)
+        return makeRequest(uri, URI_METHOD.POST, body,header)
     },
 
     makePutRequest: async function makePutRequest(uri,body) {
