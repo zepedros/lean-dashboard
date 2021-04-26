@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "a36e40e4-c132-4a96-9931-9f983b572351",
+		"_postman_id": "2a2038bf-d8db-461d-b9fe-3f761e657622",
 		"name": "Lean Dashboard",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -30,7 +30,7 @@
 					"response": []
 				},
 				{
-					"name": "GET leanDasboard/issueByIdJira/10003",
+					"name": "GET leanDasboard/issueByIdJira/{id}",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -73,7 +73,7 @@
 					"response": []
 				},
 				{
-					"name": "GET leanDashboard/projectsJira/10000",
+					"name": "GET leanDashboard/projectsJira/{id}",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -87,6 +87,97 @@
 							"path": [
 								"leanDashboard",
 								"projectsJira",
+								"10000"
+							]
+						},
+						"description": "Get specific Project from a user (JIRA)"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Lean",
+			"item": [
+				{
+					"name": "GET /lean/issues",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/lean/issues",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"lean",
+								"issues"
+							]
+						},
+						"description": "Get all Issues from a Project (JIRA) "
+					},
+					"response": []
+				},
+				{
+					"name": "GET /lean/issueById/{id}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/lean/issueById/10003",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"lean",
+								"issueById",
+								"10003"
+							]
+						},
+						"description": "Get a specific issue from a project (JIRA)"
+					},
+					"response": []
+				},
+				{
+					"name": "GET /lean/projects",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/lean/projects",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"lean",
+								"projects"
+							]
+						},
+						"description": "Get all project from a user (JIRA)"
+					},
+					"response": []
+				},
+				{
+					"name": "GET /lean/projectsJira/{id}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/lean/projects/10000",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"lean",
+								"projects",
 								"10000"
 							]
 						},

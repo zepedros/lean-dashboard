@@ -1,8 +1,8 @@
 'use strict'
 
 const { json } = require("express")
-const error = require("./error")
-const fetcher = require("./uri-fetcher")
+const error = require("../error")
+const fetcher = require("../uri-fetcher")
 const HEADERS = {
     'Authorization': `Basic ${Buffer.from(
       'leandashboardproject@gmail.com:LPcyGdZolN906MvzdwPHF045'

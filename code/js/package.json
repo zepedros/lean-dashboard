@@ -2,7 +2,7 @@
   "name": "lean-dashboard-js",
   "version": "1.0.0",
   "description": "Lean Dashboard project",
-  "main": "etl-server.js",
+  "main": "etl/etl-server.js",
   "dependencies": {
     "abs": "^1.3.14",
     "capture-stack-trace": "^1.0.1",
