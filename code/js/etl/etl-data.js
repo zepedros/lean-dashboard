@@ -3,6 +3,7 @@
 const { json } = require("express")
 const error = require("../error")
 const fetcher = require("../uri-fetcher")
+const it = require('./etl-issueTransform');
 const HEADERS = {
     'Authorization': `Basic ${Buffer.from(
       'leandashboardproject@gmail.com:LPcyGdZolN906MvzdwPHF045'
@@ -31,7 +32,7 @@ module.exports = {
         const headers = HEADERS
         //return makeRequest(url,headers)  
         const response = await fetcher.makeGetRequest(url,headers)
-        return getIssueObject(response)
+        return it.getIssueObject(response)
     },
 
     getProjectsJira : async function(){
@@ -86,64 +87,10 @@ function processBody(body) {
     return Array.isArray(body) ?
         body.map(show => getIssuesObject(show))
         :
-        getIssuesObject(body);
+        it.getIssuesObject(body);
 }
 
-/*
-* TODO add project name/id
-*/
-function getIssuesObject(refObject) {
 
-    var jsonData = {
-          issue :  []
-    };
-
-    jsonData.total = refObject.total 
-
-    for(var i = 0; i < jsonData.total; i++){
-
-        var item = refObject.issues[i]
-        
-        jsonData.issue.push({
-            "key" : item.key,
-            "id" : item.id,
-            "summary" : item.fields.summary,
-            //"assignee" : item.fields.assignee,  
-            "reportes" : item.fields.reporter.accountId,
-            "state" : item.fields.status.name,
-            "created" : item.fields.created,
-            "idProject" : item.fields.project.id,
-            "projectName" : item.fields.project.name
-        })
-          
-    }
-     return jsonData 
-}
-
-//missing stuff
-//priority missing
-function getIssueObject(refObject) {
-    
-    var jsonData = {
-
-    }
-    jsonData.id = refObject.id
-    jsonData.key = refObject.key
-    jsonData.description = refObject.fields.description.content
-    jsonData.created = refObject.fields.created
-    jsonData.summary = refObject.fields.summary
-    jsonData.updated = refObject.fields.updated
-    jsonData.state = refObject.fields.status.name
-    jsonData.creator = refObject.fields.creator.accountId
-    jsonData.creator = refObject.fields.subtasks
-    jsonData.priorityName = refObject.fields.priority.name
-    jsonData.priorityId = refObject.fields.priority.id
-    jsonData.idProject = refObject.fields.project.id
-    jsonData.nameProject = refObject.fields.project.name
-    //jsonData.creator = refObject.fields.comment
-
-    return jsonData
-}
 
 function getProjectsObject(refObject) {
     var jsonData = {
