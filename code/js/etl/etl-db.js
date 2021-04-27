@@ -9,8 +9,6 @@ const data = require('./etl-data');
 
 const ES_URL = 'http://localhost:9200/';
 
-
-
 module.exports = {
 
 
@@ -21,52 +19,12 @@ module.exports = {
     },
 
 
-    getIssues: function () {
-        return {
-            "issue": [
-                {
-                    "key": "SEC-1",
-                    "id": "10004",
-                    "summary": "Second Project Issue",
-                    "reportes": "6081966b739dd40069ce327a",
-                    "state": "To Do",
-                    "created": "2021-04-26T17:03:58.869+0100"
-                },
-                {
-                    "key": "LEAN-4",
-                    "id": "10003",
-                    "summary": "Done Issue Test",
-                    "reportes": "6081966b739dd40069ce327a",
-                    "state": "Done",
-                    "created": "2021-04-22T16:34:39.713+0100"
-                },
-                {
-                    "key": "LEAN-3",
-                    "id": "10002",
-                    "summary": "Progress Issue Test",
-                    "reportes": "6081966b739dd40069ce327a",
-                    "state": "In Progress",
-                    "created": "2021-04-22T16:34:33.127+0100"
-                },
-                {
-                    "key": "LEAN-2",
-                    "id": "10001",
-                    "summary": "Another Issue Test",
-                    "reportes": "6081966b739dd40069ce327a",
-                    "state": "To Do",
-                    "created": "2021-04-22T16:33:36.457+0100"
-                },
-                {
-                    "key": "LEAN-1",
-                    "id": "10000",
-                    "summary": "Test Issue",
-                    "reportes": "6081966b739dd40069ce327a",
-                    "state": "To Do",
-                    "created": "2021-04-22T16:33:17.540+0100"
-                }
-            ],
-            "total": 5
-        }
+    getIssues: async function (){
+        const uri = `${ES_URL}lean-etl/_search`;
+        const res = await fetch.makeGetRequest(uri)
+        const hits = res && res.hits
+            && res.hits.hits;
+        return hits
     },
 
     getIssuesById: function (id){
