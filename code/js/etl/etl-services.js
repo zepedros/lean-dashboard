@@ -16,6 +16,9 @@ function services(data, db){
     getProjectByIdJira : function(id){
       return data.getProjectByIdJira(id)
     },
+    getTeamJira : function(){
+      return data.getTeamJira()
+    },
     postIssues : function(){
       return db.postIssues()
     } 

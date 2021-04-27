@@ -40,6 +40,12 @@ module.exports = {
         const headers = HEADERS
         const response = await fetcher.makeGetRequest(url,headers)
         return getProjectObject(response)
+    },
+    getTeamJira : async function() {
+        const url = `https://leandashboard.atlassian.net/rest/api/3/role`
+        const headers = HEADERS
+        const response = await fetcher.makeGetRequest(url,headers)
+        return response
     }
 
 }
@@ -142,5 +148,6 @@ function getProjectObject(refObject){
     jsonData.key = refObject.key
     jsonData.description = refObject.description
     jsonData.name = refObject.lead.displayName
+    jsonData.roles = refObject.roles
     return jsonData
 }

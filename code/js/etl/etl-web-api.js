@@ -36,7 +36,14 @@ function webapi(app,services){
       })
       .catch(err => errHandler(err,res))
     },
-
+    getTeamJira : function(req,res){
+      services.getTeamJira()
+      .then(resp=> {
+        console.log("Get Team")
+        answerHandler(resp,res)
+      })
+      .catch(err => errHandler(err,res))
+    },
     postIssues : function(req,res) {
       services.postIssues()
       .then(resp => {
@@ -47,11 +54,15 @@ function webapi(app,services){
     }
   };
 
+  app.get('/leanDashboard/projectsJira/team',theWebApi.getTeamJira)
+
   app.get('/leanDasboard/issuesJira',theWebApi.getIssuesJira) //testing 
   app.get('/leanDasboard/issueByIdJira/:id',theWebApi.getIssuesByIdJira)//testing 
 
   app.get('/leanDashboard/projectsJira',theWebApi.getProjectsJira)//testing 
   app.get('/leanDashboard/projectsJira/:id',theWebApi.getProjectByIdJira)//testing 
+
+  
 
   app.post('/leanDashboard/issues',theWebApi.postIssues)
 
