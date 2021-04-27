@@ -4,7 +4,7 @@
  */
 
 
-const fetch = require('./uri-fetcher');
+const fetch = require('../uri-fetcher');
 const data = require('./etl-data');
 
 const ES_URL = 'http://localhost:9200/';
