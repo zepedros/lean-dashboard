@@ -9,6 +9,12 @@ const HEADERS = {
     ).toString('base64')}`,
     'Accept': 'application/json'
   }
+const SQUASHHEADERS = {
+    'Authorization': `Basic ${Buffer.from(
+        'guest_tpl:password'
+    ).toString('base64')}`,
+    'Accept': 'application/json'
+}
 module.exports = {
 
     getIssuesJira: async function() {
@@ -40,6 +46,24 @@ module.exports = {
         const headers = HEADERS
         const response = await fetcher.makeGetRequest(url,headers)
         return getProjectObject(response)
+    },
+    getProjectsSquash : async function() {
+        const url = `https://demo.squashtest.org/squash/api/rest/latest/projects`
+        const headers = SQUASHHEADERS
+        const response = await fetcher.makeGetRequest(url,headers)
+        return getSquashProjects(response)
+    },
+    getProjectCampaignsSquash : async function(id) {
+        const url = `https://demo.squashtest.org/squash/api/rest/latest/projects/${id}/campaigns`
+        const headers = SQUASHHEADERS
+        const response = await fetcher.makeGetRequest(url,headers)
+        return getSquashCampaigns(response)
+    },
+    getProjectTestsSquash : async function(id) {
+        const url = `https://demo.squashtest.org/squash/api/rest/latest/projects/${id}/test-cases`
+        const headers = SQUASHHEADERS
+        const response = await fetcher.makeGetRequest(url,headers)
+        return getSquashTests(response)
     }
 
 }
@@ -142,5 +166,70 @@ function getProjectObject(refObject){
     jsonData.key = refObject.key
     jsonData.description = refObject.description
     jsonData.name = refObject.lead.displayName
+    return jsonData
+}
+
+function getSquashProjects(refObject){
+    var jsonData = {
+        project :  []
+    };
+    jsonData.total = refObject._embedded.projects.length
+
+    for(var i = 0; i < jsonData.total; i++) {
+        var item = refObject._embedded.projects[i]
+        jsonData.project.push({
+            "id" : item.id,
+            "name": item.name
+        })
+    }
+    return jsonData
+}
+
+async function getSquashCampaigns(refObject) {
+    var jsonData = {
+        campaigns: []
+    };
+    jsonData.total = refObject._embedded.campaigns.length
+
+    for (var i = 0; i < jsonData.total; i++) {
+        var item = refObject._embedded.campaigns[i]
+        let campaign =  await fetcher.makeGetRequest(
+            `https://demo.squashtest.org/squash/api/rest/latest/campaigns/${item.id}`,
+            SQUASHHEADERS)
+        jsonData.campaigns.push({
+            "id": campaign.id,
+            "name": campaign.name,
+            "reference": campaign.reference,
+            "description" : campaign.description,
+            "status" : campaign.status,
+            "creation_date" : campaign.created_on,
+            "start_date" : campaign.actual_start_date,
+            "end_date" : campaign.actual_end_date,
+            "test_plan" : campaign.test_plan
+        })
+    }
+    return jsonData
+}
+
+async function getSquashTests(refObject) {
+    var jsonData = {
+        "test-cases" : []
+    };
+    jsonData.total = refObject._embedded["test-cases"].length
+
+    for (var i = 0; i < jsonData.total; i++) {
+        var item = refObject._embedded["test-cases"][i]
+        let test =  await fetcher.makeGetRequest(
+            `https://demo.squashtest.org/squash/api/rest/latest/test-cases/${item.id}`,
+            SQUASHHEADERS)
+        jsonData["test-cases"].push({
+            "id": test.id,
+            "name": test.name,
+            "reference": test.reference,
+            "status" : test.status,
+            "importance" : test.importance,
+            "creation_date" : test.created_on
+        })
+    }
     return jsonData
 }

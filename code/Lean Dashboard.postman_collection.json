@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "2a2038bf-d8db-461d-b9fe-3f761e657622",
+		"_postman_id": "225b71e9-8965-479f-9558-af3d0516eef9",
 		"name": "Lean Dashboard",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -91,6 +91,57 @@
 							]
 						},
 						"description": "Get specific Project from a user (JIRA)"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Squash Projects",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/leanDashboard/projectsSquash",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"leanDashboard",
+								"projectsSquash"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Squash Campaigns",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/leanDashboard/projectsSquash/1/campaigns",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"leanDashboard",
+								"projectsSquash",
+								"1",
+								"campaigns"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Squash Tests",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
 					},
 					"response": []
 				}
