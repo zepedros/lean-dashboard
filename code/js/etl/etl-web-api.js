@@ -118,6 +118,7 @@ function errHandler(resp,res){
 }
 
 function answerHandler(resp,res, statusCode){
+    console.log(resp)
    res.status(statusCode || 200).send(resp);
 }
 

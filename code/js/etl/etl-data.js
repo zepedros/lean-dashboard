@@ -23,21 +23,20 @@ module.exports = {
             issues: [],
             total: 0
         }
-        const mockMaxResults = 1
+        const mockMaxResults = 50
         let startAt = 0
         let url = `https://leandashboard.atlassian.net/rest/api/3/search?jql=&startAt=${startAt}&maxResults=${mockMaxResults}`
-        const headers = HEADERS
-        const response = await fetcher.makeGetRequest(url,headers)
-        let firstRequest  = processBody(response)
+
+        let firstRequest  = processBody(await fetcher.makeGetRequest(url,HEADERS))
         ret.issues.push(firstRequest.issues)
 
-        const total = response.total
-        ret.total = response.total
+        const total = firstRequest.total
+        ret.total = firstRequest.total
 
-        startAt++
+        startAt+= mockMaxResults
         while (startAt < total){
             let url = `https://leandashboard.atlassian.net/rest/api/3/search?jql=&startAt=${startAt}&maxResults=${mockMaxResults}`
-            let r = await fetcher.makeGetRequest(url,headers)
+            let r = await fetcher.makeGetRequest(url,HEADERS)
             let processedBody  = processBody(r)
             ret.issues.push(processedBody.issues)
             startAt += mockMaxResults
@@ -49,11 +48,6 @@ module.exports = {
         
         const url = `https://leandashboard.atlassian.net/rest/api/3/issue/${id}`
         const headers = HEADERS
-        /*const body = {
-            "maxResults": 3,
-            "startAt": 2
-        }*/
-        //return makeRequest(url,headers)  
         const response = await fetcher.makeGetRequest(url,headers)
         return it.getIssueObject(response)
     },

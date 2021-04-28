@@ -14,7 +14,7 @@ module.exports = {
 
     postIssues : async function(){
         const issues = await data.getIssuesJira()
-        const uri = `http://localhost:9200/lean-etl/_doc/`
+        const uri = `${ES_URL}lean-etl/_doc/`
         return fetch.makePostRequest(uri,issues)
     },
 

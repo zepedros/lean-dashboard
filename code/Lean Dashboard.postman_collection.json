@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "b6753163-6fe8-4772-8b04-ceb802bb623b",
+		"_postman_id": "3e25f6cc-5217-497c-8191-1fd1b106db29",
 		"name": "Lean Dashboard",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -148,7 +148,7 @@
 					"response": []
 				},
 				{
-					"name": "New Request",
+					"name": "POST /lean-etl/projects",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -265,7 +265,9 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": null
+				"url": {
+					"raw": ""
+				}
 			},
 			"response": []
 		}
