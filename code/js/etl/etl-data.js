@@ -72,11 +72,27 @@ module.exports = {
         const response = await fetcher.makeGetRequest(url,headers)
         return response
     },
-    getProjectsSquash : async function() {
-        const url = `https://demo.squashtest.org/squash/api/rest/latest/projects`
-        const headers = SQUASHHEADERS
-        const response = await fetcher.makeGetRequest(url,headers)
-        return getSquashProjects(response)
+    getProjectsSquash : async function(maxResults) {
+        let ret = {
+            projects: [],
+            total: 0
+        }
+        let page = 0
+        let maxPages = 0
+        maxResults = 50
+        const url = `https://demo.squashtest.org/squash/api/rest/latest/projects?page=${page}&size=${maxResults}`
+        let firstRequest = await fetcher.makeGetRequest(url,SQUASHHEADERS)
+        ret.total = firstRequest.page.totalElements
+        maxPages += firstRequest.page.totalPages
+        ret.projects.push(getSquashProjects(firstRequest._embedded))
+        page++
+        while (page < maxPages) {
+            const url = `https://demo.squashtest.org/squash/api/rest/latest/projects?page=${page}&size=${maxResults}`
+            const request = await fetcher.makeGetRequest(url,SQUASHHEADERS)
+            ret.projects.push(getSquashProjects(request._embedded))
+            page++
+        }
+        return ret.projects.flatMap(project => project)
     },
     getProjectCampaignsSquash : async function(id) {
         const url = `https://demo.squashtest.org/squash/api/rest/latest/projects/${id}/campaigns`
@@ -141,20 +157,11 @@ function getProjectObject(refObject){
     return jsonData
 }
 
-function getSquashProjects(refObject){
-    var jsonData = {
-        project :  []
-    };
-    jsonData.total = refObject._embedded.projects.length
-
-    for(var i = 0; i < jsonData.total; i++) {
-        var item = refObject._embedded.projects[i]
-        jsonData.project.push({
-            "id" : item.id,
-            "name": item.name
-        })
-    }
-    return jsonData
+function getSquashProjects(body){
+    return Array.isArray(body) ?
+        body.map(show => getSquashProjectsObject(show))
+        :
+        it.getSquashProjectsObject(body);
 }
 
 async function getSquashCampaigns(refObject) {
