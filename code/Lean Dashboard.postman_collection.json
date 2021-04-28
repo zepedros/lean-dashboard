@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "225b71e9-8965-479f-9558-af3d0516eef9",
+		"_postman_id": "b6753163-6fe8-4772-8b04-ceb802bb623b",
 		"name": "Lean Dashboard",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -9,19 +9,19 @@
 			"name": "ETL",
 			"item": [
 				{
-					"name": "GET /leanDasboard/issuesJira",
+					"name": "GET /lean-etl/issuesJira",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8000/leanDasboard/issuesJira",
+							"raw": "http://localhost:8000/lean-etl/issuesJira",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8000",
 							"path": [
-								"leanDasboard",
+								"lean-etl",
 								"issuesJira"
 							]
 						},
@@ -30,19 +30,19 @@
 					"response": []
 				},
 				{
-					"name": "GET leanDasboard/issueByIdJira/{id}",
+					"name": "GET lean-etl/issueByIdJira/{id}",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8000/leanDasboard/issueByIdJira/10003",
+							"raw": "http://localhost:8000/lean-etl/issueByIdJira/10003",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8000",
 							"path": [
-								"leanDasboard",
+								"lean-etl",
 								"issueByIdJira",
 								"10003"
 							]
@@ -52,19 +52,19 @@
 					"response": []
 				},
 				{
-					"name": "GET leanDashboard/projectsJira",
+					"name": "GET lean-etl/projectsJira",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8000/leanDashboard/projectsJira",
+							"raw": "http://localhost:8000/lean-etl/projectsJira",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8000",
 							"path": [
-								"leanDashboard",
+								"lean-etl",
 								"projectsJira"
 							]
 						},
@@ -73,19 +73,19 @@
 					"response": []
 				},
 				{
-					"name": "GET leanDashboard/projectsJira/{id}",
+					"name": "GET lean-etl/projectsJira/{id}",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8000/leanDashboard/projectsJira/10000",
+							"raw": "http://localhost:8000/lean-etl/projectsJira/10000",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8000",
 							"path": [
-								"leanDashboard",
+								"lean-etl",
 								"projectsJira",
 								"10000"
 							]
@@ -100,14 +100,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8000/leanDashboard/projectsSquash",
+							"raw": "http://localhost:8000/lean-etl/projectsSquash",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8000",
 							"path": [
-								"leanDashboard",
+								"lean-etl",
 								"projectsSquash"
 							]
 						}
@@ -120,14 +120,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8000/leanDashboard/projectsSquash/1/campaigns",
+							"raw": "http://localhost:8000/lean-etl/projectsSquash/1/campaigns",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8000",
 							"path": [
-								"leanDashboard",
+								"lean-etl",
 								"projectsSquash",
 								"1",
 								"campaigns"
@@ -141,7 +141,29 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": null
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/lean-etl/projects",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"lean-etl",
+								"projects"
+							]
+						}
 					},
 					"response": []
 				}
@@ -237,6 +259,15 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
+			},
+			"response": []
 		}
 	]
 }
