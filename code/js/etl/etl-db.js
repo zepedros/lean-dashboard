@@ -14,10 +14,32 @@ module.exports = {
 
     postIssues : async function(){
         const issues = await data.getIssuesJira()
-        const uri = `http://localhost:9200/lean-etl/_doc`
+        const uri = `http://localhost:9200/lean-etl/_doc/`
         return fetch.makePostRequest(uri,issues)
     },
 
+    postProjects: async function(){
+        const projects = await data.getProjectsJira()
+        let projectMap = new Map()
+
+        projects.values.forEach(project => {
+            project.issues = []
+            projectMap.set(project.id, project)
+        })
+
+        const issues = await data.getIssuesJira()
+
+        issues.forEach(issue => {
+            projectMap.get(issue.idProject).issues.push(issue)
+        })
+
+        console.log("alisa")
+
+        projectMap.forEach((values,keys) => {
+            const uri = `http://localhost:9200/lean-etl/_doc/${keys}`
+            fetch.makePutRequest(uri,values)
+        })
+    },
 
     getIssues: async function (){
         const uri = `${ES_URL}lean-etl/_search`;

@@ -3,7 +3,7 @@
 const { json } = require("express")
 const error = require("../error")
 const fetcher = require("../uri-fetcher")
-const it = require('./etl-issueTransform');
+const it = require('./etl-issue-transform');
 const HEADERS = {
     'Authorization': `Basic ${Buffer.from(
       'leandashboardproject@gmail.com:LPcyGdZolN906MvzdwPHF045'
@@ -18,18 +18,41 @@ const SQUASHHEADERS = {
 }
 module.exports = {
 
-    getIssuesJira: async function() {
-        const url = 'https://leandashboard.atlassian.net/rest/api/3/search?jql='
+    getIssuesJira: async function(maxResults) {
+        let ret = {
+            issues: [],
+            total: 0
+        }
+        const mockMaxResults = 1
+        let startAt = 0
+        let url = `https://leandashboard.atlassian.net/rest/api/3/search?jql=&startAt=${startAt}&maxResults=${mockMaxResults}`
         const headers = HEADERS
-        //return makeRequest(url, headers)
         const response = await fetcher.makeGetRequest(url,headers)
-        return processBody(response)
+        let firstRequest  = processBody(response)
+        ret.issues.push(firstRequest.issues)
+
+        const total = response.total
+        ret.total = response.total
+
+        startAt++
+        while (startAt < total){
+            let url = `https://leandashboard.atlassian.net/rest/api/3/search?jql=&startAt=${startAt}&maxResults=${mockMaxResults}`
+            let r = await fetcher.makeGetRequest(url,headers)
+            let processedBody  = processBody(r)
+            ret.issues.push(processedBody.issues)
+            startAt += mockMaxResults
+        }
+        return ret.issues.flatMap(issue => issue)
     },
 
     getIssuesByIdJira: async function(id) {
         
         const url = `https://leandashboard.atlassian.net/rest/api/3/issue/${id}`
         const headers = HEADERS
+        /*const body = {
+            "maxResults": 3,
+            "startAt": 2
+        }*/
         //return makeRequest(url,headers)  
         const response = await fetcher.makeGetRequest(url,headers)
         return it.getIssueObject(response)

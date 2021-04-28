@@ -5,16 +5,16 @@ const error = require("./error")
 const URI_METHOD = {GET: "get",POST:"post",PUT:"put",DELETE: "delete"}
 
 module.exports = {
-    makeGetRequest : async function makeGetRequest(uri,headers, body) {
-      return makeRequest(uri, URI_METHOD.GET, body, headers || defaultHeader)
+    makeGetRequest : async function makeGetRequest(uri,headers, body, params) {
+      return makeRequest(uri, URI_METHOD.GET, body, headers || defaultHeader, params)
     },
 
     makePostRequest:async function makePostRequest(uri, body, headers) {
         return makeRequest(uri, URI_METHOD.POST, body, headers || defaultHeader)
     },
 
-    makePutRequest: async function makePutRequest(uri,body) {
-        return makeRequest(uri, URI_METHOD.PUT, body)
+    makePutRequest: async function makePutRequest(uri,body,headers) {
+        return makeRequest(uri, URI_METHOD.PUT, body, headers || defaultHeader)
     },
 
     makeDeleteRequest: async function makeDeleteRequest(uri,body) {
@@ -22,10 +22,10 @@ module.exports = {
     }
 }
 
-async function makeRequest(uri, method, body, headers) {
+async function makeRequest(uri, method, body, headers, params) {
     console.log(`Making a request to ${uri} `)
     try{
-      const response =  await fetch(uri,options(method,body,headers))
+      const response =  await fetch(uri,options(method,body,headers, params))
       return await response.json();
     }
     catch(err){
@@ -33,10 +33,12 @@ async function makeRequest(uri, method, body, headers) {
     }
 }
 
-function options(method,body, header) {
+function options(method,body, header, params) {
         return {
             method: method,
-             body: body?JSON.stringify(body): undefined,
-             headers: header
+            body: body?JSON.stringify(body): undefined,
+            headers: header,
+            params: params
+
           }
     }

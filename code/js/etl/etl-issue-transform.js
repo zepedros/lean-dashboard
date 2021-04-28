@@ -5,17 +5,18 @@
 module.exports = {
     getIssuesObject : function(refObject) {
 
+
     var jsonData = {
-        issue :  []
+        issues :  []
     };
 
-    jsonData.total = refObject.total
+    jsonData.total = refObject.issues.length
 
     for(var i = 0; i < jsonData.total; i++){
 
         var item = refObject.issues[i]
 
-        jsonData.issue.push({
+        /*jsonData.issues.push({
             "id" : item.id,
             "key" : item.key,
             "issuetype_name" : item.fields.issuetype.name,
@@ -29,9 +30,28 @@ module.exports = {
             "created" : item.fields.created,
             "idProject" : item.fields.project.id,
             "projectName" : item.fields.project.name
-        })
+        })*/
 
     }
+
+    refObject.issues = refObject.issues.flatMap(item => {
+        const alisa = {
+            "id": item.id,
+            "key": item.key,
+            "issuetype_name": item.fields.issuetype.name,
+            "issuetype_icon": item.fields.issuetype.iconUrl,
+            "summary": item.fields.summary,
+            "priority_name": item.fields.priority.name,
+            "priority_id": item.fields.priority.id,
+            "assignee": item.fields.assignee,
+            "reportes": item.fields.reporter.accountId,
+            "state": item.fields.status.name,
+            "created": item.fields.created,
+            "idProject": item.fields.project.id,
+            "projectName": item.fields.project.name
+        }
+        return alisa
+    })
     return refObject
 },
 

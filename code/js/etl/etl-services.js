@@ -32,6 +32,9 @@ function services(data, db){
     },
     postIssues : function(){
       return db.postIssues()
+    },
+    postProjects: function (){
+        return db.postProjects()
     }
   };
   return theServices;

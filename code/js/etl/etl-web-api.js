@@ -76,24 +76,33 @@ function webapi(app,services) {
         answerHandler(resp,res)
       })
       .catch(err => errHandler(err,res))
+    },
+    postProjects : function (req, res){
+            services.postProjects()
+                .then(resp => {
+                    console.log("Post Projects")
+                    answerHandler(resp,res)
+                })
+                .catch(err => errHandler(err,res))
     }
   };
 
-  app.get('/leanDashboard/projectsJira/team',theWebApi.getTeamJira)
+  app.get('/lean-etl/projectsJira/team',theWebApi.getTeamJira)
 
-  app.get('/leanDasboard/issuesJira',theWebApi.getIssuesJira) //testing 
-  app.get('/leanDasboard/issueByIdJira/:id',theWebApi.getIssuesByIdJira)//testing 
+  app.get('/lean-etl/issuesJira',theWebApi.getIssuesJira) //testing
+  app.get('/lean-etl/issueByIdJira/:id',theWebApi.getIssuesByIdJira)//testing
 
-  app.get('/leanDashboard/projectsJira', theWebApi.getProjectsJira)//testing
-  app.get('/leanDashboard/projectsJira/:id', theWebApi.getProjectByIdJira)//testing
-
-
-  app.get('/leanDashboard/projectsSquash', theWebApi.getProjectsSquash)//testing
-  app.get('/leanDashboard/projectsSquash/:id/campaigns', theWebApi.getProjectCampaignsSquash)//testing
-  app.get('/leanDashboard/projectsSquash/:id/tests', theWebApi.getProjectTestsSquash)//testing
+  app.get('/lean-etl/projectsJira', theWebApi.getProjectsJira)//testing
+  app.get('/lean-etl/projectsJira/:id', theWebApi.getProjectByIdJira)//testing
 
 
-  app.post('/leanDashboard/issues', theWebApi.postIssues)
+  app.get('/lean-etl/projectsSquash', theWebApi.getProjectsSquash)//testing
+  app.get('/lean-etl/projectsSquash/:id/campaigns', theWebApi.getProjectCampaignsSquash)//testing
+  app.get('/lean-etl/projectsSquash/:id/tests', theWebApi.getProjectTestsSquash)//testing
+
+
+  app.post('/lean-etl/issues', theWebApi.postIssues)
+    app.post('/lean-etl/projects', theWebApi.postProjects)
 
     return theWebApi;
 }
