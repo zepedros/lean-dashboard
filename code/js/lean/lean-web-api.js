@@ -35,18 +35,29 @@ function webapi(app,services){
                     answerHandler(resp,res)
                 })
                 .catch(err => errHandler(err,res))
+        },
+       createProject : function (req,res) {
+            services.createProject(req.body.name,req.body.description)
+                .then(resp => {
+                    console.log(`Creating project with the name  "${req.body.name}" and the description "${req.body.description}"`)
+                    answerHandler(resp,res,201) 
+                })
         }
     };
 
+
+    app.post('/lean/project',theWebApi.createProject)
     app.get('/lean/issues',theWebApi.getIssues);
     app.get('/lean/issueById/:id',theWebApi.getIssuesById)
     app.get('/lean/projects',theWebApi.getProjects)
     app.get('/lean/projects/:id',theWebApi.getProjectById)
 
+
     return theWebApi;
 }
 
 function errHandler(resp,res){
+    console.log(resp)
     if(!resp.statusCode){
         res.status(400).send({message: "An error occurred"})
     }else {

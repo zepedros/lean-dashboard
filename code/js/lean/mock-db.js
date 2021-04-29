@@ -23,5 +23,14 @@ module.exports = {
         const hits = res && res.hits
             && res.hits.hits;
         return hits
+    },
+    createProject : async function(name,description){
+        const project = {name:name, description:description, team:[], duration:[], issues:[],tests:[]}
+        const uri = `http://localhost:9200/lean/_doc/`
+        return fetch.makePostRequest(uri,project)
+            .then(res => {
+                project.id = res._id
+                return project
+            })
     }
 }

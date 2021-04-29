@@ -35,7 +35,7 @@ function services(data, db){
     },
     postProjects: function (){
         return db.postProjects()
-    }
+    },
   };
   return theServices;
 }
