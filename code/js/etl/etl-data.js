@@ -1,16 +1,18 @@
 'use strict'
 
-const { json } = require("express")
-const error = require("../error")
 const fetcher = require("../uri-fetcher")
-const it = require('./etl-issue-transform');
+const issue_transformer = require('./etl-issue-transform');
+const project_transformer = require('./etl-project-transform')
+const campaign_transformer = require('./etl-campaign-transform')
+const test_transformer = require('./etl-test-transform')
+
 const HEADERS = {
     'Authorization': `Basic ${Buffer.from(
-      'leandashboardproject@gmail.com:LPcyGdZolN906MvzdwPHF045'
+        'leandashboardproject@gmail.com:LPcyGdZolN906MvzdwPHF045'
     ).toString('base64')}`,
     'Accept': 'application/json'
-  }
-const SQUASHHEADERS = {
+}
+const SQUASH_HEADERS = {
     'Authorization': `Basic ${Buffer.from(
         'guest_tpl:password'
     ).toString('base64')}`,
@@ -18,7 +20,7 @@ const SQUASHHEADERS = {
 }
 module.exports = {
 
-    getIssuesJira: async function(maxResults) {
+    getIssuesJira: async function () {
         let ret = {
             issues: [],
             total: 0
@@ -27,52 +29,52 @@ module.exports = {
         let startAt = 0
         let url = `https://leandashboard.atlassian.net/rest/api/3/search?jql=&startAt=${startAt}&maxResults=${mockMaxResults}`
 
-        let firstRequest  = processBody(await fetcher.makeGetRequest(url,HEADERS))
+        let firstRequest = processLeanIssuesBody(await fetcher.makeGetRequest(url, HEADERS))
         ret.issues.push(firstRequest.issues)
 
         const total = firstRequest.total
         ret.total = firstRequest.total
 
-        startAt+= mockMaxResults
-        while (startAt < total){
+        startAt += mockMaxResults
+        while (startAt < total) {
             let url = `https://leandashboard.atlassian.net/rest/api/3/search?jql=&startAt=${startAt}&maxResults=${mockMaxResults}`
-            let r = await fetcher.makeGetRequest(url,HEADERS)
-            let processedBody  = processBody(r)
+            let r = await fetcher.makeGetRequest(url, HEADERS)
+            let processedBody = processLeanIssuesBody(r)
             ret.issues.push(processedBody.issues)
             startAt += mockMaxResults
         }
-        return ret.issues.flatMap(issue => issue)
+        ret.issues = ret.issues.flatMap(issue => issue)
+        return ret
     },
 
-    getIssuesByIdJira: async function(id) {
-        
+    getIssuesByIdJira: async function (id) {
+
         const url = `https://leandashboard.atlassian.net/rest/api/3/issue/${id}`
-        const headers = HEADERS
-        const response = await fetcher.makeGetRequest(url,headers)
-        return it.getIssueObject(response)
+        const response = await fetcher.makeGetRequest(url, HEADERS)
+        return processLeanIssuesBody(response)
     },
 
-    getProjectsJira : async function(){
+    getProjectsJira: async function () {
         const url = `https://leandashboard.atlassian.net/rest/api/3/project/search`
-        const headers = HEADERS
-        const response = await fetcher.makeGetRequest(url,headers)
-        return getProjectsObject(response)
+        const response = await fetcher.makeGetRequest(url, HEADERS)
+        return processLeanProjectsBody(response)
     },
 
-    getProjectByIdJira : async function(id){
+    getProjectByIdJira: async function (id) {
         const url = `https://leandashboard.atlassian.net/rest/api/3/project/${id}`
-        const headers = HEADERS
-        const response = await fetcher.makeGetRequest(url,headers)
-        return getProjectObject(response)
+        const response = await fetcher.makeGetRequest(url, HEADERS)
+        return project_transformer.getJiraProjectObject(response)
     },
 
-    getTeamJira : async function() {
+    /*
+    *TODO getTeam from Jira needs to be implemented and given a route on etl-web-api
+     */
+    getTeamJira: async function () {
         const url = `https://leandashboard.atlassian.net/rest/api/3/role`
-        const headers = HEADERS
-        const response = await fetcher.makeGetRequest(url,headers)
-        return response
+        return await fetcher.makeGetRequest(url, HEADERS)
     },
-    getProjectsSquash : async function(maxResults) {
+
+    getProjectsSquash: async function (maxResults) {
         let ret = {
             projects: [],
             total: 0
@@ -80,135 +82,99 @@ module.exports = {
         let page = 0
         let maxPages = 0
         maxResults = 50
+
         const url = `https://demo.squashtest.org/squash/api/rest/latest/projects?page=${page}&size=${maxResults}`
-        let firstRequest = await fetcher.makeGetRequest(url,SQUASHHEADERS)
+        let firstRequest = await fetcher.makeGetRequest(url, SQUASH_HEADERS)
+
         ret.total = firstRequest.page.totalElements
         maxPages += firstRequest.page.totalPages
-        ret.projects.push(getSquashProjects(firstRequest._embedded))
+
+        ret.projects.push(processSquashProjectsBody(firstRequest._embedded))
         page++
+
         while (page < maxPages) {
             const url = `https://demo.squashtest.org/squash/api/rest/latest/projects?page=${page}&size=${maxResults}`
-            const request = await fetcher.makeGetRequest(url,SQUASHHEADERS)
-            ret.projects.push(getSquashProjects(request._embedded))
+            const request = await fetcher.makeGetRequest(url, SQUASH_HEADERS)
+            ret.projects.push(processSquashProjectsBody(request._embedded))
             page++
         }
-        return ret.projects.flatMap(project => project)
+        ret.projects = ret.projects.flatMap(project => project)
+        return ret
     },
-    getProjectCampaignsSquash : async function(id) {
+    getProjectCampaignsSquash: async function (id) {
         const url = `https://demo.squashtest.org/squash/api/rest/latest/projects/${id}/campaigns`
-        const headers = SQUASHHEADERS
-        const response = await fetcher.makeGetRequest(url,headers)
+        const response = await fetcher.makeGetRequest(url, SQUASH_HEADERS)
         return getSquashCampaigns(response)
     },
-    getProjectTestsSquash : async function(id) {
+    getProjectTestsSquash: async function (id) {
         const url = `https://demo.squashtest.org/squash/api/rest/latest/projects/${id}/test-cases`
-        const headers = SQUASHHEADERS
-        const response = await fetcher.makeGetRequest(url,headers)
+        const headers = SQUASH_HEADERS
+        const response = await fetcher.makeGetRequest(url, headers)
         return getSquashTests(response)
     }
-
-}
-
-async function makeRequest(url, headers) {
-    const response = await fetcher.makeGetRequest(url, headers)
-    //return response
-    return processBody(response)
 }
 
 
-function processBody(body) {
-    return Array.isArray(body) ?
-        body.map(show => getIssuesObject(show))
+function processLeanIssuesBody(body) {
+    return Array.isArray(body.issues) ?
+        issue_transformer.getLeanIssues(body)
         :
-        it.getIssuesObject(body);
+        issue_transformer.getLeanIssueObject(body);
 }
 
-
-
-function getProjectsObject(refObject) {
-    var jsonData = {
-        project :  []
-  };
-   jsonData.total = refObject.total
-   
-   for(var i = 0; i < jsonData.total; i++) {
-        var item = refObject.values[i]
-        jsonData.project.push({
-            "key" : item.key,
-            "id" : item.id,
-            "name": item.name,
-            "projectTypeKey" : item.projectTypeKey,
-            "projectCategory" : item.projectCategory, //api documentation shows this but in ours projects doesnt show
-            "insight" : item.insight //same here
-        })
-
-   }
-   return refObject
-}
-
-function getProjectObject(refObject){
-    var jsonData = {}
-
-    jsonData.id = refObject.id
-    jsonData.key = refObject.key
-    jsonData.description = refObject.description
-    jsonData.name = refObject.lead.displayName
-    jsonData.roles = refObject.roles
-    return jsonData
-}
-
-function getSquashProjects(body){
-    return Array.isArray(body) ?
-        body.map(show => getSquashProjectsObject(show))
+function processLeanProjectsBody(body) {
+    return Array.isArray(body.values) ?
+        project_transformer.getJiraProjects(body)
         :
-        it.getSquashProjectsObject(body);
+        project_transformer.getJiraProjectObject(body);
+}
+
+function processSquashProjectsBody(body) {
+    return Array.isArray(body) ?
+        body.map(project => project_transformer.getSquashProjectsObject(project))
+        :
+        project_transformer.getSquashProjectsObject(body);
+}
+
+function processSquashCampaignsBody(body){
+    return Array.isArray(body) ?
+        body.map(campaign => campaign_transformer.getSquashCampaignObject(campaign))
+        :
+        campaign_transformer.getSquashCampaignObject(body)
+}
+
+function processSquashTestsBody(body){
+    return Array.isArray(body) ?
+        body.map(test => test_transformer.getSquashTestObject(test))
+        :
+        test_transformer.getSquashTestObject(body)
 }
 
 async function getSquashCampaigns(refObject) {
-    var jsonData = {
+    let jsonData = {
         campaigns: []
     };
     jsonData.total = refObject._embedded.campaigns.length
-
-    for (var i = 0; i < jsonData.total; i++) {
-        var item = refObject._embedded.campaigns[i]
-        let campaign =  await fetcher.makeGetRequest(
-            `https://demo.squashtest.org/squash/api/rest/latest/campaigns/${item.id}`,
-            SQUASHHEADERS)
-        jsonData.campaigns.push({
-            "id": campaign.id,
-            "name": campaign.name,
-            "reference": campaign.reference,
-            "description" : campaign.description,
-            "status" : campaign.status,
-            "creation_date" : campaign.created_on,
-            "start_date" : campaign.actual_start_date,
-            "end_date" : campaign.actual_end_date,
-            "test_plan" : campaign.test_plan
-        })
+    for (const campaign of refObject._embedded.campaigns) {
+        let expandedCampaign = await fetcher.makeGetRequest(
+            `https://demo.squashtest.org/squash/api/rest/latest/campaigns/${campaign.id}`,
+            SQUASH_HEADERS)
+        jsonData.campaigns.push(processSquashCampaignsBody(expandedCampaign))
     }
     return jsonData
 }
 
 async function getSquashTests(refObject) {
     var jsonData = {
-        "test-cases" : []
+        "test-cases": []
     };
     jsonData.total = refObject._embedded["test-cases"].length
 
-    for (var i = 0; i < jsonData.total; i++) {
-        var item = refObject._embedded["test-cases"][i]
-        let test =  await fetcher.makeGetRequest(
-            `https://demo.squashtest.org/squash/api/rest/latest/test-cases/${item.id}`,
-            SQUASHHEADERS)
-        jsonData["test-cases"].push({
-            "id": test.id,
-            "name": test.name,
-            "reference": test.reference,
-            "status" : test.status,
-            "importance" : test.importance,
-            "creation_date" : test.created_on
-        })
+    for (const test of refObject._embedded["test-cases"]){
+        let expandedTest = await fetcher.makeGetRequest(
+            `https://demo.squashtest.org/squash/api/rest/latest/test-cases/${test.id}`,
+            SQUASH_HEADERS)
+        jsonData["test-cases"].push(processSquashTestsBody(expandedTest))
     }
     return jsonData
 }
