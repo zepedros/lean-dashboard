@@ -9,6 +9,7 @@ module.exports = {
             "creation_date": expandedCampaign.created_on,
             "start_date": expandedCampaign.actual_start_date,
             "end_date": expandedCampaign.actual_end_date,
+            "iterations" : expandedCampaign.iterations,
             "test_plan": expandedCampaign.test_plan
         }
     }

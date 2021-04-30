@@ -67,6 +67,22 @@ function webapi(app, services) {
                 })
                 .catch(err => errHandler(err, res))
         },
+        getSquashCampaignById: function (req, res) {
+            services.getSquashCampaignById(req.params.id, req.params.cid)
+                .then(resp => {
+                    console.log("Get squash campaign by id for project")
+                    answerHandler(resp, res)
+                })
+                .catch(err => errHandler(err, res))
+        },
+        getSquashTestById: function (req, res) {
+            services.getSquashTestById(req.params.id, req.params.tid)
+                .then(resp => {
+                    console.log("Get squash test by id for project")
+                    answerHandler(resp, res)
+                })
+                .catch(err => errHandler(err, res))
+        },
         postIssues: function (req, res) {
             services.postIssues()
                 .then(resp => {
@@ -96,7 +112,9 @@ function webapi(app, services) {
 
     app.get('/lean-etl/projectsSquash', theWebApi.getProjectsSquash)//testing
     app.get('/lean-etl/projectsSquash/:id/campaigns', theWebApi.getProjectCampaignsSquash)//testing
+    app.get('/lean-etl/projectsSquash/:id/campaigns/:cid', theWebApi.getSquashCampaignById)//testing
     app.get('/lean-etl/projectsSquash/:id/tests', theWebApi.getProjectTestsSquash)//testing
+    app.get('/lean-etl/projectsSquash/:id/tests/:tid', theWebApi.getSquashTestById)//testing
 
 
     app.post('/lean-etl/issues', theWebApi.postIssues)

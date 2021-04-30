@@ -106,11 +106,31 @@ module.exports = {
         const response = await fetcher.makeGetRequest(url, SQUASH_HEADERS)
         return getSquashCampaigns(response)
     },
+    getSquashCampaignById : async function (projectId, campaignId) {
+        let url = `https://demo.squashtest.org/squash/api/rest/latest/projects/${projectId}/campaigns`
+        const allCampaigns = await fetcher.makeGetRequest(url, SQUASH_HEADERS)
+        if(!allCampaigns._embedded.campaigns.find(campaign => campaign.id == campaignId)) {
+            throw new Error("Campaign  not in project.")
+        }
+        url = `https://demo.squashtest.org/squash/api/rest/latest/campaigns/${campaignId}`
+        const campaign = await fetcher.makeGetRequest(url, SQUASH_HEADERS)
+        return processSquashCampaignsBody(campaign)
+    },
     getProjectTestsSquash: async function (id) {
         const url = `https://demo.squashtest.org/squash/api/rest/latest/projects/${id}/test-cases`
         const headers = SQUASH_HEADERS
         const response = await fetcher.makeGetRequest(url, headers)
         return getSquashTests(response)
+    },
+    getSquashTestById : async function (projectId,testId) {
+        let url = `https://demo.squashtest.org/squash/api/rest/latest/projects/${projectId}/test-cases`
+        const allTests = await fetcher.makeGetRequest(url, SQUASH_HEADERS)
+        if(!allTests._embedded["test-cases"].find(test => test.id == testId)) {
+            throw new Error("Test  not in project.")
+        }
+        url = `https://demo.squashtest.org/squash/api/rest/latest/test-cases/${testId}`
+        const test = await fetcher.makeGetRequest(url, SQUASH_HEADERS)
+        return processSquashTestsBody(test)
     }
 }
 
