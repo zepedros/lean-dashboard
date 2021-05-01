@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "5cca2ebb-63fb-424b-9216-d772eb53bbb1",
+		"_postman_id": "742aae1d-09a1-4fb3-a8b0-17a55f0ed4b1",
 		"name": "Lean Dashboard",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -137,7 +137,7 @@
 					"response": []
 				},
 				{
-					"name": "GET /lean-etl/projectsSquash/{id}/campaigns",
+					"name": "GET /lean-etl/projectsSquash/{id}/tests",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -164,7 +164,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8000/lean-etl/projectsSquash/2/campaigns/2",
+							"raw": "http://localhost:8000/lean-etl/projectsSquash/1/campaigns/3908",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -173,9 +173,9 @@
 							"path": [
 								"lean-etl",
 								"projectsSquash",
-								"2",
+								"1",
 								"campaigns",
-								"2"
+								"3908"
 							]
 						}
 					},
@@ -186,7 +186,21 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": null
+						"url": {
+							"raw": "http://localhost:8000/lean-etl/projectsSquash/2/tests/69",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"lean-etl",
+								"projectsSquash",
+								"2",
+								"tests",
+								"69"
+							]
+						}
 					},
 					"response": []
 				},
@@ -302,17 +316,6 @@
 					"response": []
 				}
 			]
-		},
-		{
-			"name": "New Request",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": ""
-				}
-			},
-			"response": []
 		}
 	]
 }

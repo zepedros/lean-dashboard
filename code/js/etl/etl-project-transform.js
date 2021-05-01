@@ -27,8 +27,8 @@ module.exports = {
     getSquashProjectsObject: function (refObject) {
         return refObject.projects = refObject.projects.flatMap(item => {
             return {
-                "idProject": item.id,
-                "nameProject": item.name,
+                "id": item.id,
+                "name": item.name,
                 "source" : "Squash"
             }
         })
