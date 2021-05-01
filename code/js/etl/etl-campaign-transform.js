@@ -10,7 +10,9 @@ module.exports = {
             "start_date": expandedCampaign.actual_start_date,
             "end_date": expandedCampaign.actual_end_date,
             "iterations" : expandedCampaign.iterations,
-            "test_plan": expandedCampaign.test_plan
+            "test_plan": expandedCampaign.test_plan,
+            "project-id": expandedCampaign.project.id,
+            "project-name": expandedCampaign.project.name
         }
     }
 }

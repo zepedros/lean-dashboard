@@ -5,6 +5,7 @@ const issue_transformer = require('./etl-issue-transform');
 const project_transformer = require('./etl-project-transform')
 const campaign_transformer = require('./etl-campaign-transform')
 const test_transformer = require('./etl-test-transform')
+const error = require('../error')
 
 const HEADERS = {
     'Authorization': `Basic ${Buffer.from(
@@ -107,13 +108,11 @@ module.exports = {
         return getSquashCampaigns(response)
     },
     getSquashCampaignById : async function (projectId, campaignId) {
-        let url = `https://demo.squashtest.org/squash/api/rest/latest/projects/${projectId}/campaigns`
-        const allCampaigns = await fetcher.makeGetRequest(url, SQUASH_HEADERS)
-        if(!allCampaigns._embedded.campaigns.find(campaign => campaign.id == campaignId)) {
-            throw new Error("Campaign  not in project.")
-        }
-        url = `https://demo.squashtest.org/squash/api/rest/latest/campaigns/${campaignId}`
+        const url = `https://demo.squashtest.org/squash/api/rest/latest/campaigns/${campaignId}`
         const campaign = await fetcher.makeGetRequest(url, SQUASH_HEADERS)
+        if (campaign.project.id != projectId){
+            throw error.create(404,"Campaign not present in project")
+        }
         return processSquashCampaignsBody(campaign)
     },
     getProjectTestsSquash: async function (id) {
@@ -123,17 +122,14 @@ module.exports = {
         return getSquashTests(response)
     },
     getSquashTestById : async function (projectId,testId) {
-        let url = `https://demo.squashtest.org/squash/api/rest/latest/projects/${projectId}/test-cases`
-        const allTests = await fetcher.makeGetRequest(url, SQUASH_HEADERS)
-        if(!allTests._embedded["test-cases"].find(test => test.id == testId)) {
-            throw new Error("Test  not in project.")
-        }
-        url = `https://demo.squashtest.org/squash/api/rest/latest/test-cases/${testId}`
+        const url = `https://demo.squashtest.org/squash/api/rest/latest/test-cases/${testId}`
         const test = await fetcher.makeGetRequest(url, SQUASH_HEADERS)
+        if (test.project.id != projectId){
+            throw error.create(404,"Test not present in project")
+        }
         return processSquashTestsBody(test)
     }
 }
-
 
 function processLeanIssuesBody(body) {
     return Array.isArray(body.issues) ?
