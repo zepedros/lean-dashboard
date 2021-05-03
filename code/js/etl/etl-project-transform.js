@@ -32,6 +32,27 @@ module.exports = {
                 "source" : "Squash"
             }
         })
-    }
+    },
 
+    getAzureProjects: function (refObject) {
+        let jsonData = {
+            projects: []
+        };
+        jsonData.total = refObject.count
+        jsonData.projects = refObject.value.map(item => {
+            return this.getAzureProjectObject(item)
+        })
+        return jsonData
+    },
+
+    getAzureProjectObject: function (refObject) {
+        return {
+            "id": refObject.id,
+            "name": refObject.name,
+            "description" : typeof refObject.description == `undefined` ? `` : refObject.description ,
+            "state": refObject.state,
+            "visibility" : refObject.visibility,
+            "source": "Azure"
+        }
+    }
 }

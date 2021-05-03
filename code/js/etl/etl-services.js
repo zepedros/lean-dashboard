@@ -35,6 +35,9 @@ function services(data, db) {
         getSquashTestById: function (projectId, testId) {
             return data.getSquashTestById(projectId,testId)
         },
+        getAzureProjects: function () {
+            return data.getAzureProjects()
+        },
         postIssues: function () {
             return db.postIssues()
         },

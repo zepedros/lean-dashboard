@@ -83,6 +83,14 @@ function webapi(app, services) {
                 })
                 .catch(err => errHandler(err, res))
         },
+        getAzureProjects: function (req,res) {
+            services.getAzureProjects()
+                .then(resp => {
+                    console.log("Get Azure projects")
+                    answerHandler(resp, res)
+                })
+                .catch(err => errHandler(err, res))
+        },
         postIssues: function (req, res) {
             services.postIssues()
                 .then(resp => {
@@ -103,7 +111,6 @@ function webapi(app, services) {
 
     app.get('/lean-etl/projectsJira/team', theWebApi.getTeamJira)
 
-
     app.get('/lean-etl/issuesJira', theWebApi.getIssuesJira) //testing
     app.get('/lean-etl/issueByIdJira/:id', theWebApi.getIssuesByIdJira)//testing
 
@@ -116,7 +123,7 @@ function webapi(app, services) {
     app.get('/lean-etl/projectsSquash/:id/tests', theWebApi.getProjectTestsSquash)//testing
     app.get('/lean-etl/projectsSquash/:id/tests/:tid', theWebApi.getSquashTestById)//testing
 
-
+    app.get('/lean-etl/projectsAzure', theWebApi.getAzureProjects) //testing
     app.post('/lean-etl/issues', theWebApi.postIssues)
     app.post('/lean-etl/projects', theWebApi.postProjects)
 

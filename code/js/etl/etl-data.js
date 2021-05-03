@@ -19,6 +19,12 @@ const SQUASH_HEADERS = {
     ).toString('base64')}`,
     'Accept': 'application/json'
 }
+const AZURE_HEADERS = {
+    'Authorization': `Basic ${Buffer.from(
+        'leandashboardproject@gmail.com:cwryfikv3hrslmoqiz4wz2otexf7o5aj4qtouhm37ndglel5dkbq'
+    ).toString('base64')}`,
+    'Accept': 'application/json'
+}
 module.exports = {
 
     getIssuesJira: async function () {
@@ -128,6 +134,11 @@ module.exports = {
             throw error.create(404,"Test not present in project")
         }
         return processSquashTestsBody(test)
+    },
+    getAzureProjects: async function () {
+        const url = `https://dev.azure.com/leandashboardproject/_apis/projects?api-version=6.1-preview.4`
+        let projects = await fetcher.makeGetRequest(url, AZURE_HEADERS)
+        return processAzureProjectsBody(projects)
     }
 }
 
@@ -164,6 +175,13 @@ function processSquashTestsBody(body){
         body.map(test => test_transformer.getSquashTestObject(test))
         :
         test_transformer.getSquashTestObject(body)
+}
+
+function processAzureProjectsBody(body) {
+    return Array.isArray(body.value) ?
+        project_transformer.getAzureProjects(body)
+        :
+        project_transformer.getAzureProjectObject(body);
 }
 
 async function getSquashCampaigns(refObject) {
