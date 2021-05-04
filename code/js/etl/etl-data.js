@@ -5,6 +5,7 @@ const issue_transformer = require('./etl-issue-transform');
 const project_transformer = require('./etl-project-transform')
 const campaign_transformer = require('./etl-campaign-transform')
 const test_transformer = require('./etl-test-transform')
+const team_transformer = require('./etl-team-transform')
 const error = require('../error')
 
 const HEADERS = {
@@ -139,6 +140,11 @@ module.exports = {
         const url = `https://dev.azure.com/leandashboardproject/_apis/projects?api-version=6.1-preview.4`
         let projects = await fetcher.makeGetRequest(url, AZURE_HEADERS)
         return processAzureProjectsBody(projects)
+    },
+    getAzureTeams: async function (id) {
+        const url = `https://dev.azure.com/leandashboardproject/_apis/projects/${id}/teams?$expandIdentity=true&api-version=6.1-preview.3`
+        let teams = await fetcher.makeGetRequest(url, AZURE_HEADERS)
+        return processAzureTeamsBody(teams)
     }
 }
 
@@ -182,6 +188,13 @@ function processAzureProjectsBody(body) {
         project_transformer.getAzureProjects(body)
         :
         project_transformer.getAzureProjectObject(body);
+}
+
+function processAzureTeamsBody(body) {
+    return Array.isArray(body.value) ?
+        team_transformer.getAzureTeams(body)
+        :
+        team_transformer.getAzureTeamObject(body);
 }
 
 async function getSquashCampaigns(refObject) {

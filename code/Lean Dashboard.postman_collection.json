@@ -225,6 +225,28 @@
 					"response": []
 				},
 				{
+					"name": "GET /lean-etl/projectsAzure/{id}/teams",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/lean-etl/projectsAzure/ /teams",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"lean-etl",
+								"projectsAzure",
+								" ",
+								"teams"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "New Request",
 					"request": {
 						"method": "POST",

@@ -38,6 +38,9 @@ function services(data, db) {
         getAzureProjects: function () {
             return data.getAzureProjects()
         },
+        getAzureTeams: function (id) {
+            return data.getAzureTeams(id)
+        },
         postIssues: function () {
             return db.postIssues()
         },
