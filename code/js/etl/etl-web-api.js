@@ -91,6 +91,14 @@ function webapi(app, services) {
                 })
                 .catch(err => errHandler(err, res))
         },
+        getAzureTeams: function (req,res) {
+            services.getAzureTeams(req.params.id)
+                .then(resp => {
+                    console.log("Get Azure teams")
+                    answerHandler(resp, res)
+                })
+                .catch(err => errHandler(err, res))
+        },
         postIssues: function (req, res) {
             services.postIssues()
                 .then(resp => {
@@ -141,6 +149,7 @@ function webapi(app, services) {
     app.get('/lean-etl/projectsSquash/:id/tests/:tid', theWebApi.getSquashTestById)//testing
 
     app.get('/lean-etl/projectsAzure', theWebApi.getAzureProjects) //testing
+    app.get('/lean-etl/projectsAzure/:id/teams', theWebApi.getAzureTeams) //testing
     app.post('/lean-etl/issues', theWebApi.postIssues)
     app.post('/lean-etl/projects', theWebApi.postProjects)
 

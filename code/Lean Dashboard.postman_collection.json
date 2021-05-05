@@ -225,7 +225,33 @@
 					"response": []
 				},
 				{
+<<<<<<< HEAD
 					"name": "http://localhost:8000/lean-etl/sprintIssues",
+=======
+					"name": "GET /lean-etl/projectsAzure/{id}/teams",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/lean-etl/projectsAzure/ /teams",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"lean-etl",
+								"projectsAzure",
+								" ",
+								"teams"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+>>>>>>> 14b30c7dd781288f8fbb77272eb3ee5cfea5fecf
 					"request": {
 						"method": "GET",
 						"header": [],

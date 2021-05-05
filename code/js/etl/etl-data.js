@@ -5,6 +5,7 @@ const issue_transformer = require('./etl-issue-transform');
 const project_transformer = require('./etl-project-transform')
 const campaign_transformer = require('./etl-campaign-transform')
 const test_transformer = require('./etl-test-transform')
+const team_transformer = require('./etl-team-transform')
 const error = require('../error')
 
 const HEADERS = {
@@ -140,6 +141,7 @@ module.exports = {
         const projects = await fetcher.makeGetRequest(url, AZURE_HEADERS)
         return processAzureProjectsBody(projects)
     },
+
     getSprintJira : async function () {
         let sprints = []
         const url = `https://leandashboard.atlassian.net/rest/agile/1.0/board/`
@@ -151,20 +153,28 @@ module.exports = {
         }
         return sprints
     },
-    getSprintIssues: async function(){
+
+    getSprintIssues: async function() {
         let sprintIssue = {
             issue: []
         }
         const sprints = await this.getSprintJira()
-        for(const sprint of sprints){
+        for (const sprint of sprints) {
             const url = `https://leandashboard.atlassian.net/rest/agile/1.0/sprint/${sprint.id}/issue`
 
-            let res = await fetcher.makeGetRequest(url,HEADERS)
+            let res = await fetcher.makeGetRequest(url, HEADERS)
             res = processLeanIssuesBody(res)
             res.sprintID = sprint.id
             sprintIssue.issue.push(res)
         }
         return sprintIssue
+    },
+
+    getAzureTeams: async function (id) {
+        const url = `https://dev.azure.com/leandashboardproject/_apis/projects/${id}/teams?$expandIdentity=true&api-version=6.1-preview.3`
+        let teams = await fetcher.makeGetRequest(url, AZURE_HEADERS)
+        return processAzureTeamsBody(teams)
+
     }
 }
 
@@ -219,6 +229,13 @@ function processAzureProjectsBody(body) {
         project_transformer.getAzureProjects(body)
         :
         project_transformer.getAzureProjectObject(body);
+}
+
+function processAzureTeamsBody(body) {
+    return Array.isArray(body.value) ?
+        team_transformer.getAzureTeams(body)
+        :
+        team_transformer.getAzureTeamObject(body);
 }
 
 async function getSquashCampaigns(refObject) {
