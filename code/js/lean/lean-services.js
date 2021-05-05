@@ -1,6 +1,5 @@
 'use strict';
 
-const mock = require('./mock-db')
 const error = require('../error')
 
 function services(data, db){
@@ -22,13 +21,22 @@ function services(data, db){
         },
         createProject: async function(name, description) {
             if(name && description)
-                return mock.createProject(name,description)
+                return db.createProject(name,description)
             else{
                 throw error.create(
                     error.ARGUMENT_ERROR,
                     'Please give the project a name and a description'
                 )
             }
+        },
+        postDashboardToProject: function(projectId, name, description){
+            return db.postDashboardToProject(projectId,name,description)
+        },
+        postLeanProject: function (name, description, user){
+            return db.postLeanProject(name,description,user)
+        },
+        deleteProject: function (id){
+            return db.deleteProject(id)
         }
     };
 }

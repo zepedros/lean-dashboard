@@ -11,7 +11,7 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}))
 
-const db = require('../etl/etl-db');
+const db = require('./lean-db');
 const data = require('./lean-data');
 
 const servicesCreator = require('./lean-services');

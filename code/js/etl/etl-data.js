@@ -74,14 +74,6 @@ module.exports = {
         return project_transformer.getJiraProjectObject(response)
     },
 
-    /*
-    *TODO getTeam from Jira needs to be implemented and given a route on etl-web-api
-     */
-    getTeamJira: async function () {
-        const url = `https://leandashboard.atlassian.net/rest/api/3/role`
-        return await fetcher.makeGetRequest(url, HEADERS)
-    },
-
     getProjectsSquash: async function (maxResults) {
         let ret = {
             projects: [],

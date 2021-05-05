@@ -35,14 +35,6 @@ function webapi(app, services) {
                 })
                 .catch(err => errHandler(err, res))
         },
-        getTeamJira: function (req, res) {
-            services.getTeamJira()
-                .then(resp => {
-                    console.log("Get Team")
-                    answerHandler(resp, res)
-                })
-                .catch(err => errHandler(err, res))
-        },
         getProjectsSquash: function (req, res) {
             services.getProjectsSquash()
                 .then(resp => {
@@ -134,8 +126,6 @@ function webapi(app, services) {
         }
     };
 
-    app.get('/lean-etl/projectsJira/team', theWebApi.getTeamJira)
-
     app.get('/lean-etl/issuesJira', theWebApi.getIssuesJira) //testing
     app.get('/lean-etl/issueByIdJira/:id', theWebApi.getIssuesByIdJira)//testing
 
@@ -155,6 +145,8 @@ function webapi(app, services) {
 
     app.get('/lean-etl/sprint',theWebApi.postSprint)
     app.get('/lean-etl/sprintIssues',theWebApi.getSprintIssues)
+
+
 
     return theWebApi;
 }
