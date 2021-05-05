@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "02f405c2-0d01-4a32-823f-6891085005c7",
+		"_postman_id": "d47045c9-9563-4f60-876e-cdb04eaffe1a",
 		"name": "Lean Dashboard",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -205,6 +205,48 @@
 					"response": []
 				},
 				{
+					"name": "GET /lean-etl/projectsAzure",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/lean-etl/projectsAzure",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"lean-etl",
+								"projectsAzure"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /lean-etl/projectsAzure/{id}/teams",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/lean-etl/projectsAzure/2eee04f3-541f-4242-aff2-c9e8e358271b/teams",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"lean-etl",
+								"projectsAzure",
+								"2eee04f3-541f-4242-aff2-c9e8e358271b",
+								"teams"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "New Request",
 					"request": {
 						"method": "POST",
@@ -225,15 +267,12 @@
 					"response": []
 				},
 				{
-<<<<<<< HEAD
-					"name": "http://localhost:8000/lean-etl/sprintIssues",
-=======
-					"name": "GET /lean-etl/projectsAzure/{id}/teams",
+					"name": "GET /lean-etl/sprint",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8000/lean-etl/projectsAzure/ /teams",
+							"raw": "http://localhost:8000/lean-etl/sprint",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -241,17 +280,14 @@
 							"port": "8000",
 							"path": [
 								"lean-etl",
-								"projectsAzure",
-								" ",
-								"teams"
+								"sprint"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "New Request",
->>>>>>> 14b30c7dd781288f8fbb77272eb3ee5cfea5fecf
+					"name": "GET /ean-etl/sprintIssues",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -266,44 +302,7 @@
 								"lean-etl",
 								"sprintIssues"
 							]
-						},
-						"description": "Get issues from issues"
-					},
-					"response": []
-				},
-				{
-					"name": "http://localhost:8000/lean-etl/sprint",
-					"request": {
-						"auth": {
-							"type": "basic",
-							"basic": [
-								{
-									"key": "password",
-									"value": "LPcyGdZolN906MvzdwPHF045",
-									"type": "string"
-								},
-								{
-									"key": "username",
-									"value": "leandashboardproject@gmail.com",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8000/lean-etl/sprint",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"lean-etl",
-								"sprint"
-							]
-						},
-						"description": "Get sprints"
+						}
 					},
 					"response": []
 				}

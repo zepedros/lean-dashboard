@@ -23,7 +23,7 @@ module.exports = {
             "reportes": refObject.fields.reporter.accountId,
             "state": refObject.fields.status.name,
             "created": refObject.fields.created,
-            "idProject": refObject.fields.project.id,
+            "projectId": refObject.fields.project.id,
             "projectName": refObject.fields.project.name,
         }
     }

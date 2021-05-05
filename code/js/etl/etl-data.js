@@ -149,7 +149,10 @@ module.exports = {
         for(const board of boards.values){
             const url =  `https://leandashboard.atlassian.net/rest/agile/1.0/board/${board.id}/sprint`
             const res = await fetcher.makeGetRequest(url,HEADERS)
-            res.values.forEach(sprint => sprints.push(processLeanSprint(sprint)))
+            res.values.forEach(sprint => {
+                sprint['projectId'] = board.location.projectId
+                sprints.push(processLeanSprint(sprint))
+            })
         }
         return sprints
     },
@@ -185,7 +188,8 @@ function  processLeanSprint(body) {
             "name" : body.name,
             "startDate" : body.startDate,
             "endDate" : body.endDate,
-            "goal" : body.goal
+            "goal" : body.goal,
+            "projectId" : body.projectId
         }
 }
 
