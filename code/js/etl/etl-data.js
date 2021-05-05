@@ -137,9 +137,46 @@ module.exports = {
     },
     getAzureProjects: async function () {
         const url = `https://dev.azure.com/leandashboardproject/_apis/projects?api-version=6.1-preview.4`
-        let projects = await fetcher.makeGetRequest(url, AZURE_HEADERS)
+        const projects = await fetcher.makeGetRequest(url, AZURE_HEADERS)
         return processAzureProjectsBody(projects)
+    },
+    getSprintJira : async function () {
+        let sprints = []
+        const url = `https://leandashboard.atlassian.net/rest/agile/1.0/board/`
+        const boards = await fetcher.makeGetRequest(url,HEADERS)
+        for(const board of boards.values){
+            const url =  `https://leandashboard.atlassian.net/rest/agile/1.0/board/${board.id}/sprint`
+            const res = await fetcher.makeGetRequest(url,HEADERS)
+            res.values.forEach(sprint => sprints.push(processLeanSprint(sprint)))
+        }
+        return sprints
+    },
+    getSprintIssues: async function(){
+        let sprintIssue = {
+            issue: []
+        }
+        const sprints = await this.getSprintJira()
+        for(const sprint of sprints){
+            const url = `https://leandashboard.atlassian.net/rest/agile/1.0/sprint/${sprint.id}/issue`
+
+            let res = await fetcher.makeGetRequest(url,HEADERS)
+            res = processLeanIssuesBody(res)
+            res.sprintID = sprint.id
+            sprintIssue.issue.push(res)
+        }
+        return sprintIssue
     }
+}
+
+function  processLeanSprint(body) {
+        return {
+            "id" : body.id,
+            "state" : body.state,
+            "name" : body.name,
+            "startDate" : body.startDate,
+            "endDate" : body.endDate,
+            "goal" : body.goal
+        }
 }
 
 function processLeanIssuesBody(body) {

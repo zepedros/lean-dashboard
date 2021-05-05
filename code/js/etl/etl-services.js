@@ -44,6 +44,12 @@ function services(data, db) {
         postProjects: function () {
             return db.postProjects()
         },
+        postSprint: function () {
+            return data.getSprintJira()
+        },
+        getSprintIssues: function (){
+            return data.getSprintIssues()
+        }
     };
     return theServices;
 }

@@ -106,6 +106,23 @@ function webapi(app, services) {
                     answerHandler(resp, res)
                 })
                 .catch(err => errHandler(err, res))
+        },
+        postSprint : function (req, res){
+            services.postSprint()
+                .then(resp => {
+                    console.log("Post Sprint")
+                    answerHandler(resp, res)
+                })
+                .catch(err => errHandler(err,res))
+        },
+
+        getSprintIssues : function (req,res){
+            services.getSprintIssues()
+                .then(resp=> {
+                    console.log("Get Sprint Issues")
+                    answerHandler(resp,res)
+                })
+                .catch(err => errHandler(err,res))
         }
     };
 
@@ -126,6 +143,9 @@ function webapi(app, services) {
     app.get('/lean-etl/projectsAzure', theWebApi.getAzureProjects) //testing
     app.post('/lean-etl/issues', theWebApi.postIssues)
     app.post('/lean-etl/projects', theWebApi.postProjects)
+
+    app.get('/lean-etl/sprint',theWebApi.postSprint)
+    app.get('/lean-etl/sprintIssues',theWebApi.getSprintIssues)
 
     return theWebApi;
 }

@@ -24,7 +24,7 @@ module.exports = {
             "state": refObject.fields.status.name,
             "created": refObject.fields.created,
             "idProject": refObject.fields.project.id,
-            "projectName": refObject.fields.project.name
+            "projectName": refObject.fields.project.name,
         }
     }
 
