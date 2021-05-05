@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "d47045c9-9563-4f60-876e-cdb04eaffe1a",
+		"_postman_id": "57d2babb-4ac8-430f-92eb-ab20f9727dab",
 		"name": "Lean Dashboard",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -249,18 +249,18 @@
 				{
 					"name": "New Request",
 					"request": {
-						"method": "POST",
+						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8000/lean-etl/projects",
+							"raw": "http://localhost:9200/lean-projects/_search",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8000",
+							"port": "9200",
 							"path": [
-								"lean-etl",
-								"projects"
+								"lean-projects",
+								"_search"
 							]
 						}
 					},
@@ -394,6 +394,167 @@
 							]
 						},
 						"description": "Get specific Project from a user (JIRA)"
+					},
+					"response": []
+				},
+				{
+					"name": "POST /lean/projects/{id}/dashboard",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"New Dashboard\",\n    \"description\": \"description\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/lean/projects/BgOcPXkB06RhFwl9E3Dj/dashboard",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"lean",
+								"projects",
+								"BgOcPXkB06RhFwl9E3Dj",
+								"dashboard"
+							]
+						},
+						"description": "Add a dashboard to a Project"
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE /lean/deleteProject/{id}",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/lean/deleteProject/BgOcPXkB06RhFwl9E3Dj",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"lean",
+								"deleteProject",
+								"BgOcPXkB06RhFwl9E3Dj"
+							]
+						},
+						"description": "Delete a project"
+					},
+					"response": []
+				},
+				{
+					"name": "POST /lean/createProject",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Project Lean Dashboard\",\n    \"description\": \"description Lean Dashboard\",\n    \"user\": \"JohnDoe\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/lean/createProject",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"lean",
+								"createProject"
+							]
+						},
+						"description": "Create a project"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ElasticSearch",
+			"item": [
+				{
+					"name": "Add a dashboard",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n            \"script\": {\n                \"lang\": \"painless\",\n                \"inline\":\"ctx._source.dashboards.add(params)\",\n                \"params\":{\n                        \"name\": \"name\",\n                        \"description\" : \"description\",\n                        \"widgets\": []\n                        }\n            }\n        }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9200/lean-projects/_update/BgOcPXkB06RhFwl9E3Dj",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"lean-projects",
+								"_update",
+								"BgOcPXkB06RhFwl9E3Dj"
+							]
+						},
+						"description": "Add a dashborad to a Project"
+					},
+					"response": []
+				},
+				{
+					"name": "Show all projects",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9200/lean-projects/_search",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"lean-projects",
+								"_search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:9200/lean-projects/",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9200/lean-projects/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"lean-projects",
+								""
+							]
+						},
+						"description": "Create index"
 					},
 					"response": []
 				}

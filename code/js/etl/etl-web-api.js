@@ -146,8 +146,6 @@ function webapi(app, services) {
     app.get('/lean-etl/sprint',theWebApi.postSprint)
     app.get('/lean-etl/sprintIssues',theWebApi.getSprintIssues)
 
-
-
     return theWebApi;
 }
 
