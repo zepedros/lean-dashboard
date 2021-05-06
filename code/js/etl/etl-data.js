@@ -128,6 +128,23 @@ module.exports = {
         }
         return processSquashTestsBody(test)
     },
+    getSquashTestsSuites : async function(){
+
+        let testsSuites = []
+        const projects = await this.getProjectsSquash(50)
+
+        //for(const project of projects.projects){
+            const campaigns =  await this.getSquashCampaignById(5,18)
+            //for(const campaign of campaigns.campaigns){
+                for(const iteration of campaigns.iterations){
+                    const url = `https://demo.squashtest.org/squash/api/rest/latest/iterations/${iteration.id}/test-plan`
+                    const ret = await fetcher.makeGetRequest(url,SQUASH_HEADERS)
+                    testsSuites.push(ret)
+             //   }
+         //   }
+        }
+        return testsSuites
+    },
     getAzureProjects: async function () {
         const url = `https://dev.azure.com/leandashboardproject/_apis/projects?api-version=6.1-preview.4`
         const projects = await fetcher.makeGetRequest(url, AZURE_HEADERS)

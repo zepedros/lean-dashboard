@@ -48,6 +48,9 @@ function services(data, db) {
         },
         getSprintIssues: function (){
             return data.getSprintIssues()
+        },
+        getSquashTestsSuites: function (){
+            return data.getSquashTestsSuites()
         }
     };
     return theServices;

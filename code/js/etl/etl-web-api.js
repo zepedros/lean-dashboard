@@ -123,6 +123,14 @@ function webapi(app, services) {
                     answerHandler(resp,res)
                 })
                 .catch(err => errHandler(err,res))
+        },
+        getSquashTestsSuites: function (req,res){
+            services.getSquashTestsSuites()
+                .then(resp => {
+                    console.log("Get tests suites")
+                    answerHandler(resp,res)
+                })
+                .catch(err => errHandler(err,res))
         }
     };
 
@@ -137,6 +145,7 @@ function webapi(app, services) {
     app.get('/lean-etl/projectsSquash/:id/campaigns/:cid', theWebApi.getSquashCampaignById)//testing
     app.get('/lean-etl/projectsSquash/:id/tests', theWebApi.getProjectTestsSquash)//testing
     app.get('/lean-etl/projectsSquash/:id/tests/:tid', theWebApi.getSquashTestById)//testing
+    app.get('/lean-etl/projectsSquash/testsSuites',theWebApi.getSquashTestsSuites)
 
     app.get('/lean-etl/projectsAzure', theWebApi.getAzureProjects) //testing
     app.get('/lean-etl/projectsAzure/:id/teams', theWebApi.getAzureTeams) //testing
