@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "57d2babb-4ac8-430f-92eb-ab20f9727dab",
+		"_postman_id": "8beb4431-e137-4c9c-ad16-e1293b71608c",
 		"name": "Lean Dashboard",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -23,6 +23,48 @@
 							"path": [
 								"lean-etl",
 								"issuesJira"
+							]
+						},
+						"description": "Get all Issues from a Project (JIRA) "
+					},
+					"response": []
+				},
+				{
+					"name": "POST /lean-etl/issuesJira",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/lean-etl/issuesJira",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"lean-etl",
+								"issuesJira"
+							]
+						},
+						"description": "Get all Issues from a Project (JIRA) "
+					},
+					"response": []
+				},
+				{
+					"name": "POST /lean-etl/sprintIssuesJira",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/lean-etl/sprintIssuesJira",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"lean-etl",
+								"sprintIssuesJira"
 							]
 						},
 						"description": "Get all Issues from a Project (JIRA) "
@@ -555,6 +597,27 @@
 							]
 						},
 						"description": "Create index"
+					},
+					"response": []
+				},
+				{
+					"name": "GET /etl-widgets/_search",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9200/etl-widgets/_search/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"etl-widgets",
+								"_search",
+								""
+							]
+						}
 					},
 					"response": []
 				}

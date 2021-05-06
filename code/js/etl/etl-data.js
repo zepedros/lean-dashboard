@@ -8,6 +8,8 @@ const test_transformer = require('./etl-test-transform')
 const team_transformer = require('./etl-team-transform')
 const error = require('../error')
 
+const jira_transformer = require('./transform/etl-jira-transformer')
+
 const HEADERS = {
     'Authorization': `Basic ${Buffer.from(
         'leandashboardproject@gmail.com:LPcyGdZolN906MvzdwPHF045'
@@ -37,17 +39,18 @@ module.exports = {
         let startAt = 0
         let url = `https://leandashboard.atlassian.net/rest/api/3/search?jql=&startAt=${startAt}&maxResults=${mockMaxResults}`
 
-        let firstRequest = processLeanIssuesBody(await fetcher.makeGetRequest(url, HEADERS))
-        ret.issues.push(firstRequest.issues)
+        let firstRequest = (await fetcher.makeGetRequest(url, HEADERS))
+        firstRequest.issues.forEach(issue => ret.issues.push(jira_transformer.getLeanIssueObject(issue)))
 
         const total = firstRequest.total
-        ret.total = firstRequest.total
+        ret.total = total
 
         startAt += mockMaxResults
         while (startAt < total) {
             let url = `https://leandashboard.atlassian.net/rest/api/3/search?jql=&startAt=${startAt}&maxResults=${mockMaxResults}`
-            let r = await fetcher.makeGetRequest(url, HEADERS)
-            let processedBody = processLeanIssuesBody(r)
+            let request = await fetcher.makeGetRequest(url, HEADERS)
+            request.issues.forEach(issue => ret.issues.push(jira_transformer.getLeanIssueObject(issue)))
+            let processedBody = processLeanIssuesBody(request)
             ret.issues.push(processedBody.issues)
             startAt += mockMaxResults
         }
@@ -59,7 +62,7 @@ module.exports = {
 
         const url = `https://leandashboard.atlassian.net/rest/api/3/issue/${id}`
         const response = await fetcher.makeGetRequest(url, HEADERS)
-        return processLeanIssuesBody(response)
+        return jira_transformer.getLeanIssueObject(response)
     },
 
     getProjectsJira: async function () {
@@ -166,19 +169,16 @@ module.exports = {
         return sprints
     },
 
-    getSprintIssues: async function() {
+    getSprintIssues: async function(sprintId) {
         let sprintIssue = {
-            issue: []
+            issues: []
         }
-        const sprints = await this.getSprintJira()
-        for (const sprint of sprints) {
-            const url = `https://leandashboard.atlassian.net/rest/agile/1.0/sprint/${sprint.id}/issue`
+        const url = `https://leandashboard.atlassian.net/rest/agile/1.0/sprint/${sprintId}/issue`
+        let res = await fetcher.makeGetRequest(url, HEADERS)
+        res = processLeanIssuesBody(res)
+        sprintIssue.sprintID = sprintId
+        res.issues.forEach(issue=> sprintIssue.issues.push(issue))
 
-            let res = await fetcher.makeGetRequest(url, HEADERS)
-            res = processLeanIssuesBody(res)
-            res.sprintID = sprint.id
-            sprintIssue.issue.push(res)
-        }
         return sprintIssue
     },
 

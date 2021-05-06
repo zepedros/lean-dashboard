@@ -10,6 +10,25 @@ function webapi(app, services) {
                 })
                 .catch(err => errHandler(err, res))
         },
+
+        postIssuesJira: function (req, res) {
+            services.postIssuesJira()
+                .then(resp => {
+                    console.log("Posting Jira issues data table")
+                    answerHandler(resp, res)
+                })
+                .catch(err => errHandler(err, res))
+        },
+
+        postJiraSprintIssuesBarChart: function (req, res) {
+            services.postJiraSprintIssuesBarChart()
+                .then(resp => {
+                    console.log("Posting sprint issues bar chart")
+                    answerHandler(resp, res)
+                })
+                .catch(err => errHandler(err, res))
+        },
+
         getIssuesByIdJira: function (req, res) {
             services.getIssuesByIdJira(req.params.id)
                 .then(resp => {
@@ -135,6 +154,8 @@ function webapi(app, services) {
     };
 
     app.get('/lean-etl/issuesJira', theWebApi.getIssuesJira) //testing
+    app.post('/lean-etl/issuesJira', theWebApi.postIssuesJira)
+    app.post('/lean-etl/sprintIssuesJira', theWebApi.postJiraSprintIssuesBarChart)
     app.get('/lean-etl/issueByIdJira/:id', theWebApi.getIssuesByIdJira)//testing
 
     app.get('/lean-etl/projectsJira', theWebApi.getProjectsJira)//testing

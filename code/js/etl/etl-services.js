@@ -7,6 +7,15 @@ function services(data, db) {
         getIssuesJira: async function () {
             return data.getIssuesJira()
         },
+
+        postIssuesJira: async function (){
+            return db.postJiraIssuesDataTable()
+        },
+
+        postJiraSprintIssuesBarChart: async function(){
+            return db.postJiraSprintIssuesBarChart()
+        },
+
         getIssuesByIdJira: async function (id) {
             return data.getIssuesByIdJira(id)
         },
