@@ -16,6 +16,10 @@ function services(data, db) {
             return db.postJiraSprintIssuesBarChart()
         },
 
+        postSquashTestsPieChart: async function(id) {
+            return db.postSquashProjectTestsPieChart(id)
+        },
+
         postJiraSprintDateGaugeChart: async function(){
             return db.postJiraSprintDateGaugeChart()
         },
@@ -62,8 +66,8 @@ function services(data, db) {
         getSprintIssues: function (sprintId){
             return data.getSprintIssues(sprintId)
         },
-        getSquashTestsSuites: function (){
-            return data.getSquashTestsSuites()
+        getSquashTestsPlans: function (projectId){
+            return data.getSquashTestsPlans(projectId)
         }
     };
     return theServices;

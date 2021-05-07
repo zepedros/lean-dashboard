@@ -117,22 +117,40 @@ module.exports = {
 
         let jsonData = {
             campaigns: [],
-            total : response._embedded.campaigns.length
-        };
-
-        for (const campaign of response._embedded.campaigns) {
-            jsonData.campaigns.push(await this.getSquashCampaignById(projectId, campaign.id))
+            total: 0
         }
-
+        if(response._embedded !== undefined) {
+            jsonData.total = response._embedded.campaigns.length
+            for (const campaign of response._embedded.campaigns) {
+                jsonData.campaigns.push(await this.getSquashCampaignById(projectId, campaign.id))
+            }
+        }
         return jsonData
     },
     getSquashCampaignById : async function (projectId, campaignId) {
         const url = `https://demo.squashtest.org/squash/api/rest/latest/campaigns/${campaignId}`
-        const campaign = await fetcher.makeGetRequest(url, SQUASH_HEADERS)
-        if (campaign.project.id != projectId){
-            throw error.create(404,"Campaign not present in project")
+        try {
+            const campaign = await fetcher.makeGetRequest(url, SQUASH_HEADERS)
+            if (campaign.project.id != projectId){
+                throw error.create(404,"Campaign not present in project")
+            }
+            return squash_transformer.getSquashCampaignObject(campaign)
+        } catch (error) {
+            return {
+                "id": "",
+                "name": "",
+                "reference": "",
+                "description": "",
+                "status": "FORBIDDEN",
+                "creation_date": "",
+                "start_date": "",
+                "end_date": "",
+                "iterations" : "",
+                "test_plan": "",
+                "project-id": "",
+                "project-name": ""
+            }
         }
-        return squash_transformer.getSquashCampaignObject(campaign)
     },
     getProjectTestsSquash: async function (projectId) {
         const url = `https://demo.squashtest.org/squash/api/rest/latest/projects/${projectId}/test-cases`
@@ -157,22 +175,26 @@ module.exports = {
         }
         return squash_transformer.getSquashTestObject(test)
     },
-    getSquashTestsSuites : async function(){
-
-        let testsSuites = []
-        const projects = await this.getProjectsSquash(50)
-
-        //for(const project of projects.projects){
-            const campaigns =  await this.getSquashCampaignById(5,18)
-            //for(const campaign of campaigns.campaigns){
-                for(const iteration of campaigns.iterations){
-                    const url = `https://demo.squashtest.org/squash/api/rest/latest/iterations/${iteration.id}/test-plan`
-                    const ret = await fetcher.makeGetRequest(url,SQUASH_HEADERS)
-                    testsSuites.push(ret)
-             //   }
-         //   }
+    getSquashTestsPlans : async function(projectId) {
+        let result = []
+        let campaigns = await this.getProjectCampaignsSquash(projectId)
+        for (const campaign of campaigns.campaigns) {
+            for (const iteration of campaign.iterations) {
+                const url = `https://demo.squashtest.org/squash/api/rest/latest/iterations/${iteration.id}/test-plan`
+                let ret = await fetcher.makeGetRequest(url, SQUASH_HEADERS)
+                if (ret._embedded !== undefined) { //checks if it exists
+                    let test_plan = {
+                        "campaign": campaign.id,
+                        "test-items": []
+                    }
+                    for (const test_item of ret._embedded["test-plan"]) {
+                        test_plan["test-items"].push(squash_transformer.getSquashTestPlanObject(test_item))
+                    }
+                    result.push(test_plan)
+                }
+            }
         }
-        return testsSuites
+        return result
     },
 
     getAzureProjects: async function () {

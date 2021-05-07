@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "57d2babb-4ac8-430f-92eb-ab20f9727dab",
+		"_postman_id": "2cc42c02-4892-4a9d-ad1b-8b1e5de56ad1",
 		"name": "Lean Dashboard",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -131,6 +131,28 @@
 								"projectsSquash",
 								"1",
 								"campaigns"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /lean-etl/projectsSquash/{pid}/testsSuites",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/lean-etl/projectsSquash/5/testsSuites",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"lean-etl",
+								"projectsSquash",
+								"5",
+								"testsSuites"
 							]
 						}
 					},
@@ -324,6 +346,26 @@
 							]
 						},
 						"description": "Posting sprint Gauge chart"
+					},
+					"response": []
+				},
+				{
+					"name": "POST /lean-etl/squashTests",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/lean-etl/squashTests",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"lean-etl",
+								"squashTests"
+							]
+						}
 					},
 					"response": []
 				},

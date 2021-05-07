@@ -138,5 +138,39 @@ module.exports = {
         })
         const uri  = `${ES_URL}etl-widgets/_doc`
         return await fetch.makePostRequest(uri,widget)
+    },
+
+    postSquashProjectTestsPieChart: async function(id) {
+        let widget = {
+            name : "Squash test results pie chart",
+            data : []
+        }
+        const allCampaignsTests = (await data.getSquashTestsPlans(id))
+        let counts = new Map()
+        let total = 0
+        for (const tests of allCampaignsTests) {
+            tests["test-items"].forEach( t => {
+                if(counts.has(t.execution_status)) {
+                    counts.set(t.execution_status,counts.get(t.execution_status) + 1)
+                } else {
+                    counts.set(t.execution_status,1)
+                }
+                total++
+            });
+        }
+        let mapJson = Array.from(counts.entries())
+        let result = []
+        for(const map of mapJson) {
+            result.push({
+                "status": map[0],
+                "percentage": ((map[1] / total) * 100).toFixed(2)
+            })
+        }
+        widget.data.push({
+            total: total,
+            counts: result
+        })
+        const uri  = `${ES_URL}etl-widgets/_doc`
+        return await fetch.makePostRequest(uri,widget)
     }
 }

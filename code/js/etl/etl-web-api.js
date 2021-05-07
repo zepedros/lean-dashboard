@@ -37,6 +37,15 @@ function webapi(app, services) {
                 .catch(err => errHandler(err,res))
         },
 
+        postSquashTestPieChart: function (req, res) {
+            services.postSquashTestsPieChart(req.params.id)
+                .then(resp => {
+                    console.log("Post Squash Tests")
+                    answerHandler(resp, res)
+                })
+                .catch(err => errHandler(err, res))
+        },
+
         getIssuesByIdJira: function (req, res) {
             services.getIssuesByIdJira(req.params.id)
                 .then(resp => {
@@ -151,10 +160,10 @@ function webapi(app, services) {
                 })
                 .catch(err => errHandler(err,res))
         },
-        getSquashTestsSuites: function (req,res){
-            services.getSquashTestsSuites()
+        getSquashTestsPlans : function (req,res){
+            services.getSquashTestsPlans(req.params.id)
                 .then(resp => {
-                    console.log("Get tests suites")
+                    console.log("Get squash tests plans")
                     answerHandler(resp,res)
                 })
                 .catch(err => errHandler(err,res))
@@ -176,12 +185,13 @@ function webapi(app, services) {
     app.get('/lean-etl/projectsSquash/:id/campaigns/:cid', theWebApi.getSquashCampaignById)//testing
     app.get('/lean-etl/projectsSquash/:id/tests', theWebApi.getProjectTestsSquash)//testing
     app.get('/lean-etl/projectsSquash/:id/tests/:tid', theWebApi.getSquashTestById)//testing
-    app.get('/lean-etl/projectsSquash/testsSuites',theWebApi.getSquashTestsSuites)
+    app.get('/lean-etl/projectsSquash/:id/testsSuites',theWebApi.getSquashTestsPlans)
 
     app.get('/lean-etl/projectsAzure', theWebApi.getAzureProjects) //testing
     app.get('/lean-etl/projectsAzure/:id/teams', theWebApi.getAzureTeams) //testing
     app.post('/lean-etl/issues', theWebApi.postIssues)
     app.post('/lean-etl/projects', theWebApi.postProjects)
+    app.post('/lean-etl/squashTests/:id', theWebApi.postSquashTestPieChart)
 
     app.get('/lean-etl/sprint',theWebApi.getAllSprintsJira)
     app.get('/lean-etl/sprint/:id/issues',theWebApi.getSprintIssues)
