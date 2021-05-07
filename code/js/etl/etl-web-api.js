@@ -126,8 +126,8 @@ function webapi(app, services) {
                 })
                 .catch(err => errHandler(err, res))
         },
-        postSprint : function (req, res){
-            services.postSprint()
+        getAllSprintsJira : function (req, res){
+            services.getAllSprintsJira()
                 .then(resp => {
                     console.log("Post Sprint")
                     answerHandler(resp, res)
@@ -136,7 +136,7 @@ function webapi(app, services) {
         },
 
         getSprintIssues : function (req,res){
-            services.getSprintIssues()
+            services.getSprintIssues(req.params.id)
                 .then(resp=> {
                     console.log("Get Sprint Issues")
                     answerHandler(resp,res)
@@ -173,8 +173,8 @@ function webapi(app, services) {
     app.post('/lean-etl/issues', theWebApi.postIssues)
     app.post('/lean-etl/projects', theWebApi.postProjects)
 
-    app.get('/lean-etl/sprint',theWebApi.postSprint)
-    app.get('/lean-etl/sprintIssues',theWebApi.getSprintIssues)
+    app.get('/lean-etl/sprint',theWebApi.getAllSprintsJira)
+    app.get('/lean-etl/sprint/:id/issues',theWebApi.getSprintIssues)
 
     return theWebApi;
 }

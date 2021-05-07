@@ -1,4 +1,12 @@
 module.exports = {
+    getSquashProjectsObject: function (item) {
+        return {
+            "id": item.id,
+            "name": item.name,
+            "source" : "Squash"
+        }
+    },
+
     getSquashCampaignObject: function (expandedCampaign){
         return {
             "id": expandedCampaign.id,
@@ -13,6 +21,19 @@ module.exports = {
             "test_plan": expandedCampaign.test_plan,
             "project-id": expandedCampaign.project.id,
             "project-name": expandedCampaign.project.name
+        }
+    },
+
+    getSquashTestObject : function (expandedTest) {
+        return {
+            "id": expandedTest.id,
+            "name": expandedTest.name,
+            "reference": expandedTest.reference,
+            "status": expandedTest.status,
+            "importance": expandedTest.importance,
+            "creation_date": expandedTest.created_on,
+            "project-id": expandedTest.project.id,
+            "project-name": expandedTest.project.name
         }
     }
 }

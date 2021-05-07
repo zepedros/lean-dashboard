@@ -52,11 +52,11 @@ function services(data, db) {
         postProjects: function () {
             return db.postProjects()
         },
-        postSprint: function () {
-            return data.getSprintJira()
+        getAllSprintsJira: function () {
+            return data.getAllSprintsJira()
         },
-        getSprintIssues: function (){
-            return data.getSprintIssues()
+        getSprintIssues: function (sprintId){
+            return data.getSprintIssues(sprintId)
         },
         getSquashTestsSuites: function (){
             return data.getSquashTestsSuites()

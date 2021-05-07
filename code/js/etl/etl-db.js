@@ -36,7 +36,7 @@ module.exports = {
     },
 
     postSprint: async function(){
-      const sprints = await data.getSprintJira()
+      const sprints = await data.getAllSprintsJira()
       sprints.forEach(sprint => {
           const uri = `http://localhost:9200/lean-etl-widgets/_doc/${sprint.projectId}`
       })
@@ -83,7 +83,7 @@ module.exports = {
             data : []
         }
 
-        const sprints = (await data.getSprintJira()).filter(sprint => sprint.state == 'active')
+        const sprints = (await data.getAllSprintsJira()).filter(sprint => sprint.state == 'active')
 
         for (const sprint of sprints){
             const issues = (await data.getSprintIssues(sprint.id)).issues.map(issue => issue.state)
