@@ -84,7 +84,7 @@ module.exports = {
         }
 
         const sprints = (await data.getAllSprintsJira()).filter(sprint => sprint.state == 'active')
-
+        let a = this.postJiraSprintDateGaugeChart()
         for (const sprint of sprints){
             const issues = (await data.getSprintIssues(sprint.id)).issues.map(issue => issue.state)
 
@@ -106,6 +106,36 @@ module.exports = {
             })
         }
 
+        const uri  = `${ES_URL}etl-widgets/_doc`
+        return await fetch.makePostRequest(uri,widget)
+    },
+
+    postJiraSprintDateGaugeChart : async function() {
+
+        let widget = {
+            name: "Jira sprint gauge chart",
+            data: []
+        }
+
+        const sprints = (await data.getAllSprintsJira()).filter(sprint => sprint.state == 'active')
+
+        sprints.map(sprint => {
+
+            let today = new Date().toISOString().slice(0,10)
+            let remaining_days = (new Date(sprint.endDate.substring(0,10))- new Date(today))/ (1000 * 3600 * 24)
+            let past_days = (new Date(today)-new Date(sprint.startDate.substring(0,10))) / (1000 * 3600 * 24)
+            let difference_in_days = (new Date(sprint.endDate.substring(0,10))- (new Date(sprint.startDate.substring(0,10))))/ (1000 * 3600 * 24)
+            let percentage = parseInt((past_days*100)/difference_in_days)
+            widget.data.push({
+                sprintName: sprint.name,
+                info: {
+                    remaining_days: remaining_days,
+                    past_days: past_days,
+                    difference_in_days: difference_in_days,
+                    percentage: percentage
+                }
+            })
+        })
         const uri  = `${ES_URL}etl-widgets/_doc`
         return await fetch.makePostRequest(uri,widget)
     }

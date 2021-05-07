@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "84f8de1e-41ee-433f-9e26-758cecf7ff19",
+		"_postman_id": "57d2babb-4ac8-430f-92eb-ab20f9727dab",
 		"name": "Lean Dashboard",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -23,48 +23,6 @@
 							"path": [
 								"lean-etl",
 								"issuesJira"
-							]
-						},
-						"description": "Get all Issues from a Project (JIRA) "
-					},
-					"response": []
-				},
-				{
-					"name": "POST /lean-etl/issuesJira",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8000/lean-etl/issuesJira",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"lean-etl",
-								"issuesJira"
-							]
-						},
-						"description": "Get all Issues from a Project (JIRA) "
-					},
-					"response": []
-				},
-				{
-					"name": "POST /lean-etl/sprintIssuesJira",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8000/lean-etl/sprintIssuesJira",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"lean-etl",
-								"sprintIssuesJira"
 							]
 						},
 						"description": "Get all Issues from a Project (JIRA) "
@@ -179,6 +137,28 @@
 					"response": []
 				},
 				{
+					"name": "GET /lean-etl/projectsSquash/{id}/tests",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/lean-etl/projectsSquash/1/tests",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"lean-etl",
+								"projectsSquash",
+								"1",
+								"tests"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "GET /lean-etl/projectsSquash/{pid}/campaigns/{cid}",
 					"request": {
 						"method": "GET",
@@ -196,28 +176,6 @@
 								"1",
 								"campaigns",
 								"3908"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "GET /lean-etl/projectsSquash/{id}/tests",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8000/lean-etl/projectsSquash/1/tests",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"lean-etl",
-								"projectsSquash",
-								"1",
-								"tests"
 							]
 						}
 					},
@@ -289,6 +247,26 @@
 					"response": []
 				},
 				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9200/lean-projects/_search",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"lean-projects",
+								"_search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "GET /lean-etl/sprint",
 					"request": {
 						"method": "GET",
@@ -314,7 +292,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8000/lean-etl/sprint/1/issues",
+							"raw": "http://localhost:8000/lean-etl/sprintIssues",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -322,9 +300,48 @@
 							"port": "8000",
 							"path": [
 								"lean-etl",
-								"sprint",
-								"1",
-								"issues"
+								"sprintIssues"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST /lean-etl/sprint",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/lean-etl/sprint",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"lean-etl",
+								"sprint"
+							]
+						},
+						"description": "Posting sprint Gauge chart"
+					},
+					"response": []
+				},
+				{
+					"name": "show all widgets",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9200/etl-widgets/_search",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"etl-widgets",
+								"_search"
 							]
 						}
 					},
@@ -579,27 +596,6 @@
 							]
 						},
 						"description": "Create index"
-					},
-					"response": []
-				},
-				{
-					"name": "GET /etl-widgets/_search",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:9200/etl-widgets/_search/",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "9200",
-							"path": [
-								"etl-widgets",
-								"_search",
-								""
-							]
-						}
 					},
 					"response": []
 				}

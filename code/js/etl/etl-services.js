@@ -16,6 +16,10 @@ function services(data, db) {
             return db.postJiraSprintIssuesBarChart()
         },
 
+        postJiraSprintDateGaugeChart: async function(){
+            return db.postJiraSprintDateGaugeChart()
+        },
+
         getIssuesByIdJira: async function (id) {
             return data.getIssuesByIdJira(id)
         },

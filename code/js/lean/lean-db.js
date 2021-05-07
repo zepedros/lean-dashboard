@@ -56,7 +56,7 @@ module.exports = {
         return fetch.makePostRequest(uri,body)
     },
 
-    addWidgetToProject: function(){
+    addWidgetToProject: function(id, widgetId){
 
     },
 

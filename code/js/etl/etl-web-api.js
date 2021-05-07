@@ -28,6 +28,14 @@ function webapi(app, services) {
                 })
                 .catch(err => errHandler(err, res))
         },
+        postJiraSprintDateGaugeChart: function (req,res){
+            services.postJiraSprintDateGaugeChart()
+                .then(resp => {
+                    console.log("Posting sprint gauge chart")
+                    answerHandler(resp,res)
+                })
+                .catch(err => errHandler(err,res))
+        },
 
         getIssuesByIdJira: function (req, res) {
             services.getIssuesByIdJira(req.params.id)
@@ -156,6 +164,8 @@ function webapi(app, services) {
     app.get('/lean-etl/issuesJira', theWebApi.getIssuesJira) //testing
     app.post('/lean-etl/issuesJira', theWebApi.postIssuesJira)
     app.post('/lean-etl/sprintIssuesJira', theWebApi.postJiraSprintIssuesBarChart)
+    app.post('/lean-etl/sprint',theWebApi.postJiraSprintDateGaugeChart)
+
     app.get('/lean-etl/issueByIdJira/:id', theWebApi.getIssuesByIdJira)//testing
 
     app.get('/lean-etl/projectsJira', theWebApi.getProjectsJira)//testing
