@@ -122,35 +122,22 @@ module.exports = {
         if(response._embedded !== undefined) {
             jsonData.total = response._embedded.campaigns.length
             for (const campaign of response._embedded.campaigns) {
-                jsonData.campaigns.push(await this.getSquashCampaignById(projectId, campaign.id))
+                try {
+                    jsonData.campaigns.push(await this.getSquashCampaignById(projectId, campaign.id))
+                } catch(error) {
+                    console.log(`no access to ${campaign.id}`)
+                }
             }
         }
         return jsonData
     },
     getSquashCampaignById : async function (projectId, campaignId) {
         const url = `https://demo.squashtest.org/squash/api/rest/latest/campaigns/${campaignId}`
-        try {
-            const campaign = await fetcher.makeGetRequest(url, SQUASH_HEADERS)
-            if (campaign.project.id != projectId){
-                throw error.create(404,"Campaign not present in project")
-            }
-            return squash_transformer.getSquashCampaignObject(campaign)
-        } catch (error) {
-            return {
-                "id": "",
-                "name": "",
-                "reference": "",
-                "description": "",
-                "status": "FORBIDDEN",
-                "creation_date": "",
-                "start_date": "",
-                "end_date": "",
-                "iterations" : "",
-                "test_plan": "",
-                "project-id": "",
-                "project-name": ""
-            }
+        const campaign = await fetcher.makeGetRequest(url, SQUASH_HEADERS)
+        if (campaign.project.id != projectId) {
+            throw error.create(404, "Campaign not present in project")
         }
+        return squash_transformer.getSquashCampaignObject(campaign)
     },
     getProjectTestsSquash: async function (projectId) {
         const url = `https://demo.squashtest.org/squash/api/rest/latest/projects/${projectId}/test-cases`

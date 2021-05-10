@@ -141,6 +141,10 @@ module.exports = {
     },
 
     postSquashProjectTestsPieChart: async function(id) {
+        let widget = {
+            name : "Squash test results pie chart",
+            data : []
+        }
         const allCampaignsTests = (await data.getSquashTestsPlans(id))
         let counts = new Map()
         let total = 0
