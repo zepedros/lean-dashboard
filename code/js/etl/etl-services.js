@@ -72,6 +72,12 @@ function services(data, db) {
         },
         getSquashTestsPlans: function (projectId){
             return data.getSquashTestsPlans(projectId)
+        },
+        getAzureIterations: function (teamName){
+            return data.getAzureIterations(teamName)
+        },
+        getAzureIterationWorkItems: function (teamName, iterationId) {
+            return data.getAzureIterationWorkItems(teamName,iterationId)
         }
     };
     return theServices;

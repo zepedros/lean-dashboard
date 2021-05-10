@@ -386,6 +386,37 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "GET /lean-etl/projectsAzure/{id}/iterations",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/lean-etl/projectsAzure/2eee04f3-541f-4242-aff2-c9e8e358271b/iterations",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"lean-etl",
+										"projectsAzure",
+										"2eee04f3-541f-4242-aff2-c9e8e358271b",
+										"iterations"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET /lean-etl/projectsAzure/{team}/iterations/{id}/workItems",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": null
+							},
+							"response": []
 						}
 					]
 				}

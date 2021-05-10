@@ -254,5 +254,37 @@ module.exports = {
             return azure_transformer.getAzureTeamObject(item)
         })
         return jsonData
+    },
+
+    getAzureIterations: async function(teamName) {
+        const url = `https://dev.azure.com/leandashboardproject/${teamName}/_apis/work/teamsettings/iterations?api-version=6.0`
+        let iterations = await fetcher.makeGetRequest(url, AZURE_HEADERS)
+        let jsonData = {
+            iterations: [],
+            total : iterations.count
+        };
+        jsonData.iterations = iterations.value.map(item => {
+            return azure_transformer.getAzureIterationObject(item)
+        })
+        return jsonData
+    },
+
+    getAzureIterationWorkItems: async function(teamName,iterationId) {
+        const url = `https://dev.azure.com/leandashboardproject/${teamName}/_apis/work/teamsettings/iterations/${iterationId}/workitems?api-version=6.1-preview.1`
+        let workItems = await fetcher.makeGetRequest(url, AZURE_HEADERS)
+        let jsonData = {
+            iterationId: iterationId,
+            workItems: [],
+            total : workItems.length
+        };
+        for(const workItem of workItems.workItemRelations) {
+            jsonData.workItems.push(await this.getAzureWorkItem(workItem.target.id))
+        }
+        return jsonData
+    },
+    getAzureWorkItem: async function(workItemId) {
+        const url = `https://dev.azure.com/leandashboardproject/_apis/wit/workitems/${workItemId}?api-version=6.1-preview.3`
+        let workItem = await fetcher.makeGetRequest(url, AZURE_HEADERS)
+        return azure_transformer.getAzureWorkItemObject(workItem)
     }
 }
