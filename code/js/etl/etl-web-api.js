@@ -168,6 +168,8 @@ function webapi(app, services) {
                 })
                 .catch(err => errHandler(err,res))
         }
+
+
     };
 
     app.get('/lean-etl/issuesJira', theWebApi.getIssuesJira) //testing

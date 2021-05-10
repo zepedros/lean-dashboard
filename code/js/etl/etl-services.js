@@ -1,6 +1,8 @@
 'use strict';
 
-function services(data, db) {
+function services(data, db, auth) {
+
+    const error = require('../error')
 
     const theServices = {
 
