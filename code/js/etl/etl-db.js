@@ -141,10 +141,6 @@ module.exports = {
     },
 
     postSquashProjectTestsPieChart: async function(id) {
-        let widget = {
-            name : "Squash test results pie chart",
-            data : []
-        }
         const allCampaignsTests = (await data.getSquashTestsPlans(id))
         let counts = new Map()
         let total = 0
@@ -170,6 +166,55 @@ module.exports = {
             total: total,
             counts: result
         })
+        const uri  = `${ES_URL}etl-widgets/_doc`
+        return await fetch.makePostRequest(uri,widget)
+    },
+
+    postSquashTestPerIterationDataTable: async function(id) {
+        const allCampaignsTests = (await data.getSquashTestsPlans(id))
+        let iterations = new Map()
+        for (const tests of allCampaignsTests) {
+            tests["test-items"].forEach( t => {
+                if(iterations.has(t.iteration_name)) {
+                    let counts = iterations.get(t.iteration_name)
+                    if(counts.test_counts.has(t.execution_status)) {
+                        counts.test_counts.set(t.execution_status,counts.test_counts.get(t.execution_status) + 1)
+                        counts.planned_tests++
+                    } else {
+                        counts.test_counts.set(t.execution_status,1)
+                    }
+                    counts.planned_tests++
+                    iterations.set(t.iteration_name,counts)
+                } else {
+                    iterations.set(t.iteration_name,{
+                        "campaign" : tests.campaign,
+                        "planned_tests" : 1,
+                        "test_counts" : new Map().set(t.execution_status,1)
+                    })
+                }
+            });
+        }
+        let mapJson = Array.from(iterations.entries())
+        let result = []
+        for(const map of mapJson) {
+            let mapTestCounts = Array.from(map[1].test_counts)
+            let data = []
+            for(const counts of mapTestCounts) {
+                data.push({
+                    "status" : counts[0],
+                    "counts" : counts[1]
+                })
+            }
+            result.push({
+                "campaign": map[1].campaign,
+                "iteration": map[0],
+                "counts": data
+            })
+        }
+        let widget = {
+            name : "Squash test per iteration data table",
+            data : result
+        }
         const uri  = `${ES_URL}etl-widgets/_doc`
         return await fetch.makePostRequest(uri,widget)
     }

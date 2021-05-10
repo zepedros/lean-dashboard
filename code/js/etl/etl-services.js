@@ -26,6 +26,10 @@ function services(data, db, auth) {
             return db.postJiraSprintDateGaugeChart()
         },
 
+        postSquashTestPerIterationDataTable: async function(id) {
+            return db.postSquashTestPerIterationDataTable(id)
+        },
+
         getIssuesByIdJira: async function (id) {
             return data.getIssuesByIdJira(id)
         },
@@ -70,6 +74,12 @@ function services(data, db, auth) {
         },
         getSquashTestsPlans: function (projectId){
             return data.getSquashTestsPlans(projectId)
+        },
+        getAzureIterations: function (teamName){
+            return data.getAzureIterations(teamName)
+        },
+        getAzureIterationWorkItems: function (teamName, iterationId) {
+            return data.getAzureIterationWorkItems(teamName,iterationId)
         }
     };
     return theServices;

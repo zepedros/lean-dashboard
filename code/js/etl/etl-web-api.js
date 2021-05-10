@@ -46,6 +46,15 @@ function webapi(app, services) {
                 .catch(err => errHandler(err, res))
         },
 
+        postSquashTestPerIterationDataTable: function (req, res) {
+            services.postSquashTestPerIterationDataTable(req.params.id)
+                .then(resp => {
+                    console.log("Post Squash Tests per iteration")
+                    answerHandler(resp, res)
+                })
+                .catch(err => errHandler(err, res))
+        },
+
         getIssuesByIdJira: function (req, res) {
             services.getIssuesByIdJira(req.params.id)
                 .then(resp => {
@@ -127,6 +136,22 @@ function webapi(app, services) {
                 })
                 .catch(err => errHandler(err, res))
         },
+        getAzureIterations: function (req, res) {
+            services.getAzureIterations(req.params.team)
+                .then(resp => {
+                    console.log("Get Azure work items")
+                    answerHandler(resp, res)
+                })
+                .catch(err => errHandler(err, res))
+        },
+        getAzureIterationWorkItems: function (req, res) {
+            services.getAzureIterationWorkItems(req.params.team, req.params.id)
+                .then(resp => {
+                    console.log("Get Azure work items")
+                    answerHandler(resp, res)
+                })
+                .catch(err => errHandler(err, res))
+        },
         postIssues: function (req, res) {
             services.postIssues()
                 .then(resp => {
@@ -191,9 +216,12 @@ function webapi(app, services) {
 
     app.get('/lean-etl/projectsAzure', theWebApi.getAzureProjects) //testing
     app.get('/lean-etl/projectsAzure/:id/teams', theWebApi.getAzureTeams) //testing
+    app.get('/lean-etl/projectsAzure/:team/iterations', theWebApi.getAzureIterations)
+    app.get('/lean-etl/projectsAzure/:team/iterations/:id/workItems',theWebApi.getAzureIterationWorkItems)
     app.post('/lean-etl/issues', theWebApi.postIssues)
     app.post('/lean-etl/projects', theWebApi.postProjects)
     app.post('/lean-etl/squashTests/:id', theWebApi.postSquashTestPieChart)
+    app.post('/lean-etl/squashIterationTests/:id', theWebApi.postSquashTestPerIterationDataTable)
 
     app.get('/lean-etl/sprint',theWebApi.getAllSprintsJira)
     app.get('/lean-etl/sprint/:id/issues',theWebApi.getSprintIssues)

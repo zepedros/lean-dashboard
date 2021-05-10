@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "45e898db-92bf-440e-a664-2bff040e8fd1",
+		"_postman_id": "3dc8b9c6-15d2-46ac-9990-96c8e716ab04",
 		"name": "Lean Dashboard",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -317,6 +317,27 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "POST  /lean-etl/squashIterationTests/id",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/lean-etl/squashIterationTests/5",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"lean-etl",
+										"squashIterationTests",
+										"5"
+									]
+								}
+							},
+							"response": []
 						}
 					],
 					"description": "All the requests relative to the Squash platform API"
@@ -363,6 +384,37 @@
 										"teams"
 									]
 								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET /lean-etl/projectsAzure/{id}/iterations",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/lean-etl/projectsAzure/2eee04f3-541f-4242-aff2-c9e8e358271b/iterations",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"lean-etl",
+										"projectsAzure",
+										"2eee04f3-541f-4242-aff2-c9e8e358271b",
+										"iterations"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET /lean-etl/projectsAzure/{team}/iterations/{id}/workItems",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": null
 							},
 							"response": []
 						}
