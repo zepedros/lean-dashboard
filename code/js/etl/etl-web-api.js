@@ -46,6 +46,15 @@ function webapi(app, services) {
                 .catch(err => errHandler(err, res))
         },
 
+        postSquashTestPerIterationDataTable: function (req, res) {
+            services.postSquashTestPerIterationDataTable(req.params.id)
+                .then(resp => {
+                    console.log("Post Squash Tests per iteration")
+                    answerHandler(resp, res)
+                })
+                .catch(err => errHandler(err, res))
+        },
+
         getIssuesByIdJira: function (req, res) {
             services.getIssuesByIdJira(req.params.id)
                 .then(resp => {
@@ -192,6 +201,7 @@ function webapi(app, services) {
     app.post('/lean-etl/issues', theWebApi.postIssues)
     app.post('/lean-etl/projects', theWebApi.postProjects)
     app.post('/lean-etl/squashTests/:id', theWebApi.postSquashTestPieChart)
+    app.post('/lean-etl/squashIterationTests/:id', theWebApi.postSquashTestPerIterationDataTable)
 
     app.get('/lean-etl/sprint',theWebApi.getAllSprintsJira)
     app.get('/lean-etl/sprint/:id/issues',theWebApi.getSprintIssues)

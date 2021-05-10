@@ -24,6 +24,10 @@ function services(data, db) {
             return db.postJiraSprintDateGaugeChart()
         },
 
+        postSquashTestPerIterationDataTable: async function(id) {
+            return db.postSquashTestPerIterationDataTable(id)
+        },
+
         getIssuesByIdJira: async function (id) {
             return data.getIssuesByIdJira(id)
         },

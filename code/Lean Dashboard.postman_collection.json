@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "45e898db-92bf-440e-a664-2bff040e8fd1",
+		"_postman_id": "3dc8b9c6-15d2-46ac-9990-96c8e716ab04",
 		"name": "Lean Dashboard",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -313,6 +313,27 @@
 									"path": [
 										"lean-etl",
 										"squashTests"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "POST  /lean-etl/squashIterationTests/id",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/lean-etl/squashIterationTests/5",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"lean-etl",
+										"squashIterationTests",
+										"5"
 									]
 								}
 							},
