@@ -2,7 +2,7 @@
 
 const error = require('../error')
 
-function services(data, db){
+function services(data, db, auth){
 
     return {
 
@@ -37,6 +37,12 @@ function services(data, db){
         },
         deleteProject: function (id){
             return db.deleteProject(id)
+        },
+
+        createUser: async function (username,password, first_name, last_name) {
+            const userExists = await auth.checkUser(username)
+            if(userExists) throw error.create(error.CONFLICT, `the username ${username} already exists`)
+            return auth.createUser(username,password, first_name, last_name)
         }
     };
 }

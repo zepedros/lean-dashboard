@@ -1,6 +1,6 @@
 'use strict';
 
-function webapi(app,services){
+function webapi(app,services, auth){
 
     const theWebApi = {
 
@@ -66,6 +66,44 @@ function webapi(app,services){
                     answerHandler(resp,res)
                 })
                 .catch(err => errHandler(err,res))
+        },
+
+        createUser: function(req,res)  {
+            services.createUser(req.body.username, req.body.password, req.body.first_name, req.body.last_name)
+                .then(resp => answerHandler(resp,res))
+                .catch(err => errHandler(err,res))
+        },
+
+        login: async function (req, res) {
+            const userinfo = req.body;
+            const username = userinfo.username;
+            const password = userinfo.password;
+
+            try {
+                const user = await auth.getUser(username, password);
+                await login(req, user);
+
+                res.json({ user: username });
+            } catch (err) {
+                res.status(401).send({ error: err });
+            }
+
+            function login(req, user) {
+                return new Promise((resolve, reject) => {
+                    req.login(user, (err, result) => {
+                        if (err) {
+                            reject(err);
+                        } else {
+                            resolve(result);
+                        }
+                    });
+                });
+            }
+        },
+
+        logout: function (req, res) {
+            req.logout();
+            res.send();
         }
     };
 
@@ -80,6 +118,10 @@ function webapi(app,services){
     app.post('/lean/createProject',theWebApi.postLeanProject)
     app.delete('/lean/deleteProject/:id',theWebApi.deleteProject)
 
+
+    app.put('/lean/register',theWebApi.createUser)
+    app.post('/lean/login', theWebApi.login)
+    app.post('/lean/logout', theWebApi.logout);
 
     return theWebApi;
 }
