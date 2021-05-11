@@ -4,74 +4,75 @@ function webapi(app,services, auth){
 
     const theWebApi = {
 
-        getIssues: function(req, res) {
+        getIssues: function (req, res) {
             services.getIssues()
                 .then(resp => {
                     console.log("Get Issues was executed")
-                    answerHandler(resp,res)
+                    answerHandler(resp, res)
                 })
-                .catch(err => errHandler(err,res))
+                .catch(err => errHandler(err, res))
         },
 
-        getIssuesById : function(req, res){
+        getIssuesById: function (req, res) {
             services.getIssuesById(req.params.id)
                 .then(resp => {
                     console.log("Get Issue")
-                    answerHandler(resp,res)
+                    answerHandler(resp, res)
                 })
-                .catch(err => errHandler(err,res))
+                .catch(err => errHandler(err, res))
         },
-        getProjects : function(req,res){
+        getProjects: function (req, res) {
             services.getProjects()
                 .then(resp => {
                     console.log("Get Projects")
-                    answerHandler(resp,res)
+                    answerHandler(resp, res)
                 })
         },
-        getProjectById : function(req,res) {
+        getProjectById: function (req, res) {
             services.getProjectById(req.params.id)
                 .then(resp => {
                     console.log("Get Project")
-                    answerHandler(resp,res)
+                    answerHandler(resp, res)
                 })
-                .catch(err => errHandler(err,res))
+                .catch(err => errHandler(err, res))
         },
-       createProject : function (req,res) {
-            services.createProject(req.body.name,req.body.description)
+        createProject: function (req, res) {
+            services.createProject(req.body.name, req.body.description)
                 .then(resp => {
                     console.log(`Creating project with the name  "${req.body.name}" and the description "${req.body.description}"`)
-                    answerHandler(resp,res,201) 
+                    answerHandler(resp, res, 201)
                 })
+
         },
-        postDashboardToProject: function (req,res){
-           services.postDashboardToProject(req.params.id, req.body.name, req.body.description)
+        postDashboardToProject: function (req, res) {
+            services.postDashboardToProject(req.params.id, req.body.name, req.body.description)
                 .then(resp => {
                     console.log(`Creating new dashboard`)
-                    answerHandler(resp,res,201)
+                    answerHandler(resp, res, 201)
                 })
-               .catch(err => errHandler(err,res))
+                .catch(err => errHandler(err, res))
         },
-        postLeanProject : function (req,res){
+        postLeanProject: function (req, res) {
             services.postLeanProject(req.body.name, req.body.description, req.body.userId)
                 .then(resp => {
                     console.log("Create Lean Project")
-                    answerHandler(resp,res)
+                    answerHandler(resp, res)
                 })
-                .catch(err => errHandler(err,res))
+                .catch(err => errHandler(err, res))
         },
-        deleteProject : function (req,res){
+        deleteProject: function (req, res) {
             services.deleteProject(req.params.id)
                 .then(resp => {
                     console.log("Removing Project")
-                    answerHandler(resp,res)
+                    answerHandler(resp, res)
                 })
-                .catch(err => errHandler(err,res))
+                .catch(err => errHandler(err, res))
         },
 
-        createUser: function(req,res)  {
+        createUser: function (req, res) {
             services.createUser(req.body.username, req.body.password, req.body.first_name, req.body.last_name)
-                .then(resp => answerHandler(resp,res))
-                .catch(err => errHandler(err,res))
+                .then(resp => answerHandler(resp, res))
+                .catch(err => errHandler(err, res))
         },
 
         login: async function (req, res) {
@@ -83,9 +84,9 @@ function webapi(app,services, auth){
                 const user = await auth.getUser(username, password);
                 await login(req, user);
 
-                res.json({ user: username });
+                res.json({user: username});
             } catch (err) {
-                res.status(401).send({ error: err });
+                res.status(401).send({error: err});
             }
 
             function login(req, user) {
