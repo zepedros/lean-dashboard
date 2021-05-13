@@ -27,7 +27,9 @@ module.exports = {
         const dayOfMonth = timeSettings.dayOfMonth
         const month = timeSettings.month
         const dayOfWeek = timeSettings.dayOfWeek
+        CronJob(`* * * * * `)
         var job = new CronJob(`${timeSettings.seconds} ${minutes} ${hours} ${dayOfMonth} ${month} ${dayOfWeek}`, function () {
+            //chamar a db para ver widgets
             if(widgets.includes("Squash Pie Chart")) {
                 services.postSquashTestsPieChart(5)
             }

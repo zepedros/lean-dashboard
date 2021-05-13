@@ -15,13 +15,15 @@ const timeSettings = {
 const widgets = ['Squash Pie Chart','Another Widget']
 
 const widget = {
-    id : 'id',
-    type : '?',
+    id : 'id', //id do elastic
+    name : 'Squash Test Pie Chart',
+    type : 'squash_pie_chart',
     projectInfo : {
         azurePath : 'path',
         jiraPath : 'path',
         squashPath : 'path'
-    }
+    },
+    data : []
 }
 
 scheduler.scheduleWidget(widgets,'','',timeSettings)

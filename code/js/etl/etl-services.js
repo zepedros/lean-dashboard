@@ -1,64 +1,70 @@
 'use strict';
-
-function services(data, db, auth) {
+const jiraTransformer = require('./transform/etl-jira-transformer')
+const squashTransformer = require('./transform/etl-squash-transformer')
+function services(azureData, jiraData, squashData, db, auth) {
 
     const error = require('../error')
 
     const theServices = {
 
         getIssuesJira: async function () {
-            return data.getIssuesJira()
+            return jiraData.getIssuesJira()
         },
 
         postIssuesJira: async function (){
-            return db.postJiraIssuesDataTable()
+            const data = await jiraTransformer.jiraIssuesDataTableTransform(jiraData)
+            return await db.postWidget(data)
         },
 
         postJiraSprintIssuesBarChart: async function(){
-            return db.postJiraSprintIssuesBarChart()
+            const data = await jiraTransformer.jiraSprintIssuesBarChart(jiraData)
+            return await db.postWidget(data)
         },
 
         postSquashTestsPieChart: async function(id) {
-            return db.postSquashProjectTestsPieChart(id)
+            const data = await squashTransformer.squashProjectTestsPieChart(id,squashData)
+            return await db.postWidget(data)
         },
 
         postJiraSprintDateGaugeChart: async function(){
-            return db.postJiraSprintDateGaugeChart()
+            const data = await jiraTransformer.jiraSprintDateGaugeChart(jiraData)
+            return await db.postWidget(data)
         },
 
         postSquashTestPerIterationDataTable: async function(id) {
-            return db.postSquashTestPerIterationDataTable(id)
+            const data = await squashTransformer.squashTestPerIterationDataTable(id,squashData)
+            return await db.postWidget(data)
         },
 
         getIssuesByIdJira: async function (id) {
-            return data.getIssuesByIdJira(id)
+            return jiraData.getIssuesByIdJira(id)
         },
         getProjectsJira: function () {
-            return data.getProjectsJira()
+            return jiraData.getProjectsJira()
         },
         getProjectByIdJira: function (id) {
-            return data.getProjectByIdJira(id)
+            return jiraData.getProjectByIdJira(id)
         },
         getProjectsSquash: function () {
-            return data.getProjectsSquash()
+            return squashData.getProjectsSquash()
         },
         getProjectCampaignsSquash: function (id) {
-            return data.getProjectCampaignsSquash(id)
+            return squashData.getProjectCampaignsSquash(id)
         },
         getProjectTestsSquash: function (id) {
-            return data.getProjectTestsSquash(id)
+            return squashData.getProjectTestsSquash(id)
         },
         getSquashCampaignById: function (projectId, campaignId) {
-            return data.getSquashCampaignById(projectId,campaignId)
+            return squashData.getSquashCampaignById(projectId,campaignId)
         },
         getSquashTestById: function (projectId, testId) {
-            return data.getSquashTestById(projectId,testId)
+            return squashData.getSquashTestById(projectId,testId)
         },
         getAzureProjects: function () {
-            return data.getAzureProjects()
+            return azureData.getAzureProjects()
         },
         getAzureTeams: function (id) {
-            return data.getAzureTeams(id)
+            return azureData.getAzureTeams(id)
         },
         postIssues: function () {
             return db.postIssues()
@@ -67,19 +73,19 @@ function services(data, db, auth) {
             return db.postProjects()
         },
         getAllSprintsJira: function () {
-            return data.getAllSprintsJira()
+            return jiraData.getAllSprintsJira()
         },
-        getSprintIssues: function (sprintId){
-            return data.getSprintIssues(sprintId)
+        getSprintIssuesJira: function (sprintId){
+            return jiraData.getSprintIssuesJira(sprintId)
         },
         getSquashTestsPlans: function (projectId){
-            return data.getSquashTestsPlans(projectId)
+            return squashData.getSquashTestsPlans(projectId)
         },
         getAzureIterations: function (teamName){
-            return data.getAzureIterations(teamName)
+            return azureData.getAzureIterations(teamName)
         },
         getAzureIterationWorkItems: function (teamName, iterationId) {
-            return data.getAzureIterationWorkItems(teamName,iterationId)
+            return azureData.getAzureIterationWorkItems(teamName,iterationId)
         }
     };
     return theServices;

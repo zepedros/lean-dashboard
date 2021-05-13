@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "000a0fc2-70f6-4fb8-adc2-70b0d4d4d76e",
+		"_postman_id": "3dc8b9c6-15d2-46ac-9990-96c8e716ab04",
 		"name": "Lean Dashboard",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -157,6 +157,46 @@
 									]
 								},
 								"description": "Posting sprint Gauge chart"
+							},
+							"response": []
+						},
+						{
+							"name": "POST /lean-etl/issuesJira",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/lean-etl/issuesJira",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"lean-etl",
+										"issuesJira"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "POST /lean-etl/sprintIssuesJira",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/lean-etl/sprintIssuesJira",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"lean-etl",
+										"sprintIssuesJira"
+									]
+								}
 							},
 							"response": []
 						}
@@ -319,7 +359,7 @@
 							"response": []
 						},
 						{
-							"name": "POST  /lean-etl/squashIterationTests/id",
+							"name": "POST /lean-etl/squashIterationTests/{id}",
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -607,87 +647,6 @@
 							]
 						},
 						"description": "Create a project"
-					},
-					"response": []
-				},
-				{
-					"name": "Register",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n\t\"username\" : \"admin\",\r\n\t\"password\" : \"password\",\r\n    \"first_name\": \"Alisa\",\r\n    \"last_name\": \"Teste\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8000/lean/register",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"lean",
-								"register"
-							]
-						},
-						"description": "Adds a new user to the alean application"
-					},
-					"response": []
-				},
-				{
-					"name": "Login",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n\t\"username\" : \"admin\",\r\n\t\"password\" : \"admin\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8000/lean/login",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"lean",
-								"login"
-							]
-						},
-						"description": "Adds a new user to the alean application"
-					},
-					"response": []
-				},
-				{
-					"name": "Logout",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8000/lean/logout",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"lean",
-								"logout"
-							]
-						},
-						"description": "Adds a new user to the alean application"
 					},
 					"response": []
 				}

@@ -178,7 +178,7 @@ function webapi(app, services) {
         },
 
         getSprintIssues : function (req,res){
-            services.getSprintIssues(req.params.id)
+            services.getSprintIssuesJira(req.params.id)
                 .then(resp=> {
                     console.log("Get Sprint Issues")
                     answerHandler(resp,res)
