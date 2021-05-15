@@ -131,6 +131,7 @@ module.exports = {
         }
         let widget = {
             name: "Squash test per iteration data table",
+            code: `S_TIDT-${id}`, //squash test iteration data table
             data: result
         }
         return widget

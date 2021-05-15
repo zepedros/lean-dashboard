@@ -31,9 +31,9 @@ function services(azureData, jiraData, squashData, db, auth) {
             return await db.postWidget(data)
         },
 
-        postSquashTestPerIterationDataTable: async function(id) {
+        postSquashTestPerIterationDataTable: async function(id,widgetId) {
             const data = await squashTransformer.squashTestPerIterationDataTable(id,squashData)
-            return await db.postWidget(data)
+            return await db.postWidget(data,widgetId)
         },
 
         getIssuesByIdJira: async function (id) {

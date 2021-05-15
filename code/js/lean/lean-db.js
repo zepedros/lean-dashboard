@@ -67,6 +67,7 @@ module.exports = {
             && res.hits.hits;
         return hits
     },
+
     createProject : async function(name,description){
         const project = {name:name, description:description, team:[], duration:[], issues:[],tests:[]}
         const uri = `http://localhost:9200/lean/_doc/`

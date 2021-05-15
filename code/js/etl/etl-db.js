@@ -18,8 +18,19 @@ module.exports = {
         return hits
     },
 
-    postWidget: async function(widget) {
-        const uri  = `${ES_URL}etl-widgets/_doc`
-        return await fetch.makePostRequest(uri,widget)
+    getWidget: async function (id) {
+        const uri = `${ES_URL}etl-widgets/_doc/${id}`;
+        const res = await fetch.makeGetRequest(uri)
+        return res._source
+    },
+
+    postWidget: async function(widget,id) {
+        if(id === undefined){
+            const uri  = `${ES_URL}etl-widgets/_doc`
+            return await fetch.makePostRequest(uri,widget)
+        } else {
+            const uri = `${ES_URL}etl-widgets/_doc/${id}`
+            return await fetch.makePostRequest(uri,widget)
+        }
     }
 }
