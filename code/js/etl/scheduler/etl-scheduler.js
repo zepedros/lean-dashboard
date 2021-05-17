@@ -8,9 +8,10 @@ const squashData = require('../data/etl-squash-data.js')
 const auth = ''
 const services = servicesCreator(azureData,jiraData,squashData, db, auth);
 const widgetMap = new Map()
-
 widgetMap.set("S_TIDT",func = function (id,widgetId) { services.postSquashTestPerIterationDataTable(id,widgetId)})
 
+//widget code structure = S_ABCD-param1-param2-param3...
+// S = source, ABCD = description
 module.exports = {
     /**
      * @param widgets - array of ids
@@ -30,7 +31,12 @@ module.exports = {
                 const widget = await db.getWidget(id)
                 const split = widget.code.split('-')
                 var func = widgetMap.get(split[0])
-                func(widget.code.split('-')[1],id)
+                //the function might need extra parameters
+                switch (split.length) {
+                    case 1 : func(id); break
+                    case 2 : func(split[1],id); break
+                    case 3 : func(split[1],split[2],id); break
+                }
             }
         })
         job.start()

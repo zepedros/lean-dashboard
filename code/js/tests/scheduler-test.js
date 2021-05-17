@@ -4,7 +4,7 @@ const project = ''// created a project
 
 //a cada minuto faz scheduler
 const timeSettings = {
-    seconds : '*',
+    seconds : '',
     minutes : '*/1',
     hours : '*',
     dayOfMonth : '*',
@@ -36,5 +36,5 @@ const timeSettings2 = {
 let job = scheduler.scheduleWidget(widgets,'','',timeSettings)
 console.log("executing scheduler")
 
-scheduler.reSchedule(job,timeSettings2)
+//scheduler.reSchedule(job,timeSettings2)
 
