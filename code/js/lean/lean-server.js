@@ -11,7 +11,24 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}))
 
-const auth = require('../auth')
+const authizationDbConfig = {
+    "host": "localhost",
+    "port": 5432,
+    "user": "postgres",
+    "password": "1234",
+    "connectionLimit": 5,
+    "database": "authization",
+    "dbms": "postgres"
+}
+async function alisa(){
+    return await require('@authization/authization').setup({app,db:authizationDbConfig});
+}
+
+let authization = alisa()
+
+const authCreator = require('../auth')
+
+const auth = authCreator(authization)
 auth.initialize(app)
 
 const db = require('./lean-db');
