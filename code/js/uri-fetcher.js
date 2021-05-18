@@ -25,9 +25,9 @@ module.exports = {
 async function makeRequest(uri, method, body, headers) {
     console.log(`Making a request to ${uri} `)
     const response = await fetch(uri, options(method, body, headers))
-    if (!response.ok ){
+   /* if (!response.ok ){
         throw error.create(response.status, response.statusText)
-    }
+    }*/
     return await response.json();
 }
 

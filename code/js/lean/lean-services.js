@@ -32,12 +32,18 @@ function services(data, db, auth){
             return db.deleteProject(id)
         },
         addDashboardToProject: function (projectId, name, description){
-            return db.addDashboardToProject(projectId,name,description)
+            return this.getProjectById(projectId)
+                .then(project => {
+                    return db.addDashboardToProject(project.id,name,description)
+                })
         },
         removeDashboardFromProject: function (projectId, dashboardId){
             return db.getProjectById(projectId)
                 .then(project => {
                     const dashboardIndex = project.dashboards.findIndex(d => d.id === dashboardId)
+                    if(dashboardIndex === -1){
+                       throw error.create(error.NOT_FOUND,'Dashboard does not exists')
+                    }
                     return db.removeDashboardFromProject(projectId,dashboardIndex)
                 })
         },

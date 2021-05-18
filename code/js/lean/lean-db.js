@@ -77,6 +77,9 @@ module.exports = {
                     body._source.id=body._id
                     return body._source
                 }
+                else{
+                   throw error.create(error.NOT_FOUND,'Project not found')
+                }
             })
     },
 
@@ -100,6 +103,10 @@ module.exports = {
 
     const uri = `http://localhost:9200/lean-projects/_doc/${id}?refresh=true`
     return fetch.makeDeleteRequest(uri)
+        .then(body => {
+            if(body.result === 'deleted') return body
+            else return error.create(error.NOT_FOUND,'Project not found')
+        })
 
     },
     addDashboardToProject: async function(projectId, name, description){
