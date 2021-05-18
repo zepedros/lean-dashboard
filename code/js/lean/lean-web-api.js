@@ -4,29 +4,30 @@ function webapi(app,services, auth){
 
     const theWebApi = {
 
-        getIssues: function (req, res) {
-            services.getIssues()
+        createProject: function (req, res) {
+            services.createProject(req.body.name, req.body.description, req.body.user)
                 .then(resp => {
-                    console.log("Get Issues was executed")
-                    answerHandler(resp, res)
+                    console.log(`Creating project with the name  "${req.body.name}" and the description "${req.body.description}"`)
+                    answerHandler(resp, res, 201)
                 })
-                .catch(err => errHandler(err, res))
-        },
+                .catch(err => errHandler(err,res))
 
-        getIssuesById: function (req, res) {
-            services.getIssuesById(req.params.id)
-                .then(resp => {
-                    console.log("Get Issue")
-                    answerHandler(resp, res)
-                })
-                .catch(err => errHandler(err, res))
+        },
+        getAllProjects : function (req,res){
+          services.getAllProjects()
+              .then(resp => {
+                  console.log("Get All Lean Dashboards Projects")
+                  answerHandler(resp, res)
+              })
+              .catch(err => errHandler(err, res))
         },
         getProjects: function (req, res) {
-            services.getProjects()
+            services.getProjects(req.params.user)
                 .then(resp => {
                     console.log("Get Projects")
                     answerHandler(resp, res)
                 })
+                .catch(err => errHandler(err,res))
         },
         getProjectById: function (req, res) {
             services.getProjectById(req.params.id)
@@ -36,27 +37,19 @@ function webapi(app,services, auth){
                 })
                 .catch(err => errHandler(err, res))
         },
-        createProject: function (req, res) {
-            services.createProject(req.body.name, req.body.description)
-                .then(resp => {
-                    console.log(`Creating project with the name  "${req.body.name}" and the description "${req.body.description}"`)
-                    answerHandler(resp, res, 201)
-                })
-
+        updateProject: function(req,res) {
+          services.updateProject(req.params.id, req.body.name, req.body.description)
+              .then(resp => {
+                  console.log(`Updating Project`)
+                  answerHandler(resp,res)
+              })
+              .catch(err=> errHandler(err,res))
         },
-        postDashboardToProject: function (req, res) {
-            services.postDashboardToProject(req.params.id, req.body.name, req.body.description)
+        addDashboardToProject: function (req, res) {
+            services.addDashboardToProject(req.params.id, req.body.name, req.body.description)
                 .then(resp => {
                     console.log(`Creating new dashboard`)
                     answerHandler(resp, res, 201)
-                })
-                .catch(err => errHandler(err, res))
-        },
-        postLeanProject: function (req, res) {
-            services.postLeanProject(req.body.name, req.body.description, req.body.userId)
-                .then(resp => {
-                    console.log("Create Lean Project")
-                    answerHandler(resp, res)
                 })
                 .catch(err => errHandler(err, res))
         },
@@ -67,6 +60,13 @@ function webapi(app,services, auth){
                     answerHandler(resp, res)
                 })
                 .catch(err => errHandler(err, res))
+        },
+        removeDashboardFromProject: function (req,res){
+            services.removeDashboardFromProject(req.params.id,req.params.dashboardId)
+                .then(resp => {
+                    console.log("Removing Dashboard")
+                    answerHandler(resp,res)
+                })
         },
 
         createUser: function (req, res) {
@@ -108,17 +108,15 @@ function webapi(app,services, auth){
         }
     };
 
-
-    app.post('/lean/project',theWebApi.createProject)
-    app.get('/lean/issues',theWebApi.getIssues);
-    app.get('/lean/issueById/:id',theWebApi.getIssuesById)
-    app.get('/lean/projects',theWebApi.getProjects)
+    app.get('/lean/allProjects',theWebApi.getAllProjects)
+    app.get('/lean/projects/user/:user',theWebApi.getProjects)
     app.get('/lean/projects/:id',theWebApi.getProjectById)
-    app.post('/lean/projects/:id/dashboard',theWebApi.postDashboardToProject)
+    app.post('/lean/projects/:id/dashboard',theWebApi.addDashboardToProject)
+    app.post('/lean/projects/:id/dashboard/:dashboardId',theWebApi.removeDashboardFromProject)
 
-    app.post('/lean/createProject',theWebApi.postLeanProject)
+    app.post('/lean/createProject',theWebApi.createProject)
+    app.post('/lean/project/update/:id',theWebApi.updateProject)
     app.delete('/lean/deleteProject/:id',theWebApi.deleteProject)
-
 
     app.put('/lean/register',theWebApi.createUser)
     app.post('/lean/login', theWebApi.login)

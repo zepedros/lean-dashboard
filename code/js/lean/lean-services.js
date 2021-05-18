@@ -6,22 +6,9 @@ function services(data, db, auth){
 
     return {
 
-        getIssues: async function () {
-            return db.getIssues()
-            //return mock.getIssues()
-        },
-        getIssuesById: async function (id) {
-            return db.getIssuesById(id)
-        },
-        getProjects: async function () {
-            return db.getProjects()
-        },
-        getProjectById: async function (id) {
-            return db.getProjectById(id)
-        },
-        createProject: async function(name, description) {
+        createProject: function(name, description, user){
             if(name && description)
-                return db.createProject(name,description)
+                return db.createProject(name,description,user)
             else{
                 throw error.create(
                     error.ARGUMENT_ERROR,
@@ -29,16 +16,31 @@ function services(data, db, auth){
                 )
             }
         },
-        postDashboardToProject: function(projectId, name, description){
-            return db.postDashboardToProject(projectId,name,description)
+        getAllProjects:function (){
+            return db.getAllProjects()
         },
-        postLeanProject: function (name, description, user){
-            return db.postLeanProject(name,description,user)
+        getProjects: async function (user) {
+            return db.getProjects(user)
+        },
+        getProjectById: async function (id) {
+            return db.getProjectById(id)
+        },
+        updateProject:function(projectId, newName,newDesc){
+            return db.updateProject(projectId,newName,newDesc)
         },
         deleteProject: function (id){
             return db.deleteProject(id)
         },
-
+        addDashboardToProject: function (projectId, name, description){
+            return db.addDashboardToProject(projectId,name,description)
+        },
+        removeDashboardFromProject: function (projectId, dashboardId){
+            return db.getProjectById(projectId)
+                .then(project => {
+                    const dashboardIndex = project.dashboards.findIndex(d => d.id === dashboardId)
+                    return db.removeDashboardFromProject(projectId,dashboardIndex)
+                })
+        },
         createUser: async function (username,password, first_name, last_name) {
             const userExists = await auth.checkUser(username)
             if(userExists) throw error.create(error.CONFLICT, `the username ${username} already exists`)
