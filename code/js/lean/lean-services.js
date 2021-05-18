@@ -2,47 +2,56 @@
 
 const error = require('../error')
 
-function services(data, db, auth) {
+function services(data, db, auth){
 
     return {
 
-        getIssues: async function () {
-            return db.getIssues()
-            //return mock.getIssues()
-        },
-        getIssuesById: async function (id) {
-            return db.getIssuesById(id)
-        },
-        getProjects: async function () {
-            return db.getProjects()
-        },
-        getProjectById: async function (id) {
-            return db.getProjectById(id)
-        },
-        createProject: async function (name, description) {
-            if (name && description)
-                return db.createProject(name, description)
-            else {
+        createProject: function(name, description, user){
+            if(name && description)
+                return db.createProject(name,description,user)
+            else{
                 throw error.create(
                     error.ARGUMENT_ERROR,
                     'Please give the project a name and a description'
                 )
             }
         },
-        postDashboardToProject: function (projectId, name, description) {
-            return db.postDashboardToProject(projectId, name, description)
+        getAllProjects:function (){
+            return db.getAllProjects()
         },
-        postLeanProject: function (name, description, user) {
-            return db.postLeanProject(name, description, user)
+        getProjects: async function (user) {
+            return db.getProjects(user)
         },
-        deleteProject: function (id) {
+        getProjectById: async function (id) {
+            return db.getProjectById(id)
+        },
+        updateProject:function(projectId, newName,newDesc){
+            return db.updateProject(projectId,newName,newDesc)
+        },
+        deleteProject: function (id){
             return db.deleteProject(id)
         },
-
-        createUser: async function (username, password, first_name, last_name) {
-            //const userExists = await auth.checkUser(username)
-            //if(userExists) throw error.create(error.CONFLICT, `the username ${username} already exists`)
-            return await auth.createUser(username, password, first_name, last_name)
+        addDashboardToProject: function (projectId, name, description){
+            return this.getProjectById(projectId)
+                .then(project => {
+                    return db.addDashboardToProject(project.id,name,description)
+                })
+        },
+        removeDashboardFromProject: function (projectId, dashboardId){
+            return db.getProjectById(projectId)
+                .then(project => {
+                    const dashboardIndex = project.dashboards.findIndex(d => d.id === dashboardId)
+                    if(dashboardIndex === -1){
+                        throw error.create(error.NOT_FOUND,'Dashboard does not exists')
+                    }
+                    return db.removeDashboardFromProject(projectId,dashboardIndex)
+                })
+        },
+        createUser: async function (username,password, first_name, last_name) {
+            /*const userExists = await auth.checkUser(username)
+            if(userExists) throw error.create(error.CONFLICT, `the username ${username} already exists`)
+            return auth.createUser(username,password, first_name, last_name)*/
+            return await auth.createUser(username, password)
         },
 
         loginLocal: async function(req, res){
