@@ -3,6 +3,10 @@ const session = require('express-session');
 const fetcher = require('./uri-fetcher')
 const FileStore = require('session-file-store')(session);
 
+const error = require('./error')
+const response = require('./responses')
+
+/*
 const config = {
     host: 'localhost',
     port: 9200,
@@ -23,10 +27,12 @@ async function refToUser(userRef, done) {
     } else {
         done('User unknown');
     }
-}
+}*/
 
-function makeAuth(authization){
-    return  {
+function makeAuth(authization) {
+    return {
+
+        /*
         initialize: app => {
             app.use(session({
                 resave: false,
@@ -41,6 +47,7 @@ function makeAuth(authization){
             passport.serializeUser(userToRef);
             passport.deserializeUser(refToUser);
         },
+
         checkUser: async function(username){
             const uri = baseURL + "_doc/" + username
             return fetcher.makeGetRequest(uri)
@@ -58,6 +65,7 @@ function makeAuth(authization){
             throw 'Invalid password.';
         },
 
+
         createUser: async function (username,password, first_name, last_name) {
             const uri = baseURL + "_doc/" + username
             let bufferObj = Buffer.from(password, "utf8");
@@ -68,6 +76,35 @@ function makeAuth(authization){
                 last_name: last_name
             }
             return await fetcher.makePutRequest(uri,body)
+        }*/
+
+        createUser: async function (username, password, first_name, last_name) {
+            return authization.user.create(username, password)
+                .then(res => {
+                    return response.create(response.CREATED, 'User Created successfully')
+                })
+                .catch(err => {
+                    throw error.create(err.status, err.message)
+                })
+
+        },
+
+        loginLocal: async function (req, res) {
+            console.log('logging in, req.isAuthenticated(): ', req.isAuthenticated())
+            if (!req.isAuthenticated()) {
+                res.status(error.UNAUTHORIZED).send(error.create(error.UNAUTHORIZED, 'Error logging in'))
+            }else {
+                res.status(response.OK).send(response.create(response.OK, 'Login was successful'))
+            }
+        },
+
+        logout: async function(req, res){
+            console.log(`req.isAuthenticated(): ${req.isAuthenticated()}`)
+            if (req.isAuthenticated()) {
+                res.status(error.ARGUMENT_ERROR).send(error.create(error.ARGUMENT_ERROR, 'Error logging out'))
+            }else {
+                res.send(response.create(response.OK, 'Logout was successful'))
+            }
         }
     }
 }
