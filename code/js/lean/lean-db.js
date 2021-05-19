@@ -37,6 +37,9 @@ module.exports = {
 
         const uri = `${ES_URL}lean-projects/_doc/`
         return fetch.makePostRequest(uri,body)
+            .then(body => {
+                if(!body.error) return body._id
+             })
     },
 
     getAllProjects: function (){
@@ -96,6 +99,11 @@ module.exports = {
 
         const uri = `${ES_URL}lean-projects/_update/${projectId}`
         return fetch.makePostRequest(uri,body)
+            .then(body=> {
+                if(body.result === 'updated'){
+                    return body._id
+                }else return error.create(error.NOT_FOUND,'Project not updated')
+            })
     },
 
 
@@ -107,16 +115,15 @@ module.exports = {
             if(body.result === 'deleted') return body
             else return error.create(error.NOT_FOUND,'Project not found')
         })
-
     },
     addDashboardToProject: async function(projectId, name, description){
-
+        const id = generateIdDashboard()
         const body = {
             "script": {
                 "lang": "painless",
                 "inline":"ctx._source.dashboards.add(params)",
                 "params":{
-                    "id": generateIdDashboard(),
+                    "id": id,
                     "name": name,
                     "description" : description,
                     "widgets": []
@@ -126,6 +133,11 @@ module.exports = {
 
         const uri = `${ES_URL}lean-projects/_update/${projectId}`
         return fetch.makePostRequest(uri,body)
+            .then(body=> {
+                if(body.result === 'updated'){
+                    return id
+                }else return error.create(error.NOT_FOUND,'Project not updated')
+            })
     },
 
     removeDashboardFromProject: async function(projectId, dashboardIndex){

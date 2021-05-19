@@ -108,15 +108,15 @@ function webapi(app,services, auth){
         }
     };
 
-    app.get('/lean/allProjects',theWebApi.getAllProjects)
+    app.get('/lean/projects',theWebApi.getAllProjects)
     app.get('/lean/projects/user/:user',theWebApi.getProjects)
     app.get('/lean/projects/:id',theWebApi.getProjectById)
     app.post('/lean/projects/:id/dashboard',theWebApi.addDashboardToProject)
     app.post('/lean/projects/:id/dashboard/:dashboardId',theWebApi.removeDashboardFromProject)
 
-    app.post('/lean/createProject',theWebApi.createProject)
-    app.post('/lean/project/update/:id',theWebApi.updateProject)
-    app.delete('/lean/deleteProject/:id',theWebApi.deleteProject)
+    app.post('/lean/projects',theWebApi.createProject)
+    app.post('/lean/projects/:id',theWebApi.updateProject)
+    app.delete('/lean/projects/:id',theWebApi.deleteProject)
 
     app.put('/lean/register',theWebApi.createUser)
     app.post('/lean/login', theWebApi.login)

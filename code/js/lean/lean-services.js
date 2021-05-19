@@ -2,6 +2,7 @@
 
 const error = require('../error')
 
+
 function services(data, db, auth){
 
     return {
@@ -9,6 +10,9 @@ function services(data, db, auth){
         createProject: function(name, description, user){
             if(name && description)
                 return db.createProject(name,description,user)
+                    .then(id => {
+                        return setReturnUri(201,'lean/projects/',id)
+                    })
             else{
                 throw error.create(
                     error.ARGUMENT_ERROR,
@@ -27,14 +31,22 @@ function services(data, db, auth){
         },
         updateProject:function(projectId, newName,newDesc){
             return db.updateProject(projectId,newName,newDesc)
+                .then(id => {
+                    return setReturnUri(200,'lean/projects/',id)
+                })
         },
         deleteProject: function (id){
             return db.deleteProject(id)
+
         },
+        //duvida aqui
         addDashboardToProject: function (projectId, name, description){
             return this.getProjectById(projectId)
                 .then(project => {
                     return db.addDashboardToProject(project.id,name,description)
+                        .then(dashboardId => {
+                            return setReturnUri(201,`/projects/${projectId}/dashboard`,dashboardId)
+                        })
                 })
         },
         removeDashboardFromProject: function (projectId, dashboardId){
@@ -51,8 +63,16 @@ function services(data, db, auth){
             const userExists = await auth.checkUser(username)
             if(userExists) throw error.create(error.CONFLICT, `the username ${username} already exists`)
             return auth.createUser(username,password, first_name, last_name)
-        }
+        },
     };
+}
+
+ function setReturnUri (status, index,id){
+     const URI = "http://localhost:8000/"
+    return {
+        status: status,
+        body: URI.concat(index).concat(id)
+    }
 }
 
 module.exports = services;

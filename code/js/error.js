@@ -4,6 +4,7 @@ module.exports = {
     FORBIDDEN : 403,
     NOT_FOUND : 404,
     CONFLICT: 409,
+    DATABASE_ERROR : 502,
 
     create : function (code, message) {
         return {
