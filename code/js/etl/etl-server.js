@@ -11,8 +11,8 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}))
 
-const auth = require('../auth')
-auth.initialize(app)
+//const auth = require('../auth')
+//auth.initialize(app)
 
 const db = require('./etl-db');
 
@@ -23,7 +23,7 @@ const squashData = require('./data/etl-squash-data.js')
 const servicesCreator = require('./etl-services.js');
 const webApiCreator = require('./etl-web-api.js');
 
-const services = servicesCreator(azureData,jiraData,squashData, db, auth);
+const services = servicesCreator(azureData,jiraData,squashData, db);
 const webapi = webApiCreator(app, services);
 
 app.use(express.static('../client/dist'));

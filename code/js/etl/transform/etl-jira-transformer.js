@@ -31,16 +31,16 @@ module.exports = {
     },
 
     getJiraSprintObject: function (body) {
-    return {
-        "id" : body.id,
-        "state" : body.state,
-        "name" : body.name,
-        "startDate" : body.startDate,
-        "endDate" : body.endDate,
-        "goal" : body.goal,
-        "projectId" : body.projectId
-    }
-},
+        return {
+            "id": body.id,
+            "state": body.state,
+            "name": body.name,
+            "startDate": body.startDate,
+            "endDate": body.endDate,
+            "goal": body.goal,
+            "projectId": body.projectId
+        }
+    },
 
     jiraIssuesDataTableTransform: async function (data) {
         let issues = (await data.getIssuesJira()).issues.map(issue => {
@@ -100,6 +100,7 @@ module.exports = {
 
         let widget = {
             name: "Jira sprint gauge chart",
+            code: `J_SDGC`,
             data: []
         }
 
