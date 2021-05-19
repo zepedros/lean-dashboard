@@ -54,21 +54,38 @@ function services(data, db, auth){
                 .then(project => {
                     const dashboardIndex = project.dashboards.findIndex(d => d.id === dashboardId)
                     if(dashboardIndex === -1){
-                       throw error.create(error.NOT_FOUND,'Dashboard does not exists')
+                        throw error.create(error.NOT_FOUND,'Dashboard does not exists')
                     }
                     return db.removeDashboardFromProject(projectId,dashboardIndex)
                 })
         },
         createUser: async function (username,password, first_name, last_name) {
-            const userExists = await auth.checkUser(username)
+            /*const userExists = await auth.checkUser(username)
             if(userExists) throw error.create(error.CONFLICT, `the username ${username} already exists`)
+
             return auth.createUser(username,password, first_name, last_name)
         },
     };
 }
 
- function setReturnUri (status, index,id){
-     const URI = "http://localhost:8000/"
+
+module.exports = services;
+=======
+            return auth.createUser(username,password, first_name, last_name)*/
+            return await auth.createUser(username, password)
+        },
+
+        loginLocal: async function(req, res){
+            return await auth.loginLocal(req, res)
+        },
+
+        logout: async function(req, res){
+            return await auth.logout(req, res)
+        }
+    };
+}
+function setReturnUri (status, index,id){
+    const URI = "http://localhost:8000/"
     return {
         status: status,
         body: URI.concat(index).concat(id)
@@ -76,3 +93,4 @@ function services(data, db, auth){
 }
 
 module.exports = services;
+

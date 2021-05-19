@@ -1,6 +1,6 @@
 'use strict';
 
-function webapi(app,services, auth){
+function webapi(app,services, auth, authization){
 
     const theWebApi = {
 
@@ -71,17 +71,18 @@ function webapi(app,services, auth){
 
         createUser: function (req, res) {
             services.createUser(req.body.username, req.body.password, req.body.first_name, req.body.last_name)
-                .then(resp => answerHandler(resp, res))
+                .then(resp => answerHandler(resp, res, resp.statusCode))
                 .catch(err => errHandler(err, res))
         },
 
+        /*
         login: async function (req, res) {
             const userinfo = req.body;
             const username = userinfo.username;
             const password = userinfo.password;
 
             try {
-                const user = await auth.getUser(username, password);
+                const user = await services.getUserByUsernameAndPassword(username, password);
                 await login(req, user);
 
                 res.json({user: username});
@@ -101,10 +102,14 @@ function webapi(app,services, auth){
                 });
             }
         },
+        */
 
         logout: function (req, res) {
-            req.logout();
-            res.send();
+            services.logout(req, res)
+        },
+
+        loginLocal: async function(req, res){
+            services.loginLocal(req, res)
         }
     };
 
@@ -118,9 +123,11 @@ function webapi(app,services, auth){
     app.post('/lean/projects/:id',theWebApi.updateProject)
     app.delete('/lean/projects/:id',theWebApi.deleteProject)
 
-    app.put('/lean/register',theWebApi.createUser)
-    app.post('/lean/login', theWebApi.login)
-    app.post('/lean/logout', theWebApi.logout);
+
+    app.post('/lean/register',theWebApi.createUser)
+    app.post('/lean/login', authization.authenticate.usingLocal, theWebApi.loginLocal)
+    app.post('/lean/logout', authization.authenticate.logout, theWebApi.logout);
+
 
     return theWebApi;
 }

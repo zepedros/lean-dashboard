@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "9fceba2b-9208-4dad-a4fa-2fd37ffd9249",
+		"_postman_id": "5f777717-d1f3-4c6c-ba51-286aae0560c8",
 		"name": "Lean Dashboard",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -677,6 +677,93 @@
 							"path": [
 								"lean",
 								"allProjects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST /lean/register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\" : \"tes2t\",\r\n    \"password\"  : \"Testpassword123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/lean/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"lean",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST /lean/login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\" : \"superuser\",\r\n    \"password\"  : \"Superuser123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/lean/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"lean",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST /lean/logout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\" : \"tes2t\",\r\n    \"password\"  : \"Testpassword123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/lean/logout",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"lean",
+								"logout"
 							]
 						}
 					},
