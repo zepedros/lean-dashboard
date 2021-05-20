@@ -68,6 +68,14 @@ function webapi(app,services, auth, authization){
                     answerHandler(resp,res)
                 })
         },
+        getDashboardFromProject: function(req,res){
+          services.getDashboardFromProject(req.params.id,req.params.dashboardId)
+              .then(resp => {
+                  console.log("Get Dashboard")
+                  answerHandler(resp, res)
+              })
+              .catch(err => errHandler(err,res))
+        },
 
         createUser: function (req, res) {
             services.createUser(req.body.username, req.body.password, req.body.first_name, req.body.last_name)
@@ -117,7 +125,8 @@ function webapi(app,services, auth, authization){
     app.get('/lean/projects/user/:user',theWebApi.getProjects)
     app.get('/lean/projects/:id',theWebApi.getProjectById)
     app.post('/lean/projects/:id/dashboard',theWebApi.addDashboardToProject)
-    app.post('/lean/projects/:id/dashboard/:dashboardId',theWebApi.removeDashboardFromProject)
+    app.delete('/lean/projects/:id/dashboard/:dashboardId',theWebApi.removeDashboardFromProject)
+    app.get('/lean/projects/:id/dashboard/:dashboardId',theWebApi.getDashboardFromProject)
 
     app.post('/lean/projects',theWebApi.createProject)
     app.post('/lean/projects/:id',theWebApi.updateProject)

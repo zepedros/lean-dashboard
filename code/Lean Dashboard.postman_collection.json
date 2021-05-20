@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "5f777717-d1f3-4c6c-ba51-286aae0560c8",
+		"_postman_id": "baa98179-168f-4f46-a163-b05939ecfb25",
 		"name": "Lean Dashboard",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -506,7 +506,7 @@
 				{
 					"name": "POST /lean/projects/{id}/dashboard",
 					"request": {
-						"method": "POST",
+						"method": "DELETE",
 						"header": [],
 						"body": {
 							"mode": "raw",
@@ -536,12 +536,12 @@
 					"response": []
 				},
 				{
-					"name": "DELETE /lean/deleteProject/{id}",
+					"name": "DELETE /lean/projects/{id}",
 					"request": {
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8000/lean/deleteProject/BgOcPXkB06RhFwl9E3Dj",
+							"raw": "http://localhost:8000/lean/projects/BgOcPXkB06RhFwl9E3Dj",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -549,7 +549,7 @@
 							"port": "8000",
 							"path": [
 								"lean",
-								"deleteProject",
+								"projects",
 								"BgOcPXkB06RhFwl9E3Dj"
 							]
 						},
@@ -558,7 +558,7 @@
 					"response": []
 				},
 				{
-					"name": "POST /lean/createProject",
+					"name": "POST /lean/projects",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -572,7 +572,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8000/lean/createProject",
+							"raw": "http://localhost:8000/lean/projects",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -580,7 +580,7 @@
 							"port": "8000",
 							"path": [
 								"lean",
-								"createProject"
+								"projects"
 							]
 						},
 						"description": "Create a project"
@@ -593,7 +593,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8000/lean/projects/-qQsf3kBVVFqsUowLzMN",
+							"raw": "http://localhost:8000/lean/projects/GqSWinkBVVFqsUowajTj",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -602,14 +602,14 @@
 							"path": [
 								"lean",
 								"projects",
-								"-qQsf3kBVVFqsUowLzMN"
+								"GqSWinkBVVFqsUowajTj"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "POST /lean/project/update/{id}",
+					"name": "POST /lean/projects/{id}",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -623,7 +623,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8000/lean/project/update/96TdfnkBVVFqsUowlTOa",
+							"raw": "http://localhost:8000/lean/projects/96TdfnkBVVFqsUowlTOa",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -631,8 +631,7 @@
 							"port": "8000",
 							"path": [
 								"lean",
-								"project",
-								"update",
+								"projects",
 								"96TdfnkBVVFqsUowlTOa"
 							]
 						}
@@ -640,7 +639,7 @@
 					"response": []
 				},
 				{
-					"name": "GET lean/projects/{id}/dashboard/{dashboardId}",
+					"name": "POST lean/projects/{id}/dashboard/{dashboardId}",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -663,12 +662,12 @@
 					"response": []
 				},
 				{
-					"name": "GET /lean/allProjects",
+					"name": "GET /lean/projects",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8000/lean/allProjects",
+							"raw": "http://localhost:8000/lean/projects",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -676,7 +675,7 @@
 							"port": "8000",
 							"path": [
 								"lean",
-								"allProjects"
+								"projects"
 							]
 						}
 					},
@@ -764,6 +763,29 @@
 							"path": [
 								"lean",
 								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get /lean/projects/{id}/dashboard/{dashboardId}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/lean/projects/J6QAi3kBVVFqsUowgTSz/dashboard/KKQAi3kBVVFqsUowzjQS",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"lean",
+								"projects",
+								"J6QAi3kBVVFqsUowgTSz",
+								"dashboard",
+								"KKQAi3kBVVFqsUowzjQS"
 							]
 						}
 					},
@@ -897,6 +919,26 @@
 					"response": []
 				},
 				{
+					"name": "Show all dashboards",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9200/lean-dashboards/_search",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"lean-dashboards",
+								"_search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Show all specific user projects",
 					"request": {
 						"method": "GET",
@@ -937,6 +979,36 @@
 							"path": [
 								"lean-projects",
 								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Project",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\n            \"script\": {\n                \"source\": \"ctx._source.name = params.name; ctx._source.desc = params.desc\",\n                \"params\": {\n                    \"name\": \"newName\",\n                    \"desc\": \"newDesc\"\n                }\n            }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9200/lean-projects/_update/FKTihHkBVVFqsUowhzS8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"lean-projects",
+								"_update",
+								"FKTihHkBVVFqsUowhzS8"
 							]
 						}
 					},
