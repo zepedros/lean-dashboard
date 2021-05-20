@@ -25,14 +25,7 @@ module.exports = {
             description: description,
             owner: user,
             members: [],
-            dashboards : [
-                {
-                    id:generateIdDashboard(),
-                    name: "Default dashboard",
-                    description : "initial dashboard",
-                    widgets: []
-                }
-            ]
+            dashboards : []
         }
 
         const uri = `${ES_URL}lean-projects/_doc/`
@@ -87,7 +80,7 @@ module.exports = {
     },
 
     updateProject: function(projectId, newName, newDesc){
-        var body = {
+        const body = {
             "script": {
                 "source": "ctx._source.name = params.name; ctx._source.desc = params.desc",
                 "params": {
@@ -99,48 +92,56 @@ module.exports = {
 
         const uri = `${ES_URL}lean-projects/_update/${projectId}`
         return fetch.makePostRequest(uri,body)
-            .then(body=> {
-                if(body.result === 'updated'){
-                    return body._id
-                }else return error.create(error.NOT_FOUND,'Project not updated')
-            })
+            .then(result=> {
+                    if(result.result === "updated")
+                        return projectId
+                    else throw error.create(error.NOT_FOUND,'Project does not exist')
+                }
+            )
     },
 
 
     deleteProject : async function(id){
-
-    const uri = `http://localhost:9200/lean-projects/_doc/${id}?refresh=true`
+    const projectDashboards = await this.getProjectById(id)
+                                        .then(body => body.dashboards)
+    for(i = 0; i<projectDashboards.length;i++){
+        await this.removeDashboardFromProject(id,projectDashboards[i],i)
+    }
+    const uri = `${ES_URL}lean-projects/_doc/${id}?refresh=true`
     return fetch.makeDeleteRequest(uri)
         .then(body => {
             if(body.result === 'deleted') return body
             else return error.create(error.NOT_FOUND,'Project not found')
         })
     },
-    addDashboardToProject: async function(projectId, name, description){
-        const id = generateIdDashboard()
-        const body = {
-            "script": {
-                "lang": "painless",
-                "inline":"ctx._source.dashboards.add(params)",
-                "params":{
-                    "id": id,
-                    "name": name,
-                    "description" : description,
-                    "widgets": []
-                }
-            }
+    addDashboardToProject: async function(projectId, name, description) {
+        const uriProject = `${ES_URL}lean-projects/_update/${projectId}`
+        const dashboard = {
+            "name": name,
+            "description": description,
+            "widgets": []
         }
 
-        const uri = `${ES_URL}lean-projects/_update/${projectId}`
-        return fetch.makePostRequest(uri,body)
-            .then(body=> {
-                if(body.result === 'updated'){
-                    return id
-                }else return error.create(error.NOT_FOUND,'Project not updated')
-            })
+        const uri = `${ES_URL}lean-dashboards/_doc/`
+        const response = await fetch.makePostRequest(uri, dashboard)
+        if (!response.error) {
+            const updateProject = {
+                "script": {
+                    "source": "ctx._source.dashboards.add(params.dashboardId)",
+                    "params": {
+                        "dashboardId": `${response._id}`
+                    }
+                }
+            };
+            return await fetch.makePostRequest(uriProject, updateProject)
+                .then(body=> {
+                    return response._id
+                })
+        }
     },
 
-    removeDashboardFromProject: async function(projectId, dashboardIndex){
+    removeDashboardFromProject: async function(projectId,dashboardId, dashboardIndex){
+        const uri = `${ES_URL}lean-dashboards/_doc/${dashboardId}?refresh=true`
         var body = {
             "script": {
                 "lang": "painless",
@@ -151,21 +152,28 @@ module.exports = {
             }
         }
         return fetch.makePostRequest(`${ES_URL}lean-projects/_update/${projectId}`,body)
+            .then( await fetch.makeDeleteRequest(uri))
+                .then(body => {
+                    if(body.result === 'updated') return body
+                    else return error.create(error.NOT_FOUND,'Dashboard not found')
+                })
     },
 
-    addWidgetToDashboard: function(id, widgetId){
+    getDashboardFromProject: async function(projectId,dashboardId){
+        const uri = `${ES_URL}lean-dashboards/_doc/${dashboardId}`
+        return fetch.makeGetRequest(uri)
+            .then(response => {
+                if(response.found){
+                    return response._source
+                }
+        })
 
     },
 
-    removeWidgetFromDashboard: function (){}
-}
-
-function generateIdDashboard() {
-    var length = 20,
-        charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
-        retVal = "";
-    for (var i = 0, n = charset.length; i < length; ++i) {
-        retVal += charset.charAt(Math.floor(Math.random() * n));
-    }
-    return retVal;
+    addWidgetToDashboard: function(id, widgetId){},
+    removeWidgetFromDashboard: function (){},
+    addTeamMembers: function(){},
+    removeTeamMembers: function(){},
+    getProfile: function(){},
+    updateProfile: function (){}
 }

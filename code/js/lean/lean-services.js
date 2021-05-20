@@ -31,7 +31,7 @@ function services(data, db, auth){
         },
         updateProject:function(projectId, newName,newDesc){
             return db.updateProject(projectId,newName,newDesc)
-                .then(id => {
+                    .then(id => {
                     return setReturnUri(200,'lean/projects/',id)
                 })
         },
@@ -39,25 +39,30 @@ function services(data, db, auth){
             return db.deleteProject(id)
 
         },
-        //duvida aqui
+
         addDashboardToProject: function (projectId, name, description){
             return this.getProjectById(projectId)
                 .then(project => {
                     return db.addDashboardToProject(project.id,name,description)
                         .then(dashboardId => {
-                            return setReturnUri(201,`/projects/${projectId}/dashboard`,dashboardId)
+                            return setReturnUri(201,`lean/projects/${projectId}/dashboard/`,dashboardId)
                         })
                 })
         },
         removeDashboardFromProject: function (projectId, dashboardId){
             return db.getProjectById(projectId)
                 .then(project => {
-                    const dashboardIndex = project.dashboards.findIndex(d => d.id === dashboardId)
+                    const dashboardIndex = project.dashboards.findIndex(d => d === dashboardId)
                     if(dashboardIndex === -1){
                         throw error.create(error.NOT_FOUND,'Dashboard does not exists')
                     }
-                    return db.removeDashboardFromProject(projectId,dashboardIndex)
+                    return db.removeDashboardFromProject(projectId,dashboardId,dashboardIndex)
                 })
+        },
+
+        getDashboardFromProject: function(projectId,dashboardId){
+            return db.getProjectById(projectId)
+                .then(project => {return db.getDashboardFromProject(projectId,dashboardId)})
         },
         createUser: async function (username,password, first_name, last_name) {
             /*const userExists = await auth.checkUser(username)
@@ -70,7 +75,6 @@ function services(data, db, auth){
 
 
 module.exports = services;
-=======
             return auth.createUser(username,password, first_name, last_name)*/
             return await auth.createUser(username, password)
         },
