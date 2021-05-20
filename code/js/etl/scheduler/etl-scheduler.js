@@ -53,5 +53,4 @@ module.exports = {
         job.setTime(new CronTime(`${seconds} ${minutes} ${hours} ${dayOfMonth} ${month} ${dayOfWeek}`))
         job.start()
     }
-
 }
