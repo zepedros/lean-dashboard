@@ -13,7 +13,7 @@ async function setup() {
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({extended: true}))
 
-    const authizationDbConfig = {
+    /*const authizationDbConfig = {
         "host": "localhost",
         "port": 5432,
         "user": "postgres",
@@ -29,10 +29,12 @@ async function setup() {
 
     const auth = authCreator(authization)
     //auth.initialize(app)
-
+*/
     const db = require('./lean-db');
+    const etlDb = require('../etl/etl-db')
     const data = require('./lean-data');
 
+    await etlDb.createWidgetTemplates()
     const servicesCreator = require('./lean-services');
     const webApiCreator = require('./lean-web-api');
 

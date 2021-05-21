@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "baa98179-168f-4f46-a163-b05939ecfb25",
+		"_postman_id": "201b4a94-c35f-4002-a193-45ff56042831",
 		"name": "Lean Dashboard",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -891,6 +891,15 @@
 					"response": []
 				},
 				{
+					"name": "Create WidgetTemplate index",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				},
+				{
 					"name": "Show all projects",
 					"request": {
 						"method": "GET",
@@ -944,6 +953,26 @@
 							"port": "9200",
 							"path": [
 								"etl-widgets",
+								"_search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show all templates",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9200/etl-templates/_search",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"etl-templates",
 								"_search"
 							]
 						}
