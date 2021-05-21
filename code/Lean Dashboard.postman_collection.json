@@ -506,7 +506,7 @@
 				{
 					"name": "POST /lean/projects/{id}/dashboard",
 					"request": {
-						"method": "DELETE",
+						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
@@ -518,7 +518,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8000/lean/projects/-qQsf3kBVVFqsUowLzMN/dashboard",
+							"raw": "http://localhost:8000/lean/projects/-XDijnkB7Od3lsy2PgdZ/dashboard",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -527,7 +527,7 @@
 							"path": [
 								"lean",
 								"projects",
-								"-qQsf3kBVVFqsUowLzMN",
+								"-XDijnkB7Od3lsy2PgdZ",
 								"dashboard"
 							]
 						},
@@ -564,7 +564,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"New Project Lean Dashboard\",\n    \"description\": \"description Lean Dashboard\",\n    \"user\": \"JohnDoe\"\n}",
+							"raw": "{\n    \"name\": \"Project Lean Dashboard\",\n    \"description\": \"description Lean Dashboard\",\n    \"user\": \"tomassms\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -639,12 +639,12 @@
 					"response": []
 				},
 				{
-					"name": "POST lean/projects/{id}/dashboard/{dashboardId}",
+					"name": "GET lean/projects/{id}/dashboard/{dashboardId}",
 					"request": {
-						"method": "POST",
+						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8000/lean/projects/AaRIf3kBVVFqsUoweDSe/dashboard/nQagZ7Rf8jWPMJKTbQ3z",
+							"raw": "http://localhost:8000/lean/projects/-XDijnkB7Od3lsy2PgdZ/dashboard/-3D6jnkB7Od3lsy2PAfE",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -653,9 +653,9 @@
 							"path": [
 								"lean",
 								"projects",
-								"AaRIf3kBVVFqsUoweDSe",
+								"-XDijnkB7Od3lsy2PgdZ",
 								"dashboard",
-								"nQagZ7Rf8jWPMJKTbQ3z"
+								"-3D6jnkB7Od3lsy2PAfE"
 							]
 						}
 					},
@@ -786,6 +786,38 @@
 								"J6QAi3kBVVFqsUowgTSz",
 								"dashboard",
 								"KKQAi3kBVVFqsUowzjQS"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST /lean/projects/{id}/dashboard/{dashboardId}",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Update Dashboard Lean Dashboard\",\n    \"description\": \"description Lean Dashboard\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/lean/projects/-XDijnkB7Od3lsy2PgdZ/dashboard/-3D6jnkB7Od3lsy2PAfE",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"lean",
+								"projects",
+								"-XDijnkB7Od3lsy2PgdZ",
+								"dashboard",
+								"-3D6jnkB7Od3lsy2PAfE"
 							]
 						}
 					},

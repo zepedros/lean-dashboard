@@ -32,6 +32,7 @@ module.exports = {
         return fetch.makePostRequest(uri,body)
             .then(body => {
                 if(!body.error) return body._id
+                else return error.create(error.DATABASE_ERROR,`Bad Gateway: Error in DataBase, too many requests!`)
              })
     },
 
@@ -155,7 +156,7 @@ module.exports = {
             .then( await fetch.makeDeleteRequest(uri))
                 .then(body => {
                     if(body.result === 'updated') return body
-                    else return error.create(error.NOT_FOUND,'Dashboard not found')
+                    else return Promise.reject(error.create(error.NOT_FOUND,'Dashboard not found'))
                 })
     },
 
@@ -166,14 +167,40 @@ module.exports = {
                 if(response.found){
                     return response._source
                 }
+                else return error.create(error.NOT_FOUND,'Dashboard not found')
         })
 
     },
+    updateDashboardFromProject: async function(dashboardId, newName, newDesc){
+        const body = {
+            "script": {
+                "source": "ctx._source.name = params.name; ctx._source.description = params.description",
+                "params": {
+                    "name": `${newName}`,
+                    "description": `${newDesc}`
+                }
+            }
+        };
 
-    addWidgetToDashboard: function(id, widgetId){},
+        const uri = `${ES_URL}lean-dashboards/_update/${dashboardId}`
+        return fetch.makePostRequest(uri,body)
+            .then(result=> {
+                    if(result.result === "updated")
+                        return dashboardId
+                    else throw error.create(error.NOT_FOUND,'Dashboard does not exist')
+                }
+            )
+    },
+
+    addWidgetToDashboard: function(id, widgetId){
+        
+    },
+
     removeWidgetFromDashboard: function (){},
+
     addTeamMembers: function(){},
     removeTeamMembers: function(){},
     getProfile: function(){},
-    updateProfile: function (){}
+    updateProfile: function (){},
+    removeUser: function() {}
 }

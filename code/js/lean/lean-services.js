@@ -1,6 +1,7 @@
 'use strict';
 
 const error = require('../error')
+const response = require('../responses')
 
 
 function services(data, db, auth){
@@ -11,13 +12,13 @@ function services(data, db, auth){
             if(name && description)
                 return db.createProject(name,description,user)
                     .then(id => {
-                        return setReturnUri(201,'lean/projects/',id)
+                        return response.create(response.CREATED,'lean/projects/',id)
                     })
             else{
-                throw error.create(
+                return Promise.reject(error.create(
                     error.ARGUMENT_ERROR,
                     'Please give the project a name and a description'
-                )
+                ))
             }
         },
         getAllProjects:function (){
@@ -30,39 +31,103 @@ function services(data, db, auth){
             return db.getProjectById(id)
         },
         updateProject:function(projectId, newName,newDesc){
+            if(!projectId){
+                return Promise.reject(
+                    error.create(error.ARGUMENT_ERROR,'Please insert a project ID')
+                )
+            }
+            if(!newName || !newDesc){
+                return Promise.reject(
+                    error.create(
+                        error.ARGUMENT_ERROR,
+                        'Please insert a new name and description to update a project'
+                    )
+                )
+            }
             return db.updateProject(projectId,newName,newDesc)
                     .then(id => {
-                    return setReturnUri(200,'lean/projects/',id)
+                        return response.create(response.OK,'lean/projects/',id)
                 })
         },
         deleteProject: function (id){
             return db.deleteProject(id)
+                .then(() => {return response.create(response.OK,'lean/projects/','')})
 
         },
 
         addDashboardToProject: function (projectId, name, description){
+            if(!name){
+                return Promise.reject(
+                    error.create(
+                        400,
+                        'Bad Request, please insert valid parameter'
+                    )
+                )
+            }
+
             return this.getProjectById(projectId)
-                .then(project => {
-                    return db.addDashboardToProject(project.id,name,description)
-                        .then(dashboardId => {
-                            return setReturnUri(201,`lean/projects/${projectId}/dashboard/`,dashboardId)
-                        })
-                })
+                    .then(project => {
+                        return db.addDashboardToProject(project.id, name, description)
+                            .then(dashboardId => {
+                                //return setReturnUri(201,`lean/projects/${projectId}/dashboard/`,dashboardId)
+                                return response.create(201, `lean/projects/${projectId}/dashboard/`, dashboardId)
+                            })
+                    })
+
         },
         removeDashboardFromProject: function (projectId, dashboardId){
+            if(!projectId){
+                return Promise.reject(
+                    error.create(
+                        error.ARGUMENT_ERROR,
+                        'Please indicate a valid project ID'
+                    )
+                )
+            }
             return db.getProjectById(projectId)
                 .then(project => {
                     const dashboardIndex = project.dashboards.findIndex(d => d === dashboardId)
                     if(dashboardIndex === -1){
-                        throw error.create(error.NOT_FOUND,'Dashboard does not exists')
+                        return Promise.reject(error.create(error.NOT_FOUND,'Dashboard does not exists'))
                     }
                     return db.removeDashboardFromProject(projectId,dashboardId,dashboardIndex)
                 })
         },
 
         getDashboardFromProject: function(projectId,dashboardId){
+            if(!projectId){
+                return Promise.reject(
+                    error.create(
+                        error.ARGUMENT_ERROR,
+                        'Please indicate a valid project ID'
+                    )
+                )
+            }
             return db.getProjectById(projectId)
                 .then(project => {return db.getDashboardFromProject(projectId,dashboardId)})
+        },
+        updateDashboardFromProject: function (projectId, dashobardId,newName,newDesc){
+            if(!projectId || !dashobardId){
+                return Promise.reject(
+                    error.create(error.ARGUMENT_ERROR,'Please insert a valid parameter')
+                )
+            }
+            if(!newName || !newDesc){
+                return Promise.reject(
+                    error.create(
+                        error.ARGUMENT_ERROR,
+                        'Please insert a new name and description to update a dashboard'
+                    )
+                )
+            }
+
+            return db.getProjectById(projectId)
+                .then(() => {
+                    return db.updateDashboardFromProject(dashobardId,newName,newDesc)
+                        .then(id => {
+                            return response.create(response.OK,`lean/projects/${projectId}/`,id)
+                        })
+                })
         },
         createUser: async function (username,password, first_name, last_name) {
             /*const userExists = await auth.checkUser(username)
@@ -87,13 +152,6 @@ module.exports = services;
             return await auth.logout(req, res)
         }
     };
-}
-function setReturnUri (status, index,id){
-    const URI = "http://localhost:8000/"
-    return {
-        status: status,
-        body: URI.concat(index).concat(id)
-    }
 }
 
 module.exports = services;

@@ -67,6 +67,7 @@ function webapi(app,services, auth, authization){
                     console.log("Removing Dashboard")
                     answerHandler(resp,res)
                 })
+                .catch(err=> errHandler(err,res))
         },
         getDashboardFromProject: function(req,res){
           services.getDashboardFromProject(req.params.id,req.params.dashboardId)
@@ -75,6 +76,15 @@ function webapi(app,services, auth, authization){
                   answerHandler(resp, res)
               })
               .catch(err => errHandler(err,res))
+        },
+
+        updateDashboardFromProject:function(req,res){
+            services.updateDashboardFromProject(req.params.id,req.params.dashboardId, req.body.name, req.body.description)
+                .then(resp =>{
+                    console.log("Updating Dashboard")
+                    answerHandler(resp,res)
+                })
+                .catch(err => errHandler(err,res))
         },
 
         createUser: function (req, res) {
@@ -127,6 +137,7 @@ function webapi(app,services, auth, authization){
     app.post('/lean/projects/:id/dashboard',theWebApi.addDashboardToProject)
     app.delete('/lean/projects/:id/dashboard/:dashboardId',theWebApi.removeDashboardFromProject)
     app.get('/lean/projects/:id/dashboard/:dashboardId',theWebApi.getDashboardFromProject)
+    app.post('/lean/projects/:id/dashboard/:dashboardId',theWebApi.updateDashboardFromProject)
 
     app.post('/lean/projects',theWebApi.createProject)
     app.post('/lean/projects/:id',theWebApi.updateProject)
