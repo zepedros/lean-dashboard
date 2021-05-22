@@ -18,29 +18,21 @@ function services(azureData, jiraData, squashData, db, auth) {
 
         postJiraSprintIssuesBarChart: async function(widgetId){
             const data = await jiraTransformer.jiraSprintIssuesBarChart(jiraData)
-            data["function"] = "postJiraSprintIssuesBarChart"
-            data["params"] = []
             return await db.postWidget(data,widgetId)
         },
 
         postSquashTestsPieChart: async function(id,widgetId) {
             const data = await squashTransformer.squashProjectTestsPieChart(id,squashData)
-            data["function"] = "postSquashTestsPieChart"
-            data["params"] = []
             return await db.postWidget(data, widgetId)
         },
 
         postJiraSprintDateGaugeChart: async function(widgetId){
             const data = await jiraTransformer.jiraSprintDateGaugeChart(jiraData)
-            data["function"] = "postJiraSprintDateGaugeChart"
-            data["params"] = []
             return await db.postWidget(data, widgetId)
         },
 
         postSquashTestPerIterationDataTable: async function(id,widgetId) {
             let data = await squashTransformer.squashTestPerIterationDataTable(id,squashData)
-            data["function"] = "postSquashTestPerIterationDataTable"
-            data["params"] = [id]
             return await db.postWidget(data,widgetId)
         },
 

@@ -68,7 +68,7 @@ module.exports = {
     },
     jiraSprintIssuesBarChart: async function(data) {
         let widget = {
-            name: "Jira issues pie chart",
+            name: "Jira issues bar chart",
             data: []
         }
 
@@ -100,7 +100,6 @@ module.exports = {
 
         let widget = {
             name: "Jira sprint gauge chart",
-            code: `J_SDGC`,
             data: []
         }
 

@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "215bf41b-4e24-4891-b7f6-9730d18e7049",
+		"_postman_id": "f958c204-073e-4b05-a35c-74afd6857851",
 		"name": "Lean Dashboard",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -952,7 +952,15 @@
 						"method": "PUT",
 						"header": [],
 						"url": {
-							"raw": ""
+							"raw": "http://localhost:9200/etl-templates",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"etl-templates"
+							]
 						}
 					},
 					"response": []
