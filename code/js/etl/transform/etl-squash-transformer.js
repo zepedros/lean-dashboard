@@ -58,7 +58,6 @@ module.exports = {
     squashProjectTestsPieChart: async function(id,data) {
         let widget = {
             name: "Squash test results pie chart",
-            code: `S_PTPC-${id}`,
             data: []
         }
         const allCampaignsTests = (await data.getSquashTestsPlans(id))
@@ -132,7 +131,6 @@ module.exports = {
         }
         let widget = {
             name: "Squash test per iteration data table",
-            code: `S_TIDT-${id}`, //squash test iteration data table
             data: result
         }
         return widget

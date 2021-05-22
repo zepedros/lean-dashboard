@@ -518,7 +518,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8000/lean/projects/-XDijnkB7Od3lsy2PgdZ/dashboard",
+							"raw": "http://localhost:8000/lean/projects/oXBPlnkB7Od3lsy2lwj8/dashboard",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -527,7 +527,7 @@
 							"path": [
 								"lean",
 								"projects",
-								"-XDijnkB7Od3lsy2PgdZ",
+								"oXBPlnkB7Od3lsy2lwj8",
 								"dashboard"
 							]
 						},
@@ -874,6 +874,31 @@
 								"UXCXkXkB7Od3lsy2bAg0",
 								"widgets",
 								"S3CWkXkB7Od3lsy21Ajy"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE /lean/projects/{id}/dashboard/{dashboardId}/widgets/{widgetId}",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/lean/projects/eHDWk3kB7Od3lsy28AjX/dashboard/eXDXk3kB7Od3lsy2Jgiz/widgets/lHDqk3kB7Od3lsy2rQha",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"lean",
+								"projects",
+								"eHDWk3kB7Od3lsy28AjX",
+								"dashboard",
+								"eXDXk3kB7Od3lsy2Jgiz",
+								"widgets",
+								"lHDqk3kB7Od3lsy2rQha"
 							]
 						}
 					},

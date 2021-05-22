@@ -245,6 +245,7 @@ module.exports = {
                                     if(result.result === "updated")
                                         return dashboardId
                                 })
+                            return response
                         })
                 }
                 else{

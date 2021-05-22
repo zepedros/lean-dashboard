@@ -2,7 +2,9 @@
 
 const error = require('../error')
 const response = require('../responses')
-
+const scheduler = require('../etl/scheduler/etl-scheduler')
+//a map with all the scheduled jobs so that they can be stopped and deleted or reconfigured
+const widgetJobs = new Map()
 
 function services(data, db, auth){
 
@@ -133,11 +135,18 @@ function services(data, db, auth){
         getWidgetTemplates: function (){
             return db.getWidgetTemplates()
         },
-        addWidgetToDashboard:function (projectId,dashboardId,widgetId,timeSettings,credentials){
+
+        /*addWidgetToDashboard:function (projectId,dashboardId,widgetId,timeSettings,credentials){
             return db.addWidgetToDashboard(dashboardId,widgetId,timeSettings,credentials)
                 .then(dashboardId => {
                     return response.create(response.OK,`lean/projects/${projectId}/dashboard/`,dashboardId)
-                })
+                })*/
+
+
+        addWidgetToDashboard: async function (dashboardId,widgetId,timeSettings,credentials){
+            const resp = await db.addWidgetToDashboard(dashboardId,widgetId,timeSettings,credentials)
+            widgetJobs.set(resp._id,scheduler.scheduleWidget(resp._id))
+            return resp
 
         },
         removeWidgetFromDashboard: function (projectId,dashboardId,widgetId){
