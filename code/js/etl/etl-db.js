@@ -132,5 +132,10 @@ module.exports = {
             }
             await fetch.makePostRequest(uri,body)
         }
+    },
+
+    deleteWidgetTemplates: async function(){
+        const uri  = `${ES_URL}etl-templates/`
+        await fetch.makeDeleteRequest(uri)
     }
 }

@@ -97,7 +97,7 @@ function webapi(app,services, auth, authization){
         },
 
         addWidgetToDashboard: function (req,res){
-          services.addWidgetToDashboard(req.params.dashboardId,req.params.widgetsId,req.body.timeSettings,req.body.credentials)
+          services.addWidgetToDashboard(req.params.id,req.params.dashboardId,req.params.widgetsId,req.body.timeSettings,req.body.credentials)
               .then(resp => {
                   console.log("Add Widget to Dashboard")
                   answerHandler(resp, res)
@@ -105,6 +105,14 @@ function webapi(app,services, auth, authization){
               .catch(err => errHandler(err, res))
         },
 
+        removeWidgetFromDashboard:function (req,res){
+            services.removeWidgetFromDashboard(req.params.id,req.params.dashboardId,req.params.widgetsId)
+                .then(resp => {
+                    console.log("Remove Widget from Dashboard")
+                    answerHandler(resp, res)
+                })
+                .catch(err => errHandler(err, res))
+        },
         createUser: function (req, res) {
             services.createUser(req.body.username, req.body.password, req.body.first_name, req.body.last_name)
                 .then(resp => answerHandler(resp, res, resp.statusCode))
@@ -159,6 +167,8 @@ function webapi(app,services, auth, authization){
 
     app.get('/lean/projects/widgets/templates',theWebApi.getWidgetTemplates)
     app.post('/lean/projects/:id/dashboard/:dashboardId/widgets/:widgetsId',theWebApi.addWidgetToDashboard)
+    app.delete('/lean/projects/:id/dashboard/:dashboardId/widgets/:widgetsId',theWebApi.removeWidgetFromDashboard)
+
 
     app.post('/lean/projects',theWebApi.createProject)
     app.post('/lean/projects/:id',theWebApi.updateProject)

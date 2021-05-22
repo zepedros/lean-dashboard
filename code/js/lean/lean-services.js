@@ -69,7 +69,6 @@ function services(data, db, auth){
                     .then(project => {
                         return db.addDashboardToProject(project.id, name, description)
                             .then(dashboardId => {
-                                //return setReturnUri(201,`lean/projects/${projectId}/dashboard/`,dashboardId)
                                 return response.create(201, `lean/projects/${projectId}/dashboard/`, dashboardId)
                             })
                     })
@@ -91,6 +90,9 @@ function services(data, db, auth){
                         return Promise.reject(error.create(error.NOT_FOUND,'Dashboard does not exists'))
                     }
                     return db.removeDashboardFromProject(projectId,dashboardId,dashboardIndex)
+                        .then(() => {
+                            response.create(response.OK,`lean/projects/`,projectId)
+                        })
                 })
         },
 
@@ -131,9 +133,18 @@ function services(data, db, auth){
         getWidgetTemplates: function (){
             return db.getWidgetTemplates()
         },
-        addWidgetToDashboard:function (dashboardId,widgetId,timeSettings,credentials){
+        addWidgetToDashboard:function (projectId,dashboardId,widgetId,timeSettings,credentials){
             return db.addWidgetToDashboard(dashboardId,widgetId,timeSettings,credentials)
+                .then(dashboardId => {
+                    return response.create(response.OK,`lean/projects/${projectId}/dashboard/`,dashboardId)
+                })
 
+        },
+        removeWidgetFromDashboard: function (projectId,dashboardId,widgetId){
+            return db.removeWidgetFromDashboard(projectId,dashboardId,widgetId)
+                .then(dashboardId => {
+                    return response.create(response.OK,`lean/projects/${projectId}/dashboard/`,dashboardId)
+                })
         },
         createUser: async function (username,password, first_name, last_name) {
             /*const userExists = await auth.checkUser(username)

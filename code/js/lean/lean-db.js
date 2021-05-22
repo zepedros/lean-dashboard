@@ -107,8 +107,14 @@ module.exports = {
     const projectDashboards = await this.getProjectById(id)
                                         .then(body => body.dashboards)
     for(i = 0; i<projectDashboards.length;i++){
+        const widgets = await this.getDashboardFromProject(id,projectDashboards[i])
+            .then(body => body.widgets)
+        for(l = 0; l < widgets.length; l++){
+            await this.removeWidgetFromDashboard(id,projectDashboards[i],widgets[l])
+        }
         await this.removeDashboardFromProject(id,projectDashboards[i],i)
     }
+
     const uri = `${ES_URL}lean-projects/_doc/${id}?refresh=true`
     return fetch.makeDeleteRequest(uri)
         .then(body => {
@@ -193,7 +199,7 @@ module.exports = {
             )
     },
 
-    getWidgetTemplates: function (){
+    getWidgetTemplates: async function (){
         const uri = `${ES_URL}etl-templates/_search`
         return fetch.makeGetRequest(uri)
             .then(body => {
@@ -208,7 +214,7 @@ module.exports = {
             })
     },
 
-    addWidgetToDashboard: function(dashboardId,widgetId,timeSettings,credentials){
+    addWidgetToDashboard: async function(dashboardId,widgetId,timeSettings,credentials){
         const uri = `${ES_URL}etl-templates/_doc/${widgetId}`
         const uriWidget  = `${ES_URL}etl-widgets/_doc`
         const dashboard = `${ES_URL}lean-dashboards/_update/${dashboardId}`
@@ -234,9 +240,9 @@ module.exports = {
                                     }
                                 }
                             };
-                            fetch.makePostRequest(dashboard,widget)
+                            return fetch.makePostRequest(dashboard,widget)
                                 .then(result=>{
-                                    if(result.result == "updated")
+                                    if(result.result === "updated")
                                         return dashboardId
                                 })
                         })
@@ -248,11 +254,42 @@ module.exports = {
 
     },
 
-    removeWidgetFromDashboard: function (){},
+    removeWidgetFromDashboard: async function (projectId,dashboardId,widgetId) {
+        const uri = `${ES_URL}etl-widgets/_doc/${widgetId}?refresh=true`
+        const dashboardWidget = await this.getDashboardFromProject(projectId, dashboardId)
+            .then(body => body.widgets)
+        const widgetIndex = dashboardWidget.findIndex(w => w === widgetId)
+        if(widgetIndex === -1){
+            return Promise.reject(error.create(error.NOT_FOUND,'Widget does not exists'))
+        }
+        else{
+            var body = {
+                "script": {
+                    "lang": "painless",
+                    "inline": "ctx._source.widgets.remove(params.widget)",
+                    "params": {
+                        "widget": widgetIndex
+                    }
+                }
+            }
+            const uriDashboard = `${ES_URL}lean-dashboards/_update/${dashboardId}`
+            await fetch.makePostRequest(uriDashboard,body)
+                .then(result=> {
+                        if(result.result !== "updated")
+                            throw error.create(error.NOT_FOUND,'Dashboard does not exist')
+                    }
+                )
+            return fetch.makeDeleteRequest(uri)
+                .then(body => {
+                    if(body.result === 'deleted') return dashboardId
+                    else return error.create(error.NOT_FOUND,'Widget not found')
+                })
+        }
+    },
 
-    addTeamMembers: function(){},
-    removeTeamMembers: function(){},
-    getProfile: function(){},
-    updateProfile: function (){},
-    removeUser: function() {}
+    addTeamMembers: async function(){},
+    removeTeamMembers: async function(){},
+    getProfile: async function(){},
+    updateProfile: async function (){},
+    removeUser: async function() {}
 }

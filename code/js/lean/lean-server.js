@@ -34,6 +34,7 @@ async function setup() {
     const etlDb = require('../etl/etl-db')
     const data = require('./lean-data');
 
+    await etlDb.deleteWidgetTemplates()
     await etlDb.createWidgetTemplates()
     const servicesCreator = require('./lean-services');
     const webApiCreator = require('./lean-web-api');
