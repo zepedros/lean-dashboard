@@ -120,14 +120,20 @@ function services(data, db, auth){
                     )
                 )
             }
-
             return db.getProjectById(projectId)
                 .then(() => {
                     return db.updateDashboardFromProject(dashobardId,newName,newDesc)
                         .then(id => {
-                            return response.create(response.OK,`lean/projects/${projectId}/`,id)
+                            return response.create(response.OK,`lean/projects/${projectId}/dashboard/`,id)
                         })
                 })
+        },
+        getWidgetTemplates: function (){
+            return db.getWidgetTemplates()
+        },
+        addWidgetToDashboard:function (dashboardId,widgetId,timeSettings,credentials){
+            return db.addWidgetToDashboard(dashboardId,widgetId,timeSettings,credentials)
+
         },
         createUser: async function (username,password, first_name, last_name) {
             /*const userExists = await auth.checkUser(username)

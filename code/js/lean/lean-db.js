@@ -1,5 +1,6 @@
 const error = require('../error')
 const fetch = require('../uri-fetcher')
+const etlDb = require('../etl/etl-db')
 
 const config = {
     host: 'localhost',
@@ -192,8 +193,59 @@ module.exports = {
             )
     },
 
-    addWidgetToDashboard: function(id, widgetId){
-        
+    getWidgetTemplates: function (){
+        const uri = `${ES_URL}etl-templates/_search`
+        return fetch.makeGetRequest(uri)
+            .then(body => {
+                if(body.hits){
+                    if(body.hits.hits.length){
+                        return body.hits.hits.map(hit => {
+                            hit._source.id = hit._id
+                            return hit._source
+                        })
+                    }
+                }
+            })
+    },
+
+    addWidgetToDashboard: function(dashboardId,widgetId,timeSettings,credentials){
+        const uri = `${ES_URL}etl-templates/_doc/${widgetId}`
+        const uriWidget  = `${ES_URL}etl-widgets/_doc`
+        const dashboard = `${ES_URL}lean-dashboards/_update/${dashboardId}`
+        return fetch.makeGetRequest(uri)
+            .then(body=> {
+                if(body.found){
+                    const bodyWidget = {
+                        name: body._source.name,
+                        function: body._source.function,
+                        source: body._source.source,
+                        params: [],
+                        timeSettings: timeSettings,
+                        credentials: credentials,
+                        data: body._source.data
+                    }
+                    return fetch.makePostRequest(uriWidget,bodyWidget)
+                        .then(response => {
+                            const widget = {
+                                "script": {
+                                    "source": "ctx._source.widgets.add(params.widget)",
+                                    "params": {
+                                        "widget":response._id
+                                    }
+                                }
+                            };
+                            fetch.makePostRequest(dashboard,widget)
+                                .then(result=>{
+                                    if(result.result == "updated")
+                                        return dashboardId
+                                })
+                        })
+                }
+                else{
+                    throw error.create(error.NOT_FOUND,'Widget not found')
+                }
+            })
+
     },
 
     removeWidgetFromDashboard: function (){},

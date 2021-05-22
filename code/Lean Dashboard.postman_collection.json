@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "201b4a94-c35f-4002-a193-45ff56042831",
+		"_postman_id": "215bf41b-4e24-4891-b7f6-9730d18e7049",
 		"name": "Lean Dashboard",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -822,6 +822,62 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "GET /lean/projects/widgets/templates",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/lean/projects/widgets/templates",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"lean",
+								"projects",
+								"widgets",
+								"templates"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST lean/projects/{id}/dashboard/{dashboardId}/widgets/{widgetIdTemplate}",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"timeSettings\":\"5\",\n    \"credentials\":\"leandashboardproject@gmail.com:LPcyGdZolN906MvzdwPHF045\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/lean/projects/UHCXkXkB7Od3lsy2LQgM/dashboard/UXCXkXkB7Od3lsy2bAg0/widgets/S3CWkXkB7Od3lsy21Ajy",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"lean",
+								"projects",
+								"UHCXkXkB7Od3lsy2LQgM",
+								"dashboard",
+								"UXCXkXkB7Od3lsy2bAg0",
+								"widgets",
+								"S3CWkXkB7Od3lsy21Ajy"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -895,7 +951,9 @@
 					"request": {
 						"method": "PUT",
 						"header": [],
-						"url": null
+						"url": {
+							"raw": ""
+						}
 					},
 					"response": []
 				},
