@@ -113,8 +113,17 @@ module.exports = {
             const uri  = `${ES_URL}etl-widgets/_doc`
             return await fetch.makePostRequest(uri,widget)
         } else {
-            const uri = `${ES_URL}etl-widgets/_doc/${id}`
-            return await fetch.makePostRequest(uri,widget)
+            const uri = `${ES_URL}etl-widgets/_update/${id}`
+            const body = {
+                "script" : {
+                    "source": "ctx._source.data = params.data",
+                    "lang": "painless",
+                    "params": {
+                        "data": widget.data
+                    }
+                }
+            }
+            return await fetch.makePostRequest(uri,body)
         }
     },
 
