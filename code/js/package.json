@@ -9,6 +9,7 @@
     "capture-stack-trace": "^1.0.1",
     "core-util-is": "^1.0.2",
     "create-error-class": "^3.0.2",
+    "cron": "^1.8.2",
     "deep-extend": "^0.6.0",
     "deffy": "^2.2.4",
     "duplexer2": "^0.1.4",

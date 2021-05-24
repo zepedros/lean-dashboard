@@ -136,19 +136,20 @@ function services(data, db, auth){
             return db.getWidgetTemplates()
         },
 
-        /*addWidgetToDashboard:function (projectId,dashboardId,widgetId,timeSettings,credentials){
-            return db.addWidgetToDashboard(dashboardId,widgetId,timeSettings,credentials)
-                .then(dashboardId => {
-                    return response.create(response.OK,`lean/projects/${projectId}/dashboard/`,dashboardId)
-                })*/
+        addWidgetToDashboard:function (projectId,dashboardId,templateId,timeSettings,credentials) {
+            return db.addWidgetToDashboard(dashboardId, templateId, timeSettings, credentials)
+                .then(createdId => {
+                    widgetJobs.set(createdId,scheduler.scheduleWidget(createdId))
+                    return response.create(response.OK, `lean/projects/${projectId}/dashboard/`, dashboardId)
+                })
 
-
-        addWidgetToDashboard: async function (dashboardId,widgetId,timeSettings,credentials){
+        },
+       /* addWidgetToDashboard: async function (dashboardId,widgetId,timeSettings,credentials){
             const resp = await db.addWidgetToDashboard(dashboardId,widgetId,timeSettings,credentials)
             widgetJobs.set(resp._id,scheduler.scheduleWidget(resp._id))
             return resp
 
-        },
+        },*/
         removeWidgetFromDashboard: function (projectId,dashboardId,widgetId){
             return db.removeWidgetFromDashboard(projectId,dashboardId,widgetId)
                 .then(dashboardId => {

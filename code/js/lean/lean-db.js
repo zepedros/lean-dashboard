@@ -217,16 +217,18 @@ module.exports = {
     addWidgetToDashboard: async function(dashboardId,widgetId,timeSettings,credentials){
         const uri = `${ES_URL}etl-templates/_doc/${widgetId}`
         const uriWidget  = `${ES_URL}etl-widgets/_doc`
-        const dashboard = `${ES_URL}lean-dashboards/_update/${dashboardId}`
+        const uriDashboard = `${ES_URL}lean-dashboards/_update/${dashboardId}`
+
+        let bodyWidget
         return fetch.makeGetRequest(uri)
             .then(body=> {
                 if(body.found){
-                    const bodyWidget = {
+                    bodyWidget = {
                         name: body._source.name,
                         function: body._source.function,
                         source: body._source.source,
                         params: [],
-                        timeSettings: timeSettings,
+                        updateTime: timeSettings,
                         credentials: credentials,
                         data: body._source.data
                     }
@@ -240,12 +242,12 @@ module.exports = {
                                     }
                                 }
                             };
-                            return fetch.makePostRequest(dashboard,widget)
+                            return fetch.makePostRequest(uriDashboard,widget)
                                 .then(result=>{
                                     if(result.result === "updated")
-                                        return dashboardId
+                                        return response._id
                                 })
-                            return response
+
                         })
                 }
                 else{
