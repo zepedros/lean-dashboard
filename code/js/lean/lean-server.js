@@ -23,7 +23,31 @@ async function setup() {
         "dbms": "postgres"
     }
 
-    const authization = await (require('@authization/authization').setup({app, db: authizationDbConfig}))
+    const rbacOptions = {
+        roles : ["manager", "admin", "guest", "Colaborator"],
+        permissions: [
+            { "resource": "lean", "action": "GET" },
+            { "resource": "lean", "action": "POST" },
+            { "resource": "lean", "action": "PUT" },
+            { "resource": "lean", "action": "DELETE" }
+        ],
+
+        grants: {
+            manager: [
+                { "resource": "lean", "action": "GET" },
+                { "resource": "lean", "action": "POST" },
+                { "resource": "lean", "action": "PUT" },
+                { "resource": "lean", "action": "DELETE" }
+            ],
+            Colaborator: [
+                { "resource": "lean", "action": "GET" }
+            ]
+        }
+    }
+
+    const authization = await (require('@authization/authization')
+        .setup({app: app, db: authizationDbConfig,rbac_opts: rbacOptions}))
+        .catch(err => console.log(`Error setting up Authization Module:\n${err}`))
 
     const authCreator = require('../auth')
 
