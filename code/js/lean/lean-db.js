@@ -290,7 +290,21 @@ module.exports = {
         }
     },
 
-    addTeamMembers: async function(){},
+    addUserToProject: async function(projectId, username){
+        const uriProject = `${ES_URL}lean-projects/_update/${projectId}`
+        const updateProject = {
+            "script": {
+                "source": "if(!ctx._source.members.contains(params.username)){ctx._source.members.add(params.username)}",
+                "params": {
+                    "username": `${username}`
+                }
+            }
+        };
+        return fetch.makePostRequest(uriProject, updateProject)
+            .then(body=> {
+                return body._id
+            })
+    },
     removeTeamMembers: async function(){},
     getProfile: async function(){},
     updateProfile: async function (){},

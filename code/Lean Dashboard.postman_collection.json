@@ -541,7 +541,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8000/api/lean/projects/GqSWinkBVVFqsUowajTj",
+									"raw": "http://localhost:8000/api/lean/projects/O6_3o3kB52sP8UCyIltt",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -551,7 +551,7 @@
 										"api",
 										"lean",
 										"projects",
-										"GqSWinkBVVFqsUowajTj"
+										"O6_3o3kB52sP8UCyIltt"
 									]
 								}
 							},
@@ -594,7 +594,7 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8000/api/lean/projects/BgOcPXkB06RhFwl9E3Dj",
+									"raw": "http://localhost:8000/api/lean/projects/O6_3o3kB52sP8UCyIltt",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -604,10 +604,42 @@
 										"api",
 										"lean",
 										"projects",
-										"BgOcPXkB06RhFwl9E3Dj"
+										"O6_3o3kB52sP8UCyIltt"
 									]
 								},
 								"description": "Delete a project"
+							},
+							"response": []
+						},
+						{
+							"name": "POST /lean/projects/:id/users",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"test\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/lean/projects/za9Go3kB52sP8UCy3Fpp/users",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"lean",
+										"projects",
+										"za9Go3kB52sP8UCy3Fpp",
+										"users"
+									]
+								}
 							},
 							"response": []
 						}
@@ -863,14 +895,13 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:8000/api/lean/register",
+									"raw": "http://localhost:8000/lean/register",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "8000",
 									"path": [
-										"api",
 										"lean",
 										"register"
 									]
@@ -883,24 +914,14 @@
 							"request": {
 								"method": "POST",
 								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"username\" : \"tes2t\",\r\n    \"password\"  : \"Testpassword123\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
 								"url": {
-									"raw": "http://localhost:8000/api/lean/logout",
+									"raw": "http://localhost:8000/lean/logout",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "8000",
 									"path": [
-										"api",
 										"lean",
 										"logout"
 									]
@@ -923,14 +944,13 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:8000/api/lean/login",
+									"raw": "http://localhost:8000/lean/login",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "8000",
 									"path": [
-										"api",
 										"lean",
 										"login"
 									]

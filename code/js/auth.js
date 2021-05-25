@@ -89,6 +89,10 @@ function makeAuth(authization) {
 
         },
 
+        checkIfUserExists: async function(username){
+            return !!(await authization.user.getByUsername(username))
+        },
+
         loginLocal: async function (req, res) {
             console.log('logging in, req.isAuthenticated(): ', req.isAuthenticated())
             if (!req.isAuthenticated()) {

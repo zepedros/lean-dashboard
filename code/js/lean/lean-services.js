@@ -177,6 +177,23 @@ module.exports = services;
 
         logout: async function(req, res){
             return await auth.logout(req, res)
+        },
+
+        addUserToProject: async function (projectId, username){
+            if (!username){
+                throw error.create(error.ARGUMENT_ERROR, "Please indicate the username of the user to be added to the project")
+            }
+            if (await auth.checkIfUserExists(username)){
+                return db.addUserToProject(projectId, username)
+                    .then(res => {
+                        return response.create(response.CREATED, `lean/projects/${res}`)
+                    })
+                //return response.create(response.OK, "User exists")
+            } else {
+                throw error.create(error.NOT_FOUND, "User doesn't exist")
+            }
+
+            //return await auth.addUserToProject
         }
     };
 }

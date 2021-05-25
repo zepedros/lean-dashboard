@@ -120,31 +120,49 @@ function webapi(app, services, auth, authization) {
                 .catch(err => errHandler(err, res))
         },
 
-        logout: function (req, res) {
-            services.logout(req, res)
+        logout: async function (req, res) {
+            await services.logout(req, res)
         },
 
         loginLocal: async function (req, res) {
-            services.loginLocal(req, res)
+            await services.loginLocal(req, res)
+        },
+
+        addUserToProject: function (req, res){
+            services.addUserToProject(req.params.id, req.body.username)
+                .then(resp => {
+                    console.log("User added to Project")
+                    answerHandler(resp, res,201)
+                })
+                .catch(err => errHandler(err, res))
         }
     };
 
     app.get('/api/lean/projects', theWebApi.getAllProjects)
     app.get('/api/lean/projects/user/:user', theWebApi.getProjects)
     app.get('/api/lean/projects/:id', theWebApi.getProjectById)
+
+    app.post('/api/lean/projects', theWebApi.createProject)
+    app.post('/api/lean/projects/:id', theWebApi.updateProject)
+    app.delete('/api/lean/projects/:id', theWebApi.deleteProject)
+
+    app.post('/api/lean/projects/:id/users', theWebApi.addUserToProject)
+
+
+
     app.post('/api/lean/projects/:id/dashboard', theWebApi.addDashboardToProject)
     app.delete('/api/lean/projects/:id/dashboard/:dashboardId', theWebApi.removeDashboardFromProject)
     app.get('/api/lean/projects/:id/dashboard/:dashboardId', theWebApi.getDashboardFromProject)
     app.post('/api/lean/projects/:id/dashboard/:dashboardId', theWebApi.updateDashboardFromProject)
+
+
 
     app.get('/api/lean/projects/widgets/templates', theWebApi.getWidgetTemplates)
     app.post('/api/lean/projects/:id/dashboard/:dashboardId/widgets/:widgetsId', theWebApi.addWidgetToDashboard)
     app.delete('/api/lean/projects/:id/dashboard/:dashboardId/widgets/:widgetsId', theWebApi.removeWidgetFromDashboard)
 
 
-    app.post('/api/lean/projects', theWebApi.createProject)
-    app.post('/api/lean/projects/:id', theWebApi.updateProject)
-    app.delete('/api/lean/projects/:id', theWebApi.deleteProject)
+
 
 
     app.post('/lean/register', theWebApi.createUser)
@@ -160,9 +178,8 @@ function webapi(app, services, auth, authization) {
             next()
         })
     }, theWebApi.loginLocal)
-
     app.post('/lean/logout', async (req, res, next) => {
-        await authization.authenticate.usingLocal(req, res, err => {
+        await authization.authenticate.logout(req, res, err => {
             if (err) {
                 const myError = {
                     statusCode: err.status,
@@ -172,7 +189,7 @@ function webapi(app, services, auth, authization) {
             }
             next()
         })
-    }, theWebApi.logout);
+    }, theWebApi.logout)
 
 
     return theWebApi;
