@@ -5,60 +5,71 @@ function services(azureData, jiraData, squashData, db, auth) {
 
     const error = require('../error')
 
+    //TODO verificacao das credentials, pedido para jira e azure DEVE ter email e token, para squash username e password
+    /*
+    "credentials": {
+        "email" : "leandashboardproject@gmail.com",
+        "token" : "LPcyGdZolN906MvzdwPHF045",
+        "username" : "guest_tpl",
+        "password" : "password",
+        "APIPath" : "leandashboard.atlassian.net",
+        "APIVersion" : 3
+    }
+     */
     const theServices = {
 
-        getIssuesJira: async function () {
-            return jiraData.getIssuesJira()
+        getIssuesJira: async function (credentials) {
+            return jiraData.getIssuesJira(credentials)
         },
 
-        postIssuesJira: async function (){
-            const data = await jiraTransformer.jiraIssuesDataTableTransform(jiraData)
-            return await db.postWidget(data)
-        },
-
-        postJiraSprintIssuesBarChart: async function(widgetId){
-            const data = await jiraTransformer.jiraSprintIssuesBarChart(jiraData)
-            return await db.postWidget(data,widgetId)
-        },
-
-        postSquashTestsPieChart: async function(id,widgetId) {
-            const data = await squashTransformer.squashProjectTestsPieChart(id,squashData)
+        postJiraIssuesDataTable: async function (widgetId,credentials){
+            const data = await jiraTransformer.jiraIssuesDataTableTransform(jiraData, credentials)
             return await db.postWidget(data, widgetId)
         },
 
-        postJiraSprintDateGaugeChart: async function(widgetId){
-            const data = await jiraTransformer.jiraSprintDateGaugeChart(jiraData)
-            return await db.postWidget(data, widgetId)
-        },
-
-        postSquashTestPerIterationDataTable: async function(id,widgetId) {
-            let data = await squashTransformer.squashTestPerIterationDataTable(id,squashData)
+        postJiraSprintIssuesBarChart: async function(widgetId,credentials){
+            const data = await jiraTransformer.jiraSprintIssuesBarChart(jiraData, credentials)
             return await db.postWidget(data,widgetId)
         },
 
-        getIssuesByIdJira: async function (id) {
-            return jiraData.getIssuesByIdJira(id)
+        postSquashTestsPieChart: async function(id,widgetId,credentials) {
+            const data = await squashTransformer.squashProjectTestsPieChart(id,squashData,credentials)
+            return await db.postWidget(data, widgetId)
         },
-        getProjectsJira: function () {
-            return jiraData.getProjectsJira()
+
+        postJiraSprintDateGaugeChart: async function(widgetId, credentials){
+            const data = await jiraTransformer.jiraSprintDateGaugeChart(jiraData, credentials)
+            return await db.postWidget(data, widgetId)
         },
-        getProjectByIdJira: function (id) {
-            return jiraData.getProjectByIdJira(id)
+
+        postSquashTestPerIterationDataTable: async function(id,widgetId, credentials) {
+            let data = await squashTransformer.squashTestPerIterationDataTable(id,squashData, credentials)
+            return await db.postWidget(data,widgetId)
         },
-        getProjectsSquash: function () {
-            return squashData.getProjectsSquash()
+
+        getIssuesByIdJira: async function (id, credentials) {
+            return jiraData.getIssuesByIdJira(id, credentials)
         },
-        getProjectCampaignsSquash: function (id) {
-            return squashData.getProjectCampaignsSquash(id)
+        getProjectsJira: function (credentials) {
+            return jiraData.getProjectsJira(credentials)
         },
-        getProjectTestsSquash: function (id) {
-            return squashData.getProjectTestsSquash(id)
+        getProjectByIdJira: function (id, credentials) {
+            return jiraData.getProjectByIdJira(id, credentials)
         },
-        getSquashCampaignById: function (projectId, campaignId) {
-            return squashData.getSquashCampaignById(projectId,campaignId)
+        getProjectsSquash: function (credentials) {
+            return squashData.getProjectsSquash(credentials)
         },
-        getSquashTestById: function (projectId, testId) {
-            return squashData.getSquashTestById(projectId,testId)
+        getProjectCampaignsSquash: function (id, credentials) {
+            return squashData.getProjectCampaignsSquash(id, credentials)
+        },
+        getProjectTestsSquash: function (id, credentials) {
+            return squashData.getProjectTestsSquash(id, credentials)
+        },
+        getSquashCampaignById: function (projectId, campaignId, credentials) {
+            return squashData.getSquashCampaignById(projectId,campaignId, credentials)
+        },
+        getSquashTestById: function (projectId, testId, credentials) {
+            return squashData.getSquashTestById(projectId,testId, credentials)
         },
         getAzureProjects: function () {
             return azureData.getAzureProjects()
@@ -72,14 +83,14 @@ function services(azureData, jiraData, squashData, db, auth) {
         postProjects: function () {
             return db.postProjects()
         },
-        getAllSprintsJira: function () {
-            return jiraData.getAllSprintsJira()
+        getAllSprintsJira: function (credentials) {
+            return jiraData.getAllSprintsJira(credentials)
         },
-        getSprintIssuesJira: function (sprintId){
-            return jiraData.getSprintIssuesJira(sprintId)
+        getSprintIssuesJira: function (sprintId, credentials){
+            return jiraData.getSprintIssuesJira(sprintId, credentials)
         },
-        getSquashTestsPlans: function (projectId){
-            return squashData.getSquashTestsPlans(projectId)
+        getSquashTestsPlans: function (projectId, credentials){
+            return squashData.getSquashTestsPlans(projectId, credentials)
         },
         getAzureIterations: function (teamName){
             return azureData.getAzureIterations(teamName)
