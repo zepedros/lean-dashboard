@@ -42,8 +42,8 @@ module.exports = {
         }
     },
 
-    jiraIssuesDataTableTransform: async function (data) {
-        let issues = (await data.getIssuesJira()).issues.map(issue => {
+    jiraIssuesDataTableTransform: async function (data, credentials) {
+        let issues = (await data.getIssuesJira(credentials)).issues.map(issue => {
             return {
                 key : issue.key,
                 summary : issue.summary,
@@ -66,16 +66,16 @@ module.exports = {
         }
         return widget
     },
-    jiraSprintIssuesBarChart: async function(data) {
+    jiraSprintIssuesBarChart: async function(data, credentials) {
         let widget = {
             name: "Jira issues bar chart",
             data: []
         }
 
-        const sprints = (await data.getAllSprintsJira()).filter(sprint => sprint.state == 'active')
-        let a = this.jiraSprintDateGaugeChart(data)
+        const sprints = (await data.getAllSprintsJira(credentials)).filter(sprint => sprint.state == 'active')
+        let a = this.jiraSprintDateGaugeChart(data, credentials)
         for (const sprint of sprints) {
-            const issues = (await data.getSprintIssuesJira(sprint.id)).issues.map(issue => issue.state)
+            const issues = (await data.getSprintIssuesJira(sprint.id, credentials)).issues.map(issue => issue.state)
 
             let counts = {}
             issues.forEach(
@@ -96,14 +96,14 @@ module.exports = {
         }
         return widget
     },
-    jiraSprintDateGaugeChart : async function(data) {
+    jiraSprintDateGaugeChart : async function(data, credentials) {
 
         let widget = {
             name: "Jira sprint gauge chart",
             data: []
         }
 
-        const sprints = (await data.getAllSprintsJira()).filter(sprint => sprint.state == 'active')
+        const sprints = (await data.getAllSprintsJira(credentials)).filter(sprint => sprint.state == 'active')
 
         sprints.map(sprint => {
 

@@ -3,7 +3,7 @@
 function webapi(app, services) {
     const theWebApi = {
         getIssuesJira: function (req, res) {
-            services.getIssuesJira()
+            services.getIssuesJira(req.body.credentials)
                 .then(resp => {
                     console.log("Get Issues")
                     answerHandler(resp, res)
@@ -12,7 +12,7 @@ function webapi(app, services) {
         },
 
         postIssuesJira: function (req, res) {
-            services.postIssuesJira()
+            services.postJiraIssuesDataTable(undefined, req.body.credentials)
                 .then(resp => {
                     console.log("Posting Jira issues data table")
                     answerHandler(resp, res)
@@ -21,7 +21,7 @@ function webapi(app, services) {
         },
 
         postJiraSprintIssuesBarChart: function (req, res) {
-            services.postJiraSprintIssuesBarChart()
+            services.postJiraSprintIssuesBarChart(undefined,req.body.credentials)
                 .then(resp => {
                     console.log("Posting sprint issues bar chart")
                     answerHandler(resp, res)
@@ -29,7 +29,7 @@ function webapi(app, services) {
                 .catch(err => errHandler(err, res))
         },
         postJiraSprintDateGaugeChart: function (req,res){
-            services.postJiraSprintDateGaugeChart()
+            services.postJiraSprintDateGaugeChart(undefined, req.body.credentials)
                 .then(resp => {
                     console.log("Posting sprint gauge chart")
                     answerHandler(resp,res)
@@ -38,7 +38,7 @@ function webapi(app, services) {
         },
 
         postSquashTestPieChart: function (req, res) {
-            services.postSquashTestsPieChart(req.params.id)
+            services.postSquashTestsPieChart(req.params.id, undefined, req.body.credentials)
                 .then(resp => {
                     console.log("Post Squash Tests")
                     answerHandler(resp, res)
@@ -47,7 +47,7 @@ function webapi(app, services) {
         },
 
         postSquashTestPerIterationDataTable: function (req, res) {
-            services.postSquashTestPerIterationDataTable(req.params.id)
+            services.postSquashTestPerIterationDataTable(req.params.id, undefined, req.body.credentials)
                 .then(resp => {
                     console.log("Post Squash Tests per iteration")
                     answerHandler(resp, res)
@@ -56,7 +56,7 @@ function webapi(app, services) {
         },
 
         getIssuesByIdJira: function (req, res) {
-            services.getIssuesByIdJira(req.params.id)
+            services.getIssuesByIdJira(req.params.id, req.body.credentials)
                 .then(resp => {
                     console.log("Get Issue")
                     answerHandler(resp, res)
@@ -64,7 +64,7 @@ function webapi(app, services) {
                 .catch(err => errHandler(err, res))
         },
         getProjectsJira: function (req, res) {
-            services.getProjectsJira()
+            services.getProjectsJira(req.body.credentials)
                 .then(resp => {
                     console.log("Get Projects from Jira")
                     answerHandler(resp, res)
@@ -73,7 +73,7 @@ function webapi(app, services) {
                 .catch(err => errHandler(err, res))
         },
         getProjectByIdJira: function (req, res) {
-            services.getProjectByIdJira(req.params.id)
+            services.getProjectByIdJira(req.params.id, req.body.credentials)
                 .then(resp => {
                     console.log("Get Project")
                     answerHandler(resp, res)
@@ -81,7 +81,7 @@ function webapi(app, services) {
                 .catch(err => errHandler(err, res))
         },
         getProjectsSquash: function (req, res) {
-            services.getProjectsSquash()
+            services.getProjectsSquash(req.body.credentials)
                 .then(resp => {
                     console.log("Get squash projects")
                     answerHandler(resp, res)
@@ -89,7 +89,7 @@ function webapi(app, services) {
                 .catch(err => errHandler(err, res))
         },
         getProjectCampaignsSquash: function (req, res) {
-            services.getProjectCampaignsSquash(req.params.id)
+            services.getProjectCampaignsSquash(req.params.id, req.body.credentials)
                 .then(resp => {
                     console.log("Get squash campaigns for project")
                     answerHandler(resp, res)
@@ -97,7 +97,7 @@ function webapi(app, services) {
                 .catch(err => errHandler(err, res))
         },
         getProjectTestsSquash: function (req, res) {
-            services.getProjectTestsSquash(req.params.id)
+            services.getProjectTestsSquash(req.params.id, req.body.credentials)
                 .then(resp => {
                     console.log("Get squahs tests for project")
                     answerHandler(resp, res)
@@ -105,7 +105,7 @@ function webapi(app, services) {
                 .catch(err => errHandler(err, res))
         },
         getSquashCampaignById: function (req, res) {
-            services.getSquashCampaignById(req.params.id, req.params.cid)
+            services.getSquashCampaignById(req.params.id, req.params.cid, req.body.credentials)
                 .then(resp => {
                     console.log("Get squash campaign by id for project")
                     answerHandler(resp, res)
@@ -113,7 +113,7 @@ function webapi(app, services) {
                 .catch(err => errHandler(err, res))
         },
         getSquashTestById: function (req, res) {
-            services.getSquashTestById(req.params.id, req.params.tid)
+            services.getSquashTestById(req.params.id, req.params.tid, req.body.credentials)
                 .then(resp => {
                     console.log("Get squash test by id for project")
                     answerHandler(resp, res)
@@ -169,7 +169,7 @@ function webapi(app, services) {
                 .catch(err => errHandler(err, res))
         },
         getAllSprintsJira : function (req, res){
-            services.getAllSprintsJira()
+            services.getAllSprintsJira(req.body.credentials)
                 .then(resp => {
                     console.log("Post Sprint")
                     answerHandler(resp, res)
@@ -178,7 +178,7 @@ function webapi(app, services) {
         },
 
         getSprintIssues : function (req,res){
-            services.getSprintIssuesJira(req.params.id)
+            services.getSprintIssuesJira(req.params.id, req.body.credentials)
                 .then(resp=> {
                     console.log("Get Sprint Issues")
                     answerHandler(resp,res)
@@ -186,7 +186,7 @@ function webapi(app, services) {
                 .catch(err => errHandler(err,res))
         },
         getSquashTestsPlans : function (req,res){
-            services.getSquashTestsPlans(req.params.id)
+            services.getSquashTestsPlans(req.params.id, req.body.credentials)
                 .then(resp => {
                     console.log("Get squash tests plans")
                     answerHandler(resp,res)

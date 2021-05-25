@@ -55,12 +55,12 @@ module.exports = {
         }
     },
 
-    squashProjectTestsPieChart: async function(id,data) {
+    squashProjectTestsPieChart: async function(id,data, credentials) {
         let widget = {
             name: "Squash test results pie chart",
             data: []
         }
-        const allCampaignsTests = (await data.getSquashTestsPlans(id))
+        const allCampaignsTests = (await data.getSquashTestsPlans(id, credentials))
         let counts = new Map()
         let total = 0
         for (const tests of allCampaignsTests) {
@@ -88,8 +88,8 @@ module.exports = {
         return widget
     },
 
-    squashTestPerIterationDataTable: async function(id, data) {
-        const allCampaignsTests = (await data.getSquashTestsPlans(id))
+    squashTestPerIterationDataTable: async function(id, data, credentials) {
+        const allCampaignsTests = (await data.getSquashTestsPlans(id, credentials))
         let iterations = new Map()
         for (const tests of allCampaignsTests) {
             tests["test-items"].forEach(t => {

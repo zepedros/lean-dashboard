@@ -41,6 +41,17 @@ const templates = [
         }]
     },
     {
+        "name": "Jira issues data table",
+        function: 'postJiraIssuesDataTable',
+        source: 'Jira',
+        data: [{
+            "key": "key",
+            "summary": "a summary",
+            "issuetype_name": "type of issue",
+            "state": "state of issue"
+        }]
+    },
+    {
         name: 'Squash test results pie chart',
         function: 'postSquashTestsPieChart',
         source: 'Squash',

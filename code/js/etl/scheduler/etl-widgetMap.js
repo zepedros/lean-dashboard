@@ -3,20 +3,24 @@ const widgetMap = new Map()
 module.exports = {
     configMap : function (services) {
         widgetMap.set("postSquashTestPerIterationDataTable",
-            function (id,widgetId) {
-                services.postSquashTestPerIterationDataTable(id,widgetId)
+            function (id,widgetId, credentials) {
+                services.postSquashTestPerIterationDataTable(id,widgetId, credentials)
             })
         widgetMap.set("postJiraSprintIssuesBarChart",
-            function (widgetId) {
-                services.postJiraSprintIssuesBarChart(widgetId)
+            function (widgetId, credentials) {
+                services.postJiraSprintIssuesBarChart(widgetId, credentials)
             })
         widgetMap.set("postSquashTestsPieChart",
-            function (id,widgetId) {
-                services.postSquashTestsPieChart(id,widgetId)
+            function (id,widgetId, credentials) {
+                services.postSquashTestsPieChart(id,widgetId, credentials)
             })
         widgetMap.set("postJiraSprintDateGaugeChart",
-            function (widgetId) {
-                services.postJiraSprintDateGaugeChart(widgetId)
+            function (widgetId, credentials) {
+                services.postJiraSprintDateGaugeChart(widgetId, credentials)
+            })
+        widgetMap.set("postJiraIssuesDataTable",
+            function (widgetId, credentials) {
+                services.postJiraIssuesDataTable(widgetId, credentials)
             })
         return widgetMap
     }
