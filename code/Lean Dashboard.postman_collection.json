@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "215bf41b-4e24-4891-b7f6-9730d18e7049",
+		"_postman_id": "aeb7d593-9e43-4fac-af6a-d04e208be083",
 		"name": "Lean Dashboard",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -13,9 +13,21 @@
 					"item": [
 						{
 							"name": "GET /lean-etl/issuesJira",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
 							"request": {
 								"method": "GET",
 								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"credentials\": {\r\n        \"email\" : \"leandashboardproject@gmail.com\",\r\n        \"token\" : \"LPcyGdZolN906MvzdwPHF045\",\r\n        \"APIPath\" : \"leandashboard.atlassian.net\",\r\n        \"APIVersion\" : 3\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
 								"url": {
 									"raw": "http://localhost:8000/lean-etl/issuesJira",
 									"protocol": "http",
@@ -34,9 +46,21 @@
 						},
 						{
 							"name": "GET lean-etl/issueByIdJira/{id}",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
 							"request": {
 								"method": "GET",
 								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"credentials\": {\r\n        \"email\" : \"leandashboardproject@gmail.com\",\r\n        \"token\" : \"LPcyGdZolN906MvzdwPHF045\",\r\n        \"APIPath\" : \"leandashboard.atlassian.net\",\r\n        \"APIVersion\" : 3\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
 								"url": {
 									"raw": "http://localhost:8000/lean-etl/issueByIdJira/10003",
 									"protocol": "http",
@@ -56,9 +80,21 @@
 						},
 						{
 							"name": "GET lean-etl/projectsJira",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
 							"request": {
 								"method": "GET",
 								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"credentials\": {\r\n        \"email\" : \"leandashboardproject@gmail.com\",\r\n        \"token\" : \"LPcyGdZolN906MvzdwPHF045\",\r\n        \"APIPath\" : \"leandashboard.atlassian.net\",\r\n        \"APIVersion\" : 3\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
 								"url": {
 									"raw": "http://localhost:8000/lean-etl/projectsJira",
 									"protocol": "http",
@@ -77,9 +113,21 @@
 						},
 						{
 							"name": "GET lean-etl/projectsJira/{id}",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
 							"request": {
 								"method": "GET",
 								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"credentials\": {\r\n        \"email\" : \"leandashboardproject@gmail.com\",\r\n        \"token\" : \"LPcyGdZolN906MvzdwPHF045\",\r\n        \"APIPath\" : \"leandashboard.atlassian.net\",\r\n        \"APIVersion\" : 3\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
 								"url": {
 									"raw": "http://localhost:8000/lean-etl/projectsJira/10000",
 									"protocol": "http",
@@ -99,9 +147,21 @@
 						},
 						{
 							"name": "GET /lean-etl/sprint",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
 							"request": {
 								"method": "GET",
 								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"credentials\": {\r\n        \"email\" : \"leandashboardproject@gmail.com\",\r\n        \"token\" : \"LPcyGdZolN906MvzdwPHF045\",\r\n        \"APIPath\" : \"leandashboard.atlassian.net\",\r\n        \"APIVersion\" : 3\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
 								"url": {
 									"raw": "http://localhost:8000/lean-etl/sprint",
 									"protocol": "http",
@@ -119,9 +179,21 @@
 						},
 						{
 							"name": "GET /ean-etl/sprint/{id}/issues",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
 							"request": {
 								"method": "GET",
 								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"credentials\": {\r\n        \"email\" : \"leandashboardproject@gmail.com\",\r\n        \"token\" : \"LPcyGdZolN906MvzdwPHF045\",\r\n        \"APIPath\" : \"leandashboard.atlassian.net\",\r\n        \"APIVersion\" : 3\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
 								"url": {
 									"raw": "http://localhost:8000/lean-etl/sprint/1/issues",
 									"protocol": "http",
@@ -144,6 +216,15 @@
 							"request": {
 								"method": "POST",
 								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"credentials\": {\r\n        \"email\" : \"leandashboardproject@gmail.com\",\r\n        \"token\" : \"LPcyGdZolN906MvzdwPHF045\",\r\n        \"APIPath\" : \"leandashboard.atlassian.net\",\r\n        \"APIVersion\" : 3\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
 								"url": {
 									"raw": "http://localhost:8000/lean-etl/sprint",
 									"protocol": "http",
@@ -165,6 +246,15 @@
 							"request": {
 								"method": "POST",
 								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"credentials\": {\r\n        \"email\" : \"leandashboardproject@gmail.com\",\r\n        \"token\" : \"LPcyGdZolN906MvzdwPHF045\",\r\n        \"APIPath\" : \"leandashboard.atlassian.net\",\r\n        \"APIVersion\" : 3\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
 								"url": {
 									"raw": "http://localhost:8000/lean-etl/issuesJira",
 									"protocol": "http",
@@ -185,6 +275,15 @@
 							"request": {
 								"method": "POST",
 								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"credentials\": {\r\n        \"email\" : \"leandashboardproject@gmail.com\",\r\n        \"token\" : \"LPcyGdZolN906MvzdwPHF045\",\r\n        \"APIPath\" : \"leandashboard.atlassian.net\",\r\n        \"APIVersion\" : 3\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
 								"url": {
 									"raw": "http://localhost:8000/lean-etl/sprintIssuesJira",
 									"protocol": "http",
@@ -208,9 +307,21 @@
 					"item": [
 						{
 							"name": "GET /lean-etl/projectsSquash",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
 							"request": {
 								"method": "GET",
 								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"credentials\": {\r\n        \"username\": \"guest_tpl\",\r\n        \"password\": \"password\",\r\n        \"APIPath\": \"demo.squashtest.org\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
 								"url": {
 									"raw": "http://localhost:8000/lean-etl/projectsSquash",
 									"protocol": "http",
@@ -228,9 +339,21 @@
 						},
 						{
 							"name": "GET /lean-etl/projectsSquash/{id}/campaigns",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
 							"request": {
 								"method": "GET",
 								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"credentials\": {\r\n        \"username\": \"guest_tpl\",\r\n        \"password\": \"password\",\r\n        \"APIPath\": \"demo.squashtest.org\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
 								"url": {
 									"raw": "http://localhost:8000/lean-etl/projectsSquash/1/campaigns",
 									"protocol": "http",
@@ -250,9 +373,21 @@
 						},
 						{
 							"name": "GET /lean-etl/projectsSquash/{pid}/testsSuites",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
 							"request": {
 								"method": "GET",
 								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"credentials\": {\r\n        \"username\": \"guest_tpl\",\r\n        \"password\": \"password\",\r\n        \"APIPath\": \"demo.squashtest.org\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
 								"url": {
 									"raw": "http://localhost:8000/lean-etl/projectsSquash/5/testsSuites",
 									"protocol": "http",
@@ -272,9 +407,21 @@
 						},
 						{
 							"name": "GET /lean-etl/projectsSquash/{id}/tests",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
 							"request": {
 								"method": "GET",
 								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"credentials\": {\r\n        \"username\": \"guest_tpl\",\r\n        \"password\": \"password\",\r\n        \"APIPath\": \"demo.squashtest.org\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
 								"url": {
 									"raw": "http://localhost:8000/lean-etl/projectsSquash/1/tests",
 									"protocol": "http",
@@ -294,9 +441,21 @@
 						},
 						{
 							"name": "GET /lean-etl/projectsSquash/{pid}/campaigns/{cid}",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
 							"request": {
 								"method": "GET",
 								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"credentials\": {\r\n        \"username\": \"guest_tpl\",\r\n        \"password\": \"password\",\r\n        \"APIPath\": \"demo.squashtest.org\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
 								"url": {
 									"raw": "http://localhost:8000/lean-etl/projectsSquash/1/campaigns/3908",
 									"protocol": "http",
@@ -317,9 +476,21 @@
 						},
 						{
 							"name": "GET /lean-etl/projectsSquash/{pid}/tests/{tid}",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
 							"request": {
 								"method": "GET",
 								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"credentials\": {\r\n        \"username\": \"guest_tpl\",\r\n        \"password\": \"password\",\r\n        \"APIPath\": \"demo.squashtest.org\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
 								"url": {
 									"raw": "http://localhost:8000/lean-etl/projectsSquash/2/tests/69",
 									"protocol": "http",
@@ -343,8 +514,17 @@
 							"request": {
 								"method": "POST",
 								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"credentials\": {\r\n        \"username\": \"guest_tpl\",\r\n        \"password\": \"password\",\r\n        \"APIPath\": \"demo.squashtest.org\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
 								"url": {
-									"raw": "http://localhost:8000/lean-etl/squashTests",
+									"raw": "http://localhost:8000/lean-etl/squashTests/5",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -352,7 +532,8 @@
 									"port": "8000",
 									"path": [
 										"lean-etl",
-										"squashTests"
+										"squashTests",
+										"5"
 									]
 								}
 							},
@@ -363,6 +544,15 @@
 							"request": {
 								"method": "POST",
 								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"credentials\": {\r\n        \"username\": \"guest_tpl\",\r\n        \"password\": \"password\",\r\n        \"APIPath\": \"demo.squashtest.org\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
 								"url": {
 									"raw": "http://localhost:8000/lean-etl/squashIterationTests/5",
 									"protocol": "http",
@@ -852,7 +1042,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"timeSettings\": {\n        \"seconds\" : \"\",\n        \"minutes\" : \"*/1\",\n        \"hours\" : \"*\",\n        \"dayOfMonth\" : \"*\",\n        \"month\" : \"*\",\n        \"dayOfWeek\" : \"*\"\n    },\n    \"credentials\":\"leandashboardproject@gmail.com:LPcyGdZolN906MvzdwPHF045\"\n}",
+							"raw": "{\n    \"timeSettings\": {\n        \"seconds\" : \"\",\n        \"minutes\" : \"*/1\",\n        \"hours\" : \"*\",\n        \"dayOfMonth\" : \"*\",\n        \"month\" : \"*\",\n        \"dayOfWeek\" : \"*\"\n    },\n    \"credentials\": {\n        \"email\" : \"leandashboardproject@gmail.com\",\n        \"token\" : \"LPcyGdZolN906MvzdwPHF045\",\n        \"username\" : \"guest_tpl\",\n        \"password\" : \"password\",\n        \"APIPath\" : \"demo.squashtest.org\",\n        \"APIVersion\" : 3\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -860,7 +1050,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8000/lean/projects/zHDmnXkB7Od3lsy2NAj5/dashboard/2HDxnXkB7Od3lsy2Hgjb/widgets/F3AWnnkB7Od3lsy2CQlK",
+							"raw": "http://localhost:8000/lean/projects/bK35o3kBawRrk9AEM73D/dashboard/ba35o3kBawRrk9AEtL1R/widgets/m60_pHkBawRrk9AEFr2R",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -869,11 +1059,11 @@
 							"path": [
 								"lean",
 								"projects",
-								"zHDmnXkB7Od3lsy2NAj5",
+								"bK35o3kBawRrk9AEM73D",
 								"dashboard",
-								"2HDxnXkB7Od3lsy2Hgjb",
+								"ba35o3kBawRrk9AEtL1R",
 								"widgets",
-								"F3AWnnkB7Od3lsy2CQlK"
+								"m60_pHkBawRrk9AEFr2R"
 							]
 						}
 					},
