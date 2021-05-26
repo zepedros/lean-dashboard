@@ -81,7 +81,7 @@ function makeAuth(authization) {
         createUser: async function (username, password, first_name, last_name) {
             return authization.user.create(username, password)
                 .then(res => {
-                    return response.create(response.CREATED, 'User Created successfully')
+                    return response.createPostMsg(response.CREATED, 'User Created successfully')
                 })
                 .catch(err => {
                     throw error.create(err.status, err.message)
@@ -98,7 +98,7 @@ function makeAuth(authization) {
             if (!req.isAuthenticated()) {
                 res.status(error.UNAUTHORIZED).send(error.create(error.UNAUTHORIZED, 'Error logging in'))
             }else {
-                res.status(response.OK).send(response.create(response.OK, 'Login was successful'))
+                res.status(response.OK).send(response.createPostMsg(response.OK, 'Login was successful'))
             }
         },
 
@@ -107,7 +107,7 @@ function makeAuth(authization) {
             if (req.isAuthenticated()) {
                 res.status(error.ARGUMENT_ERROR).send(error.create(error.ARGUMENT_ERROR, 'Error logging out'))
             }else {
-                res.send(response.create(response.OK, 'Logout was successful'))
+                res.send(response.createPostMsg(response.OK, 'Logout was successful'))
             }
         }
     }

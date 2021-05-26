@@ -105,6 +105,15 @@ function webapi(app, services, auth, authization) {
                 .catch(err => errHandler(err, res))
         },
 
+        updateWidget: function(req,res){
+            services.updateWidget(req.params.id, req.params.dashboardId, req.params.widgetsId, req.body.timeSettings, req.body.credentials)
+                .then(resp => {
+                    console.log("Update Widget")
+                    answerHandler(resp, res)
+                })
+                .catch(err => errHandler(err, res))
+        },
+
         removeWidgetFromDashboard: function (req, res) {
             services.removeWidgetFromDashboard(req.params.id, req.params.dashboardId, req.params.widgetsId)
                 .then(resp => {
@@ -155,7 +164,7 @@ function webapi(app, services, auth, authization) {
     app.get('/api/lean/projects/:id', theWebApi.getProjectById)
 
     app.post('/api/lean/projects', theWebApi.createProject)
-    app.post('/api/lean/projects/:id', theWebApi.updateProject)
+    app.put('/api/lean/projects/:id', theWebApi.updateProject)
     app.delete('/api/lean/projects/:id', theWebApi.deleteProject)
 
     app.post('/api/lean/projects/:id/users', theWebApi.addUserToProject)
@@ -165,13 +174,13 @@ function webapi(app, services, auth, authization) {
     app.post('/api/lean/projects/:id/dashboard', theWebApi.addDashboardToProject)
     app.delete('/api/lean/projects/:id/dashboard/:dashboardId', theWebApi.removeDashboardFromProject)
     app.get('/api/lean/projects/:id/dashboard/:dashboardId', theWebApi.getDashboardFromProject)
-    app.post('/api/lean/projects/:id/dashboard/:dashboardId', theWebApi.updateDashboardFromProject)
+    app.put('/api/lean/projects/:id/dashboard/:dashboardId', theWebApi.updateDashboardFromProject)
 
 
     app.get('/api/lean/projects/widgets/templates', theWebApi.getWidgetTemplates)
     app.post('/api/lean/projects/:id/dashboard/:dashboardId/widgets/:widgetsId', theWebApi.addWidgetToDashboard)
     app.delete('/api/lean/projects/:id/dashboard/:dashboardId/widgets/:widgetsId', theWebApi.removeWidgetFromDashboard)
-
+    app.put('/api/lean/projects/:id/dashboard/:dashboardId/widgets/:widgetsId',theWebApi.updateWidget)
 
 
 

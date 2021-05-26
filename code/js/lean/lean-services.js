@@ -14,7 +14,7 @@ function services(data, db, auth){
             if(name && description)
                 return db.createProject(name,description,user)
                     .then(id => {
-                        return response.create(response.CREATED,'lean/projects/',id)
+                        return response.create(response.CREATED,`${id}`)
                     })
             else{
                 return Promise.reject(error.create(
@@ -48,12 +48,12 @@ function services(data, db, auth){
             }
             return db.updateProject(projectId,newName,newDesc)
                     .then(id => {
-                        return response.create(response.OK,'lean/projects/',id)
+                        return response.create(response.OK,`${id}`)
                 })
         },
         deleteProject: function (id){
             return db.deleteProject(id)
-                .then(() => {return response.create(response.OK,'lean/projects/','')})
+                .then(() => {return response.create(response.OK,"")})
 
         },
 
@@ -71,7 +71,7 @@ function services(data, db, auth){
                     .then(project => {
                         return db.addDashboardToProject(project.id, name, description)
                             .then(dashboardId => {
-                                return response.create(201, `lean/projects/${projectId}/dashboard/`, dashboardId)
+                                return response.create(201, `${projectId}/dashboard/${dashboardId}`)
                             })
                     })
 
@@ -93,7 +93,7 @@ function services(data, db, auth){
                     }
                     return db.removeDashboardFromProject(projectId,dashboardId,dashboardIndex)
                         .then(() => {
-                            response.create(response.OK,`lean/projects/`,projectId)
+                            response.create(response.OK,`${projectId}`)
                         })
                 })
         },
@@ -128,7 +128,7 @@ function services(data, db, auth){
                 .then(() => {
                     return db.updateDashboardFromProject(dashobardId,newName,newDesc)
                         .then(id => {
-                            return response.create(response.OK,`lean/projects/${projectId}/dashboard/`,id)
+                            return response.create(response.OK,`${projectId}/dashboard/${id}`)
                         })
                 })
         },
@@ -140,20 +140,22 @@ function services(data, db, auth){
             return db.addWidgetToDashboard(dashboardId, templateId, timeSettings, credentials)
                 .then(createdId => {
                     widgetJobs.set(createdId,scheduler.scheduleWidget(createdId))
-                    return response.create(response.OK, `lean/projects/${projectId}/dashboard/`, dashboardId)
+                    return response.create(response.OK, `${projectId}/dashboard/`, dashboardId)
                 })
 
         },
-       /* addWidgetToDashboard: async function (dashboardId,widgetId,timeSettings,credentials){
-            const resp = await db.addWidgetToDashboard(dashboardId,widgetId,timeSettings,credentials)
-            widgetJobs.set(resp._id,scheduler.scheduleWidget(resp._id))
-            return resp
 
-        },*/
+        updateWidget: function (projectId,dashboardId,widgetId,timeSettings,credentials){
+            return db.updateWidget(widgetId,timeSettings,credentials)
+                .then(()=>{
+                    widgetJobs.set(widgetId,scheduler.scheduleWidget(widgetId))
+                    return response.create(response.OK,`${projectId}/dashboard/${dashboardId}`)
+                })
+        },
         removeWidgetFromDashboard: function (projectId,dashboardId,widgetId){
             return db.removeWidgetFromDashboard(projectId,dashboardId,widgetId)
                 .then(dashboardId => {
-                    return response.create(response.OK,`lean/projects/${projectId}/dashboard/`,dashboardId)
+                    return response.create(response.OK,`${projectId}/dashboard/${dashboardId}`)
                 })
         },
         createUser: async function (username,password, first_name, last_name) {
@@ -191,7 +193,7 @@ module.exports = services;
 
                 return db.addUserToProject(projectId, usernameToAdd)
                     .then(res => {
-                        return response.create(response.CREATED, `lean/projects/${res}`)
+                        return response.create(response.CREATED, `${res}`)
                     })
 
             } else {
@@ -215,7 +217,7 @@ module.exports = services;
 
                 return db.removeUserFromProject(projectId, index)
                     .then(res => {
-                        return response.create(response.OK, `lean/projects/${res}`)
+                        return response.create(response.OK, `${res}`)
                     })
 
             } else {

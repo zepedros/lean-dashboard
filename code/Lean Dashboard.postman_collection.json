@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "5e36a197-8737-4ab2-bb62-cd8f5fa9a2be",
+		"_postman_id": "43105a1e-c137-45f8-9281-850b156d4928",
 		"name": "Lean Dashboard",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -484,7 +484,7 @@
 					"name": "Projects",
 					"item": [
 						{
-							"name": "GET /lean/projects",
+							"name": "GET /api/lean/projects",
 							"request": {
 								"method": "GET",
 								"header": [],
@@ -500,12 +500,13 @@
 										"lean",
 										"projects"
 									]
-								}
+								},
+								"description": "Get All projects from Lean Dashboard"
 							},
 							"response": []
 						},
 						{
-							"name": "POST /lean/projects",
+							"name": "POST /api/lean/projects",
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -536,7 +537,7 @@
 							"response": []
 						},
 						{
-							"name": "GET /lean/projects/{id}",
+							"name": "GET /api/lean/projects/{id}",
 							"request": {
 								"method": "GET",
 								"header": [],
@@ -553,14 +554,15 @@
 										"projects",
 										"a68qpHkB52sP8UCy3Vvt"
 									]
-								}
+								},
+								"description": "Get a specific project"
 							},
 							"response": []
 						},
 						{
-							"name": "POST /lean/projects/{id}",
+							"name": "POST /api/lean/projects/{id}",
 							"request": {
-								"method": "POST",
+								"method": "PUT",
 								"header": [],
 								"body": {
 									"mode": "raw",
@@ -584,12 +586,13 @@
 										"projects",
 										"96TdfnkBVVFqsUowlTOa"
 									]
-								}
+								},
+								"description": "Update name or description from a project"
 							},
 							"response": []
 						},
 						{
-							"name": "DELETE /lean/projects/{id}",
+							"name": "DELETE /api/lean/projects/{id}",
 							"request": {
 								"method": "DELETE",
 								"header": [],
@@ -612,7 +615,7 @@
 							"response": []
 						},
 						{
-							"name": "POST /lean/projects/:id/users",
+							"name": "POST /api/lean/projects/:id/users",
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -644,7 +647,7 @@
 							"response": []
 						},
 						{
-							"name": "DELETE /lean/projects/:id/users/{username}",
+							"name": "DELETE /api/lean/projects/:id/users/{username}",
 							"request": {
 								"method": "DELETE",
 								"header": [],
@@ -673,7 +676,7 @@
 					"name": "Dashboards",
 					"item": [
 						{
-							"name": "GET lean/projects/{id}/dashboard/{dashboardId}",
+							"name": "GET /api/lean/projects/{id}/dashboard/{dashboardId}",
 							"request": {
 								"method": "GET",
 								"header": [],
@@ -697,7 +700,7 @@
 							"response": []
 						},
 						{
-							"name": "POST /lean/projects/{id}/dashboard",
+							"name": "POST /api/lean/projects/{id}/dashboard",
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -730,7 +733,7 @@
 							"response": []
 						},
 						{
-							"name": "Get /lean/projects/{id}/dashboard/{dashboardId}",
+							"name": "Get /api/lean/projects/{id}/dashboard/{dashboardId}",
 							"request": {
 								"method": "GET",
 								"header": [],
@@ -754,7 +757,7 @@
 							"response": []
 						},
 						{
-							"name": "DELETE /lean/projects/{id}/dashboard/{dashboardId}/widgets/{widgetId}",
+							"name": "DELETE /api/lean/projects/{id}/dashboard/{dashboardId}/widgets/{widgetId}",
 							"request": {
 								"method": "DELETE",
 								"header": [],
@@ -780,9 +783,9 @@
 							"response": []
 						},
 						{
-							"name": "POST /lean/projects/{id}/dashboard/{dashboardId}",
+							"name": "POST /api/lean/projects/{id}/dashboard/{dashboardId}",
 							"request": {
-								"method": "POST",
+								"method": "PUT",
 								"header": [],
 								"body": {
 									"mode": "raw",
@@ -818,7 +821,7 @@
 					"name": "Widgets",
 					"item": [
 						{
-							"name": "GET /lean/projects/widgets/templates",
+							"name": "GET /api/lean/projects/widgets/templates",
 							"request": {
 								"method": "GET",
 								"header": [],
@@ -841,13 +844,13 @@
 							"response": []
 						},
 						{
-							"name": "POST lean/projects/{id}/dashboard/{dashboardId}/widgets/{widgetIdTemplate}",
+							"name": "POST /api/lean/projects/{id}/dashboard/{dashboardId}/widgets/{widgetIdTemplate}",
 							"request": {
 								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"timeSettings\": {\n        \"seconds\" : \"\",\n        \"minutes\" : \"*/1\",\n        \"hours\" : \"*\",\n        \"dayOfMonth\" : \"*\",\n        \"month\" : \"*\",\n        \"dayOfWeek\" : \"*\"\n    },\n    \"credentials\":\"leandashboardproject@gmail.com:LPcyGdZolN906MvzdwPHF045\"\n}",
+									"raw": "{\n    \"timeSettings\": {\n        \"seconds\" : \"\",\n        \"minutes\" : \"*/1\",\n        \"hours\" : \"*\",\n        \"dayOfMonth\" : \"*\",\n        \"month\" : \"*\",\n        \"dayOfWeek\" : \"*\"\n    },\n    \"credentials\":\"leandashboardproject@gmail.com:LPcyGdZolN906MvzdwPHF0450\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -855,7 +858,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:8000/api/lean/projects/zHDmnXkB7Od3lsy2NAj5/dashboard/2HDxnXkB7Od3lsy2Hgjb/widgets/F3AWnnkB7Od3lsy2CQlK",
+									"raw": "http://localhost:8000/api/lean/projects/IXDCqnkB7Od3lsy2_wmF/dashboard/KHDHqnkB7Od3lsy2ZQlP/widgets/LnDKqnkB7Od3lsy2gAld",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -865,11 +868,46 @@
 										"api",
 										"lean",
 										"projects",
-										"zHDmnXkB7Od3lsy2NAj5",
+										"IXDCqnkB7Od3lsy2_wmF",
 										"dashboard",
-										"2HDxnXkB7Od3lsy2Hgjb",
+										"KHDHqnkB7Od3lsy2ZQlP",
 										"widgets",
-										"F3AWnnkB7Od3lsy2CQlK"
+										"LnDKqnkB7Od3lsy2gAld"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "PUT /api/lean/projects/{id}/dashboard/{dashboardId/widgets/{widgetsId}}",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"timeSettings\": {\n        \"seconds\" : \"\",\n        \"minutes\" : \"*/1\",\n        \"hours\" : \"*\",\n        \"dayOfMonth\" : \"*\",\n        \"month\" : \"*\",\n        \"dayOfWeek\" : \"*\"\n    },\n    \"credentials\":\"leandashboardproject@gmail.com:asfafs\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/lean/projects/IXDCqnkB7Od3lsy2_wmF/dashboard/KHDHqnkB7Od3lsy2ZQlP/widgets/LnDKqnkB7Od3lsy2gAld",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"lean",
+										"projects",
+										"IXDCqnkB7Od3lsy2_wmF",
+										"dashboard",
+										"KHDHqnkB7Od3lsy2ZQlP",
+										"widgets",
+										"LnDKqnkB7Od3lsy2gAld"
 									]
 								}
 							},
@@ -881,7 +919,7 @@
 					"name": "Users",
 					"item": [
 						{
-							"name": "GET /lean/projects/user/{user}",
+							"name": "GET /api/lean/projects/user/{user}",
 							"request": {
 								"method": "GET",
 								"header": [],
@@ -905,7 +943,7 @@
 							"response": []
 						},
 						{
-							"name": "POST /lean/register",
+							"name": "POST /api/lean/register",
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -934,27 +972,7 @@
 							"response": []
 						},
 						{
-							"name": "POST /lean/logout",
-							"request": {
-								"method": "POST",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8000/lean/logout",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8000",
-									"path": [
-										"lean",
-										"logout"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "POST /lean/login",
+							"name": "POST /api/lean/login",
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -977,6 +995,26 @@
 									"path": [
 										"lean",
 										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "POST /api/lean/logout",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/lean/logout",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"lean",
+										"logout"
 									]
 								}
 							},

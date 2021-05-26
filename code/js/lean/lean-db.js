@@ -1,6 +1,5 @@
 const error = require('../error')
 const fetch = require('../uri-fetcher')
-const etlDb = require('../etl/etl-db')
 
 const config = {
     host: 'localhost',
@@ -51,9 +50,9 @@ module.exports = {
                 }
             })
     },
-    //not wrong at all but is checking in prop owner and must check in prop members too
+
     getProjects: function (user) {
-        const uri = `${ES_URL}lean-projects/_search?q=owner:${user}`
+        const uri = `${ES_URL}lean-projects/_search?q=members:${user} owner:${user}&default_operator=OR`
         return fetch.makeGetRequest(uri)
             .then(body => {
                 if(body.hits){
@@ -146,6 +145,8 @@ module.exports = {
                     return response._id
                 })
         }
+        else return Promise.reject(error.create(error.DATABASE_ERROR,'Add Dashboard to Project Failed'))
+
     },
 
     removeDashboardFromProject: async function(projectId,dashboardId, dashboardIndex){
@@ -172,6 +173,7 @@ module.exports = {
         return fetch.makeGetRequest(uri)
             .then(response => {
                 if(response.found){
+                    response._source.id = response._id
                     return response._source
                 }
                 else return error.create(error.NOT_FOUND,'Dashboard not found')
@@ -257,6 +259,27 @@ module.exports = {
 
     },
 
+    updateWidget: async function(widgetId,newTimeSettings,newCredentials){
+        const uriWidget =  `${ES_URL}etl-widgets/_update/${widgetId}`
+        var body = {
+            "script": {
+                "lang": "painless",
+                "inline": "ctx._source.credentials=params.credentials;ctx._source.updateTime=params.timeSettings",
+                "params": {
+                    "timeSettings":newTimeSettings,
+                    "credentials": newCredentials
+                }
+            }
+        }
+        return fetch.makePostRequest(uriWidget,body)
+            .then(result=> {
+                    if(result.result === "updated")
+                        return widgetId
+                    else throw error.create(error.NOT_FOUND,'Widget does not exist')
+                }
+            )
+    },
+
     removeWidgetFromDashboard: async function (projectId,dashboardId,widgetId) {
         const uri = `${ES_URL}etl-widgets/_doc/${widgetId}?refresh=true`
         const dashboardWidget = await this.getDashboardFromProject(projectId, dashboardId)
@@ -306,7 +329,6 @@ module.exports = {
             })
     },
 
-
     removeUserFromProject: async function(projectId, usernameIndex){
         const uriProject = `${ES_URL}lean-projects/_update/${projectId}`
         const updateProject = {
@@ -322,9 +344,4 @@ module.exports = {
                 return body._id
             })
     },
-
-
-    getProfile: async function(){},
-    updateProfile: async function (){},
-    removeUser: async function() {}
 }
