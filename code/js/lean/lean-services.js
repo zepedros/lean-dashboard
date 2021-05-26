@@ -179,21 +179,48 @@ module.exports = services;
             return await auth.logout(req, res)
         },
 
-        addUserToProject: async function (projectId, username){
-            if (!username){
+        addUserToProject: async function (projectId, usernameToAdd, usernameMakingRequest){
+            if (!usernameToAdd){
                 throw error.create(error.ARGUMENT_ERROR, "Please indicate the username of the user to be added to the project")
             }
-            if (await auth.checkIfUserExists(username)){
-                return db.addUserToProject(projectId, username)
+            if (await auth.checkIfUserExists(usernameToAdd)){
+                const project = await db.getProjectById(projectId)
+
+                if (project.owner !== usernameMakingRequest && usernameMakingRequest !== "superuser") throw error.create(error.FORBIDDEN, "User doesn't have access to this project")
+                if (project.members.includes(usernameToAdd)) throw error.create(error.CONFLICT, "User already belongs to project")
+
+                return db.addUserToProject(projectId, usernameToAdd)
                     .then(res => {
                         return response.create(response.CREATED, `lean/projects/${res}`)
                     })
-                //return response.create(response.OK, "User exists")
+
             } else {
                 throw error.create(error.NOT_FOUND, "User doesn't exist")
             }
+        },
 
-            //return await auth.addUserToProject
+        removeUserFromProject: async function(projectId, usernameToRemove, usernameMakingRequest){
+            if (!usernameToRemove){
+                throw error.create(error.ARGUMENT_ERROR, "Please indicate the username of the user to be removed from the project")
+            }
+            if (await auth.checkIfUserExists(usernameToRemove)){
+                const project = await db.getProjectById(projectId)
+
+                if (project.owner !== usernameMakingRequest && usernameMakingRequest !== "superuser") throw error.create(error.FORBIDDEN, "User doesn't have access to this project")
+
+                const index = project.members.indexOf(usernameToRemove);
+                if (index === -1) {
+                    throw error.create(error.CONFLICT, "User doesn't belong to project")
+                }
+
+                return db.removeUserFromProject(projectId, index)
+                    .then(res => {
+                        return response.create(response.OK, `lean/projects/${res}`)
+                    })
+
+            } else {
+                throw error.create(error.NOT_FOUND, "User doesn't exist")
+            }
         }
     };
 }

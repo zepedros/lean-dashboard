@@ -294,7 +294,7 @@ module.exports = {
         const uriProject = `${ES_URL}lean-projects/_update/${projectId}`
         const updateProject = {
             "script": {
-                "source": "if(!ctx._source.members.contains(params.username)){ctx._source.members.add(params.username)}",
+                "source": "ctx._source.members.add(params.username)",
                 "params": {
                     "username": `${username}`
                 }
@@ -305,7 +305,25 @@ module.exports = {
                 return body._id
             })
     },
-    removeTeamMembers: async function(){},
+
+
+    removeUserFromProject: async function(projectId, usernameIndex){
+        const uriProject = `${ES_URL}lean-projects/_update/${projectId}`
+        const updateProject = {
+            "script": {
+                "source" : "ctx._source.members.remove(params.index)",
+                "params": {
+                    "index": usernameIndex
+                }
+            }
+        };
+        return fetch.makePostRequest(uriProject, updateProject)
+            .then(body=> {
+                return body._id
+            })
+    },
+
+
     getProfile: async function(){},
     updateProfile: async function (){},
     removeUser: async function() {}

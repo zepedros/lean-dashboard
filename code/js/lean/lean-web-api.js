@@ -5,7 +5,6 @@ function webapi(app, services, auth, authization) {
     const theWebApi = {
 
         createProject: function (req, res) {
-            const user = req.user
             services.createProject(req.body.name, req.body.description, req.user.username)
                 .then(resp => {
                     console.log(`Creating project with the name  "${req.body.name}" and the description "${req.body.description}"`)
@@ -129,12 +128,25 @@ function webapi(app, services, auth, authization) {
         },
 
         addUserToProject: function (req, res){
-            services.addUserToProject(req.params.id, req.body.username)
+            services.addUserToProject(req.params.id, req.body.username, req.user.username)
                 .then(resp => {
                     console.log("User added to Project")
                     answerHandler(resp, res,201)
                 })
                 .catch(err => errHandler(err, res))
+        },
+
+        removeUserFromProject: function (req, res){
+            services.removeUserFromProject(req.params.id, req.params.username, req.user.username)
+                .then(resp => {
+                    console.log("User removed from Project")
+                    answerHandler(resp, res)
+                })
+                .catch(err => errHandler(err, res))
+        },
+
+        giveUserRole: function (req, res){
+
         }
     };
 
@@ -147,14 +159,13 @@ function webapi(app, services, auth, authization) {
     app.delete('/api/lean/projects/:id', theWebApi.deleteProject)
 
     app.post('/api/lean/projects/:id/users', theWebApi.addUserToProject)
-
+    app.delete('/api/lean/projects/:id/users/:username', theWebApi.removeUserFromProject)
 
 
     app.post('/api/lean/projects/:id/dashboard', theWebApi.addDashboardToProject)
     app.delete('/api/lean/projects/:id/dashboard/:dashboardId', theWebApi.removeDashboardFromProject)
     app.get('/api/lean/projects/:id/dashboard/:dashboardId', theWebApi.getDashboardFromProject)
     app.post('/api/lean/projects/:id/dashboard/:dashboardId', theWebApi.updateDashboardFromProject)
-
 
 
     app.get('/api/lean/projects/widgets/templates', theWebApi.getWidgetTemplates)
