@@ -912,6 +912,32 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "GET /api/lean/projects/zHDmnXkB7Od3lsy2NAj5/dashboard/zXDmnXkB7Od3lsy2dwgs/widgets/inAYq3kB7Od3lsy2rwm1",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/lean/projects/zHDmnXkB7Od3lsy2NAj5/dashboard/zXDmnXkB7Od3lsy2dwgs/widgets/inAYq3kB7Od3lsy2rwm1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"lean",
+										"projects",
+										"zHDmnXkB7Od3lsy2NAj5",
+										"dashboard",
+										"zXDmnXkB7Od3lsy2dwgs",
+										"widgets",
+										"inAYq3kB7Od3lsy2rwm1"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},

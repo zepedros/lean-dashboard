@@ -96,6 +96,15 @@ function webapi(app, services, auth, authization) {
                 .catch(err => errHandler(err, res))
         },
 
+        getWidget: function (req,res){
+          services.getWidget(req.params.id, req.params.dashboardId, req.params.widgetsId)
+              .then(resp => {
+                  console.log("Get Widget")
+                  answerHandler(resp, res)
+              })
+              .catch(err => errHandler(err, res))
+        },
+
         addWidgetToDashboard: function (req, res) {
             services.addWidgetToDashboard(req.params.id, req.params.dashboardId, req.params.widgetsId, req.body.timeSettings, req.body.credentials)
                 .then(resp => {
@@ -178,6 +187,7 @@ function webapi(app, services, auth, authization) {
 
 
     app.get('/api/lean/projects/widgets/templates', theWebApi.getWidgetTemplates)
+    app.get('/api/lean/projects/:id/dashboard/:dashboardId/widgets/:widgetsId',theWebApi.getWidget)
     app.post('/api/lean/projects/:id/dashboard/:dashboardId/widgets/:widgetsId', theWebApi.addWidgetToDashboard)
     app.delete('/api/lean/projects/:id/dashboard/:dashboardId/widgets/:widgetsId', theWebApi.removeWidgetFromDashboard)
     app.put('/api/lean/projects/:id/dashboard/:dashboardId/widgets/:widgetsId',theWebApi.updateWidget)

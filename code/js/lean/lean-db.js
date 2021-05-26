@@ -259,6 +259,20 @@ module.exports = {
 
     },
 
+    getWidget: async function(widgetId){
+        const uriWidget = `${ES_URL}etl-widgets/_doc/${widgetId}`
+        return fetch.makeGetRequest(uriWidget)
+            .then(body=> {
+                if(body.found){
+                    body._source.id=body._id
+                    return body._source
+                }
+                else{
+                    throw error.create(error.NOT_FOUND,'Widget not found')
+                }
+            })
+    },
+
     updateWidget: async function(widgetId,newTimeSettings,newCredentials){
         const uriWidget =  `${ES_URL}etl-widgets/_update/${widgetId}`
         var body = {

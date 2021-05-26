@@ -136,6 +136,11 @@ function services(data, db, auth){
             return db.getWidgetTemplates()
         },
 
+        //check if projectId and dashboardId
+        getWidget: function (projectId,dashboardId,widgetId){
+            return db.getWidget(widgetId)
+        },
+
         addWidgetToDashboard:function (projectId,dashboardId,templateId,timeSettings,credentials) {
             return db.addWidgetToDashboard(dashboardId, templateId, timeSettings, credentials)
                 .then(createdId => {
