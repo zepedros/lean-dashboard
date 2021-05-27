@@ -144,7 +144,7 @@ function services(data, db, auth){
         addWidgetToDashboard:function (projectId,dashboardId,templateId,timeSettings,credentials) {
             return db.addWidgetToDashboard(dashboardId, templateId, timeSettings, credentials)
                 .then(createdId => {
-                    widgetJobs.set(createdId,scheduler.scheduleWidget(createdId))
+                    scheduler.scheduleWidget(createdId, true)
                     return response.create(response.OK, `${projectId}/dashboard/`, dashboardId)
                 })
 

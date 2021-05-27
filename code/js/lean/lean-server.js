@@ -63,6 +63,8 @@ async function setup() {
     const servicesCreator = require('./lean-services');
     const webApiCreator = require('./lean-web-api');
 
+    const scheduler = require('../etl/scheduler/etl-scheduler')
+    scheduler.widgetMapBuilder()
     const services = servicesCreator(data, db, auth);
     const webapi = webApiCreator(app, services, auth, authization);
 

@@ -157,5 +157,25 @@ module.exports = {
     deleteWidgetTemplates: async function(){
         const uri  = `${ES_URL}etl-templates/`
         await fetch.makeDeleteRequest(uri)
+    },
+
+    addIdToSchedule: async function(id) {
+        const uri  = `${ES_URL}scheduler-ids/_update/1`
+        const body = {
+            "script" : {
+                "source": "ctx._source.ids.add(params.id)",
+                "lang": "painless",
+                "params": {
+                    "id" : id
+                }
+            }
+        }
+        await fetch.makePostRequest(uri,body)
+    },
+
+    getAllScheduledIds: async function() {
+        const uri  = `${ES_URL}scheduler-ids/_doc/1`
+        const resp = await fetch.makeGetRequest(uri)
+        return resp._source.ids
     }
 }

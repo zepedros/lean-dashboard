@@ -1286,6 +1286,26 @@
 					"response": []
 				},
 				{
+					"name": "Create dashboards index",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9200/lean-dashboards/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"lean-dashboards",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Create widgets index",
 					"request": {
 						"method": "PUT",
@@ -1317,6 +1337,25 @@
 					"response": []
 				},
 				{
+					"name": "Create Scheduler Index",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9200/scheduler-ids",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"scheduler-ids"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Show all projects",
 					"request": {
 						"method": "GET",
@@ -1331,6 +1370,27 @@
 							"path": [
 								"lean-projects",
 								"_search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show scheduled ids",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9200/scheduler-ids/_doc/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"scheduler-ids",
+								"_doc",
+								"1"
 							]
 						}
 					},
@@ -1487,6 +1547,36 @@
 								"lean-projects",
 								"_update",
 								"FKTihHkBVVFqsUowhzS8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Scheduler Array",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ids\" : []\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9200/scheduler-ids/_doc/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"scheduler-ids",
+								"_doc",
+								"1"
 							]
 						}
 					},

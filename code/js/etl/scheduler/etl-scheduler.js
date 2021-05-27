@@ -9,9 +9,10 @@ const squashData = require('../data/etl-squash-data.js')
 const auth = ''
 const services = servicesCreator(azureData,jiraData,squashData, db, auth);
 const widgetMap = widgetMapCreator.configMap(services)
+const widgetJobs = new Map()
 
 module.exports = {
-    scheduleWidget: async function(widgetId) {
+    scheduleWidget: async function(widgetId, postInDb) {
         const widget = await db.getWidget(widgetId)
         const seconds = widget.updateTime.seconds
         const minutes = widget.updateTime.minutes
@@ -32,8 +33,21 @@ module.exports = {
             }
         })
         job.start()
-        return job
+        if(postInDb) {
+            await db.addIdToSchedule(widgetId)
+        }
+        widgetJobs.set(widgetId, job)
     },
+
+    widgetMapBuilder: async function(){
+        const ids = await db.getAllScheduledIds()
+        if(ids.length > 0) {
+            ids.forEach(id => {
+                this.scheduleWidget(id, false)
+            })
+        }
+    },
+
     reSchedule : function (job, timeSettings) {
         const seconds = timeSettings.seconds
         const minutes = timeSettings.minutes
