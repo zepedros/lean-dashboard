@@ -1040,7 +1040,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"timeSettings\": {\n        \"seconds\" : \"\",\n        \"minutes\" : \"*/1\",\n        \"hours\" : \"*\",\n        \"dayOfMonth\" : \"*\",\n        \"month\" : \"*\",\n        \"dayOfWeek\" : \"*\"\n    },\n    \"credentials\": {\n        \"email\" : \"leandashboardproject@gmail.com\",\n        \"token\" : \"LPcyGdZolN906MvzdwPHF045\",\n        \"username\" : \"guest_tpl\",\n        \"password\" : \"password\",\n        \"APIPath\" : \"demo.squashtest.org\",\n        \"APIVersion\" : 3\n    }\n}",
+									"raw": "{\n    \"timeSettings\": {\n        \"seconds\" : \"\",\n        \"minutes\" : \"*/1\",\n        \"hours\" : \"*\",\n        \"dayOfMonth\" : \"*\",\n        \"month\" : \"*\",\n        \"dayOfWeek\" : \"*\"\n    },\n    \"credentials\": {\n        \"email\" : \"leandashboardproject@gmail.com\",\n        \"token\" : \"LPcyGdZolN906MvzdwPHF045\",\n        \"username\" : \"guest_tpl\",\n        \"password\" : \"password\",\n        \"APIPath\" : \"leandashboard.atlassian.net\",\n        \"APIVersion\" : 3\n    }\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1048,7 +1048,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:8000/api/lean/projects/IXDCqnkB7Od3lsy2_wmF/dashboard/KHDHqnkB7Od3lsy2ZQlP/widgets/LnDKqnkB7Od3lsy2gAld",
+									"raw": "http://localhost:8000/api/lean/projects/GEX1rnkBc7LBa5q0nVW4/dashboard/GUX1rnkBc7LBa5q0-VX_/widgets/e-Ayr3kBTeQJIJazg5Xn",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -1058,11 +1058,11 @@
 										"api",
 										"lean",
 										"projects",
-										"IXDCqnkB7Od3lsy2_wmF",
+										"GEX1rnkBc7LBa5q0nVW4",
 										"dashboard",
-										"KHDHqnkB7Od3lsy2ZQlP",
+										"GUX1rnkBc7LBa5q0-VX_",
 										"widgets",
-										"LnDKqnkB7Od3lsy2gAld"
+										"e-Ayr3kBTeQJIJazg5Xn"
 									]
 								}
 							},
@@ -1547,36 +1547,6 @@
 								"lean-projects",
 								"_update",
 								"FKTihHkBVVFqsUowhzS8"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Create Scheduler Array",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"ids\" : []\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:9200/scheduler-ids/_doc/1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "9200",
-							"path": [
-								"scheduler-ids",
-								"_doc",
-								"1"
 							]
 						}
 					},

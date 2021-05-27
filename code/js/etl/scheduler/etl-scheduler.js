@@ -40,11 +40,16 @@ module.exports = {
     },
 
     widgetMapBuilder: async function(){
-        const ids = await db.getAllScheduledIds()
-        if(ids.length > 0) {
-            ids.forEach(id => {
-                this.scheduleWidget(id, false)
-            })
+        const data = await db.getAllScheduledIds()
+        if(data.found) {
+            const ids = data._source.ids
+            if(ids.length > 0) {
+                ids.forEach(id => {
+                    this.scheduleWidget(id, false)
+                })
+            }
+        } else {
+            await db.createScheduleArray()
         }
     },
 

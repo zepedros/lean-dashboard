@@ -176,6 +176,14 @@ module.exports = {
     getAllScheduledIds: async function() {
         const uri  = `${ES_URL}scheduler-ids/_doc/1`
         const resp = await fetch.makeGetRequest(uri)
-        return resp._source.ids
+        return resp
+    },
+
+    createScheduleArray: async function() {
+        const uri  = `${ES_URL}scheduler-ids/_doc/1`
+        const body = {
+            "ids": []
+        }
+        return await fetch.makePostRequest(uri, body)
     }
 }
