@@ -53,13 +53,17 @@ module.exports = {
         }
     },
 
-    reSchedule : function (job, timeSettings) {
-        const seconds = timeSettings.seconds
-        const minutes = timeSettings.minutes
-        const hours = timeSettings.hours
-        const dayOfMonth = timeSettings.dayOfMonth
-        const month = timeSettings.month
-        const dayOfWeek = timeSettings.dayOfWeek
-        job.setTime(new CronTime(`${seconds} ${minutes} ${hours} ${dayOfMonth} ${month} ${dayOfWeek}`))
+    reSchedule : function (widgetId) {
+        const job = widgetJobs.get(widgetId)
+        widgetJobs.delete(widgetId)
+        job.stop()
+        this.scheduleWidget(widgetId,false)
+    },
+
+    deleteJob : async function (widgetId) {
+        const job = widgetJobs.get(widgetId)
+        widgetJobs.delete(widgetId)
+        await db.deleteIdFromSchedule(widgetId)
+        job.stop()
     }
 }

@@ -173,6 +173,25 @@ module.exports = {
         await fetch.makePostRequest(uri,body)
     },
 
+    deleteIdFromSchedule : async function(id) {
+        const uri  = `${ES_URL}scheduler-ids/_update/1`
+        const body = {
+            "script" : {
+                "source":
+                    "for (int i=ctx._source.ids.length-1; i>=0; i--) {\n" +
+                    "                    if (ctx._source.ids[i] == params.idToRemove) {\n" +
+                    "                        ctx._source.ids.remove(i);\n" +
+                    "                    }\n" +
+                    "                }",
+                "lang": "painless",
+                "params": {
+                    "idToRemove" : id
+                }
+            }
+        }
+        await fetch.makePostRequest(uri,body)
+    },
+
     getAllScheduledIds: async function() {
         const uri  = `${ES_URL}scheduler-ids/_doc/1`
         const resp = await fetch.makeGetRequest(uri)
