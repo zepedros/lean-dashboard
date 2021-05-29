@@ -1331,7 +1331,15 @@
 						"method": "PUT",
 						"header": [],
 						"url": {
-							"raw": ""
+							"raw": "http://localhost:9200/etl-templates",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"etl-templates"
+							]
 						}
 					},
 					"response": []

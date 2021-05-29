@@ -4,7 +4,6 @@ const error = require('../error')
 const response = require('../responses')
 const scheduler = require('../etl/scheduler/etl-scheduler')
 //a map with all the scheduled jobs so that they can be stopped and deleted or reconfigured
-const widgetJobs = new Map()
 
 function services(data, db, auth){
 
@@ -153,13 +152,14 @@ function services(data, db, auth){
         updateWidget: function (projectId,dashboardId,widgetId,timeSettings,credentials){
             return db.updateWidget(widgetId,timeSettings,credentials)
                 .then(()=>{
-                    widgetJobs.set(widgetId,scheduler.scheduleWidget(widgetId))
+                    scheduler.reSchedule(widgetId)
                     return response.create(response.OK,`${projectId}/dashboard/${dashboardId}`)
                 })
         },
         removeWidgetFromDashboard: function (projectId,dashboardId,widgetId){
             return db.removeWidgetFromDashboard(projectId,dashboardId,widgetId)
                 .then(dashboardId => {
+                    scheduler.deleteJob(widgetId)
                     return response.create(response.OK,`${projectId}/dashboard/${dashboardId}`)
                 })
         },
