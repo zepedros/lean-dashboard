@@ -5,7 +5,8 @@ function webapi(app, services, auth, authization) {
     const theWebApi = {
 
         createProject: function (req, res) {
-            services.createProject(req.body.name, req.body.description, req.user.username)
+            const user = req.user
+            services.createProject(req.body.name, req.body.description, user.id)
                 .then(resp => {
                     console.log(`Creating project with the name  "${req.body.name}" and the description "${req.body.description}"`)
                     answerHandler(resp, res, 201)
@@ -146,7 +147,8 @@ function webapi(app, services, auth, authization) {
         },
 
         addUserToProject: function (req, res){
-            services.addUserToProject(req.params.id, req.body.username, req.user.username)
+            const user =  req.user
+            services.addUserToProject(req.params.id, req.body.username, user)
                 .then(resp => {
                     console.log("User added to Project")
                     answerHandler(resp, res,201)
@@ -155,7 +157,8 @@ function webapi(app, services, auth, authization) {
         },
 
         removeUserFromProject: function (req, res){
-            services.removeUserFromProject(req.params.id, req.params.username, req.user.username)
+            const user =  req.user
+            services.removeUserFromProject(req.params.id, req.params.username, user)
                 .then(resp => {
                     console.log("User removed from Project")
                     answerHandler(resp, res)

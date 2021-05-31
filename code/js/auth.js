@@ -93,6 +93,15 @@ function makeAuth(authization) {
             return !!(await authization.user.getByUsername(username))
         },
 
+        getUserByUsername: async function(username){
+            const user = await authization.user.getByUsername(username)
+            if (user){
+                return user
+            }else {
+                throw error.create(error.NOT_FOUND, "User doesn't exist")
+            }
+        },
+
         loginLocal: async function (req, res) {
             console.log('logging in, req.isAuthenticated(): ', req.isAuthenticated())
             if (!req.isAuthenticated()) {

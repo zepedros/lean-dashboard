@@ -19,11 +19,11 @@ const ES_URL = 'http://localhost:9200/';
 
 module.exports = {
 
-    createProject: function (name, description, user){
+    createProject: function (name, description, userId){
         const body = {
             name: name ,
             description: description,
-            owner: user,
+            owner: userId,
             members: [],
             dashboards : []
         }
@@ -327,13 +327,13 @@ module.exports = {
         }
     },
 
-    addUserToProject: async function(projectId, username){
+    addUserToProject: async function(projectId, userId){
         const uriProject = `${ES_URL}lean-projects/_update/${projectId}`
         const updateProject = {
             "script": {
-                "source": "ctx._source.members.add(params.username)",
+                "source": "ctx._source.members.add(params.userId)",
                 "params": {
-                    "username": `${username}`
+                    "userId": userId
                 }
             }
         };

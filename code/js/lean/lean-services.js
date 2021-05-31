@@ -9,9 +9,9 @@ function services(data, db, auth){
 
     return {
 
-        createProject: function(name, description, user){
+        createProject: function(name, description, userId){
             if(name && description)
-                return db.createProject(name,description,user)
+                return db.createProject(name,description,userId)
                     .then(id => {
                         return response.create(response.CREATED,`${id}`)
                     })
@@ -186,17 +186,18 @@ module.exports = services;
             return await auth.logout(req, res)
         },
 
-        addUserToProject: async function (projectId, usernameToAdd, usernameMakingRequest){
+        addUserToProject: async function (projectId, usernameToAdd, userMakingRequest){
             if (!usernameToAdd){
                 throw error.create(error.ARGUMENT_ERROR, "Please indicate the username of the user to be added to the project")
             }
-            if (await auth.checkIfUserExists(usernameToAdd)){
+            const userToAddInfo = await auth.getUserByUsername(usernameToAdd)
+            if (userToAddInfo){
                 const project = await db.getProjectById(projectId)
 
-                if (project.owner !== usernameMakingRequest && usernameMakingRequest !== "superuser") throw error.create(error.FORBIDDEN, "User doesn't have access to this project")
-                if (project.members.includes(usernameToAdd)) throw error.create(error.CONFLICT, "User already belongs to project")
+                if (project.owner !== userMakingRequest.id && userMakingRequest.username !== "superuser") throw error.create(error.FORBIDDEN, "User doesn't have access to this project")
+                if (project.members.includes(userToAddInfo.id)) throw error.create(error.CONFLICT, "User already belongs to project")
 
-                return db.addUserToProject(projectId, usernameToAdd)
+                return db.addUserToProject(projectId, userToAddInfo.id)
                     .then(res => {
                         return response.create(response.CREATED, `${res}`)
                     })
@@ -206,16 +207,18 @@ module.exports = services;
             }
         },
 
-        removeUserFromProject: async function(projectId, usernameToRemove, usernameMakingRequest){
+        removeUserFromProject: async function(projectId, usernameToRemove, userMakingRequest){
             if (!usernameToRemove){
                 throw error.create(error.ARGUMENT_ERROR, "Please indicate the username of the user to be removed from the project")
             }
-            if (await auth.checkIfUserExists(usernameToRemove)){
+
+            const userToRemoveInfo = await auth.getUserByUsername(usernameToRemove)
+            if (userToRemoveInfo){
                 const project = await db.getProjectById(projectId)
 
-                if (project.owner !== usernameMakingRequest && usernameMakingRequest !== "superuser") throw error.create(error.FORBIDDEN, "User doesn't have access to this project")
+                if (project.owner !== userMakingRequest.id && userMakingRequest.username !== "superuser") throw error.create(error.FORBIDDEN, "User doesn't have access to this project")
 
-                const index = project.members.indexOf(usernameToRemove);
+                const index = project.members.indexOf(userToRemoveInfo.id);
                 if (index === -1) {
                     throw error.create(error.CONFLICT, "User doesn't belong to project")
                 }
