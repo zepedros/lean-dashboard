@@ -231,9 +231,60 @@ module.exports = services;
             } else {
                 throw error.create(error.NOT_FOUND, "User doesn't exist")
             }
+        },
+        addCredential: function (projectId,credentialName,credentialSource,credentials) {
+            switch (credentialSource) {
+                case "Jira" : checkJIRACredentials(credentials); break;
+                case "Azure" : checkAZURECredentials(credentials); break;
+                case "Squash" : checkSQUASHCredentials(credentials); break;
+            }
+            return db.addCredential(projectId,credentialName,credentialSource,credentials)
+        },
+        getCredentials: function (projectId) {
+            return db.getCredentials(projectId)
+        },
+        getCredentialsById: function (projectId, credentialId) {
+            return db.getCredentialsById(projectId, credentialId)
+        },
+        deleteCredential: function (projectId, credentialId) {
+            return db.deleteCredential(projectId,credentialId)
         }
     };
 }
 
 module.exports = services;
 
+function checkJIRACredentials(credentials) {
+    if(credentials.email === undefined || credentials.email == "")
+        throw new Error("Email credential not defined or empty")
+    if(credentials.token === undefined || credentials.token == "")
+        throw new Error("Token credential not defined or empty")
+    if(credentials.APIPath === undefined || credentials.APIPath == "")
+        throw new Error("APIPath credential not defined or empty")
+    if(credentials.APIVersion === undefined || credentials.APIVersion == "")
+        throw new Error("APIVersion credential not defined or empty")
+    const split = credentials.APIPath.split('.')
+    if(split.length !== 3 || split[1] !== 'atlassian') throw new Error("APIPath incorrect for JIRA")
+    if(credentials.APIVersion < 2 || credentials.APIVersion > 3)
+        throw new Error("Invalid API Version")
+}
+
+function checkAZURECredentials(credentials) {
+    if(credentials.email === undefined || credentials.email == "")
+        throw new Error("Email credential not defined or empty")
+    if(credentials.token === undefined || credentials.token == "")
+        throw new Error("Token credential not defined or empty")
+    if(credentials.Instance === undefined || credentials.Instance == "")
+        throw new Error("Instance credential not defined or empty")
+    if(credentials.APIPath === undefined || credentials.APIPath == "")
+        throw new Error("APIPath credential not defined or empty")
+}
+
+function checkSQUASHCredentials(credentials) {
+    if(credentials.username === undefined || credentials.username == "")
+        throw new Error("Username credential not defined or empty")
+    if(credentials.password === undefined || credentials.password == "")
+        throw new Error("Password credential not defined or empty")
+    if(credentials.APIPath === undefined || credentials.APIPath == "")
+        throw new Error("APIPath credential not defined or empty")
+}
