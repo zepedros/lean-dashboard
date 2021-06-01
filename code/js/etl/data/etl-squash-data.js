@@ -82,7 +82,7 @@ module.exports = {
         const header = buildHeader(credentials)
         const campaign = await fetcher.makeGetRequest(url, header)
         if (campaign.project.id != projectId) {
-            throw error.create(404, "Campaign not present in project")
+            throw error.makeErrorResponse(404, "Campaign not present in project")
         }
         return squash_transformer.getSquashCampaignObject(campaign)
     },
@@ -107,7 +107,7 @@ module.exports = {
         const header = buildHeader(credentials)
         const test = await fetcher.makeGetRequest(url, header)
         if (test.project.id != projectId){
-            throw error.create(404,"Test not present in project")
+            throw error.makeErrorResponse(404,"Test not present in project")
         }
         return squash_transformer.getSquashTestObject(test)
     },
