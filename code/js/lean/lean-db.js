@@ -32,7 +32,7 @@ module.exports = {
         return fetch.makePostRequest(uri,body)
             .then(body => {
                 if(!body.error) return body._id
-                else return error.create(error.DATABASE_ERROR,`Bad Gateway: Error in DataBase, too many requests!`)
+                else return error.makeErrorResponse(error.DATABASE_ERROR,`Bad Gateway: Error in DataBase, too many requests!`)
              })
     },
 
@@ -75,7 +75,7 @@ module.exports = {
                     return body._source
                 }
                 else{
-                   throw error.create(error.NOT_FOUND,'Project not found')
+                   throw error.makeErrorResponse(error.NOT_FOUND,'Project not found')
                 }
             })
     },
@@ -96,7 +96,7 @@ module.exports = {
             .then(result=> {
                     if(result.result === "updated")
                         return projectId
-                    else throw error.create(error.NOT_FOUND,'Project does not exist')
+                    else throw error.makeErrorResponse(error.NOT_FOUND,'Project does not exist')
                 }
             )
     },
@@ -118,7 +118,7 @@ module.exports = {
     return fetch.makeDeleteRequest(uri)
         .then(body => {
             if(body.result === 'deleted') return body
-            else return error.create(error.NOT_FOUND,'Project not found')
+            else return error.makeErrorResponse(error.NOT_FOUND,'Project not found')
         })
     },
     addDashboardToProject: async function(projectId, name, description) {
@@ -145,7 +145,7 @@ module.exports = {
                     return response._id
                 })
         }
-        else return Promise.reject(error.create(error.DATABASE_ERROR,'Add Dashboard to Project Failed'))
+        else return Promise.reject(error.makeErrorResponse(error.DATABASE_ERROR,'Add Dashboard to Project Failed'))
 
     },
 
@@ -164,7 +164,7 @@ module.exports = {
             .then( await fetch.makeDeleteRequest(uri))
                 .then(body => {
                     if(body.result === 'updated') return body
-                    else return Promise.reject(error.create(error.NOT_FOUND,'Dashboard not found'))
+                    else return Promise.reject(error.makeErrorResponse(error.NOT_FOUND,'Dashboard not found'))
                 })
     },
 
@@ -176,7 +176,7 @@ module.exports = {
                     response._source.id = response._id
                     return response._source
                 }
-                else return error.create(error.NOT_FOUND,'Dashboard not found')
+                else return error.makeErrorResponse(error.NOT_FOUND,'Dashboard not found')
         })
 
     },
@@ -196,7 +196,7 @@ module.exports = {
             .then(result=> {
                     if(result.result === "updated")
                         return dashboardId
-                    else throw error.create(error.NOT_FOUND,'Dashboard does not exist')
+                    else throw error.makeErrorResponse(error.NOT_FOUND,'Dashboard does not exist')
                 }
             )
     },
@@ -253,7 +253,7 @@ module.exports = {
                         })
                 }
                 else{
-                    throw error.create(error.NOT_FOUND,'Widget not found')
+                    throw error.makeErrorResponse(error.NOT_FOUND,'Widget not found')
                 }
             })
 
@@ -268,7 +268,7 @@ module.exports = {
                     return body._source
                 }
                 else{
-                    throw error.create(error.NOT_FOUND,'Widget not found')
+                    throw error.makeErrorResponse(error.NOT_FOUND,'Widget not found')
                 }
             })
     },
@@ -289,7 +289,7 @@ module.exports = {
             .then(result=> {
                     if(result.result === "updated")
                         return widgetId
-                    else throw error.create(error.NOT_FOUND,'Widget does not exist')
+                    else throw error.makeErrorResponse(error.NOT_FOUND,'Widget does not exist')
                 }
             )
     },
@@ -300,7 +300,7 @@ module.exports = {
             .then(body => body.widgets)
         const widgetIndex = dashboardWidget.findIndex(w => w === widgetId)
         if(widgetIndex === -1){
-            return Promise.reject(error.create(error.NOT_FOUND,'Widget does not exists'))
+            return Promise.reject(error.makeErrorResponse(error.NOT_FOUND,'Widget does not exists'))
         }
         else{
             var body = {
@@ -316,13 +316,13 @@ module.exports = {
             await fetch.makePostRequest(uriDashboard,body)
                 .then(result=> {
                         if(result.result !== "updated")
-                            throw error.create(error.NOT_FOUND,'Dashboard does not exist')
+                            throw error.makeErrorResponse(error.NOT_FOUND,'Dashboard does not exist')
                     }
                 )
             return fetch.makeDeleteRequest(uri)
                 .then(body => {
                     if(body.result === 'deleted') return dashboardId
-                    else return error.create(error.NOT_FOUND,'Widget not found')
+                    else return error.makeErrorResponse(error.NOT_FOUND,'Widget not found')
                 })
         }
     },
@@ -357,5 +357,5 @@ module.exports = {
             .then(body=> {
                 return body._id
             })
-    },
+    }
 }

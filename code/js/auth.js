@@ -6,85 +6,15 @@ const FileStore = require('session-file-store')(session);
 const error = require('./error')
 const response = require('./responses')
 
-/*
-const config = {
-    host: 'localhost',
-    port: 9200,
-    index: "lean-users"
-}
-const baseURL = `http://${config.host}:${config.port}/${config.index}/`
-
-
-function userToRef(user, done) {
-    done(null, user.username);
-}
-
-async function refToUser(userRef, done) {
-    const uri = `${baseURL}_doc/${userRef}`
-    const user = (await fetcher.makeGetRequest(uri))._source;
-    if (user) {
-        done(null, user);
-    } else {
-        done('User unknown');
-    }
-}*/
-
 function makeAuth(authization) {
     return {
-
-        /*
-        initialize: app => {
-            app.use(session({
-                resave: false,
-                saveUninitialized: false,
-                secret: 'leandashboard',
-                store: new FileStore()
-            }));
-
-            app.use(passport.initialize());
-            app.use(passport.session());
-
-            passport.serializeUser(userToRef);
-            passport.deserializeUser(refToUser);
-        },
-
-        checkUser: async function(username){
-            const uri = baseURL + "_doc/" + username
-            return fetcher.makeGetRequest(uri)
-                .then(response => response)
-                .catch(err => false)
-        },
-        getUser: async function (username, password) {
-            const userExists = await this.checkUser(username)
-            if(!userExists) throw 'Invalid username.'
-            const user = userExists._source
-            let bufferObj = Buffer.from(password, "utf8");
-            if (user.password === bufferObj.toString('base64')) {
-                return user;
-            }
-            throw 'Invalid password.';
-        },
-
-
-        createUser: async function (username,password, first_name, last_name) {
-            const uri = baseURL + "_doc/" + username
-            let bufferObj = Buffer.from(password, "utf8");
-            const body = {
-                username: username,
-                password: bufferObj.toString('base64'),
-                first_name: first_name,
-                last_name: last_name
-            }
-            return await fetcher.makePutRequest(uri,body)
-        }*/
-
         createUser: async function (username, password, first_name, last_name) {
             return authization.user.create(username, password)
                 .then(res => {
-                    return response.createPostMsg(response.CREATED, 'User Created successfully')
+                    return response.makeResponse(response.CREATED, 'User Created successfully')
                 })
                 .catch(err => {
-                    throw error.create(err.status, err.message)
+                    throw error.makeErrorResponse(err.status, err.message)
                 })
 
         },
@@ -94,29 +24,56 @@ function makeAuth(authization) {
         },
 
         getUserByUsername: async function(username){
+            //just get a certain user by name from db, throw an error if non existing
             const user = await authization.user.getByUsername(username)
             if (user){
                 return user
             }else {
-                throw error.create(error.NOT_FOUND, "User doesn't exist")
+                throw error.makeErrorResponse(error.NOT_FOUND, "User doesn't exist")
             }
         },
 
+        getRoleByName: async function(roleName){
+            //just the a certain role by name from db, throw an error if non existing
+            const role = await authization.role.getByName(roleName)
+            if (role){
+                return role
+            }else {
+                throw error.makeErrorResponse(error.NOT_FOUND, `Role ${roleName} doesn't exist`)
+            }
+        },
+
+
+        giveUserRole: async function(user, role, startDate, endDate, updater){
+            /**
+             * return the create method. if it's all good, just return a response. else, check error status and message and  throw error
+             */
+            return authization.userRole.create(user.id, role.id, startDate, endDate, updater.id, true)
+                .then(res => {
+                    return response.makeResponse(response.CREATED, `User ${user.username} was given the role ${role.role}`)
+                })
+                .catch(err => {
+                    throw error.makeErrorResponse(err.status, err.message)
+                })
+        },
+
+
         loginLocal: async function (req, res) {
+            //just checks if it's authenticated or not, sending an error if not
             console.log('logging in, req.isAuthenticated(): ', req.isAuthenticated())
             if (!req.isAuthenticated()) {
-                res.status(error.UNAUTHORIZED).send(error.create(error.UNAUTHORIZED, 'Error logging in'))
+                res.status(error.UNAUTHORIZED).send(error.makeErrorResponse(error.UNAUTHORIZED, 'Error logging in'))
             }else {
-                res.status(response.OK).send(response.createPostMsg(response.OK, 'Login was successful'))
+                res.status(response.OK).send(response.makeResponse(response.OK, 'Login was successful'))
             }
         },
 
         logout: async function(req, res){
             console.log(`req.isAuthenticated(): ${req.isAuthenticated()}`)
             if (req.isAuthenticated()) {
-                res.status(error.ARGUMENT_ERROR).send(error.create(error.ARGUMENT_ERROR, 'Error logging out'))
+                res.status(error.ARGUMENT_ERROR).send(error.makeErrorResponse(error.ARGUMENT_ERROR, 'Error logging out'))
             }else {
-                res.send(response.createPostMsg(response.OK, 'Logout was successful'))
+                res.send(response.makeResponse(response.OK, 'Logout was successful'))
             }
         }
     }

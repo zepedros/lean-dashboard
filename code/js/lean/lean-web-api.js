@@ -167,7 +167,16 @@ function webapi(app, services, auth, authization) {
         },
 
         giveUserRole: function (req, res){
-
+            const userMakingRequest  = req.user
+            const body = req.body
+            const username = req.params.username
+            services.giveUserRole(username, userMakingRequest,body.role, body.endDate)
+                .then(resp => {
+                    console.log(`User ${username} was given the role ${body.role}`)
+                    console.log(resp)
+                    answerHandler(resp, res)
+                })
+                .catch(err => errHandler(err, res))
         }
     };
 
@@ -223,6 +232,7 @@ function webapi(app, services, auth, authization) {
             next()
         })
     }, theWebApi.logout)
+    app.post('/api/lean/users/:username/roles', theWebApi.giveUserRole)
 
 
     return theWebApi;
