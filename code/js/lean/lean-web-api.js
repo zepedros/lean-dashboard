@@ -188,7 +188,7 @@ function webapi(app, services, auth, authization) {
             services.addCredential(req.params.id, req.body.name, req.body.source, req.body.credential)
                 .then(resp => {
                     console.log("Added Credential to Project")
-                    answerHandler(resp, res)
+                    answerHandler(resp, res, 201)
                 })
                 .catch(err => errHandler(err, res))
         },
@@ -197,6 +197,15 @@ function webapi(app, services, auth, authization) {
             services.deleteCredential(req.params.id, req.params.credentialId)
                 .then(resp => {
                     console.log("Deleted Credential from Project")
+                    answerHandler(resp, res)
+                })
+                .catch(err => errHandler(err, res))
+        },
+
+        updateCredential : function (req,res) {
+            services.updateCredential(req.params.id, req.params.credentialId,req.body.name, req.body.source, req.body.credential)
+                .then(resp => {
+                    console.log("Updated Credential in Project")
                     answerHandler(resp, res)
                 })
                 .catch(err => errHandler(err, res))
@@ -256,6 +265,7 @@ function webapi(app, services, auth, authization) {
     app.get('/api/lean/projects/:id/credentials/:credentialId', theWebApi.getCredentialsById)
     app.post('/api/lean/projects/:id/credentials', theWebApi.addCredential)
     app.delete('/api/lean/projects/:id/credentials/:credentialId', theWebApi.deleteCredential)
+    app.put('/api/lean/projects/:id/credentials/:credentialId', theWebApi.updateCredential)
 
 
 

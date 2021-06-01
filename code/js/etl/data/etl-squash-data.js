@@ -31,11 +31,20 @@ module.exports = {
         let page = 0
         let maxPages = 0
         const maxResults = 50
-
         const url = `${buildURI(credentials)}/projects?page=${page}&size=${maxResults}`
         const header = buildHeader(credentials)
-        let firstRequest = await fetcher.makeGetRequest(url, header)
+        let firstRequest
+        try {
 
+            firstRequest = await fetcher.makeGetRequest(url, header)
+        } catch (ex) {
+            if (ex.type === 'invalid-json') {
+                throw error.makeErrorResponse(error.ARGUMENT_ERROR, 'Credentials Wrong')
+            } else {
+                throw error.makeErrorResponse(error.ARGUMENT_ERROR, 'APIPath does not exist')
+            }
+        }
+        if (firstRequest.ok === false) throw error.makeErrorResponse(firstRequest.status, firstRequest.statusText)
         ret.total = firstRequest.page.totalElements
         maxPages += firstRequest.page.totalPages
 
@@ -47,7 +56,17 @@ module.exports = {
         page++
         while (page < maxPages) {
             const url = `${buildURI(credentials)}/projects?page=${page}&size=${maxResults}`
-            const request = await fetcher.makeGetRequest(url, header)
+            let request
+            try {
+                request = await fetcher.makeGetRequest(url, header)
+            } catch (ex) {
+                if (ex.type === 'invalid-json') {
+                    throw error.makeErrorResponse(error.ARGUMENT_ERROR, 'Credentials Wrong')
+                } else {
+                    throw error.makeErrorResponse(error.ARGUMENT_ERROR, 'APIPath does not exist')
+                }
+            }
+            if (request.ok === false) throw error.makeErrorResponse(request.status, request.statusText)
             request._embedded.projects
                 .forEach(project =>
                     ret.projects
@@ -59,20 +78,28 @@ module.exports = {
     getProjectCampaignsSquash: async function (projectId, credentials) {
         const url = `${buildURI(credentials)}/projects/${projectId}/campaigns`
         const header = buildHeader(credentials)
-        const response = await fetcher.makeGetRequest(url, header)
-
+        let response
+        try {
+            response = await fetcher.makeGetRequest(url, header)
+        } catch (ex) {
+            if (ex.type === 'invalid-json') {
+                throw error.makeErrorResponse(error.ARGUMENT_ERROR, 'Credentials Wrong')
+            } else {
+                throw error.makeErrorResponse(error.ARGUMENT_ERROR, 'APIPath does not exist')
+            }
+        }
+        if (response.ok === false) throw error.makeErrorResponse(response.status, response.statusText)
+        if (!response._embedded) throw error.makeErrorResponse(error.NOT_FOUND, 'Project does not exist or has no Campaigns')
         let jsonData = {
             campaigns: [],
             total: 0
         }
-        if(response._embedded !== undefined) {
-            jsonData.total = response._embedded.campaigns.length
-            for (const campaign of response._embedded.campaigns) {
-                try {
-                    jsonData.campaigns.push(await this.getSquashCampaignById(projectId, campaign.id, credentials))
-                } catch(error) {
-                    console.log(`no access to ${campaign.id}`)
-                }
+        jsonData.total = response._embedded.campaigns.length
+        for (const campaign of response._embedded.campaigns) {
+            try {
+                jsonData.campaigns.push(await this.getSquashCampaignById(projectId, campaign.id, credentials))
+            } catch (error) {
+                console.log(`no access to ${campaign.id}`)
             }
         }
         return jsonData
@@ -80,7 +107,18 @@ module.exports = {
     getSquashCampaignById : async function (projectId, campaignId, credentials) {
         const url = `${buildURI(credentials)}/campaigns/${campaignId}`
         const header = buildHeader(credentials)
-        const campaign = await fetcher.makeGetRequest(url, header)
+        let campaign
+        try {
+            campaign = await fetcher.makeGetRequest(url, header)
+        } catch (ex) {
+            if (ex.type === 'invalid-json') {
+                throw error.makeErrorResponse(error.ARGUMENT_ERROR, 'Credentials Wrong')
+            } else {
+                throw error.makeErrorResponse(error.ARGUMENT_ERROR, 'APIPath does not exist')
+            }
+        }
+        if (campaign.ok === false) throw error.makeErrorResponse(campaign.status, campaign.statusText)
+        if (!campaign) throw error.makeErrorResponse(error.NOT_FOUND, 'Campaign does not exist')
         if (campaign.project.id != projectId) {
             throw error.makeErrorResponse(404, "Campaign not present in project")
         }
@@ -89,8 +127,18 @@ module.exports = {
     getProjectTestsSquash: async function (projectId, credentials) {
         const url = `${buildURI(credentials)}/projects/${projectId}/test-cases`
         const header = buildHeader(credentials)
-        const response = await fetcher.makeGetRequest(url, header)
-
+        let response
+        try {
+            response = await fetcher.makeGetRequest(url, header)
+        } catch (ex) {
+            if (ex.type === 'invalid-json') {
+                throw error.makeErrorResponse(error.ARGUMENT_ERROR, 'Credentials Wrong')
+            } else {
+                throw error.makeErrorResponse(error.ARGUMENT_ERROR, 'APIPath does not exist')
+            }
+        }
+        if (response.ok === false) throw error.makeErrorResponse(response.status, response.statusText)
+        if (!response._embedded) throw error.makeErrorResponse(error.NOT_FOUND, 'Project does not exist or has no test cases')
         const jsonData = {
             "test-cases": [],
             total: response._embedded["test-cases"].length
@@ -105,7 +153,18 @@ module.exports = {
     getSquashTestById : async function (projectId,testId, credentials) {
         const url = `${buildURI(credentials)}/test-cases/${testId}`
         const header = buildHeader(credentials)
-        const test = await fetcher.makeGetRequest(url, header)
+        let test
+        try {
+            test = await fetcher.makeGetRequest(url, header)
+        } catch (ex) {
+            if (ex.type === 'invalid-json') {
+                throw error.makeErrorResponse(error.ARGUMENT_ERROR, 'Credentials Wrong')
+            } else {
+                throw error.makeErrorResponse(error.ARGUMENT_ERROR, 'APIPath does not exist')
+            }
+        }
+        if (test.ok === false) throw error.makeErrorResponse(test.status, test.statusText)
+        if(!test) throw error.makeErrorResponse(error.NOT_FOUND, 'Test does not exist')
         if (test.project.id != projectId){
             throw error.makeErrorResponse(404,"Test not present in project")
         }
@@ -118,7 +177,17 @@ module.exports = {
         for (const campaign of campaigns.campaigns) {
             for (const iteration of campaign.iterations) {
                 const url = `${buildURI(credentials)}/iterations/${iteration.id}/test-plan`
-                let ret = await fetcher.makeGetRequest(url, header)
+                let ret
+                try {
+                    ret = await fetcher.makeGetRequest(url, header)
+                } catch (ex) {
+                    if (ex.type === 'invalid-json') {
+                        throw error.makeErrorResponse(error.ARGUMENT_ERROR, 'Credentials Wrong')
+                    } else {
+                        throw error.makeErrorResponse(error.ARGUMENT_ERROR, 'APIPath does not exist')
+                    }
+                }
+                if (ret.ok === false) throw error.makeErrorResponse(ret.status, ret.statusText)
                 if (ret._embedded !== undefined) { //checks if it exists
                     let test_plan = {
                         "campaign": campaign.id,

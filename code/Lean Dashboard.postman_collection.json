@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "c956bf05-0ee4-485f-8377-aff39952f170",
+		"_postman_id": "6b0bb2e0-d2e8-44e6-a75e-4427cdd058ba",
 		"name": "Lean Dashboard",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -21,7 +21,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"credentials\": {\r\n        \"email\" : \"leandashboardproject@gmail.com\",\r\n        \"token\" : \"LPcyGdZolN906MvzdwPHF045\",\r\n        \"APIPath\" : \"leandashboard.atlassian.net\",\r\n        \"APIVersion\" : 3\r\n    }\r\n}",
+									"raw": "{\r\n    \"credentials\": {\r\n        \"email\" : \"leanoardproject@gmail.com\",\r\n        \"token\" : \"LPcyGdZolN906MvzdwPHF045\",\r\n        \"APIPath\" : \"leandashboard.atlassian.net\",\r\n        \"APIVersion\" : 3\r\n    }\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -577,9 +577,21 @@
 					"item": [
 						{
 							"name": "GET /lean-etl/projectsAzure",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
 							"request": {
 								"method": "GET",
 								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"credentials\": {\r\n        \"email\" : \"leandashboardproject@gmail.com\",\r\n        \"token\" : \"cwryfikv3hrslmoqiz4wz2otexf7o5aj4qtouhm37ndglel5dkbq\",\r\n        \"Instance\" : \"dev.azure.com/leandashboardproject\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
 								"url": {
 									"raw": "http://localhost:8000/lean-etl/projectsAzure",
 									"protocol": "http",
@@ -597,9 +609,21 @@
 						},
 						{
 							"name": "GET /lean-etl/projectsAzure/{id}/teams",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
 							"request": {
 								"method": "GET",
 								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"credentials\": {\r\n        \"email\" : \"leandashboardproject@gmail.com\",\r\n        \"token\" : \"cwryfikv3hrslmoqiz4wz2otexf7o5aj4qtouhm37ndglel5dkbq\",\r\n        \"Instance\" : \"dev.azure.com/leandashboardproject\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
 								"url": {
 									"raw": "http://localhost:8000/lean-etl/projectsAzure/2eee04f3-541f-4242-aff2-c9e8e358271b/teams",
 									"protocol": "http",
@@ -619,9 +643,21 @@
 						},
 						{
 							"name": "GET /lean-etl/projectsAzure/{id}/iterations",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
 							"request": {
 								"method": "GET",
 								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"credentials\": {\r\n        \"email\" : \"leandashboardproject@gmail.com\",\r\n        \"token\" : \"cwryfikv3hrslmoqiz4wz2otexf7o5aj4qtouhm37ndglel5dkbq\",\r\n        \"Instance\" : \"dev.azure.com/leandashboardproject\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
 								"url": {
 									"raw": "http://localhost:8000/lean-etl/projectsAzure/2eee04f3-541f-4242-aff2-c9e8e358271b/iterations",
 									"protocol": "http",
@@ -641,9 +677,21 @@
 						},
 						{
 							"name": "GET /lean-etl/projectsAzure/{team}/iterations/{id}/workItems",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
 							"request": {
 								"method": "GET",
 								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"credentials\": {\r\n        \"email\" : \"leandashboardproject@gmail.com\",\r\n        \"token\" : \"cwryfikv3hrslmoqiz4wz2otexf7o5aj4qtouhm37ndglel5dkbq\",\r\n        \"Instance\" : \"dev.azure.com/leandashboardproject\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
 								"url": {
 									"raw": "http://localhost:8000/lean-etl/projectsAzure/Lean Dashboard demo/iterations/d65750bc-1d20-4728-97fd-29e9b08c1dda/workItems",
 									"protocol": "http",
@@ -1303,7 +1351,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:8000/api/lean/projects/vxuewnkBE0sk1r1Qi0ZN/credentials",
+									"raw": "http://localhost:8000/api/lean/projects/PgHjx3kBz8X2NDu9PZ3e/credentials",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -1313,7 +1361,7 @@
 										"api",
 										"lean",
 										"projects",
-										"vxuewnkBE0sk1r1Qi0ZN",
+										"PgHjx3kBz8X2NDu9PZ3e",
 										"credentials"
 									]
 								}
@@ -1339,6 +1387,39 @@
 										"srQIw3kBDPtJKyKYIIqf",
 										"credentials",
 										"uLQLw3kBDPtJKyKYW4o7"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "PUT /api/lean/projects/{id}/credentials/{credentialId}",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\" : \"abcCredentials\",\r\n    \"source\" : \"Jira\",\r\n    \"credential\": {\r\n        \"email\" : \"leanboardproject@gmail.com\",\r\n        \"token\" : \"LPcyGdZsdfsdfsdfsdfsdfsdfsdzdwPHF045\",\r\n        \"APIPath\" : \"leandashboard.atlassian.net\",\r\n        \"APIVersion\" : 3\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/lean/projects/PgHjx3kBz8X2NDu9PZ3e/credentials/SwH2x3kBz8X2NDu9AJ05",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"lean",
+										"projects",
+										"PgHjx3kBz8X2NDu9PZ3e",
+										"credentials",
+										"SwH2x3kBz8X2NDu9AJ05"
 									]
 								}
 							},

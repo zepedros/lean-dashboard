@@ -39,6 +39,7 @@ module.exports = {
         let url = `${buildURI(credentials)}/search?jql=&startAt=${startAt}&maxResults=${maxResults}`
         const header = buildHeader(credentials)
         let firstRequest = (await fetcher.makeGetRequest(url, header))
+        if (firstRequest.ok === false) throw error.makeErrorResponse(firstRequest.status, firstRequest.statusText)
         firstRequest.issues.forEach(issue => ret.issues.push(jira_transformer.getJiraIssueObject(issue)))
 
         const total = firstRequest.total
@@ -48,6 +49,7 @@ module.exports = {
         while (startAt < total) {
             let url = `${buildURI(credentials)}/search?jql=&startAt=${startAt}&maxResults=${maxResults}`
             let request = await fetcher.makeGetRequest(url, header)
+            if (request.ok === false) throw error.makeErrorResponse(request.status, request.statusText)
             request.issues.forEach(issue => ret.issues.push(jira_transformer.getJiraIssueObject(issue)))
             startAt += maxResults
         }
@@ -58,6 +60,7 @@ module.exports = {
         const url = `${buildURI(credentials)}/issue/${id}`
         const header = buildHeader(credentials)
         const response = await fetcher.makeGetRequest(url, header)
+        if (response.ok === false) throw error.makeErrorResponse(response.status, response.statusText)
         return jira_transformer.getJiraIssueObject(response)
     },
 
@@ -65,7 +68,8 @@ module.exports = {
         const url = `${buildURI(credentials)}/project/search`
         const header = buildHeader(credentials)
         const response = await fetcher.makeGetRequest(url, header)
-
+        if (response.ok === false) throw error.makeErrorResponse(response.status, response.statusText)
+        const isOk = response.ok
         let jsonData = {
             projects: response.values.map(jira_transformer.getJiraProjectObject)
         };
@@ -79,7 +83,6 @@ module.exports = {
         const header = buildHeader(credentials)
         const response = await fetcher.makeGetRequest(url, header)
         if (response.ok === false) throw error.makeErrorResponse(response.status, response.statusText)
-        const isOk = response.ok
         return jira_transformer.getJiraProjectObject(await response)
     },
 
@@ -88,10 +91,11 @@ module.exports = {
         const url = `${buildAgileURI(credentials)}/1.0/board/`
         const header = buildHeader(credentials)
         const boards = await fetcher.makeGetRequest(url,header)
-
+        if (boards.ok === false) throw error.makeErrorResponse(boards.status, boards.statusText)
         for(const board of boards.values){
             const url =  `${buildAgileURI(credentials)}/1.0/board/${board.id}/sprint`
             const res = await fetcher.makeGetRequest(url,header)
+            if (res.ok === false) throw error.makeErrorResponse(res.status, res.statusText)
             res.values.forEach(sprint => {
                 sprint['projectId'] = board.location.projectId
                 sprints.push(jira_transformer.getJiraSprintObject(sprint))
@@ -108,7 +112,7 @@ module.exports = {
         const url = `${buildAgileURI(credentials)}/1.0/sprint/${sprintId}/issue`
         const header = buildHeader(credentials)
         let res = await fetcher.makeGetRequest(url, header)
-
+        if (res.ok === false) throw error.makeErrorResponse(res.status, res.statusText)
         sprintIssue.issues = res.issues.map(issue => jira_transformer.getJiraIssueObject(issue))
 
         return sprintIssue

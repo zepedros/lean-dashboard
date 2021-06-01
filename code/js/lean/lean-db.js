@@ -368,6 +368,9 @@ module.exports = {
             let credential = await fetch.makeGetRequest(uri)
             credentials.push(credential._source)
         }
+        if(credentials.length === 0) {
+            throw error.makeErrorResponse(error.NOT_FOUND,'This project has no credentials')
+        }
         return credentials
     },
 
@@ -381,7 +384,7 @@ module.exports = {
                 })
 
         }
-        else return Promise.reject(error.makeErrorResponse(error.DATABASE_ERROR,'CredentialId does not exist within the project'))
+        else throw error.makeErrorResponse(error.DATABASE_ERROR,'CredentialId does not exist within the project')
     },
 
     addCredential: async function(projectId,credentialName,credentialSource,credentials) {
@@ -404,10 +407,14 @@ module.exports = {
             };
             return await fetch.makePostRequest(uriProject, updateProject)
                 .then(body=> {
-                    return response._id
+                    if(body.result === 'updated') return response._id
+                    else throw error.makeErrorResponse(error.makeErrorResponse(error.DATABASE_ERROR,'Could not associate to the project'))
+                })
+                .catch(err => {
+                    console.log('bad')
                 })
         }
-        else return Promise.reject(error.makeErrorResponse(error.DATABASE_ERROR,'Add Credential to Project Failed'))
+        else throw error.makeErrorResponse(error.DATABASE_ERROR,'Add Credential to Project Failed')
     },
     deleteCredential: async function(projectId,credentialId) {
         const project = await this.getProjectById(projectId)
@@ -423,11 +430,46 @@ module.exports = {
                 }
             }
             return fetch.makePostRequest(`${ES_URL}lean-projects/_update/${projectId}`,body)
-                .then( await fetch.makeDeleteRequest(uri)
-                    .then(body => {
-                        if(body.result === 'updated') return body
-                }))
+                .then(() => {
+                    return fetch.makeDeleteRequest(uri)
+                        .then(body => {
+                            if(body.result === 'deleted') return body._id
+                        })
+                        .catch(err => {
+                            console.log('bad')
+                        })
+                }
+                ).catch(err => {
+                    console.log('abc')
+                })
         }
-        else return Promise.reject(error.makeErrorResponse(error.DATABASE_ERROR,'CredentialId does not exist within the project'))
+        else throw error.makeErrorResponse(error.DATABASE_ERROR,'CredentialId does not exist within the project')
+    },
+    updateCredential : async function (projectId, credentialId,credentialName,credentialSource,credentials) {
+        const project = await this.getProjectById(projectId)
+        if(project.credentials.includes(credentialId)) {
+            const uri = `${ES_URL}lean-credentials/_update/${credentialId}`
+            let body = {
+                "script": {
+                    "lang": "painless",
+                    "inline": "ctx._source = params.credential",
+                    "params": {
+                        "credential": {
+                            "name" : credentialName,
+                            "source" : credentialSource,
+                            "credential": credentials
+                        }
+                    }
+                }
+            }
+            return fetch.makePostRequest(uri,body)
+                .then(body => {
+                    if(body.result === 'updated') return body._id
+                    else throw error.makeErrorResponse(error.DATABASE_ERROR,'Could not update credential')
+                }).catch(err => {
+                    console.log('abc')
+                })
+        }
+        else throw error.makeErrorResponse(error.DATABASE_ERROR,'CredentialId does not exist within the project')
     }
 }

@@ -121,7 +121,7 @@ function webapi(app, services) {
                 .catch(err => errHandler(err, res))
         },
         getAzureProjects: function (req,res) {
-            services.getAzureProjects()
+            services.getAzureProjects(req.body.credentials)
                 .then(resp => {
                     console.log("Get Azure projects")
                     answerHandler(resp, res)
@@ -129,7 +129,7 @@ function webapi(app, services) {
                 .catch(err => errHandler(err, res))
         },
         getAzureTeams: function (req,res) {
-            services.getAzureTeams(req.params.id)
+            services.getAzureTeams(req.params.id,req.body.credentials)
                 .then(resp => {
                     console.log("Get Azure teams")
                     answerHandler(resp, res)
@@ -137,7 +137,7 @@ function webapi(app, services) {
                 .catch(err => errHandler(err, res))
         },
         getAzureIterations: function (req, res) {
-            services.getAzureIterations(req.params.team)
+            services.getAzureIterations(req.params.team, req.body.credentials)
                 .then(resp => {
                     console.log("Get Azure work items")
                     answerHandler(resp, res)
@@ -145,7 +145,7 @@ function webapi(app, services) {
                 .catch(err => errHandler(err, res))
         },
         getAzureIterationWorkItems: function (req, res) {
-            services.getAzureIterationWorkItems(req.params.team, req.params.id)
+            services.getAzureIterationWorkItems(req.params.team, req.params.id, req.body.credentials)
                 .then(resp => {
                     console.log("Get Azure work items")
                     answerHandler(resp, res)

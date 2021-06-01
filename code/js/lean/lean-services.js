@@ -146,7 +146,6 @@ function services(data, db, auth){
                     scheduler.scheduleWidget(createdId, true)
                     return response.makePostResponse(response.OK, `${projectId}/dashboard/`, dashboardId)
                 })
-
         },
 
         updateWidget: function (projectId,dashboardId,widgetId,timeSettings,credentials){
@@ -256,12 +255,18 @@ function services(data, db, auth){
         },
 
         addCredential: function (projectId,credentialName,credentialSource,credentials) {
-            switch (credentialSource) {
-                case "Jira" : checkJIRACredentials(credentials); break;
-                case "Azure" : checkAZURECredentials(credentials); break;
-                case "Squash" : checkSQUASHCredentials(credentials); break;
+            try {
+                checkCredentials(credentialSource,credentials)
+            } catch (ex) {
+                return Promise.reject(ex)
             }
             return db.addCredential(projectId,credentialName,credentialSource,credentials)
+                .then(credentialId => {
+                    return response.makePostResponse(200, `${projectId}/credentials/${credentialId}`)
+                })
+                .catch(err => {
+
+                })
         },
         getCredentials: function (projectId) {
             return db.getCredentials(projectId)
@@ -271,44 +276,51 @@ function services(data, db, auth){
         },
         deleteCredential: function (projectId, credentialId) {
             return db.deleteCredential(projectId,credentialId)
-
+                .then(credId => {
+                    return response.makePostResponse(201, `${projectId}/credentials/${credId}`)
+                })
+        },
+        updateCredential : function (projectId, credentialId,credentialName,credentialSource,credentials) {
+            try {
+                checkCredentials(credentialSource,credentials)
+            } catch (ex) {
+                return Promise.reject(ex)
+            }
+            return db.updateCredential(projectId, credentialId,credentialName,credentialSource,credentials)
         }
     };
 }
 
 module.exports = services;
 
+function checkCredentials(credentialSource,credentials) {
+    switch (credentialSource) {
+        case "Jira" : checkJIRACredentials(credentials); break;
+        case "Azure" : checkAZURECredentials(credentials); break;
+        case "Squash" : checkSQUASHCredentials(credentials); break;
+        default : throw error.makeErrorResponse(error.ARGUMENT_ERROR, 'Wrong source')
+    }
+}
+
 function checkJIRACredentials(credentials) {
-    if(credentials.email === undefined || credentials.email == "")
-        throw new Error("Email credential not defined or empty")
-    if(credentials.token === undefined || credentials.token == "")
-        throw new Error("Token credential not defined or empty")
-    if(credentials.APIPath === undefined || credentials.APIPath == "")
-        throw new Error("APIPath credential not defined or empty")
-    if(credentials.APIVersion === undefined || credentials.APIVersion == "")
-        throw new Error("APIVersion credential not defined or empty")
-    const split = credentials.APIPath.split('.')
-    if(split.length !== 3 || split[1] !== 'atlassian') throw new Error("APIPath incorrect for JIRA")
-    if(credentials.APIVersion < 2 || credentials.APIVersion > 3)
-        throw new Error("Invalid API Version")
+    if(credentials === undefined ||
+        (credentials.email === undefined || credentials.email === "") ||
+        (credentials.token === undefined || credentials.token === "") ||
+        (credentials.APIPath === undefined || credentials.APIPath === "") ||
+        (credentials.APIVersion === undefined || credentials.APIVersion === ""))
+        throw error.makeErrorResponse(error.ARGUMENT_ERROR, 'Wrong or empty credentials')
 }
 
 function checkAZURECredentials(credentials) {
-    if(credentials.email === undefined || credentials.email == "")
-        throw new Error("Email credential not defined or empty")
-    if(credentials.token === undefined || credentials.token == "")
-        throw new Error("Token credential not defined or empty")
-    if(credentials.Instance === undefined || credentials.Instance == "")
-        throw new Error("Instance credential not defined or empty")
-    if(credentials.APIPath === undefined || credentials.APIPath == "")
-        throw new Error("APIPath credential not defined or empty")
+    if(credentials === undefined || (credentials.email === undefined || credentials.email === "")
+        || (credentials.token === undefined || credentials.token === "") ||
+        (credentials.Instance === undefined || credentials.Instance === ""))
+        throw error.makeErrorResponse(error.ARGUMENT_ERROR, 'Wrong or empty credentials')
 }
 
 function checkSQUASHCredentials(credentials) {
-    if(credentials.username === undefined || credentials.username == "")
-        throw new Error("Username credential not defined or empty")
-    if(credentials.password === undefined || credentials.password == "")
-        throw new Error("Password credential not defined or empty")
-    if(credentials.APIPath === undefined || credentials.APIPath == "")
-        throw new Error("APIPath credential not defined or empty")
+    if(credentials === undefined || (credentials.username === undefined || credentials.username === "")
+        || (credentials.password === undefined || credentials.password === "") ||
+        (credentials.APIPath === undefined || credentials.APIPath === ""))
+        throw error.makeErrorResponse(error.ARGUMENT_ERROR, 'Wrong or empty credentials')
 }

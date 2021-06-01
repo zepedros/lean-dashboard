@@ -9,11 +9,35 @@ const AZURE_HEADERS = {
     ).toString('base64')}`,
     'Accept': 'application/json'
 }
-module.exports = {
-    getAzureProjects: async function () {
-        const url = `https://dev.azure.com/leandashboardproject/_apis/projects?api-version=6.1-preview.4`
-        const projects = await fetcher.makeGetRequest(url, AZURE_HEADERS)
 
+function buildURI(credentials) {
+    return `https://${credentials.Instance}/`
+}
+
+function buildHeader(credentials) {
+    return {
+        'Authorization': `Basic ${Buffer.from(
+            `${credentials.email}:${credentials.token}`
+        ).toString('base64')}`,
+        'Accept': 'application/json'
+    }
+}
+
+module.exports = {
+    getAzureProjects: async function (credentials) {
+        const url = `${buildURI(credentials)}_apis/projects?api-version=6.1-preview.4`
+        const headers = buildHeader(credentials)
+        let projects
+        try {
+            projects = await fetcher.makeGetRequest(url, headers)
+        } catch (ex) {
+            if (ex.type === 'invalid-json') {
+                throw error.makeErrorResponse(error.ARGUMENT_ERROR, 'Credentials Wrong')
+            } else {
+                throw error.makeErrorResponse(error.ARGUMENT_ERROR, 'APIPath does not exist')
+            }
+        }
+        if (projects.ok === false) throw error.makeErrorResponse(projects.status, projects.statusText)
         let jsonData = {
             projects: [],
             total : projects.count || 0
@@ -24,10 +48,20 @@ module.exports = {
         })
         return jsonData
     },
-    getAzureTeams: async function (id) {
-        const url = `https://dev.azure.com/leandashboardproject/_apis/projects/${id}/teams?$expandIdentity=true&api-version=6.1-preview.3`
-        let teams = await fetcher.makeGetRequest(url, AZURE_HEADERS)
-
+    getAzureTeams: async function (id, credentials) {
+        const url = `${buildURI(credentials)}_apis/projects/${id}/teams?$expandIdentity=true&api-version=6.1-preview.3`
+        const headers = buildHeader(credentials)
+        let teams
+        try {
+            teams = await fetcher.makeGetRequest(url, headers)
+        } catch (ex) {
+            if (ex.type === 'invalid-json') {
+                throw error.makeErrorResponse(error.ARGUMENT_ERROR, 'Credentials Wrong')
+            } else {
+                throw error.makeErrorResponse(error.ARGUMENT_ERROR, 'APIPath does not exist')
+            }
+        }
+        if (teams.ok === false) throw error.makeErrorResponse(teams.status, teams.statusText)
         let jsonData = {
             teams: [],
             total : teams.count
@@ -38,9 +72,20 @@ module.exports = {
         })
         return jsonData
     },
-    getAzureIterations: async function(teamName) {
-        const url = `https://dev.azure.com/leandashboardproject/${teamName}/_apis/work/teamsettings/iterations?api-version=6.0`
-        let iterations = await fetcher.makeGetRequest(url, AZURE_HEADERS)
+    getAzureIterations: async function(teamName, credentials) {
+        const url = `${buildURI(credentials)}${teamName}/_apis/work/teamsettings/iterations?api-version=6.0`
+        const headers = buildHeader(credentials)
+        let iterations
+        try {
+            iterations = await fetcher.makeGetRequest(url, headers)
+        } catch (ex) {
+            if (ex.type === 'invalid-json') {
+                throw error.makeErrorResponse(error.ARGUMENT_ERROR, 'Credentials Wrong')
+            } else {
+                throw error.makeErrorResponse(error.ARGUMENT_ERROR, 'APIPath does not exist')
+            }
+        }
+        if (iterations.ok === false) throw error.makeErrorResponse(iterations.status, iterations.statusText)
         let jsonData = {
             iterations: [],
             total : iterations.count
@@ -50,22 +95,44 @@ module.exports = {
         })
         return jsonData
     },
-    getAzureIterationWorkItems: async function(teamName,iterationId) {
-        const url = `https://dev.azure.com/leandashboardproject/${teamName}/_apis/work/teamsettings/iterations/${iterationId}/workitems?api-version=6.1-preview.1`
-        let workItems = await fetcher.makeGetRequest(url, AZURE_HEADERS)
+    getAzureIterationWorkItems: async function(teamName,iterationId, credentials) {
+        const url = `${buildURI(credentials)}${teamName}/_apis/work/teamsettings/iterations/${iterationId}/workitems?api-version=6.1-preview.1`
+        const headers = buildHeader(credentials)
+        let workItems
+        try {
+            workItems = await fetcher.makeGetRequest(url, headers)
+        } catch (ex) {
+            if (ex.type === 'invalid-json') {
+                throw error.makeErrorResponse(error.ARGUMENT_ERROR, 'Credentials Wrong')
+            } else {
+                throw error.makeErrorResponse(error.ARGUMENT_ERROR, 'APIPath does not exist')
+            }
+        }
+        if (workItems.ok === false) throw error.makeErrorResponse(workItems.status, workItems.statusText)
         let jsonData = {
             iterationId: iterationId,
             workItems: [],
             total : workItems.length
         };
         for(const workItem of workItems.workItemRelations) {
-            jsonData.workItems.push(await this.getAzureWorkItem(workItem.target.id))
+            jsonData.workItems.push(await this.getAzureWorkItem(workItem.target.id, credentials))
         }
         return jsonData
     },
-    getAzureWorkItem: async function(workItemId) {
-        const url = `https://dev.azure.com/leandashboardproject/_apis/wit/workitems/${workItemId}?api-version=6.1-preview.3`
-        let workItem = await fetcher.makeGetRequest(url, AZURE_HEADERS)
+    getAzureWorkItem: async function(workItemId, credentials) {
+        const url = `${buildURI(credentials)}_apis/wit/workitems/${workItemId}?api-version=6.1-preview.3`
+        const headers = buildHeader(credentials)
+        let workItem
+        try {
+            workItem = await fetcher.makeGetRequest(url, headers)
+        } catch (ex) {
+            if (ex.type === 'invalid-json') {
+                throw error.makeErrorResponse(error.ARGUMENT_ERROR, 'Credentials Wrong')
+            } else {
+                throw error.makeErrorResponse(error.ARGUMENT_ERROR, 'APIPath does not exist')
+            }
+        }
+        if (workItem.ok === false) throw error.makeErrorResponse(workItem.status, workItem.statusText)
         return azure_transformer.getAzureWorkItemObject(workItem)
     }
 }

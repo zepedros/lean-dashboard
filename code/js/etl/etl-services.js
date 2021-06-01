@@ -71,11 +71,11 @@ function services(azureData, jiraData, squashData, db, auth) {
         getSquashTestById: function (projectId, testId, credentials) {
             return squashData.getSquashTestById(projectId,testId, credentials)
         },
-        getAzureProjects: function () {
-            return azureData.getAzureProjects()
+        getAzureProjects: function (credentials) {
+            return azureData.getAzureProjects(credentials)
         },
-        getAzureTeams: function (id) {
-            return azureData.getAzureTeams(id)
+        getAzureTeams: function (id, credentials) {
+            return azureData.getAzureTeams(id, credentials)
         },
         postIssues: function () {
             return db.postIssues()
@@ -92,11 +92,11 @@ function services(azureData, jiraData, squashData, db, auth) {
         getSquashTestsPlans: function (projectId, credentials){
             return squashData.getSquashTestsPlans(projectId, credentials)
         },
-        getAzureIterations: function (teamName){
-            return azureData.getAzureIterations(teamName)
+        getAzureIterations: function (teamName, credentials){
+            return azureData.getAzureIterations(teamName, credentials)
         },
-        getAzureIterationWorkItems: function (teamName, iterationId) {
-            return azureData.getAzureIterationWorkItems(teamName,iterationId)
+        getAzureIterationWorkItems: function (teamName, iterationId, credentials) {
+            return azureData.getAzureIterationWorkItems(teamName,iterationId, credentials)
         }
     };
     return theServices;
