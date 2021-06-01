@@ -13,14 +13,16 @@ async function setup() {
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({extended: true}))
 
+    require('dotenv').config({path: "../.env"})
+
     const authizationDbConfig = {
-        "host": "localhost",
-        "port": 5432,
-        "user": "postgres",
-        "password": "1234",
-        "connectionLimit": 5,
-        "database": "authization",
-        "dbms": "postgres"
+        "host": process.env.HOST,
+        "port": process.env.DB_PORT,
+        "user": process.env.DB_USER,
+        "password": process.env.DB_PASSWORD,
+        "connectionLimit": process.env.DB_CONNECTION_LIMIT,
+        "database": process.env.DATABASE,
+        "dbms": process.env.DBMS,
     }
 
     const rbacOptions = {
