@@ -78,9 +78,9 @@ module.exports = {
         const url = `${buildURI(credentials)}/project/${id}`
         const header = buildHeader(credentials)
         const response = await fetcher.makeGetRequest(url, header)
-        if (!response.ok) throw error.makeErrorResponse(response.status, response.statusText)
+        if (response.ok === false) throw error.makeErrorResponse(response.status, response.statusText)
         const isOk = response.ok
-        return jira_transformer.getJiraProjectObject(await response.json())
+        return jira_transformer.getJiraProjectObject(await response)
     },
 
     getAllSprintsJira : async function (credentials) {

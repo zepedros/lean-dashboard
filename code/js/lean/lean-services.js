@@ -233,6 +233,28 @@ function services(data, db, auth){
 
             return await auth.giveUserRole(userToGiveRoleInfo, roleInfo, new Date(), formattedEndDate, userMakingRequest)
         },
+
+        removeRoleFromUser: async function(usernameToRemoveRole, userMakingRequest,role){
+            //verify if a role was given in the body
+            if (!role) throw error.makeErrorResponse(error.ARGUMENT_ERROR, "Please indicate in the body a role to give to the user")
+
+            //get the user info, to get the id and verify if exists
+            const userToGiveRoleInfo = await auth.getUserByUsername(usernameToRemoveRole)
+
+            if(!userToGiveRoleInfo) throw error.makeErrorResponse(error.NOT_FOUND, "User to be give a role doesn't exist")
+
+            //get role info for id
+            const roleInfo = await auth.getRoleByName(role)
+
+            if (roleInfo.role === 'manager'){
+                const projects = db.getProjects(usernameToRemoveRole.username)
+                console.log(projects)
+            }
+
+            return await auth.removeRoleFromUser(userToGiveRoleInfo, roleInfo)
+
+        },
+
         addCredential: function (projectId,credentialName,credentialSource,credentials) {
             switch (credentialSource) {
                 case "Jira" : checkJIRACredentials(credentials); break;

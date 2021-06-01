@@ -57,6 +57,21 @@ function makeAuth(authization) {
                 })
         },
 
+        removeRoleFromUser: async function(user, role){
+            /**
+             * return the delete method. if it's all good, just return a response. else, check error status and message and  throw error
+             */
+            const test = await authization.userRole.delete(user.id, role.id)
+            return authization.userRole.delete(user.id, role.id)
+                .then(res => {
+
+                    return response.makeResponse(response.OK, `User ${user.username} got the role ${role.role} removed`)
+                })
+                .catch(err => {
+                    throw error.makeErrorResponse(err.status, err.message)
+                })
+        },
+
 
         loginLocal: async function (req, res) {
             //just checks if it's authenticated or not, sending an error if not

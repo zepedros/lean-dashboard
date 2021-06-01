@@ -209,11 +209,23 @@ function webapi(app, services, auth, authization) {
             services.giveUserRole(username, userMakingRequest,body.role, body.endDate)
                 .then(resp => {
                     console.log(`User ${username} was given the role ${body.role}`)
-                    console.log(resp)
+                    answerHandler(resp, res,201)
+                })
+                .catch(err => errHandler(err, res))
+        },
+
+        removeRoleFromUser: function (req, res){
+            const userMakingRequest  = req.user
+            const username = req.params.username
+            const role = req.params.role
+            services.removeRoleFromUser(username, userMakingRequest, role)
+                .then(resp => {
+                    console.log(`User ${username} got the role ${role} removed`)
                     answerHandler(resp, res)
                 })
                 .catch(err => errHandler(err, res))
         }
+
     };
 
     app.get('/api/lean/projects', theWebApi.getAllProjects)
@@ -273,7 +285,7 @@ function webapi(app, services, auth, authization) {
         })
     }, theWebApi.logout)
     app.post('/api/lean/users/:username/roles', theWebApi.giveUserRole)
-
+    app.delete('/api/lean/users/:username/roles/:role', theWebApi.removeRoleFromUser)
 
     return theWebApi;
 }

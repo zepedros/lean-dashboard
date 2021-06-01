@@ -28,7 +28,15 @@ async function makeRequest(uri, method, body, headers) {
     /*if (!response.ok ){
         throw error.makeErrorResponse(response.status, response.statusText)
     }*/
-    return response
+
+    const responseJson = await response.json()
+
+    if (response.ok){
+        responseJson.ok = true
+        return responseJson
+    }else {
+        return response
+    }
 }
 
 function options(method, body, header) {
