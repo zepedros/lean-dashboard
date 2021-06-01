@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "68fa0649-1110-48f0-ac40-cf56ee6d8ff0",
+		"_postman_id": "c956bf05-0ee4-485f-8377-aff39952f170",
 		"name": "Lean Dashboard",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -1237,6 +1237,114 @@
 							"response": []
 						}
 					]
+				},
+				{
+					"name": "Credentials",
+					"item": [
+						{
+							"name": "GET /api/lean/projects/{id}/credentials",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/lean/projects/srQIw3kBDPtJKyKYIIqf/credentials",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"lean",
+										"projects",
+										"srQIw3kBDPtJKyKYIIqf",
+										"credentials"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET /api/lean/projects/{id}/credentials/{credentialId}",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/lean/projects/srQIw3kBDPtJKyKYIIqf/credentials/uLQLw3kBDPtJKyKYW4o7",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"lean",
+										"projects",
+										"srQIw3kBDPtJKyKYIIqf",
+										"credentials",
+										"uLQLw3kBDPtJKyKYW4o7"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "POST /api/lean/projects/{id}/credentials",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\" : \"JIRACredentials\",\r\n    \"source\" : \"Jira\",\r\n    \"credential\": {\r\n        \"email\" : \"leandashboardproject@gmail.com\",\r\n        \"token\" : \"LPcyGdZolN906MvzdwPHF045\",\r\n        \"APIPath\" : \"leandashboard.atlassian.net\",\r\n        \"APIVersion\" : 3\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/lean/projects/vxuewnkBE0sk1r1Qi0ZN/credentials",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"lean",
+										"projects",
+										"vxuewnkBE0sk1r1Qi0ZN",
+										"credentials"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DELETE /api/lean/projects/{id}/credentials/{credentialId}",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/lean/projects/srQIw3kBDPtJKyKYIIqf/credentials/uLQLw3kBDPtJKyKYW4o7",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"lean",
+										"projects",
+										"srQIw3kBDPtJKyKYIIqf",
+										"credentials",
+										"uLQLw3kBDPtJKyKYW4o7"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		},
@@ -1364,6 +1472,25 @@
 					"response": []
 				},
 				{
+					"name": "Create Credentials index",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9200/lean-credentials",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"lean-credentials"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Show all projects",
 					"request": {
 						"method": "GET",
@@ -1478,6 +1605,26 @@
 							"port": "9200",
 							"path": [
 								"lean-dashboards",
+								"_search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show all Credentials",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9200/lean-credentials/_search",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"lean-credentials",
 								"_search"
 							]
 						}

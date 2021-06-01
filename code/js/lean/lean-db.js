@@ -25,6 +25,7 @@ module.exports = {
             description: description,
             owner: userId,
             members: [],
+            credentials: [],
             dashboards : []
         }
 
@@ -357,5 +358,76 @@ module.exports = {
             .then(body=> {
                 return body._id
             })
+    },
+
+    getCredentials: async function(projectId) {
+        const project = await this.getProjectById(projectId)
+        const credentials = []
+        for(let i = 0; i < project.credentials.length; i++) {
+            let uri = `${ES_URL}lean-credentials/_doc/${project.credentials[i]}`
+            let credential = await fetch.makeGetRequest(uri)
+            credentials.push(credential._source)
+        }
+        return credentials
+    },
+
+    getCredentialsById: async function(projectId, credentialId) {
+        const project = await this.getProjectById(projectId)
+        if(project.credentials.includes(credentialId)) {
+            const uri = `${ES_URL}lean-credentials/_doc/${credentialId}`
+            return await fetch.makeGetRequest(uri)
+                .then(body =>{
+                    return body._source
+                })
+
+        }
+        else return Promise.reject(error.makeErrorResponse(error.DATABASE_ERROR,'CredentialId does not exist within the project'))
+    },
+
+    addCredential: async function(projectId,credentialName,credentialSource,credentials) {
+        const uriProject = `${ES_URL}lean-projects/_update/${projectId}`
+        const credential = {
+            "name": credentialName,
+            "source": credentialSource,
+            "credentials": credentials
+        }
+        const uri = `${ES_URL}lean-credentials/_doc`
+        const response = await fetch.makePostRequest(uri, credential)
+        if(!response.error) {
+            const updateProject = {
+                "script": {
+                    "source": "ctx._source.credentials.add(params.credentialId)",
+                    "params": {
+                        "credentialId": `${response._id}`
+                    }
+                }
+            };
+            return await fetch.makePostRequest(uriProject, updateProject)
+                .then(body=> {
+                    return response._id
+                })
+        }
+        else return Promise.reject(error.makeErrorResponse(error.DATABASE_ERROR,'Add Credential to Project Failed'))
+    },
+    deleteCredential: async function(projectId,credentialId) {
+        const project = await this.getProjectById(projectId)
+        if(project.credentials.includes(credentialId)) {
+            const uri = `${ES_URL}lean-credentials/_doc/${credentialId}?refresh=true`
+            let body = {
+                "script": {
+                    "lang": "painless",
+                    "inline": "ctx._source.credentials.remove(params.credential)",
+                    "params": {
+                        "credential": project.credentials.indexOf(credentialId)
+                    }
+                }
+            }
+            return fetch.makePostRequest(`${ES_URL}lean-projects/_update/${projectId}`,body)
+                .then( await fetch.makeDeleteRequest(uri)
+                    .then(body => {
+                        if(body.result === 'updated') return body
+                }))
+        }
+        else return Promise.reject(error.makeErrorResponse(error.DATABASE_ERROR,'CredentialId does not exist within the project'))
     }
 }

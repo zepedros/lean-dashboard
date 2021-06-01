@@ -1,5 +1,6 @@
 import { Container } from "@material-ui/core";
 import React from "react";
+import Divider from '@material-ui/core/Divider'
 
 
 import { styled } from '@material-ui/core/styles';
@@ -19,8 +20,7 @@ export default function SectionShortDescription(){
             </p>
             <p className="MuiTypography-root MuiTypography-h5 MuiTypography-colorTextSecondary MuiTypography-paragraph MuiTypography-alignCenter">
                 know about your project
-            </p>
-            
+            </p>            
         </Box>
   
     )

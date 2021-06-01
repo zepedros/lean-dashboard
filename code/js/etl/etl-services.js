@@ -101,5 +101,4 @@ function services(azureData, jiraData, squashData, db, auth) {
     };
     return theServices;
 }
-
 module.exports = services;

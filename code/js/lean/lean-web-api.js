@@ -166,6 +166,42 @@ function webapi(app, services, auth, authization) {
                 .catch(err => errHandler(err, res))
         },
 
+        getCredentials : function (req,res) {
+            services.getCredentials(req.params.id)
+                .then(resp => {
+                    console.log("Get Credentials")
+                    answerHandler(resp, res)
+                })
+                .catch(err => errHandler(err, res))
+        },
+
+        getCredentialsById : function (req,res) {
+            services.getCredentialsById(req.params.id, req.params.credentialId)
+                .then(resp => {
+                    console.log("Get Credentials by Id")
+                    answerHandler(resp, res)
+                })
+                .catch(err => errHandler(err, res))
+        },
+
+        addCredential : function (req,res) {
+            services.addCredential(req.params.id, req.body.name, req.body.source, req.body.credential)
+                .then(resp => {
+                    console.log("Added Credential to Project")
+                    answerHandler(resp, res)
+                })
+                .catch(err => errHandler(err, res))
+        },
+
+        deleteCredential : function (req,res) {
+            services.deleteCredential(req.params.id, req.params.credentialId)
+                .then(resp => {
+                    console.log("Deleted Credential from Project")
+                    answerHandler(resp, res)
+                })
+                .catch(err => errHandler(err, res))
+        },
+
         giveUserRole: function (req, res){
             const userMakingRequest  = req.user
             const body = req.body
@@ -204,6 +240,10 @@ function webapi(app, services, auth, authization) {
     app.delete('/api/lean/projects/:id/dashboard/:dashboardId/widgets/:widgetsId', theWebApi.removeWidgetFromDashboard)
     app.put('/api/lean/projects/:id/dashboard/:dashboardId/widgets/:widgetsId',theWebApi.updateWidget)
 
+    app.get('/api/lean/projects/:id/credentials', theWebApi.getCredentials)
+    app.get('/api/lean/projects/:id/credentials/:credentialId', theWebApi.getCredentialsById)
+    app.post('/api/lean/projects/:id/credentials', theWebApi.addCredential)
+    app.delete('/api/lean/projects/:id/credentials/:credentialId', theWebApi.deleteCredential)
 
 
 
