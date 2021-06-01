@@ -4,17 +4,17 @@ module.exports = {
 
     URI_MSG: "http://localhost:8000/api/lean/projects/",
 
-    create : function (code, uri) {
+    makePostResponse : function (code, uri) {
         return {
             statusCode: code,
-            status_message:this.URI_MSG.concat(uri)
+            message:this.URI_MSG.concat(uri)
         }
     },
 
-    createPostMsg: function(code,msg){
+    makeResponse: function(code,msg){
         return {
-            status:code,
-            status_message: msg
+            statusCode:code,
+            message: msg
         }
     }
 };

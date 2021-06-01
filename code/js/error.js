@@ -6,10 +6,10 @@ module.exports = {
     CONFLICT: 409,
     DATABASE_ERROR : 502,
 
-    create : function (code, message) {
+    makeErrorResponse : function (code, message) {
         return {
         statusCode: code,
-        status_message:message
+        message:message
         }
     }
 };
