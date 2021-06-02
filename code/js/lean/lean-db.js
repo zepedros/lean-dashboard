@@ -217,11 +217,14 @@ module.exports = {
             })
     },
 
-    addWidgetToDashboard: async function(dashboardId,widgetId,timeSettings,credentials){
+    addWidgetToDashboard: async function(projectId,dashboardId,widgetId,timeSettings,credentials){
         const uri = `${ES_URL}etl-templates/_doc/${widgetId}`
         const uriWidget  = `${ES_URL}etl-widgets/_doc`
         const uriDashboard = `${ES_URL}lean-dashboards/_update/${dashboardId}`
-
+        const aux = await checkCredentialsInProject(this, projectId, credentials);
+        if(aux.length === 0){
+            throw error.makeErrorResponse(error.NOT_FOUND, "Credentials do not exist")
+        }
         let bodyWidget
         return fetch.makeGetRequest(uri)
             .then(body=> {
@@ -232,7 +235,7 @@ module.exports = {
                         source: body._source.source,
                         params: [],
                         updateTime: timeSettings,
-                        credentials: credentials,
+                        credentials: aux[0].credential,
                         data: body._source.data
                     }
                     return fetch.makePostRequest(uriWidget,bodyWidget)
@@ -274,15 +277,19 @@ module.exports = {
             })
     },
 
-    updateWidget: async function(widgetId,newTimeSettings,newCredentials){
+    updateWidget: async function(projectId,widgetId,newTimeSettings,newCredentials){
         const uriWidget =  `${ES_URL}etl-widgets/_update/${widgetId}`
+        const aux = await checkCredentialsInProject(projectId,newCredentials)
+        if(aux.length === 0){
+            throw error.makeErrorResponse(error.NOT_FOUND, "Credentials do not exist")
+        }
         var body = {
             "script": {
                 "lang": "painless",
                 "inline": "ctx._source.credentials=params.credentials;ctx._source.updateTime=params.timeSettings",
                 "params": {
                     "timeSettings":newTimeSettings,
-                    "credentials": newCredentials
+                    "credentials": aux[0].credential
                 }
             }
         }
@@ -388,13 +395,18 @@ module.exports = {
     },
 
     addCredential: async function(projectId,credentialName,credentialSource,credentials) {
-        const uriProject = `${ES_URL}lean-projects/_update/${projectId}`
-        const credential = {
-            "name": credentialName,
-            "source": credentialSource,
-            "credentials": credentials
+        const project = await this.getProjectById(projectId)
+        const aux = await checkCredentialsInProject(projectId,credentialName)
+        if(aux.length !== 0){
+            throw error.makeErrorResponse(error.CONFLICT, "Credential name already exists")
         }
+        const uriProject = `${ES_URL}lean-projects/_update/${projectId}`
         const uri = `${ES_URL}lean-credentials/_doc`
+        const credential = {
+            "name" : credentialName,
+            "source" : credentialSource,
+            "credential" : credentials
+        }
         const response = await fetch.makePostRequest(uri, credential)
         if(!response.error) {
             const updateProject = {
@@ -447,6 +459,10 @@ module.exports = {
     },
     updateCredential : async function (projectId, credentialId,credentialName,credentialSource,credentials) {
         const project = await this.getProjectById(projectId)
+        const aux = await checkCredentialsInProject(projectId,credentialName)
+        if(aux.length !== 0){
+            throw error.makeErrorResponse(error.CONFLICT, "Credential name already exists")
+        }
         if(project.credentials.includes(credentialId)) {
             const uri = `${ES_URL}lean-credentials/_update/${credentialId}`
             let body = {
@@ -472,4 +488,20 @@ module.exports = {
         }
         else throw error.makeErrorResponse(error.DATABASE_ERROR,'CredentialId does not exist within the project')
     }
+}
+
+async function checkCredentialsInProject(projectId, credentials) {
+    let projectCredentials
+    try {
+        projectCredentials = await this.getCredentials(projectId)
+    } catch (ex) {
+        //exception caused by absense of credentials
+        projectCredentials = []
+    }
+    const aux = projectCredentials.filter((credential) => {
+        if (credential.name === credentials) {
+            return credential
+        }
+    })
+    return aux;
 }

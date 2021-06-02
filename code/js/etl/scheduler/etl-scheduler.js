@@ -26,10 +26,18 @@ module.exports = {
             const params = widget.params
             const credentials = widget.credentials
             switch (params.length) {
-                case 0 : func(widgetId, credentials); break
-                case 1 : func(params[0],widgetId,credentials); break
-                case 2 : func(params[0], params[1], widgetId, credentials); break
-                case 3 : func(params[0], params[1], params[2], widgetId, credentials); break
+                case 0 :
+                    func(widgetId, credentials);
+                    break
+                case 1 :
+                    func(params[0], widgetId, credentials);
+                    break
+                case 2 :
+                    func(params[0], params[1], widgetId, credentials);
+                    break
+                case 3 :
+                    func(params[0], params[1], params[2], widgetId, credentials);
+                    break
             }
         })
         job.start()

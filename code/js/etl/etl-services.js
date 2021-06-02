@@ -39,6 +39,9 @@ function services(azureData, jiraData, squashData, db, auth) {
 
         postJiraSprintDateGaugeChart: async function(widgetId, credentials){
             const data = await jiraTransformer.jiraSprintDateGaugeChart(jiraData, credentials)
+                .catch(err => {
+                    throw err
+                })
             return await db.postWidget(data, widgetId)
         },
 

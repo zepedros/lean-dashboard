@@ -141,7 +141,7 @@ function services(data, db, auth){
         },
 
         addWidgetToDashboard:function (projectId,dashboardId,templateId,timeSettings,credentials) {
-            return db.addWidgetToDashboard(dashboardId, templateId, timeSettings, credentials)
+            return db.addWidgetToDashboard(projectId,dashboardId, templateId, timeSettings, credentials)
                 .then(createdId => {
                     scheduler.scheduleWidget(createdId, true)
                     return response.makePostResponse(response.OK, `${projectId}/dashboard/`, dashboardId)
@@ -149,7 +149,7 @@ function services(data, db, auth){
         },
 
         updateWidget: function (projectId,dashboardId,widgetId,timeSettings,credentials){
-            return db.updateWidget(widgetId,timeSettings,credentials)
+            return db.updateWidget(projectId,widgetId,timeSettings,credentials)
                 .then(()=>{
                     scheduler.reSchedule(widgetId)
                     return response.makePostResponse(response.OK,`${projectId}/dashboard/${dashboardId}`)
@@ -265,7 +265,7 @@ function services(data, db, auth){
                     return response.makePostResponse(200, `${projectId}/credentials/${credentialId}`)
                 })
                 .catch(err => {
-
+                    throw err
                 })
         },
         getCredentials: function (projectId) {
