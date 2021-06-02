@@ -952,7 +952,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:8000/api/lean/projects/oXBPlnkB7Od3lsy2lwj8/dashboard",
+									"raw": "http://localhost:8000/api/lean/projects/ePkBzXkBM-3hOBzM-3-Q/dashboard",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -962,7 +962,7 @@
 										"api",
 										"lean",
 										"projects",
-										"oXBPlnkB7Od3lsy2lwj8",
+										"ePkBzXkBM-3hOBzM-3-Q",
 										"dashboard"
 									]
 								},
@@ -1000,7 +1000,7 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8000/api/lean/projects/eHDWk3kB7Od3lsy28AjX/dashboard/eXDXk3kB7Od3lsy2Jgiz/widgets/lHDqk3kB7Od3lsy2rQha",
+									"raw": "http://localhost:8000/api/lean/projects/ePkBzXkBM-3hOBzM-3-Q/dashboard/efkCzXkBM-3hOBzMIX-_/widgets/fPkDzXkBM-3hOBzMYH-4",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -1010,11 +1010,11 @@
 										"api",
 										"lean",
 										"projects",
-										"eHDWk3kB7Od3lsy28AjX",
+										"ePkBzXkBM-3hOBzM-3-Q",
 										"dashboard",
-										"eXDXk3kB7Od3lsy2Jgiz",
+										"efkCzXkBM-3hOBzMIX-_",
 										"widgets",
-										"lHDqk3kB7Od3lsy2rQha"
+										"fPkDzXkBM-3hOBzMYH-4"
 									]
 								}
 							},
@@ -1088,7 +1088,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"timeSettings\": {\n        \"seconds\" : \"\",\n        \"minutes\" : \"*/1\",\n        \"hours\" : \"*\",\n        \"dayOfMonth\" : \"*\",\n        \"month\" : \"*\",\n        \"dayOfWeek\" : \"*\"\n    },\n    \"credentials\": {\n        \"email\" : \"leandashboardproject@gmail.com\",\n        \"token\" : \"LPcyGdZolN906MvzdwPHF045\",\n        \"username\" : \"guest_tpl\",\n        \"password\" : \"password\",\n        \"APIPath\" : \"leandashboard.atlassian.net\",\n        \"APIVersion\" : 3\n    }\n}",
+									"raw": "{\n    \"timeSettings\": {\n        \"seconds\" : \"\",\n        \"minutes\" : \"*/1\",\n        \"hours\" : \"*\",\n        \"dayOfMonth\" : \"*\",\n        \"month\" : \"*\",\n        \"dayOfWeek\" : \"*\"\n    },\n    \"credentials\": \"JIRACredentials\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1096,7 +1096,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:8000/api/lean/projects/GEX1rnkBc7LBa5q0nVW4/dashboard/GUX1rnkBc7LBa5q0-VX_/widgets/e-Ayr3kBTeQJIJazg5Xn",
+									"raw": "http://localhost:8000/api/lean/projects/ePkBzXkBM-3hOBzM-3-Q/dashboard/efkCzXkBM-3hOBzMIX-_/widgets/gvkGzXkBM-3hOBzM3n--",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -1106,11 +1106,11 @@
 										"api",
 										"lean",
 										"projects",
-										"GEX1rnkBc7LBa5q0nVW4",
+										"ePkBzXkBM-3hOBzM-3-Q",
 										"dashboard",
-										"GUX1rnkBc7LBa5q0-VX_",
+										"efkCzXkBM-3hOBzMIX-_",
 										"widgets",
-										"e-Ayr3kBTeQJIJazg5Xn"
+										"gvkGzXkBM-3hOBzM3n--"
 									]
 								}
 							},
@@ -1123,7 +1123,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"timeSettings\": {\n        \"seconds\" : \"\",\n        \"minutes\" : \"*/1\",\n        \"hours\" : \"*\",\n        \"dayOfMonth\" : \"*\",\n        \"month\" : \"*\",\n        \"dayOfWeek\" : \"*\"\n    },\n    \"credentials\": {\n        \"email\" : \"leandashboardproject@gmail.com\",\n        \"token\" : \"LPcyGdZolN906MvzdwPHF045\",\n        \"username\" : \"guest_tpl\",\n        \"password\" : \"password\",\n        \"APIPath\" : \"demo.squashtest.org\",\n        \"APIVersion\" : 3\n    }\n}",
+									"raw": "{\n    \"timeSettings\": {\n        \"seconds\" : \"\",\n        \"minutes\" : \"*/1\",\n        \"hours\" : \"*\",\n        \"dayOfMonth\" : \"*\",\n        \"month\" : \"*\",\n        \"dayOfWeek\" : \"*\"\n    },\n    \"credentials\": \"JIRACredentials\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1131,7 +1131,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:8000/api/lean/projects/IXDCqnkB7Od3lsy2_wmF/dashboard/KHDHqnkB7Od3lsy2ZQlP/widgets/LnDKqnkB7Od3lsy2gAld",
+									"raw": "http://localhost:8000/api/lean/projects/ePkBzXkBM-3hOBzM-3-Q/dashboard/efkCzXkBM-3hOBzMIX-_/widgets/h_kHzXkBM-3hOBzM2n_s",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -1141,11 +1141,11 @@
 										"api",
 										"lean",
 										"projects",
-										"IXDCqnkB7Od3lsy2_wmF",
+										"ePkBzXkBM-3hOBzM-3-Q",
 										"dashboard",
-										"KHDHqnkB7Od3lsy2ZQlP",
+										"efkCzXkBM-3hOBzMIX-_",
 										"widgets",
-										"LnDKqnkB7Od3lsy2gAld"
+										"h_kHzXkBM-3hOBzM2n_s"
 									]
 								}
 							},
@@ -1295,7 +1295,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8000/api/lean/projects/srQIw3kBDPtJKyKYIIqf/credentials",
+									"raw": "http://localhost:8000/api/lean/projects/ePkBzXkBM-3hOBzM-3-Q/credentials",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -1305,7 +1305,7 @@
 										"api",
 										"lean",
 										"projects",
-										"srQIw3kBDPtJKyKYIIqf",
+										"ePkBzXkBM-3hOBzM-3-Q",
 										"credentials"
 									]
 								}
@@ -1343,7 +1343,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\" : \"JIRACredentials\",\r\n    \"source\" : \"Jira\",\r\n    \"credential\": {\r\n        \"email\" : \"leandashboardproject@gmail.com\",\r\n        \"token\" : \"LPcyGdZolN906MvzdwPHF045\",\r\n        \"APIPath\" : \"leandashboard.atlassian.net\",\r\n        \"APIVersion\" : 3\r\n    }\r\n}",
+									"raw": "{\r\n    \"name\" : \"abc\",\r\n    \"source\" : \"Jira\",\r\n    \"credential\": {\r\n        \"email\" : \"lean@gmail.com\",\r\n        \"token\" : \"LPcyGdZolN906MvzdwPHF045\",\r\n        \"APIPath\" : \"leandashboard.atlassian.net\",\r\n        \"APIVersion\" : 3\r\n    }\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1351,7 +1351,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:8000/api/lean/projects/PgHjx3kBz8X2NDu9PZ3e/credentials",
+									"raw": "http://localhost:8000/api/lean/projects/ePkBzXkBM-3hOBzM-3-Q/credentials",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -1361,7 +1361,7 @@
 										"api",
 										"lean",
 										"projects",
-										"PgHjx3kBz8X2NDu9PZ3e",
+										"ePkBzXkBM-3hOBzM-3-Q",
 										"credentials"
 									]
 								}
