@@ -24,7 +24,7 @@ module.exports = {
         let job = new CronJob(`${seconds} ${minutes} ${hours} ${dayOfMonth} ${month} ${dayOfWeek}`, async function () {
             const func = widgetMap.get(widget.function)
             const params = widget.params
-            const credentials = widget.credentials
+            const credentials = widget.credentials.credential
             switch (params.length) {
                 case 0 :
                     func(widgetId, credentials);
@@ -63,8 +63,8 @@ module.exports = {
 
     reSchedule : function (widgetId) {
         const job = widgetJobs.get(widgetId)
-        widgetJobs.delete(widgetId)
         job.stop()
+        widgetJobs.delete(widgetId)
         this.scheduleWidget(widgetId,false)
     },
 

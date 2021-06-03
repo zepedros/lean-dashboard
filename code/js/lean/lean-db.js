@@ -1,5 +1,6 @@
 const error = require('../error')
 const fetch = require('../uri-fetcher')
+const scheduler = require("../etl/scheduler/etl-scheduler");
 
 const config = {
     host: 'localhost',
@@ -235,7 +236,7 @@ module.exports = {
                         source: body._source.source,
                         params: [],
                         updateTime: timeSettings,
-                        credentials: aux[0].credential,
+                        credentials: aux[0].credentials,
                         data: body._source.data
                     }
                     return fetch.makePostRequest(uriWidget,bodyWidget)
@@ -279,7 +280,7 @@ module.exports = {
 
     updateWidget: async function(projectId,widgetId,newTimeSettings,newCredentials){
         const uriWidget =  `${ES_URL}etl-widgets/_update/${widgetId}`
-        const aux = await checkCredentialsInProject(projectId,newCredentials)
+        const aux = await checkCredentialsInProject(this,projectId,newCredentials)
         if(aux.length === 0){
             throw error.makeErrorResponse(error.NOT_FOUND, "Credentials do not exist")
         }
@@ -288,8 +289,8 @@ module.exports = {
                 "lang": "painless",
                 "inline": "ctx._source.credentials=params.credentials;ctx._source.updateTime=params.timeSettings",
                 "params": {
-                    "timeSettings":newTimeSettings,
-                    "credentials": aux[0].credential
+                    "timeSettings": newTimeSettings,
+                    "credentials": aux[0].credentials
                 }
             }
         }
@@ -373,7 +374,11 @@ module.exports = {
         for(let i = 0; i < project.credentials.length; i++) {
             let uri = `${ES_URL}lean-credentials/_doc/${project.credentials[i]}`
             let credential = await fetch.makeGetRequest(uri)
-            credentials.push(credential._source)
+            let result = {
+                "id" : credential._id,
+                "credentials" : credential._source
+            }
+            credentials.push(result)
         }
         if(credentials.length === 0) {
             throw error.makeErrorResponse(error.NOT_FOUND,'This project has no credentials')
@@ -396,7 +401,7 @@ module.exports = {
 
     addCredential: async function(projectId,credentialName,credentialSource,credentials) {
         const project = await this.getProjectById(projectId)
-        const aux = await checkCredentialsInProject(projectId,credentialName)
+        const aux = await checkCredentialsInProject(this,projectId,credentialName)
         if(aux.length !== 0){
             throw error.makeErrorResponse(error.CONFLICT, "Credential name already exists")
         }
@@ -459,11 +464,14 @@ module.exports = {
     },
     updateCredential : async function (projectId, credentialId,credentialName,credentialSource,credentials) {
         const project = await this.getProjectById(projectId)
-        const aux = await checkCredentialsInProject(projectId,credentialName)
-        if(aux.length !== 0){
-            throw error.makeErrorResponse(error.CONFLICT, "Credential name already exists")
-        }
         if(project.credentials.includes(credentialId)) {
+            const credential = await this.getCredentialsById(projectId,credentialId)
+            if(credentialName !== credential.name) {
+                const aux = await checkCredentialsInProject(this,projectId,credentialName)
+                if(aux.length !== 0){
+                    throw error.makeErrorResponse(error.CONFLICT, "Credential with that name already exists")
+                }
+            }
             const uri = `${ES_URL}lean-credentials/_update/${credentialId}`
             let body = {
                 "script": {
@@ -480,7 +488,31 @@ module.exports = {
             }
             return fetch.makePostRequest(uri,body)
                 .then(body => {
-                    if(body.result === 'updated') return body._id
+                    if(body.result === 'updated') {
+                        project.dashboards.forEach(dashboardId => {
+                            this.getDashboardFromProject(projectId,dashboardId)
+                                .then(result => {
+                                    result.widgets.forEach(widgetId => {
+                                        this.getWidget(widgetId)
+                                            .then(result => {
+                                                if(result.credentials.name === credential.name) {
+                                                    this.updateWidget(projectId,widgetId,result.updateTime,credentialName)
+                                                        .then(updatedWidget => {
+                                                            scheduler.reSchedule(updatedWidget)
+                                                        })
+                                                }
+                                            })
+                                            .catch(err => {
+                                                throw error.makeErrorResponse(err)
+                                            })
+                                    })
+                                })
+                                .catch(err => {
+                                    throw error.makeErrorResponse(err)
+                                })
+                        })
+                        return body._id
+                    }
                     else throw error.makeErrorResponse(error.DATABASE_ERROR,'Could not update credential')
                 }).catch(err => {
                     console.log('abc')
@@ -490,16 +522,16 @@ module.exports = {
     }
 }
 
-async function checkCredentialsInProject(projectId, credentials) {
+async function checkCredentialsInProject(db,projectId, credentials) {
     let projectCredentials
     try {
-        projectCredentials = await this.getCredentials(projectId)
+        projectCredentials = await db.getCredentials(projectId)
     } catch (ex) {
         //exception caused by absense of credentials
         projectCredentials = []
     }
     const aux = projectCredentials.filter((credential) => {
-        if (credential.name === credentials) {
+        if (credential.credentials.name === credentials) {
             return credential
         }
     })

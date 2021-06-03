@@ -1399,7 +1399,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\" : \"abcCredentials\",\r\n    \"source\" : \"Jira\",\r\n    \"credential\": {\r\n        \"email\" : \"leanboardproject@gmail.com\",\r\n        \"token\" : \"LPcyGdZsdfsdfsdfsdfsdfsdfsdzdwPHF045\",\r\n        \"APIPath\" : \"leandashboard.atlassian.net\",\r\n        \"APIVersion\" : 3\r\n    }\r\n}",
+									"raw": "{\r\n    \"name\" : \"abcd\",\r\n    \"source\" : \"Jira\",\r\n    \"credential\": {\r\n        \"email\" : \"leandashboardproject@gmail.com\",\r\n        \"token\" : \"LPcyGdZolN906MvzdwPHF045\",\r\n        \"APIPath\" : \"leandashboard.atlassian.net\",\r\n        \"APIVersion\" : 3\r\n    }\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1407,7 +1407,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:8000/api/lean/projects/PgHjx3kBz8X2NDu9PZ3e/credentials/SwH2x3kBz8X2NDu9AJ05",
+									"raw": "http://localhost:8000/api/lean/projects/hkqC0nkBD1XHrm2KaUW7/credentials/iEqD0nkBD1XHrm2KKkVe",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -1417,9 +1417,9 @@
 										"api",
 										"lean",
 										"projects",
-										"PgHjx3kBz8X2NDu9PZ3e",
+										"hkqC0nkBD1XHrm2KaUW7",
 										"credentials",
-										"SwH2x3kBz8X2NDu9AJ05"
+										"iEqD0nkBD1XHrm2KKkVe"
 									]
 								}
 							},
