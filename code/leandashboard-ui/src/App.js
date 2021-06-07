@@ -1,6 +1,12 @@
 //import logo from './logo.svg';
 import './App.css';
 import HomePage from './components/HomePage/HomePage';
+import SignIn from './components/Login/SignIn';
+import SignUp from './components/Login/SignUp';
+import { BrowserRouter as Router, Route, Link, Switch, withRouter } from "react-router-dom";
+import SideBar from 'react';
+
+
 
 /*function App() {
   return (
@@ -26,12 +32,18 @@ import HomePage from './components/HomePage/HomePage';
 function App() {
   return(
     <div className="App">
-    
-        <HomePage />
-  
+      < Router>
+        <Switch>
+          <Route exact path="/" component={withRouter(HomePage)} />
+          <Route exact path="/signIn" component={withRouter(SignIn)} />
+          <Route exact path="/signUp" component={withRouter(SignUp)} />
+        </Switch>
+      </Router>
     </div>
   )
 }
+/*
 
+*/
 export default App;
 
