@@ -3,8 +3,6 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import Link from '@material-ui/core/Link';
-import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 
@@ -12,17 +10,28 @@ import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex',
-    flexDirection: 'column',
-    minHeight: '40vh',
+      display: "flex",
+      flexDirection: "column",
+      flexWrap: "wrap", /*flex items will wrap onto multiple lines, from top to bottom.*/
+      padding: "20px",
+      postion:"absolute",
+      left:0,
+    bottom:0,
+    right:0,
+   
   },
   main: {
     marginTop: theme.spacing(2),
     marginBottom: theme.spacing(2),
   },
   footer: {
-    padding: theme.spacing(2, 2),
-    marginTop: 'auto',
+    postion: "absolute",
+    //padding: theme.spacing(2, 2),
+    //marginTop: 'auto',
+    left:0,
+    bottom:0,
+    right:0,
+    paddingBottom:"60px"
   },
   logo: {
     fontFamily: "Work Sans, sans-serif",
@@ -76,6 +85,7 @@ export default function StickyFooter() {
 
   const getMenuButtons = () => {
     return footerData.map(({ label, href }) => {
+   
       return (
         <Button
           {...{
@@ -89,6 +99,7 @@ export default function StickyFooter() {
           {label}
         </Button>
       );
+      
     });
 };
 
