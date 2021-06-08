@@ -43,6 +43,11 @@ Tomás Simão Mendes dos Santos, n.º 45363\\
 
 \maketitle
 
+\title{\huge\textbf{Abstract}}
+\\ \newline
+*O abstract será feito posteriormente*
+
+
 \pagebreak
 \tableofcontents{}
 \newpage
@@ -63,26 +68,26 @@ The information being displayed will show the team what needs to be addressed in
 \section{Report Organization}
 In this report, we will explain the early drafts of the implemented solution to the problem at hands, as well as provide a more in-depth analysis of the architecture and technology choices.
 
-\chapter{Solution}
+\chapter{Functionalities}
 
-\section{Functionalities}
 The solution will be a responsive mobile-first web application that will allow to consult and aggregate the information of various platforms. Inside a project, a manager will be able to add various dashboards that will then have the desired widgets. The widgets are the structures that hold and show the desired information regarding issues, tests, and sprints from platforms such as Jira, Squash and Azure. A manager will then be able to add various users to its project so that those users can consult all the dashboards with the relevant information in each widget.
-\subsection{Implemented functionalities}
+\section{Implemented functionalities}
 \begin{itemize}
     \item Retrieving the data from the multiple APIs
     \item Transforming the retrieved data in a widget format
     \item Creating a widget and adding it to an existing dashboard
-    \item Updating widgets with the use of a scheduler
+    \item Automatically updating widgets with the use of a scheduler
     \item Creating new projects
     \item Creating various Dashboards inside an existing project
     \item Partial authentication (creation of a local user, login, and logout)
+    \item Some back-office features (Adding and removing users from a project and giving roles to users)
     \item Lean Dashboard API partially implemented.
     \item RBAC roles and permission
     \item Setting the credentials for all the platforms
 \end{itemize}
 
 \newpage
-\subsection{Research and planning}
+\section{Research and planning}
 \begin{itemize}
     \item Digital prototype of the front end
     \item Red routes diagram
@@ -90,7 +95,7 @@ The solution will be a responsive mobile-first web application that will allow t
     \item Study of the React technology
 \end{itemize}
 
-\subsection{Functionalities to be added}
+\section{Functionalities to be added}
 \begin{itemize}
     \item Finishing management of projects by the back-office manager
     \item Full authentication and authorization
@@ -98,8 +103,8 @@ The solution will be a responsive mobile-first web application that will allow t
     \item Finishing the client application
 \end{itemize}
 
-\section{Architecture}
-\subsection{Architecture Principles}
+\chapter{Architecture}
+\section{Architecture Principles}
 The software solution being developed in the Lean Dashboard is divided into three main components: the ETL\cite{ETLPROC}, the Lean Dashboard Server and the client application.
 \\ \newline
 The ETL component, which stands for Extract, Transform and Load,  is responsible for obtaining the information from the various APIs and then transforming it to the desired format, widgets, and then proceeding to store them in a database. Both the topics of widgets and the storage solution being used will be addressed in this report in the Data model.
@@ -117,7 +122,7 @@ The Lean Dashboard server ends up serving as a gatherer of information. Inside t
 Lastly, we have the client application. The client application will be responsible for showing the user all of its projects. Users (if they are given these permissions) will be able to consult but also edit projects and dashboards. The main goal will be checking on the widgets inside a certain dashboard since those are the objects that contain the information being retrieved and transformed by the ETL.
 
 \newpage
-\subsection{Software Architecture}
+\section{Software Architecture}
 
 \begin{center}
     \includegraphics[width=\textwidth]{lean-dashboard-software-architecture.png}
@@ -125,7 +130,7 @@ Lastly, we have the client application. The client application will be responsib
 
 *Explicação do esquema*
 
-\subsection{Scheme of the back-end}
+\section{Scheme of the back-end}
 \begin{center}
     \includegraphics[width=\textwidth]{arquitetura_software.png}
 \end{center}
@@ -145,6 +150,13 @@ To better facilitate the getting and storage of information, we divided each obj
 *Nesta secção iríamos explicar a utilização do módulo Authization, bem como as capacidades de gestão de backoffice a ser utilizadas e o controlo de acessos*
 
 \chapter{User Experience Research}
+User Experience, commonly called UX, is the term used when referring to how users interact with a certain product. If we use an analogy, if we were to open a door, it is more about how the door handle is used than what shape or colour it has, or what material it is made from. 
+
+UX is also greatly impacted by the context a product is being used and the type of users using said product. With the guidance provided by Inetum, one company member provided us with a list of personas. That list of personas would help us take into consideration how we would address the UX design of our early digital prototypes (which later reflect on the client application), by having various types of users with specific personalities, most wanted features and specific positions inside a company. 
+
+Following that, we developed a digital prototype that would allow us to make a series of usability tests with real users. Those tests would allow us to better determine what needed to be addressed in our digital prototype and solve issues before any implementation was being done.
+
+With that said, we believe the User Experience research done by the group is something that can greatly improve the result of the client application, whilst saving implementation time by allowing us to make some decisions beforehand. Usually, problems are easier to solve in a digital prototype than they are in code.
 
 \section{Red routes diagram}
 Red Routes are a technique of User experience research that consists of a matrix that helps to prioritise our content and functionality based on usefulness to most users. With that, we can establish with functionalities need to be addressed first and be given more attention, regarding the number of users and the number of times a certain functionality is used.
