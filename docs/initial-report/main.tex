@@ -52,7 +52,7 @@ Tomás Simão Mendes dos Santos, n.º 45363\\
 
 \section{Background}
 Nowadays, within a company, it is even more important to have an organized and cooperative team with knowledge of all the steps and goals that need to be worked on for the various projects they are currently participating in.
-Each member of the team must keep track of high amounts of information, making it an easy task to overlook or forget issues that might bring problems to a project later. 
+Each member of the team must keep track of high amounts of information and since it is not uncommon that when working on a project a couple of platforms are used to keep track and share work done by the various members, useful information can be scattered on a vast amount of platforms, and sometimes even inside a single platform.
 The information relative to a project can be obtained from different sources and it is all aggregated in one place, readily available to be displayed to a work team to better guide a certain project's development.
 
 \section{Relevancy}
@@ -102,7 +102,15 @@ The solution will be a responsive mobile-first web application that will allow t
 \subsection{Architecture Principles}
 The software solution being developed in the Lean Dashboard is divided into three main components: the ETL\cite{ETLPROC}, the Lean Dashboard Server and the client application.
 \\ \newline
-The ETL component, which stands for Extract, Transform and Load, and is responsible for obtaining the information from the various APIs and then transforming it to the desired format, widgets, and then proceding to store them in a database. Both the topics of widgets and the storage solution being used will be addressed in this report in the Datamodel.
+The ETL component, which stands for Extract, Transform and Load,  is responsible for obtaining the information from the various APIs and then transforming it to the desired format, widgets, and then proceeding to store them in a database. Both the topics of widgets and the storage solution being used will be addressed in this report in the Data model.
+\\ \newline
+With the use of the ETL procedure in our application, we bring a couple of advantages to the way we interact with the data being displayed.
+\\ \newline
+Since having near-real-time information is enough, with the Extract component we can avoid making high amounts of requests to the various APIs and avoiding overload them.
+\\ \newline
+Additionally, by adapting the extracted information (the Transform component) we can have a format of data that closely resembles the type and aspect of details we are trying the show to the user in each widget (we will also showcase the aspect of a widget in our application).
+\\ \newline
+Finally, with the information transformed to the desired format, when can then use a No-SQL database to store it and later decide how we will display it to the users 
 \\ \newline
 The Lean Dashboard server ends up serving as a gatherer of information. Inside this server, we will have all of the various projects, created by users, and each one will have its dashboards. Dashboards will be used to group the various widgets, and the user is the one to choose which dashboards will contain which widgets (these being the same widgets that we're created by the Extract, Transform and Load procedure)
 \\ \newline
