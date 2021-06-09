@@ -146,8 +146,23 @@ To better facilitate the getting and storage of information, we divided each obj
 \end{center}
 *Texto a descrever os detalhes dos vários objetos*
 
+\newpage
 \section{Authization module, Backoffice and Access control}
-*Nesta secção iríamos explicar a utilização do módulo Authization, bem como as capacidades de gestão de backoffice a ser utilizadas e o controlo de acessos*
+ To give our users authorization and authentication features we had to think of a way of letting users create accounts, have users with different roles inside the application and have different roles have their privileges. To give users that set of features, and as a request of Inetum, we utilized a Node module called Authization. 
+
+As a reference point, this module was a project developed last year by the ISEL students Tiago Matias, Diogo Leandro andJoão Barata of the LEIC programme as a final project of the Project and Seminar course, and was also developed in partnership with Inetum, and serves as a module that allows to set up an RBAC model with various roles, permissions and decide which roles should have access to what permissions. The module will also take care of aspects such as login, logout and the creation of users. Since the module requires a SQL Database for the storage of users, we had to use  PostgreSQL to handle the storage of users, the created roles and permissions.
+
+As for the RBAC model, it was requested that there were three types of users: a master user, with every kind of accesses and ultimate control (that includes access to every existing project, both seeing and editing them), a user that would be able to manage certain projects and create new ones and finally a user with only permission to see projects he is a part of.
+With that said, we came up with an RBAC model with the roles Superuser, Manager and Collaborator, with the following accesses:
+\\ \newline
+
+\begin{center}
+    \includegraphics[width=\textwidth]{lean-rbac-model.png}
+\end{center}
+
+As said before, we defined three roles. The Superuser will have access to all of the defined permissions, being able to access and modify all projects,  without having to be a part of them. 
+Below the Superuser, the Manager role will act in a similar way to the Superuser, but will only be able to modify projects that we're created by himself. Additionally, he will only be able to visualize projects (and the dashboards and widgets associated with the said project) if he is a member or instead, the creator of that project. A manager will be able to manage aspects of a project such as its name, description, containing dashboards and widgets, as well as all the members in it.
+Finally, the role of Collaborator. Being the role with fewer permissions, users with this role will only be able to access projects they are members of.
 
 \chapter{User Experience Research}
 User Experience, commonly called UX, is the term used when referring to how users interact with a certain product. If we use an analogy, if we were to open a door, it is more about how the door handle is used than what shape or colour it has, or what material it is made from. 
