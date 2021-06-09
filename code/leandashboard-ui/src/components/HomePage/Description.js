@@ -28,11 +28,11 @@ export default function Integrations() {
                 Easy and Simple
                 </h1>
             <Grid container spacing={4} className={classes.gridContainer}>
-                <Grid item xs={12} sm={6} md={6}>
+                <Grid item xs={12} sm={12} md={6}>
                    <CardDescription description="All the widgets you need"/>
                 </Grid>
-                <Grid item xs={12} sm={6} md={6}>
-                   <CardDescription description="See all your projects"/>
+                <Grid item xs={12} sm={12} md={6}>
+                   <CardDescription description="See all your projects in one place"/>
                 </Grid>
                 
             </Grid>

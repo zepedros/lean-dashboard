@@ -5,20 +5,20 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
+import { positions } from '@material-ui/system';
+import { useLocation } from 'react-router';
+
 
 
 
 const useStyles = makeStyles((theme) => ({
   root: {
-      display: "flex",
-      flexDirection: "column",
-      flexWrap: "wrap", /*flex items will wrap onto multiple lines, from top to bottom.*/
-      padding: "20px",
-      postion:"absolute",
-      left:0,
-    bottom:0,
-    right:0,
-   
+    
+    left: 0,
+    bottom: 0,
+    width: "100%",
+     
+
   },
   main: {
     marginTop: theme.spacing(2),
@@ -26,12 +26,9 @@ const useStyles = makeStyles((theme) => ({
   },
   footer: {
     postion: "absolute",
-    //padding: theme.spacing(2, 2),
-    //marginTop: 'auto',
     left:0,
     bottom:0,
-    right:0,
-    paddingBottom:"60px"
+   
   },
   logo: {
     fontFamily: "Work Sans, sans-serif",
@@ -44,6 +41,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 700,
     size: "20px",
     marginLeft: "40px",
+    justifyContent: 'left'
  },
  toolbar: {
     display: "flex",
@@ -52,13 +50,16 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function StickyFooter() {
+
+  const location = useLocation()
+  const pathName=location.pathname
   const classes = useStyles();
 
   const displayDesktop = () => {
     return (
     <Toolbar className={classes.toolbar}>
         {femmecubatorLogo}
-        <div>{getMenuButtons()}</div>
+        <div style={{ textAlign:'left'}}>{getMenuButtons()}</div>
     </Toolbar>
     );
   };
@@ -87,6 +88,7 @@ export default function StickyFooter() {
     return footerData.map(({ label, href }) => {
    
       return (
+        
         <Button
           {...{
             key: label,
@@ -111,10 +113,9 @@ const femmecubatorLogo = (
   return (
     <div className={classes.root}>
       <CssBaseline />        
-      <footer className={classes.footer}>
-        <Container maxWidth="sm">
+      <footer className={classes.footer} style={{position: pathName === '/' ? 'relative' : 'absolute'}}>
          {displayDesktop()}
-        </Container>
+
       </footer>
     </div>
   );

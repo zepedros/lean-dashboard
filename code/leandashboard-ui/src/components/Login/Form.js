@@ -32,9 +32,9 @@ const useStyles = makeStyles((theme) => ({
     },
     logo: {
       fontFamily: "Work Sans, sans-serif",
-          fontWeight: 800,
-          color: "#00000",
-          textAlign: "left",
+      fontWeight: 800,
+      color: "#00000",
+      textAlign: "left",
     },
     form: {
       width: '100%', // Fix IE 11 issue.

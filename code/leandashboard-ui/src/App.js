@@ -3,6 +3,8 @@ import './App.css';
 import HomePage from './components/HomePage/HomePage';
 import SignIn from './components/Login/SignIn';
 import SignUp from './components/Login/SignUp';
+import About from './components/FooterLinks/About';
+
 import { BrowserRouter as Router, Route, Link, Switch, withRouter } from "react-router-dom";
 import SideBar from 'react';
 
@@ -34,9 +36,10 @@ function App() {
     <div className="App">
       < Router>
         <Switch>
-          <Route exact path="/" component={withRouter(HomePage)} />
-          <Route exact path="/signIn" component={withRouter(SignIn)} />
-          <Route exact path="/signUp" component={withRouter(SignUp)} />
+          <Route exact path="/" component={HomePage} />
+          <Route exact path="/signIn" component={SignIn} />
+          <Route exact path="/signUp" component={SignUp} />
+          <Route exact path="/about" component={About} />
         </Switch>
       </Router>
     </div>

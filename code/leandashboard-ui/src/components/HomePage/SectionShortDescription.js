@@ -15,10 +15,10 @@ export default function SectionShortDescription(){
             <h1 className="MuiTypography-root MuiTypography-h2 MuiTypography-colorTextPrimary MuiTypography-gutterBottom MuiTypography-alignCenter">
                 Lean Dashboard
             </h1>
-            <p className="MuiTypography-root MuiTypography-h5 MuiTypography-colorTextSecondary MuiTypography-paragraph MuiTypography-alignCenter">
+            <p className="MuiTypography-root MuiTypography-h6 MuiTypography-colorTextSecondary MuiTypography-paragraph MuiTypography-alignCenter">
                 Everything you need to 
             </p>
-            <p className="MuiTypography-root MuiTypography-h5 MuiTypography-colorTextSecondary MuiTypography-paragraph MuiTypography-alignCenter">
+            <p className="MuiTypography-root MuiTypography-h6 MuiTypography-colorTextSecondary MuiTypography-paragraph MuiTypography-alignCenter">
                 know about your project
             </p>            
         </Box>
