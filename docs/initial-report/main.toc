@@ -1,0 +1,20 @@
+\babel@toc {english}{}
+\contentsline {chapter}{\numberline {1}Introduction}{4}%
+\contentsline {section}{\numberline {1.1}Background}{4}%
+\contentsline {section}{\numberline {1.2}Relevancy}{4}%
+\contentsline {section}{\numberline {1.3}Report Organization}{4}%
+\contentsline {chapter}{\numberline {2}Functionalities}{5}%
+\contentsline {section}{\numberline {2.1}Implemented functionalities}{5}%
+\contentsline {section}{\numberline {2.2}Research and planning}{6}%
+\contentsline {section}{\numberline {2.3}Functionalities to be added}{6}%
+\contentsline {chapter}{\numberline {3}Architecture}{7}%
+\contentsline {section}{\numberline {3.1}Architecture Principles}{7}%
+\contentsline {section}{\numberline {3.2}Software Architecture}{8}%
+\contentsline {section}{\numberline {3.3}Scheme of the back-end}{8}%
+\contentsline {section}{\numberline {3.4}Data Model}{9}%
+\contentsline {section}{\numberline {3.5}Authization module, Backoffice and Access control}{10}%
+\contentsline {chapter}{\numberline {4}User Experience Research}{11}%
+\contentsline {section}{\numberline {4.1}Red routes diagram}{11}%
+\contentsline {section}{\numberline {4.2}Information Architecture}{13}%
+\contentsline {section}{\numberline {4.3}Digital Prototype}{13}%
+\contentsline {chapter}{\numberline {5}Client Application}{15}%
