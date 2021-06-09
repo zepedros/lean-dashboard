@@ -128,13 +128,59 @@ Lastly, we have the client application. The client application will be responsib
     \includegraphics[width=\textwidth]{lean-dashboard-software-architecture.png}
 \end{center}
 
-*Explicação do esquema*
+This figure depicts the various components of our application interacting with each other.
+\newline
+The rightmost part of the figure represents the information sources. These sources provide its users with an Application Programming Interface (API), this API will be used by the  ETL to obtain solely the needed information.
+\newline
+This information can take different forms. The data objects received from the APIs will differ in terms of structure and information, for example, a project is different from an issue. This means it is crucial to implement an optimized Extract module within the ETL component of our application.
+\newline
+After extracting this information, the ETL will send it towards its respective Transformation module, where it will be treated and converted into a new data object with the necessary fields to represent it visually later.
+\newline
+The Load module of the ETL will grab this newly created Widget object and load it on a database.
+\newline
+The ETL procedure is constantly running and updating the existing widgets on the database, according to the widget's time settings that will be presented in this document.
+\newline
+In the middle of the scheme is the core of the application, the Web Server, and its API.
+\newline
+The Web Server is responsible for processing the requests that will be sent by the Single Page Application (SPA), as well as managing the NoSQL database running on ElasticSearch\cite{ES}.
+\newline
+It interacts with an authorization and authentication module, the Authization module, to manage the users and their roles within the application.
+\newline
+The API supports a varied range of operations that can be called by the user to manipulate the information inside the database. It presents the user with methods to obtain, create, update, and delete the information in the database.
+\newline
+Lastly on the rightmost side of the diagram, there is the SPA, the component that will be accessed by the application user on their preferred device.
+\newline
+To provide the user with the best experience, this SPA will be developed as a mobile-first, responsive web application capable of supporting different types of display screens, starting from the smartphone up to the bigger ones like a regular desktop computer or a TV screen.
 
 \section{Scheme of the back-end}
 \begin{center}
-    \includegraphics[width=\textwidth]{arquitetura_software.png}
+    \includegraphics[width=\textwidth]{arquitetura software.png}
 \end{center}
-*explicação dos módulos e da sua interação*
+The back-end of the Lean Dashboard application is made of two key components, the Web Server(Lean Dashboard Server) and the ETL.
+\newline
+These two components interact with one another so that the ETL knows what sort of information it should obtain.
+\newline
+The Lean Dashboard Server is composed of 3 Node.JS\cite{NODE} modules:
+\begin{itemize}
+  \item The Web API module is responsible for catching the requests sent to the API, filtering the parameters and body fields, and sending them to the Services module.
+  \item The services module will process every request the Web API receives and forms a function call to the Database(DB) module. If the request consists of modifying or creating a Widget object it will make a call towards the Scheduler module in the ETL.
+  \item The DB module is responsible to access and modify the ElasticSearch based database, containing all the necessary functions to create, obtain, delete and edit the database. It also verifies if the inputted parameters are valid within the context of the application, preventing the existence of duplicates or the association of members to a project who aren't registered in the application, for example.
+\end{itemize}
+The ETL component, as we already mentioned, is responsible for accessing the various data sources and transforming them into a specific widget object.
+\newline
+It contains 5 Node.JS modules in its structure:
+\begin{itemize}
+  \item The Scheduler module, accessed by the lean-Services module, is responsible for scheduling the automatic ETL process that will update the created widgets according to the time settings a user provides. It accesses the DB module to retrieve the necessary information to execute the correct Services function.
+\newline
+The module is implemented using the node-cron\cite{NODECRON} module so that we can easily create and configure jobs to execute at a set time.
+It contains 2 Map objects with distinct functionalities, the widgetMap is responsible for providing the scheduler with the necessary ETL-Services function to execute for the various widgets according to the function parameter contained within the widget's structure, and the widgetJobs associates a widgetId to its currently running job so that we can reconfigure them at a later date.
+  \item The ETL-Services module acts as a coordinator for the ETL procedure, it obtains the necessary filtered data from the Data module and then gets the transformed information from the Transformer module.
+\newline
+After the process of obtaining information is complete it calls the DB module so that this information can be stored.
+  \item The Data module's task is accessing the selected information sources, currently Azure, Jira, and Squash, and sending them to the Transformer module for some light filtering, returning the retrieved object with only the necessary information for its transformation.
+  \item The Transformer module's job is to transform the data into the required information for the widget to be displayed. Currently, it transforms the data into widgets such as a Pie Chart, a Data Table, or a Gauge Chart.
+  \item Finally, the DB module is responsible for updating the widget's information with the updated data obtained from the ETL procedure.
+\end{itemize}
 
 \newpage
 \section{Data Model}
@@ -144,13 +190,84 @@ To better facilitate the getting and storage of information, we divided each obj
 \begin{center}
     \resizebox{120mm}{!}{\includegraphics[width=\textwidth]{modelo de dados.png}}
 \end{center}
-*Texto a descrever os detalhes dos vários objetos*
+\textbf{Lean Projects}
+\newline
+This is the index where all the Projects created with our application will be stored, acting as the main gatherer of information.
+\newline
+It has information over who created it (Owner), the Project's name, its description, and a unique identifier.
+\newline
+Each project can contain a varied number of members, dashboards, and credentials. 
+\newline
+This information is stored inside an Array of identifiers, these being Project Members for the members that are currently associated with the project, Project Dashboards for the dashboards, and Credentials for the credentials.
+\newline
+The members simply act as viewers of the information within the project, they can only access dashboards and view the information on the widgets.
+\newline
+\newline
+\textbf{Users}
+\newline
+The users are highlighted in a different color on the scheme to better differentiate them from the data model since they aren't being stored in the database our application manages and are being stored in the Authization module's database.
+\newline
+Each user will have a username and a password so they can log in to our application, as well as a unique identifier within the database to be used by the array of members within the Lean Projects Objects.
+\newline
+\newline
+\textbf{Dashboards}
+\newline
+The dashboards are where the widgets will be stored. They don't exist if there isn't at least an already existing Lean Project and will be presented as a web page with all the widgets within the dashboard being displayed.
+\newline
+The dashboard objects contain a name, an Array of Widget identifiers that are associated with the dashboard, a description, and a unique identifier within the database.
+\newline
+\newline
+\textbf{Credentials}
+\newline
+The credentials consist of a specific object containing a name, a source (Azure, Jira, or Squash), and a credential object containing all the credentials themselves.
+\newline
+This credential object is structured as such for each of the information sources:
+\newline
+\begin{center}
+    \resizebox{120mm}{!}{\includegraphics[width=\textwidth]{formato das credentials.png}}
+\end{center}
+Each source requires a different form of credential so that the authentication on their web API is successful. These credentials are mandatory as the ETL procedure cannot access the specified information source's API without them.
+\newline
+Azure requires an email, a token, and an Instance field related to the project within the API.
+\newline
+Jira requires an email, a token, an APIPath for the project within the API, and an APIVersion that refers to the API version to be used.
+\newline
+Squash only requires a username, a password, and the APIPath.
+\newline
+\newline
+\textbf{Widgets}
+\newline
+The widgets are the result of the ETL procedure.
+\newline
+They are created by the user through the selection of a widget template that will serve as a widget with temporary data to be displayed.
+\newline
+Widgets are made out of several fields like a name, a function, a data object, the time settings for the ETL schedule, the required credentials, and a unique identifier.
+\newline
+The function field refers to which ETL function the scheduler needs to call to start the node job.
+\newline
+The time settings are an object that contains information related to the interval at which the ETL procedure is executed to update the widget. 
+\newline
+Each field of this object is structured in CronTab format and consists of:
+\begin{itemize}
+  \item seconds;
+  \item minutes;
+  \item hours;
+  \item day of the month;
+  \item month;
+  \item day of the week;
+\end{itemize}
+The credentials are the credential object associated with the project.
+\newline
+Without them obtaining information is impossible, making it a required field when creating the widget.
+\newline
+The data object is where all the transformed ETL information will be stored. It is the main reason the application utilizes an ElasticSearch database, as the information contained within this object will vary from widget to widget, making it a hard task to store consistently within a relational database like PostgreSQL.
+
 
 \newpage
 \section{Authization module, Backoffice and Access control}
- To give our users authorization and authentication features we had to think of a way of letting users create accounts, have users with different roles inside the application and have different roles have their privileges. To give users that set of features, and as a request of Inetum, we utilized a Node module called Authization. 
+ To give our users authorization and authentication features we had to think of a way of letting users create accounts, have users with different roles inside the application and have different roles have their privileges. To give users that set of features, and as a request of Inetum, we utilized a Node module called Authization\cite{AUTHIZATION}. 
 
-As a reference point, this module was a project developed last year by the ISEL students Tiago Matias, Diogo Leandro andJoão Barata of the LEIC programme as a final project of the Project and Seminar course, and was also developed in partnership with Inetum, and serves as a module that allows to set up an RBAC model with various roles, permissions and decide which roles should have access to what permissions. The module will also take care of aspects such as login, logout and the creation of users. Since the module requires a SQL Database for the storage of users, we had to use  PostgreSQL to handle the storage of users, the created roles and permissions.
+As a reference point, this module was a project developed last year by the ISEL students Tiago Matias, Diogo Leandro andJoão Barata of the LEIC programme as a final project of the Project and Seminar course, and was also developed in partnership with Inetum, and serves as a module that allows to set up an RBAC model with various roles, permissions and decide which roles should have access to what permissions. The module will also take care of aspects such as login, logout and the creation of users. Since the module requires a SQL Database for the storage of users, we had to use  PostgreSQL\cite{POSTGRESQL} to handle the storage of users, the created roles and permissions.
 
 As for the RBAC model, it was requested that there were three types of users: a master user, with every kind of accesses and ultimate control (that includes access to every existing project, both seeing and editing them), a user that would be able to manage certain projects and create new ones and finally a user with only permission to see projects he is a part of.
 With that said, we came up with an RBAC model with the roles Superuser, Manager and Collaborator, with the following accesses:
@@ -230,6 +347,12 @@ We utilized the platform Figma\cite{FIGMA} to develop our Digital Prototype, thi
 https://medium.com/hashmapinc/etl-understanding-it-and-effectively-using-it-f827a5b3e54d\\
 Consulted on April 1st 2021
 
+\bibitem{AUTHIZATION} Authization Module\\
+https://github.com/dleandro/Authentication-and-Authorization-Node-Component-
+
+\bibitem{POSTGRESQL} PostgreSQL: The World's Most Advanced Open Source Relational Database\\
+https://www.postgresql.org/
+
 \bibitem{MIRO} Miro - Platform used for the Information Architecture schema\\
 https://miro.com/
 
@@ -237,6 +360,11 @@ https://miro.com/
 
 \bibitem{FIGMA} Figma Prototype tool\\https://www.figma.com/prototyping/
 
-\end{thebibliography} 
+\bibitem{ES} ElasticSearch \\ https://www.elastic.co/elasticsearch/
+
+\bibitem{NODE} Node.JS \\ https://nodejs.org/en/
+
+\bibitem{NODECRON} node-cron \\ https://www.npmjs.com/package/node-cron
+\end{thebibliography}
 
 \end{document}

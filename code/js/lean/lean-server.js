@@ -58,7 +58,6 @@ async function setup() {
 
     const db = require('./lean-db');
     const etlDb = require('../etl/etl-db')
-    const data = require('./lean-data');
 
     await etlDb.deleteWidgetTemplates()
     await etlDb.createWidgetTemplates()
