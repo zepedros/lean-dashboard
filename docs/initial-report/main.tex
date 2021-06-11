@@ -39,7 +39,7 @@ Tomás Simão Mendes dos Santos, n.º 45363\\
                  & Filipe Freitas, e-mail: ffreitas@cc.isel.ipl.pt\\
 \end{tabular}\\
 \vspace{5mm}
-\textbf{June 9th 2021 - V2 }}
+\textbf{June 11th 2021 - V3 }}
 
 
 \maketitle
@@ -326,7 +326,7 @@ Our research on every necessary item to develop an application that is easy and 
 \newline
 User Experience, commonly called UX, is the term used when referring to how users interact with a certain product. If we use an analogy, if we were to open a door, it is more about how the door handle is used than what shape or colour it has, or what material it is made from. 
 \newline
-UX is also greatly impacted by the context a product is being used and the type of users using said product. With the guidance provided by Inetum, one company member provided us with a list of personas. That list of personas would help us take into consideration how we would address the UX design of our early digital prototypes (which later reflect on the client application), by having various types of users with specific personalities, most wanted features and specific positions inside a company. 
+UX is also greatly impacted by the context a product is being used and the type of users using said product. Inetum conducted a UX research using contextual interviews with potential users of Lean Dashboard in order to understand their real needs. After studying the observations, 2 Personas were created that focus on the needs of the real target. That list of personas would help us take into consideration how we would address the UX design of our early digital prototypes (which later reflect on the client application), by having various types of users with specific personalities, most wanted features and specific positions inside a company. 
 \newline
 Following that, we developed a digital prototype that would allow us to make a series of usability tests with real users. Those tests would allow us to better determine what needed to be addressed in our digital prototype and solve issues before any implementation was being done.
 \newline
@@ -358,7 +358,10 @@ Regarding the identification of Red Routes' major advantage, it aids the team to
 \newpage
 
 \section{Information Architecture}
-To better organize and structure the flow and various paths of our web application, we made our Information Architecture schema using the platform Miro:
+Information architecture(IA) consists of capability of sorting and designing the content of not only the web, but also websites and mobile applications. 
+The main purpose of information architecture is to organize content to facilitate the users' process of tuning to the product's functionality and thus, finding anything they might want easily.
+There are several elements that can affect the content structure, among which, IA experts tend to regard the specifics of the target audience's needs. This can be justified by the fact that the IA prioritizes user satisfaction.
+The main factor that leads people to visit different websites is content. It is commonly shared that producing valuable content for users is crucial, but so is ensuring that the content is easily found. We use Personas that Inetum provided as a tool to find the most adequate IA, and ran usability tests.
 \\ \newline
 \begin{figure}[h!]
 \center
@@ -366,10 +369,10 @@ To better organize and structure the flow and various paths of our web applicati
 \caption{Information Architecture Diagram}
 \end{figure}
 
-With this diagram, we can better plan the making to the various resources by achieving a flowchart that dictates if the various flowchart accesses make sense (and easily correct them if they don't)
+With this diagram, we can better plan the making to the various resources by achieving a flowchart that dictates if the various flowchart accesses make sense (and easily correct them if they don't).
 
 \section{Digital Prototype}
-A Digital Prototype is a tool used in UI research to develop a mock user interface that can be utilized in use-case tests. These tests gather a small group of people and establish a task that all users need to complete. 
+A Digital Prototype is a tool used in UX research to develop a mock user interface that can be utilized in use-case tests. These tests gather a small group of people and establish a task that all users need to complete. 
 \\ \newline
 A Digital Prototype is how we validate our basic idea and the premises underpinning it by collecting user feedback.
 With the obtained results, we can then determine what aspects need to be addressed in the Digital Prototype by us developed.
@@ -384,7 +387,32 @@ We utilized the platform Figma\cite{FIGMA} to develop our Digital Prototype, thi
 \end{figure}
 
 \chapter{Client Application}
-*Nesta secção iríamos explicar alguns príncipios da aplicação cliente, bem como mostrar algumas das páginas por nós já feitas*
+The following section explains the current implementation for the client’s side of the application. This section is responsible for the visual of the system.
+\\ \newline
+\section{React vs Angular}
+React was our choice over Angular. The reason behind such decision was that Angular has a lot of concepts and syntax to learn, as well as the fact that Angular's documentation is much longer and we believe it might take some time to learn a new language given that the time frame is relatively short. React is easier to learn in the short term than Angular and the group that is developing this project would attend a course to learn react, which would be an asset.
+\\ \newline
+\section{Components}
+In this project phase, we only implement the HomePage, Sign in and Sign up pages. The reason for that is because we are finishing the usability tests that can have an impact on our pages and for that reason, we are waiting for the tests to end to starting implement the rest of the pages. 
+\\ \newline
+\begin{figure}[h!]
+\center
+    \includegraphics[width=\textwidth]{HomePage.png}
+\caption{Home Page}
+\end{figure}
+\begin{figure}[h!]
+
+In figure 5.1, we have the Home Page, it is the first page the user sees. The page has 6 components. 
+In the header, we have buttons for the user to register or login in and enter the application.
+In the footer, we have 4 links with information about the team and application such as About, Terms, Privacy Policy and, contact us.
+\\ \newline
+\center
+    \includegraphics[width=\textwidth]{SignIn.png}
+\caption{Sign In}
+\end{figure}
+
+
+
 
 \begin{thebibliography} {websites}
 
