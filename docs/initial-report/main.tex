@@ -70,24 +70,36 @@ In this report, we will explain the early drafts of the implemented solution to 
 
 \chapter{Functionalities}
 
-The solution will be a responsive mobile-first web application that will allow to consult and aggregate the information of various platforms. Inside a project, a manager will be able to add various dashboards that will then have the desired widgets. The widgets are the structures that hold and show the desired information regarding issues, tests, and sprints from platforms such as Jira, Squash and Azure. A manager will then be able to add various users to its project so that those users can consult all the dashboards with the relevant information in each widget.
+The solution will be a responsive mobile-first web application that will allow to consult and aggregate the information of various platforms. Inside a project, a manager will be able to add various dashboards that will then have the desired widgets. The widgets are the structures that hold and show the desired information regarding issues, tests, and sprints from platforms such as Jira\cite{JIRA}, Squash\cite{SQUASH} and Azure\cite{AZURE}. A manager will then be able to add various users to its project so that those users can consult all the dashboards with the relevant information in each widget.
 \section{Implemented functionalities}
+By the time of the delivery of this report, this are the features implemented:
+\\ \newline
 \begin{itemize}
-    \item Retrieving the data from the multiple APIs
-    \item Transforming the retrieved data in a widget format
-    \item Creating a widget and adding it to an existing dashboard
-    \item Automatically updating widgets with the use of a scheduler
-    \item Creating new projects
-    \item Creating various Dashboards inside an existing project
-    \item Partial authentication (creation of a local user, login, and logout)
-    \item Some back-office features (Adding and removing users from a project and giving roles to users)
-    \item Lean Dashboard API partially implemented.
-    \item RBAC roles and permission
-    \item Setting the credentials for all the platforms
+     \item Retrieving the data from the multiple APIs. As of right now, we can access the three supported APIs to obtain the relevant information
+    
+     \item Authentication of local users using the Authization Module. With the help of the module, we can now create new users, log in and logout out of users of local accounts.
+    
+     \item In addition to users, we also support roles for the given users: Superuser, Manager and Collaborator. Further on we will address these Role-based access control\cite{RBAC} (RBAC) roles and permissions
+    
+     \item Back-office implementation was started. With this, managers can now do actions such as add new members to a project, remove current project members as well as give certain users roles
+
+     \item Creating new projects. Authorized users can add new projects to the platform and manage them
+
+     \item Creating various Dashboards inside an existing project. After creating a project, it is also possible to include new dashboards in said project
+
+     \item Transforming the retrieved data in a widget format. The retrieved data is not yet in the desired format and needs to be adapted (we will cover the formatting of widgets later on in this report)
+
+     \item Creating a widget and adding it to an existing dashboard with the use of existing templates, that aid the user by showing them the type of existing widgets.
+
+     \item Automatically updating widgets with the use of a scheduler. Users can set a period to refresh existing widgets, making sure the most up to date information is being displayed. The process and technology chosen for the scheduler will be explained in the back end portion of this report
+
+     \item Setting the credentials for all the platforms. When creating a widget, a user can set up the desired credentials, to choose the data source for a specific widget
 \end{itemize}
 
 \newpage
 \section{Research and planning}
+In this section, we display the set of aspects, that despite technically not being functionalities, are essential aspects for the development of this project:
+\\ \newline
 \begin{itemize}
     \item Digital prototype of the front end
     \item Red routes diagram
@@ -341,6 +353,18 @@ We utilized the platform Figma\cite{FIGMA} to develop our Digital Prototype, thi
 \begin{thebibliography} {websites}
 
 \bibitem{INETUM} Inetum\\ https://gfi.world/pt-en/
+
+\bibitem{JIRA} Jira- Software development tool used by agile teams\\
+https://www.atlassian.com/software/jira
+
+\bibitem{SQUASH} Squash - Suite tool for test management\\
+https://www.squashtest.com/?lang=en
+
+\bibitem{AZURE} Azure - Cloud computing service by Microsoft\\
+https://azure.microsoft.com/en-us/
+
+\bibitem{RBAC} RBAC - Role-based Access Control\\
+\texttt{https://en.wikipedia.org/wiki/Role-based\_access\_control}
 
 \bibitem{ETLPROC} ETL - Understanding It and Effectively Using It.\\
 https://medium.com/hashmapinc/etl-understanding-it-and-effectively-using-it-f827a5b3e54d\\
