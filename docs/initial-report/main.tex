@@ -41,12 +41,21 @@ Tomás Simão Mendes dos Santos, n.º 45363
 \vspace{5mm}
 \textbf{June 11th 2021 - V3 }}
 
-
-
+%%\maketitle
 
 \title{\huge\textbf{Abstract}}
 
-*O abstract será feito posteriormente*
+The amount of information necessary to develop an application nowadays is a lot to keep track of. 
+\newline
+Suppose you're a project manager and you want to keep track of the information of your project as well as show it to your team but it is scattered across different platforms.
+\newline
+Data ranging from test results to the current sprints can all be puzzle pieces of a much bigger picture and accessing the various platforms only to view this information can be tiring and complicated.
+\newline
+This project's goal is to simplify a team's life, by developing an application that allows a project manager to control and show the team members the necessary information for their project.
+\newline
+This application will make use of a single page application, a web server(Web API), as well as a no-SQL database and an ETL procedure used to extract and transform the information from the various data sources.
+
+\textbf{Keywords:} Information Aggregation, ETL, Project Managing, Project Information, Team Management, Single Page Application, Web API, no-SQL Database
 
 
 \pagebreak
@@ -184,7 +193,7 @@ Lastly on the rightmost side of the diagram, there is the SPA, the component tha
     \includegraphics[width=\textwidth]{arquitetura software.png}
     \caption{Back-end structure and modules interactions}
 \end{figure}
-The back-end of the Lean Dashboard application is made of two key components, the Web Server(Lean Dashboard Server) and the ETL.
+Figure 3.2 depicts the application's back-end and the information flow between its main components. On the left, we have the Lean Dashboard Server and on the right the ETL Procedure, the two key components of the application's back-end.
 
 These two components interact with one another so that the ETL knows what sort of information it should obtain.
 
@@ -221,6 +230,11 @@ To better facilitate the getting and storage of information, we divided each obj
     \resizebox{120mm}{!}{\includegraphics[width=\textwidth]{modelo de dados.png}}
     \caption{Database Data Model}
 \end{figure}
+
+Figure 3.3 depicts the application's data model and the object's structures. Each of these objects contains the necessary fields to store the needed information for the application. 
+\newpage
+Each object is detailed as the following:
+\newline
 
 \textbf{Lean Projects}
 
@@ -262,6 +276,9 @@ This credential object is structured as such for each of the information sources
 \end{figure}
 
 Each source requires a different form of credential so that the authentication on their web API is successful. These credentials are mandatory as the ETL procedure cannot access the specified information source's API without them.
+\newline
+According to figure 3.4:
+\newline
 
 Azure requires an email, a token, and an Instance field related to the project within the API.
 
@@ -269,8 +286,7 @@ Jira requires an email, a token, an APIPath for the project within the API, and 
 
 Squash only requires a username, a password, and the APIPath.
 
-
-
+\newpage
 
 \textbf{Widgets}
 
