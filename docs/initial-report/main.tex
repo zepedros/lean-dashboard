@@ -27,21 +27,21 @@
 
 \author{
 \begin{tabular}{c}
-José Pedro Jesus, n.º 44805
-Hugo Manuel Jacinto Pinheiro, n.º 44886
-Tomás Simão Mendes dos Santos, n.º 45363
+José Pedro Jesus, n.º 44805\\
+Hugo Manuel Jacinto Pinheiro, n.º 44886\\
+Tomás Simão Mendes dos Santos, n.º 45363\\
 \end{tabular}
 }
 
 \date{
 \begin{tabular}{ll}
-  {\textbf{Supervisors:}} & João Pereira, e-mail: joao.pereira@inetum.world, Inetum 
-                 & Filipe Freitas, e-mail: ffreitas@cc.isel.ipl.pt
-\end{tabular}
+  {\textbf{Orientadores:}} & João Pereira, e-mail: joao.pereira@inetum.world, Inetum \\
+                 & Filipe Freitas, e-mail: ffreitas@cc.isel.ipl.pt\\
+\end{tabular}\\
 \vspace{5mm}
-\textbf{June 11th 2021 - V3 }}
+\textbf{June 13th 2021 - V4 }}
 
-%%\maketitle
+\maketitle
 
 \title{\huge\textbf{Abstract}}
 
@@ -55,10 +55,11 @@ This project's goal is to simplify a team's life, by developing an application t
 \newline
 This application will make use of a single page application, a web server(Web API), as well as a no-SQL database and an ETL procedure used to extract and transform the information from the various data sources.
 
+
 \textbf{Keywords:} Information Aggregation, ETL, Project Managing, Project Information, Team Management, Single Page Application, Web API, no-SQL Database
 
 
-\pagebreak
+\newpage
 \tableofcontents{}
 \newpage
 
@@ -203,6 +204,7 @@ The Lean Dashboard Server is composed of 3 Node.JS\cite{NODE} modules:
   \item The services module will process every request the Web API receives and forms a function call to the Database(DB) module. If the request consists of modifying or creating a Widget object it will make a call towards the Scheduler module in the ETL.
   \item The DB module is responsible to access and modify the ElasticSearch based database, containing all the necessary functions to create, obtain, delete and edit the database. It also verifies if the inputted parameters are valid within the context of the application, preventing the existence of duplicates or the association of members to a project who aren't registered in the application, for example.
 \end{itemize}
+\newpage
 The ETL component, as we already mentioned, is responsible for accessing the various data sources and transforming them into a specific widget object.
 
 It contains 5 Node.JS modules in its structure:
