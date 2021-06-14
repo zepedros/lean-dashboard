@@ -1,13 +1,12 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
 \usepackage{hyperref}
-\documentclass{article}
 \usepackage{enumitem}
 \newlist{steps}{enumerate}{1}
 \setlist[steps, 1]{label = Step \arabic*:}
 
 
-\title{\huge\textbf{Organization Description Lean Dashboard}}
+\title{\huge\textbf{Lean Dashboard - Organization Description}}
 
 
 
@@ -23,24 +22,36 @@
 \end{tabular}
 \end{center}
 
+\textbf{Supervisors}:´
+\begin{center}
+\begin{tabular}{ c }
+    João Pereira, e-mail: joao.pereira@inetum.world, Inetum\\
+    Filipe Freitas, e-mail: ffreitas@cc.isel.ipl.pt\\
+\end{tabular}
+\end{center}
+
+
 \textbf{Github Repository}: \url{https://github.com/zepedros/lean-dashboard}
 
-\textbf{Instruction to run the application}:
+\section{Application Back-end}
+In order to run the Back-end of the application it is first necessary to have installed NodeJS, PostgreSQL, Postman and Elasticsearch. After that, it should be possible to run the application by following these instructions:
+
 \begin{center}
 \begin{steps}
-  \item Run elasticSearch
-  \item Setup .env file for the database
-  \item Run PgAdmin 
-  \item Setup the Authization database in PgAdmin
-  \item Open directory leandashboard-ui
-  \item Open the terminal and run npm install node\_modules package
-  \item Run npm start
+  \item Run Elasticsearch on your machine
+  \item Setup .env file for the database. This file should be located in \path{lean-dashboard\code\js}. In this file you setup details of the database being used such as the host, port, user and password (see our example below)
+  \item Run PostgreSQL service on your machine
+  \item Open Postman and import the collection for the API located on \path{lean-dashboard\code\Lean Dashboard.postman_collection.json}
+  \item Open directory \path{lean-dashboard\code\js}
+  \item Open the terminal and run the command \textbf{npm install package.json}
+  \item Run the command \textbf{npm \path{lean\lean-server.js}} to start the application
  
 \end{steps}
 \end{center}
 
+\newpage
 Example of .env file:\\
-
+\newline
 HOST= localhost \\
 DB\_PORT= 5432 \\
 DB\_USER= postgres \\
@@ -48,4 +59,17 @@ DB\_PASSWORD= 1234 \\
 DB\_CONNECTION\_LIMIT= 5 \\
 DATABASE= authization \\
 DBMS= postgres \\
+
+\section{Application Front-end}
+Some of the pages for the application have already begun being developed, without the use of the API developed in the back-end. These can be tested with the help of the following instructions:
+
+\begin{center}
+\begin{steps}
+  \item Open directory \path{lean-dashboard\code\leandashboard-ui}
+  \item Open the terminal and run the command \textbf{npm install package.json}
+  \item Run the command \textbf{npm start}
+  \item Wait for your browser to open a window with the application, or access \url{http://localhost:3000/} to open the application manually
+ 
+\end{steps}
+\end{center}
 \end{document}

@@ -35,24 +35,20 @@ Tomás Simão Mendes dos Santos, n.º 45363\\
 
 \date{
 \begin{tabular}{ll}
-  {\textbf{Orientadores:}} & João Pereira, e-mail: joao.pereira@inetum.world, Inetum \\
+  {\textbf{Supervisors:}} & João Pereira, e-mail: joao.pereira@inetum.world, Inetum \\
                  & Filipe Freitas, e-mail: ffreitas@cc.isel.ipl.pt\\
 \end{tabular}\\
-\vspace{5mm}
-\textbf{June 13th 2021 - V4 }}
+\vspace{80mm}
+\textbf{June 14th 2021}}
 
 \maketitle
 
 \title{\huge\textbf{Abstract}}
 
-The amount of information necessary to develop an application nowadays is a lot to keep track of. 
-\newline
-Suppose you're a project manager and you want to keep track of the information of your project as well as show it to your team but it is scattered across different platforms.
-\newline
-Data ranging from test results to the current sprints can all be puzzle pieces of a much bigger picture and accessing the various platforms only to view this information can be tiring and complicated.
-\newline
-This project's goal is to simplify a team's life, by developing an application that allows a project manager to control and show the team members the necessary information for their project.
-\newline
+The amount of information necessary to develop an application nowadays is a lot to keep track of. Suppose you're a project manager and you want to keep track of the information of your project as well as show it to your team but it is scattered across different platforms.
+
+Data ranging from test results to the current sprints can all be puzzle pieces of a much bigger picture and accessing the various platforms only to view this information can be tiring and complicated.This project's goal is to simplify a team's life, by developing an application that allows a project manager to control and show the team members the necessary information for their project.
+
 This application will make use of a single page application, a web server(Web API), as well as a no-SQL database and an ETL procedure used to extract and transform the information from the various data sources.
 
 
@@ -64,11 +60,7 @@ This application will make use of a single page application, a web server(Web AP
 \newpage
 
 \chapter{Introduction}
-In this section, a light introduction to the project will be made.
-Aspects such as context and background for the application will be explained in more detail, as well as the basic need for it to be developed.
-The overall structure of this document is explained here as well.
 
-\section{Background}
 Nowadays, within a company, it is even more important to have an organized and cooperative team with knowledge of all the steps and goals that need to be worked on for the various projects they are currently participating in.
 Each member of the team must keep track of high amounts of information and since it is not uncommon that when working on a project a couple of platforms are used to keep track and share work done by the various members, useful information can be scattered on a vast amount of platforms, and sometimes even inside a single platform.
 The information relative to a project can be obtained from different sources and it is all aggregated in one place, readily available to be displayed to a work team to better guide a certain project's development.
@@ -77,7 +69,6 @@ The Lean Dashboard Project will be developed to help the company's workers keepi
 The project at hands will be developed in partnership with Inetum\cite{INETUM} and will centre around the development of a responsive web application capable of running on a multitude of devices, ranging from smartphones to desktop computers to large screens such as TV’s. This web application will display to a work team of a company all the information regarding various projects being worked on. 
 The information being displayed will show the team what needs to be addressed in the project at hands, such as milestones, bugs, and current errors in the project.
 
-\newpage
 \section{Report Organization}
 In this report, we will explain the early drafts of the implemented solution to the problem at hands, as well as provide a more in-depth analysis of the architecture and technology choices.
 
@@ -399,7 +390,7 @@ A Digital Prototype is how we validate our basic idea and the premises underpinn
 With the obtained results, we can then determine what aspects need to be addressed in the Digital Prototype by us developed.
  
 This research and planning done beforehand (before the full implementation of the client application) can greatly decrease implementation costs since it is much easier to make modifications to this mocked user interface than it is to make some of the same changes on the client application code.
-We utilized the platform Figma\cite{FIGMA} to develop our Digital Prototype, this being the prototype obtained:
+We utilized the platform Figma\cite{FIGMA} to develop our Digital Prototype on figure 4.3:
  
 \begin{figure}[h!]
 \center
@@ -426,8 +417,8 @@ In this project phase, we only implement the HomePage, Sign in and Sign up pages
 In figure 5.1, we have the Home Page, it is the first page the user sees. The page has 6 components. 
 In the header, we have buttons for the user to register or login in and enter the application.
 In the footer, we have 4 links with information about the team and application such as About, Terms, Privacy Policy and, contact us.
-  
- In figure 5.2, is the view that represents the entrance to the user account. It is composed by a form of two text input boxes that receive the username and the password.
+
+In figure 5.2, is the view that represents the entrance to the user account. It is composed by a form of two text input boxes that receive the username and the password.
 \center
     \includegraphics[width=\textwidth]{SignIn.png}
 \caption{Sign In}
