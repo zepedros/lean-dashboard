@@ -21,7 +21,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"credentials\": {\r\n        \"email\" : \"leanoardproject@gmail.com\",\r\n        \"token\" : \"LPcyGdZolN906MvzdwPHF045\",\r\n        \"APIPath\" : \"leandashboard.atlassian.net\",\r\n        \"APIVersion\" : 3\r\n    }\r\n}",
+									"raw": "{\r\n    \"credentials\": {\r\n        \"email\" : \"leandashboardproject@gmail.com\",\r\n        \"token\" : \"LPcyGdZolN906MvzdwPHF045\",\r\n        \"APIPath\" : \"leandashboard.atlassian.net\",\r\n        \"APIVersion\" : 3\r\n    }\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1343,7 +1343,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\" : \"abc\",\r\n    \"source\" : \"Jira\",\r\n    \"credential\": {\r\n        \"email\" : \"lean@gmail.com\",\r\n        \"token\" : \"LPcyGdZolN906MvzdwPHF045\",\r\n        \"APIPath\" : \"leandashboard.atlassian.net\",\r\n        \"APIVersion\" : 3\r\n    }\r\n}",
+									"raw": "{\r\n    \"name\" : \"abc\",\r\n    \"source\" : \"Jira\",\r\n    \"credential\": {\r\n        \"email\" : \"leandashboardproject@gmail.com\",\r\n        \"token\" : \"LPcyGdZolN906MvzdwPHF045\",\r\n        \"APIPath\" : \"leandashboard.atlassian.net\",\r\n        \"APIVersion\" : 3\r\n    }\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
