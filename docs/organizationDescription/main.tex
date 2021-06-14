@@ -1,0 +1,51 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\documentclass{article}
+\usepackage{enumitem}
+\newlist{steps}{enumerate}{1}
+\setlist[steps, 1]{label = Step \arabic*:}
+
+
+\title{\huge\textbf{Organization Description Lean Dashboard}}
+
+
+
+\begin{document}
+\maketitle
+
+\textbf{Authors}:
+\begin{center}
+\begin{tabular}{ c }
+ José Pedro Jesus, n.º 44805 \\
+ Hugo Manuel Jacinto Pinheiro, n.º 44886 \\
+ Tomás Simão Mendes dos Santos, n.º 45363
+\end{tabular}
+\end{center}
+
+\textbf{Github Repository}: \url{https://github.com/zepedros/lean-dashboard}
+
+\textbf{Instruction to run the application}:
+\begin{center}
+\begin{steps}
+  \item Run elasticSearch
+  \item Setup .env file for the database
+  \item Run PgAdmin 
+  \item Setup the Authization database in PgAdmin
+  \item Open directory leandashboard-ui
+  \item Open the terminal and run npm install node\_modules package
+  \item Run npm start
+ 
+\end{steps}
+\end{center}
+
+Example of .env file:\\
+
+HOST= localhost \\
+DB\_PORT= 5432 \\
+DB\_USER= postgres \\
+DB\_PASSWORD= 1234 \\
+DB\_CONNECTION\_LIMIT= 5 \\
+DATABASE= authization \\
+DBMS= postgres \\
+\end{document}
