@@ -109,9 +109,7 @@ export default function Form(props) {
               
             </Grid>
             
-            <Box mt={5}>
-              <Copyright />
-             </Box>
+           
           </form>
     )
 
