@@ -4,6 +4,7 @@ import HomePage from './components/HomePage/HomePage';
 import SignIn from './components/Login/SignIn';
 import SignUp from './components/Login/SignUp';
 import About from './components/FooterLinks/About';
+import ProjectsPage from './components/Projects/ProjectsPage';
 
 import { BrowserRouter as Router, Route, Link, Switch, withRouter } from "react-router-dom";
 import SideBar from 'react';
@@ -40,6 +41,7 @@ function App() {
           <Route exact path="/signIn" component={SignIn} />
           <Route exact path="/signUp" component={SignUp} />
           <Route exact path="/about" component={About} />
+          <Route exact path="/projects" component={ProjectsPage} />
         </Switch>
       </Router>
     </div>
