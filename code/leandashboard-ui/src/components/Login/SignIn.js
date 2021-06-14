@@ -8,6 +8,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import img from '../images/signIn.png'
 
 import Form from './Form'
+import Copyright from './CopyRight';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -72,6 +73,7 @@ export default function SignIn() {
             </Typography>
           </Grid>
           <Form button="Sign In"/>
+          
         </div>
       </Grid>
     </Grid>
