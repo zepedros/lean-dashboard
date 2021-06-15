@@ -66,7 +66,7 @@ async function setup() {
 
     const scheduler = require('../etl/scheduler/etl-scheduler')
     scheduler.widgetMapBuilder()
-    const services = servicesCreator(data, db, auth);
+    const services = servicesCreator(db, auth);
     const webapi = webApiCreator(app, services, auth, authization);
 
     return app

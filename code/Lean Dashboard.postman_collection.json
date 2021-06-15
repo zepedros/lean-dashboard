@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "6b0bb2e0-d2e8-44e6-a75e-4427cdd058ba",
+		"_postman_id": "b2a786e3-10fa-45d1-b354-53d1f101ad05",
 		"name": "Lean Dashboard",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -744,13 +744,37 @@
 							"response": []
 						},
 						{
+							"name": "GET /api/lean/projects/user/{username}",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/lean/projects/user/zepedros",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"lean",
+										"projects",
+										"user",
+										"zepedros"
+									]
+								},
+								"description": "Get All projects from Lean Dashboard"
+							},
+							"response": []
+						},
+						{
 							"name": "POST /api/lean/projects",
 							"request": {
 								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"name\": \"Project Lean Dashboard\",\n    \"description\": \"description Lean Dashboard\"\n}",
+									"raw": "{\n    \"name\": \"shiloman project 3\",\n    \"description\": \"doard\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -859,7 +883,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"username\": \"shiloman\"\r\n}",
+									"raw": "{\r\n    \"username\": \"zepedros\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -867,7 +891,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:8000/api/lean/projects/vxuewnkBE0sk1r1Qi0ZN/users",
+									"raw": "http://localhost:8000/api/lean/projects/W7w-D3oBo_hXffI8TKgO/users",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -877,7 +901,7 @@
 										"api",
 										"lean",
 										"projects",
-										"vxuewnkBE0sk1r1Qi0ZN",
+										"W7w-D3oBo_hXffI8TKgO",
 										"users"
 									]
 								}
@@ -1207,6 +1231,39 @@
 							"response": []
 						},
 						{
+							"name": "POST /api/lean/users/{username}/roles",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"role\":\"manager\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/lean/users/shiloman/roles",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"lean",
+										"users",
+										"shiloman",
+										"roles"
+									]
+								},
+								"description": "Get all project from a user (JIRA)"
+							},
+							"response": []
+						},
+						{
 							"name": "POST /api/lean/register",
 							"request": {
 								"method": "POST",
@@ -1242,7 +1299,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"username\" : \"superuser\",\r\n    \"password\"  : \"Superuser123\"\r\n}",
+									"raw": "{\r\n    \"username\" : \"zepedros\",\r\n    \"password\"  : \"Testpassword123\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"

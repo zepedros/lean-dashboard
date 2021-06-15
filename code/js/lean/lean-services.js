@@ -5,7 +5,7 @@ const response = require('../responses')
 const scheduler = require('../etl/scheduler/etl-scheduler')
 //a map with all the scheduled jobs so that they can be stopped and deleted or reconfigured
 
-function services(data, db, auth){
+function services(db, auth){
 
     return {
 
@@ -25,8 +25,10 @@ function services(data, db, auth){
         getAllProjects:function (){
             return db.getAllProjects()
         },
-        getProjects: async function (user) {
-            return db.getProjects(user)
+        getProjects: async function (user, userMakingRequest) {
+            if (user !== userMakingRequest.username && userMakingRequest.id !== 1)
+                throw error.makeErrorResponse(error.FORBIDDEN, "You can't access this user's projects")
+            return db.getProjects(user, userMakingRequest)
         },
         getProjectById: async function (id) {
             return db.getProjectById(id)

@@ -53,8 +53,11 @@ module.exports = {
             })
     },
 
-    getProjects: function (user) {
-        const uri = `${ES_URL}lean-projects/_search?q=members:${user} owner:${user}&default_operator=OR`
+    getProjects: function (user, userMakingRequest) {
+        const uri = userMakingRequest.id === 1 ?
+            `${ES_URL}lean-projects/_search`
+            :
+            `${ES_URL}lean-projects/_search?q=members:${userMakingRequest.id} owner:${userMakingRequest.id}&default_operator=OR`
         return fetch.makeGetRequest(uri)
             .then(body => {
                 if(body.hits){

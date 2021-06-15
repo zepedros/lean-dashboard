@@ -23,7 +23,7 @@ function webapi(app, services, auth, authization) {
                 .catch(err => errHandler(err, res))
         },
         getProjects: function (req, res) {
-            services.getProjects(req.params.user)
+            services.getProjects(req.params.user, req.user)
                 .then(resp => {
                     console.log("Get Projects")
                     answerHandler(resp, res)
