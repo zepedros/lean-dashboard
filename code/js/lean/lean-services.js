@@ -30,8 +30,12 @@ function services(db, auth){
                 throw error.makeErrorResponse(error.FORBIDDEN, "You can't access this user's projects")
             return db.getProjects(user, userMakingRequest)
         },
-        getProjectById: async function (id) {
-            return db.getProjectById(id)
+        getProjectById: async function (id, userMakingRequest) {
+            const project = await db.getProjectById(id)
+            if(project.owner !== userMakingRequest.id && project.members.indexOf(userMakingRequest.id) === -1 && userMakingRequest.id !== 1){
+                throw error.makeErrorResponse(error.FORBIDDEN, "This user doesn't have access to this project")
+            }
+            return project
         },
         updateProject:function(projectId, newName,newDesc){
             if(!projectId){

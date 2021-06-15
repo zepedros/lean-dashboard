@@ -31,7 +31,7 @@ function webapi(app, services, auth, authization) {
                 .catch(err => errHandler(err, res))
         },
         getProjectById: function (req, res) {
-            services.getProjectById(req.params.id)
+            services.getProjectById(req.params.id, req.user)
                 .then(resp => {
                     console.log("Get Project")
                     answerHandler(resp, res)
