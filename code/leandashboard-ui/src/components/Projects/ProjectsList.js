@@ -1,12 +1,9 @@
 import ProjectItem from './ProjectItem';
 import List from '@material-ui/core/List';
 import Grid from '@material-ui/core/Grid';
-import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+import Hidden from '@material-ui/core/Hidden';
 
 const useStyles = makeStyles({
   root: {
@@ -26,20 +23,32 @@ const useStyles = makeStyles({
 });
 
 
-export default function ProjectsList({projects}) {
+export default function ProjectsList({ projects }) {
 
 
-    return (
-      <div>
-            <List dense={false}>
-              {
-                  projects.map(project => {
-                      return <ProjectItem key={project.pid} project={project} />
-                  })
-              }
-            </List>
-          </div>
-    );
+  return (
+    <div style={{overflowY: 'scroll', whiteSpace: 'nowrap'}}>
+      <Typography component="h1" variant="h5">
+        My Projects
+      </Typography>
+      <Hidden smDown implementation="css">
+        {
+          projects.map(project => {
+            return <ProjectItem key={project.pid} project={project} />
+          })
+        }
+      </Hidden>
+      <Hidden mdUp implementation="css">
+        <List dense={false}>
+          {
+            projects.map(project => {
+              return <ProjectItem key={project.pid} project={project} />
+            })
+          }
+        </List>
+      </Hidden>
+    </div>
+  );
 }
 
 

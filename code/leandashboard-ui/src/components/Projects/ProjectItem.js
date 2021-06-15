@@ -43,7 +43,7 @@ export default function ProjectsItem({ project }) {
                     </ListItemAvatar>
                     <ListItemText
                         primary={project.name}
-                        secondary={project.desciption !== undefined ? project.desciption : null}
+                        secondary={(project.description !== undefined) ? project.description : null}
                     />
                     <ListItemSecondaryAction>
                         <IconButton edge="end" aria-label="delete">

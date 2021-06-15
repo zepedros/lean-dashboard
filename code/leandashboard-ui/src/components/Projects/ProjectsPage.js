@@ -1,6 +1,5 @@
-import Typography from '@material-ui/core/Typography';
 import ProjectsList from './ProjectsList'
-import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
 import NavBar from '../Common/NavBar'
 
 const testITems = [
@@ -23,6 +22,10 @@ const testITems = [
 export default function ProjectsPage() {
 
     return (
-        <NavBar />
+        <div>
+            <Grid item xs={12} sm={12} md={12}>
+                <NavBar component = {<ProjectsList projects={testITems}/>}/>
+            </Grid>
+        </div>
     );
 }

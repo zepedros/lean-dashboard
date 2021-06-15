@@ -4,20 +4,21 @@ import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
+import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
 import HomeIcon from '@material-ui/icons/Home';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import SettingsIcon from '@material-ui/icons/Settings';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import ProjectsList from '../Projects/ProjectsList'
 import Container from '@material-ui/core/Container';
+import BottomNavigation from '@material-ui/core/BottomNavigation';
+import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
+import { Hidden } from '@material-ui/core';
+import { useState } from 'react';
 
 const drawerWidth = 240;
 
@@ -28,7 +29,12 @@ const useStyles = makeStyles((theme) => ({
     appBar: {
         width: `calc(100% - ${drawerWidth}px)`,
         marginLeft: drawerWidth,
-        background:'white'
+        background: 'white'
+    },
+    navigation: {
+        width: '85.5%',
+        position: 'fixed',
+        bottom: 0
     },
     drawer: {
         width: drawerWidth,
@@ -64,64 +70,72 @@ const testITems = [
     }
 ]
 
-export default function PermanentDrawerLeft(props) {
+export default function PermanentDrawerLeft({ component }) {
     const classes = useStyles();
-
+    const [NavigationValue, setNavigationValue] = useState("")
+    function handleChange(event, newValue) {
+        setNavigationValue(newValue)
+    }
     return (
         <div className={classes.root}>
             <CssBaseline />
-            <AppBar position="fixed" className={classes.appBar}>
-                <Toolbar>
-                    <Typography variant="h6" noWrap color="textPrimary">
-                        LeanDashboard
-          </Typography>
-                </Toolbar>
-            </AppBar>
-            <Drawer
-                className={classes.drawer}
-                variant="permanent"
-                classes={{
-                    paper: classes.drawerPaper,
-                }}
-                anchor="left"
-            >
-                <div className={classes.toolbar} />
-                <Divider />
-                <ListItem button>
-                    <ListItemIcon>
-                        <HomeIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Home" />
-                </ListItem>
-                <ListItem button>
-                    <ListItemIcon>
-                        <NotificationsIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Notificaitons" />
-                </ListItem>
-                <ListItem button>
-                    <ListItemIcon>
-                        <SettingsIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Settings" />
-                </ListItem>
-                <ListItem button>
-                    <ListItemIcon>
-                        <AccountCircleIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Profile" />
-                </ListItem>
-
-            </Drawer>
+            <Hidden smDown>
+                <AppBar position="fixed" className={classes.appBar}>
+                    <Toolbar>
+                        <Typography variant="h6" noWrap color="textPrimary">
+                            LeanDashboard
+                        </Typography>
+                    </Toolbar>
+                </AppBar>
+                <Drawer
+                    className={classes.drawer}
+                    variant="permanent"
+                    classes={{
+                        paper: classes.drawerPaper,
+                    }}
+                    anchor="left"
+                >
+                    <div className={classes.toolbar} />
+                    <Divider />
+                    <ListItem button>
+                        <ListItemIcon>
+                            <HomeIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="Home" />
+                    </ListItem>
+                    <ListItem button>
+                        <ListItemIcon>
+                            <NotificationsIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="Notifications" />
+                    </ListItem>
+                    <ListItem button>
+                        <ListItemIcon>
+                            <SettingsIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="Settings" />
+                    </ListItem>
+                    <ListItem button>
+                        <ListItemIcon>
+                            <AccountCircleIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="Profile" />
+                    </ListItem>
+                </Drawer>
+            </Hidden>
             <main className={classes.content}>
                 <div className={classes.toolbar} />
-                    <Container maxWidth="sm">
-                    <Typography component="h1" variant="h5">
-                        My Projects
-                    </Typography>
-                    <ProjectsList projects={testITems} />
+                <Container maxWidth="sm">
+                    {component}
                 </Container>
-               
+                <Hidden mdUp>
+                        <BottomNavigation value={NavigationValue} onChange={handleChange} className={classes.navigation}>
+                            <BottomNavigationAction label="Home" value="Home" icon={<HomeIcon />} />
+                            <BottomNavigationAction label="Notifications" value="Notifications" icon={<NotificationsIcon />} />
+                            <BottomNavigationAction label="Settings" value="Settings" icon={<SettingsIcon />} />
+                            <BottomNavigationAction label="Account" value="Account" icon={<AccountCircleIcon />} />
+                        </BottomNavigation>
+                </Hidden>
             </main>
         </div>
     );
