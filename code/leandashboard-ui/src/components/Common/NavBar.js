@@ -125,9 +125,7 @@ export default function PermanentDrawerLeft(props) {
             </Hidden>
             <main className={classes.content}>
                 <div className={classes.toolbar} />
-                <Container maxWidth="sm">
                     {props.component}
-                </Container>
                 <Hidden mdUp>
                         <BottomNavigation value={NavigationValue} onChange={handleChange} className={classes.navigation}>
                             <BottomNavigationAction label="Home" value="Home" icon={<HomeIcon />} />

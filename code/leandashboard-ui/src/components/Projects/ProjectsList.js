@@ -9,7 +9,7 @@ import Hidden from '@material-ui/core/Hidden';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) =>({
   root: {
     minWidth: 275,
   },
@@ -24,11 +24,18 @@ const useStyles = makeStyles({
   pos: {
     marginBottom: 12,
   },
-});
+  button: {
+    position: "absolute",
+    right:    60,
+    bottom:   130,
+    background: 'linear-gradient(45deg, #3CAA91 30%, #3CAA91 90%)',
+    color: 'white',
+  },
+}));
 
 
 export default function ProjectsList({ projects }) {
-
+  const classes = useStyles();
   return (
     <div>
       <Typography component="h1" variant="h5">
@@ -43,7 +50,7 @@ export default function ProjectsList({ projects }) {
         }
       </List>
       <Grid container justify="flex-end">
-        <Fab color="primary" aria-label="add" >
+        <Fab color="primary" aria-label="add" className={classes.button}>
           <AddIcon />
         </Fab>
       </Grid>

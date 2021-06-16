@@ -1,5 +1,5 @@
 import ProjectsList from './ProjectsList'
-import ProjectsCards from './ProjectsCards'
+import ProjectsTable from './ProjectsTable'
 import Grid from '@material-ui/core/Grid';
 import NavBar from '../Common/NavBar'
 import { Hidden } from '@material-ui/core';
@@ -38,7 +38,7 @@ export default function ProjectsPage() {
             </Hidden>
             <Hidden smDown>
             <Grid item xs={12} sm={12} md={12}>
-                <NavBar component = {<ProjectsCards projects={testITems} />} title={"LeanDashboard"}/>
+                <NavBar component = {<ProjectsTable projects={testITems} />} title={"LeanDashboard"}/>
             </Grid>
             </Hidden>
         </div>
