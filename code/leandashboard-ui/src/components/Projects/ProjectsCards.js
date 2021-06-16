@@ -59,7 +59,7 @@ export default function ProjectsCards({projects}) {
             })
         }
           </Grid>
-          <Grid container justify="flex-end" left="0">
+          <Grid container justify="flex-end">
           <Button variant="outlined" color="primary"  >
               Add new
           </Button>    

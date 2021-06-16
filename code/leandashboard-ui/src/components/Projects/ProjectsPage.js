@@ -33,12 +33,12 @@ export default function ProjectsPage() {
         <div>
             <Hidden mdUp>
             <Grid item xs={12} sm={12} md={12}>
-                <NavBar component = {<ProjectsList projects={testITems}/>}/>
+                <NavBar component = {<ProjectsList projects={testITems}/>} title={"LeanDashboard"}/>
             </Grid>
             </Hidden>
             <Hidden smDown>
             <Grid item xs={12} sm={12} md={12}>
-                <NavBar component = {<ProjectsCards projects={testITems}/>}/>
+                <NavBar component = {<ProjectsCards projects={testITems} />} title={"LeanDashboard"}/>
             </Grid>
             </Hidden>
         </div>

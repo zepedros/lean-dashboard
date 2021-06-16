@@ -70,7 +70,7 @@ const testITems = [
     }
 ]
 
-export default function PermanentDrawerLeft({ component }) {
+export default function PermanentDrawerLeft(props) {
     const classes = useStyles();
     const [NavigationValue, setNavigationValue] = useState("")
     function handleChange(event, newValue) {
@@ -83,7 +83,7 @@ export default function PermanentDrawerLeft({ component }) {
                 <AppBar position="fixed" className={classes.appBar}>
                     <Toolbar>
                         <Typography variant="h6" noWrap color="textPrimary">
-                            LeanDashboard
+                            {props.title}
                         </Typography>
                     </Toolbar>
                 </AppBar>
@@ -126,7 +126,7 @@ export default function PermanentDrawerLeft({ component }) {
             <main className={classes.content}>
                 <div className={classes.toolbar} />
                 <Container maxWidth="sm">
-                    {component}
+                    {props.component}
                 </Container>
                 <Hidden mdUp>
                         <BottomNavigation value={NavigationValue} onChange={handleChange} className={classes.navigation}>
