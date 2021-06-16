@@ -30,12 +30,16 @@ function services(db, auth){
                 throw error.makeErrorResponse(error.FORBIDDEN, "You can't access this user's projects")
             return db.getProjects(user, userMakingRequest)
         },
-        getProjectById: async function (id, userMakingRequest) {
+        //CODIGO DO ZE, TODO USERMAKINGREQUEST NOS OUTROS METODOS QUE CHAMAM ESTE NO SERVICES
+        /*getProjectById: async function (id, userMakingRequest) {
             const project = await db.getProjectById(id)
             if(project.owner !== userMakingRequest.id && project.members.indexOf(userMakingRequest.id) === -1 && userMakingRequest.id !== 1){
                 throw error.makeErrorResponse(error.FORBIDDEN, "This user doesn't have access to this project")
             }
             return project
+        },*/
+        getProjectById: async function (id) {
+            return db.getProjectById(id)
         },
         updateProject: async function(projectId, newName,newDesc, userMakingRequest){
             //check if user has access to this project. If not, error is thrown
