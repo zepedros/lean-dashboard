@@ -8,42 +8,42 @@ const config = {
     index: "lean-etl"
 }
 
-const header = { 'Content-type': 'application/json'}
+const header = {'Content-type': 'application/json'}
 
 const baseUri = `http://${config.host}:${config.port}/${config.index}/`
 const Uri = {
     GET_ALL_ISSUES: `${baseUri}_search/`,
-    GET_GROUP_BY_ID: (id)=>`${baseUri}_doc/${id}`,
+    GET_GROUP_BY_ID: (id) => `${baseUri}_doc/${id}`,
     CREAT_GROUP: `${baseUri}_doc/`
 }
 const ES_URL = 'http://localhost:9200/';
 
 module.exports = {
 
-    createProject: function (name, description, userId){
+    createProject: function (name, description, userId) {
         const body = {
-            name: name ,
+            name: name,
             description: description,
             owner: userId,
             members: [],
             credentials: [],
-            dashboards : []
+            dashboards: []
         }
 
         const uri = `${ES_URL}lean-projects/_doc/`
-        return fetch.makePostRequest(uri,body)
+        return fetch.makePostRequest(uri, body)
             .then(body => {
-                if(!body.error) return body._id
-                else return error.makeErrorResponse(error.DATABASE_ERROR,`Bad Gateway: Error in DataBase, too many requests!`)
-             })
+                if (!body.error) return body._id
+                else return error.makeErrorResponse(error.DATABASE_ERROR, `Bad Gateway: Error in DataBase, too many requests!`)
+            })
     },
 
-    getAllProjects: function (){
+    getAllProjects: function () {
         const uri = `${ES_URL}lean-projects/_search`
         return fetch.makeGetRequest(uri)
             .then(body => {
-                if(body.hits){
-                    if(body.hits.hits.length){
+                if (body.hits) {
+                    if (body.hits.hits.length) {
                         return body.hits.hits.map(hit => {
                             hit._source.id = hit._id
                             return hit._source
@@ -60,8 +60,8 @@ module.exports = {
             `${ES_URL}lean-projects/_search?q=members:${userMakingRequest.id} owner:${userMakingRequest.id}&default_operator=OR`
         return fetch.makeGetRequest(uri)
             .then(body => {
-                if(body.hits){
-                    if(body.hits.hits.length){
+                if (body.hits) {
+                    if (body.hits.hits.length) {
                         return body.hits.hits.map(hit => {
                             hit._source.id = hit._id
                             return hit._source
@@ -71,24 +71,25 @@ module.exports = {
             })
     },
 
-    getProjectById: function(projectId){
+    getProjectById: function (projectId) {
         const uri = `${ES_URL}lean-projects/_doc/${projectId}`
         return fetch.makeGetRequest(uri)
-            .then(body=> {
-                if(body.found){
-                    body._source.id=body._id
+            .then(body => {
+                if (body.found) {
+                    body._source.id = body._id
                     return body._source
-                }
-                else{
-                   throw error.makeErrorResponse(error.NOT_FOUND,'Project not found')
+                } else {
+                    throw error.makeErrorResponse(error.NOT_FOUND, 'Project not found')
                 }
             })
     },
 
-    updateProject: function(projectId, newName, newDesc){
+    updateProject: function (projectId, newName, newDesc) {
+        let source = newName ? "ctx._source.name = params.name; " : ""
+        source += newDesc ? "ctx._source.description = params.desc" : ""
         const body = {
             "script": {
-                "source": "ctx._source.name = params.name; ctx._source.desc = params.desc",
+                "source": source,
                 "params": {
                     "name": `${newName}`,
                     "desc": `${newDesc}`
@@ -97,36 +98,36 @@ module.exports = {
         };
 
         const uri = `${ES_URL}lean-projects/_update/${projectId}`
-        return fetch.makePostRequest(uri,body)
-            .then(result=> {
-                    if(result.result === "updated")
+        return fetch.makePostRequest(uri, body)
+            .then(result => {
+                    if (result.result === "updated")
                         return projectId
-                    else throw error.makeErrorResponse(error.NOT_FOUND,'Project does not exist')
+                    else throw error.makeErrorResponse(error.NOT_FOUND, 'Project does not exist')
                 }
             )
     },
 
 
-    deleteProject : async function(id){
-    const projectDashboards = await this.getProjectById(id)
-                                        .then(body => body.dashboards)
-    for(i = 0; i<projectDashboards.length;i++){
-        const widgets = await this.getDashboardFromProject(id,projectDashboards[i])
-            .then(body => body.widgets)
-        for(l = 0; l < widgets.length; l++){
-            await this.removeWidgetFromDashboard(id,projectDashboards[i],widgets[l])
+    deleteProject: async function (id) {
+        const projectDashboards = await this.getProjectById(id)
+            .then(body => body.dashboards)
+        for (i = 0; i < projectDashboards.length; i++) {
+            const widgets = await this.getDashboardFromProject(id, projectDashboards[i])
+                .then(body => body.widgets)
+            for (l = 0; l < widgets.length; l++) {
+                await this.removeWidgetFromDashboard(id, projectDashboards[i], widgets[l])
+            }
+            await this.removeDashboardFromProject(id, projectDashboards[i], i)
         }
-        await this.removeDashboardFromProject(id,projectDashboards[i],i)
-    }
 
-    const uri = `${ES_URL}lean-projects/_doc/${id}?refresh=true`
-    return fetch.makeDeleteRequest(uri)
-        .then(body => {
-            if(body.result === 'deleted') return body
-            else return error.makeErrorResponse(error.NOT_FOUND,'Project not found')
-        })
+        const uri = `${ES_URL}lean-projects/_doc/${id}?refresh=true`
+        return fetch.makeDeleteRequest(uri)
+            .then(body => {
+                if (body.result === 'deleted') return body
+                else return error.makeErrorResponse(error.NOT_FOUND, 'Project not found')
+            })
     },
-    addDashboardToProject: async function(projectId, name, description) {
+    addDashboardToProject: async function (projectId, name, description) {
         const uriProject = `${ES_URL}lean-projects/_update/${projectId}`
         const dashboard = {
             "name": name,
@@ -146,15 +147,14 @@ module.exports = {
                 }
             };
             return await fetch.makePostRequest(uriProject, updateProject)
-                .then(body=> {
+                .then(body => {
                     return response._id
                 })
-        }
-        else return Promise.reject(error.makeErrorResponse(error.DATABASE_ERROR,'Add Dashboard to Project Failed'))
+        } else return Promise.reject(error.makeErrorResponse(error.DATABASE_ERROR, 'Add Dashboard to Project Failed'))
 
     },
 
-    removeDashboardFromProject: async function(projectId,dashboardId, dashboardIndex){
+    removeDashboardFromProject: async function (projectId, dashboardId, dashboardIndex) {
         const uri = `${ES_URL}lean-dashboards/_doc/${dashboardId}?refresh=true`
         var body = {
             "script": {
@@ -165,27 +165,26 @@ module.exports = {
                 }
             }
         }
-        return fetch.makePostRequest(`${ES_URL}lean-projects/_update/${projectId}`,body)
-            .then( await fetch.makeDeleteRequest(uri))
-                .then(body => {
-                    if(body.result === 'updated') return body
-                    else return Promise.reject(error.makeErrorResponse(error.NOT_FOUND,'Dashboard not found'))
-                })
+        return fetch.makePostRequest(`${ES_URL}lean-projects/_update/${projectId}`, body)
+            .then(await fetch.makeDeleteRequest(uri))
+            .then(body => {
+                if (body.result === 'updated') return body
+                else return Promise.reject(error.makeErrorResponse(error.NOT_FOUND, 'Dashboard not found'))
+            })
     },
 
-    getDashboardFromProject: async function(projectId,dashboardId){
+    getDashboardFromProject: async function (projectId, dashboardId) {
         const uri = `${ES_URL}lean-dashboards/_doc/${dashboardId}`
         return fetch.makeGetRequest(uri)
             .then(response => {
-                if(response.found){
+                if (response.found) {
                     response._source.id = response._id
                     return response._source
-                }
-                else return error.makeErrorResponse(error.NOT_FOUND,'Dashboard not found')
-        })
+                } else return error.makeErrorResponse(error.NOT_FOUND, 'Dashboard not found')
+            })
 
     },
-    updateDashboardFromProject: async function(dashboardId, newName, newDesc){
+    updateDashboardFromProject: async function (dashboardId, newName, newDesc) {
         const body = {
             "script": {
                 "source": "ctx._source.name = params.name; ctx._source.description = params.description",
@@ -197,21 +196,21 @@ module.exports = {
         };
 
         const uri = `${ES_URL}lean-dashboards/_update/${dashboardId}`
-        return fetch.makePostRequest(uri,body)
-            .then(result=> {
-                    if(result.result === "updated")
+        return fetch.makePostRequest(uri, body)
+            .then(result => {
+                    if (result.result === "updated")
                         return dashboardId
-                    else throw error.makeErrorResponse(error.NOT_FOUND,'Dashboard does not exist')
+                    else throw error.makeErrorResponse(error.NOT_FOUND, 'Dashboard does not exist')
                 }
             )
     },
 
-    getWidgetTemplates: async function (){
+    getWidgetTemplates: async function () {
         const uri = `${ES_URL}etl-templates/_search`
         return fetch.makeGetRequest(uri)
             .then(body => {
-                if(body.hits){
-                    if(body.hits.hits.length){
+                if (body.hits) {
+                    if (body.hits.hits.length) {
                         return body.hits.hits.map(hit => {
                             hit._source.id = hit._id
                             return hit._source
@@ -221,18 +220,18 @@ module.exports = {
             })
     },
 
-    addWidgetToDashboard: async function(projectId,dashboardId,widgetId,timeSettings,credentials){
+    addWidgetToDashboard: async function (projectId, dashboardId, widgetId, timeSettings, credentials) {
         const uri = `${ES_URL}etl-templates/_doc/${widgetId}`
-        const uriWidget  = `${ES_URL}etl-widgets/_doc`
+        const uriWidget = `${ES_URL}etl-widgets/_doc`
         const uriDashboard = `${ES_URL}lean-dashboards/_update/${dashboardId}`
         const aux = await checkCredentialsInProject(this, projectId, credentials);
-        if(aux.length === 0){
+        if (aux.length === 0) {
             throw error.makeErrorResponse(error.NOT_FOUND, "Credentials do not exist")
         }
         let bodyWidget
         return fetch.makeGetRequest(uri)
-            .then(body=> {
-                if(body.found){
+            .then(body => {
+                if (body.found) {
                     bodyWidget = {
                         name: body._source.name,
                         function: body._source.function,
@@ -242,49 +241,47 @@ module.exports = {
                         credentials: aux[0].credentials,
                         data: body._source.data
                     }
-                    return fetch.makePostRequest(uriWidget,bodyWidget)
+                    return fetch.makePostRequest(uriWidget, bodyWidget)
                         .then(response => {
                             const widget = {
                                 "script": {
                                     "source": "ctx._source.widgets.add(params.widget)",
                                     "params": {
-                                        "widget":response._id
+                                        "widget": response._id
                                     }
                                 }
                             };
-                            return fetch.makePostRequest(uriDashboard,widget)
-                                .then(result=>{
-                                    if(result.result === "updated")
+                            return fetch.makePostRequest(uriDashboard, widget)
+                                .then(result => {
+                                    if (result.result === "updated")
                                         return response._id
                                 })
 
                         })
-                }
-                else{
-                    throw error.makeErrorResponse(error.NOT_FOUND,'Widget not found')
+                } else {
+                    throw error.makeErrorResponse(error.NOT_FOUND, 'Widget not found')
                 }
             })
 
     },
 
-    getWidget: async function(widgetId){
+    getWidget: async function (widgetId) {
         const uriWidget = `${ES_URL}etl-widgets/_doc/${widgetId}`
         return fetch.makeGetRequest(uriWidget)
-            .then(body=> {
-                if(body.found){
-                    body._source.id=body._id
+            .then(body => {
+                if (body.found) {
+                    body._source.id = body._id
                     return body._source
-                }
-                else{
-                    throw error.makeErrorResponse(error.NOT_FOUND,'Widget not found')
+                } else {
+                    throw error.makeErrorResponse(error.NOT_FOUND, 'Widget not found')
                 }
             })
     },
 
-    updateWidget: async function(projectId,widgetId,newTimeSettings,newCredentials){
-        const uriWidget =  `${ES_URL}etl-widgets/_update/${widgetId}`
-        const aux = await checkCredentialsInProject(this,projectId,newCredentials)
-        if(aux.length === 0){
+    updateWidget: async function (projectId, widgetId, newTimeSettings, newCredentials) {
+        const uriWidget = `${ES_URL}etl-widgets/_update/${widgetId}`
+        const aux = await checkCredentialsInProject(this, projectId, newCredentials)
+        if (aux.length === 0) {
             throw error.makeErrorResponse(error.NOT_FOUND, "Credentials do not exist")
         }
         var body = {
@@ -297,24 +294,23 @@ module.exports = {
                 }
             }
         }
-        return fetch.makePostRequest(uriWidget,body)
-            .then(result=> {
-                    if(result.result === "updated")
+        return fetch.makePostRequest(uriWidget, body)
+            .then(result => {
+                    if (result.result === "updated")
                         return widgetId
-                    else throw error.makeErrorResponse(error.NOT_FOUND,'Widget does not exist')
+                    else throw error.makeErrorResponse(error.NOT_FOUND, 'Widget does not exist')
                 }
             )
     },
 
-    removeWidgetFromDashboard: async function (projectId,dashboardId,widgetId) {
+    removeWidgetFromDashboard: async function (projectId, dashboardId, widgetId) {
         const uri = `${ES_URL}etl-widgets/_doc/${widgetId}?refresh=true`
         const dashboardWidget = await this.getDashboardFromProject(projectId, dashboardId)
             .then(body => body.widgets)
         const widgetIndex = dashboardWidget.findIndex(w => w === widgetId)
-        if(widgetIndex === -1){
-            return Promise.reject(error.makeErrorResponse(error.NOT_FOUND,'Widget does not exists'))
-        }
-        else{
+        if (widgetIndex === -1) {
+            return Promise.reject(error.makeErrorResponse(error.NOT_FOUND, 'Widget does not exists'))
+        } else {
             var body = {
                 "script": {
                     "lang": "painless",
@@ -325,21 +321,21 @@ module.exports = {
                 }
             }
             const uriDashboard = `${ES_URL}lean-dashboards/_update/${dashboardId}`
-            await fetch.makePostRequest(uriDashboard,body)
-                .then(result=> {
-                        if(result.result !== "updated")
-                            throw error.makeErrorResponse(error.NOT_FOUND,'Dashboard does not exist')
+            await fetch.makePostRequest(uriDashboard, body)
+                .then(result => {
+                        if (result.result !== "updated")
+                            throw error.makeErrorResponse(error.NOT_FOUND, 'Dashboard does not exist')
                     }
                 )
             return fetch.makeDeleteRequest(uri)
                 .then(body => {
-                    if(body.result === 'deleted') return dashboardId
-                    else return error.makeErrorResponse(error.NOT_FOUND,'Widget not found')
+                    if (body.result === 'deleted') return dashboardId
+                    else return error.makeErrorResponse(error.NOT_FOUND, 'Widget not found')
                 })
         }
     },
 
-    addUserToProject: async function(projectId, userId){
+    addUserToProject: async function (projectId, userId) {
         const uriProject = `${ES_URL}lean-projects/_update/${projectId}`
         const updateProject = {
             "script": {
@@ -350,73 +346,72 @@ module.exports = {
             }
         };
         return fetch.makePostRequest(uriProject, updateProject)
-            .then(body=> {
+            .then(body => {
                 return body._id
             })
     },
 
-    removeUserFromProject: async function(projectId, usernameIndex){
+    removeUserFromProject: async function (projectId, usernameIndex) {
         const uriProject = `${ES_URL}lean-projects/_update/${projectId}`
         const updateProject = {
             "script": {
-                "source" : "ctx._source.members.remove(params.index)",
+                "source": "ctx._source.members.remove(params.index)",
                 "params": {
                     "index": usernameIndex
                 }
             }
         };
         return fetch.makePostRequest(uriProject, updateProject)
-            .then(body=> {
+            .then(body => {
                 return body._id
             })
     },
 
-    getCredentials: async function(projectId) {
+    getCredentials: async function (projectId) {
         const project = await this.getProjectById(projectId)
         const credentials = []
-        for(let i = 0; i < project.credentials.length; i++) {
+        for (let i = 0; i < project.credentials.length; i++) {
             let uri = `${ES_URL}lean-credentials/_doc/${project.credentials[i]}`
             let credential = await fetch.makeGetRequest(uri)
             let result = {
-                "id" : credential._id,
-                "credentials" : credential._source
+                "id": credential._id,
+                "credentials": credential._source
             }
             credentials.push(result)
         }
-        if(credentials.length === 0) {
-            throw error.makeErrorResponse(error.NOT_FOUND,'This project has no credentials')
+        if (credentials.length === 0) {
+            throw error.makeErrorResponse(error.NOT_FOUND, 'This project has no credentials')
         }
         return credentials
     },
 
-    getCredentialsById: async function(projectId, credentialId) {
+    getCredentialsById: async function (projectId, credentialId) {
         const project = await this.getProjectById(projectId)
-        if(project.credentials.includes(credentialId)) {
+        if (project.credentials.includes(credentialId)) {
             const uri = `${ES_URL}lean-credentials/_doc/${credentialId}`
             return await fetch.makeGetRequest(uri)
-                .then(body =>{
+                .then(body => {
                     return body._source
                 })
 
-        }
-        else throw error.makeErrorResponse(error.DATABASE_ERROR,'CredentialId does not exist within the project')
+        } else throw error.makeErrorResponse(error.DATABASE_ERROR, 'CredentialId does not exist within the project')
     },
 
-    addCredential: async function(projectId,credentialName,credentialSource,credentials) {
+    addCredential: async function (projectId, credentialName, credentialSource, credentials) {
         const project = await this.getProjectById(projectId)
-        const aux = await checkCredentialsInProject(this,projectId,credentialName)
-        if(aux.length !== 0){
+        const aux = await checkCredentialsInProject(this, projectId, credentialName)
+        if (aux.length !== 0) {
             throw error.makeErrorResponse(error.CONFLICT, "Credential name already exists")
         }
         const uriProject = `${ES_URL}lean-projects/_update/${projectId}`
         const uri = `${ES_URL}lean-credentials/_doc`
         const credential = {
-            "name" : credentialName,
-            "source" : credentialSource,
-            "credential" : credentials
+            "name": credentialName,
+            "source": credentialSource,
+            "credential": credentials
         }
         const response = await fetch.makePostRequest(uri, credential)
-        if(!response.error) {
+        if (!response.error) {
             const updateProject = {
                 "script": {
                     "source": "ctx._source.credentials.add(params.credentialId)",
@@ -426,19 +421,18 @@ module.exports = {
                 }
             };
             return await fetch.makePostRequest(uriProject, updateProject)
-                .then(body=> {
-                    if(body.result === 'updated') return response._id
-                    else throw error.makeErrorResponse(error.makeErrorResponse(error.DATABASE_ERROR,'Could not associate to the project'))
+                .then(body => {
+                    if (body.result === 'updated') return response._id
+                    else throw error.makeErrorResponse(error.makeErrorResponse(error.DATABASE_ERROR, 'Could not associate to the project'))
                 })
                 .catch(err => {
                     console.log('bad')
                 })
-        }
-        else throw error.makeErrorResponse(error.DATABASE_ERROR,'Add Credential to Project Failed')
+        } else throw error.makeErrorResponse(error.DATABASE_ERROR, 'Add Credential to Project Failed')
     },
-    deleteCredential: async function(projectId,credentialId) {
+    deleteCredential: async function (projectId, credentialId) {
         const project = await this.getProjectById(projectId)
-        if(project.credentials.includes(credentialId)) {
+        if (project.credentials.includes(credentialId)) {
             const uri = `${ES_URL}lean-credentials/_doc/${credentialId}?refresh=true`
             let body = {
                 "script": {
@@ -449,29 +443,28 @@ module.exports = {
                     }
                 }
             }
-            return fetch.makePostRequest(`${ES_URL}lean-projects/_update/${projectId}`,body)
+            return fetch.makePostRequest(`${ES_URL}lean-projects/_update/${projectId}`, body)
                 .then(() => {
-                    return fetch.makeDeleteRequest(uri)
-                        .then(body => {
-                            if(body.result === 'deleted') return body._id
-                        })
-                        .catch(err => {
-                            console.log('bad')
-                        })
-                }
+                        return fetch.makeDeleteRequest(uri)
+                            .then(body => {
+                                if (body.result === 'deleted') return body._id
+                            })
+                            .catch(err => {
+                                console.log('bad')
+                            })
+                    }
                 ).catch(err => {
                     console.log('abc')
                 })
-        }
-        else throw error.makeErrorResponse(error.DATABASE_ERROR,'CredentialId does not exist within the project')
+        } else throw error.makeErrorResponse(error.DATABASE_ERROR, 'CredentialId does not exist within the project')
     },
-    updateCredential : async function (projectId, credentialId,credentialName,credentialSource,credentials) {
+    updateCredential: async function (projectId, credentialId, credentialName, credentialSource, credentials) {
         const project = await this.getProjectById(projectId)
-        if(project.credentials.includes(credentialId)) {
-            const credential = await this.getCredentialsById(projectId,credentialId)
-            if(credentialName !== credential.name) {
-                const aux = await checkCredentialsInProject(this,projectId,credentialName)
-                if(aux.length !== 0){
+        if (project.credentials.includes(credentialId)) {
+            const credential = await this.getCredentialsById(projectId, credentialId)
+            if (credentialName !== credential.name) {
+                const aux = await checkCredentialsInProject(this, projectId, credentialName)
+                if (aux.length !== 0) {
                     throw error.makeErrorResponse(error.CONFLICT, "Credential with that name already exists")
                 }
             }
@@ -482,24 +475,24 @@ module.exports = {
                     "inline": "ctx._source = params.credential",
                     "params": {
                         "credential": {
-                            "name" : credentialName,
-                            "source" : credentialSource,
+                            "name": credentialName,
+                            "source": credentialSource,
                             "credential": credentials
                         }
                     }
                 }
             }
-            return fetch.makePostRequest(uri,body)
+            return fetch.makePostRequest(uri, body)
                 .then(body => {
-                    if(body.result === 'updated') {
+                    if (body.result === 'updated') {
                         project.dashboards.forEach(dashboardId => {
-                            this.getDashboardFromProject(projectId,dashboardId)
+                            this.getDashboardFromProject(projectId, dashboardId)
                                 .then(result => {
                                     result.widgets.forEach(widgetId => {
                                         this.getWidget(widgetId)
                                             .then(result => {
-                                                if(result.credentials.name === credential.name) {
-                                                    this.updateWidget(projectId,widgetId,result.updateTime,credentialName)
+                                                if (result.credentials.name === credential.name) {
+                                                    this.updateWidget(projectId, widgetId, result.updateTime, credentialName)
                                                         .then(updatedWidget => {
                                                             scheduler.reSchedule(updatedWidget)
                                                         })
@@ -515,17 +508,15 @@ module.exports = {
                                 })
                         })
                         return body._id
-                    }
-                    else throw error.makeErrorResponse(error.DATABASE_ERROR,'Could not update credential')
+                    } else throw error.makeErrorResponse(error.DATABASE_ERROR, 'Could not update credential')
                 }).catch(err => {
                     console.log('abc')
                 })
-        }
-        else throw error.makeErrorResponse(error.DATABASE_ERROR,'CredentialId does not exist within the project')
+        } else throw error.makeErrorResponse(error.DATABASE_ERROR, 'CredentialId does not exist within the project')
     }
 }
 
-async function checkCredentialsInProject(db,projectId, credentials) {
+async function checkCredentialsInProject(db, projectId, credentials) {
     let projectCredentials
     try {
         projectCredentials = await db.getCredentials(projectId)

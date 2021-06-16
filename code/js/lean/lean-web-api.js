@@ -39,7 +39,7 @@ function webapi(app, services, auth, authization) {
                 .catch(err => errHandler(err, res))
         },
         updateProject: function (req, res) {
-            services.updateProject(req.params.id, req.body.name, req.body.description)
+            services.updateProject(req.params.id, req.body.name, req.body.description, req.user)
                 .then(resp => {
                     console.log(`Updating Project`)
                     answerHandler(resp, res)
@@ -55,7 +55,7 @@ function webapi(app, services, auth, authization) {
                 .catch(err => errHandler(err, res))
         },
         deleteProject: function (req, res) {
-            services.deleteProject(req.params.id)
+            services.deleteProject(req.params.id, req.user)
                 .then(resp => {
                     console.log("Removing Project")
                     answerHandler(resp, res)
