@@ -37,29 +37,57 @@ function services(db, auth){
             }
             return project
         },
-        updateProject:function(projectId, newName,newDesc){
-            if(!projectId){
-                return Promise.reject(
-                    error.makeErrorResponse(error.ARGUMENT_ERROR,'Please insert a project ID')
-                )
-            }
-            if(!newName || !newDesc){
-                return Promise.reject(
-                    error.makeErrorResponse(
-                        error.ARGUMENT_ERROR,
-                        'Please insert a new name and description to update a project'
-                    )
-                )
-            }
-            return db.updateProject(projectId,newName,newDesc)
-                    .then(id => {
-                        return response.makePostResponse(response.OK,`${id}`)
+        updateProject: async function(projectId, newName,newDesc, userMakingRequest){
+            //check if user has access to this project. If not, error is thrown
+            return this.getProjectById(projectId, userMakingRequest)
+                .then(project => {
+                    //check if the user making request is the owner or superuser
+                    if (project.owner !== userMakingRequest.id && userMakingRequest.id !== 1){
+                        return Promise.reject(
+                            error.makeErrorResponse(error.FORBIDDEN,'You cannot modify this project. Only the manager has that access.')
+                        )
+                    }
+
+                    //check parameters
+                    if(!projectId){
+                        return Promise.reject(
+                            error.makeErrorResponse(error.ARGUMENT_ERROR,'Please insert a project ID')
+                        )
+                    }
+                    //we know only send an error if the body has no name AND description, because we can just update one of them at a time
+                    if(!newName && !newDesc){
+                        return Promise.reject(
+                            error.makeErrorResponse(
+                                error.ARGUMENT_ERROR,
+                                'Please insert a new name and description to update a project'
+                            )
+                        )
+                    }
+
+                    return db.updateProject(projectId,newName,newDesc)
+                        .then(id => {
+                            //if update is successful, return a new OK response
+                            return response.makePostResponse(response.OK,`${id}`)
+                        })
                 })
         },
-        deleteProject: function (id){
-            return db.deleteProject(id)
-                .then(() => {return response.makePostResponse(response.OK,"")})
-
+        deleteProject: function (id, userMakingRequest){
+            return this.getProjectById(id, userMakingRequest)
+                .then(project => {
+                    if (project.owner !== userMakingRequest.id && userMakingRequest.id !== 1){
+                        return Promise.reject(
+                            error.makeErrorResponse(error.FORBIDDEN,'You cannot delete this project. Only the manager has that access.')
+                        )
+                    }
+                    //check parameters
+                    if(!id){
+                        return Promise.reject(
+                            error.makeErrorResponse(error.ARGUMENT_ERROR,'Please insert a project ID')
+                        )
+                    }
+                    return db.deleteProject(id)
+                        .then(() => {return response.makePostResponse(response.OK,"")})
+                })
         },
 
         addDashboardToProject: function (projectId, name, description){
