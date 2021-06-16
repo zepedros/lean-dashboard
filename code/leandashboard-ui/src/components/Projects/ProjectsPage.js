@@ -1,6 +1,9 @@
 import ProjectsList from './ProjectsList'
+import ProjectsCards from './ProjectsCards'
 import Grid from '@material-ui/core/Grid';
 import NavBar from '../Common/NavBar'
+import { Hidden } from '@material-ui/core';
+
 
 const testITems = [
     {
@@ -17,15 +20,27 @@ const testITems = [
         pid: 3,
         name: 'ghi',
         description: 'description'
+    },
+    {
+        pid: 4,
+        name: 'ghi',
+        description: 'description'
     }
 ]
 export default function ProjectsPage() {
 
     return (
         <div>
+            <Hidden mdUp>
             <Grid item xs={12} sm={12} md={12}>
                 <NavBar component = {<ProjectsList projects={testITems}/>}/>
             </Grid>
+            </Hidden>
+            <Hidden smDown>
+            <Grid item xs={12} sm={12} md={12}>
+                <NavBar component = {<ProjectsCards projects={testITems}/>}/>
+            </Grid>
+            </Hidden>
         </div>
     );
 }

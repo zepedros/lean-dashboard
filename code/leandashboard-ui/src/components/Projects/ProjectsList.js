@@ -4,6 +4,8 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Hidden from '@material-ui/core/Hidden';
+import Fab from '@material-ui/core/Fab';
+import AddIcon from '@material-ui/icons/Add';
 
 const useStyles = makeStyles({
   root: {
@@ -46,6 +48,11 @@ export default function ProjectsList({ projects }) {
             })
           }
         </List>
+        <Grid container justify="flex-end">
+        <Fab color="primary" aria-label="add" >
+        <AddIcon />
+      </Fab>
+      </Grid>
       </Hidden>
     </div>
   );
