@@ -24,6 +24,7 @@ module.exports = {
         const body = {
             name: name,
             description: description,
+            state: "Open",
             owner: userId,
             members: [],
             credentials: [],
@@ -109,23 +110,49 @@ module.exports = {
 
 
     deleteProject: async function (id) {
-        const projectDashboards = await this.getProjectById(id)
-            .then(body => body.dashboards)
-        for (i = 0; i < projectDashboards.length; i++) {
-            const widgets = await this.getDashboardFromProject(id, projectDashboards[i])
-                .then(body => body.widgets)
-            for (l = 0; l < widgets.length; l++) {
-                await this.removeWidgetFromDashboard(id, projectDashboards[i], widgets[l])
-            }
-            await this.removeDashboardFromProject(id, projectDashboards[i], i)
-        }
+        const projectState = await this.getProjectById(id)
+            .then(body => body.state)
+        if(projectState == "Open") {
+            const body = {
+                "script": {
+                    "source": "ctx._source.state = params.state;",
+                    "params": {
+                        "state": "Archived"
+                    }
+                }
+            };
 
-        const uri = `${ES_URL}lean-projects/_doc/${id}?refresh=true`
-        return fetch.makeDeleteRequest(uri)
-            .then(body => {
-                if (body.result === 'deleted') return body
-                else return error.makeErrorResponse(error.NOT_FOUND, 'Project not found')
-            })
+            const uri = `${ES_URL}lean-projects/_update/${id}`
+            return fetch.makePostRequest(uri, body)
+                .then(result => {
+                        if (result.result === "updated")
+                            return id
+                        else throw error.makeErrorResponse(error.NOT_FOUND, 'Project does not exist')
+                    }
+                )
+        } else {
+            const projectDashboards = await this.getProjectById(id)
+                .then(body => body.dashboards)
+            for (i = 0; i < projectDashboards.length; i++) {
+                const widgets = await this.getDashboardFromProject(id, projectDashboards[i])
+                    .then(body => body.widgets)
+                for (l = 0; l < widgets.length; l++) {
+                    await this.removeWidgetFromDashboard(id, projectDashboards[i], widgets[l])
+                }
+                await this.removeDashboardFromProject(id, projectDashboards[i], i)
+            }
+            const projectCredentials = await this.getProjectById(id)
+                .then(body => body.credentials)
+            for(i = 0; i < projectCredentials.length; i++) {
+                await this.deleteCredential(id,projectCredentials[i])
+            }
+            const uri = `${ES_URL}lean-projects/_doc/${id}?refresh=true`
+            return fetch.makeDeleteRequest(uri)
+                .then(body => {
+                    if (body.result === 'deleted') return body
+                    else return error.makeErrorResponse(error.NOT_FOUND, 'Project not found')
+                })
+        }
     },
     addDashboardToProject: async function (projectId, name, description) {
         const uriProject = `${ES_URL}lean-projects/_update/${projectId}`
@@ -329,7 +356,10 @@ module.exports = {
                 )
             return fetch.makeDeleteRequest(uri)
                 .then(body => {
-                    if (body.result === 'deleted') return dashboardId
+                    if (body.result === 'deleted') {
+                        scheduler.deleteJob(widgetId)
+                        return dashboardId
+                    }
                     else return error.makeErrorResponse(error.NOT_FOUND, 'Widget not found')
                 })
         }
