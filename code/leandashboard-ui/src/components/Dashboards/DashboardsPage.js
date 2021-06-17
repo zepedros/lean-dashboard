@@ -1,6 +1,7 @@
 import DashboardsCards from './DashboardsCards'
 import Grid from '@material-ui/core/Grid';
 import NavBar from '../Common/NavBar'
+import DashboardsList from './DashboardsList'
 import { Hidden } from '@material-ui/core';
 
 const testITems = [
@@ -35,14 +36,14 @@ export default function DashboardsPage() {
     return (
         <div>
             <Hidden mdUp>
-            <Grid item xs={12} sm={12} md={12}>
-                <NavBar component = {<DashboardsCards dashboards={testITems} />} title={"{Project Name}"}/>
-            </Grid>
+                <Grid item xs={12} sm={12} md={12}>
+                    <NavBar component={<DashboardsList dashboards={testITems} />} title={"{Project Name}"} />
+                </Grid>
             </Hidden>
             <Hidden smDown>
-            <Grid item xs={12} sm={12} md={12}>
-                <NavBar component = {<DashboardsCards dashboards={testITems} />} title={"{Project Name}"}/>
-            </Grid>
+                <Grid item xs={12} sm={12} md={12}>
+                    <NavBar component={<DashboardsCards dashboards={testITems} />} title={"{Project Name}"} />
+                </Grid>
             </Hidden>
         </div>
     );

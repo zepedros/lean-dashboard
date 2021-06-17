@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import ProjectItem from './ProjectItem';
+import DashboardItem from './DashboardItem';
 import List from '@material-ui/core/List';
 import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
@@ -42,17 +42,16 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function ProjectsList({ projects }) {
+export default function DashboardsList({ dashboards }) {
   const classes = useStyles();
   const [showFilter, setShowFilter] = useState(false)
   function handleFilter() {
     setShowFilter(!showFilter)
   }
-  //TODO A PARTE QUE O BOTAO DO FILTRO LIGA
   return (
     <div>
       <Typography component="h1" variant="h5">
-        My Projects
+        Dashboards
       </Typography>
       <IconButton end='end' className={classes.filter} onClick={handleFilter}>
         <FilterListIcon />
@@ -60,8 +59,8 @@ export default function ProjectsList({ projects }) {
       <Divider variant='middle' />
       <List dense={false} style={{ maxHeight: 250, overflow: 'scroll' }}>
         {
-          projects.map(project => {
-            return <ProjectItem key={project.pid} project={project} />
+          dashboards.map(dashboard => {
+            return <DashboardItem key={dashboard.did} dashboard={dashboard} />
           })
         }
       </List>
