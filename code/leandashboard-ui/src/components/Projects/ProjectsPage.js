@@ -9,7 +9,9 @@ const testITems = [
     {
         pid: 1,
         name: 'abc',
-        description: 'description'
+        description: 'description',
+        owner: 'Manager',
+        state: 'Open'
     },
     {
         pid: 2,
@@ -32,14 +34,14 @@ export default function ProjectsPage() {
     return (
         <div>
             <Hidden mdUp>
-            <Grid item xs={12} sm={12} md={12}>
-                <NavBar component = {<ProjectsList projects={testITems}/>} title={"LeanDashboard"}/>
-            </Grid>
+                <Grid item xs={12} sm={12} md={12}>
+                    <NavBar component={<ProjectsList projects={testITems} />} title={"LeanDashboard"} />
+                </Grid>
             </Hidden>
             <Hidden smDown>
-            <Grid item xs={12} sm={12} md={12}>
-                <NavBar component = {<ProjectsTable projects={testITems} />} title={"LeanDashboard"}/>
-            </Grid>
+                <Grid item xs={12} sm={12} md={12}>
+                    <NavBar component={<ProjectsTable projects={testITems} />} title={"LeanDashboard"} />
+                </Grid>
             </Hidden>
         </div>
     );

@@ -31,7 +31,7 @@ const actions = [
   { icon: <AddIcon />, name: 'Add Dashboard' },
   { icon: <SettingsIcon />, name: 'Dashboard Settings' },
   { icon: <GroupAddIcon />, name: 'Add Member' },
-    { icon: <SettingsIcon />, name: 'Project Settings' },
+  { icon: <SettingsIcon />, name: 'Project Settings' },
 ];
 
 export default function SpeedDialTooltipOpen() {
