@@ -5,6 +5,7 @@ import SignIn from './components/Login/SignIn';
 import SignUp from './components/Login/SignUp';
 import About from './components/FooterLinks/About';
 import ProjectsPage from './components/Projects/ProjectsPage';
+import DashboardsPage from './components/Dashboards/DashboardsPage'
 
 import { BrowserRouter as Router, Route, Link, Switch, withRouter } from "react-router-dom";
 import SideBar from 'react';
@@ -42,6 +43,7 @@ function App() {
           <Route exact path="/signUp" component={SignUp} />
           <Route exact path="/about" component={About} />
           <Route exact path="/projects" component={ProjectsPage} />
+          <Route exact path="/projects/:pid/dashboards" component={DashboardsPage} />
         </Switch>
       </Router>
     </div>
