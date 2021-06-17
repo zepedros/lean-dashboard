@@ -109,7 +109,7 @@ module.exports = {
     },
 
 
-    deleteProject: async function (id) {
+    deleteProject: async function (id, user) {
         const projectState = await this.getProjectById(id)
             .then(body => body.state)
         if(projectState == "Open") {

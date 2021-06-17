@@ -46,14 +46,7 @@ function webapi(app, services, auth, authization) {
                 })
                 .catch(err => errHandler(err, res))
         },
-        addDashboardToProject: function (req, res) {
-            services.addDashboardToProject(req.params.id, req.body.name, req.body.description)
-                .then(resp => {
-                    console.log(`Creating new dashboard`)
-                    answerHandler(resp, res, 201)
-                })
-                .catch(err => errHandler(err, res))
-        },
+
         deleteProject: function (req, res) {
             services.deleteProject(req.params.id, req.user)
                 .then(resp => {
@@ -62,8 +55,18 @@ function webapi(app, services, auth, authization) {
                 })
                 .catch(err => errHandler(err, res))
         },
+
+        addDashboardToProject: function (req, res) {
+            services.addDashboardToProject(req.params.id, req.body.name, req.body.description, req.user)
+                .then(resp => {
+                    console.log(`Creating new dashboard`)
+                    answerHandler(resp, res, 201)
+                })
+                .catch(err => errHandler(err, res))
+        },
+
         removeDashboardFromProject: function (req, res) {
-            services.removeDashboardFromProject(req.params.id, req.params.dashboardId)
+            services.removeDashboardFromProject(req.params.id, req.params.dashboardId, req.user)
                 .then(resp => {
                     console.log("Removing Dashboard")
                     answerHandler(resp, res)
@@ -71,7 +74,7 @@ function webapi(app, services, auth, authization) {
                 .catch(err => errHandler(err, res))
         },
         getDashboardFromProject: function (req, res) {
-            services.getDashboardFromProject(req.params.id, req.params.dashboardId)
+            services.getDashboardFromProject(req.params.id, req.params.dashboardId,req.user)
                 .then(resp => {
                     console.log("Get Dashboard")
                     answerHandler(resp, res)
@@ -80,9 +83,9 @@ function webapi(app, services, auth, authization) {
         },
 
         updateDashboardFromProject: function (req, res) {
-            services.updateDashboardFromProject(req.params.id, req.params.dashboardId, req.body.name, req.body.description)
+            services.updateDashboardFromProject(req.params.id, req.params.dashboardId, req.body.name, req.body.description, req.user)
                 .then(resp => {
-                    console.log("Updating Dashboard")
+                    console.log("Updated Dashboard")
                     answerHandler(resp, res)
                 })
                 .catch(err => errHandler(err, res))
