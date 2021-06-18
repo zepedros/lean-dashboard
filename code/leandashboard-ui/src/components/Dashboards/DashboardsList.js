@@ -11,6 +11,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Hidden from '@material-ui/core/Hidden';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
+import FAB from '../Common/FAB'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -57,18 +58,20 @@ export default function DashboardsList({ dashboards }) {
         <FilterListIcon />
       </IconButton>
       <Divider variant='middle' />
-      <List dense={false} style={{ maxHeight: 250, overflow: 'scroll' }}>
+      <List dense={false} style={{ maxHeight: 400, overflow: 'scroll' }}>
         {
           dashboards.map(dashboard => {
             return <DashboardItem key={dashboard.did} dashboard={dashboard} />
           })
         }
       </List>
-      <Grid container justify="flex-end">
-        <Fab color="primary" aria-label="add" className={classes.button}>
-          <AddIcon />
-        </Fab>
-      </Grid>
+      <FAB />
     </div>
   );
 }
+
+/*
+<Fab color="primary" aria-label="add" className={classes.button}>
+          <AddIcon />
+        </Fab>
+*/
