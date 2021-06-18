@@ -8,7 +8,7 @@ import React from 'react';
  import Link from '@material-ui/core/Link';
  import BarChartIcon from '@material-ui/icons/BarChart';
  import PieChartIcon from '@material-ui/icons/PieChart';
-
+ import DashboardIcon from '@material-ui/icons/Dashboard';
 
  const useStyles = makeStyles({
      root: {
@@ -33,7 +33,7 @@ const colorCards=['#FFE633','#339FFF','#3CAA91','#7FAA3C']
      <Grid item key={dashboard} sm={6} md={4}>
      <Card className={classes.card}>
        <CardContent className={classes.cardContent}>      
-            <PieChartIcon fontSize="large" style={{fill: "black"}}/>
+            <DashboardIcon fontSize="large" style={{fill: "black"}}/>
         
          <Typography gutterBottom variant="h5" component="h2">
          <Button color='primary'>
