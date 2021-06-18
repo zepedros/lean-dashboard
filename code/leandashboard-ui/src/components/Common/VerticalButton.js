@@ -10,9 +10,9 @@ import Button from '@material-ui/core/Button'
 const useStyles = makeStyles((theme) => ({
   button: {
     width: '5%',
-    marginLeft: '100%',
-    marginTop: '3%',
-    justifyContent: 'center'
+    position: 'fixed',
+    bottom: '2%',
+    right: '2%'
 },
 
 }));
