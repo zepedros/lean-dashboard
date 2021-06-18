@@ -5,9 +5,6 @@ import React from 'react';
  import Button from '@material-ui/core/Button';
  import Typography from '@material-ui/core/Typography';
  import Grid from '@material-ui/core/Grid';
- import Link from '@material-ui/core/Link';
- import BarChartIcon from '@material-ui/icons/BarChart';
- import PieChartIcon from '@material-ui/icons/PieChart';
  import DashboardIcon from '@material-ui/icons/Dashboard';
 
  const useStyles = makeStyles({
