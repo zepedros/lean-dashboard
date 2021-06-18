@@ -11,11 +11,15 @@ import { makeStyles } from '@material-ui/core/styles';
 import Hidden from '@material-ui/core/Hidden';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
+import { Container } from '@material-ui/core';
 import FAB from '../Common/FAB'
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    minWidth: 275,
+    position: 'fixed',
+    top: '8%',
+    height: '79%',
+    width: '90%'
   },
   bullet: {
     display: 'inline-block',
@@ -29,9 +33,9 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: 12,
   },
   button: {
-    position: "absolute",
-    right: '10%',
-    bottom: '12%',
+    position: "fixed",
+    right: '5%',
+    bottom: '15%',
     background: 'linear-gradient(45deg, #3CAA91 30%, #3CAA91 90%)',
     color: 'white',
 
@@ -51,21 +55,22 @@ export default function DashboardsList({ dashboards }) {
   }
   return (
     <div>
-      <Typography component="h1" variant="h5">
-        Dashboards
-      </Typography>
-      <IconButton end='end' className={classes.filter} onClick={handleFilter}>
-        <FilterListIcon />
-      </IconButton>
-      <Divider variant='middle' />
-      <List dense={false} style={{ maxHeight: 400, overflow: 'scroll' }}>
-        {
-          dashboards.map(dashboard => {
-            return <DashboardItem key={dashboard.did} dashboard={dashboard} />
-          })
-        }
-      </List>
-      <FAB />
+      <Container className={classes.root}>
+        <Typography component="h1" variant="h5">
+          Dashboards
+        </Typography>
+        <IconButton end='end' className={classes.filter} onClick={handleFilter}>
+          <FilterListIcon />
+        </IconButton>
+        <List dense={false} style={{ maxHeight: '70%', overflow: 'scroll' }}>
+          {
+            dashboards.map(dashboard => {
+              return <DashboardItem key={dashboard.did} dashboard={dashboard} />
+            })
+          }
+        </List>
+        <FAB />
+      </Container>
     </div>
   );
 }

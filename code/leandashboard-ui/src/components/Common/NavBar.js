@@ -32,7 +32,9 @@ const useStyles = makeStyles((theme) => ({
         background: 'white'
     },
     navigation: {
-        width: '90%',
+        width: '95%',
+        left: '2%',
+        height: '12%',
         position: 'fixed',
         bottom: 0
     },
@@ -125,14 +127,16 @@ export default function PermanentDrawerLeft(props) {
             </Hidden>
             <main className={classes.content}>
                 <div className={classes.toolbar} />
-                    {props.component}
+                {props.component}
                 <Hidden mdUp>
+                    <Container>
                         <BottomNavigation value={NavigationValue} onChange={handleChange} className={classes.navigation}>
                             <BottomNavigationAction label="Home" value="Home" icon={<HomeIcon />} />
                             <BottomNavigationAction label="Notifications" value="Notifications" icon={<NotificationsIcon />} />
                             <BottomNavigationAction label="Settings" value="Settings" icon={<SettingsIcon />} />
                             <BottomNavigationAction label="Account" value="Account" icon={<AccountCircleIcon />} />
                         </BottomNavigation>
+                    </Container>
                 </Hidden>
             </main>
         </div>

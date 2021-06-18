@@ -24,9 +24,9 @@ const useStyles = makeStyles({
     width: 'auto',
   },
   button: {
-    position: "absolute",
-    right: '10%',
-    bottom: '12%',
+    position: "fixed",
+    right: '5%',
+    bottom: '15%',
     background: 'linear-gradient(45deg, #3CAA91 30%, #3CAA91 90%)',
     color: 'white',
 

@@ -34,13 +34,10 @@ export default function Header() {
   const displayDesktop = () => {
     return (
       <div>
-      <Toolbar className={toolbar}>
-        {femmecubatorLogo}
-        <div>{getMenuButtons()}</div>
-      </Toolbar>
-      < Router>
-      <Route path="/signin" component={SignIn} />
-      </Router>
+        <Toolbar className={toolbar}>
+          {femmecubatorLogo}
+          <div>{getMenuButtons()}</div>
+        </Toolbar>
       </div>
     );
   };
@@ -62,21 +59,19 @@ export default function Header() {
   const getMenuButtons = () => {
     return headersData.map(({ label, href }) => {
       return (
-        <Router>
-         
-          <Button variant="outlined" color="primary" maxWidth="sm"
-            {...{
-              key: label,
-              color: "inherit",
-              to: href,
-              component: Link,
-              className: menuButton,
-            }}
-          >
-            {label}
-          </Button>
-        </Router>
-        
+
+        <Button variant="outlined" color="primary" maxWidth="sm"
+          {...{
+            key: label,
+            color: "inherit",
+            to: href,
+            component: Link,
+            className: menuButton,
+          }}
+        >
+          {label}
+        </Button>
+
       );
     });
   };

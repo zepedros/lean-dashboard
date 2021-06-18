@@ -30,7 +30,7 @@ const StyledTableCell = withStyles((theme) => ({
   body: {
     fontSize: 14,
   },
-  
+
 }))(TableCell);
 
 const StyledTableRow = withStyles((theme) => ({
@@ -47,7 +47,7 @@ function createData(project, state, nDashboards, completion) {
 
 const rows = [
   createData('Project1', 'OPEN', 'user1'),
-  createData('Project2', 'OPEN', 'user2' ),
+  createData('Project2', 'OPEN', 'user2'),
   createData('Project3', 'OPEN', 'user1'),
   createData('Project4', 'OPEN', 'user4'),
   createData('Project5', 'OPEN', 'user3'),
@@ -57,23 +57,27 @@ const rows = [
   createData('Project9', 'OPEN', 'user4'),
   createData('Project10', 'OPEN', 'user3'),
   createData('Project11', 'OPEN', 'user2'),
-  
+
 ];
 
-const useStyles = makeStyles((theme)=> ({
+const useStyles = makeStyles((theme) => ({
+  root: {
+    width: '100%',
+    height: '90%'
+  },
   table: {
-    minWidth: 700,
+    minWidth: 700
   },
   button: {
     margin: theme.spacing(1),
-    position: "absolute",
-    right:    60,
-    bottom:   70,
+    position: "fixed",
+    right: '5%',
+    bottom: '5%',
     background: 'linear-gradient(45deg, #3CAA91 30%, #3CAA91 90%)',
     borderRadius: 3,
     border: 0,
     color: 'white',
-    height: 48,
+    height: '7%',
     padding: '0 30px',
     boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
   },
@@ -87,38 +91,37 @@ const useStyles = makeStyles((theme)=> ({
 
 export default function CustomizedTables() {
   const classes = useStyles();
-  
+
   return (
     <div>
       <Typography component="h1" variant="h5">
-            My Projects
-          </Typography>
-        <Paper >
-        <TableContainer component={Paper} elevation={3}style={{maxHeight:480}}>
-        
-          <IconButton aria-label="filter list" className={classes.filter}>
-            <FilterListIcon />
-          </IconButton>
-       
+        My Projects
+      </Typography>
+      <Paper className={classes.root}>
+        <IconButton aria-label="filter list" className={classes.filter}>
+          <FilterListIcon />
+        </IconButton>
+        <TableContainer component={Paper} elevation={3}>
+
           <Table className={classes.table} aria-label="customized table" >
             <TableHead>
               <TableRow>
-                <StyledTableCell>Project</StyledTableCell>
-                <StyledTableCell align="right">State</StyledTableCell>
-                <StyledTableCell align="right">Project Manager</StyledTableCell>
-                <StyledTableCell align="right">Completion</StyledTableCell>
+                <StyledTableCell align="center">Project</StyledTableCell>
+                <StyledTableCell align="center">State</StyledTableCell>
+                <StyledTableCell align="center">Project Manager</StyledTableCell>
+                <StyledTableCell align="center">Completion</StyledTableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {rows.map((row) => (
-                <StyledTableRow key={row.name}>
-                  <StyledTableCell component="th" scope="row">
-                    <Button>{row.project}</Button>
+                <StyledTableRow key={row.name} >
+                  <StyledTableCell component="th" align="center" scope="row">
+                    <Button color="primary">{row.project}</Button>
                   </StyledTableCell>
-                  <StyledTableCell align="right">{row.state}</StyledTableCell>
-                  <StyledTableCell align="right">{row.nDashboards}</StyledTableCell>
-                  <StyledTableCell align="right">{row.completion}</StyledTableCell>
-                  
+                  <StyledTableCell align="center">{row.state}</StyledTableCell>
+                  <StyledTableCell align="center">{row.nDashboards}</StyledTableCell>
+                  <StyledTableCell align="center">{row.completion}</StyledTableCell>
+
                 </StyledTableRow>
               ))}
             </TableBody>
@@ -126,14 +129,14 @@ export default function CustomizedTables() {
         </TableContainer>
       </Paper>
       <Button
-      variant="contained"
-      color="primary"
-      size="small"
-      className={classes.button}
-      startIcon={<AddIcon />}
-    >
-      Add new
-    </Button>
-</div>
+        variant="contained"
+        color="primary"
+        size="small"
+        className={classes.button}
+        startIcon={<AddIcon />}
+      >
+        Add new
+      </Button>
+    </div>
   );
 }
