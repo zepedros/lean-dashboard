@@ -58,7 +58,7 @@ export default function ProjectsList({ projects }) {
         <FilterListIcon />
       </IconButton>
       <Divider variant='middle' />
-      <List dense={false} style={{ maxHeight: 250, overflow: 'scroll' }}>
+      <List dense={false} style={{ maxHeight: 450, overflow: 'scroll' }}>
         {
           projects.map(project => {
             return <ProjectItem key={project.pid} project={project} />

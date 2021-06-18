@@ -6,7 +6,8 @@ import React from 'react';
  import Typography from '@material-ui/core/Typography';
  import Grid from '@material-ui/core/Grid';
  import Link from '@material-ui/core/Link';
-
+ import BarChartIcon from '@material-ui/icons/BarChart';
+ import PieChartIcon from '@material-ui/icons/PieChart';
 
 
  const useStyles = makeStyles({
@@ -17,12 +18,13 @@ import React from 'react';
 
          display: 'flex',
          flexDirection: 'column',
-         textAlign: "left",
-         width: "150px",
-
+         textAlign: "bottom",
+         width: "180px",
+         height:"150px",
+         backgroundColor: '',
        },
    });
-
+const colorCards=['#FFE633','#339FFF','#3CAA91','#7FAA3C']
  export default function DashboardsCard({ dashboard }) {
      const preventDefault = (event) => event.preventDefault();
 
@@ -30,15 +32,14 @@ import React from 'react';
  return(
      <Grid item key={dashboard} sm={6} md={4}>
      <Card className={classes.card}>
-       <CardContent className={classes.cardContent}>
+       <CardContent className={classes.cardContent}>      
+            <PieChartIcon fontSize="large" style={{fill: "black"}}/>
+        
          <Typography gutterBottom variant="h5" component="h2">
-             <Button color='primary'>
+         <Button color='primary'>
                  {dashboard.name}
            </Button>
-         </Typography>
-         <Typography>
-             {dashboard.description}  
-         </Typography>
+           </Typography>
        </CardContent>
      </Card>
    </Grid>

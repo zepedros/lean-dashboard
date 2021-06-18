@@ -1,7 +1,0 @@
-HOST= localhost
-DB_PORT= 5432
-DB_USER= postgres
-DB_PASSWORD= 1234
-DB_CONNECTION_LIMIT= 5
-DATABASE= authization
-DBMS= postgres

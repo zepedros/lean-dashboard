@@ -13,6 +13,11 @@ import TablePagination from '@material-ui/core/TablePagination';
 import AddIcon from '@material-ui/icons/Add';
 import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
+import Tooltip from '@material-ui/core/Tooltip';
+import FilterListIcon from '@material-ui/icons/FilterList';
+import IconButton from '@material-ui/core/IconButton';
+
+
 
 
 
@@ -41,17 +46,17 @@ function createData(project, state, nDashboards, completion) {
 }
 
 const rows = [
-  createData('Project1', 'OPEN', 6),
-  createData('Project2', 'OPEN', 9 ),
-  createData('Project3', 'OPEN', 1),
-  createData('Project4', 'OPEN', 3),
-  createData('Project5', 'OPEN', 5),
-  createData('Project6', 'OPEN', 1),
-  createData('Project7', 'OPEN', 3),
-  createData('Project8', 'OPEN', 5),
-  createData('Project9', 'OPEN', 1),
-  createData('Project10', 'OPEN', 3),
-  createData('Project11', 'OPEN', 5),
+  createData('Project1', 'OPEN', 'user1'),
+  createData('Project2', 'OPEN', 'user2' ),
+  createData('Project3', 'OPEN', 'user1'),
+  createData('Project4', 'OPEN', 'user4'),
+  createData('Project5', 'OPEN', 'user3'),
+  createData('Project6', 'OPEN', 'user6'),
+  createData('Project7', 'OPEN', 'user5'),
+  createData('Project8', 'OPEN', 'user2'),
+  createData('Project9', 'OPEN', 'user4'),
+  createData('Project10', 'OPEN', 'user3'),
+  createData('Project11', 'OPEN', 'user2'),
   
 ];
 
@@ -63,7 +68,7 @@ const useStyles = makeStyles((theme)=> ({
     margin: theme.spacing(1),
     position: "absolute",
     right:    60,
-    bottom:   130,
+    bottom:   70,
     background: 'linear-gradient(45deg, #3CAA91 30%, #3CAA91 90%)',
     borderRadius: 3,
     border: 0,
@@ -72,7 +77,13 @@ const useStyles = makeStyles((theme)=> ({
     padding: '0 30px',
     boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
   },
+  filter: {
+    position: "relative",
+    left: "45%"
+  },
 }));
+
+
 
 export default function CustomizedTables() {
   const classes = useStyles();
@@ -82,14 +93,19 @@ export default function CustomizedTables() {
       <Typography component="h1" variant="h5">
             My Projects
           </Typography>
-        <Paper>
-        <TableContainer component={Paper} style={{maxHeight:440}}>
+        <Paper >
+        <TableContainer component={Paper} elevation={3}style={{maxHeight:480}}>
+        
+          <IconButton aria-label="filter list" className={classes.filter}>
+            <FilterListIcon />
+          </IconButton>
+       
           <Table className={classes.table} aria-label="customized table" >
             <TableHead>
               <TableRow>
                 <StyledTableCell>Project</StyledTableCell>
                 <StyledTableCell align="right">State</StyledTableCell>
-                <StyledTableCell align="right">Number of Dashboards</StyledTableCell>
+                <StyledTableCell align="right">Project Manager</StyledTableCell>
                 <StyledTableCell align="right">Completion</StyledTableCell>
               </TableRow>
             </TableHead>

@@ -11,6 +11,9 @@ import React from 'react';
 import DashboardsPage from './DashboardsPage';
 import DashboardsCard from './DashboardsCard'
 import FAB from '../Common/FAB'
+import ButtonGroup from '@material-ui/core/ButtonGroup';
+import VerticalButton from '../Common/VerticalButton'
+
 
 
 
@@ -39,7 +42,8 @@ import FAB from '../Common/FAB'
          Height:"25px",
          Top: "977px",
          Left: "1172px",
-         Blend: "Pass through"
+         Blend: "Pass through",
+        
 
       }
 
@@ -53,9 +57,10 @@ import FAB from '../Common/FAB'
    return (
      <div>
       <Container className={classes.cardGrid} maxWidth="md" >
-          <Typography component="h1" variant="h5">
+          <Typography component="h1" variant="h5" style={{textAlign:"center"}}>
           Dashboards
         </Typography>
+      
             <Grid container spacing={6}>
               {dashboards.map((dashboard) => {
                   return <DashboardsCard dashboard={dashboard} />
@@ -63,7 +68,7 @@ import FAB from '../Common/FAB'
           }
             </Grid>
           </Container>
-          <FAB />
+          <VerticalButton />
       </div>
    );
  }

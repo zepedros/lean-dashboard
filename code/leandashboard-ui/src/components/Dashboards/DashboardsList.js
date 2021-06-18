@@ -72,20 +72,3 @@ export default function DashboardsList({ dashboards }) {
     </div>
   );
 }
-
-
-/*
-<div>
-          <Grid item xs={12}>
-          <div>
-            <List dense={false}>
-              {
-                  projects.map(project => {
-                      return <ProjectItem key={project.pid} project={project} />
-                  })
-              }
-            </List>
-          </div>
-        </Grid>
-      </div>
-*/
