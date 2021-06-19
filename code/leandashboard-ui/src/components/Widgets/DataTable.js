@@ -46,18 +46,7 @@ function createData(project, state, nDashboards, completion) {
 }
 
 const rows = [
-  createData('Project1', 'OPEN', 'user1'),
-  createData('Project2', 'OPEN', 'user2' ),
-  createData('Project3', 'OPEN', 'user1'),
-  createData('Project4', 'OPEN', 'user4'),
-  createData('Project5', 'OPEN', 'user3'),
-  createData('Project6', 'OPEN', 'user6'),
-  createData('Project7', 'OPEN', 'user5'),
-  createData('Project8', 'OPEN', 'user2'),
-  createData('Project9', 'OPEN', 'user4'),
-  createData('Project10', 'OPEN', 'user3'),
-  createData('Project11', 'OPEN', 'user2'),
-  
+  createData('key', 'a summary', 'type','open'),  
 ];
 
 const useStyles = makeStyles((theme)=> ({
@@ -90,12 +79,13 @@ export default function CustomizedTables() {
   
   return (
     <div>
-      <Typography component="h1" variant="h5">
-            My Projects
-          </Typography>
+     
         <Paper >
-        <TableContainer component={Paper} elevation={3}style={{maxHeight:480}}>
         
+        <TableContainer component={Paper} elevation={3}style={{maxHeight:480}}>
+        <Typography component="h1" variant="h5" style={{textAlign:"left"}}>
+            Issues
+          </Typography>
           <IconButton aria-label="filter list" className={classes.filter}>
             <FilterListIcon />
           </IconButton>
@@ -103,10 +93,10 @@ export default function CustomizedTables() {
           <Table className={classes.table} aria-label="customized table" >
             <TableHead>
               <TableRow>
-                <StyledTableCell>Project</StyledTableCell>
+                <StyledTableCell>Key</StyledTableCell>
+                <StyledTableCell align="right">Summary</StyledTableCell>
+                <StyledTableCell align="right">Issue Type name</StyledTableCell>
                 <StyledTableCell align="right">State</StyledTableCell>
-                <StyledTableCell align="right">Project Manager</StyledTableCell>
-                <StyledTableCell align="right">Completion</StyledTableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -125,15 +115,7 @@ export default function CustomizedTables() {
           </Table>
         </TableContainer>
       </Paper>
-      <Button
-      variant="contained"
-      color="primary"
-      size="small"
-      className={classes.button}
-      startIcon={<AddIcon />}
-    >
-      Add new
-    </Button>
+      
 </div>
   );
 }

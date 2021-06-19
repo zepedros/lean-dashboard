@@ -57,7 +57,7 @@ export default function DashboardsCards({ dashboards }) {
           }
         </Grid>
 
-        <VerticalButton />
+        <VerticalButton title1={"Add Dashboard"} title2={"Project Settings"} show={false}/>
       </Container>
     </div>
   );
