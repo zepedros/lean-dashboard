@@ -207,8 +207,14 @@ function services(db, auth) {
                         })
                 })
         },
-        getWidgetTemplates: function () {
-            return db.getWidgetTemplates()
+        getWidgetTemplates: async function (userMakingRequest) {
+            if (userMakingRequest.id === 1 || await auth.checkIfUserHasRole(userMakingRequest, "manager")) {
+                return db.getWidgetTemplates()
+            } else {
+                return Promise.reject(
+                    error.makeErrorResponse(error.FORBIDDEN, 'You cannot access widget templates. Only the manager has that access.')
+                )
+            }
         },
 
         //check if projectId and dashboardId
@@ -216,19 +222,53 @@ function services(db, auth) {
             return db.getWidget(widgetId)
         },
 
-        addWidgetToDashboard: function (projectId, dashboardId, templateId, timeSettings, credentials) {
-            return db.addWidgetToDashboard(projectId, dashboardId, templateId, timeSettings, credentials)
-                .then(createdId => {
-                    scheduler.scheduleWidget(createdId, true)
-                    return response.makePostResponse(response.OK, `${projectId}/dashboard/`, dashboardId)
+        addWidgetToDashboard: function (projectId, dashboardId, templateId, timeSettings, credentials, userMakingRequest) {
+            if (!projectId || !dashboardId || !templateId)
+                return Promise.reject(
+                    error.makeErrorResponse(error.ARGUMENT_ERROR, 'Please indicate an ID for the project, dashboard and widget template in the path')
+                )
+            if (!timeSettings || !credentials)
+                return Promise.reject(
+                    error.makeErrorResponse(error.ARGUMENT_ERROR, 'Please indicate the refresh settings and the credentials in the body of the request')
+                )
+            return db.getProjectById(projectId, userMakingRequest)
+                .then(project => {
+                    if (project.owner !== userMakingRequest.id && userMakingRequest.id !== 1) {
+                        return Promise.reject(
+                            error.makeErrorResponse(error.FORBIDDEN, 'You cannot update dashboards from this project. Only the manager has that access.')
+                        )
+                    }
+                    return db.addWidgetToDashboard(projectId, dashboardId, templateId, timeSettings, credentials)
+                        .then(createdId => {
+                            scheduler.scheduleWidget(createdId, true)
+                            return response.makePostResponse(response.OK, `${projectId}/dashboard/`, dashboardId)
+                        })
                 })
         },
 
-        updateWidget: function (projectId, dashboardId, widgetId, timeSettings, credentials) {
-            return db.updateWidget(projectId, widgetId, timeSettings, credentials)
-                .then(() => {
-                    scheduler.reSchedule(widgetId)
-                    return response.makePostResponse(response.OK, `${projectId}/dashboard/${dashboardId}`)
+        updateWidget: function (projectId, dashboardId, widgetId, timeSettings, credentials, userMakingRequest) {
+            if (!projectId || !dashboardId || !widgetId)
+                return Promise.reject(
+                    error.makeErrorResponse(error.ARGUMENT_ERROR, 'Please indicate an ID for the project, dashboard and widget in the path')
+                )
+
+            //TODO Allow user to giver either time settings or credentials. not both
+            if (!timeSettings || !credentials)
+                return Promise.reject(
+                    error.makeErrorResponse(error.ARGUMENT_ERROR, 'Please indicate the refresh settings or the type credentials you wish to update in the body of the request')
+                )
+            return db.getProjectById(projectId, userMakingRequest)
+                .then(project => {
+                    if (project.owner !== userMakingRequest.id && userMakingRequest.id !== 1) {
+                        return Promise.reject(
+                            error.makeErrorResponse(error.FORBIDDEN, 'You cannot update dashboards from this project. Only the manager has that access.')
+                        )
+                    }
+                    return db.updateWidget(projectId, widgetId, timeSettings, credentials)
+                        .then(() => {
+                            scheduler.reSchedule(widgetId)
+                            return response.makePostResponse(response.OK, `${projectId}/dashboard/${dashboardId}`)
+                        })
                 })
         },
         removeWidgetFromDashboard: function (projectId, dashboardId, widgetId) {

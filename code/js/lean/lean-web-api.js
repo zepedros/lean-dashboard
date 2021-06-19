@@ -92,7 +92,7 @@ function webapi(app, services, auth, authization) {
         },
 
         getWidgetTemplates: function (req, res) {
-            services.getWidgetTemplates()
+            services.getWidgetTemplates(req.user)
                 .then(resp => {
                     console.log("Get All Templates")
                     answerHandler(resp, res)
@@ -110,7 +110,7 @@ function webapi(app, services, auth, authization) {
         },
 
         addWidgetToDashboard: function (req, res) {
-            services.addWidgetToDashboard(req.params.id, req.params.dashboardId, req.params.widgetsId, req.body.timeSettings, req.body.credentials)
+            services.addWidgetToDashboard(req.params.id, req.params.dashboardId, req.params.widgetsId, req.body.timeSettings, req.body.credentials, req.user)
                 .then(resp => {
                     console.log("Add Widget to Dashboard")
                     answerHandler(resp, res)
@@ -119,7 +119,7 @@ function webapi(app, services, auth, authization) {
         },
 
         updateWidget: function(req,res){
-            services.updateWidget(req.params.id, req.params.dashboardId, req.params.widgetsId, req.body.timeSettings, req.body.credentials)
+            services.updateWidget(req.params.id, req.params.dashboardId, req.params.widgetsId, req.body.timeSettings, req.body.credentials, req.user)
                 .then(resp => {
                     console.log("Update Widget")
                     answerHandler(resp, res)
