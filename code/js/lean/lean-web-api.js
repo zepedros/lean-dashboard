@@ -81,6 +81,14 @@ function webapi(app, services, auth, authization) {
                 })
                 .catch(err => errHandler(err, res))
         },
+        getDashboardsFromProject: function (req, res) {
+            services.getDashboardsFromProject(req.params.id, req.user)
+                .then(resp => {
+                    console.log("Get Dashboards")
+                    answerHandler(resp, res)
+                })
+                .catch(err => errHandler(err, res))
+        },
 
         updateDashboardFromProject: function (req, res) {
             services.updateDashboardFromProject(req.params.id, req.params.dashboardId, req.body.name, req.body.description, req.user)
@@ -254,6 +262,7 @@ function webapi(app, services, auth, authization) {
 
     app.post('/api/lean/projects/:id/dashboard', theWebApi.addDashboardToProject)
     app.delete('/api/lean/projects/:id/dashboard/:dashboardId', theWebApi.removeDashboardFromProject)
+    app.get('/api/lean/projects/:id/dashboards', theWebApi.getDashboardsFromProject)
     app.get('/api/lean/projects/:id/dashboard/:dashboardId', theWebApi.getDashboardFromProject)
     app.put('/api/lean/projects/:id/dashboard/:dashboardId', theWebApi.updateDashboardFromProject)
 

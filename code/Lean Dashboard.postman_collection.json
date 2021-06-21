@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "b2a786e3-10fa-45d1-b354-53d1f101ad05",
+		"_postman_id": "7e2cb3f8-9d83-4c6d-ad38-66bdb227285e",
 		"name": "Lean Dashboard",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -938,6 +938,29 @@
 					"name": "Dashboards",
 					"item": [
 						{
+							"name": "GET /api/lean/projects/{id}/dashboards",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/lean/projects/jaQoL3oB3EtfguotI6NY/dashboards",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"lean",
+										"projects",
+										"jaQoL3oB3EtfguotI6NY",
+										"dashboards"
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "GET /api/lean/projects/{id}/dashboard/{dashboardId}",
 							"request": {
 								"method": "GET",
@@ -1299,7 +1322,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"username\" : \"zepedros\",\r\n    \"password\"  : \"Testpassword123\"\r\n}",
+									"raw": "{\r\n    \"username\" : \"superuser\",\r\n    \"password\"  : \"Superuser123\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"

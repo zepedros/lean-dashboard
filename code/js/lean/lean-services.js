@@ -172,12 +172,32 @@ function services(db, auth) {
             }
             return db.getProjectById(projectId, userMakingRequest)
                 .then(project => {
+                    if (project.owner !== userMakingRequest.id || project.members.includes(userMakingRequest.id,0) && userMakingRequest.id !== 1) {
+                        return Promise.reject(
+                            error.makeErrorResponse(error.FORBIDDEN, 'You cannot access dashboards from this project. Only the manager and team members have that access.')
+                        )
+                    }
+                    return db.getDashboardsFromProject(project)
+                })
+        },
+
+        getDashboardsFromProject: function (projectId, userMakingRequest) {
+            if (!projectId) {
+                return Promise.reject(
+                    error.makeErrorResponse(
+                        error.ARGUMENT_ERROR,
+                        'Please indicate a valid project ID'
+                    )
+                )
+            }
+            return db.getProjectById(projectId, userMakingRequest)
+                .then(project => {
                     if (project.owner !== userMakingRequest.id && userMakingRequest.id !== 1) {
                         return Promise.reject(
                             error.makeErrorResponse(error.FORBIDDEN, 'You cannot access dashboards from this project. Only the manager and team members have that access.')
                         )
                     }
-                    return db.getDashboardFromProject(projectId, dashboardId)
+                    return db.getDashboardsFromProject(project)
                 })
         },
         updateDashboardFromProject: function (projectId, dashboardId, newName, newDesc, userMakingRequest) {

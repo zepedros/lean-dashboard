@@ -211,6 +211,20 @@ module.exports = {
             })
 
     },
+
+    getDashboardsFromProject: async function (project) {
+        let dashboards = []
+        for (const dashboardId of project.dashboards) {
+            await this.getDashboardFromProject(project.id, dashboardId)
+                .then(response => {
+                    if (response) {
+                        dashboards.push(response)
+                    }
+                })
+        }
+        return dashboards
+    },
+
     updateDashboardFromProject: async function (dashboardId, newName, newDesc) {
         const body = {
             "script": {
