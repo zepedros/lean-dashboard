@@ -8,6 +8,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import { Container } from '@material-ui/core';
+import AddProjectDialog from './AddProjectDialog.js'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -45,9 +46,16 @@ const useStyles = makeStyles((theme) => ({
 export default function ProjectsList({ projects }) {
   const classes = useStyles();
   const [showFilter, setShowFilter] = useState(false)
+  const [showDialog, setShowDialog] = useState(false)
+
   function handleFilter() {
     setShowFilter(!showFilter)
   }
+
+  function handleOpenDialog() {
+    setShowDialog(true)
+  }
+
   //TODO A PARTE QUE O BOTAO DO FILTRO LIGA
   return (
     <div>
@@ -65,8 +73,9 @@ export default function ProjectsList({ projects }) {
             })
           }
         </List>
+        <AddProjectDialog showDialog={showDialog} setShowDialog={setShowDialog}/>
         <Fab color="primary" aria-label="add" className={classes.button}>
-          <AddIcon />
+          <AddIcon onClick={handleOpenDialog} />
         </Fab>
       </Container>
     </div>
