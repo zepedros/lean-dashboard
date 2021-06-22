@@ -74,7 +74,7 @@ function webapi(app, services, auth, authization) {
                 .catch(err => errHandler(err, res))
         },
         getDashboardFromProject: function (req, res) {
-            services.getDashboardFromProject(req.params.id, req.params.dashboardId,req.user)
+            services.getDashboardFromProject(req.params.id, req.params.dashboardId, req.user)
                 .then(resp => {
                     console.log("Get Dashboard")
                     answerHandler(resp, res)
@@ -108,13 +108,13 @@ function webapi(app, services, auth, authization) {
                 .catch(err => errHandler(err, res))
         },
 
-        getWidget: function (req,res){
-          services.getWidget(req.params.id, req.params.dashboardId, req.params.widgetsId)
-              .then(resp => {
-                  console.log("Get Widget")
-                  answerHandler(resp, res)
-              })
-              .catch(err => errHandler(err, res))
+        getWidget: function (req, res) {
+            services.getWidget(req.params.id, req.params.dashboardId, req.params.widgetsId)
+                .then(resp => {
+                    console.log("Get Widget")
+                    answerHandler(resp, res)
+                })
+                .catch(err => errHandler(err, res))
         },
 
         addWidgetToDashboard: function (req, res) {
@@ -126,7 +126,7 @@ function webapi(app, services, auth, authization) {
                 .catch(err => errHandler(err, res))
         },
 
-        updateWidget: function(req,res){
+        updateWidget: function (req, res) {
             services.updateWidget(req.params.id, req.params.dashboardId, req.params.widgetsId, req.body.timeSettings, req.body.credentials, req.user)
                 .then(resp => {
                     console.log("Update Widget")
@@ -149,6 +149,12 @@ function webapi(app, services, auth, authization) {
                 .catch(err => errHandler(err, res))
         },
 
+        editUser: function (req, res) {
+            services.editUser(req.params.username, req.body.newUsername, req.body.newPassword, req.user)
+                .then(resp => answerHandler(resp, res))
+                .catch(err => errHandler(err, res))
+        },
+
         logout: async function (req, res) {
             await services.logout(req, res)
         },
@@ -157,17 +163,17 @@ function webapi(app, services, auth, authization) {
             await services.loginLocal(req, res)
         },
 
-        addUserToProject: function (req, res){
+        addUserToProject: function (req, res) {
             services.addUserToProject(req.params.id, req.body.username, req.user)
                 .then(resp => {
                     console.log("User added to Project")
-                    answerHandler(resp, res,201)
+                    answerHandler(resp, res, 201)
                 })
                 .catch(err => errHandler(err, res))
         },
 
-        removeUserFromProject: function (req, res){
-            const user =  req.user
+        removeUserFromProject: function (req, res) {
+            const user = req.user
             services.removeUserFromProject(req.params.id, req.params.username, user)
                 .then(resp => {
                     console.log("User removed from Project")
@@ -176,7 +182,7 @@ function webapi(app, services, auth, authization) {
                 .catch(err => errHandler(err, res))
         },
 
-        getCredentials : function (req,res) {
+        getCredentials: function (req, res) {
             services.getCredentials(req.params.id, req.user)
                 .then(resp => {
                     console.log("Get Credentials")
@@ -185,7 +191,7 @@ function webapi(app, services, auth, authization) {
                 .catch(err => errHandler(err, res))
         },
 
-        getCredentialsById : function (req,res) {
+        getCredentialsById: function (req, res) {
             services.getCredentialsById(req.params.id, req.params.credentialId, req.user)
                 .then(resp => {
                     console.log("Get Credentials by Id")
@@ -194,7 +200,7 @@ function webapi(app, services, auth, authization) {
                 .catch(err => errHandler(err, res))
         },
 
-        addCredential : function (req,res) {
+        addCredential: function (req, res) {
             services.addCredential(req.params.id, req.body.name, req.body.source, req.body.credential, req.user)
                 .then(resp => {
                     console.log("Added Credential to Project")
@@ -203,7 +209,7 @@ function webapi(app, services, auth, authization) {
                 .catch(err => errHandler(err, res))
         },
 
-        deleteCredential : function (req,res) {
+        deleteCredential: function (req, res) {
             services.deleteCredential(req.params.id, req.params.credentialId, req.user)
                 .then(resp => {
                     console.log("Deleted Credential from Project")
@@ -212,8 +218,8 @@ function webapi(app, services, auth, authization) {
                 .catch(err => errHandler(err, res))
         },
 
-        updateCredential : function (req,res) {
-            services.updateCredential(req.params.id, req.params.credentialId,req.body.name, req.body.source, req.body.credential, req.user)
+        updateCredential: function (req, res) {
+            services.updateCredential(req.params.id, req.params.credentialId, req.body.name, req.body.source, req.body.credential, req.user)
                 .then(resp => {
                     console.log("Updated Credential in Project")
                     answerHandler(resp, res)
@@ -221,14 +227,14 @@ function webapi(app, services, auth, authization) {
                 .catch(err => errHandler(err, res))
         },
 
-        giveUserRole: function (req, res){
-            const userMakingRequest  = req.user
+        giveUserRole: function (req, res) {
+            const userMakingRequest = req.user
             const body = req.body
             const username = req.params.username
-            services.giveUserRole(username, userMakingRequest,body.role, body.endDate)
+            services.giveUserRole(username, userMakingRequest, body.role, body.endDate)
                 .then(resp => {
                     console.log(`User ${username} was given the role ${body.role}`)
-                    answerHandler(resp, res,201)
+                    answerHandler(resp, res, 201)
                 })
                 .catch(err => errHandler(err, res))
         },
@@ -244,8 +250,8 @@ function webapi(app, services, auth, authization) {
                 .catch(err => errHandler(err, res))
         },
 
-        removeRoleFromUser: function (req, res){
-            const userMakingRequest  = req.user
+        removeRoleFromUser: function (req, res) {
+            const userMakingRequest = req.user
             const username = req.params.username
             const role = req.params.role
             services.removeRoleFromUser(username, userMakingRequest, role)
@@ -279,10 +285,10 @@ function webapi(app, services, auth, authization) {
 
 
     app.get('/api/lean/projects/widgets/templates', theWebApi.getWidgetTemplates)
-    app.get('/api/lean/projects/:id/dashboard/:dashboardId/widgets/:widgetsId',theWebApi.getWidget)
+    app.get('/api/lean/projects/:id/dashboard/:dashboardId/widgets/:widgetsId', theWebApi.getWidget)
     app.post('/api/lean/projects/:id/dashboard/:dashboardId/widgets/:widgetsId', theWebApi.addWidgetToDashboard)
     app.delete('/api/lean/projects/:id/dashboard/:dashboardId/widgets/:widgetsId', theWebApi.removeWidgetFromDashboard)
-    app.put('/api/lean/projects/:id/dashboard/:dashboardId/widgets/:widgetsId',theWebApi.updateWidget)
+    app.put('/api/lean/projects/:id/dashboard/:dashboardId/widgets/:widgetsId', theWebApi.updateWidget)
 
     app.get('/api/lean/projects/:id/credentials', theWebApi.getCredentials)
     app.get('/api/lean/projects/:id/credentials/:credentialId', theWebApi.getCredentialsById)
@@ -291,8 +297,8 @@ function webapi(app, services, auth, authization) {
     app.put('/api/lean/projects/:id/credentials/:credentialId', theWebApi.updateCredential)
 
 
-
     app.post('/lean/register', theWebApi.createUser)
+    app.put('/lean/users/:username', theWebApi.editUser)
     app.post('/lean/login', async (req, res, next) => {
         await authization.authenticate.usingLocal(req, res, err => {
             if (err) {

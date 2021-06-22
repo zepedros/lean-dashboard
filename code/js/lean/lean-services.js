@@ -310,6 +310,34 @@ function services(db, auth) {
             return await auth.createUser(username, password)
         },
 
+        editUser: async function (username, newUsername, newPassword, userMakingRequest) {
+            if (!userMakingRequest) {
+                return Promise.reject(
+                    error.makeErrorResponse(error.FORBIDDEN, 'Error. The user is not authenticated')
+                )
+            }
+            if(!newUsername && !newPassword){
+                return Promise.reject(
+                    error.makeErrorResponse(error.ARGUMENT_ERROR, 'Please indicate either a new username or a new password')
+                )
+            }
+
+            if (userMakingRequest.username !== username && userMakingRequest.id !== 1) {
+                return Promise.reject(
+                    error.makeErrorResponse(error.FORBIDDEN, 'You cannot edit this users information.')
+                )
+            }
+
+            const userToEdit = await auth.getUserByUsername(username)
+            if (newUsername) {
+                const ret = await auth.editUsername(newUsername, userToEdit, userMakingRequest)
+                return ret
+            }
+            if (newPassword){
+                //auth.editPassword()
+            }
+        },
+
         loginLocal: async function (req, res) {
             return await auth.loginLocal(req, res)
         },
