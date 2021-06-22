@@ -172,7 +172,7 @@ function services(db, auth) {
             }
             return db.getProjectById(projectId, userMakingRequest)
                 .then(project => {
-                    if (project.owner !== userMakingRequest.id || project.members.includes(userMakingRequest.id,0) && userMakingRequest.id !== 1) {
+                    if (project.owner !== userMakingRequest.id || project.members.includes(userMakingRequest.id, 0) && userMakingRequest.id !== 1) {
                         return Promise.reject(
                             error.makeErrorResponse(error.FORBIDDEN, 'You cannot access dashboards from this project. Only the manager and team members have that access.')
                         )
@@ -291,11 +291,19 @@ function services(db, auth) {
                         })
                 })
         },
-        removeWidgetFromDashboard: function (projectId, dashboardId, widgetId) {
-            return db.removeWidgetFromDashboard(projectId, dashboardId, widgetId)
-                .then(dashboardId => {
-                    scheduler.deleteJob(widgetId)
-                    return response.makePostResponse(response.OK, `${projectId}/dashboard/${dashboardId}`)
+        removeWidgetFromDashboard: function (projectId, dashboardId, widgetId, userMakingRequest) {
+            return db.getProjectById(projectId, userMakingRequest)
+                .then(project => {
+                    if (project.owner !== userMakingRequest.id && userMakingRequest.id !== 1) {
+                        return Promise.reject(
+                            error.makeErrorResponse(error.FORBIDDEN, 'You cannot remove dashboards from this project. Only the manager has that access.')
+                        )
+                    }
+                    return db.removeWidgetFromDashboard(projectId, dashboardId, widgetId)
+                        .then(dashboardId => {
+                            scheduler.deleteJob(widgetId)
+                            return response.makePostResponse(response.OK, `${projectId}/dashboard/${dashboardId}`)
+                        })
                 })
         },
         createUser: async function (username, password, first_name, last_name) {
@@ -389,39 +397,79 @@ function services(db, auth) {
 
         },
 
-        addCredential: function (projectId, credentialName, credentialSource, credentials) {
+        addCredential: function (projectId, credentialName, credentialSource, credentials, userMakingRequest) {
             try {
                 checkCredentials(credentialSource, credentials)
             } catch (ex) {
                 return Promise.reject(ex)
             }
-            return db.addCredential(projectId, credentialName, credentialSource, credentials)
-                .then(credentialId => {
-                    return response.makePostResponse(200, `${projectId}/credentials/${credentialId}`)
-                })
-                .catch(err => {
-                    throw err
-                })
-        },
-        getCredentials: function (projectId) {
-            return db.getCredentials(projectId)
-        },
-        getCredentialsById: function (projectId, credentialId) {
-            return db.getCredentialsById(projectId, credentialId)
-        },
-        deleteCredential: function (projectId, credentialId) {
-            return db.deleteCredential(projectId, credentialId)
-                .then(credId => {
-                    return response.makePostResponse(201, `${projectId}/credentials/${credId}`)
+            return db.getProjectById(projectId, userMakingRequest)
+                .then(project => {
+                    if (project.owner !== userMakingRequest.id && userMakingRequest.id !== 1) {
+                        return Promise.reject(
+                            error.makeErrorResponse(error.FORBIDDEN, 'You cannot add credentials to this project. Only the manager has that access.')
+                        )
+                    }
+                    return db.addCredential(projectId, credentialName, credentialSource, credentials)
+                        .then(credentialId => {
+                            return response.makePostResponse(200, `${projectId}/credentials/${credentialId}`)
+                        })
+                        .catch(err => {
+                            throw err
+                        })
                 })
         },
-        updateCredential: function (projectId, credentialId, credentialName, credentialSource, credentials) {
+        getCredentials: function (projectId, userMakingRequest) {
+            return db.getProjectById(projectId, userMakingRequest)
+                .then(project => {
+                    if (project.owner !== userMakingRequest.id && userMakingRequest.id !== 1) {
+                        return Promise.reject(
+                            error.makeErrorResponse(error.FORBIDDEN, 'You cannot get this projects credentials. Only the manager has that access.')
+                        )
+                    }
+                    return db.getCredentials(projectId)
+                })
+        },
+        getCredentialsById: function (projectId, credentialId, userMakingRequest) {
+            return db.getProjectById(projectId, userMakingRequest)
+                .then(project => {
+                    if (project.owner !== userMakingRequest.id && userMakingRequest.id !== 1) {
+                        return Promise.reject(
+                            error.makeErrorResponse(error.FORBIDDEN, 'You cannot get this projects credentials. Only the manager has that access.')
+                        )
+                    }
+                    return db.getCredentialsById(projectId, credentialId)
+                })
+        },
+        deleteCredential: function (projectId, credentialId, userMakingRequest) {
+            return db.getProjectById(projectId, userMakingRequest)
+                .then(project => {
+                    if (project.owner !== userMakingRequest.id && userMakingRequest.id !== 1) {
+                        return Promise.reject(
+                            error.makeErrorResponse(error.FORBIDDEN, 'You cannot delete this projects credentials. Only the manager has that access.')
+                        )
+                    }
+                    return db.deleteCredential(projectId, credentialId)
+                        .then(credId => {
+                            return response.makePostResponse(200, `${projectId}/credentials/${credId}`)
+                        })
+                })
+        },
+        updateCredential: function (projectId, credentialId, credentialName, credentialSource, credentials, userMakingRequest) {
             try {
                 checkCredentials(credentialSource, credentials)
             } catch (ex) {
                 return Promise.reject(ex)
             }
-            return db.updateCredential(projectId, credentialId, credentialName, credentialSource, credentials)
+            return db.getProjectById(projectId, userMakingRequest)
+                .then(project => {
+                    if (project.owner !== userMakingRequest.id && userMakingRequest.id !== 1) {
+                        return Promise.reject(
+                            error.makeErrorResponse(error.FORBIDDEN, 'You cannot update this projects credentials. Only the manager has that access.')
+                        )
+                    }
+                    return db.updateCredential(projectId, credentialId, credentialName, credentialSource, credentials)
+                })
         }
     };
 }

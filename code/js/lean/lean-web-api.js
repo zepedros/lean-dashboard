@@ -136,7 +136,7 @@ function webapi(app, services, auth, authization) {
         },
 
         removeWidgetFromDashboard: function (req, res) {
-            services.removeWidgetFromDashboard(req.params.id, req.params.dashboardId, req.params.widgetsId)
+            services.removeWidgetFromDashboard(req.params.id, req.params.dashboardId, req.params.widgetsId, req.user)
                 .then(resp => {
                     console.log("Remove Widget from Dashboard")
                     answerHandler(resp, res)
@@ -158,8 +158,7 @@ function webapi(app, services, auth, authization) {
         },
 
         addUserToProject: function (req, res){
-            const user =  req.user
-            services.addUserToProject(req.params.id, req.body.username, user)
+            services.addUserToProject(req.params.id, req.body.username, req.user)
                 .then(resp => {
                     console.log("User added to Project")
                     answerHandler(resp, res,201)
@@ -178,7 +177,7 @@ function webapi(app, services, auth, authization) {
         },
 
         getCredentials : function (req,res) {
-            services.getCredentials(req.params.id)
+            services.getCredentials(req.params.id, req.user)
                 .then(resp => {
                     console.log("Get Credentials")
                     answerHandler(resp, res)
@@ -187,7 +186,7 @@ function webapi(app, services, auth, authization) {
         },
 
         getCredentialsById : function (req,res) {
-            services.getCredentialsById(req.params.id, req.params.credentialId)
+            services.getCredentialsById(req.params.id, req.params.credentialId, req.user)
                 .then(resp => {
                     console.log("Get Credentials by Id")
                     answerHandler(resp, res)
@@ -196,7 +195,7 @@ function webapi(app, services, auth, authization) {
         },
 
         addCredential : function (req,res) {
-            services.addCredential(req.params.id, req.body.name, req.body.source, req.body.credential)
+            services.addCredential(req.params.id, req.body.name, req.body.source, req.body.credential, req.user)
                 .then(resp => {
                     console.log("Added Credential to Project")
                     answerHandler(resp, res, 201)
@@ -205,7 +204,7 @@ function webapi(app, services, auth, authization) {
         },
 
         deleteCredential : function (req,res) {
-            services.deleteCredential(req.params.id, req.params.credentialId)
+            services.deleteCredential(req.params.id, req.params.credentialId, req.user)
                 .then(resp => {
                     console.log("Deleted Credential from Project")
                     answerHandler(resp, res)
@@ -214,7 +213,7 @@ function webapi(app, services, auth, authization) {
         },
 
         updateCredential : function (req,res) {
-            services.updateCredential(req.params.id, req.params.credentialId,req.body.name, req.body.source, req.body.credential)
+            services.updateCredential(req.params.id, req.params.credentialId,req.body.name, req.body.source, req.body.credential, req.user)
                 .then(resp => {
                     console.log("Updated Credential in Project")
                     answerHandler(resp, res)
