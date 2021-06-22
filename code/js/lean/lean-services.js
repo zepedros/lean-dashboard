@@ -470,6 +470,12 @@ function services(db, auth) {
                     }
                     return db.updateCredential(projectId, credentialId, credentialName, credentialSource, credentials)
                 })
+        },
+        getUserRoles: function (username, userMakingRequest) {
+            if(userMakingRequest.username == username) {
+                return auth.getUserRoles(userMakingRequest)
+            }
+            return Promise.reject('User does not have access to this request')
         }
     };
 }

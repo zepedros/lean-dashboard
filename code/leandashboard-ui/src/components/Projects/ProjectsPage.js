@@ -4,6 +4,8 @@ import Grid from '@material-ui/core/Grid';
 import NavBar from '../Common/NavBar'
 import { Hidden } from '@material-ui/core';
 import { Container } from '@material-ui/core';
+import { useContext } from 'react';
+import UserContext from '../../common/UserContext';
 
 
 const testITems = [
@@ -41,7 +43,6 @@ const testITems = [
     }
 ]
 export default function ProjectsPage() {
-
     return (
         <div>
             <Hidden mdUp>

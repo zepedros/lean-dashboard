@@ -32,6 +32,11 @@ function makeAuth(authization) {
             return ret
         },
 
+        getUserRoles: async function(user){
+            const roles = await authization.userRole.getByUser(user.id)
+            return roles
+        },
+
         getUserByUsername: async function(username){
             //just get a certain user by name from db, throw an error if non existing
             const user = await authization.user.getByUsername(username)

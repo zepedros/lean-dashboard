@@ -233,6 +233,17 @@ function webapi(app, services, auth, authization) {
                 .catch(err => errHandler(err, res))
         },
 
+        getUserRoles: function (req, res){
+            const username = req.params.username
+            const userMakingRequest  = req.user
+            services.getUserRoles(username, userMakingRequest)
+                .then(resp => {
+                    console.log(`User ${username} has roles ${resp}`)
+                    answerHandler(resp, res,201)
+                })
+                .catch(err => errHandler(err, res))
+        },
+
         removeRoleFromUser: function (req, res){
             const userMakingRequest  = req.user
             const username = req.params.username
@@ -257,6 +268,7 @@ function webapi(app, services, auth, authization) {
 
     app.post('/api/lean/projects/:id/users', theWebApi.addUserToProject)
     app.delete('/api/lean/projects/:id/users/:username', theWebApi.removeUserFromProject)
+    app.get('/api/lean/users/:username/roles', theWebApi.getUserRoles)
 
 
     app.post('/api/lean/projects/:id/dashboard', theWebApi.addDashboardToProject)

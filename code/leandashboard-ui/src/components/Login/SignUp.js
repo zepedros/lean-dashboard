@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
@@ -45,27 +45,26 @@ const useStyles = makeStyles((theme) => ({
   },
   logo: {
     fontFamily: "Work Sans, sans-serif",
-        fontWeight: 800,
-        color: "#00000",
-        textAlign: "left",
+    fontWeight: 800,
+    color: "#00000",
+    textAlign: "left",
   },
   form: {
     width: '100%', // Fix IE 11 issue.
     marginTop: theme.spacing(1),
-    
+
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
     color: "#3CAA91",
   },
-  button:{
+  button: {
     color: "#3CAA91",
   },
 }));
 
 export default function SignInSide() {
   const classes = useStyles();
-
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
@@ -75,7 +74,7 @@ export default function SignInSide() {
           <Typography component="h1" variant="h5">
             Welcome to Lean Dashboard
           </Typography>
-          <Form button="Sign Up"/>
+          <Form button="Sign Up" />
         </div>
       </Grid>
     </Grid>
