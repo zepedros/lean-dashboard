@@ -19,41 +19,55 @@ function makeAuth(authization) {
 
         },
 
-        checkIfUserExists: async function(username){
+        editUsername: async function (newUsername, userToEdit, userMakingRequest) {
+            return authization.user.updateUsername(newUsername, userToEdit.id, userMakingRequest.id)
+                .then(res => {
+                    return response.makeResponse(response.OK, 'User edited successfully')
+                })
+                .catch(err => {
+                    throw error.makeErrorResponse(err.status, err.message)
+                })
+        },
+
+        editPassword: async function () {
+            //TODO
+        },
+
+        checkIfUserExists: async function (username) {
             return !!(await authization.user.getByUsername(username))
         },
 
-        checkIfUserHasRole: async function(user, roleName){
+        checkIfUserHasRole: async function (user, roleName) {
             const roles = await authization.userRole.getByUser(user.id)
             let ret = false
             roles.forEach(role => {
-                if(role.role === roleName) ret = true
+                if (role.role === roleName) ret = true
             })
             return ret
         },
 
-        getUserByUsername: async function(username){
+        getUserByUsername: async function (username) {
             //just get a certain user by name from db, throw an error if non existing
             const user = await authization.user.getByUsername(username)
-            if (user){
+            if (user) {
                 return user
-            }else {
+            } else {
                 throw error.makeErrorResponse(error.NOT_FOUND, "User doesn't exist")
             }
         },
 
-        getRoleByName: async function(roleName){
+        getRoleByName: async function (roleName) {
             //just the a certain role by name from db, throw an error if non existing
             const role = await authization.role.getByName(roleName)
-            if (role){
+            if (role) {
                 return role
-            }else {
+            } else {
                 throw error.makeErrorResponse(error.NOT_FOUND, `Role ${roleName} doesn't exist`)
             }
         },
 
 
-        giveUserRole: async function(user, role, startDate, endDate, updater){
+        giveUserRole: async function (user, role, startDate, endDate, updater) {
             /**
              * return the create method. if it's all good, just return a response. else, check error status and message and  throw error
              */
@@ -66,7 +80,7 @@ function makeAuth(authization) {
                 })
         },
 
-        removeRoleFromUser: async function(user, role){
+        removeRoleFromUser: async function (user, role) {
             /**
              * return the delete method. if it's all good, just return a response. else, check error status and message and  throw error
              */
@@ -87,16 +101,16 @@ function makeAuth(authization) {
             console.log('logging in, req.isAuthenticated(): ', req.isAuthenticated())
             if (!req.isAuthenticated()) {
                 res.status(error.UNAUTHORIZED).send(error.makeErrorResponse(error.UNAUTHORIZED, 'Error logging in'))
-            }else {
+            } else {
                 res.status(response.OK).send(response.makeResponse(response.OK, 'Login was successful'))
             }
         },
 
-        logout: async function(req, res){
+        logout: async function (req, res) {
             console.log(`req.isAuthenticated(): ${req.isAuthenticated()}`)
             if (req.isAuthenticated()) {
                 res.status(error.ARGUMENT_ERROR).send(error.makeErrorResponse(error.ARGUMENT_ERROR, 'Error logging out'))
-            }else {
+            } else {
                 res.send(response.makeResponse(response.OK, 'Logout was successful'))
             }
         }
