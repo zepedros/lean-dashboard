@@ -5,6 +5,7 @@ import TextField from '@material-ui/core/TextField';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import AddMemberForm from './AddMemberForm'
 import AddCredentials from './AddCredentials'
+import NameDescForm from "./NameDescForm";
 
 const testITems = 
   {
@@ -41,44 +42,9 @@ export default function ProjectSettings(){
           <Typography component="h1" variant="h5">
             {testITems.name} Settings
           </Typography>
-          <Grid container>
-          <Grid item >
-                <Typography align="center" component="h6" variant="h6" >
-                  Name
-              </Typography>
-            </Grid>
-            <Grid item>
-              <TextField
-              label=""
-              id="outlined-margin-dense"
-              defaultValue={testITems.name}
-              className={classes.textField}
-              margin="dense"
-              variant="outlined"
-            />
-            </Grid>
-          </Grid>
-          <Grid container>
-          <Grid item >
-                <Typography align="center" component="h6" variant="h6">
-                  Description
-              </Typography>
-            </Grid>
-            <Grid item>
-            <TextareaAutosize
-                rowsMax={4}
-                aria-label="maximum height"
-                defaultValue={testITems.description}
-              />
-            </Grid>
-          </Grid>
+          <NameDescForm project={testITems}/>
           <AddMemberForm />
-          <Typography align="center" component="h6" variant="h6" >
-              Credentials
-          </Typography>
-          <AddCredentials />
-         
-         
+          <AddCredentials project={testITems} />
     </div>
   )
 }

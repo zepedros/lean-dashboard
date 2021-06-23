@@ -8,7 +8,6 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import img from '../../images/signIn.png'
 
-import img from '../images/signIn.png'
 import { useHistory } from 'react-router';
 import UserContext from '../../common/UserContext';
 import { useContext } from 'react';

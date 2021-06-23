@@ -88,7 +88,7 @@ export default function AddWidget(){
                     value={template.id}
                     label={
                       <>
-                          <img src={BarChart}  className="profile-img" width="400px" height="auto" style={{ marginRight: "5px" }} />
+                          <img src={images[0].img}  className="profile-img" width="400px" height="auto" style={{ marginRight: "5px" }} />
                           <Typography component="h1" variant="h6">
                           {template.name}
                       </Typography>
@@ -105,7 +105,7 @@ export default function AddWidget(){
         color="primary"
         className={classes.button}
       >
-        Add Widgets
+        Add Widget
       </Button>
         </div>
         
