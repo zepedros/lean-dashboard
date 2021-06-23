@@ -20,7 +20,7 @@ const ES_URL = 'http://localhost:9200/';
 
 module.exports = {
 
-    createProject: function (name, description, userId) {
+    createProject: function (name, description, userId, formattedStartDate, formattedEndDate) {
         const body = {
             name: name,
             description: description,
@@ -28,7 +28,9 @@ module.exports = {
             owner: userId,
             members: [],
             credentials: [],
-            dashboards: []
+            dashboards: [],
+            startDate: formattedStartDate,
+            endDate: formattedEndDate
         }
 
         const uri = `${ES_URL}lean-projects/_doc/`

@@ -6,7 +6,7 @@ function webapi(app, services, auth, authization) {
 
         createProject: function (req, res) {
             const user = req.user
-            services.createProject(req.body.name, req.body.description, user.id)
+            services.createProject(req.body.name, req.body.description, user.id, req.body.startDate, req.body.endDate)
                 .then(resp => {
                     console.log(`Creating project with the name  "${req.body.name}" and the description "${req.body.description}"`)
                     answerHandler(resp, res, 201)
