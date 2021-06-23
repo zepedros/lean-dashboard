@@ -10,16 +10,29 @@ function services(db, auth) {
 
     return {
 
-        createProject: function (name, description, userId) {
-            if (name && description)
-                return db.createProject(name, description, userId)
+        createProject: function (name, description, userId, startDate, endDate) {
+            if (name && description && startDate && endDate) {
+                //end date is either give, or null (null = no end date)
+                const formattedStartDate = startDate ? new Date(startDate) : null
+                const formattedEndDate = endDate ? new Date(endDate) : null
+
+                //massive verification. checks if start date is prior to end;
+                // if the end date is prior to the current date;
+                // formattedStartDate.getTime() !== formattedStartDate.getTime() checks if the dates are valid and not random string passed in the body
+                if (formattedEndDate < formattedStartDate || formattedEndDate < new Date() || formattedStartDate.getTime() !== formattedStartDate.getTime() ||  formattedEndDate.getTime() !== formattedEndDate.getTime()) {
+                    return Promise.reject(error.makeErrorResponse(
+                        error.ARGUMENT_ERROR,
+                        'Please enter the correct start and end dates for the project. Make sure the start date is prior to the end date and that the end date is prior to the current date'
+                    ))
+                }
+                return db.createProject(name, description, userId, formattedStartDate, formattedEndDate)
                     .then(id => {
                         return response.makePostResponse(response.CREATED, `${id}`)
                     })
-            else {
+            } else {
                 return Promise.reject(error.makeErrorResponse(
                     error.ARGUMENT_ERROR,
-                    'Please give the project a name and a description'
+                    'Please give the project a name, a description and a start and end date for the project'
                 ))
             }
         },
@@ -316,7 +329,7 @@ function services(db, auth) {
                     error.makeErrorResponse(error.FORBIDDEN, 'Error. The user is not authenticated')
                 )
             }
-            if(!newUsername && !newPassword){
+            if (!newUsername && !newPassword) {
                 return Promise.reject(
                     error.makeErrorResponse(error.ARGUMENT_ERROR, 'Please indicate either a new username or a new password')
                 )
@@ -333,7 +346,7 @@ function services(db, auth) {
                 const ret = await auth.editUsername(newUsername, userToEdit, userMakingRequest)
                 return ret
             }
-            if (newPassword){
+            if (newPassword) {
                 //auth.editPassword()
             }
         },
@@ -500,7 +513,7 @@ function services(db, auth) {
                 })
         },
         getUserRoles: function (username, userMakingRequest) {
-            if(userMakingRequest.username == username) {
+            if (userMakingRequest.username == username) {
                 return auth.getUserRoles(userMakingRequest)
             }
             return Promise.reject('User does not have access to this request')

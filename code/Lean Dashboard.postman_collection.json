@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "5f541d98-5f02-4ead-adfc-e793cf5da310",
+		"_postman_id": "369ed3ff-d20f-4c8e-84ec-e63e87e7290f",
 		"name": "Lean Dashboard",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -774,7 +774,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"name\": \"shiloman project 3\",\n    \"description\": \"doard\"\n}",
+									"raw": "{\n    \"name\": \"new project with date\",\n    \"description\": \"testing dates\",\n    \"startDate\" : \"06-23-2021\",\n    \"endDate\" : \"06-20-2021wfefwfef\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
