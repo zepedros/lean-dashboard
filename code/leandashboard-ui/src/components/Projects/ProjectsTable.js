@@ -9,15 +9,14 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import AddProjectDialog from './AddProjectDialog.js'
-import { Divider } from '@material-ui/core';
-import TablePagination from '@material-ui/core/TablePagination';
+import AddDialog from '../Common/AddDialog.js'
 import AddIcon from '@material-ui/icons/Add';
 import Button from '@material-ui/core/Button';
-import { Link } from 'react-router-dom';
-import Tooltip from '@material-ui/core/Tooltip';
+import Link from '@material-ui/core/Link';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import IconButton from '@material-ui/core/IconButton';
+
+
 
 
 
@@ -43,24 +42,9 @@ const StyledTableRow = withStyles((theme) => ({
   },
 }))(TableRow);
 
-function createData(project, state, nDashboards, completion) {
-  return { project, state, nDashboards, completion };
+function createData(id,project, state, manager, completion) {
+  return { id,project, state, manager, completion };
 }
-
-const rows = [
-  createData('Project1', 'OPEN', 'user1'),
-  createData('Project2', 'OPEN', 'user2'),
-  createData('Project3', 'OPEN', 'user1'),
-  createData('Project4', 'OPEN', 'user4'),
-  createData('Project5', 'OPEN', 'user3'),
-  createData('Project6', 'OPEN', 'user6'),
-  createData('Project7', 'OPEN', 'user5'),
-  createData('Project8', 'OPEN', 'user2'),
-  createData('Project9', 'OPEN', 'user4'),
-  createData('Project10', 'OPEN', 'user3'),
-  createData('Project11', 'OPEN', 'user2'),
-
-];
 
 const useStyles = makeStyles((theme) => ({
   table: {
@@ -87,10 +71,12 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-export default function CustomizedTables() {
+export default function CustomizedTables({projects}) {
   const classes = useStyles();
   const [showFilter, setShowFilter] = useState(false)
   const [showDialog, setShowDialog] = useState(false)
+
+  const rows=projects.map(project=>{return createData(project.pid,project.name,project.state,project.owner)})
 
   function handleFilter() {
     setShowFilter(!showFilter)
@@ -117,18 +103,19 @@ export default function CustomizedTables() {
               <TableRow>
                 <StyledTableCell>Project</StyledTableCell>
                 <StyledTableCell align="right">State</StyledTableCell>
-                <StyledTableCell align="right">Project Manager</StyledTableCell>
+                <StyledTableCell align="right">Manager</StyledTableCell>
                 <StyledTableCell align="right">Completion</StyledTableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {rows.map((row) => (
                 <StyledTableRow key={row.name}>
-                  <StyledTableCell component="th" scope="row">
-                    <Button color="primary">{row.project}</Button>
-                  </StyledTableCell>
+
+                  <Link href={`projects/${row.id}/dashboards`}>
+                    <StyledTableCell component="th" scope="row"> <Button color="primary">{row.project}</Button></StyledTableCell>
+                  </Link>  
                   <StyledTableCell align="right">{row.state}</StyledTableCell>
-                  <StyledTableCell align="right">{row.nDashboards}</StyledTableCell>
+                  <StyledTableCell align="right">{row.manager}</StyledTableCell>
                   <StyledTableCell align="right">{row.completion}</StyledTableCell>
 
                 </StyledTableRow>
@@ -137,7 +124,7 @@ export default function CustomizedTables() {
           </Table>
         </TableContainer>
       </Paper>
-      <AddProjectDialog showDialog={showDialog} setShowDialog={setShowDialog}/>
+      <AddDialog showDialog={showDialog} setShowDialog={setShowDialog} title={"Add Project"} type={"Project"}/>
       <Button
         variant="contained"
         color="primary"

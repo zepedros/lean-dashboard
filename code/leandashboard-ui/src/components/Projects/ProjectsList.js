@@ -8,7 +8,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import { Container } from '@material-ui/core';
-import AddProjectDialog from './AddProjectDialog.js'
+import AddDialog from '../Common/AddDialog.js'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -73,9 +73,9 @@ export default function ProjectsList({ projects }) {
             })
           }
         </List>
-        <AddProjectDialog showDialog={showDialog} setShowDialog={setShowDialog}/>
-        <Fab color="primary" aria-label="add" className={classes.button}>
-          <AddIcon onClick={handleOpenDialog} />
+        <AddDialog showDialog={showDialog} setShowDialog={setShowDialog} title={"Add Project"} type={"Project"}/>
+        <Fab color="primary" aria-label="add" className={classes.button} onClick={handleOpenDialog} >
+          <AddIcon />
         </Fab>
       </Container>
     </div>

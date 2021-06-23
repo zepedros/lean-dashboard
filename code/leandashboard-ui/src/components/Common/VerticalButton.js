@@ -6,9 +6,11 @@ import Tooltip from '@material-ui/core/Tooltip';
 import SettingsIcon from '@material-ui/icons/Settings';
 import Button from '@material-ui/core/Button'
 import DeleteIcon from '@material-ui/icons/Delete';
-import DashboardIcon from '@material-ui/icons/Dashboard';
+import {  useParams } from "react-router-dom";
 import { useState } from 'react';
-
+import AddDialog from '../Common/AddDialog.js'
+import WidgetsIcon from '@material-ui/icons/Widgets';
+import Link from '@material-ui/core/Link';
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -27,6 +29,12 @@ const state = {
 export default function VerticalButton(props) {
   
   const classes = useStyles();
+  const [showDialog, setShowDialog] = useState(false)
+  let { id } = useParams();
+
+  function handleOpenDialog() {
+    setShowDialog(true)
+  }
   return (
     <ButtonGroup
       orientation="vertical"
@@ -34,21 +42,38 @@ export default function VerticalButton(props) {
       aria-label="vertical outlined primary button group"
       className={classes.button}
     >
-      
+
+    {!props.show ? 
+      <AddDialog showDialog={showDialog} setShowDialog={setShowDialog} title={props.title} type={props.type}/>
+      :null
+    }
+      {!props.show ? 
       <Tooltip title={props.title1} aria-label="add" placement="left">
-        <Button aria-label="add">
+        <Button aria-label="add" onClick={handleOpenDialog}> 
           <AddIcon />
         </Button>
       </Tooltip>
-     
-       
+     :null
+    }
+       {props.show ? 
+      <Tooltip title={props.title1} aria-label="add" placement="left">
+            <Button aria-label="add" > 
+              <Link href={`/projects/${id}/dashboard/templates`}>
+                <AddIcon />
+              </Link>
+            </Button>
+      </Tooltip>
+      :null
+       }
+      
+
       <Tooltip title={props.title2} aria-label="add" placement="left">
         <Button aria-label="add" >
           <SettingsIcon />
         </Button>
       </Tooltip>
       
-      {props.show2 ? 
+      {props.show ? 
       <Tooltip title={props.title3} aria-label="add" placement="left">
         <Button aria-label="add">
           <DeleteIcon />
@@ -56,15 +81,16 @@ export default function VerticalButton(props) {
       </Tooltip>
       :null
       }
-       {props.show2 ? 
+      {props.show ? 
       <Tooltip title={props.title4} aria-label="add" placement="left">
-        <Button aria-label="add" >
-          <DashboardIcon />
+        <Button aria-label="add">
+          <WidgetsIcon />
         </Button>
       </Tooltip>
       :null
       }
- 
+      
+      
     </ButtonGroup>
   )
 }

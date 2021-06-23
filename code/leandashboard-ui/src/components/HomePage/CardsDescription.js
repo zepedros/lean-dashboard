@@ -9,7 +9,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 
 
-const Box = styled('div')(compose(spacing, palette));
+//const Box = styled('div')(compose(spacing, palette));
 
 const useStyles = makeStyles({
     image1: {

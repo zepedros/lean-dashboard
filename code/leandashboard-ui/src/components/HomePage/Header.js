@@ -1,7 +1,6 @@
 import { AppBar, Toolbar, Typography, makeStyles, Button } from "@material-ui/core";
 import React from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import SignIn from '../Login/SignIn'
+import { Link } from "react-router-dom";
 
 
 export default function Header() {

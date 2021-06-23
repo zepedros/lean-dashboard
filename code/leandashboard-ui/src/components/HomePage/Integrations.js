@@ -4,10 +4,9 @@ import { styled } from '@material-ui/core/styles';
 import { compose, spacing, palette } from '@material-ui/system';
 import { makeStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
-import Container from '@material-ui/core/Container'
-import jira from '../images/jira.png'
-import azure from '../images/azure.png'
-import squash from '../images/squash.jpg'
+import jira from '../../images/jira.png'
+import azure from '../../images/azure.png'
+import squash from '../../images/squash.jpg'
 
 
 

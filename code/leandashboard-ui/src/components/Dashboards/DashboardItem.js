@@ -8,9 +8,6 @@ import Divider from '@material-ui/core/Divider'
 
 export default function DashboardsItem({ dashboard }) {
 
-    function handleClick() {
-
-    }
 
     return (
         <div>
@@ -22,7 +19,7 @@ export default function DashboardsItem({ dashboard }) {
                 </ListItemAvatar>
                 <ListItemText
                     primary={
-                        <Link href={`dashboards/${dashboard.did}/widgets`}>
+                        <Link href={`dashboards/${dashboard.did}/`}>
                             {dashboard.name}
                         </Link>
                     }

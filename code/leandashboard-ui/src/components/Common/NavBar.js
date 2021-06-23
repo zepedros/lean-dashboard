@@ -4,7 +4,6 @@ import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
@@ -19,6 +18,7 @@ import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import { Hidden } from '@material-ui/core';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -99,12 +99,14 @@ export default function PermanentDrawerLeft(props) {
                 >
                     <div className={classes.toolbar} />
                     <Divider />
-                    <ListItem button>
-                        <ListItemIcon>
-                            <HomeIcon />
-                        </ListItemIcon>
-                        <ListItemText primary="Home" />
-                    </ListItem>
+
+                        <ListItem button component={Link} to="/projects">
+                            <ListItemIcon>
+                                <HomeIcon />
+                            </ListItemIcon>
+                            <ListItemText primary="Home" />
+                        </ListItem>
+                 
                     <ListItem button>
                         <ListItemIcon>
                             <NotificationsIcon />
@@ -131,7 +133,7 @@ export default function PermanentDrawerLeft(props) {
                 <Hidden mdUp>
                     <Container>
                         <BottomNavigation value={NavigationValue} onChange={handleChange} className={classes.navigation}>
-                            <BottomNavigationAction label="Home" value="Home" icon={<HomeIcon />} />
+                            <BottomNavigationAction component={Link} to="/projects" label="Home" value="Home" icon={<HomeIcon />} />                           
                             <BottomNavigationAction label="Notifications" value="Notifications" icon={<NotificationsIcon />} />
                             <BottomNavigationAction label="Settings" value="Settings" icon={<SettingsIcon />} />
                             <BottomNavigationAction label="Account" value="Account" icon={<AccountCircleIcon />} />

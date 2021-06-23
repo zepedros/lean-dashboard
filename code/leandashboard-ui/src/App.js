@@ -7,10 +7,9 @@ import About from './components/FooterLinks/About';
 import ProjectsPage from './components/Projects/ProjectsPage';
 import DashboardsPage from './components/Dashboards/DashboardsPage'
 import DashboardPage from './components/Dashboard/DashboardPage'
-
-
-import { BrowserRouter as Router, Route, Link, Switch, withRouter } from "react-router-dom";
-import SideBar from 'react';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import AddWidgetPage from './components/Widgets/AddWigetPage';
+import ProjectSettingsPage from './components/Projects/ProjectSettingsPage';
 
 
 
@@ -38,7 +37,7 @@ import SideBar from 'react';
 function App() {
   return(
     <div className="App">
-      < Router>
+       < Router>
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route exact path="/signIn" component={SignIn} />
@@ -47,6 +46,8 @@ function App() {
           <Route exact path="/projects" component={ProjectsPage} />
           <Route exact path="/projects/:id/dashboards" component={DashboardsPage} />
           <Route exact path="/projects/:id/dashboards/:dashboardId" component={DashboardPage} />
+          <Route exact path="/projects/:id/dashboard/templates" component={AddWidgetPage} />
+          <Route exact path="/projects/:id/settings" component={ProjectSettingsPage} />
         </Switch>
       </Router>
     </div>

@@ -7,7 +7,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from '@material-ui/core/Button';
 
-export default function AddProjectDialog({showDialog, setShowDialog}) {
+export default function AddProjectDialog({showDialog, setShowDialog,title,type}) {
     const [input, setInput] = useState({ name: "", description: "" })
     const [nameError, setNameError] = useState(false)
     const [descriptionError, setDescriptionError] = useState(false)
@@ -38,16 +38,16 @@ export default function AddProjectDialog({showDialog, setShowDialog}) {
     return (
         <div>
             <Dialog open={showDialog} onClose={handleClose} aria-labelledby="form-dialog-title">
-                <DialogTitle id="form-dialog-title">Add Project</DialogTitle>
+                <DialogTitle id="form-dialog-title">{title}</DialogTitle>
                 <DialogContent>
                     <DialogContentText>
-                        Create a new Project
+                        Create a new {type}
                     </DialogContentText>
                     <TextField
                         autoFocus
                         margin="dense"
                         id="ProjectName"
-                        label="Project Name"
+                        label="Name"
                         error={nameError}
                         helperText="Please input a name."
                         type="name"
@@ -59,7 +59,7 @@ export default function AddProjectDialog({showDialog, setShowDialog}) {
                         autoFocus
                         margin="dense"
                         id="ProjectDescription"
-                        label="Project Description"
+                        label="Description"
                         error={descriptionError}
                         helperText="Please input a description."
                         type="description"
@@ -73,7 +73,7 @@ export default function AddProjectDialog({showDialog, setShowDialog}) {
                         Cancel
                     </Button>
                     <Button onClick={handleSubmit} color="primary">
-                        Add Project
+                        {title}
                     </Button>
                 </DialogActions>
             </Dialog>

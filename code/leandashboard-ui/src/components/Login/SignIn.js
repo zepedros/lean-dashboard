@@ -5,7 +5,7 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import img from '../images/signIn.png'
+import img from '../../images/signIn.png'
 
 import Form from './Form'
 import Copyright from './CopyRight';

@@ -1,11 +1,8 @@
 import Grid from '@material-ui/core/Grid';
 import NavBar from '../Common/NavBar'
 import { Hidden } from '@material-ui/core';
-import { Container } from '@material-ui/core';
 import VerticalButton from '../Common/VerticalButton'
-import BarChart from '../Widgets/BarChart'
-import PieChart from '../Widgets/PieChart'
-import DataTable from '../Widgets/DataTable'
+import FAB from '../Common/FAB'
 
 export default function DashboardPage() {
 
@@ -13,12 +10,12 @@ export default function DashboardPage() {
         <div>
             <Hidden mdUp>
                 <Grid item xs={12} sm={12} md={12}>
-                    <NavBar />
+                    <NavBar component={<FAB/>}/>
                 </Grid>
             </Hidden>
             <Hidden smDown>
                 <Grid item xs={12} sm={12} md={12}>
-                    <NavBar component={ <DataTable />}/>
+                    <NavBar component={ <VerticalButton  title1={"Add Widget"} title2={"Dashboard Settings"} title3={"Delete Dashboard"}title4={"Widgets Settings"} show={true}/>}/>
                 </Grid>
             </Hidden>
         </div>

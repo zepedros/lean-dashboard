@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function DashboardsCards({ dashboards }) {
   const classes = useStyles();
-  const bull = <span className={classes.bullet}>•</span>;
+//  const bull = <span className={classes.bullet}>•</span>;
 
   return (
     <div>
@@ -57,7 +57,7 @@ export default function DashboardsCards({ dashboards }) {
           }
         </Grid>
 
-        <VerticalButton title1={"Add Dashboard"} title2={"Project Settings"} show={false}/>
+        <VerticalButton title1={"Add Dashboard"} title2={"Project Settings"} title={"Add Dashboard"} type={"Dashboard"}show={false}/>
       </Container>
     </div>
   );
