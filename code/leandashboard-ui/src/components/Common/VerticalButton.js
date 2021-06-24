@@ -30,7 +30,7 @@ export default function VerticalButton(props) {
   
   const classes = useStyles();
   const [showDialog, setShowDialog] = useState(false)
-  let { id } = useParams();
+  let { id, dashboardId } = useParams();
 
   function handleOpenDialog() {
     setShowDialog(true)
@@ -58,7 +58,7 @@ export default function VerticalButton(props) {
        {props.show ? 
       <Tooltip title={props.title1} aria-label="add" placement="left">
             <Button aria-label="add" > 
-              <Link href={`/projects/${id}/dashboard/templates`}>
+              <Link href={`/projects/${id}/dashboards/${dashboardId}/templates`}>
                 <AddIcon />
               </Link>
             </Button>

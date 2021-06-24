@@ -46,7 +46,7 @@ function App() {
           <Route exact path="/projects" component={ProjectsPage} />
           <Route exact path="/projects/:id/dashboards" component={DashboardsPage} />
           <Route exact path="/projects/:id/dashboards/:dashboardId" component={DashboardPage} />
-          <Route exact path="/projects/:id/dashboard/templates" component={AddWidgetPage} />
+          <Route exact path="/projects/:id/dashboards/:dashboardId/templates" component={AddWidgetPage} />
           <Route exact path="/projects/:id/settings" component={ProjectSettingsPage} />
         </Switch>
       </Router>
