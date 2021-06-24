@@ -52,9 +52,9 @@ const useStyles = makeStyles((theme) => ({
   },
   button: {
     margin: theme.spacing(1),
-    position: "absolute",
-    right: 60,
-    bottom: 70,
+    position: "relative",
+    right: -350,
+    bottom: 0,
     background: 'linear-gradient(45deg, #3CAA91 30%, #3CAA91 90%)',
     borderRadius: 3,
     border: 0,
@@ -110,7 +110,6 @@ export default function CustomizedTables({projects}) {
             <TableBody>
               {rows.map((row) => (
                 <StyledTableRow key={row.name}>
-
                   <Link href={`projects/${row.id}/dashboards`}>
                     <StyledTableCell component="th" scope="row"> <Button color="primary">{row.project}</Button></StyledTableCell>
                   </Link>  

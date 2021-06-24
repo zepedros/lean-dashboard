@@ -7,6 +7,9 @@ import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
+
+
 
 const useStyles = makeStyles(theme => ({
   formControl: {
@@ -19,16 +22,39 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function SuperForm() {
+export default function AddCredentials() {
   const [selectedValue, setSelectedValue] = useState("");
   const classes = useStyles();
 
+  const textField= (text) => {
+    
+      return (
+        <Grid item>
+        <TextField
+        label=""
+        id="outlined-margin-dense"
+        className={classes.textField}
+        placeholder={text}
+        margin="dense"
+        variant="outlined"
+      />
+      </Grid>
+      );
+  };
+
+  const buttonSubmit = () =>{
+    return (
+          <Button variant="contained" color="primary">
+                 Submit
+            </Button>
+    )
+  };
   return (
     <div>
       <div>
     
         <FormControl className={classes.formControl}>
-          <InputLabel htmlFor="grouped-native-select">Choose Type</InputLabel>
+          <InputLabel id="demo-simple-select-outlined-label">Tools</InputLabel>
           <Select
             native
             value={selectedValue}
@@ -36,117 +62,44 @@ function SuperForm() {
             defaultValue=""
             input={<Input id="grouped-native-select" />}
           >
+             <option value={0}>None</option>
             <option value={1}>Squash</option>
             <option value={2}>Azure</option>
             <option value={3}>Jira</option>
           </Select>
         </FormControl>
+       
         {selectedValue === "1" && (
-          <form className={classes.form}>
-            <TextField
-            label=""
-            id="outlined-margin-dense"
-            className={classes.textField}
-            placeholder="Username"
-            margin="dense"
-            variant="outlined"
-          />
-           <TextField
-            label=""
-            id="outlined-margin-dense"
-            className={classes.textField}
-            placeholder="Password"
-            margin="dense"
-            variant="outlined"
-          />
-           <TextField
-            label=""
-            id="outlined-margin-dense"
-            className={classes.textField}
-            placeholder="APIPath"
-            margin="dense"
-            variant="outlined"
-          />
-<Button variant="contained" color="primary">
-                        Submit
-                    </Button>
+          <Grid container>
+          <form className={classes.form}> 
+            {textField("Username")}
+            {textField("Password")}
+            {textField("API Path")}
+            {buttonSubmit()}       
           </form>
+          </Grid>
         )}
          {selectedValue === "2" && (
           <form className={classes.form}>
-            <TextField
-            label=""
-            id="outlined-margin-dense"
-            className={classes.textField}
-            placeholder="Email"
-            margin="dense"
-            variant="outlined"
-          />
-           <TextField
-            label=""
-            id="outlined-margin-dense"
-            className={classes.textField}
-            placeholder="Token"
-            margin="dense"
-            variant="outlined"
-          />
-           <TextField
-            label=""
-            id="outlined-margin-dense"
-            className={classes.textField}
-            placeholder="Instance"
-            margin="dense"
-            variant="outlined"
-          />
-<Button variant="contained" color="primary">
-                        Submit
-                    </Button>
+            {textField("Email")}
+            {textField("Token")}
+            {textField("Instance")}
+            {buttonSubmit()}
           </form>
         )}
          {selectedValue === "3" && (
+           <Grid container>
           <form className={classes.form}>
-            <TextField
-            label=""
-            id="outlined-margin-dense"
-            className={classes.textField}
-            placeholder="Email"
-            margin="dense"
-            variant="outlined"
-          />
-           <TextField
-            label=""
-            id="outlined-margin-dense"
-            className={classes.textField}
-            placeholder="Token"
-            margin="dense"
-            variant="outlined"
-          />
-           <TextField
-            label=""
-            id="outlined-margin-dense"
-            className={classes.textField}
-            placeholder="APIPath"
-            margin="dense"
-            variant="outlined"
-          />
-          <TextField
-            label=""
-            id="outlined-margin-dense"
-            className={classes.textField}
-            placeholder="API Version"
-            margin="dense"
-            variant="outlined"
-          />
-<Button variant="contained" color="primary">
-                        Submit
-                    </Button>
+           {textField("Email")}
+           {textField("Token")}
+           {textField("API Path")}
+           {textField("API Version")}
+           {buttonSubmit()}
           </form>
+          </Grid>
         )}
-   
-   
       </div>
     </div>
   );
 }
 
-export default SuperForm;

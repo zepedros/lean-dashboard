@@ -8,6 +8,8 @@ import DataTable from '../../images/DataTable.png'
 import PieChart from '../../images/PieChart.png'
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
 
 
 
@@ -71,24 +73,23 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export default function AddWidget(){
     const classes = useStyles();
-    const [state, setState] = React.useState({
-        name:false
-    });
+    const [value, setValue] = React.useState('');
 
     const handleChange = (event) => {
-        setState({ ...state, [event.target.name]: event.target.checked });
+      setValue(event.target.value);
       };
       
     return(
         <div>
-           <FormGroup row>
+           
+             <RadioGroup row aria-label="gender" value={value} onChange={handleChange}>
             {templatesWidgets.map((template)=>
-                <FormControlLabel
-                    control={<Checkbox checked={state.checked} onChange={handleChange} name={template.id} />}
+                <FormControlLabel 
+                    control={<Radio/>}
                     value={template.id}
                     label={
                       <>
-                          <img src={images[0].img}  className="profile-img" width="400px" height="auto" style={{ marginRight: "5px" }} />
+                          <img src={images[templatesWidgets.indexOf(template)].img}  className="profile-img" width="400px" height="auto" style={{ marginRight: "5px" }} />
                           <Typography component="h1" variant="h6">
                           {template.name}
                       </Typography>
@@ -99,7 +100,8 @@ export default function AddWidget(){
               }
                 />
             )}  
-           </FormGroup>  
+            </RadioGroup>
+           
     <Button
         variant="contained"
         color="primary"
