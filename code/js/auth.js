@@ -22,15 +22,21 @@ function makeAuth(authization) {
         editUsername: async function (newUsername, userToEdit, userMakingRequest) {
             return authization.user.updateUsername(newUsername, userToEdit.id, userMakingRequest.id)
                 .then(res => {
-                    return response.makeResponse(response.OK, 'User edited successfully')
+                    return response.makeResponse(response.OK, 'Username edited successfully')
                 })
                 .catch(err => {
                     throw error.makeErrorResponse(err.status, err.message)
                 })
         },
 
-        editPassword: async function () {
-            //TODO
+        editPassword: async function(newPassword, userToEdit){
+            return authization.user.updatePassword(newPassword, userToEdit.id)
+                .then(res => {
+                    return response.makeResponse(response.OK, 'Password edited successfully')
+                })
+                .catch(err => {
+                    throw error.makeErrorResponse(err.status, err.message)
+                })
         },
 
         checkIfUserExists: async function (username) {

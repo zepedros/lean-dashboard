@@ -133,6 +133,8 @@ module.exports = {
                     }
                 )
         } else {
+            return Promise.reject(error.makeErrorResponse(error.NOT_FOUND, 'Project was archived'))
+            /*
             const projectDashboards = await this.getProjectById(id)
                 .then(body => body.dashboards)
             for (i = 0; i < projectDashboards.length; i++) {
@@ -153,8 +155,9 @@ module.exports = {
                 .then(body => {
                     if (body.result === 'deleted') return body
                     else return error.makeErrorResponse(error.NOT_FOUND, 'Project not found')
-                })
+                })*/
         }
+
     },
     addDashboardToProject: async function (projectId, name, description) {
         const uriProject = `${ES_URL}lean-projects/_update/${projectId}`

@@ -19,7 +19,7 @@ function services(db, auth) {
                 //massive verification. checks if start date is prior to end;
                 // if the end date is prior to the current date;
                 // formattedStartDate.getTime() !== formattedStartDate.getTime() checks if the dates are valid and not random string passed in the body
-                if (formattedEndDate < formattedStartDate || formattedEndDate < new Date() || formattedStartDate.getTime() !== formattedStartDate.getTime() ||  formattedEndDate.getTime() !== formattedEndDate.getTime()) {
+                if (formattedEndDate < formattedStartDate || formattedEndDate < new Date() || formattedStartDate.getTime() !== formattedStartDate.getTime() || formattedEndDate.getTime() !== formattedEndDate.getTime()) {
                     return Promise.reject(error.makeErrorResponse(
                         error.ARGUMENT_ERROR,
                         'Please enter the correct start and end dates for the project. Make sure the start date is prior to the end date and that the end date is prior to the current date'
@@ -323,15 +323,16 @@ function services(db, auth) {
             return await auth.createUser(username, password)
         },
 
-        editUser: async function (username, newUsername, newPassword, userMakingRequest) {
+        editUsername: async function (username, newUsername, userMakingRequest) {
             if (!userMakingRequest) {
                 return Promise.reject(
                     error.makeErrorResponse(error.FORBIDDEN, 'Error. The user is not authenticated')
                 )
             }
-            if (!newUsername && !newPassword) {
+
+            if (!newUsername) {
                 return Promise.reject(
-                    error.makeErrorResponse(error.ARGUMENT_ERROR, 'Please indicate either a new username or a new password')
+                    error.makeErrorResponse(error.ARGUMENT_ERROR, 'Please indicate a new username')
                 )
             }
 
@@ -342,13 +343,30 @@ function services(db, auth) {
             }
 
             const userToEdit = await auth.getUserByUsername(username)
-            if (newUsername) {
-                const ret = await auth.editUsername(newUsername, userToEdit, userMakingRequest)
-                return ret
+            return await auth.editUsername(newUsername, userToEdit, userMakingRequest)
+        },
+
+        editPassword: async function (username, newPassword, userMakingRequest) {
+            if (!userMakingRequest) {
+                return Promise.reject(
+                    error.makeErrorResponse(error.FORBIDDEN, 'Error. The user is not authenticated')
+                )
             }
-            if (newPassword) {
-                //auth.editPassword()
+
+            if (!newPassword) {
+                return Promise.reject(
+                    error.makeErrorResponse(error.ARGUMENT_ERROR, 'Please indicate a new password')
+                )
             }
+
+            if (userMakingRequest.username !== username && userMakingRequest.id !== 1) {
+                return Promise.reject(
+                    error.makeErrorResponse(error.FORBIDDEN, 'You cannot edit this users information.')
+                )
+            }
+
+            const userToEdit = await auth.getUserByUsername(username)
+            return await auth.editPassword(newPassword, userToEdit)
         },
 
         loginLocal: async function (req, res) {

@@ -149,8 +149,14 @@ function webapi(app, services, auth, authization) {
                 .catch(err => errHandler(err, res))
         },
 
-        editUser: function (req, res) {
-            services.editUser(req.params.username, req.body.newUsername, req.body.newPassword, req.user)
+        editUsername: function (req, res) {
+            services.editUsername(req.params.username, req.body.newUsername, req.user)
+                .then(resp => answerHandler(resp, res))
+                .catch(err => errHandler(err, res))
+        },
+
+        editPassword: function (req, res) {
+            services.editPassword(req.params.username, req.body.newPassword, req.user)
                 .then(resp => answerHandler(resp, res))
                 .catch(err => errHandler(err, res))
         },
@@ -298,7 +304,8 @@ function webapi(app, services, auth, authization) {
 
 
     app.post('/lean/register', theWebApi.createUser)
-    app.put('/lean/users/:username', theWebApi.editUser)
+    app.put('/lean/users/:username/username', theWebApi.editUsername)
+    app.put('/lean/users/:username/password', theWebApi.editPassword)
     app.post('/lean/login', async (req, res, next) => {
         await authization.authenticate.usingLocal(req, res, err => {
             if (err) {
