@@ -30,7 +30,7 @@ export default function VerticalButton(props) {
   
   const classes = useStyles();
   const [showDialog, setShowDialog] = useState(false)
-  let { id, dashboardId } = useParams();
+  let { id , dashboardId} = useParams();
 
   function handleOpenDialog() {
     setShowDialog(true)
