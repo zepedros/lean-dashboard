@@ -10,7 +10,7 @@ export default function DashboardPage() {
         <div>
             <Hidden mdUp>
                 <Grid item xs={12} sm={12} md={12}>
-                    <NavBar component={<FAB/>}/>
+                    <NavBar component={<FAB addTitle={"Add Widget"} settingsTitle={"Dashboard Settings"} show={true}/>}/>
                 </Grid>
             </Hidden>
             <Hidden smDown>

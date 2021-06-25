@@ -63,7 +63,7 @@ export default function DashboardsList({ dashboards }) {
             })
           }
         </List>
-        <FAB />
+        <FAB addTitle={"Add Dashboard"} settingsTitle={"Project Settings"} show={false}/>
       </Container>
     </div>
   );

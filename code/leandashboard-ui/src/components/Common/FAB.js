@@ -13,6 +13,7 @@ import AddDialog from '../Common/AddDialog.js'
 import { useState } from 'react'
 import DeleteIcon from '@material-ui/icons/Delete';
 import WidgetsIcon from '@material-ui/icons/Widgets';
+import { __SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED } from 'react-dom';
 
 
 
@@ -34,13 +35,14 @@ const useStyles = makeStyles({
   },
 });
 
-export default function SwipeableTemporaryDrawer(props) {
+export default function FAB(props) {
   const classes = useStyles();
   const [showDialog, setShowDialog] = useState(false)
+  
   const [state, setState] = React.useState({
     bottom: false,
   });
-
+  const {addTitle,settingsTitle} = props
   const toggleDrawer = (anchor, open) => (event) => {
     if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
@@ -67,27 +69,33 @@ export default function SwipeableTemporaryDrawer(props) {
         
             <Button onClick={handleOpenDialog}>
               <ListItemIcon ><AddIcon/></ListItemIcon>
-              <ListItemText primary={"Add Dashboard"}/>
+              <ListItemText primary={addTitle}/>
             </Button>
         </ListItem>
         <ListItem>
             <Button>
               <ListItemIcon><SettingsIcon/></ListItemIcon>
-              <ListItemText primary={"Project Settings"}/>
+              <ListItemText primary={settingsTitle}/>
             </Button>
         </ListItem>
+        {props.show ?
         <ListItem>
             <Button>
               <ListItemIcon> <DeleteIcon /></ListItemIcon>
               <ListItemText primary={"Delete Dashboard"}/>
             </Button>
         </ListItem>
+        :null
+        }
+        {props.show ?
         <ListItem>
             <Button>
               <ListItemIcon> <WidgetsIcon /></ListItemIcon>
               <ListItemText primary={"Widgets Settings"}/>
             </Button>
         </ListItem>
+        :null
+        }
       </List>
     </div>
   );
