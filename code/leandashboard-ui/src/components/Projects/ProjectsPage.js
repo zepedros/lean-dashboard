@@ -52,27 +52,36 @@ const testITems = [
 
 export default function ProjectsPage() {
 
-        const [projects,setProjects] = useState([])
-        const {  get, post, response, loading, error } = useFetch('http://localhost:3000/api', { credentials: "same-origin"})
+    const [projects, setProjects] = useState([])
+    const [refresh, setRefreshProjects] = useState(false)
+    const { get, post, response, loading, error } = useFetch('http://localhost:3000/api', { credentials: "same-origin" })
 
-        useEffect(() => {loadProjects()},[])
+    useEffect(() => {
+        loadProjects().then(() => {
+            setRefreshProjects(false)
+        })
+    }, [refresh])
 
-        async function loadProjects(){
-            const projects= await get('/api/lean/projects')
-            if(response.ok) setProjects(projects)
-            console.log(projects)
-        }
-        
+    function doRefresh(){
+        setRefreshProjects(true)
+    }
+
+    async function loadProjects() {
+        const getProjects = await get('/api/lean/projects')
+        if (response.ok) setProjects(getProjects)
+        console.log(getProjects)
+    }
+
     return (
         <div>
             <Hidden mdUp>
                 <Grid item xs={12} sm={12} md={12}>
-                    <NavBar component={<ProjectsList projects={projects} />} title={"LeanDashboard"} />
+                    <NavBar component={<ProjectsList projects={projects} refresh={doRefresh} />} title={"LeanDashboard"} />
                 </Grid>
             </Hidden>
             <Hidden smDown>
                 <Grid item xs={12} sm={12} md={12}>
-                    <NavBar component={<ProjectsTable projects={projects} />} title={"LeanDashboard"} />
+                    <NavBar component={<ProjectsTable projects={projects} refresh={doRefresh} />} title={"LeanDashboard"} />
                 </Grid>
             </Hidden>
         </div>
