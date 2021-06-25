@@ -69,7 +69,7 @@ export default function ProjectsList({ projects }) {
         <List dense={false} style={{ maxHeight: '70%', overflow: 'scroll' }}>
           {
             projects.map(project => {
-              return <ProjectItem key={project.pid} project={project} />
+              return <ProjectItem key={project.id} project={project} />
             })
           }
         </List>

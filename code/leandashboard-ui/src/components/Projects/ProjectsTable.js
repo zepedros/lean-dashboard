@@ -75,9 +75,8 @@ export default function CustomizedTables({projects}) {
   const classes = useStyles();
   const [showFilter, setShowFilter] = useState(false)
   const [showDialog, setShowDialog] = useState(false)
-
-  const rows=projects.map(project=>{return createData(project.pid,project.name,project.state,project.owner)})
-
+  const rows = projects.map(project=>{return createData(project.id,project.name,project.state,project.owner)})
+  console.log(rows)
   function handleFilter() {
     setShowFilter(!showFilter)
   }

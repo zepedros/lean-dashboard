@@ -24,7 +24,7 @@ const useStyles = makeStyles({
 //const colorCards = ['#FFE633', '#339FFF', '#3CAA91', '#7FAA3C']
 export default function DashboardsCard({ dashboard }) {
  // const preventDefault = (event) => event.preventDefault();
-
+  console.log(dashboard)
   const classes = useStyles();
   return (
     <Grid item key={dashboard} md={3}>
@@ -33,7 +33,7 @@ export default function DashboardsCard({ dashboard }) {
           <DashboardIcon fontSize="large" style={{ fill: "black" }} />
 
           <Typography gutterBottom variant="h5" component="h2">
-            <Link href={`dashboards/${dashboard.did}/`}>
+            <Link href={`dashboards/${dashboard.id}/`}>
               {dashboard.name}
             </Link>
           </Typography>
