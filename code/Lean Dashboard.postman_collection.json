@@ -804,7 +804,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8000/api/lean/projects/vxuewnkBE0sk1r1Qi0ZN",
+									"raw": "http://localhost:8000/api/lean/projects/dPfiOXoB7uaFwnIMOTzN",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -814,7 +814,7 @@
 										"api",
 										"lean",
 										"projects",
-										"vxuewnkBE0sk1r1Qi0ZN"
+										"dPfiOXoB7uaFwnIMOTzN"
 									]
 								},
 								"description": "Get a specific project"
@@ -836,7 +836,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:8000/api/lean/projects/96TdfnkBVVFqsUowlTOa",
+									"raw": "http://localhost:8000/api/lean/projects/U_fZOXoB7uaFwnIMcTwn",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -846,7 +846,7 @@
 										"api",
 										"lean",
 										"projects",
-										"96TdfnkBVVFqsUowlTOa"
+										"U_fZOXoB7uaFwnIMcTwn"
 									]
 								},
 								"description": "Update name or description from a project"
@@ -1316,7 +1316,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"username\" : \"shiloman\",\r\n    \"password\"  : \"Testpassword123\"\r\n}",
+									"raw": "{\r\n    \"username\" : \"teste\",\r\n    \"password\"  : \"Testpassword123\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1345,7 +1345,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"username\" : \"superuser\",\r\n    \"password\"  : \"Superuser123\"\r\n}",
+									"raw": "{\r\n    \"username\" : \"zepedros\",\r\n    \"password\"  : \"Testpassword123\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1384,6 +1384,70 @@
 										"logout"
 									]
 								}
+							},
+							"response": []
+						},
+						{
+							"name": "PUT /lean/users/{username}/username",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"newUsername\": \"chris\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/lean/users/zepedros/username",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"lean",
+										"users",
+										"zepedros",
+										"username"
+									]
+								},
+								"description": "Edits an existing user's username"
+							},
+							"response": []
+						},
+						{
+							"name": "PUT /lean/users/{username}/password",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"newPassword\": \"Testpassword123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/lean/users/zepedros/password",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"lean",
+										"users",
+										"zepedros",
+										"password"
+									]
+								},
+								"description": "Edits an existing user's password"
 							},
 							"response": []
 						}
