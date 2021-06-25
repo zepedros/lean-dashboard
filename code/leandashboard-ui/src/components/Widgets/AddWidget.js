@@ -2,15 +2,19 @@ import React from 'react';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import BarChart from '../../images/BarChart.png'
+import BarChart1 from '../../images/BarChart.png'
 import Typography from '@material-ui/core/Typography';
-import DataTable from '../../images/DataTable.png'
-import PieChart from '../../images/PieChart.png'
+import DataTable from './DataTable'
+import PieChart from './PieChart'
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import AddWidgetDialog from './AddWidgetDialog';
+import { useState, useEffect } from 'react'
+import useFetch from 'use-http'
+import BarChart from './BarChart'
+
 
 
 
@@ -68,6 +72,15 @@ const images = [
   },
   {
     img: PieChart
+  },
+  {
+    img: DataTable
+  },
+  {
+    img: PieChart
+  },
+  {
+    img: DataTable
   }
 
 ]
@@ -75,22 +88,40 @@ const images = [
 export default function AddWidget() {
   const classes = useStyles();
   const [value, setValue] = React.useState('');
+  const [templates,setTemplates] = useState([]);
+  const [sourceTemplate,setSourceTemplate] = useState('');
   const [activeDialog, setDialog] = React.useState(false);
+ 
+
+  const {  get, post, response, loading, error } = useFetch('http://localhost:3000/api', { credentials: "same-origin"})
+
+  useEffect(() => {loadTemplates()},[])
+
   const handleChange = (event) => {
     setValue(event.target.value);
+    templates.map(template=>{
+      if(template.id === value)
+      setSourceTemplate(template.source)
+    })
   };
-
+  
+  async function loadTemplates(){
+    const getTemplates= await get(`/api/lean/projects/widgets/templates`)
+    if(response.ok) setTemplates(getTemplates)
+  }
+  
+  console.log(sourceTemplate)
   return (
     <div>
 
       <RadioGroup row aria-label="gender" value={value} onChange={handleChange}>
-        {templatesWidgets.map((template) =>
+        {templates.map((template) =>
           <FormControlLabel
             control={<Radio />}
             value={template.id}
             label={
               <>
-                <img src={images[templatesWidgets.indexOf(template)].img} className="profile-img" width="400px" height="auto" style={{ marginRight: "5px" }} />
+                <BarChart />
                 <Typography component="h1" variant="h6">
                   {template.name}
                 </Typography>
@@ -102,7 +133,7 @@ export default function AddWidget() {
           />
         )}
       </RadioGroup>
-      <AddWidgetDialog showDialog={activeDialog} setShowDialog={setDialog} />
+      <AddWidgetDialog showDialog={activeDialog} setShowDialog={setDialog} source={sourceTemplate} />
       <Button
         variant="contained"
         color="primary"

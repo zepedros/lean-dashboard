@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import Checkbox from '@material-ui/core/Checkbox';
@@ -14,17 +14,32 @@ import Select from "@material-ui/core/Select";
 import Input from "@material-ui/core/Input";
 import Divider from '@material-ui/core/Divider'
 import { TimePicker, DatePicker } from "@material-ui/pickers";
+import {  useParams } from "react-router-dom";
+import useFetch from 'use-http'
 
-export default function AddWidgetDialog({ template, showDialog, setShowDialog }) {
+
+export default function AddWidgetDialog({ template, showDialog, setShowDialog,source }) {
     const [selectedCredential, setSelectedCredential] = useState("")
     const [isSpecificDate, setIsSpecificDate] = useState(false)
     const [time, setTime] = useState(new Date())
     const [date, setDate] = useState(new Date())
+    const [credentials,setCredentials] = useState([])
+    const {  get, post, response, loading, error } = useFetch('http://localhost:3000/api', { credentials: "same-origin"})
+    let { id } = useParams();
+    console.log(source)
+    useEffect(() => {loadCredentials()},[])
+
+
+    async function loadCredentials(){
+        const getCredentials= await get(`api/lean/projects/${id}/credentials`)
+        if(response.ok) setCredentials(getCredentials)
+        
+    }
 
     const templateTest = {
         source: "Jira"
     }
-    const credentials = [
+    /*const credentials = [
         {
             name: "abc",
             source: "Jira",
@@ -55,7 +70,9 @@ export default function AddWidgetDialog({ template, showDialog, setShowDialog })
                 APIVersion: 3
             }
         }
-    ]
+    ]*/
+
+
 
     function handleClose() {
         setShowDialog(false)
@@ -64,7 +81,6 @@ export default function AddWidgetDialog({ template, showDialog, setShowDialog })
     function handleSubmit() {
         handleClose()
     }
-
     //TODO A PARTE QUE O BOTAO DO FILTRO LIGA
     return (
         <div>
@@ -82,9 +98,9 @@ export default function AddWidgetDialog({ template, showDialog, setShowDialog })
                         input={<Input id="grouped-native-select" />}
                     >
                         {credentials.map(credential => {
-                            if (credential.source == templateTest.source) {
-                                return <option value={credential.name}>{credential.name}</option>
-                            }
+                                 if (credential.credentials.source == source) {
+                                    return <option value={credential.credentials.name}>{credential.credentials.name}</option>
+                                 }
                         })}
                     </Select>
                     <DialogContentText>
