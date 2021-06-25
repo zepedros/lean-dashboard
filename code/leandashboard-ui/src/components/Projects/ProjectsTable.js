@@ -71,7 +71,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-export default function CustomizedTables({projects}) {
+export default function CustomizedTables({projects, refresh}) {
   const classes = useStyles();
   const [showFilter, setShowFilter] = useState(false)
   const [showDialog, setShowDialog] = useState(false)
@@ -122,7 +122,7 @@ export default function CustomizedTables({projects}) {
           </Table>
         </TableContainer>
       </Paper>
-      <AddDialog showDialog={showDialog} setShowDialog={setShowDialog} title={"Add Project"} type={"Project"}/>
+      <AddDialog showDialog={showDialog} setShowDialog={setShowDialog} title={"Add Project"} type={"Project"} refreshProjects= {refresh}/>
       <Button
         variant="contained"
         color="primary"

@@ -31,7 +31,6 @@ export default function ProjectsItem({ project }) {
 
     const styles = useStyles()
     const [showMore, setShowMore] = useState(false)
-    console.log(project)
     function handleClick() {
         setShowMore(!showMore)
     }
