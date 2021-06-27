@@ -110,7 +110,7 @@ function services(db, auth) {
 
             //check if the user exists by retrieving information and then check if the user is a manager
             const newOwnerInfo = await auth.getUserByUsername(newOwner)
-            if(! await auth.checkIfUserHasRole(newOwnerInfo, "manager")){
+            if(! await auth.checkIfUserHasRole(newOwnerInfo, "manager") && ! await auth.checkIfUserHasRole(newOwnerInfo, "admin")){
                 return Promise.reject(error.makeErrorResponse(error.FORBIDDEN, `This user can't be a project owner because it doesn't have manager permissions`))
             }
             return this.getProjectById(projectId, userMakingRequest)
@@ -353,6 +353,29 @@ function services(db, auth) {
             return await auth.createUser(username, password)
         },
 
+        deleteUser: async function(userToDelete, userMakingRequest){
+            //For now, only the super user can delete accounts
+            if (userMakingRequest.id !== 1){
+                return Promise.reject((error.makeErrorResponse(error.FORBIDDEN, "You can't delete this user's account")))
+            }
+            const userToDeleteInfo = await auth.getUserByUsername(userToDelete)
+            const userIsManager = await auth.checkIfUserHasRole(userToDeleteInfo, 'manager')
+            return await this.getProjects(userToDelete, userToDeleteInfo)
+                .then(projects => {
+                    projects.forEach(project => this.removeUserFromProject(project.id,userToDelete, userMakingRequest))
+                    if(userIsManager){
+                        const alisa = projects
+                            .filter(project => project.owner === userToDeleteInfo.id)
+                        alisa
+                            .forEach(project => {
+                                this.changeProjectOwner(project.id,'superuser', userMakingRequest)
+                            })
+                    }
+                    return auth.deleteUser(userToDeleteInfo)
+                })
+
+        },
+
         editUsername: async function (username, newUsername, userMakingRequest) {
             if (!userMakingRequest) {
                 return Promise.reject(
@@ -446,6 +469,8 @@ function services(db, auth) {
                 })
                 .catch(err => err)
         },
+
+
 
         giveUserRole: async function (usernameToGiveRole, userMakingRequest, role, endDate) {
             //verify if a role was given in the body

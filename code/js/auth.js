@@ -19,6 +19,16 @@ function makeAuth(authization) {
 
         },
 
+        deleteUser: async function(userToDeleteInfo){
+            return authization.user.delete(userToDeleteInfo.id)
+                .then(res => {
+                    return response.makeResponse(response.OK, 'User deleted successfully')
+                })
+                .catch(err => {
+                    throw error.makeErrorResponse(err.status, err.message)
+                })
+        },
+
         editUsername: async function (newUsername, userToEdit, userMakingRequest) {
             return authization.user.updateUsername(newUsername, userToEdit.id, userMakingRequest.id)
                 .then(res => {

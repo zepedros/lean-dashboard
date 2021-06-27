@@ -158,6 +158,12 @@ function webapi(app, services, auth, authization) {
                 .catch(err => errHandler(err, res))
         },
 
+        deleteUser: function (req, res) {
+            services.deleteUser(req.params.username, req.user)
+                .then(resp => answerHandler(resp, res))
+                .catch(err => errHandler(err, res))
+        },
+
         editUsername: function (req, res) {
             services.editUsername(req.params.username, req.body.newUsername, req.user)
                 .then(resp => answerHandler(resp, res))
@@ -314,6 +320,7 @@ function webapi(app, services, auth, authization) {
 
 
     app.post('/lean/register', theWebApi.createUser)
+    app.delete('/lean/users/:username', theWebApi.deleteUser)
     app.put('/lean/users/:username/username', theWebApi.editUsername)
     app.put('/lean/users/:username/password', theWebApi.editPassword)
     app.post('/lean/login', async (req, res, next) => {
