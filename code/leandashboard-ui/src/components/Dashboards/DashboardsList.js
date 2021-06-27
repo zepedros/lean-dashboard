@@ -59,7 +59,7 @@ export default function DashboardsList({ dashboards }) {
         <List dense={false} style={{ maxHeight: '70%', overflow: 'scroll' }}>
           {
             dashboards.map(dashboard => {
-              return <DashboardItem key={dashboard.did} dashboard={dashboard} />
+              return <DashboardItem key={dashboard.id} dashboard={dashboard} />
             })
           }
         </List>

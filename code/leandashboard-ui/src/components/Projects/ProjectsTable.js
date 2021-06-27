@@ -71,13 +71,12 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-export default function CustomizedTables({projects}) {
+export default function CustomizedTables({projects, refresh}) {
   const classes = useStyles();
   const [showFilter, setShowFilter] = useState(false)
   const [showDialog, setShowDialog] = useState(false)
-
-  const rows=projects.map(project=>{return createData(project.pid,project.name,project.state,project.owner)})
-
+  const rows = projects.map(project=>{return createData(project.id,project.name,project.state,project.owner)})
+  console.log(rows)
   function handleFilter() {
     setShowFilter(!showFilter)
   }
@@ -123,7 +122,7 @@ export default function CustomizedTables({projects}) {
           </Table>
         </TableContainer>
       </Paper>
-      <AddDialog showDialog={showDialog} setShowDialog={setShowDialog} title={"Add Project"} type={"Project"}/>
+      <AddDialog showDialog={showDialog} setShowDialog={setShowDialog} title={"Add Project"} type={"Project"} refreshProjects= {refresh}/>
       <Button
         variant="contained"
         color="primary"

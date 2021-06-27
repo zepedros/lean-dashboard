@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function ProjectsList({ projects }) {
+export default function ProjectsList({ projects, refresh }) {
   const classes = useStyles();
   const [showFilter, setShowFilter] = useState(false)
   const [showDialog, setShowDialog] = useState(false)
@@ -69,11 +69,11 @@ export default function ProjectsList({ projects }) {
         <List dense={false} style={{ maxHeight: '70%', overflow: 'scroll' }}>
           {
             projects.map(project => {
-              return <ProjectItem key={project.pid} project={project} />
+              return <ProjectItem key={project.id} project={project} />
             })
           }
         </List>
-        <AddDialog showDialog={showDialog} setShowDialog={setShowDialog} title={"Add Project"} type={"Project"}/>
+        <AddDialog showDialog={showDialog} setShowDialog={setShowDialog} title={"Add Project"} type={"Project"} refreshProjects={refresh}/>
         <Fab color="primary" aria-label="add" className={classes.button} onClick={handleOpenDialog} >
           <AddIcon />
         </Fab>

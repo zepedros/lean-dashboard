@@ -5,6 +5,7 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import ListItemText from '@material-ui/core/ListItemText';
 import Avatar from '@material-ui/core/Avatar';
 import Divider from '@material-ui/core/Divider'
+import DashboardPage from '../Dashboard/DashboardPage';
 
 export default function DashboardsItem({ dashboard }) {
 
@@ -19,7 +20,7 @@ export default function DashboardsItem({ dashboard }) {
                 </ListItemAvatar>
                 <ListItemText
                     primary={
-                        <Link href={`dashboards/${dashboard.did}/`}>
+                        <Link to={DashboardPage} >
                             {dashboard.name}
                         </Link>
                     }

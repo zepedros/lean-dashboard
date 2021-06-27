@@ -31,7 +31,6 @@ export default function ProjectsItem({ project }) {
 
     const styles = useStyles()
     const [showMore, setShowMore] = useState(false)
-
     function handleClick() {
         setShowMore(!showMore)
     }
@@ -45,7 +44,7 @@ export default function ProjectsItem({ project }) {
                 </ListItemAvatar>
                 <ListItemText
                     primary={
-                        <Link href={`projects/${project.pid}/dashboards`}>
+                        <Link href={`projects/${project.id}/dashboards`}>
                             {project.name}
                         </Link>
                     }

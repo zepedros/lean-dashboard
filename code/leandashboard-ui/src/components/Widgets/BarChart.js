@@ -109,7 +109,6 @@ const Sales = (props) => {
       >
       </Box>
     </Card>
-    <VerticalButton title1={"Add Widget"} title2={"Project Settings"} title3={"Delete Dashboard"} title4={"Dashboard Settings"} show1={true} show2={true}/>
     </div>
   );
 };
