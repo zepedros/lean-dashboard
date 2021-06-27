@@ -47,6 +47,15 @@ function webapi(app, services, auth, authization) {
                 .catch(err => errHandler(err, res))
         },
 
+        changeProjectOwner: function (req, res){
+            services.changeProjectOwner(req.params.id, req.body.newOwner, req.user)
+                .then(resp => {
+                    console.log(`Updating Project owner`)
+                    answerHandler(resp, res)
+                })
+                .catch(err => errHandler(err, res))
+        },
+
         deleteProject: function (req, res) {
             services.deleteProject(req.params.id, req.user)
                 .then(resp => {
@@ -276,6 +285,7 @@ function webapi(app, services, auth, authization) {
 
     app.post('/api/lean/projects', theWebApi.createProject)
     app.put('/api/lean/projects/:id', theWebApi.updateProject)
+    app.put('/api/lean/projects/:id/owner', theWebApi.changeProjectOwner)
     app.delete('/api/lean/projects/:id', theWebApi.deleteProject)
 
     app.post('/api/lean/projects/:id/users', theWebApi.addUserToProject)

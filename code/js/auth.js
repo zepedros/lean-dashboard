@@ -98,7 +98,6 @@ function makeAuth(authization) {
             const test = await authization.userRole.delete(user.id, role.id)
             return authization.userRole.delete(user.id, role.id)
                 .then(res => {
-
                     return response.makeResponse(response.OK, `User ${user.username} got the role ${role.role} removed`)
                 })
                 .catch(err => {

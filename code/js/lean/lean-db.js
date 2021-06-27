@@ -110,6 +110,25 @@ module.exports = {
             )
     },
 
+    changeProjectOwner: async function (projectId, newOwnerInfo) {
+        const source = "ctx._source.owner = params.newOwnerId;"
+        const body = {
+            "script": {
+                "source": source,
+                "params": {
+                    "newOwnerId": newOwnerInfo.id,
+                }
+            }
+        };
+        const uri = `${ES_URL}lean-projects/_update/${projectId}`
+        return fetch.makePostRequest(uri, body)
+            .then(result => {
+                    if (result.result === "updated")
+                        return projectId
+                    else throw error.makeErrorResponse(error.NOT_FOUND, 'Project does not exist')
+                }
+            )
+    },
 
     deleteProject: async function (id, user) {
         const projectState = await this.getProjectById(id)
@@ -133,7 +152,7 @@ module.exports = {
                     }
                 )
         } else {
-            return Promise.reject(error.makeErrorResponse(error.NOT_FOUND, 'Project was archived'))
+            return Promise.reject(error.makeErrorResponse(error.NOT_FOUND, 'Project was already archived'))
             /*
             const projectDashboards = await this.getProjectById(id)
                 .then(body => body.dashboards)

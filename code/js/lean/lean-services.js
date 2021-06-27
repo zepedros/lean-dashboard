@@ -66,6 +66,15 @@ function services(db, auth) {
                     error.makeErrorResponse(error.ARGUMENT_ERROR, 'Please insert a project ID')
                 )
             }
+            //we know only send an error if the body has no name AND description, because we can just update one of them at a time
+            if (!newName && !newDesc) {
+                return Promise.reject(
+                    error.makeErrorResponse(
+                        error.ARGUMENT_ERROR,
+                        'Please insert a new name and description to update a project'
+                    )
+                )
+            }
 
             //check if user has access to this project. If not, error is thrown
             return this.getProjectById(projectId, userMakingRequest)
@@ -76,15 +85,6 @@ function services(db, auth) {
                             error.makeErrorResponse(error.FORBIDDEN, 'You cannot modify this project. Only the manager has that access.')
                         )
                     }
-                    //we know only send an error if the body has no name AND description, because we can just update one of them at a time
-                    if (!newName && !newDesc) {
-                        return Promise.reject(
-                            error.makeErrorResponse(
-                                error.ARGUMENT_ERROR,
-                                'Please insert a new name and description to update a project'
-                            )
-                        )
-                    }
 
                     return db.updateProject(projectId, newName, newDesc)
                         .then(id => {
@@ -93,6 +93,36 @@ function services(db, auth) {
                         })
                 })
         },
+
+        changeProjectOwner: async function (projectId, newOwner, userMakingRequest) {
+            //check parameters
+            if (!projectId) {
+                return Promise.reject(error.makeErrorResponse(error.ARGUMENT_ERROR, 'Please insert a project ID'))
+            }
+            //we know only send an error if the body has no name AND description, because we can just update one of them at a time
+            if (!newOwner) {
+                return Promise.reject(error.makeErrorResponse(error.ARGUMENT_ERROR, 'Please insert a new name and description to update a project'))
+            }
+            //check if the user making request is the owner or superuser
+            if (userMakingRequest.id !== 1) {
+                return Promise.reject(error.makeErrorResponse(error.FORBIDDEN, `You cannot modify this project's owner . Only the superuser has that access.`))
+            }
+
+            //check if the user exists by retrieving information and then check if the user is a manager
+            const newOwnerInfo = await auth.getUserByUsername(newOwner)
+            if(! await auth.checkIfUserHasRole(newOwnerInfo, "manager")){
+                return Promise.reject(error.makeErrorResponse(error.FORBIDDEN, `This user can't be a project owner because it doesn't have manager permissions`))
+            }
+            return this.getProjectById(projectId, userMakingRequest)
+                .then(project => {
+                    return db.changeProjectOwner(projectId, newOwnerInfo)
+                        .then(id => {
+                            //if update is successful, return a new OK response
+                            return response.makePostResponse(response.OK, `${id}`)
+                        })
+                })
+        },
+
         deleteProject: function (id, userMakingRequest) {
             //check parameters
             if (!id) {
@@ -447,10 +477,11 @@ function services(db, auth) {
             //get role info for id
             const roleInfo = await auth.getRoleByName(role)
 
+            /*
             if (roleInfo.role === 'manager') {
                 const projects = db.getProjects(usernameToRemoveRole.username)
                 console.log(projects)
-            }
+            }*/
 
             return await auth.removeRoleFromUser(userToGiveRoleInfo, roleInfo)
 
