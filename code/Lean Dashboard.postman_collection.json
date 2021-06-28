@@ -749,7 +749,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8000/api/lean/projects/user/zepedros",
+									"raw": "http://localhost:8000/api/lean/projects/user/superuser",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -760,7 +760,7 @@
 										"lean",
 										"projects",
 										"user",
-										"zepedros"
+										"superuser"
 									]
 								},
 								"description": "Get All projects from Lean Dashboard"
@@ -774,7 +774,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"name\": \"new project with date\",\n    \"description\": \"testing dates\",\n    \"startDate\" : \"06-23-2021\",\n    \"endDate\" : \"06-20-2021wfefwfef\"\n}",
+									"raw": "{\n    \"name\": \"new project with date from temp user\",\n    \"description\": \"testing dates for temp user\",\n    \"startDate\" : \"06-23-2021\",\n    \"endDate\" : \"06-20-2031\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -822,7 +822,7 @@
 							"response": []
 						},
 						{
-							"name": "POST /api/lean/projects/{id}",
+							"name": "PUT /api/lean/projects/{id}",
 							"request": {
 								"method": "PUT",
 								"header": [],
@@ -847,6 +847,39 @@
 										"lean",
 										"projects",
 										"U_fZOXoB7uaFwnIMcTwn"
+									]
+								},
+								"description": "Update name or description from a project"
+							},
+							"response": []
+						},
+						{
+							"name": "PUT /api/lean/projects/{id}/owner",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"newOwner\": \"superuser\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/lean/projects/L1Z3TnoBlSjgkE0xGbsI/owner",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"lean",
+										"projects",
+										"L1Z3TnoBlSjgkE0xGbsI",
+										"owner"
 									]
 								},
 								"description": "Update name or description from a project"
@@ -883,7 +916,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"username\": \"zepedros\"\r\n}",
+									"raw": "{\r\n    \"username\": \"temp\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -891,7 +924,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:8000/api/lean/projects/W7w-D3oBo_hXffI8TKgO/users",
+									"raw": "http://localhost:8000/api/lean/projects/H1ZnTnoBlSjgkE0xobvD/users",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -901,7 +934,7 @@
 										"api",
 										"lean",
 										"projects",
-										"W7w-D3oBo_hXffI8TKgO",
+										"H1ZnTnoBlSjgkE0xobvD",
 										"users"
 									]
 								}
@@ -1254,6 +1287,28 @@
 							"response": []
 						},
 						{
+							"name": "DELETE /api/lean/projects/user/{username}",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/lean/users/temp",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"lean",
+										"users",
+										"temp"
+									]
+								},
+								"description": "Get all project from a user (JIRA)"
+							},
+							"response": []
+						},
+						{
 							"name": "GET /api/lean/users/{username}/roles",
 							"request": {
 								"method": "GET",
@@ -1291,7 +1346,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:8000/api/lean/users/shiloman/roles",
+									"raw": "http://localhost:8000/api/lean/users/temp/roles",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -1301,7 +1356,7 @@
 										"api",
 										"lean",
 										"users",
-										"shiloman",
+										"temp",
 										"roles"
 									]
 								},
@@ -1316,7 +1371,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"username\" : \"teste\",\r\n    \"password\"  : \"Testpassword123\"\r\n}",
+									"raw": "{\r\n    \"username\" : \"temp\",\r\n    \"password\"  : \"Testpassword123\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1345,7 +1400,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"username\" : \"zepedros\",\r\n    \"password\"  : \"Testpassword123\"\r\n}",
+									"raw": "{\r\n    \"username\" : \"superuser\",\r\n    \"password\"  : \"Superuser123\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
