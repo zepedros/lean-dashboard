@@ -10,6 +10,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import AddIcon from '@material-ui/icons/Add';
 import SettingsIcon from '@material-ui/icons/Settings';
 import AddDialog from '../Common/AddDialog.js'
+import AddDashboardDialog from '../Common/AddDashboardDialog'
 import { useState } from 'react'
 import DeleteIcon from '@material-ui/icons/Delete';
 import WidgetsIcon from '@material-ui/icons/Widgets';
@@ -65,7 +66,7 @@ export default function FAB(props) {
       <List>
         <ListItem>
         
-        <AddDialog showDialog={showDialog} setShowDialog={setShowDialog} title={"Add Dashboard"} type={"Dashboard"}/>
+        <AddDashboardDialog showDialog={showDialog} setShowDialog={setShowDialog} title={"Add Dashboard"} />
         
             <Button onClick={handleOpenDialog}>
               <ListItemIcon ><AddIcon/></ListItemIcon>

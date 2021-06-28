@@ -9,6 +9,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import {  useParams } from "react-router-dom";
 import { useState } from 'react';
 import AddDialog from '../Common/AddDialog.js'
+import AddDashboardDialog from '../Common/AddDashboardDialog'
 import WidgetsIcon from '@material-ui/icons/Widgets';
 import Link from '@material-ui/core/Link';
 
@@ -44,7 +45,8 @@ export default function VerticalButton(props) {
     >
 
     {!props.show ? 
-      <AddDialog showDialog={showDialog} setShowDialog={setShowDialog} title={props.title} type={props.type}/>
+      <AddDashboardDialog showDialog={showDialog} setShowDialog={setShowDialog} title={props.title} />
+      //<AddDialog showDialog={showDialog} setShowDialog={setShowDialog} title={props.title} type={props.type}/>
       :null
     }
       {!props.show ? 
