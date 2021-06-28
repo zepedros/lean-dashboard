@@ -47,18 +47,19 @@ function services(db, auth) {
 
 
         //CODIGO DO ZE, TODO USERMAKINGREQUEST NOS OUTROS METODOS QUE CHAMAM ESTE NO SERVICES
-        /*
+
         getProjectById: async function (id, userMakingRequest) {
             const project = await db.getProjectById(id)
             if (project.owner !== userMakingRequest.id && project.members.indexOf(userMakingRequest.id) === -1 && userMakingRequest.id !== 1) {
                 throw error.makeErrorResponse(error.FORBIDDEN, "This user doesn't have access to this project")
             }
             return project
-        },*/
+        },
 
+        /*
         getProjectById: async function (id) {
             return db.getProjectById(id)
-        },
+        },*/
         updateProject: async function (projectId, newName, newDesc, userMakingRequest) {
             //check parameters
             if (!projectId) {
@@ -110,7 +111,7 @@ function services(db, auth) {
 
             //check if the user exists by retrieving information and then check if the user is a manager
             const newOwnerInfo = await auth.getUserByUsername(newOwner)
-            if(! await auth.checkIfUserHasRole(newOwnerInfo, "manager") && ! await auth.checkIfUserHasRole(newOwnerInfo, "admin")){
+            if (!await auth.checkIfUserHasRole(newOwnerInfo, "manager") && !await auth.checkIfUserHasRole(newOwnerInfo, "admin")) {
                 return Promise.reject(error.makeErrorResponse(error.FORBIDDEN, `This user can't be a project owner because it doesn't have manager permissions`))
             }
             return this.getProjectById(projectId, userMakingRequest)
@@ -353,22 +354,21 @@ function services(db, auth) {
             return await auth.createUser(username, password)
         },
 
-        deleteUser: async function(userToDelete, userMakingRequest){
+        deleteUser: async function (userToDelete, userMakingRequest) {
             //For now, only the super user can delete accounts
-            if (userMakingRequest.id !== 1){
+            if (userMakingRequest.id !== 1) {
                 return Promise.reject((error.makeErrorResponse(error.FORBIDDEN, "You can't delete this user's account")))
             }
             const userToDeleteInfo = await auth.getUserByUsername(userToDelete)
             const userIsManager = await auth.checkIfUserHasRole(userToDeleteInfo, 'manager')
             return await this.getProjects(userToDelete, userToDeleteInfo)
                 .then(projects => {
-                    projects.forEach(project => this.removeUserFromProject(project.id,userToDelete, userMakingRequest))
-                    if(userIsManager){
-                        const alisa = projects
+                    projects.forEach(project => this.removeUserFromProject(project.id, userToDelete, userMakingRequest))
+                    if (userIsManager) {
+                        projects
                             .filter(project => project.owner === userToDeleteInfo.id)
-                        alisa
                             .forEach(project => {
-                                this.changeProjectOwner(project.id,'superuser', userMakingRequest)
+                                this.changeProjectOwner(project.id, 'superuser', userMakingRequest)
                             })
                     }
                     return auth.deleteUser(userToDeleteInfo)
@@ -436,7 +436,7 @@ function services(db, auth) {
 
             const userToAddInfo = await auth.getUserByUsername(usernameToAdd)
             if (!userToAddInfo) throw error.makeErrorResponse(error.NOT_FOUND, "User doesn't exist")
-            const project = await db.getProjectById(projectId)
+            const project = await db.getProjectById(projectId, userMakingRequest)
 
             if (project.owner !== userMakingRequest.id && userMakingRequest.username !== "superuser") throw error.makeErrorResponse(error.FORBIDDEN, "User doesn't have access to this project")
             if (project.members.includes(userToAddInfo.id)) throw error.makeErrorResponse(error.CONFLICT, "User already belongs to project")
@@ -454,7 +454,7 @@ function services(db, auth) {
 
             const userToRemoveInfo = await auth.getUserByUsername(usernameToRemove)
             if (!userToRemoveInfo) throw error.makeErrorResponse(error.NOT_FOUND, "User doesn't exist")
-            const project = await db.getProjectById(projectId)
+            const project = await db.getProjectById(projectId, userMakingRequest)
 
             if (project.owner !== userMakingRequest.id && userMakingRequest.username !== "superuser") throw error.makeErrorResponse(error.FORBIDDEN, "User doesn't have access to this project")
 
@@ -469,7 +469,6 @@ function services(db, auth) {
                 })
                 .catch(err => err)
         },
-
 
 
         giveUserRole: async function (usernameToGiveRole, userMakingRequest, role, endDate) {

@@ -122,7 +122,7 @@ export default function CustomizedTables({projects, refresh}) {
           </Table>
         </TableContainer>
       </Paper>
-      <AddDialog showDialog={showDialog} setShowDialog={setShowDialog} title={"Add Project"} type={"Project"} refreshProjects= {refresh}/>
+      <AddDialog showDialog={showDialog} setShowDialog={setShowDialog} title={"Add Project"} type={"Project"} refreshProjects= {refresh} showDate={true}/>
       <Button
         variant="contained"
         color="primary"
