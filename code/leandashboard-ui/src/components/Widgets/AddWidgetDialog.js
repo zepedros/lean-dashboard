@@ -17,66 +17,32 @@ import MonthWeekDayPicker from './MonthWeekDayPicker';
 import { TimePicker, DatePicker } from "@material-ui/pickers";
 import {  useParams } from "react-router-dom";
 import useFetch from 'use-http'
+import { useHistory } from "react-router-dom";
 
 
-export default function AddWidgetDialog({ template, showDialog, setShowDialog,source }) {
+export default function AddWidgetDialog({ template, showDialog, setShowDialog,source,templateId }) {
     const [selectedCredential, setSelectedCredential] = useState("")
     const [isSpecificDate, setIsSpecificDate] = useState(false)
     const [time, setTime] = useState(new Date())
     const [date, setDate] = useState(new Date())
-    const [credentials,setCredentials] = useState([])
+    const [credentialsProject,setCredentials] = useState([])
     const {  get, post, response, loading, error } = useFetch('http://localhost:3000/api', { credentials: "same-origin"})
-    let { id } = useParams();
-    console.log(source)
+    let { id, dashboardId } = useParams();
     useEffect(() => {loadCredentials()},[])
-
+    let history = useHistory();
 
     async function loadCredentials(){
         const getCredentials= await get(`api/lean/projects/${id}/credentials`)
         if(response.ok) setCredentials(getCredentials)
         
     }
-    const [month, setMonth] = useState("None")
-    const [weekday, setWeekDay] = useState("None")
+    const [month, setMonth] = useState("*")
+    const [weekday, setWeekDay] = useState("*")
 
     const templateTest = {
         source: "Jira"
     }
-    /*const credentials = [
-        {
-            name: "abc",
-            source: "Jira",
-            credential: {
-                email: "leandashboardproject@gmail.com",
-                token: "LPcyGdZolN906MvzdwPHF045",
-                APIPath: "leandashboard.atlassian.net",
-                APIVersion: 3
-            }
-        },
-        {
-            name: "cde",
-            source: "Squash",
-            credential: {
-                email: "leandashboardproject@gmail.com",
-                token: "LPcyGdZolN906MvzdwPHF045",
-                APIPath: "leandashboard.atlassian.net",
-                APIVersion: 3
-            }
-        },
-        {
-            name: "cdsdfsdfsde",
-            source: "Jira",
-            credential: {
-                email: "leandashboardproject@gmail.com",
-                token: "LPcyGdZolN906MvzdwPHF045",
-                APIPath: "leandashboard.atlassian.net",
-                APIVersion: 3
-            }
-        }
-    ]*/
-
-
-
+  
     function handleClose() {
         setShowDialog(false)
         setIsSpecificDate(false)
@@ -122,11 +88,27 @@ export default function AddWidgetDialog({ template, showDialog, setShowDialog,so
                 month: `${month}`
             }
         }
-        //TODO POST 
+      
+        //TODO POST
         const body = {
             timeSettings: timeSettings,
             credentials: selectedCredential
         }
+        console.log(selectedCredential)
+        async function postWidget(body) {
+            return await post(`/api/lean/projects/${id}/dashboard/${dashboardId}/widgets/${templateId}`, body)
+        }
+        postWidget(body).then(postresp => {
+            console.log(postresp)
+            if (postresp.statusCode === 201) {
+                console.log('post done')
+                alert("Widget created!")
+                history.push(`/projects/${id}/dashboards/${dashboardId}/`);
+            } else {
+                alert("Error creating Widget")
+                console.log('no post')
+            }
+        })
         handleClose()
     }
     //TODO A PARTE QUE O BOTAO DO FILTRO LIGA
@@ -141,14 +123,14 @@ export default function AddWidgetDialog({ template, showDialog, setShowDialog,so
                     <form>
                         <Select
                             native
-                            value={selectedCredential}
+
                             onChange={event => setSelectedCredential(event.target.value)}
                             defaultValue=""
                             input={<Input id="grouped-native-select" />}
                         >
-                            {credentials.map(credential => {
-                                if (credential.source == templateTest.source) {
-                                    return <option value={credential.name}>{credential.name}</option>
+                            {credentialsProject.map(cp => {
+                                if (cp.credentials.source == source) {
+                                    return <option value={cp.credentials.name}>{cp.credentials.name}</option>
                                 }
                             })}
                         </Select>

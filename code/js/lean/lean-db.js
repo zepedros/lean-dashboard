@@ -301,6 +301,7 @@ module.exports = {
                         name: body._source.name,
                         function: body._source.function,
                         source: body._source.source,
+                        type: body._source.type,
                         params: [],
                         updateTime: timeSettings,
                         credentials: aux[0].credentials,

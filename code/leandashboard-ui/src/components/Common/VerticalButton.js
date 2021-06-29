@@ -16,9 +16,9 @@ import Link from '@material-ui/core/Link';
 const useStyles = makeStyles((theme) => ({
   button: {
     width: '5%',
-    position: 'relative',
-    top: '10%',
-    left: '55%'
+    position: 'fixed',
+    bottom: '45%',
+    right: '2%'
 },
 
 }));
@@ -71,7 +71,9 @@ export default function VerticalButton(props) {
 
       <Tooltip title={props.title2} aria-label="add" placement="left">
         <Button aria-label="add" >
-          <SettingsIcon />
+          <Link href={`/projects/${id}/settings`}>
+            <SettingsIcon />
+          </Link>
         </Button>
       </Tooltip>
       

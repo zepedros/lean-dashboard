@@ -11,45 +11,6 @@ import useFetch from 'use-http'
 import { useState, useEffect } from 'react'
 
 
-
-const testITems = [
-    {
-        pid: 1,
-        name: 'abc',
-        description: 'description',
-        owner: 'Manager',
-        state: 'Open'
-    },
-    {
-        pid: 2,
-        name: 'def',
-        description: 'description'
-    },
-    {
-        pid: 3,
-        name: 'ghi',
-        description: 'description'
-    },
-    {
-        pid: 4,
-        name: 'ghi',
-        description: 'description'
-    },
-    {
-        pid: 5,
-        name: 'ghi',
-        description: 'description'
-    },
-    {
-        pid: 6,
-        name: 'ghi',
-        description: 'description'
-    }
-]
-
-
-
-
 export default function ProjectsPage() {
 
     const [projects, setProjects] = useState([])

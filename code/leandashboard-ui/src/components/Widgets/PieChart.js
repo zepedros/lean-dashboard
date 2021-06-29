@@ -92,6 +92,7 @@ const TrafficByDevice = (props) => {
             options={options}
           />
         </Box>
+        {props.template ?
         <Box
           sx={{
             display: 'flex',
@@ -128,7 +129,8 @@ const TrafficByDevice = (props) => {
               </Typography>
             </Box>
           ))}
-        </Box>
+        </Box>:null
+      }
       </CardContent>
     </Card>
   );

@@ -130,7 +130,7 @@ function webapi(app, services, auth, authization) {
             services.addWidgetToDashboard(req.params.id, req.params.dashboardId, req.params.widgetsId, req.body.timeSettings, req.body.credentials, req.user)
                 .then(resp => {
                     console.log("Add Widget to Dashboard")
-                    answerHandler(resp, res)
+                    answerHandler(resp, res,201)
                 })
                 .catch(err => errHandler(err, res))
         },

@@ -1,8 +1,6 @@
 import React from 'react';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import BarChart1 from '../../images/BarChart.png'
 import Typography from '@material-ui/core/Typography';
 import DataTable from './DataTable'
 import PieChart from './PieChart'
@@ -14,6 +12,9 @@ import AddWidgetDialog from './AddWidgetDialog';
 import { useState, useEffect } from 'react'
 import useFetch from 'use-http'
 import BarChart from './BarChart'
+import TemplateWidget from './TemplateWidget';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
 
 
 
@@ -41,56 +42,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const templatesWidgets = [
-  {
-    name: "Jira sprint gauge chart",
-    source: "Jira",
-    id: "WoGSNHoBkBFPbxnfKv1w",
-
-
-  },
-  {
-    name: "Jira issues data table",
-    source: "Jira",
-    id: "XIGSNHoBkBFPbxnfK_2I",
-
-  },
-  {
-    name: "Squash test per iteration data table",
-    source: "Squash",
-    id: "XoGSNHoBkBFPbxnfLP18",
-
-  }
-];
-
-const images = [
-  {
-    img: BarChart
-  },
-  {
-    img: DataTable
-  },
-  {
-    img: PieChart
-  },
-  {
-    img: DataTable
-  },
-  {
-    img: PieChart
-  },
-  {
-    img: DataTable
-  }
-
-]
-
 export default function AddWidget() {
   const classes = useStyles();
-  const [value, setValue] = React.useState('');
+  const [selectTemplate, setSelectTemplate] = useState('');
   const [templates,setTemplates] = useState([]);
   const [sourceTemplate,setSourceTemplate] = useState('');
-  const [activeDialog, setDialog] = React.useState(false);
+  const [activeDialog, setDialog] = useState(false);
  
 
   const {  get, post, response, loading, error } = useFetch('http://localhost:3000/api', { credentials: "same-origin"})
@@ -98,10 +55,11 @@ export default function AddWidget() {
   useEffect(() => {loadTemplates()},[])
 
   const handleChange = (event) => {
-    setValue(event.target.value);
+    setSelectTemplate(event.target.value)
     templates.map(template=>{
-      if(template.id === value)
+      if(template.id === event.target.value){
       setSourceTemplate(template.source)
+      }
     })
   };
   
@@ -110,30 +68,33 @@ export default function AddWidget() {
     if(response.ok) setTemplates(getTemplates)
   }
   
-  console.log(sourceTemplate)
   return (
     <div>
 
-      <RadioGroup row aria-label="gender" value={value} onChange={handleChange}>
+      <RadioGroup row aria-label="gender" onChange={handleChange}>
         {templates.map((template) =>
           <FormControlLabel
             control={<Radio />}
             value={template.id}
             label={
               <>
-                <BarChart />
+                <Card>
+                <CardContent>
+                <TemplateWidget type={template.type} />
                 <Typography component="h1" variant="h6">
                   {template.name}
                 </Typography>
                 <Typography component="h1" variant="h6">
                   Source: {template.source}
                 </Typography>
+                </CardContent>
+                </Card>
               </>
             }
           />
         )}
       </RadioGroup>
-      <AddWidgetDialog showDialog={activeDialog} setShowDialog={setDialog} source={sourceTemplate} />
+      <AddWidgetDialog showDialog={activeDialog} setShowDialog={setDialog} source={sourceTemplate} templateId={selectTemplate} />
       <Button
         variant="contained"
         color="primary"

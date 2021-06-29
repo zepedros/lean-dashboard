@@ -305,7 +305,7 @@ function services(db, auth) {
                     return db.addWidgetToDashboard(projectId, dashboardId, templateId, timeSettings, credentials)
                         .then(createdId => {
                             scheduler.scheduleWidget(createdId, true)
-                            return response.makePostResponse(response.OK, `${projectId}/dashboard/`, dashboardId)
+                            return response.makePostResponse(response.CREATED, `${projectId}/dashboard/`, dashboardId)
                         })
                 })
         },

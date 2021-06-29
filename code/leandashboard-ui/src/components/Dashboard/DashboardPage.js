@@ -3,8 +3,28 @@ import NavBar from '../Common/NavBar'
 import { Hidden } from '@material-ui/core';
 import VerticalButton from '../Common/VerticalButton'
 import FAB from '../Common/FAB'
+import {  useParams } from "react-router-dom";
+import { useState, useEffect } from 'react'
+import useFetch from 'use-http'
 
 export default function DashboardPage() {
+    const [dashboardWidgets, setDashboardWidgets] = useState('')
+    const { get, post, response, loading, error } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
+    let { id, dashboardId } = useParams();
+
+    useEffect(() => {
+        loadDashboards().then(() => {
+            console.log(response.data)
+        })
+    }, [])
+
+    async function loadDashboards() {
+        const getDashboard = await get(`/api/lean/projects/${id}/dashboard/${dashboardId}`)
+        if(getDashboard) {
+            setDashboardWidgets(getDashboard.widgets)
+            }
+        }
+
 
     return (
         <div>

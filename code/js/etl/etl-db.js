@@ -11,6 +11,7 @@ const templates = [
         name: 'Jira sprint gauge chart',
         function: 'postJiraSprintDateGaugeChart',
         source: 'Jira',
+        type:"GaugeChart",
         data: [{
             "sprintName": "Sprint",
             "info": {
@@ -25,6 +26,7 @@ const templates = [
         name: 'Jira issues bar chart',
         function: 'postJiraSprintIssuesBarChart',
         source: 'Jira',
+        type:"BarChart",
         data: [{
             "sprintName": "Sprint",
             "counts": [
@@ -44,6 +46,7 @@ const templates = [
         "name": "Jira issues data table",
         function: 'postJiraIssuesDataTable',
         source: 'Jira',
+        type:"DataTable",
         data: [{
             "key": "key",
             "summary": "a summary",
@@ -55,6 +58,7 @@ const templates = [
         name: 'Squash test results pie chart',
         function: 'postSquashTestsPieChart',
         source: 'Squash',
+        type:"PieChart",
         data: [{
             "total": 10,
             "counts": [
@@ -85,6 +89,7 @@ const templates = [
         name: 'Squash test per iteration data table',
         function: 'postSquashTestPerIterationDataTable',
         source: 'Squash',
+        type:"DataTable",
         data: [{
             "campaign": 1,
             "iteration": "Iteration",
@@ -145,6 +150,7 @@ module.exports = {
                 name: template.name,
                 function: template.function,
                 source: template.source,
+                type: template.type,
                 params: [],
                 timeSettings: {},
                 credentials: {},
