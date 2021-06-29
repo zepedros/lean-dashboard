@@ -43,7 +43,7 @@ export default function FAB(props) {
   const [state, setState] = React.useState({
     bottom: false,
   });
-  const {addTitle,settingsTitle} = props
+  const {addTitle,settingsTitle,refresh} = props
   const toggleDrawer = (anchor, open) => (event) => {
     if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
@@ -66,7 +66,7 @@ export default function FAB(props) {
       <List>
         <ListItem>
         
-        <AddDashboardDialog showDialog={showDialog} setShowDialog={setShowDialog} title={"Add Dashboard"} />
+        <AddDashboardDialog showDialog={showDialog} setShowDialog={setShowDialog} title={"Add Dashboard"} refreshDashboards={refresh} />
         
             <Button onClick={handleOpenDialog}>
               <ListItemIcon ><AddIcon/></ListItemIcon>

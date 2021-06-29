@@ -75,7 +75,7 @@ export default function CustomizedTables({projects, refresh}) {
   const classes = useStyles();
   const [showFilter, setShowFilter] = useState(false)
   const [showDialog, setShowDialog] = useState(false)
-  const rows = projects.map(project=>{return createData(project.id,project.name,project.state,project.owner)})
+  const rows = projects ? projects.map(project=>{return createData(project.id,project.name,project.state,project.owner)}) : undefined
   console.log(rows)
   function handleFilter() {
     setShowFilter(!showFilter)
@@ -107,7 +107,7 @@ export default function CustomizedTables({projects, refresh}) {
               </TableRow>
             </TableHead>
             <TableBody>
-              {rows.map((row) => (
+              {rows && rows.map((row) => (
                 <StyledTableRow key={row.name}>
                   <Link href={`projects/${row.id}/dashboards`}>
                     <StyledTableCell component="th" scope="row"> <Button color="primary">{row.project}</Button></StyledTableCell>

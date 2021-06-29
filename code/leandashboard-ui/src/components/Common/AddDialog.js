@@ -10,13 +10,14 @@ import DateFnsUtils from '@date-io/date-fns'
 import { MuiPickersUtilsProvider } from '@material-ui/pickers'
 import useFetch from 'use-http'
 import { DatePicker } from "@material-ui/pickers";
+import { get } from 'js-cookie';
 
 export default function AddProjectDialog({ showDialog, setShowDialog, title, type, refreshProjects, showDate }) {
     const [input, setInput] = useState({ name: "", description: "" })
     const [date, setDate] = useState(new Date())
     const [nameError, setNameError] = useState(false)
     const [descriptionError, setDescriptionError] = useState(false)
-    const { post, response, error } = useFetch('http://localhost:3000/api', { credentials: "same-origin" })
+    const { post, get, response, error } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
 
     function handleClose() {
         setInput({ name: "", description: "" })
@@ -49,25 +50,22 @@ export default function AddProjectDialog({ showDialog, setShowDialog, title, typ
             startDate: `${startMonth}-${startDay}-${today.getFullYear()}`,
             endDate: `${endMonth}-${endDay}-${date.getFullYear()}`
         }
-        async function postProject(body) {
-            const project = await post('/api/lean/projects', body)
-            if (response.ok) {
-                refreshProjects()
-                return true
-            } else {
-                return false
-            }
-        }
-        postProject(body).then(res => {
-            if (res) {
+        postProject(body).then(postresp => {
+            console.log(postresp)
+            if (postresp.statusCode === 201) {
                 console.log('post done')
-                //alert(`Project ${input.name} was created!`)
+                alert("Project created!")
+                refreshProjects()
             } else {
+                alert("Error creating Dashboard")
                 console.log('no post')
-                //alert('There was an error creating the project')
             }
-            handleClose()
         })
+        handleClose()
+    }
+
+    async function postProject(body) {
+        return await post('/api/lean/projects', body)
     }
     //TODO A PARTE QUE O BOTAO DO FILTRO LIGA
     return (

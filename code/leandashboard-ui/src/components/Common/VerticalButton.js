@@ -16,9 +16,9 @@ import Link from '@material-ui/core/Link';
 const useStyles = makeStyles((theme) => ({
   button: {
     width: '5%',
-    position: 'fixed',
-    bottom: '45%',
-    right: '2%'
+    position: 'relative',
+    top: '10%',
+    left: '55%'
 },
 
 }));
@@ -45,7 +45,7 @@ export default function VerticalButton(props) {
     >
 
     {!props.show ? 
-      <AddDashboardDialog showDialog={showDialog} setShowDialog={setShowDialog} title={props.title} />
+      <AddDashboardDialog showDialog={showDialog} setShowDialog={setShowDialog} refreshDashboards={props.refresh} title={props.title} />
       //<AddDialog showDialog={showDialog} setShowDialog={setShowDialog} title={props.title} type={props.type}/>
       :null
     }

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import {  useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -12,7 +12,7 @@ import { MuiPickersUtilsProvider } from '@material-ui/pickers'
 import useFetch from 'use-http'
 import { DatePicker } from "@material-ui/pickers";
 
-export default function AddProjectDialog({ showDialog, setShowDialog, title, refreshDashboards }) {
+export default function AddDashboardDialog({ showDialog, setShowDialog, title, refreshDashboards }) {
     const [input, setInput] = useState({ name: "", description: "" })
     const [nameError, setNameError] = useState(false)
     const [descriptionError, setDescriptionError] = useState(false)
@@ -43,24 +43,20 @@ export default function AddProjectDialog({ showDialog, setShowDialog, title, ref
             description: input.description
         }
         async function postDashboard(body) {
-            const project = await post(`api/lean/projects/${id}/dashboard`, body)
-            if (response.ok) {
-                //refreshDashboards()
-                return true
-            } else {
-                return false
-            }
+            return await post(`/api/lean/projects/${id}/dashboard`, body)
         }
-        postDashboard(body).then(res => {
-            if (res) {
+        postDashboard(body).then(postresp => {
+            console.log(postresp)
+            if (postresp.statusCode === 201) {
                 console.log('post done')
-                //alert(`Project ${input.name} was created!`)
+                alert("Dashboard created!")
+                refreshDashboards()
             } else {
+                alert("Error creating Dashboard")
                 console.log('no post')
-                //alert('There was an error creating the project')
             }
-            handleClose()
         })
+        handleClose()
     }
     //TODO A PARTE QUE O BOTAO DO FILTRO LIGA
     return (

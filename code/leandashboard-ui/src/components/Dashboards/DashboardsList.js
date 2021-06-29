@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function DashboardsList({ dashboards }) {
+export default function DashboardsList({ dashboards, refresh }) {
   const classes = useStyles();
   const [showFilter, setShowFilter] = useState(false)
   function handleFilter() {

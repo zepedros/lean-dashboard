@@ -24,7 +24,6 @@ const useStyles = makeStyles({
 //const colorCards = ['#FFE633', '#339FFF', '#3CAA91', '#7FAA3C']
 export default function DashboardsCard({ dashboard }) {
  // const preventDefault = (event) => event.preventDefault();
-  console.log(dashboard)
   const classes = useStyles();
   return (
     <Grid item key={dashboard} md={3}>
