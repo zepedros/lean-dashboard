@@ -47,7 +47,7 @@ function webapi(app, services, auth, authization) {
                 .catch(err => errHandler(err, res))
         },
 
-        changeProjectOwner: function (req, res){
+        changeProjectOwner: function (req, res) {
             services.changeProjectOwner(req.params.id, req.body.newOwner, req.user)
                 .then(resp => {
                     console.log(`Updating Project owner`)
@@ -158,6 +158,12 @@ function webapi(app, services, auth, authization) {
                 .catch(err => errHandler(err, res))
         },
 
+        getUserById: function (req, res) {
+            services.getUserById(req.params.id, req.user)
+                .then(resp => answerHandler(resp, res))
+                .catch(err => errHandler(err, res))
+        },
+
         deleteUser: function (req, res) {
             services.deleteUser(req.params.username, req.user)
                 .then(resp => answerHandler(resp, res))
@@ -260,13 +266,13 @@ function webapi(app, services, auth, authization) {
                 .catch(err => errHandler(err, res))
         },
 
-        getUserRoles: function (req, res){
+        getUserRoles: function (req, res) {
             const username = req.params.username
-            const userMakingRequest  = req.user
+            const userMakingRequest = req.user
             services.getUserRoles(username, userMakingRequest)
                 .then(resp => {
                     console.log(`User ${username} has roles ${resp}`)
-                    answerHandler(resp, res,201)
+                    answerHandler(resp, res, 201)
                 })
                 .catch(err => errHandler(err, res))
         },
@@ -320,6 +326,7 @@ function webapi(app, services, auth, authization) {
 
 
     app.post('/lean/register', theWebApi.createUser)
+    app.get('/api/lean/users/:id', theWebApi.getUserById)
     app.delete('/lean/users/:username', theWebApi.deleteUser)
     app.put('/lean/users/:username/username', theWebApi.editUsername)
     app.put('/lean/users/:username/password', theWebApi.editPassword)

@@ -354,6 +354,11 @@ function services(db, auth) {
             return await auth.createUser(username, password)
         },
 
+        getUserById: async function(userId, userMakingRequest){
+            if (!userMakingRequest) return Promise.reject((error.makeErrorResponse(error.UNAUTHORIZED, "You are not logged in")))
+            return await auth.getUserById(userId)
+        },
+
         deleteUser: async function (userToDelete, userMakingRequest) {
             //For now, only the super user can delete accounts
             if (userMakingRequest.id !== 1) {
