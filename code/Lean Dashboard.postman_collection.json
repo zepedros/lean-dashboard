@@ -1268,7 +1268,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8000/api/lean/projects/user/superuser",
+									"raw": "http://localhost:8000/api/lean/users/1",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -1277,9 +1277,8 @@
 									"path": [
 										"api",
 										"lean",
-										"projects",
-										"user",
-										"superuser"
+										"users",
+										"1"
 									]
 								},
 								"description": "Get all project from a user (JIRA)"
@@ -1287,7 +1286,7 @@
 							"response": []
 						},
 						{
-							"name": "DELETE /api/lean/projects/user/{username}",
+							"name": "DELETE /api/lean/projects/users/{username}",
 							"request": {
 								"method": "DELETE",
 								"header": [],
