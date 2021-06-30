@@ -1,5 +1,4 @@
-import { useState,useEffect } from 'react'
-import TextField from '@material-ui/core/TextField';
+import { useState, useEffect } from 'react'
 import Dialog from '@material-ui/core/Dialog';
 import Checkbox from '@material-ui/core/Checkbox';
 import DateFnsUtils from '@date-io/date-fns'
@@ -12,37 +11,32 @@ import Button from '@material-ui/core/Button';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Select from "@material-ui/core/Select";
 import Input from "@material-ui/core/Input";
-import Divider from '@material-ui/core/Divider'
 import MonthWeekDayPicker from './MonthWeekDayPicker';
 import { TimePicker, DatePicker } from "@material-ui/pickers";
-import {  useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import useFetch from 'use-http'
 import { useHistory } from "react-router-dom";
 
-
-export default function AddWidgetDialog({ template, showDialog, setShowDialog,source,templateId }) {
+export default function AddWidgetDialog({ showDialog, setShowDialog, source, templateId }) {
     const [selectedCredential, setSelectedCredential] = useState("")
     const [isSpecificDate, setIsSpecificDate] = useState(false)
     const [time, setTime] = useState(new Date())
     const [date, setDate] = useState(new Date())
-    const [credentialsProject,setCredentials] = useState([])
-    const {  get, post, response, loading, error } = useFetch('http://localhost:3000/api', { credentials: "same-origin"})
+    const [credentialsProject, setCredentials] = useState([])
+    const { get, post, response } = useFetch('http://localhost:3000/api', { credentials: "same-origin" })
     let { id, dashboardId } = useParams();
-    useEffect(() => {loadCredentials()},[])
+
+    useEffect(() => { loadCredentials() }, [])
+
     let history = useHistory();
 
-    async function loadCredentials(){
-        const getCredentials= await get(`api/lean/projects/${id}/credentials`)
-        if(response.ok) setCredentials(getCredentials)
-        
+    async function loadCredentials() {
+        const getCredentials = await get(`api/lean/projects/${id}/credentials`)
+        if (response.ok) setCredentials(getCredentials)
     }
     const [month, setMonth] = useState("*")
     const [weekday, setWeekDay] = useState("*")
 
-    const templateTest = {
-        source: "Jira"
-    }
-  
     function handleClose() {
         setShowDialog(false)
         setIsSpecificDate(false)
@@ -88,13 +82,15 @@ export default function AddWidgetDialog({ template, showDialog, setShowDialog,so
                 month: `${month}`
             }
         }
-      
+        if (selectedCredential === "") {
+            alert('Please select a credential')
+            return
+        }
         //TODO POST
         const body = {
             timeSettings: timeSettings,
             credentials: selectedCredential
         }
-        console.log(selectedCredential)
         async function postWidget(body) {
             return await post(`/api/lean/projects/${id}/dashboard/${dashboardId}/widgets/${templateId}`, body)
         }
@@ -123,11 +119,11 @@ export default function AddWidgetDialog({ template, showDialog, setShowDialog,so
                     <form>
                         <Select
                             native
-
                             onChange={event => setSelectedCredential(event.target.value)}
-                            defaultValue=""
+                            defaultValue={""}
                             input={<Input id="grouped-native-select" />}
                         >
+                            <option value="">None</option>
                             {credentialsProject.map(cp => {
                                 if (cp.credentials.source == source) {
                                     return <option value={cp.credentials.name}>{cp.credentials.name}</option>
@@ -166,14 +162,12 @@ export default function AddWidgetDialog({ template, showDialog, setShowDialog,so
                                 :
                                 <MonthWeekDayPicker props={month, weekday, setMonth, setWeekDay} />
                             }
-
                         </MuiPickersUtilsProvider>
                         <DialogContentText>
                         </DialogContentText>
                         <FormControlLabel
                             control={<Checkbox value="date" onChange={e => setIsSpecificDate(e.target.checked)} />}
                             label="Specific Date"
-
                         />
                     </form>
                 </DialogContent>

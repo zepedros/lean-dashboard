@@ -1,10 +1,9 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router';
 import useFetch from 'use-http'
 const { RBAC } = require('rbac')
 
 class AuthizationRbac {
-
     rbac_options = {};
     roles = [];
     init() {
@@ -18,9 +17,7 @@ class AuthizationRbac {
                 Colaborator: ['get_lean']
             }
         }
-
         this.rbac = new RBAC(this.rbac_options)
-
         if (Array.isArray(this.rbac_options.roles) && typeof (this.rbac_options.permissions) === 'object' && typeof (this.rbac_options.grants) === 'object') {
             return this.rbac.init()
         }
@@ -32,9 +29,8 @@ class AuthizationRbac {
         let arr = []
         this.roles.forEach(role => arr.push(this.rbac.can(role, action, resource)));
         return Promise.all(arr).then(
-            array => { return array.some(bool => bool == true) }
+            array => { return array.some(bool => bool === true) }
         )
-
     }
 
     canAll(permissions) {
@@ -45,7 +41,6 @@ class AuthizationRbac {
     canAny(permissions) {
         return this.roles.some(role => this.rbac.canAny(role, permissions));
     }
-
 }
 
 /*
@@ -85,7 +80,7 @@ function UserProvider({ Username }) {
     const [user, setUser] = useState(Username)
     const history = useHistory()
     const [rbac, setRbac] = useState(undefined)
-    const { get, post, response } = useFetch('http://localhost:3000/api', { credentials: "same-origin" })
+    const { get, response } = useFetch('http://localhost:3000/api', { credentials: "same-origin" })
     //  const [perms, setPerms] = usePermission()
     useEffect(() => {
         const fetchData = async () => {
@@ -105,7 +100,7 @@ function UserProvider({ Username }) {
                 return
             }
         }
-        fetchData().then(()=>{
+        fetchData().then(() => {
             history.push('/projects')
         })
     }, [])

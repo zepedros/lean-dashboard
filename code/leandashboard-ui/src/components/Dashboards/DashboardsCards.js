@@ -31,16 +31,12 @@ const useStyles = makeStyles((theme) => ({
     Top: "977px",
     Left: "1172px",
     Blend: "Pass through",
-
-
   }
-
-
 }));
 
 export default function DashboardsCards({ dashboards, refresh }) {
   const classes = useStyles();
-//  const bull = <span className={classes.bullet}>•</span>;
+  //  const bull = <span className={classes.bullet}>•</span>;
 
   return (
     <div>
@@ -48,7 +44,6 @@ export default function DashboardsCards({ dashboards, refresh }) {
         <Typography component="h1" variant="h5" style={{ textAlign: "center" }}>
           Dashboards
         </Typography>
-
         <Grid container spacing={5}>
           {
             dashboards.map((dashboard) => {
@@ -56,8 +51,7 @@ export default function DashboardsCards({ dashboards, refresh }) {
             })
           }
         </Grid>
-
-        <VerticalButton title1={"Add Dashboard"} title2={"Project Settings"} title={"Add Dashboard"} refresh={refresh}type={"Dashboard"}show={false}/>
+        <VerticalButton title1={"Add Dashboard"} title2={"Project Settings"} title={"Add Dashboard"} refresh={refresh} type={"Dashboard"} show={false} />
       </Container>
     </div>
   );

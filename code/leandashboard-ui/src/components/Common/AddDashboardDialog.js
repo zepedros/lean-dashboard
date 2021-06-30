@@ -7,16 +7,13 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from '@material-ui/core/Button';
-import DateFnsUtils from '@date-io/date-fns'
-import { MuiPickersUtilsProvider } from '@material-ui/pickers'
 import useFetch from 'use-http'
-import { DatePicker } from "@material-ui/pickers";
 
 export default function AddDashboardDialog({ showDialog, setShowDialog, title, refreshDashboards }) {
     const [input, setInput] = useState({ name: "", description: "" })
     const [nameError, setNameError] = useState(false)
     const [descriptionError, setDescriptionError] = useState(false)
-    const { post, response, error } = useFetch('http://localhost:3000/api', { credentials: "same-origin" })
+    const { post } = useFetch('http://localhost:3000/api', { credentials: "same-origin" })
     let { id } = useParams();
 
     function handleClose() {
@@ -25,7 +22,6 @@ export default function AddDashboardDialog({ showDialog, setShowDialog, title, r
         setDescriptionError(false)
         setShowDialog(false)
     }
-
 
     function handleSubmit() {
         if (!input.name) {
@@ -91,7 +87,6 @@ export default function AddDashboardDialog({ showDialog, setShowDialog, title, r
                         helperText={descriptionError}
                         fullWidth
                     />
-
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose} color="primary">

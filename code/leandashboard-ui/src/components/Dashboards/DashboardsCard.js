@@ -12,7 +12,6 @@ const useStyles = makeStyles({
     minWidth: 275,
   },
   card: {
-
     display: 'flex',
     flexDirection: 'column',
     textAlign: "bottom",
@@ -23,14 +22,12 @@ const useStyles = makeStyles({
 });
 //const colorCards = ['#FFE633', '#339FFF', '#3CAA91', '#7FAA3C']
 export default function DashboardsCard({ dashboard }) {
- // const preventDefault = (event) => event.preventDefault();
   const classes = useStyles();
   return (
     <Grid item key={dashboard} md={3}>
       <Card className={classes.card}>
         <CardContent className={classes.cardContent}>
           <DashboardIcon fontSize="large" style={{ fill: "black" }} />
-
           <Typography gutterBottom variant="h5" component="h2">
             <Link href={`dashboards/${dashboard.id}/`}>
               {dashboard.name}

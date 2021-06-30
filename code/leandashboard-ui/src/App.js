@@ -10,36 +10,11 @@ import DashboardPage from './components/Dashboard/DashboardPage'
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import AddWidgetPage from './components/Widgets/AddWigetPage';
 import ProjectSettingsPage from './components/Projects/ProjectSettingsPage';
-import BarChart from './components/Widgets/BarChart'
-import PieChart from './components/Widgets/PieChart'
-import Grid from '@material-ui/core/Grid';
-import DataTable from './components/Widgets/DataTable'
-
-/*function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}*/
 
 function App() {
-  return(
+  return (
     <div className="App">
-       < Router>
+      < Router>
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route exact path="/signIn" component={SignIn} />
@@ -55,8 +30,5 @@ function App() {
     </div>
   )
 }
-/*
-
-*/
 export default App;
 

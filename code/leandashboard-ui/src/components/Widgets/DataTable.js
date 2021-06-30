@@ -12,11 +12,6 @@ import Button from '@material-ui/core/Button';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import IconButton from '@material-ui/core/IconButton';
 
-
-
-
-
-
 const StyledTableCell = withStyles((theme) => ({
   head: {
     backgroundColor: theme.palette.common.black,
@@ -25,7 +20,6 @@ const StyledTableCell = withStyles((theme) => ({
   body: {
     fontSize: 14,
   },
-  
 }))(TableCell);
 
 const StyledTableRow = withStyles((theme) => ({
@@ -41,18 +35,18 @@ function createData(project, state, nDashboards, completion) {
 }
 
 const rows = [
-  createData('key', 'a summary', 'type','open'),  
+  createData('key', 'a summary', 'type', 'open'),
 ];
 
-const useStyles = makeStyles((theme)=> ({
+const useStyles = makeStyles((theme) => ({
   table: {
     minWidth: 700,
   },
   button: {
     margin: theme.spacing(1),
     position: "absolute",
-    right:    60,
-    bottom:   70,
+    right: 60,
+    bottom: 70,
     background: 'linear-gradient(45deg, #3CAA91 30%, #3CAA91 90%)',
     borderRadius: 3,
     border: 0,
@@ -67,24 +61,18 @@ const useStyles = makeStyles((theme)=> ({
   },
 }));
 
-
-
 export default function CustomizedTables() {
   const classes = useStyles();
-  
   return (
     <div>
-     
-        <Paper >
-        
-        <TableContainer component={Paper} elevation={3}style={{maxHeight:480}}>
-        <Typography component="h1" variant="h5" style={{textAlign:"left"}}>
+      <Paper >
+        <TableContainer component={Paper} elevation={3} style={{ maxHeight: 480 }}>
+          <Typography component="h1" variant="h5" style={{ textAlign: "left" }}>
             Issues
           </Typography>
           <IconButton aria-label="filter list" className={classes.filter}>
             <FilterListIcon />
           </IconButton>
-       
           <Table className={classes.table} aria-label="customized table" >
             <TableHead>
               <TableRow>
@@ -103,14 +91,13 @@ export default function CustomizedTables() {
                   <StyledTableCell align="right">{row.state}</StyledTableCell>
                   <StyledTableCell align="right">{row.nDashboards}</StyledTableCell>
                   <StyledTableCell align="right">{row.completion}</StyledTableCell>
-                  
+
                 </StyledTableRow>
               ))}
             </TableBody>
           </Table>
         </TableContainer>
       </Paper>
-      
-</div>
+    </div>
   );
 }

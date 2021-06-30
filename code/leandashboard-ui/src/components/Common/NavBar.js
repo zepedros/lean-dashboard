@@ -21,7 +21,6 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const drawerWidth = 240;
-
 const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
@@ -54,28 +53,10 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const testITems = [
-    {
-        pid: 1,
-        name: 'abc',
-        description: 'description'
-    },
-    {
-        pid: 2,
-        name: 'def',
-        description: 'description'
-    },
-    {
-        pid: 3,
-        name: 'ghi',
-        description: 'description'
-    }
-]
-
 export default function PermanentDrawerLeft(props) {
     const classes = useStyles();
     const [NavigationValue, setNavigationValue] = useState("")
-    function handleChange(event, newValue) {
+    function handleChange(newValue) {
         setNavigationValue(newValue)
     }
     return (
@@ -99,14 +80,12 @@ export default function PermanentDrawerLeft(props) {
                 >
                     <div className={classes.toolbar} />
                     <Divider />
-
-                        <ListItem button component={Link} to="/projects">
-                            <ListItemIcon>
-                                <HomeIcon />
-                            </ListItemIcon>
-                            <ListItemText primary="Home" />
-                        </ListItem>
-                 
+                    <ListItem button component={Link} to="/projects">
+                        <ListItemIcon>
+                            <HomeIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="Home" />
+                    </ListItem>
                     <ListItem button>
                         <ListItemIcon>
                             <NotificationsIcon />
@@ -133,7 +112,7 @@ export default function PermanentDrawerLeft(props) {
                 <Hidden mdUp>
                     <Container>
                         <BottomNavigation value={NavigationValue} onChange={handleChange} className={classes.navigation}>
-                            <BottomNavigationAction component={Link} to="/projects" label="Home" value="Home" icon={<HomeIcon />} />                           
+                            <BottomNavigationAction component={Link} to="/projects" label="Home" value="Home" icon={<HomeIcon />} />
                             <BottomNavigationAction label="Notifications" value="Notifications" icon={<NotificationsIcon />} />
                             <BottomNavigationAction label="Settings" value="Settings" icon={<SettingsIcon />} />
                             <BottomNavigationAction label="Account" value="Account" icon={<AccountCircleIcon />} />

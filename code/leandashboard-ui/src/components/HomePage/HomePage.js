@@ -4,20 +4,18 @@ import Integrations from './Integrations'
 import Divider from '@material-ui/core/Divider'
 import Description from './Description'
 import Footer from './Footer'
-
-
 import React from "react";
 
 export default function HomePage() {
-    return(
+    return (
         <div className="App">
             <Header />
             <SectionShortDescription />
-            <Divider /> <br />
+            <Divider />
             <Integrations />
-            <Divider /> <br />
+            <Divider />
             <Description />
-            <Footer />  
+            <Footer />
         </div>
     )
 };

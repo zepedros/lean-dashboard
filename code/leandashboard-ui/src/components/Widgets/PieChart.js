@@ -15,7 +15,6 @@ import TabletIcon from '@material-ui/icons/Tablet';
 
 const TrafficByDevice = (props) => {
   const theme = useTheme();
-
   const data = {
     datasets: [
       {
@@ -93,44 +92,44 @@ const TrafficByDevice = (props) => {
           />
         </Box>
         {props.template ?
-        <Box
-          sx={{
-            display: 'flex',
-            justifyContent: 'center',
-            pt: 2
-          }}
-        >
-          {devices.map(({
-            color,
-            icon: Icon,
-            title,
-            value
-          }) => (
-            <Box
-              key={title}
-              sx={{
-                p: 1,
-                textAlign: 'center'
-              }}
-            >
-              <Icon color="action" />
-              <Typography
-                color="textPrimary"
-                variant="body1"
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'center',
+              pt: 2
+            }}
+          >
+            {devices.map(({
+              color,
+              icon: Icon,
+              title,
+              value
+            }) => (
+              <Box
+                key={title}
+                sx={{
+                  p: 1,
+                  textAlign: 'center'
+                }}
               >
-                {title}
-              </Typography>
-              <Typography
-                style={{ color }}
-                variant="h2"
-              >
-                {value}
-                %
-              </Typography>
-            </Box>
-          ))}
-        </Box>:null
-      }
+                <Icon color="action" />
+                <Typography
+                  color="textPrimary"
+                  variant="body1"
+                >
+                  {title}
+                </Typography>
+                <Typography
+                  style={{ color }}
+                  variant="h2"
+                >
+                  {value}
+                  %
+                </Typography>
+              </Box>
+            ))}
+          </Box> : null
+        }
       </CardContent>
     </Card>
   );

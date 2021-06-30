@@ -3,19 +3,13 @@ import ProjectsTable from './ProjectsTable'
 import Grid from '@material-ui/core/Grid';
 import NavBar from '../Common/NavBar'
 import { Hidden } from '@material-ui/core';
-
-import { Container } from '@material-ui/core';
-import { useContext } from 'react';
-import UserContext from '../../common/UserContext';
 import useFetch from 'use-http'
 import { useState, useEffect } from 'react'
 
-
 export default function ProjectsPage() {
-
     const [projects, setProjects] = useState([])
     const [refresh, setRefreshProjects] = useState(false)
-    const { get, post, response, loading, error } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
+    const { get, response } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
 
     useEffect(() => {
         loadProjects().then(() => {
@@ -29,16 +23,15 @@ export default function ProjectsPage() {
 
     async function loadProjects() {
         const getProjects = await get('/api/lean/projects')
-        if(getProjects) {
+        if (getProjects) {
             getProjects.map(project => {
-                getUsername(project.owner).then(()=>{
-                    if(response.ok) {
+                getUsername(project.owner).then(() => {
+                    if (response.ok) {
                         project.owner = response.data.username
                     }
                 })
             })
             new Promise(resolve => setTimeout(resolve, 1000)).then(() => {
-                
                 if (response.ok) setProjects(getProjects)
             })
         }

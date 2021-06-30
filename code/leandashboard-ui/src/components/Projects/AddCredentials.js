@@ -2,15 +2,12 @@ import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import InputLabel from "@material-ui/core/InputLabel";
 import Input from "@material-ui/core/Input";
-import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import { Typography } from "@material-ui/core";
-
-
 
 const useStyles = makeStyles(theme => ({
   formControl: {
@@ -26,39 +23,36 @@ const useStyles = makeStyles(theme => ({
 export default function AddCredentials() {
   const [selectedValue, setSelectedValue] = useState("");
   const classes = useStyles();
-
-  const textField= (text) => {
-    
-      return (
-        <Grid item>
+  const textField = (text) => {
+    return (
+      <Grid item>
         <TextField
-        label=""
-        id="outlined-margin-dense"
-        className={classes.textField}
-        placeholder={text}
-        margin="dense"
-        variant="outlined"
-      />
+          label=""
+          id="outlined-margin-dense"
+          className={classes.textField}
+          placeholder={text}
+          margin="dense"
+          variant="outlined"
+        />
       </Grid>
-      );
+    );
   };
 
-  const buttonSubmit = () =>{
+  const buttonSubmit = () => {
     return (
       <div>
-        
-          <Button variant="contained" color="primary">
-                 Submit
-            </Button>
+        <Button variant="contained" color="primary">
+          Submit
+        </Button>
       </div>
     )
   };
+
   return (
     <div>
       <div>
-      <Typography component="h6" variant="h6">Add Credentials</Typography>
+        <Typography component="h6" variant="h6">Add Credentials</Typography>
         <FormControl className={classes.formControl}>
-         
           <InputLabel id="demo-simple-select-outlined-label">Tools</InputLabel>
           <Select
             native
@@ -67,24 +61,23 @@ export default function AddCredentials() {
             defaultValue=""
             input={<Input id="grouped-native-select" />}
           >
-             <option value={0}>None</option>
+            <option value={0}>None</option>
             <option value={1}>Squash</option>
             <option value={2}>Azure</option>
             <option value={3}>Jira</option>
           </Select>
         </FormControl>
-       
         {selectedValue === "1" && (
           <Grid container>
-          <form className={classes.form}> 
-            {textField("Username")}
-            {textField("Password")}
-            {textField("API Path")}
-            {buttonSubmit()}       
-          </form>
+            <form className={classes.form}>
+              {textField("Username")}
+              {textField("Password")}
+              {textField("API Path")}
+              {buttonSubmit()}
+            </form>
           </Grid>
         )}
-         {selectedValue === "2" && (
+        {selectedValue === "2" && (
           <form className={classes.form}>
             {textField("Email")}
             {textField("Token")}
@@ -92,15 +85,15 @@ export default function AddCredentials() {
             {buttonSubmit()}
           </form>
         )}
-         {selectedValue === "3" && (
-           <Grid container>
-          <form className={classes.form}>
-           {textField("Email")}
-           {textField("Token")}
-           {textField("API Path")}
-           {textField("API Version")}
-           {buttonSubmit()}
-          </form>
+        {selectedValue === "3" && (
+          <Grid container>
+            <form className={classes.form}>
+              {textField("Email")}
+              {textField("Token")}
+              {textField("API Path")}
+              {textField("API Version")}
+              {buttonSubmit()}
+            </form>
           </Grid>
         )}
       </div>

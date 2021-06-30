@@ -4,10 +4,10 @@ import Divider from '@material-ui/core/Divider'
 import Footer from '../HomePage/Footer'
 
 export default function Contact() {
-    return(
+    return (
         <div>
             <Header />
-            <Divider /><br />
+            <Divider />
             <h1 className="MuiTypography-root MuiTypography-h2 MuiTypography-colorTextPrimary MuiTypography-gutterBottom MuiTypography-alignCenter">
                 Contact us
             </h1>
@@ -15,5 +15,4 @@ export default function Contact() {
             <Footer />
         </div>
     );
-
 }

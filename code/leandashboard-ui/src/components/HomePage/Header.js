@@ -2,9 +2,7 @@ import { AppBar, Toolbar, Typography, makeStyles, Button } from "@material-ui/co
 import React from "react";
 import { Link } from "react-router-dom";
 
-
 export default function Header() {
-
   const useStyles = makeStyles(() => ({
     header: {
       position: "relative",
@@ -26,9 +24,7 @@ export default function Header() {
       display: "flex",
       justifyContent: "space-between",
     },
-
   }));
-
 
   const displayDesktop = () => {
     return (
@@ -54,11 +50,9 @@ export default function Header() {
     },
   ];
 
-
   const getMenuButtons = () => {
     return headersData.map(({ label, href }) => {
       return (
-
         <Button variant="outlined" color="primary" maxWidth="sm"
           {...{
             key: label,
@@ -70,7 +64,6 @@ export default function Header() {
         >
           {label}
         </Button>
-
       );
     });
   };

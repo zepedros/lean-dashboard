@@ -9,17 +9,11 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import AddIcon from '@material-ui/icons/Add';
 import SettingsIcon from '@material-ui/icons/Settings';
-import AddDialog from '../Common/AddDialog.js'
 import AddDashboardDialog from '../Common/AddDashboardDialog'
-import { useState } from 'react'
 import DeleteIcon from '@material-ui/icons/Delete';
 import WidgetsIcon from '@material-ui/icons/Widgets';
 import { __SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED } from 'react-dom';
-import {  useHistory, useParams } from "react-router-dom";
 import { Link } from 'react-router-dom';
-
-
-
 
 const useStyles = makeStyles({
   list: {
@@ -40,24 +34,18 @@ const useStyles = makeStyles({
 
 export default function FAB(props) {
   const classes = useStyles();
-  let { id,dashboardId } = useParams();
-  let history = useHistory();
   const [state, setState] = React.useState({
     bottom: false,
   });
-  const {addTitle,settingsTitle,refresh} = props
+  const { addTitle, settingsTitle, refresh } = props
   const toggleDrawer = (anchor, open) => (event) => {
     if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
     }
     setState({ ...state, [anchor]: open });
   };
- 
-
-  
 
   const list = (anchor) => (
-    
     <div
       className={clsx(classes.list, {
         [classes.fullList]: anchor === 'top' || anchor === 'bottom',
@@ -68,39 +56,35 @@ export default function FAB(props) {
     >
       <List>
         <ListItem>
-        
-        <AddDashboardDialog showDialog={props.showDialog} setShowDialog={props.setShowDialog} title={"Add Dashboard"} refreshDashboards={refresh} />
-        
-            <Button onClick={props.function}>
-              <ListItemIcon ><AddIcon/></ListItemIcon>
-              <ListItemText primary={addTitle}/>
-            </Button>
+          <AddDashboardDialog showDialog={props.showDialog} setShowDialog={props.setShowDialog} title={"Add Dashboard"} refreshDashboards={refresh} />
+          <Button onClick={props.function}>
+            <ListItemIcon ><AddIcon /></ListItemIcon>
+            <ListItemText primary={addTitle} />
+          </Button>
         </ListItem>
         <ListItem component={Link} to={props.path}>
-        
-            <Button>
-              <ListItemIcon><SettingsIcon/></ListItemIcon>
-              <ListItemText primary={settingsTitle}/>
-            </Button>
-            
+          <Button>
+            <ListItemIcon><SettingsIcon /></ListItemIcon>
+            <ListItemText primary={settingsTitle} />
+          </Button>
         </ListItem>
         {props.show ?
-        <ListItem>
+          <ListItem>
             <Button>
               <ListItemIcon> <DeleteIcon /></ListItemIcon>
-              <ListItemText primary={"Delete Dashboard"}/>
+              <ListItemText primary={"Delete Dashboard"} />
             </Button>
-        </ListItem>
-        :null
+          </ListItem>
+          : null
         }
         {props.show ?
-        <ListItem>
+          <ListItem>
             <Button>
               <ListItemIcon> <WidgetsIcon /></ListItemIcon>
-              <ListItemText primary={"Widgets Settings"}/>
+              <ListItemText primary={"Widgets Settings"} />
             </Button>
-        </ListItem>
-        :null
+          </ListItem>
+          : null
         }
       </List>
     </div>
@@ -110,9 +94,9 @@ export default function FAB(props) {
     <div>
       {['bottom'].map((anchor) => (
         <React.Fragment key={anchor}>
-          <Button 
-            variant="contained" 
-            color="primary" 
+          <Button
+            variant="contained"
+            color="primary"
             size="small"
             className={classes.button}
             onClick={toggleDrawer(anchor, true)}>+
@@ -130,15 +114,3 @@ export default function FAB(props) {
     </div>
   );
 }
-
-/*
-<Button
-      variant="contained"
-      color="primary"
-      size="small"
-      className={classes.button}
-      startIcon={<AddIcon />}
-    >
-      Add new
-    </Button>
-*/

@@ -11,7 +11,6 @@ import Grid from '@material-ui/core/Grid';
 import Link from '@material-ui/core/Link';
 import Copyright from './CopyRight'
 
-
 const useStyles = makeStyles((theme) => ({
   root: {
     height: '100vh',
@@ -95,7 +94,6 @@ export default function Form(props) {
   return (
     <form className={classes.form} noValidate component={classes.button}>
       <TextField
-
         variant="outlined"
         margin="normal"
         required
@@ -132,22 +130,17 @@ export default function Form(props) {
       >
         {props.button}
       </Button>
-
       <Grid container>
         <Grid item xs>
           <Link href="#" variant="body2" className={classes.input}>
             Forgot password?
           </Link>
-
         </Grid>
         {loggedIn && <UserProvider Username={loggedIn} />}
       </Grid>
-
       <Box mt={5}>
         <Copyright />
       </Box>
     </form>
   )
-
-
 }

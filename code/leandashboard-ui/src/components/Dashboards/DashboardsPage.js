@@ -12,7 +12,7 @@ export default function DashboardsPage() {
     const [dashboards, setDashboards] = useState([])
     const [project, setProject] = useState([])
     const [refresh, setRefresh] = useState(false)
-    const { get, post, response, loading, error } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
+    const { get, response } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
     let { id } = useParams();
     useEffect(() => {
         console.log("refreshing")

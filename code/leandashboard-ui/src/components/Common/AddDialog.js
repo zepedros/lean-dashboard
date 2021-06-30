@@ -10,14 +10,13 @@ import DateFnsUtils from '@date-io/date-fns'
 import { MuiPickersUtilsProvider } from '@material-ui/pickers'
 import useFetch from 'use-http'
 import { DatePicker } from "@material-ui/pickers";
-import { get } from 'js-cookie';
 
 export default function AddProjectDialog({ showDialog, setShowDialog, title, type, refreshProjects, showDate }) {
     const [input, setInput] = useState({ name: "", description: "" })
     const [date, setDate] = useState(new Date())
     const [nameError, setNameError] = useState(false)
     const [descriptionError, setDescriptionError] = useState(false)
-    const { post, get, response, error } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
+    const { post } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
 
     function handleClose() {
         setInput({ name: "", description: "" })
@@ -26,7 +25,6 @@ export default function AddProjectDialog({ showDialog, setShowDialog, title, typ
         setShowDialog(false)
         setDate(new Date())
     }
-
 
     function handleSubmit() {
         if (!input.name) {
@@ -117,7 +115,6 @@ export default function AddProjectDialog({ showDialog, setShowDialog, title, typ
                         </MuiPickersUtilsProvider>
                         : null
                     }
-
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose} color="primary">

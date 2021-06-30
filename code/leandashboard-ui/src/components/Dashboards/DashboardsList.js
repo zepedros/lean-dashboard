@@ -7,7 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import { Container } from '@material-ui/core';
 import FAB from '../Common/FAB'
-import {  useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -33,14 +33,12 @@ const useStyles = makeStyles((theme) => ({
     bottom: '15%',
     background: 'linear-gradient(45deg, #3CAA91 30%, #3CAA91 90%)',
     color: 'white',
-
   },
   filter: {
     position: "relative",
     left: "45%"
   },
 }));
-
 
 export default function DashboardsList({ dashboards, refresh }) {
   const classes = useStyles();
@@ -54,7 +52,7 @@ export default function DashboardsList({ dashboards, refresh }) {
   function handleOpenDialog() {
     setShowDialog(true)
   }
-  
+
   return (
     <div>
       <Container className={classes.root}>
@@ -71,14 +69,8 @@ export default function DashboardsList({ dashboards, refresh }) {
             })
           }
         </List>
-        <FAB addTitle={"Add Dashboard"} settingsTitle={"Project Settings"} refresh={refresh} refreshDashboards={refresh} show={false} path={`/projects/${id}/settings`} function={handleOpenDialog} showDialog={showDialog} setShowDialog={setShowDialog}/>
+        <FAB addTitle={"Add Dashboard"} settingsTitle={"Project Settings"} refresh={refresh} refreshDashboards={refresh} show={false} path={`/projects/${id}/settings`} function={handleOpenDialog} showDialog={showDialog} setShowDialog={setShowDialog} />
       </Container>
     </div>
   );
 }
-
-/*
-<Fab color="primary" aria-label="add" className={classes.button}>
-          <AddIcon />
-        </Fab>
-*/

@@ -1,5 +1,5 @@
 import React from 'react';
-import {useState} from 'react'
+import { useState } from 'react'
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -16,13 +16,6 @@ import Link from '@material-ui/core/Link';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import IconButton from '@material-ui/core/IconButton';
 
-
-
-
-
-
-
-
 const StyledTableCell = withStyles((theme) => ({
   head: {
     backgroundColor: theme.palette.common.black,
@@ -31,7 +24,6 @@ const StyledTableCell = withStyles((theme) => ({
   body: {
     fontSize: 14,
   },
-
 }))(TableCell);
 
 const StyledTableRow = withStyles((theme) => ({
@@ -42,8 +34,8 @@ const StyledTableRow = withStyles((theme) => ({
   },
 }))(TableRow);
 
-function createData(id,project, state, manager, completion) {
-  return { id,project, state, manager, completion };
+function createData(id, project, state, manager, completion) {
+  return { id, project, state, manager, completion };
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -69,17 +61,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
-
-export default function CustomizedTables({projects, refresh}) {
+export default function CustomizedTables({ projects, refresh }) {
   const classes = useStyles();
   const [showFilter, setShowFilter] = useState(false)
   const [showDialog, setShowDialog] = useState(false)
-  const rows = projects ? projects.map(project=>{return createData(project.id,project.name,project.state,project.owner)}) : undefined
-  console.log(rows)
-  function handleFilter() {
-    setShowFilter(!showFilter)
-  }
+  const rows = projects ? projects.map(project => { return createData(project.id, project.name, project.state, project.owner) }) : undefined
 
   function handleOpenDialog() {
     setShowDialog(true)
@@ -92,11 +78,9 @@ export default function CustomizedTables({projects, refresh}) {
       </Typography>
       <Paper >
         <TableContainer component={Paper} elevation={3} style={{ maxHeight: 480 }}>
-
           <IconButton aria-label="filter list" className={classes.filter}>
             <FilterListIcon />
           </IconButton>
-
           <Table className={classes.table} aria-label="customized table" >
             <TableHead>
               <TableRow>
@@ -111,18 +95,17 @@ export default function CustomizedTables({projects, refresh}) {
                 <StyledTableRow key={row.name}>
                   <Link href={`projects/${row.id}/dashboards`}>
                     <StyledTableCell component="th" scope="row"> <Button color="primary">{row.project}</Button></StyledTableCell>
-                  </Link>  
+                  </Link>
                   <StyledTableCell align="right">{row.state}</StyledTableCell>
                   <StyledTableCell align="right">{row.manager}</StyledTableCell>
                   <StyledTableCell align="right">{row.completion}</StyledTableCell>
-
                 </StyledTableRow>
               ))}
             </TableBody>
           </Table>
         </TableContainer>
       </Paper>
-      <AddDialog showDialog={showDialog} setShowDialog={setShowDialog} title={"Add Project"} type={"Project"} refreshProjects= {refresh} showDate={true}/>
+      <AddDialog showDialog={showDialog} setShowDialog={setShowDialog} title={"Add Project"} type={"Project"} refreshProjects={refresh} showDate={true} />
       <Button
         variant="contained"
         color="primary"

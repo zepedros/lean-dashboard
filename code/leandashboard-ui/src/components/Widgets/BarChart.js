@@ -1,5 +1,4 @@
 import { Bar } from 'react-chartjs-2';
-import VerticalButton from '../Common/VerticalButton'
 import {
   Box,
   Card,
@@ -12,7 +11,6 @@ import {
 
 const Sales = (props) => {
   const theme = useTheme();
-
   const data = {
     datasets: [
       {
@@ -81,34 +79,34 @@ const Sales = (props) => {
 
   return (
     <div>
-    <Card {...props}>
-      <CardHeader
-        title="Issues"
-      />
-      <Divider />
-      <CardContent>
+      <Card {...props}>
+        <CardHeader
+          title="Issues"
+        />
+        <Divider />
+        <CardContent>
+          <Box
+            sx={{
+              height: 400,
+              position: 'relative'
+            }}
+          >
+            <Bar
+              data={data}
+              options={options}
+            />
+          </Box>
+        </CardContent>
+        <Divider />
         <Box
           sx={{
-            height: 400,
-            position: 'relative'
+            display: 'flex',
+            justifyContent: 'flex-end',
+            p: 2
           }}
         >
-          <Bar
-            data={data}
-            options={options}
-          />
         </Box>
-      </CardContent>
-      <Divider />
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'flex-end',
-          p: 2
-        }}
-      >
-      </Box>
-    </Card>
+      </Card>
     </div>
   );
 };

@@ -1,9 +1,6 @@
 import React from 'react';
-import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Typography from '@material-ui/core/Typography';
-import DataTable from './DataTable'
-import PieChart from './PieChart'
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import Radio from '@material-ui/core/Radio';
@@ -11,13 +8,9 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import AddWidgetDialog from './AddWidgetDialog';
 import { useState, useEffect } from 'react'
 import useFetch from 'use-http'
-import BarChart from './BarChart'
 import TemplateWidget from './TemplateWidget';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-
-
-
 
 const useStyles = makeStyles((theme) => ({
   table: {
@@ -45,32 +38,30 @@ const useStyles = makeStyles((theme) => ({
 export default function AddWidget() {
   const classes = useStyles();
   const [selectTemplate, setSelectTemplate] = useState('');
-  const [templates,setTemplates] = useState([]);
-  const [sourceTemplate,setSourceTemplate] = useState('');
+  const [templates, setTemplates] = useState([]);
+  const [sourceTemplate, setSourceTemplate] = useState('');
   const [activeDialog, setDialog] = useState(false);
- 
 
-  const {  get, post, response, loading, error } = useFetch('http://localhost:3000/api', { credentials: "same-origin"})
+  const { get, response } = useFetch('http://localhost:3000/api', { credentials: "same-origin" })
 
-  useEffect(() => {loadTemplates()},[])
+  useEffect(() => { loadTemplates() }, [])
 
   const handleChange = (event) => {
     setSelectTemplate(event.target.value)
-    templates.map(template=>{
-      if(template.id === event.target.value){
-      setSourceTemplate(template.source)
+    templates.map(template => {
+      if (template.id === event.target.value) {
+        setSourceTemplate(template.source)
       }
     })
   };
-  
-  async function loadTemplates(){
-    const getTemplates= await get(`/api/lean/projects/widgets/templates`)
-    if(response.ok) setTemplates(getTemplates)
+
+  async function loadTemplates() {
+    const getTemplates = await get(`/api/lean/projects/widgets/templates`)
+    if (response.ok) setTemplates(getTemplates)
   }
-  
+
   return (
     <div>
-
       <RadioGroup row aria-label="gender" onChange={handleChange}>
         {templates.map((template) =>
           <FormControlLabel
@@ -79,15 +70,15 @@ export default function AddWidget() {
             label={
               <>
                 <Card>
-                <CardContent>
-                <TemplateWidget type={template.type} />
-                <Typography component="h1" variant="h6">
-                  {template.name}
-                </Typography>
-                <Typography component="h1" variant="h6">
-                  Source: {template.source}
-                </Typography>
-                </CardContent>
+                  <CardContent>
+                    <TemplateWidget type={template.type} />
+                    <Typography component="h1" variant="h6">
+                      {template.name}
+                    </Typography>
+                    <Typography component="h1" variant="h6">
+                      Source: {template.source}
+                    </Typography>
+                  </CardContent>
                 </Card>
               </>
             }
@@ -99,11 +90,10 @@ export default function AddWidget() {
         variant="contained"
         color="primary"
         className={classes.button}
-        onClick={()=>{setDialog(true)}}
+        onClick={() => { setDialog(true) }}
       >
         Add Widget
       </Button>
     </div>
-
   )
 }

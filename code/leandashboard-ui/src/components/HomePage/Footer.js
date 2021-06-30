@@ -6,17 +6,11 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 import { useLocation } from 'react-router';
 
-
-
-
 const useStyles = makeStyles((theme) => ({
   root: {
-    
     left: 0,
     bottom: 0,
     width: "100%",
-     
-
   },
   main: {
     marginTop: theme.spacing(2),
@@ -24,9 +18,8 @@ const useStyles = makeStyles((theme) => ({
   },
   footer: {
     postion: "absolute",
-    left:0,
-    bottom:0,
-   
+    left: 0,
+    bottom: 0,
   },
   logo: {
     fontFamily: "Work Sans, sans-serif",
@@ -40,25 +33,24 @@ const useStyles = makeStyles((theme) => ({
     size: "20px",
     marginLeft: "40px",
     justifyContent: 'left'
- },
- toolbar: {
+  },
+  toolbar: {
     display: "flex",
     justifyContent: "space-between",
   },
 }));
 
 export default function StickyFooter() {
-
   const location = useLocation()
-  const pathName=location.pathname
+  const pathName = location.pathname
   const classes = useStyles();
 
   const displayDesktop = () => {
     return (
-    <Toolbar className={classes.toolbar}>
+      <Toolbar className={classes.toolbar}>
         {femmecubatorLogo}
-        <div style={{ textAlign:'left'}}>{getMenuButtons()}</div>
-    </Toolbar>
+        <div style={{ textAlign: 'left' }}>{getMenuButtons()}</div>
+      </Toolbar>
     );
   };
 
@@ -79,41 +71,36 @@ export default function StickyFooter() {
       label: "Contact us",
       href: "/contact",
     },
-
   ];
 
   const getMenuButtons = () => {
     return footerData.map(({ label, href }) => {
-   
       return (
-        
         <Button
           {...{
             key: label,
             color: "inherit",
             to: href,
-           // component: RouterLink,
-           className:classes.menuButton,
+            // component: RouterLink,
+            className: classes.menuButton,
           }}
         >
           {label}
         </Button>
       );
-      
     });
-};
+  };
 
-const femmecubatorLogo = (
-  <Typography variant = "h6" component = "h1" className={classes.logo}>
+  const femmecubatorLogo = (
+    <Typography variant="h6" component="h1" className={classes.logo}>
       LeanDashboard
-  </Typography>
-)
+    </Typography>
+  )
   return (
     <div className={classes.root}>
-      <CssBaseline />        
-      <footer className={classes.footer} style={{position: pathName === '/' ? 'relative' : 'absolute'}}>
-         {displayDesktop()}
-
+      <CssBaseline />
+      <footer className={classes.footer} style={{ position: pathName === '/' ? 'relative' : 'absolute' }}>
+        {displayDesktop()}
       </footer>
     </div>
   );
