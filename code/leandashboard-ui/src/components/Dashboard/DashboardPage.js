@@ -9,7 +9,27 @@ import useFetch from 'use-http'
 import DashboardWidgets from './DashbordWidgets';
 
 export default function DashboardPage() {
-    
+    const [dashboardWidgets, setDashboardWidgets] = useState([])
+    const { get, post, response, loading, error } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
+    let { id, dashboardId } = useParams();
+
+    useEffect(() => {
+        loadDashboards().then(() => {
+            console.log(response.data)
+        })
+    }, [])
+
+    async function loadDashboards() {
+         get(`/api/lean/projects/${id}/dashboard/${dashboardId}`)
+            .then(getDashboard => getDashboard.map(content => {
+                setDashboardWidgets(content.widget)}))
+        }
+        async function loadDashboardsWidgets() {
+            get(`/api/lean/projects/${id}/dashboard/${dashboardId}`)
+               .then(getDashboard => getDashboard.map(content => {
+                   setDashboardWidgets(content.widget)}))
+           }    
+        
     return (
         <div>
             <Hidden mdUp>
