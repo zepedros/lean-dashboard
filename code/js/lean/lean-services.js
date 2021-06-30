@@ -205,7 +205,7 @@ function services(db, auth) {
                 })
         },
 
-        getDashboardFromProject: function (projectId, dashboardId, userMakingRequest) {
+        getDashboardById: function (projectId, dashboardId, userMakingRequest) {
             if (!projectId) {
                 return Promise.reject(
                     error.makeErrorResponse(
@@ -221,7 +221,7 @@ function services(db, auth) {
                             error.makeErrorResponse(error.FORBIDDEN, 'You cannot access dashboards from this project. Only the manager and team members have that access.')
                         )
                     }
-                    return db.getDashboardsFromProject(project)
+                    return db.getDashboardById(dashboardId)
                 })
         },
 

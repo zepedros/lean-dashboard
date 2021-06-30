@@ -224,7 +224,7 @@ module.exports = {
             })
     },
 
-    getDashboardFromProject: async function (projectId, dashboardId) {
+    getDashboardById: async function (dashboardId) {
         const uri = `${ES_URL}lean-dashboards/_doc/${dashboardId}`
         return fetch.makeGetRequest(uri)
             .then(response => {
@@ -239,7 +239,7 @@ module.exports = {
     getDashboardsFromProject: async function (project) {
         let dashboards = []
         for (const dashboardId of project.dashboards) {
-            await this.getDashboardFromProject(project.id, dashboardId)
+            await this.getDashboardById(dashboardId)
                 .then(response => {
                     if (response) {
                         dashboards.push(response)
@@ -371,7 +371,7 @@ module.exports = {
 
     removeWidgetFromDashboard: async function (projectId, dashboardId, widgetId) {
         const uri = `${ES_URL}etl-widgets/_doc/${widgetId}?refresh=true`
-        const dashboardWidget = await this.getDashboardFromProject(projectId, dashboardId)
+        const dashboardWidget = await this.getDashboardById(projectId, dashboardId)
             .then(body => body.widgets)
         const widgetIndex = dashboardWidget.findIndex(w => w === widgetId)
         if (widgetIndex === -1) {
@@ -555,7 +555,7 @@ module.exports = {
                 .then(body => {
                     if (body.result === 'updated') {
                         project.dashboards.forEach(dashboardId => {
-                            this.getDashboardFromProject(projectId, dashboardId)
+                            this.getDashboardById(projectId, dashboardId)
                                 .then(result => {
                                     result.widgets.forEach(widgetId => {
                                         this.getWidget(widgetId)

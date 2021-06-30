@@ -16,9 +16,9 @@ import Link from '@material-ui/core/Link';
 const useStyles = makeStyles((theme) => ({
   button: {
     width: '5%',
-    position: 'fixed',
+    position: 'relative',
     bottom: '45%',
-    right: '2%'
+    left: '50%'
 },
 
 }));

@@ -8,24 +8,33 @@ import Divider from '@material-ui/core/Divider'
 import DashboardPage from '../Dashboard/DashboardPage';
 
 export default function DashboardsItem({ dashboard }) {
-
+//component={Link} to="/projects"
 
     return (
         <div>
             <ListItem alignItems="flex-start">
+             
+
                 <ListItemAvatar>
+               
+                    
                     <Avatar variant="square">
                         <DashboardIcon />
                     </Avatar>
                 </ListItemAvatar>
+                
                 <ListItemText
                     primary={
-                        <Link to={DashboardPage} >
-                            {dashboard.name}
+
+                        <Link href={`dashboards/${dashboard.id}/`} >
+                        {dashboard.name}
                         </Link>
                     }
+
                     secondary={(dashboard.description !== undefined) ? dashboard.description : null}
                 />
+                                  
+
             </ListItem>
             <Divider /> <br />
         </div>

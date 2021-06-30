@@ -10,8 +10,10 @@ import DashboardPage from './components/Dashboard/DashboardPage'
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import AddWidgetPage from './components/Widgets/AddWigetPage';
 import ProjectSettingsPage from './components/Projects/ProjectSettingsPage';
-
-
+import BarChart from './components/Widgets/BarChart'
+import PieChart from './components/Widgets/PieChart'
+import Grid from '@material-ui/core/Grid';
+import DataTable from './components/Widgets/DataTable'
 
 /*function App() {
   return (

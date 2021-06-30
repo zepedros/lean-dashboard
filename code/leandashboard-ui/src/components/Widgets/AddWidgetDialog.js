@@ -48,8 +48,8 @@ export default function AddWidgetDialog({ template, showDialog, setShowDialog,so
         setIsSpecificDate(false)
         setTime(new Date())
         setDate(new Date())
-        setMonth("None")
-        setWeekDay("None")
+        setMonth("*")
+        setWeekDay("*")
     }
 
     function handleSubmit() {

@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import { Container } from '@material-ui/core';
 import FAB from '../Common/FAB'
+import {  useParams } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -44,9 +45,16 @@ const useStyles = makeStyles((theme) => ({
 export default function DashboardsList({ dashboards, refresh }) {
   const classes = useStyles();
   const [showFilter, setShowFilter] = useState(false)
+  const [showDialog, setShowDialog] = useState(false)
+
+  let { id } = useParams();
   function handleFilter() {
     setShowFilter(!showFilter)
   }
+  function handleOpenDialog() {
+    setShowDialog(true)
+  }
+  
   return (
     <div>
       <Container className={classes.root}>
@@ -63,7 +71,7 @@ export default function DashboardsList({ dashboards, refresh }) {
             })
           }
         </List>
-        <FAB addTitle={"Add Dashboard"} settingsTitle={"Project Settings"} show={false}/>
+        <FAB addTitle={"Add Dashboard"} settingsTitle={"Project Settings"} refresh={refresh} refreshDashboards={refresh} show={false} path={`/projects/${id}/settings`} function={handleOpenDialog} showDialog={showDialog} setShowDialog={setShowDialog}/>
       </Container>
     </div>
   );

@@ -15,6 +15,8 @@ import { useState } from 'react'
 import DeleteIcon from '@material-ui/icons/Delete';
 import WidgetsIcon from '@material-ui/icons/Widgets';
 import { __SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED } from 'react-dom';
+import {  useHistory, useParams } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 
 
@@ -38,8 +40,8 @@ const useStyles = makeStyles({
 
 export default function FAB(props) {
   const classes = useStyles();
-  const [showDialog, setShowDialog] = useState(false)
-  
+  let { id,dashboardId } = useParams();
+  let history = useHistory();
   const [state, setState] = React.useState({
     bottom: false,
   });
@@ -50,9 +52,10 @@ export default function FAB(props) {
     }
     setState({ ...state, [anchor]: open });
   };
-  function handleOpenDialog() {
-    setShowDialog(true)
-  }
+ 
+
+  
+
   const list = (anchor) => (
     
     <div
@@ -66,18 +69,20 @@ export default function FAB(props) {
       <List>
         <ListItem>
         
-        <AddDashboardDialog showDialog={showDialog} setShowDialog={setShowDialog} title={"Add Dashboard"} refreshDashboards={refresh} />
+        <AddDashboardDialog showDialog={props.showDialog} setShowDialog={props.setShowDialog} title={"Add Dashboard"} refreshDashboards={refresh} />
         
-            <Button onClick={handleOpenDialog}>
+            <Button onClick={props.function}>
               <ListItemIcon ><AddIcon/></ListItemIcon>
               <ListItemText primary={addTitle}/>
             </Button>
         </ListItem>
-        <ListItem>
+        <ListItem component={Link} to={props.path}>
+        
             <Button>
               <ListItemIcon><SettingsIcon/></ListItemIcon>
               <ListItemText primary={settingsTitle}/>
             </Button>
+            
         </ListItem>
         {props.show ?
         <ListItem>
