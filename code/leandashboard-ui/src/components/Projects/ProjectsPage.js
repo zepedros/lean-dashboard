@@ -38,6 +38,7 @@ export default function ProjectsPage() {
                 })
             })
             new Promise(resolve => setTimeout(resolve, 1000)).then(() => {
+                
                 if (response.ok) setProjects(getProjects)
             })
         }

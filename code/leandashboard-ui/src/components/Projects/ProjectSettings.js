@@ -6,6 +6,8 @@ import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import AddMemberForm from './AddMemberForm'
 import AddCredentials from './AddCredentials'
 import NameDescForm from "./NameDescForm";
+import Divider from '@material-ui/core/Divider'
+
 
 const testITems = 
   {
@@ -39,12 +41,15 @@ export default function ProjectSettings(){
   const classes = useStyles();
   return (
     <div>
-          <Typography component="h1" variant="h5">
+          <Typography component="h1" variant="h4">
             {testITems.name} Settings
           </Typography>
           <NameDescForm project={testITems}/>
+          <br />
           <AddMemberForm />
+          <br />
           <AddCredentials project={testITems} />
+
     </div>
   )
 }

@@ -8,6 +8,7 @@ import Select from "@material-ui/core/Select";
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
+import { Typography } from "@material-ui/core";
 
 
 
@@ -44,16 +45,20 @@ export default function AddCredentials() {
 
   const buttonSubmit = () =>{
     return (
+      <div>
+        
           <Button variant="contained" color="primary">
                  Submit
             </Button>
+      </div>
     )
   };
   return (
     <div>
       <div>
-    
+      <Typography component="h6" variant="h6">Add Credentials</Typography>
         <FormControl className={classes.formControl}>
+         
           <InputLabel id="demo-simple-select-outlined-label">Tools</InputLabel>
           <Select
             native
