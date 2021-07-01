@@ -89,7 +89,7 @@ export default function PermanentDrawerLeft(props) {
                 horizontal: 'center',
                 }}
             >
-                <ListItem button >
+                <ListItem button component={Link} to="/profile">
                     <ListItemIcon>
                         <PersonOutlineIcon />
                     </ListItemIcon>
