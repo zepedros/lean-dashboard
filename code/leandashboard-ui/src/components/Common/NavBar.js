@@ -1,4 +1,5 @@
 import React from 'react';
+import { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -18,10 +19,11 @@ import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import { Hidden } from '@material-ui/core';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import Popover from '@material-ui/core/Popover';
 import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import UserContext from '../../common/UserContext';
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -60,33 +62,38 @@ export default function PermanentDrawerLeft(props) {
     const classes = useStyles();
     const [NavigationValue, setNavigationValue] = useState("")
     const [anchorEl, setAnchorEl] = useState(null);
+    const context = useContext(UserContext)
+    const history = useHistory()
 
+    function handleLogout() {
+        context.logout(history)
+    }
     function handleChange(newValue) {
         setNavigationValue(newValue)
     }
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
-      };
-      const handleClose = () => {
+    };
+    const handleClose = () => {
         setAnchorEl(null);
-      };
-      const open = Boolean(anchorEl);
-      const id = open ? 'simple-popover' : undefined;
+    };
+    const open = Boolean(anchorEl);
+    const id = open ? 'simple-popover' : undefined;
 
-      const popover=() =>{
-          return(
-                <Popover
+    const popover = () => {
+        return (
+            <Popover
                 id={id}
                 open={open}
                 anchorEl={anchorEl}
                 onClose={handleClose}
                 anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'center',
+                    vertical: 'bottom',
+                    horizontal: 'center',
                 }}
                 transformOrigin={{
-                vertical: 'top',
-                horizontal: 'center',
+                    vertical: 'top',
+                    horizontal: 'center',
                 }}
             >
                 <ListItem button component={Link} to="/profile">
@@ -95,16 +102,16 @@ export default function PermanentDrawerLeft(props) {
                     </ListItemIcon>
                     <ListItemText primary="Profile" />
                 </ListItem>
-                <ListItem button >
+                <ListItem button onClick={handleLogout} >
                     <ListItemIcon>
                         <ExitToAppIcon />
                     </ListItemIcon>
                     <ListItemText primary="Log Out" />
                 </ListItem>
             </Popover>
-      );
+        );
     }
-      
+
     return (
         <div className={classes.root}>
             <CssBaseline />
@@ -150,7 +157,7 @@ export default function PermanentDrawerLeft(props) {
                         </ListItemIcon>
                         <ListItemText primary="Account" />
                     </ListItem>
-                   {popover()}
+                    {popover()}
                 </Drawer>
             </Hidden>
             <main className={classes.content}>
@@ -162,7 +169,7 @@ export default function PermanentDrawerLeft(props) {
                             <BottomNavigationAction component={Link} to="/projects" label="Home" value="Home" icon={<HomeIcon />} />
                             <BottomNavigationAction label="Notifications" value="Notifications" icon={<NotificationsIcon />} />
                             <BottomNavigationAction label="Settings" value="Settings" icon={<SettingsIcon />} />
-                            <BottomNavigationAction label="Account" value="Account" onClick={handleClick}icon={<AccountCircleIcon />} />
+                            <BottomNavigationAction label="Account" value="Account" onClick={handleClick} icon={<AccountCircleIcon />} />
                             {popover()}
                         </BottomNavigation>
                     </Container>

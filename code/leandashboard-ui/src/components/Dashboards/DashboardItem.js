@@ -5,11 +5,12 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import ListItemText from '@material-ui/core/ListItemText';
 import Avatar from '@material-ui/core/Avatar';
 import Divider from '@material-ui/core/Divider'
+import { NavLink } from 'react-router-dom';
 
 export default function DashboardsItem({ dashboard }) {
     return (
         <div>
-            <ListItem alignItems="flex-start" key = {dashboard.id}>
+            <ListItem alignItems="flex-start" key={dashboard.id}>
                 <ListItemAvatar>
                     <Avatar variant="square">
                         <DashboardIcon />
@@ -17,9 +18,11 @@ export default function DashboardsItem({ dashboard }) {
                 </ListItemAvatar>
                 <ListItemText
                     primary={
-                        <Link href={`dashboards/${dashboard.id}/`} >
-                            {dashboard.name}
-                        </Link>
+                        <NavLink to={`dashboards/${dashboard.id}/`} style={{ textDecoration: "none" }} >
+                            <Link>
+                                {dashboard.name}
+                            </Link>
+                        </NavLink>
                     }
                     secondary={(dashboard.description !== undefined) ? dashboard.description : null}
                 />

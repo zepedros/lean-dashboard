@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from 'react'
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
+import { NavLink } from 'react-router-dom';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
@@ -95,9 +96,11 @@ export default function CustomizedTables({ projects, refresh }) {
             <TableBody>
               {rows && rows.map((row) => (
                 <StyledTableRow key={row.name}>
-                  <Link href={`projects/${row.id}/dashboards`}>
-                    <StyledTableCell component="th" scope="row"> <Button color="primary">{row.project}</Button></StyledTableCell>
-                  </Link>
+                  <NavLink to={`projects/${row.id}/dashboards`} style={{ textDecoration: "none" }}>
+                    <Link>
+                      <StyledTableCell component="th" scope="row"> <Button color="primary">{row.project}</Button></StyledTableCell>
+                    </Link>
+                  </NavLink>
                   <StyledTableCell align="right">{row.state}</StyledTableCell>
                   <StyledTableCell align="right">{row.manager}</StyledTableCell>
                   <StyledTableCell align="right">{row.completion}</StyledTableCell>

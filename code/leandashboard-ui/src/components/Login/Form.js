@@ -1,8 +1,8 @@
 import Checkbox from '@material-ui/core/Checkbox';
 import TextField from '@material-ui/core/TextField';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import useFetch from 'use-http'
-import { UserProvider } from '../../common/UserContext'
+import { UserContext } from '../../common/UserContext'
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
@@ -10,6 +10,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Link from '@material-ui/core/Link';
 import Copyright from './CopyRight'
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -62,9 +63,14 @@ export default function Form(props) {
   const [Password, SetPassword] = useState("")
   const [loggedIn, SetLoggedIn] = useState()
   const [remember, setRemember] = useState(false)
-  const { post, response } = useFetch('http://localhost:3000/api', { credentials: "same-origin" })
+  //const { post, response } = useFetch('http://localhost:3000/api', { credentials: "same-origin" })
+  const context = useContext(UserContext)
+  const history = useHistory()
 
-  async function handleSubmit() {
+  function redirect() {
+    history.push('/projects')
+  }
+  function handleSubmit() {
     if (!Username) {
       alert('Please insert a Username')
       return
@@ -74,15 +80,7 @@ export default function Form(props) {
       return
     }
     if (props.login) {
-      await post("/lean/login", { username: Username, password: Password })
-      if (response.ok) {
-        SetLoggedIn(Username)
-        if (remember) {
-          localStorage.setItem('lean-dashboard-user', JSON.stringify({ username: Username, password: Password }))
-        }
-      } else { //means an error occured
-        alert(response.data.message)
-      }
+      context.login(Username, Password, remember, history)
     } else {
       //do register
       alert('register!')
@@ -100,6 +98,7 @@ export default function Form(props) {
         fullWidth
         id="usermane"
         label="Username"
+        value={Username}
         name="username"
         onChange={e => SetUsername(e.target.value)}
         autoComplete="username"
@@ -113,6 +112,7 @@ export default function Form(props) {
         fullWidth
         name="password"
         label="Password"
+        value={Password}
         onChange={e => SetPassword(e.target.value)}
         type="password"
         id="password"
@@ -136,7 +136,6 @@ export default function Form(props) {
             Forgot password?
           </Link>
         </Grid>
-        {loggedIn && <UserProvider Username={loggedIn} />}
       </Grid>
       <Box mt={5}>
         <Copyright />

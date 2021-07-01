@@ -2,6 +2,7 @@ import { useState } from 'react'
 import AccountTreeIcon from '@material-ui/icons/AccountTree';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import Link from '@material-ui/core/Link';
+import { NavLink } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
@@ -42,9 +43,11 @@ export default function ProjectsItem({ project }) {
                 </ListItemAvatar>
                 <ListItemText
                     primary={
-                        <Link href={`projects/${project.id}/dashboards`}>
-                            {project.name}
-                        </Link>
+                        <NavLink to={`projects/${project.id}/dashboards`} style={{ textDecoration: "none" }} >
+                            <Link>
+                                {project.name}
+                            </Link>
+                        </NavLink>
                     }
                     secondary={(project.description !== undefined) ? project.description : null}
                 />

@@ -6,6 +6,7 @@ import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import DashboardIcon from '@material-ui/icons/Dashboard';
+import { NavLink } from 'react-router-dom';
 
 const useStyles = makeStyles({
   root: {
@@ -29,9 +30,11 @@ export default function DashboardsCard({ dashboard }) {
         <CardContent className={classes.cardContent}>
           <DashboardIcon fontSize="large" style={{ fill: "black" }} />
           <Typography gutterBottom variant="h5" component="h2">
-            <Link href={`dashboards/${dashboard.id}/`}>
-              {dashboard.name}
-            </Link>
+            <NavLink to={`dashboards/${dashboard.id}/`} style={{ textDecoration: "none" }} >
+              <Link>
+                {dashboard.name}
+              </Link>
+            </NavLink>
           </Typography>
         </CardContent>
       </Card>

@@ -73,45 +73,47 @@ export const usePermission = (resource, roles) => {
 };
 */
 
-const UserContext = React.createContext({})
-
-function UserProvider({ Username }) {
-    // Context state
-    const [user, setUser] = useState(Username)
-    const history = useHistory()
-    const [rbac, setRbac] = useState(undefined)
-    const { get, response } = useFetch('http://localhost:3000/api', { credentials: "same-origin" })
-    //  const [perms, setPerms] = usePermission()
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                // get user role
-                // get authenticated User's Roles
-                await get(`/api/lean/users/${Username}/roles`)
-                console.log(response)
-                const roles = response.data
-                const setupRbac = new AuthizationRbac();
-                await setupRbac.init();
-                setupRbac.roles = roles;
-                setRbac(setupRbac)
-                console.log('setRbac')
-            } catch (err) {
-                console.error(err)
-                return
-            }
+export function createRepository(get, post) {
+    const KEY = 'lean-dashboard-credentials'
+    return {
+        //returns credentials if any
+        isLoggedIn: () => {
+            const credentials = localStorage.getItem(KEY)
+            return credentials ? JSON.parse(credentials) : undefined
+        },
+        login: (username, password, remember, history, set) => {
+            //login
+            post("/lean/login", { username: username, password: password }).then((response) => {
+                if (response.statusCode === 200) {
+                    const credentials = { username: username, password: password }
+                    set(credentials)
+                    if (remember) localStorage.setItem(KEY, JSON.stringify(credentials))
+                    else sessionStorage.setItem(KEY, JSON.stringify(credentials))
+                    return get(`/api/lean/users/${username}/roles`).then((res) => {
+                        sessionStorage.setItem('user-rbac', JSON.stringify(res))
+                        history.push('/projects')
+                    })
+                } else {
+                    console.log('ERROR')
+                    //error
+                    return false
+                }
+            })
+        },
+        logout: (history, set) => {
+            post("/lean/logout").then((response) => {
+                if (response.statusCode === 200) {
+                    set()
+                    console.log('log out')
+                    localStorage.removeItem(KEY)
+                    sessionStorage.removeItem(KEY)
+                    sessionStorage.removeItem('user-rbac')
+                    history.push('/')
+                }
+            })
         }
-        fetchData().then(() => {
-            history.push('/projects')
-        })
-    }, [])
-
-    return (
-        <div>
-            <UserContext.Provider value={{ rbac, user }} />
-        </div>
-    )
+    }
 }
 
+export const UserContext = React.createContext({})
 export default UserContext;
-export const UserConsumer = UserContext.Consumer;
-export { UserProvider };

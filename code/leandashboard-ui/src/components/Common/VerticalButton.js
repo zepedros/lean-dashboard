@@ -11,6 +11,7 @@ import { useState } from 'react';
 import AddDashboardDialog from '../Common/AddDashboardDialog'
 import WidgetsIcon from '@material-ui/icons/Widgets';
 import Link from '@material-ui/core/Link';
+import { NavLink } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -52,18 +53,18 @@ export default function VerticalButton(props) {
       {props.show ?
         <Tooltip title={props.title1} aria-label="add" placement="left">
           <Button aria-label="add" >
-            <Link href={`/projects/${id}/dashboards/${dashboardId}/templates`}>
-              <AddIcon />
-            </Link>
+            <NavLink to={`/projects/${id}/dashboards/${dashboardId}/templates`}>
+              <AddIcon color='primary' />
+            </NavLink>
           </Button>
         </Tooltip>
         : null
       }
       <Tooltip title={props.title2} aria-label="add" placement="left">
         <Button aria-label="add" >
-          <Link href={`/projects/${id}/settings`}>
-            <SettingsIcon />
-          </Link>
+          <NavLink to={`/projects/${id}/settings`}>
+            <SettingsIcon color='primary' />
+          </NavLink>
         </Button>
       </Tooltip>
       {props.show ?
