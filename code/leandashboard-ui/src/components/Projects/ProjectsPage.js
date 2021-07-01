@@ -41,7 +41,7 @@ export default function ProjectsPage() {
     async function getUsername(owner) {
         return await get(`/api/lean/users/${owner}`)
     }
-
+    
     return (
         <div>
             <Hidden mdUp>

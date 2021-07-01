@@ -19,6 +19,9 @@ import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import { Hidden } from '@material-ui/core';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import Popover from '@material-ui/core/Popover';
+import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -48,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
     toolbar: theme.mixins.toolbar,
     content: {
         flexGrow: 1,
-        backgroundColor: "theme.palette.background.default",
+        backgroundColor: "#F0F0F0",
         padding: theme.spacing(3),
     },
 }));
@@ -56,9 +59,52 @@ const useStyles = makeStyles((theme) => ({
 export default function PermanentDrawerLeft(props) {
     const classes = useStyles();
     const [NavigationValue, setNavigationValue] = useState("")
+    const [anchorEl, setAnchorEl] = useState(null);
+
     function handleChange(newValue) {
         setNavigationValue(newValue)
     }
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+      };
+      const handleClose = () => {
+        setAnchorEl(null);
+      };
+      const open = Boolean(anchorEl);
+      const id = open ? 'simple-popover' : undefined;
+
+      const popover=() =>{
+          return(
+                <Popover
+                id={id}
+                open={open}
+                anchorEl={anchorEl}
+                onClose={handleClose}
+                anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'center',
+                }}
+                transformOrigin={{
+                vertical: 'top',
+                horizontal: 'center',
+                }}
+            >
+                <ListItem button >
+                    <ListItemIcon>
+                        <PersonOutlineIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Profile" />
+                </ListItem>
+                <ListItem button >
+                    <ListItemIcon>
+                        <ExitToAppIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Log Out" />
+                </ListItem>
+            </Popover>
+      );
+    }
+      
     return (
         <div className={classes.root}>
             <CssBaseline />
@@ -98,12 +144,13 @@ export default function PermanentDrawerLeft(props) {
                         </ListItemIcon>
                         <ListItemText primary="Settings" />
                     </ListItem>
-                    <ListItem button>
+                    <ListItem button onClick={handleClick}>
                         <ListItemIcon>
                             <AccountCircleIcon />
                         </ListItemIcon>
-                        <ListItemText primary="Profile" />
+                        <ListItemText primary="Account" />
                     </ListItem>
+                   {popover()}
                 </Drawer>
             </Hidden>
             <main className={classes.content}>
@@ -115,7 +162,8 @@ export default function PermanentDrawerLeft(props) {
                             <BottomNavigationAction component={Link} to="/projects" label="Home" value="Home" icon={<HomeIcon />} />
                             <BottomNavigationAction label="Notifications" value="Notifications" icon={<NotificationsIcon />} />
                             <BottomNavigationAction label="Settings" value="Settings" icon={<SettingsIcon />} />
-                            <BottomNavigationAction label="Account" value="Account" icon={<AccountCircleIcon />} />
+                            <BottomNavigationAction label="Account" value="Account" onClick={handleClick}icon={<AccountCircleIcon />} />
+                            {popover()}
                         </BottomNavigation>
                     </Container>
                 </Hidden>

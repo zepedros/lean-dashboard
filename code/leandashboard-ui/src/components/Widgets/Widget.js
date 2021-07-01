@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react'
 import { useParams } from "react-router-dom";
 import CircularProgress from '@material-ui/core/CircularProgress';
 import useFetch from 'use-http'
+import Grid from '@material-ui/core/Grid';
+import Card from '@material-ui/core/Card';
 
 export default function Widget({ widgetId }) {
     const [widget, setWidget] = useState()
@@ -12,6 +14,16 @@ export default function Widget({ widgetId }) {
     async function getWidget() {
         return await get(`/api/lean/projects/${id}/dashboard/${dashboardId}/widgets/${widgetId}`)
     }
+    const size = (type) => {
+        console.log(type)
+        switch (type) {
+            case "BarChart": return '6'
+            case "PieChart": return '6'
+            case "DataTable": return '12'
+            case "GaugeChart": return '4'
+            default: return <div></div>
+        }
+    }
 
     useEffect(() => {
         getWidget().then(widget => {
@@ -20,9 +32,11 @@ export default function Widget({ widgetId }) {
     }, [widgetId])
     if (widget) {
         return (
-            <div>
-                <TemplateWidget type={widget.type} />
-            </div>
+            <Grid item md={size(widget.type)}>
+                 <Card>
+                    <TemplateWidget type={widget.type} />
+                </Card>
+            </Grid>
         )
     } else {
         return (
