@@ -5,14 +5,22 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import useFetch from 'use-http'
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
+import Error from '../Common/Errors/Error'
 
 export default function Widget({ widgetId }) {
     const [widget, setWidget] = useState()
-    const { get } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
+    const [errorResponse, setErrorResponse] = useState()
+    const { get, post, response, loading, error } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
     let { id, dashboardId } = useParams();
 
     async function getWidget() {
-        return await get(`/api/lean/projects/${id}/dashboard/${dashboardId}/widgets/${widgetId}`)
+        const widgetResponse = await get(`/api/lean/projects/${id}/dashboard/${dashboardId}/widgets/${widgetId}`)
+        if (response.ok) {
+            console.log(widgetId);
+            setWidget(widgetResponse)
+        } else {
+            setErrorResponse(widgetResponse)
+        }
     }
     const size = (type) => {
         console.log(type)
@@ -26,10 +34,14 @@ export default function Widget({ widgetId }) {
     }
 
     useEffect(() => {
-        getWidget().then(widget => {
-            setWidget(widget)
-        })
+        getWidget()
+        
     }, [widgetId])
+
+    if(errorResponse){
+        return <Error statusCode={error.statusCode} message={error.message}/>
+    }
+    
     if (widget) {
         return (
             <Grid item md={size(widget.type)}>

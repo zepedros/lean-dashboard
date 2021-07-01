@@ -24,7 +24,7 @@ const useStyles = makeStyles({
 export default function DashboardsCard({ dashboard }) {
   const classes = useStyles();
   return (
-    <Grid item key={dashboard} md={3}>
+    <Grid item key={dashboard.id} md={3}>
       <Card className={classes.card}>
         <CardContent className={classes.cardContent}>
           <DashboardIcon fontSize="large" style={{ fill: "black" }} />

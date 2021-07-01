@@ -34,7 +34,7 @@ export default function ProjectsItem({ project }) {
     }
     return (
         <div>
-            <ListItem alignItems="flex-start">
+            <ListItem key={project.id} alignItems="flex-start">
                 <ListItemAvatar>
                     <Avatar variant="square">
                         <AccountTreeIcon />

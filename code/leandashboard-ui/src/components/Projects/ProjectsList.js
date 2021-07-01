@@ -55,6 +55,8 @@ export default function ProjectsList({ projects, refresh }) {
     setShowDialog(true)
   }
 
+  
+
   //TODO A PARTE QUE O BOTAO DO FILTRO LIGA
   return (
     <div>

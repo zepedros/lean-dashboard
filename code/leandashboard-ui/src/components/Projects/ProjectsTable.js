@@ -71,6 +71,8 @@ export default function CustomizedTables({ projects, refresh }) {
     setShowDialog(true)
   }
 
+  console.log(projects)
+
   return (
     <div>
       <Typography component="h1" variant="h5">

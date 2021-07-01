@@ -8,9 +8,11 @@ export default function DashboardWidgets({ widgets }) {
     
     return (
         <div>
-            <Container  maxWidth="md">
+            {
+                widgets?
+                <Container  maxWidth="md">
                 <Grid container spacing={3} >
-                    {widgets.map(widget => {
+                    {widgets?.map(widget => {
                         return (
                             
                            <Widget key={widget} widgetId={widget} />
@@ -20,6 +22,13 @@ export default function DashboardWidgets({ widgets }) {
                 </Grid>
                 <VerticalButton title1={"Add Widget"} title2={"Dashboard Settings"} title3={"Delete Dashboard"} title4={"Widgets Settings"} show={true} />
             </Container>
+            :
+            <h1>
+                Error
+            </h1>
+
+            }
+            
         </div>
     )
 }

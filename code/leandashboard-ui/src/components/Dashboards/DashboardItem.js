@@ -9,7 +9,7 @@ import Divider from '@material-ui/core/Divider'
 export default function DashboardsItem({ dashboard }) {
     return (
         <div>
-            <ListItem alignItems="flex-start">
+            <ListItem alignItems="flex-start" key = {dashboard.id}>
                 <ListItemAvatar>
                     <Avatar variant="square">
                         <DashboardIcon />
