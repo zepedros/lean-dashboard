@@ -231,7 +231,7 @@ module.exports = {
                 if (response.found) {
                     response._source.id = response._id
                     return response._source
-                } else return error.makeErrorResponse(error.NOT_FOUND, 'Dashboard not found')
+                } else return Promise.reject(error.makeErrorResponse(error.NOT_FOUND, 'Dashboard not found'))
             })
 
     },
