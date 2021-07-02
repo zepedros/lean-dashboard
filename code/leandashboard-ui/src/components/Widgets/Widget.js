@@ -35,18 +35,18 @@ export default function Widget({ widgetId }) {
 
     useEffect(() => {
         getWidget()
-        
+
     }, [widgetId])
 
-    if(errorResponse){
-        return <Error statusCode={error.statusCode} message={error.message}/>
+    if (errorResponse) {
+        return <Error statusCode={error.statusCode} message={error.message} />
     }
-    
+
     if (widget) {
         return (
             <Grid item md={size(widget.type)}>
-                 <Card>
-                    <TemplateWidget type={widget.type} />
+                <Card>
+                    <TemplateWidget type={widget.type} data={widget.data} />
                 </Card>
             </Grid>
         )

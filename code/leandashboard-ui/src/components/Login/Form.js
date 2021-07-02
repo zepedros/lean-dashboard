@@ -61,15 +61,11 @@ export default function Form(props) {
   const classes = useStyles();
   const [Username, SetUsername] = useState("")
   const [Password, SetPassword] = useState("")
-  const [loggedIn, SetLoggedIn] = useState()
   const [remember, setRemember] = useState(false)
   //const { post, response } = useFetch('http://localhost:3000/api', { credentials: "same-origin" })
   const context = useContext(UserContext)
   const history = useHistory()
 
-  function redirect() {
-    history.push('/projects')
-  }
   function handleSubmit() {
     if (!Username) {
       alert('Please insert a Username')

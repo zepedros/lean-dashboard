@@ -11,6 +11,7 @@ import useFetch from 'use-http'
 import TemplateWidget from './TemplateWidget';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
+import { CircularProgress, Grid } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   table: {
@@ -18,9 +19,9 @@ const useStyles = makeStyles((theme) => ({
   },
   button: {
     margin: theme.spacing(1),
-    position: "absolute",
-    right: 60,
-    bottom: 70,
+    position: "fixed",
+    right: '1%',
+    bottom: '5%',
     background: 'linear-gradient(45deg, #3CAA91 30%, #3CAA91 90%)',
     borderRadius: 3,
     border: 0,
@@ -42,7 +43,7 @@ export default function AddWidget() {
   const [sourceTemplate, setSourceTemplate] = useState('');
   const [activeDialog, setDialog] = useState(false);
 
-  const { get, response } = useFetch('http://localhost:3000/api', { credentials: "same-origin" })
+  const { get, response, loading } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
 
   useEffect(() => { loadTemplates() }, [])
 
@@ -55,45 +56,52 @@ export default function AddWidget() {
     })
   };
 
+  function handleDialog() {
+    if (!selectTemplate) return alert('Please select a template')
+    setDialog(true)
+  }
+
   async function loadTemplates() {
     const getTemplates = await get(`/api/lean/projects/widgets/templates`)
     if (response.ok) setTemplates(getTemplates)
   }
 
+  console.log(templates)
   return (
     <div>
+      {loading && <CircularProgress />}
       <RadioGroup row aria-label="gender" onChange={handleChange}>
-        {templates.map((template) =>
-          <FormControlLabel
-            control={<Radio />}
-            value={template.id}
-            label={
-              <>
-                <Card>
-                  <CardContent>
-                    <TemplateWidget type={template.type} />
-                    <Typography component="h1" variant="h6">
-                      {template.name}
-                    </Typography>
-                    <Typography component="h1" variant="h6">
-                      Source: {template.source}
-                    </Typography>
-                  </CardContent>
-                </Card>
-              </>
-            }
-          />
-        )}
-      </RadioGroup>
+        <Grid alignItems="center">
+          {templates.map((template) =>
+            <FormControlLabel
+              control={<Radio />}
+              value={template.id}
+              label={
+                <>
+                  <Card>
+                    <TemplateWidget type={template.type} data={template.data} />
+                  </Card>
+                  <Typography component="h1" variant="h6">
+                    {template.name}
+                  </Typography>
+                  <Typography component="h1" variant="h6">
+                    Source: {template.source}
+                  </Typography>
+                </>
+              }
+            />
+          )}
+        </Grid>
+      </RadioGroup >
       <AddWidgetDialog showDialog={activeDialog} setShowDialog={setDialog} source={sourceTemplate} templateId={selectTemplate} />
       <Button
         variant="contained"
         color="primary"
         className={classes.button}
-        onClick={() => { setDialog(true) }}
+        onClick={() => { handleDialog() }}
       >
         Add Widget
       </Button>
-    </div>
+    </div >
   )
 }

@@ -18,7 +18,7 @@ import useFetch from 'use-http'
 import { useEffect, useState } from 'react'
 
 function App() {
-  const { get, post } = useFetch('http://localhost:3000/api', { credentials: "same-origin" })
+  const { get, post } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
 
   const userRepository = createRepository(get, post)
   const [userCredentials, setUserCredentials] = useState(userRepository.isLoggedIn())
@@ -46,6 +46,8 @@ function App() {
       userRepository.logout(history, setUserCredentials);
     }
   }
+
+  console.log(currentSessionContext.credentials)
   return (
     <div className="App">
       <UserContext.Provider value={currentSessionContext}>

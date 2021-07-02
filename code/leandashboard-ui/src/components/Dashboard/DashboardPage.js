@@ -8,21 +8,16 @@ import useFetch from 'use-http'
 import DashboardWidgets from './DashbordWidgets';
 import { useHistory } from "react-router-dom";
 import Error from '../Common/Errors/Error'
-
+import DashboardWidgetsList from './DashboardWidgetsList'
 export default function DashboardPage() {
     const [dashboardWidgets, setDashboardWidgets] = useState([])
     const [errorResponse, setErrorResponse] = useState(undefined)
     const { get, response, loading, error } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
     let { id, dashboardId } = useParams();
-    let history = useHistory();
 
     useEffect(() => {
         loadDashboards()
     }, [])
-
-    function redirectTemplateWidgetPage() {
-        history.push(`/projects/${id}/dashboards/${dashboardId}/templates`)
-    }
 
     async function loadDashboards() {
         const dashboardResponse = await get(`/api/lean/projects/${id}/dashboard/${dashboardId}`)
@@ -44,7 +39,7 @@ export default function DashboardPage() {
                     <div>
                         <Hidden mdUp>
                             <Grid item xs={12} sm={12} md={12}>
-                                <NavBar component={<FAB addTitle={"Add Widget"} settingsTitle={"Dashboard Settings"} show={true} function={redirectTemplateWidgetPage} />} />
+                                <NavBar component={<DashboardWidgetsList widgets={dashboardWidgets} />} />
                             </Grid>
                         </Hidden>
                         <Hidden smDown>

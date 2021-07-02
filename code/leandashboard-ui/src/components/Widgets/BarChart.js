@@ -9,13 +9,16 @@ import {
   colors
 } from '@material-ui/core';
 
-const Sales = (props) => {
+const BarChart = (props) => {
   const theme = useTheme();
+  const dataObject = props.data[0].counts
+  const arrayNumbers = [dataObject[0]["To Do"], dataObject[1]["In Progress"], dataObject[2]["Done"]]
   const data = {
     datasets: [
       {
         backgroundColor: colors.indigo[500],
-        data: [18, 5, 19, 27, 29, 19, 20],
+
+        data: arrayNumbers,
         label: 'Issues'
       },
     ],
@@ -81,7 +84,7 @@ const Sales = (props) => {
     <div>
       <Card {...props}>
         <CardHeader
-          title="Issues"
+          title={props.data[0].sprintName}
         />
         <Divider />
         <CardContent>
@@ -111,4 +114,4 @@ const Sales = (props) => {
   );
 };
 
-export default Sales
+export default BarChart

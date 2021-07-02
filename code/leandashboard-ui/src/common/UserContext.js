@@ -109,6 +109,7 @@ export function createRepository(get, post) {
                     sessionStorage.removeItem(KEY)
                     sessionStorage.removeItem('user-rbac')
                     history.push('/')
+                    return createRepository(get,post)
                 }
             })
         }
