@@ -12,6 +12,7 @@ import AddDashboardDialog from '../Common/AddDashboardDialog'
 import WidgetsIcon from '@material-ui/icons/Widgets';
 import Link from '@material-ui/core/Link';
 import { NavLink } from 'react-router-dom';
+import DashboardSettingsDialog from './DashboardSettingsDialog'
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -60,12 +61,23 @@ export default function VerticalButton(props) {
         </Tooltip>
         : null
       }
+      {!props.settings ?
+      <DashboardSettingsDialog showDialog={showDialog} setShowDialog={setShowDialog} />
+      :null
+      }
       <Tooltip title={props.title2} aria-label="add" placement="left">
-        <Button aria-label="add" >
-          <NavLink to={`/projects/${id}/settings`}>
-            <SettingsIcon color='primary' />
-          </NavLink>
+      {props.settings ?
+        <Button aria-label="add"  >    
+            <NavLink to={`/projects/${id}/settings`}>
+              <SettingsIcon color='primary' />
+            </NavLink>
         </Button>
+        :
+        <Button aria-label="add"  onClick={handleOpenDialog}>    
+              <SettingsIcon color='primary' />            
+        </Button>
+  
+      }
       </Tooltip>
       {props.show ?
         <Tooltip title={props.title3} aria-label="add" placement="left">

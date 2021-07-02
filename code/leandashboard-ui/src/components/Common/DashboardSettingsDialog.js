@@ -11,7 +11,7 @@ import { MuiPickersUtilsProvider } from '@material-ui/pickers'
 import useFetch from 'use-http'
 import { DatePicker } from "@material-ui/pickers";
 
-export default function AddProjectDialog({ showDialog, setShowDialog, title, type, refreshProjects, showDate }) {
+export default function AddProjectDialog({ showDialog, setShowDialog }) {
     const [input, setInput] = useState({ name: "", description: "" })
     const [date, setDate] = useState(new Date())
     const [nameError, setNameError] = useState(false)
@@ -37,42 +37,18 @@ export default function AddProjectDialog({ showDialog, setShowDialog, title, typ
             setDescriptionError(true)
             return
         }
-        const today = new Date()
-        const startDay = today.getDate() < 10 ? `0${today.getDate()}` : `${today.getDate()}`
-        const startMonth = today.getMonth() < 10 ? `0${today.getMonth() + 1}` : `${today.getMonth() + 1}`
-        const endDay = date.getDate() < 10 ? `0${date.getDate()}` : `${date.getDate()}`
-        const endMonth = date.getMonth() < 10 ? `0${date.getMonth() + 1}` : `${date.getMonth() + 1}`
-        const body = {
-            name: input.name,
-            description: input.description,
-            startDate: `${startMonth}-${startDay}-${today.getFullYear()}`,
-            endDate: `${endMonth}-${endDay}-${date.getFullYear()}`
-        }
-        postProject(body).then(postresp => {
-            console.log(postresp)
-            if (postresp.statusCode === 201) {
-                console.log('post done')
-                alert("Project created!")
-                refreshProjects()
-            } else {
-                alert("Error creating Dashboard")
-                console.log('no post')
-            }
-        })
+       
+    
         handleClose()
     }
 
-    async function postProject(body) {
-        return await post('/api/lean/projects', body)
-    }
-    //TODO A PARTE QUE O BOTAO DO FILTRO LIGA
     return (
         <div>
             <Dialog open={showDialog} onClose={handleClose} aria-labelledby="form-dialog-title">
-                <DialogTitle id="form-dialog-title">{title}</DialogTitle>
+                <DialogTitle id="form-dialog-title">Dashboard Settings</DialogTitle>
                 <DialogContent>
                     <DialogContentText>
-                        {type}
+                        Update your Dashboard
                     </DialogContentText>
                     <TextField
                         autoFocus
@@ -98,30 +74,13 @@ export default function AddProjectDialog({ showDialog, setShowDialog, title, typ
                         helperText={descriptionError}
                         fullWidth
                     />
-                    {showDate ?
-                        <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                            <DialogContentText>
-                            </DialogContentText>
-                            <DatePicker
-                                openTo="date"
-                                clearable
-                                views={["date"]}
-                                format="dd/MM"
-                                label="End Date"
-                                disablePast={true}
-                                value={date}
-                                onChange={e => setDate(e)}
-                            />
-                        </MuiPickersUtilsProvider>
-                        : null
-                    }
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose} color="primary">
                         Cancel
                     </Button>
                     <Button onClick={handleSubmit} color="primary">
-                        {title}
+                        Update
                     </Button>
                 </DialogActions>
             </Dialog>

@@ -7,6 +7,7 @@ import About from './components/FooterLinks/About';
 import ProjectsPage from './components/Projects/ProjectsPage';
 import DashboardsPage from './components/Dashboards/DashboardsPage'
 import DashboardPage from './components/Dashboard/DashboardPage'
+import SettingsPage from './components/Settings/SettingsPage'
 import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
 import AddWidgetPage from './components/Widgets/AddWigetPage';
 import ProjectSettingsPage from './components/Projects/ProjectSettingsPage';
@@ -84,6 +85,11 @@ function App() {
             <Route exact path="/profile">
               <EnsureCredentials redirect="/signIn">
                 <ProfilePage />
+              </EnsureCredentials>
+            </Route>
+            <Route exact path="/settings">
+              <EnsureCredentials redirect="/signIn">
+                <SettingsPage />
               </EnsureCredentials>
             </Route>
           </Switch>
