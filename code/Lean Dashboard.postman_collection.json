@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "369ed3ff-d20f-4c8e-84ec-e63e87e7290f",
+		"_postman_id": "6f6c1751-b289-42e7-a2e3-20f9c4b9cf32",
 		"name": "Lean Dashboard",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -1263,7 +1263,7 @@
 					"name": "Users",
 					"item": [
 						{
-							"name": "GET /api/lean/projects/user/{user}",
+							"name": "GET /api/lean/projects/user/{id}",
 							"request": {
 								"method": "GET",
 								"header": [],
@@ -1279,6 +1279,30 @@
 										"lean",
 										"users",
 										"1"
+									]
+								},
+								"description": "Get all project from a user (JIRA)"
+							},
+							"response": []
+						},
+						{
+							"name": "GET /api/lean/projects/user/{username}",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/lean/users/username/zepedros",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"lean",
+										"users",
+										"username",
+										"zepedros"
 									]
 								},
 								"description": "Get all project from a user (JIRA)"
