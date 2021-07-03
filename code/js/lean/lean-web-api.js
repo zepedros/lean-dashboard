@@ -15,7 +15,7 @@ function webapi(app, services, auth, authization) {
 
         },
         getAllProjects: function (req, res) {
-            services.getAllProjects()
+            services.getAllProjects(req.user)
                 .then(resp => {
                     console.log("Get All Lean Dashboards Projects")
                     answerHandler(resp, res)
@@ -164,6 +164,12 @@ function webapi(app, services, auth, authization) {
                 .catch(err => errHandler(err, res))
         },
 
+        getUserByUsername: function (req, res) {
+            services.getUserByUsername(req.params.username,req.user)
+                .then(resp => answerHandler(resp, res))
+                .catch(err => errHandler(err, res))
+        },
+
         deleteUser: function (req, res) {
             services.deleteUser(req.params.username, req.user)
                 .then(resp => answerHandler(resp, res))
@@ -188,6 +194,8 @@ function webapi(app, services, auth, authization) {
 
         loginLocal: async function (req, res) {
             await services.loginLocal(req, res)
+                .then(resp => answerHandler(resp, res))
+                .catch(err => errHandler(err, res))
         },
 
         addUserToProject: function (req, res) {
@@ -327,6 +335,7 @@ function webapi(app, services, auth, authization) {
 
     app.post('/lean/register', theWebApi.createUser)
     app.get('/api/lean/users/:id', theWebApi.getUserById)
+    app.get('/api/lean/users/username/:username', theWebApi.getUserByUsername)
     app.delete('/lean/users/:username', theWebApi.deleteUser)
     app.put('/lean/users/:username/username', theWebApi.editUsername)
     app.put('/lean/users/:username/password', theWebApi.editPassword)
@@ -335,7 +344,7 @@ function webapi(app, services, auth, authization) {
             if (err) {
                 const myError = {
                     statusCode: err.status,
-                    statusMessage: err.message
+                    message: err.message
                 }
                 errHandler(myError, res)
             }

@@ -36,8 +36,8 @@ function services(db, auth) {
                 ))
             }
         },
-        getAllProjects: function () {
-            return db.getAllProjects()
+        getAllProjects: function (userMakingRequest) {
+            return db.getAllProjects(userMakingRequest)
         },
         getProjects: async function (user, userMakingRequest) {
             if (user !== userMakingRequest.username && userMakingRequest.id !== 1)
@@ -216,7 +216,7 @@ function services(db, auth) {
             }
             return db.getProjectById(projectId, userMakingRequest)
                 .then(project => {
-                    if (project.owner !== userMakingRequest.id || project.members.includes(userMakingRequest.id, 0) && userMakingRequest.id !== 1) {
+                    if (project.owner !== userMakingRequest.id && userMakingRequest.id !== 1 && project.members.indexOf(userMakingRequest.id) === -1) {
                         return Promise.reject(
                             error.makeErrorResponse(error.FORBIDDEN, 'You cannot access dashboards from this project. Only the manager and team members have that access.')
                         )
@@ -236,7 +236,7 @@ function services(db, auth) {
             }
             return db.getProjectById(projectId, userMakingRequest)
                 .then(project => {
-                    if (project.owner !== userMakingRequest.id && userMakingRequest.id !== 1) {
+                    if (project.owner !== userMakingRequest.id && userMakingRequest.id !== 1 && project.members.indexOf(userMakingRequest.id)) {
                         return Promise.reject(
                             error.makeErrorResponse(error.FORBIDDEN, 'You cannot access dashboards from this project. Only the manager and team members have that access.')
                         )
@@ -359,6 +359,14 @@ function services(db, auth) {
             return await auth.getUserById(userId)
         },
 
+        getUserByUsername: async function(username, userMakingRequest){
+            if (!userMakingRequest) return Promise.reject((error.makeErrorResponse(error.UNAUTHORIZED, "You are not logged in")))
+            if(username !== userMakingRequest.username) return Promise.reject((error.makeErrorResponse(error.FORBIDDEN, "You can't retrieve another user's info")))
+            const ret = await auth.getUserByUsername(userMakingRequest.username)
+            delete ret.password
+            return ret
+        },
+
         deleteUser: async function (userToDelete, userMakingRequest) {
             //For now, only the super user can delete accounts
             if (userMakingRequest.id !== 1) {
@@ -428,6 +436,10 @@ function services(db, auth) {
         },
 
         loginLocal: async function (req, res) {
+            if(!req.body.user && !req.body.password){
+                throw error.makeErrorResponse(error.ARGUMENT_ERROR, `Please indicate a username and password`)
+            }
+            const user = await auth.getUserByUsername(req.body.username)
             return await auth.loginLocal(req, res)
         },
 
