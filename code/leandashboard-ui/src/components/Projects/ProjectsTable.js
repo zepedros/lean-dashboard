@@ -16,7 +16,7 @@ import Button from '@material-ui/core/Button';
 import Link from '@material-ui/core/Link';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import IconButton from '@material-ui/core/IconButton';
-
+import Chip from '@material-ui/core/Chip';
 const StyledTableCell = withStyles((theme) => ({
   head: {
     backgroundColor: theme.palette.common.black,
@@ -101,7 +101,11 @@ export default function CustomizedTables({ projects, refresh }) {
                       <StyledTableCell component="th" scope="row"> <Button color="primary">{row.project}</Button></StyledTableCell>
                     </Link>
                   </NavLink>
-                  <StyledTableCell align="right">{row.state}</StyledTableCell>
+                  <StyledTableCell align="right"><Chip
+                    color="primary"
+                    label={row.state}
+                    size="small"
+                  /></StyledTableCell>
                   <StyledTableCell align="right">{row.manager}</StyledTableCell>
                   <StyledTableCell align="right">{row.completion}</StyledTableCell>
                 </StyledTableRow>

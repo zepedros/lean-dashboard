@@ -36,9 +36,9 @@ const useStyles = makeStyles((theme) => ({
         background: 'white'
     },
     navigation: {
-        width: '95%',
-        left: '2%',
-        height: '12%',
+        width: '100%',
+        left: '0%',
+        height: '9%',
         position: 'fixed',
         bottom: 0
     },

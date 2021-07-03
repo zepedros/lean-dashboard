@@ -3,6 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import AddMemberForm from './AddMemberForm'
 import AddCredentials from './AddCredentials'
 import NameDescForm from "./NameDescForm";
+import Grid from '@material-ui/core/Grid';
+import List from '@material-ui/core/List';
 
 const testITems =
 {
@@ -26,17 +28,21 @@ const useStyles = makeStyles((theme) => ({
     width: '30ch',
     textAlign: "center"
   },
+  list: {
+    marginBottom: theme.spacing(2),
+  },
 }));
 
 export default function ProjectSettings() {
+  const classes = useStyles()
   return (
-    <div>
+    <List className={classes.list}>
       <Typography component="h1" variant="h4">
         {testITems.name} Settings
       </Typography>
       <NameDescForm project={testITems} />
       <AddMemberForm />
       <AddCredentials project={testITems} />
-    </div>
+    </List>
   )
 }

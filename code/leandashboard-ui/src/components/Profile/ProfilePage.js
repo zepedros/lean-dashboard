@@ -11,8 +11,9 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
 import ChangePasswordDialog from "./ChangePasswordDialog";
-import { useState } from 'react'
+import { useState,useContext } from 'react'
 import Avatar from '@material-ui/core/Avatar';
+import UserContext from '../../common/UserContext';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -34,6 +35,8 @@ const useStyles = makeStyles((theme) => ({
 export default function ProfilePage(){
     const classes = useStyles();
     const [showDialog, setShowDialog] = useState(false)
+    const context = useContext(UserContext)
+
     function handleOpenDialog() {
         setShowDialog(true)
       }
@@ -58,6 +61,8 @@ export default function ProfilePage(){
                         <AccountCircle />
                         </InputAdornment>
                     }
+                    defaultValue={context.credentials.username}
+                    disabled
                     />
                     </FormControl>
                 </Box>
@@ -70,6 +75,7 @@ export default function ProfilePage(){
                         variant="outlined"
                         size="small"
                         disabled
+                        color="black"
                         />
                     </Box>
                 </Box>
