@@ -21,11 +21,12 @@ export default function ProjectSettingsPage() {
     async function getProjectById() {
         const getProjectById = await get(`/api/lean/projects/${id}`)
         const userInfo = await get(`/api/lean/users/username/${context.credentials.username}`)
-        const alisa = context
-        if (getProjectById.owner === userInfo.id || userInfo.id == 1) {
-            setUserCanEditProject(true)
+        console.log('alisa');
+        if (getProjectById?.owner === userInfo.id || userInfo?.id === 1) {
             setProject(getProjectById)
+            setUserCanEditProject(true)
         } else {
+            setProject(undefined)
             setUserCanEditProject(false)
         }
     }
@@ -35,7 +36,7 @@ export default function ProjectSettingsPage() {
             {
                 userCanEditProject ?
                     <Grid item xs={12} sm={12} md={12}>
-                        <NavBar component={<ProjectSettings />} title={project.name} />
+                        <NavBar component={<ProjectSettings />} title={project?.name} />
                     </Grid>
                     :
                     <Error statusCode={403} message={`You can't edit this project`}/>
