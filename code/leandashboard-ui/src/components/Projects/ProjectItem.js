@@ -46,7 +46,8 @@ const useStyles = makeStyles((theme) => ({
         blue:{
             color:theme.palette.getContrastText(blue[500]),
             backgroundColor:blue[500],
-        }
+        },
+        
 }))
 
 export default function ProjectsItem({ project }) {

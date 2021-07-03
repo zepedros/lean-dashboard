@@ -60,6 +60,9 @@ const useStyles = makeStyles((theme) => ({
     position: "relative",
     left: "45%"
   },
+  root: {
+    backgroundColor: 'orange'
+  }
 }));
 
 export default function CustomizedTables({ projects, refresh }) {
@@ -85,7 +88,7 @@ export default function CustomizedTables({ projects, refresh }) {
             <FilterListIcon />
           </IconButton>
           <Table className={classes.table} aria-label="customized table" >
-            <TableHead>
+            <TableHead className={classes.root}>
               <TableRow>
                 <StyledTableCell>Project</StyledTableCell>
                 <StyledTableCell align="right">State</StyledTableCell>
