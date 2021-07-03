@@ -72,7 +72,7 @@ export default function ProjectsList({ projects, refresh }) {
             return <ProjectItem key={project.id} project={project} />
           })}
         </List>
-        <AddDialog showDialog={showDialog} setShowDialog={setShowDialog} title={"Add Project"} type={"Project"} refreshProjects={refresh} showDate={true} />
+        <AddDialog showDialog={showDialog} setShowDialog={setShowDialog} title={"Add Project"} type={"Create new Project"} refreshProjects={refresh} showDate={true} />
         <Fab color="primary" aria-label="add" className={classes.button} onClick={handleOpenDialog} >
           <AddIcon />
         </Fab>

@@ -24,18 +24,17 @@ export default function ProjectsPage() {
 
     async function loadProjects() {
         const getProjects = await get('/api/lean/projects')
-        let alisa 
+        let alisa
         if (getProjects) {
             alisa = getProjects.map(project => {
                 getUsername(project.owner).then(() => {
                     if (response.ok) {
                         project.owner = response.data.username
                     }
-                    console.log(project);
                 })
                 return project
             })
-            if (response.ok) setProjects(getProjects)
+            if (response.ok) setProjects(alisa)
             console.log(projects)
         }
         else setProjects(undefined)

@@ -51,7 +51,7 @@ export default function DashboardsCards({ dashboards, refresh }) {
             })
           }
         </Grid>
-        <VerticalButton title1={"Add Dashboard"} title2={"Project Settings"} title={"Add Dashboard"} refresh={refresh} type={"Dashboard"} show={false} />
+        <VerticalButton title1={"Add Dashboard"} title2={"Project Settings"} title={"Add Dashboard"} refresh={refresh} type={"Create new Dashboard"} show={false} settings={true}/>
       </Container>
     </div>
   );

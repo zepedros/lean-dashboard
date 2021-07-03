@@ -145,7 +145,7 @@ export default function PermanentDrawerLeft(props) {
                         </ListItemIcon>
                         <ListItemText primary="Notifications" />
                     </ListItem>
-                    <ListItem button>
+                    <ListItem button component={Link} to="/settings">
                         <ListItemIcon>
                             <SettingsIcon />
                         </ListItemIcon>
@@ -168,7 +168,7 @@ export default function PermanentDrawerLeft(props) {
                         <BottomNavigation value={NavigationValue} onChange={handleChange} className={classes.navigation}>
                             <BottomNavigationAction component={Link} to="/projects" label="Home" value="Home" icon={<HomeIcon />} />
                             <BottomNavigationAction label="Notifications" value="Notifications" icon={<NotificationsIcon />} />
-                            <BottomNavigationAction label="Settings" value="Settings" icon={<SettingsIcon />} />
+                            <BottomNavigationAction component={Link} to="/settings" label="Settings" value="Settings" icon={<SettingsIcon />} />
                             <BottomNavigationAction label="Account" value="Account" onClick={handleClick} icon={<AccountCircleIcon />} />
                             {popover()}
                         </BottomNavigation>
