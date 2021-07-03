@@ -79,6 +79,8 @@ export default function Form(props) {
       alert('Please insert a Password')
       return
     }
+
+    console.log(props.login);
     if (props.login) {
       context.login(Username, Password, remember, history)
     } else {

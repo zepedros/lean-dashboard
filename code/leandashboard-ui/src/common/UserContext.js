@@ -83,6 +83,7 @@ export function createRepository(get, post) {
         },
         login: (username, password, remember, history, set) => {
             //login
+            console.log('logging in')
             post("/lean/login", { username: username, password: password }).then((response) => {
                 if (response.statusCode === 200) {
                     const credentials = { username: username, password: password }
@@ -94,8 +95,7 @@ export function createRepository(get, post) {
                         history.push('/projects')
                     })
                 } else {
-                    console.log('ERROR')
-                    //error
+                    alert(response.message)
                     return false
                 }
             })
