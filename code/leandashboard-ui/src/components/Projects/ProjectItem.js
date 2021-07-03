@@ -12,6 +12,8 @@ import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Divider from '@material-ui/core/Divider'
 import Collapse from '@material-ui/core/Collapse'
+import { deepOrange, deepPurple } from '@material-ui/core/colors';
+import { green, pink,purple,orange,blue } from '@material-ui/core/colors';
 
 const useStyles = makeStyles((theme) => ({
     dropdown: {
@@ -24,7 +26,27 @@ const useStyles = makeStyles((theme) => ({
     },
     dropdownClosed: {
         transform: "rotate(0)"
-    }
+    },
+    orange: {
+        color: theme.palette.getContrastText(deepOrange[500]),
+        backgroundColor: deepOrange[500],
+      },
+      purple: {
+        color: theme.palette.getContrastText(deepPurple[500]),
+        backgroundColor: deepPurple[500],
+      },
+      pink: {
+          color: theme.palette.getContrastText(pink[500]),
+          backgroundColor: pink[500],
+        },
+        green: {
+          color: '#fff',
+          backgroundColor: green[500],
+        },
+        blue:{
+            color:theme.palette.getContrastText(blue[500]),
+            backgroundColor:blue[500],
+        }
 }))
 
 export default function ProjectsItem({ project }) {
@@ -33,11 +55,15 @@ export default function ProjectsItem({ project }) {
     function handleClick() {
         setShowMore(!showMore)
     }
+    const colors = [styles.orange, styles.purple, styles.pink, styles.green,styles.blue]
+    const itemColor = () => {
+        return(colors[Math.floor(Math.random()*colors.length)])
+    }
     return (
         <div>
             <ListItem key={project.id} alignItems="flex-start">
                 <ListItemAvatar>
-                    <Avatar variant="square">
+                    <Avatar variant="rounded" className={itemColor()}>
                         <AccountTreeIcon />
                     </Avatar>
                 </ListItemAvatar>
