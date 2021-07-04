@@ -280,7 +280,7 @@ function webapi(app, services, auth, authization) {
             services.getUserRoles(username, userMakingRequest)
                 .then(resp => {
                     console.log(`User ${username} has roles ${resp}`)
-                    answerHandler(resp, res, 201)
+                    answerHandler(resp, res)
                 })
                 .catch(err => errHandler(err, res))
         },

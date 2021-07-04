@@ -372,7 +372,7 @@ module.exports = {
 
     removeWidgetFromDashboard: async function (projectId, dashboardId, widgetId) {
         const uri = `${ES_URL}etl-widgets/_doc/${widgetId}?refresh=true`
-        const dashboardWidget = await this.getDashboardById(projectId, dashboardId)
+        const dashboardWidget = await this.getDashboardById(dashboardId)
             .then(body => body.widgets)
         const widgetIndex = dashboardWidget.findIndex(w => w === widgetId)
         if (widgetIndex === -1) {

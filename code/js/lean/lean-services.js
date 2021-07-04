@@ -361,8 +361,8 @@ function services(db, auth) {
 
         getUserByUsername: async function(username, userMakingRequest){
             if (!userMakingRequest) return Promise.reject((error.makeErrorResponse(error.UNAUTHORIZED, "You are not logged in")))
-            if(username !== userMakingRequest.username) return Promise.reject((error.makeErrorResponse(error.FORBIDDEN, "You can't retrieve another user's info")))
-            const ret = await auth.getUserByUsername(userMakingRequest.username)
+            if(username !== userMakingRequest.username && userMakingRequest.id !== 1) return Promise.reject((error.makeErrorResponse(error.FORBIDDEN, "You can't retrieve another user's info")))
+            const ret = await auth.getUserByUsername(username)
             delete ret.password
             return ret
         },
@@ -602,11 +602,12 @@ function services(db, auth) {
                     return db.updateCredential(projectId, credentialId, credentialName, credentialSource, credentials)
                 })
         },
-        getUserRoles: function (username, userMakingRequest) {
-            if (userMakingRequest.username == username) {
-                return auth.getUserRoles(userMakingRequest)
+        getUserRoles: async function (username, userMakingRequest) {
+            if (userMakingRequest.username === username || userMakingRequest.id === 1) {
+                const userInfo = await this.getUserByUsername(username, userMakingRequest)
+                return auth.getUserRoles(userInfo)
             }
-            return Promise.reject('User does not have access to this request')
+            return Promise.reject(error.makeErrorResponse(error.FORBIDDEN,'User does not have access to this request'))
         }
     };
 }
