@@ -21,7 +21,7 @@ export default function ProjectSettingsPage() {
     async function getProjectById() {
         const getProjectById = await get(`/api/lean/projects/${id}`)
         const userInfo = await get(`/api/lean/users/username/${context.credentials.username}`)
-        console.log('alisa');
+        
         if (getProjectById?.owner === userInfo.id || userInfo?.id === 1) {
             setProject(getProjectById)
             setUserCanEditProject(true)

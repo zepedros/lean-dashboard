@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function DashboardsList({ dashboards, refresh }) {
+export default function DashboardsList({ dashboards, refresh, userIsManager }) {
   const classes = useStyles();
   const [showFilter, setShowFilter] = useState(false)
   const [showDialog, setShowDialog] = useState(false)
@@ -69,7 +69,12 @@ export default function DashboardsList({ dashboards, refresh }) {
             })
           }
         </List>
-        <FAB addTitle={"Add Dashboard"} settingsTitle={"Project Settings"} refresh={refresh} refreshDashboards={refresh} show={false} path={`/projects/${id}/settings`} function={handleOpenDialog} showDialog={showDialog} setShowDialog={setShowDialog} />
+        {
+          userIsManager?
+          <FAB addTitle={"Add Dashboard"} settingsTitle={"Project Settings"} refresh={refresh} refreshDashboards={refresh} show={false} path={`/projects/${id}/settings`} function={handleOpenDialog} showDialog={showDialog} setShowDialog={setShowDialog} />
+          :
+          null
+        }
       </Container>
     </div>
   );

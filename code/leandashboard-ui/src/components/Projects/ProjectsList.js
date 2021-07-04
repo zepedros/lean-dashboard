@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ProjectsList({ projects, refresh }) {
+export default function ProjectsList({ projects, refresh, userIsManager }) {
   const classes = useStyles();
   const [showFilter, setShowFilter] = useState(false)
   const [showDialog, setShowDialog] = useState(false)
@@ -73,9 +73,14 @@ export default function ProjectsList({ projects, refresh }) {
           })}
         </List>
         <AddDialog showDialog={showDialog} setShowDialog={setShowDialog} title={"Add Project"} type={"Create new Project"} refreshProjects={refresh} showDate={true} />
-        <Fab color="primary" aria-label="add" className={classes.button} onClick={handleOpenDialog} >
+        {
+          userIsManager?
+          <Fab color="primary" aria-label="add" className={classes.button} onClick={handleOpenDialog} >
           <AddIcon />
         </Fab>
+        :
+        null
+        }
       </Container>
     </div>
   );

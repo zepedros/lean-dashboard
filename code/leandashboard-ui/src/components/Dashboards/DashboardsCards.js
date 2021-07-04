@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function DashboardsCards({ dashboards, refresh }) {
+export default function DashboardsCards({ dashboards, refresh, userIsManager }) {
   const classes = useStyles();
   //  const bull = <span className={classes.bullet}>•</span>;
 
@@ -51,7 +51,12 @@ export default function DashboardsCards({ dashboards, refresh }) {
             })
           }
         </Grid>
-        <VerticalButton title1={"Add Dashboard"} title2={"Project Settings"} title={"Add Dashboard"} refresh={refresh} type={"Create new Dashboard"} show={false} settings={true}/>
+        {
+          userIsManager?
+          <VerticalButton title1={"Add Dashboard"} title2={"Project Settings"} title={"Add Dashboard"} refresh={refresh} type={"Create new Dashboard"} show={false} settings={true}/>
+          :
+          null
+        }
       </Container>
     </div>
   );

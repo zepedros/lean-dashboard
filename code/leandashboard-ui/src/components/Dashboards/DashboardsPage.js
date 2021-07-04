@@ -5,9 +5,11 @@ import DashboardsList from './DashboardsList'
 import { Hidden } from '@material-ui/core';
 import { useHistory } from 'react-router';
 import useFetch from 'use-http'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import { useParams } from "react-router-dom";
 import Error from '../Common/Errors/Error'
+import UserContext from '../../common/UserContext';
+import { TabContext } from '@material-ui/lab';
 
 export default function DashboardsPage() {
 
@@ -16,13 +18,22 @@ export default function DashboardsPage() {
     const [dashboards, setDashboards] = useState([])
     const [project, setProject] = useState([])
     const [refresh, setRefresh] = useState(false)
+    const [userIsManager, setUserIsManager] = useState(false)
     const { get, response } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
     let { id } = useParams();
+    const context = useContext(UserContext)
+
     useEffect(() => {
         console.log("refreshing")
         loadDashboards()
     }, [refresh])
     useEffect(() => { loadProjects() }, [setProject])
+
+    /*
+    useEffect(() => {
+        checkIfUserIsManager()
+        .then(() => console.log(`User is manager: ${userIsManager}`))
+    }, [userIsManager])*/
 
     async function loadDashboards() {
         const getDashboards = await get(`/api/lean/projects/${id}/dashboards`)
@@ -37,11 +48,30 @@ export default function DashboardsPage() {
         const getProject = await get(`/api/lean/projects/${id}`)
         if (response.ok) setProject(getProject)
         console.log(project)
+        const userInfo = await get(`/api/lean/users/username/${context.credentials.username}`)
+        if (getProject?.owner === userInfo.id || userInfo?.id === 1) {
+            setUserIsManager(true)
+        } else {
+            setUserIsManager(false)
+        }
+        console.log(`User is manager: ${userIsManager}`)
+
     }
 
     function refreshDashboards() {
         setRefresh(!refresh)
     }
+
+    /*
+    async function checkIfUserIsManager(){
+        const userInfo = await get(`/api/lean/users/username/${context.credentials.username}`)
+        
+        if (project?.owner === userInfo.id || userInfo?.id === 1) {
+            setUserIsManager(true)
+        } else {
+            setUserIsManager(false)
+        }
+    }*/
 
     return (
         <div>
@@ -51,12 +81,12 @@ export default function DashboardsPage() {
                 <div>
                     <Hidden mdUp>
                         <Grid item xs={12} sm={12} md={12}>
-                            <NavBar component={<DashboardsList dashboards={dashboards} refresh={refreshDashboards} />} title={project.name} />
+                            <NavBar component={<DashboardsList dashboards={dashboards} refresh={refreshDashboards} userIsManager={userIsManager} />} title={project.name} />
                         </Grid>
                     </Hidden>
                     <Hidden smDown>
                         <Grid item xs={12} sm={12} md={12}>
-                            <NavBar component={<DashboardsCards dashboards={dashboards} refresh={refreshDashboards} />} title={project.name} />
+                            <NavBar component={<DashboardsCards dashboards={dashboards} refresh={refreshDashboards} userIsManager={userIsManager} />} title={project.name} />
                         </Grid>
                     </Hidden>
                 </div>
