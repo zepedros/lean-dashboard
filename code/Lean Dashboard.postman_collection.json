@@ -976,7 +976,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8000/api/lean/projects/jaQoL3oB3EtfguotI6NY/dashboards",
+									"raw": "http://localhost:8000/api/lean/projects/VpStcnoB7HcdE2OwxI0K/dashboards",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -986,7 +986,7 @@
 										"api",
 										"lean",
 										"projects",
-										"jaQoL3oB3EtfguotI6NY",
+										"VpStcnoB7HcdE2OwxI0K",
 										"dashboards"
 									]
 								}
@@ -999,7 +999,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8000/api/lean/projects/-XDijnkB7Od3lsy2PgdZ/dashboard/-3D6jnkB7Od3lsy2PAfE",
+									"raw": "http://localhost:8000/api/lean/projects/VpStcnoB7HcdE2OwxI0K/dashboard/V5TNcnoB7HcdE2Ow340a",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -1009,9 +1009,9 @@
 										"api",
 										"lean",
 										"projects",
-										"-XDijnkB7Od3lsy2PgdZ",
+										"VpStcnoB7HcdE2OwxI0K",
 										"dashboard",
-										"-3D6jnkB7Od3lsy2PAfE"
+										"V5TNcnoB7HcdE2Ow340a"
 									]
 								}
 							},
@@ -1232,12 +1232,21 @@
 							"response": []
 						},
 						{
-							"name": "GET /api/lean/projects/zHDmnXkB7Od3lsy2NAj5/dashboard/zXDmnXkB7Od3lsy2dwgs/widgets/inAYq3kB7Od3lsy2rwm1",
+							"name": "DELETE /api/lean/projects/{id}/dashboard/{dashboardId/widgets/{widgetsId}}",
 							"request": {
-								"method": "GET",
+								"method": "DELETE",
 								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"timeSettings\": {\n        \"seconds\" : \"\",\n        \"minutes\" : \"*/1\",\n        \"hours\" : \"*\",\n        \"dayOfMonth\" : \"*\",\n        \"month\" : \"*\",\n        \"dayOfWeek\" : \"*\"\n    },\n    \"credentials\": \"JIRACredentials\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
 								"url": {
-									"raw": "http://localhost:8000/api/lean/projects/zHDmnXkB7Od3lsy2NAj5/dashboard/zXDmnXkB7Od3lsy2dwgs/widgets/inAYq3kB7Od3lsy2rwm1",
+									"raw": "http://localhost:8000/api/lean/projects/VpStcnoB7HcdE2OwxI0K/dashboard/V5TNcnoB7HcdE2Ow340a/widgets/W5TPcnoB7HcdE2Owe42S",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -1247,11 +1256,37 @@
 										"api",
 										"lean",
 										"projects",
-										"zHDmnXkB7Od3lsy2NAj5",
+										"VpStcnoB7HcdE2OwxI0K",
 										"dashboard",
-										"zXDmnXkB7Od3lsy2dwgs",
+										"V5TNcnoB7HcdE2Ow340a",
 										"widgets",
-										"inAYq3kB7Od3lsy2rwm1"
+										"W5TPcnoB7HcdE2Owe42S"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET /api/lean/projects/zHDmnXkB7Od3lsy2NAj5/dashboard/zXDmnXkB7Od3lsy2dwgs/widgets/inAYq3kB7Od3lsy2rwm1",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/lean/projects/VpStcnoB7HcdE2OwxI0K/dashboard/V5TNcnoB7HcdE2Ow340a/widgets/W5TPcnoB7HcdE2Owe42S",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"lean",
+										"projects",
+										"VpStcnoB7HcdE2OwxI0K",
+										"dashboard",
+										"V5TNcnoB7HcdE2Ow340a",
+										"widgets",
+										"W5TPcnoB7HcdE2Owe42S"
 									]
 								}
 							},
@@ -1381,6 +1416,40 @@
 										"users",
 										"temp",
 										"roles"
+									]
+								},
+								"description": "Get all project from a user (JIRA)"
+							},
+							"response": []
+						},
+						{
+							"name": "POST /api/lean/users/{username}/roles/{role}",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"role\":\"manager\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/lean/users/zepedros/roles/manager",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"lean",
+										"users",
+										"zepedros",
+										"roles",
+										"manager"
 									]
 								},
 								"description": "Get all project from a user (JIRA)"
