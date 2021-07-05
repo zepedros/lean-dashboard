@@ -75,8 +75,8 @@ export default function AddWidgetDialog({ showDialog, setShowDialog, source, tem
         } else {
             timeSettings = {
                 seconds: `${time.getSeconds()}`,
-                minutes: `${time.getMinutes()}`,
-                hours: `${time.getHours()}`,
+                minutes: time.getMinutes() == 0 ? '*' : `*/${time.getMinutes()}`,
+                hours: time.getHours() == 0 ? '*' : `*/${time.getHours()}`,
                 dayOfMonth: `*`,
                 dayOfWeek: `${weekday}`,
                 month: `${month}`
@@ -138,29 +138,43 @@ export default function AddWidgetDialog({ showDialog, setShowDialog, source, tem
                         <MuiPickersUtilsProvider utils={DateFnsUtils}>
                             <DialogContentText>
                             </DialogContentText>
-                            <TimePicker
-                                ampm={false}
-                                openTo="hours"
-                                views={["hours", "minutes", "seconds"]}
-                                format="HH:mm:ss"
-                                label="Time"
-                                value={time}
-                                onChange={e => setTime(e)}
-                            />
-                            <DialogContentText>
-                            </DialogContentText>
                             {isSpecificDate ?
-                                <DatePicker
-                                    openTo="date"
-                                    clearable
-                                    views={["date"]}
-                                    format="dd/MM"
-                                    label="Date"
-                                    value={date}
-                                    onChange={e => setDate(e)}
-                                />
+                                <div>
+                                    <TimePicker
+                                        ampm={false}
+                                        openTo="hours"
+                                        views={["hours", "minutes", "seconds"]}
+                                        format="HH:mm:ss"
+                                        label="Time"
+                                        value={time}
+                                        onChange={e => setTime(e)}
+                                        helperText="Time of the day to update"
+                                    />
+                                    <DatePicker
+                                        openTo="date"
+                                        clearable
+                                        views={["date"]}
+                                        format="dd/MM"
+                                        label="Date"
+                                        value={date}
+                                        onChange={e => setDate(e)}
+                                        helperText="Date to update"
+                                    />
+                                </div>
                                 :
-                                <MonthWeekDayPicker props={month, weekday, setMonth, setWeekDay} />
+                                <div>
+                                    <TimePicker
+                                        ampm={false}
+                                        openTo="hours"
+                                        views={["hours", "minutes", "seconds"]}
+                                        format="HH:mm:ss"
+                                        label="Time"
+                                        value={time}
+                                        onChange={e => setTime(e)}
+                                        helperText="Interval of time to update"
+                                    />
+                                    <MonthWeekDayPicker props={month, weekday, setMonth, setWeekDay} />
+                                </div>
                             }
                         </MuiPickersUtilsProvider>
                         <DialogContentText>

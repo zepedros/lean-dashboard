@@ -5,7 +5,7 @@ import AddCredentials from './AddCredentials'
 import NameDescForm from "./NameDescForm";
 import Grid from '@material-ui/core/Grid';
 import List from '@material-ui/core/List';
-
+import { Container } from "@material-ui/core";
 const testITems =
 {
   pid: 1,
@@ -29,20 +29,29 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center"
   },
   list: {
-    marginBottom: theme.spacing(2),
+    maxHeight: '85%',
+    overflow: 'scroll'
   },
+  container: {
+    position: 'fixed',
+    top: '8%',
+    height: '90%',
+    width: '90%'
+  }
 }));
 
-export default function ProjectSettings({project}) {
+export default function ProjectSettingsMobile({project}) {
   const classes = useStyles()
   return (
-    <List className={classes.list}>
-      <Typography component="h1" variant="h4">
-        {project.name} Settings
-      </Typography>
-      <NameDescForm project={project} />
-      <AddMemberForm />
-      <AddCredentials project={project} />
-    </List>
+    <Container className={classes.container}>
+      <List className={classes.list}>
+        <Typography component="h1" variant="h4">
+          {project.name} Settings
+        </Typography>
+        <NameDescForm project={project} />
+        <AddMemberForm />
+        <AddCredentials project={project} />
+      </List>
+    </Container>
   )
 }

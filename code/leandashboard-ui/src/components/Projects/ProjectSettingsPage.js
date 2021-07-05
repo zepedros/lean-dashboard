@@ -6,6 +6,8 @@ import UserContext from '../../common/UserContext';
 import { useContext, useState, useEffect } from 'react';
 import useFetch from 'use-http';
 import Error from '../Common/Errors/Error';
+import ProjectSettingsMobile from './ProjectSettingsMobile';
+import { Hidden } from '@material-ui/core';
 
 export default function ProjectSettingsPage() {
     let { id } = useParams();
@@ -21,7 +23,7 @@ export default function ProjectSettingsPage() {
     async function getProjectById() {
         const getProjectById = await get(`/api/lean/projects/${id}`)
         const userInfo = await get(`/api/lean/users/username/${context.credentials.username}`)
-        
+
         if (getProjectById?.owner === userInfo.id || userInfo?.id === 1) {
             setProject(getProjectById)
             setUserCanEditProject(true)
@@ -35,11 +37,20 @@ export default function ProjectSettingsPage() {
         <div>
             {
                 userCanEditProject ?
-                    <Grid item xs={12} sm={12} md={12}>
-                        <NavBar component={<ProjectSettings />} title={project?.name} />
-                    </Grid>
+                    <div>
+                        <Hidden mdUp>
+                            <Grid item xs={12} sm={12} md={12}>
+                                <NavBar component={<ProjectSettingsMobile project={project} />} title={project?.name} />
+                            </Grid>
+                        </Hidden>
+                        <Hidden smDown>
+                            <Grid item xs={12} sm={12} md={12}>
+                                <NavBar component={<ProjectSettings project={project} />} title={project?.name} />
+                            </Grid>
+                        </Hidden>
+                    </div>
                     :
-                    <Error statusCode={403} message={`You can't edit this project`}/>
+                    <Error statusCode={403} message={`You can't edit this project`} />
             }
         </div>
     )

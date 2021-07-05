@@ -10,7 +10,8 @@ import { useHistory } from "react-router-dom";
 import Error from '../Common/Errors/Error'
 import DashboardWidgetsList from './DashboardWidgetsList'
 export default function DashboardPage() {
-    const [dashboardWidgets, setDashboardWidgets] = useState([])
+    const [dashboard, setDashboard] = useState([])
+    const [title, setTitle] = useState("")
     const [errorResponse, setErrorResponse] = useState(undefined)
     const { get, response, loading, error } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
     let { id, dashboardId } = useParams();
@@ -20,11 +21,13 @@ export default function DashboardPage() {
     }, [])
 
     async function loadDashboards() {
+        const project = await get(`/api/lean/projects/${id}`)
+        setTitle(project.name)
         const dashboardResponse = await get(`/api/lean/projects/${id}/dashboard/${dashboardId}`)
         console.log(`is response ok: ${response.ok}`);
         console.log(dashboardResponse);
         if (response.ok) {
-            setDashboardWidgets(dashboardResponse.widgets)
+            setDashboard(dashboardResponse)
         } else {
             setErrorResponse(dashboardResponse)
         }
@@ -39,12 +42,12 @@ export default function DashboardPage() {
                     <div>
                         <Hidden mdUp>
                             <Grid item xs={12} sm={12} md={12}>
-                                <NavBar component={<DashboardWidgetsList widgets={dashboardWidgets} />} />
+                                <NavBar title={title} component={<DashboardWidgetsList name={dashboard.name} widgets={dashboard.widgets} />} />
                             </Grid>
                         </Hidden>
                         <Hidden smDown>
                             <Grid item xs={12} sm={12} md={12}>
-                                <NavBar component={<DashboardWidgets widgets={dashboardWidgets} />} />
+                                <NavBar title={title} component={<DashboardWidgets name={dashboard.name} widgets={dashboard.widgets} />} />
                             </Grid>
                         </Hidden>
                     </div>

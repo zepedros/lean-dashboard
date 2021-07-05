@@ -24,7 +24,7 @@ function App() {
   const [userCredentials, setUserCredentials] = useState(userRepository.isLoggedIn())
 
   useEffect(() => {
-    if (userCredentials) {
+    if (userCredentials.password) {
       post("/lean/login", userCredentials).then((response) => {
         if (response.statusCode === 200) {
           get(`/api/lean/users/${userCredentials.username}/roles`).then((res) => {

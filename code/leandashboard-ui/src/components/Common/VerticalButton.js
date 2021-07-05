@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
   button: {
     width: '5%',
     position: 'fixed',
-    bottom: '45%',
+    bottom: '40%',
     right: '2%'
   },
 }));

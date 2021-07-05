@@ -78,7 +78,8 @@ export function createRepository(get, post) {
     return {
         //returns credentials if any
         isLoggedIn: () => {
-            const credentials = localStorage.getItem(KEY)
+            let credentials = localStorage.getItem(KEY)
+            if(!credentials) credentials = sessionStorage.getItem(KEY)
             return credentials ? JSON.parse(credentials) : undefined
         },
         login: (username, password, remember, history, set) => {
@@ -86,9 +87,9 @@ export function createRepository(get, post) {
             console.log('logging in')
             post("/lean/login", { username: username, password: password }).then((response) => {
                 if (response.statusCode === 200) {
-                    const credentials = { username: username, password: password }
+                    const credentials = { username: username }
                     set(credentials)
-                    if (remember) localStorage.setItem(KEY, JSON.stringify(credentials))
+                    if (remember) localStorage.setItem(KEY, JSON.stringify({ username: username, password: password }))
                     else sessionStorage.setItem(KEY, JSON.stringify(credentials))
                     return get(`/api/lean/users/${username}/roles`).then((res) => {
                         sessionStorage.setItem('user-rbac', JSON.stringify(res))

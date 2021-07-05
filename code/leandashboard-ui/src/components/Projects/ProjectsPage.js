@@ -23,7 +23,7 @@ export default function ProjectsPage() {
 
     useEffect(() => {
         checkIfUserIsManager()
-        .then(() => console.log(`User is manager: ${userIsManager}`))
+            .then(() => console.log(`User is manager: ${userIsManager}`))
     }, [userIsManager])
 
     function doRefresh() {
@@ -43,8 +43,8 @@ export default function ProjectsPage() {
                 })
                 return project
             })
-            if (response.ok) setProjects(alisa)
             console.log(projects)
+            if (response.ok) setProjects(alisa)
         }
         else setProjects(undefined)
     }
@@ -53,11 +53,11 @@ export default function ProjectsPage() {
         return await get(`/api/lean/users/${owner}`)
     }
 
-    async function checkIfUserIsManager(){
+    async function checkIfUserIsManager() {
         const userRoles = await get(`/api/lean/users/${context.credentials.username}/roles`)
         let userIsManager = false
         userRoles.forEach(role => {
-            if(role.role === 'manager' || role.role === 'admin'){
+            if (role.role === 'manager' || role.role === 'admin') {
                 userIsManager = true
             }
         })
