@@ -1,47 +1,194 @@
 import React from 'react';
-import { useState } from 'react'
-import { withStyles, makeStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
+import clsx from 'clsx';
+import { lighten, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
-import { NavLink } from 'react-router-dom';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
+import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
+import TableSortLabel from '@material-ui/core/TableSortLabel';
+import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import AddDialog from '../Common/AddDialog.js'
-import AddIcon from '@material-ui/icons/Add';
-import Button from '@material-ui/core/Button';
-import Link from '@material-ui/core/Link';
-import FilterListIcon from '@material-ui/icons/FilterList';
+import Paper from '@material-ui/core/Paper';
+import Checkbox from '@material-ui/core/Checkbox';
 import IconButton from '@material-ui/core/IconButton';
+import Tooltip from '@material-ui/core/Tooltip';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Switch from '@material-ui/core/Switch';
+import DeleteIcon from '@material-ui/icons/Delete';
+import FilterListIcon from '@material-ui/icons/FilterList';
+import AddIcon from '@material-ui/icons/Add';
+import AddDialog from '../Common/AddDialog.js'
+import Button from '@material-ui/core/Button';
+import { useState } from 'react'
+import { NavLink } from 'react-router-dom';
+import Link from '@material-ui/core/Link';
+import CircularProgressWithLabel from '../Common/CircularProgressWithLabel'
 import Chip from '@material-ui/core/Chip';
-const StyledTableCell = withStyles((theme) => ({
-  head: {
-    backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
-  },
-  body: {
-    fontSize: 14,
-  },
-}))(TableCell);
-
-const StyledTableRow = withStyles((theme) => ({
-  root: {
-    '&:nth-of-type(odd)': {
-      backgroundColor: theme.palette.action.hover,
-    },
-  },
-}))(TableRow);
 
 function createData(id, project, state, manager, completion) {
   return { id, project, state, manager, completion };
 }
 
+function descendingComparator(a, b, orderBy) {
+  if (b[orderBy] < a[orderBy]) {
+    return -1;
+  }
+  if (b[orderBy] > a[orderBy]) {
+    return 1;
+  }
+  return 0;
+}
+
+function getComparator(order, orderBy) {
+  return order === 'desc'
+    ? (a, b) => descendingComparator(a, b, orderBy)
+    : (a, b) => -descendingComparator(a, b, orderBy);
+}
+
+function stableSort(array, comparator) {
+  const stabilizedThis = array.map((el, index) => [el, index]);
+  stabilizedThis.sort((a, b) => {
+    const order = comparator(a[0], b[0]);
+    if (order !== 0) return order;
+    return a[1] - b[1];
+  });
+  return stabilizedThis.map((el) => el[0]);
+}
+
+const headCells = [
+  { id: 'project', numeric: false, disablePadding: true, label: 'Project' },
+  { id: 'state', numeric: true, disablePadding: false, label: 'State' },
+  { id: 'owner', numeric: true, disablePadding: false, label: 'Manager' },
+  { id: 'completion', numeric: true, disablePadding: false, label: 'Completion' },
+];
+
+function EnhancedTableHead(props) {
+  const { classes, onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } = props;
+  const createSortHandler = (property) => (event) => {
+    onRequestSort(event, property);
+  };
+
+  return (
+    <TableHead className={classes.root}>
+      <TableRow >
+        
+        {headCells.map((headCell) => (
+          <TableCell
+            key={headCell.id}
+            align="center"
+            padding={headCell.disablePadding ? 'none' : 'default'}
+            sortDirection={orderBy === headCell.id ? order : false}
+            aria-labelledby="tableTitle"
+
+            >
+            <TableSortLabel
+              active={orderBy === headCell.id}
+              direction={orderBy === headCell.id ? order : 'asc'}
+              onClick={createSortHandler(headCell.id)}
+            >
+              {headCell.label}
+              {orderBy === headCell.id ? (
+                <span className={classes.visuallyHidden}>
+                  {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
+                </span>
+              ) : null}
+            </TableSortLabel>
+          </TableCell>
+        ))}
+      </TableRow>
+    </TableHead>
+  );
+}
+
+EnhancedTableHead.propTypes = {
+  classes: PropTypes.object.isRequired,
+  numSelected: PropTypes.number.isRequired,
+  onRequestSort: PropTypes.func.isRequired,
+  onSelectAllClick: PropTypes.func.isRequired,
+  order: PropTypes.oneOf(['asc', 'desc']).isRequired,
+  orderBy: PropTypes.string.isRequired,
+  rowCount: PropTypes.number.isRequired,
+};
+
+const useToolbarStyles = makeStyles((theme) => ({
+  root: {
+    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(1),
+  },
+  highlight:
+    theme.palette.type === 'light'
+      ? {
+          color: theme.palette.secondary.main,
+          backgroundColor: lighten(theme.palette.secondary.light, 0.85),
+        }
+      : {
+          color: theme.palette.text.primary,
+          backgroundColor: theme.palette.secondary.dark,
+        },
+  title: {
+    flex: '1 1 100%',
+  },
+  root: {
+    backgroundColor: '#3CAA91'
+  }
+}));
+
+const EnhancedTableToolbar = (props) => {
+  const classes = useToolbarStyles();
+  const { numSelected } = props;
+
+  return (
+    <Toolbar
+      className={clsx(classes.root, {
+        [classes.highlight]: numSelected > 0,
+      })}
+    >
+      
+        <Typography className={classes.title} variant="h6" id="tableTitle" component="div">
+          My Projects
+        </Typography>
+     
+
+      
+        <Tooltip title="Filter list">
+          <IconButton aria-label="filter list">
+            <FilterListIcon />
+          </IconButton>
+        </Tooltip>
+   
+    </Toolbar>
+  );
+};
+
+EnhancedTableToolbar.propTypes = {
+  numSelected: PropTypes.number.isRequired,
+};
+
 const useStyles = makeStyles((theme) => ({
+  root: {
+    width: '100%',
+  },
+  paper: {
+    width: '100%',
+    marginBottom: theme.spacing(2),
+  },
   table: {
-    minWidth: 700,
+    minWidth: 750,
+  },
+  visuallyHidden: {
+    border: 0,
+    clip: 'rect(0 0 0 0)',
+    height: 1,
+    margin: -1,
+    overflow: 'hidden',
+    padding: 0,
+    position: 'absolute',
+    top: 20,
+    width: 1,
   },
   button: {
     margin: theme.spacing(1),
@@ -56,71 +203,95 @@ const useStyles = makeStyles((theme) => ({
     padding: '0 30px',
     boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
   },
-  filter: {
-    position: "relative",
-    left: "45%"
-  },
-  root: {
-    backgroundColor: 'orange'
-  }
 }));
 
-export default function CustomizedTables({ projects, refresh, userIsManager }) {
+export default function EnhancedTable({ projects, refresh }) {
   const classes = useStyles();
-  const [showFilter, setShowFilter] = useState(false)
+  const [order, setOrder] = React.useState('asc');
+  const [orderBy, setOrderBy] = React.useState('calories');
+  const [selected, setSelected] = React.useState([]);
+  const completionData = (project) => {
+   
+    const totalDays = (new Date(project.endDate)- new Date(project.startDate))/ (1000 * 3600 * 24)
+    const passDays = (new Date() - new Date(project.startDate))/ (1000 * 3600 * 24)
+    const percentageDaysMissing= passDays*100/totalDays
+    project.completion=percentageDaysMissing.toFixed(1)
+    return percentageDaysMissing
+  }
+  const rows = projects ? projects.map(project => { {completionData(project)}return createData(project.id, project.name, project.state, project.owner,project.completion) }) : undefined
   const [showDialog, setShowDialog] = useState(false)
-  const rows = projects ? projects.map(project => { return createData(project.id, project.name, project.state, project.owner) }) : undefined
 
   function handleOpenDialog() {
     setShowDialog(true)
   }
+  const handleRequestSort = (event, property) => {
+    const isAsc = orderBy === property && order === 'asc';
+    setOrder(isAsc ? 'desc' : 'asc');
+    setOrderBy(property);
+  };
 
-  console.log(projects)
+  const isSelected = (name) => selected.indexOf(name) !== -1;
 
   return (
-    <div>
-      <Typography component="h1" variant="h5">
-        My Projects
-      </Typography>
-      <Paper >
-        <TableContainer component={Paper} elevation={3} style={{ maxHeight: 480 }}>
-          <IconButton aria-label="filter list" className={classes.filter}>
-            <FilterListIcon />
-          </IconButton>
-          <Table className={classes.table} aria-label="customized table" >
-            <TableHead className={classes.root}>
-              <TableRow>
-                <StyledTableCell>Project</StyledTableCell>
-                <StyledTableCell align="right">State</StyledTableCell>
-                <StyledTableCell align="right">Manager</StyledTableCell>
-                <StyledTableCell align="right">Completion</StyledTableCell>
-              </TableRow>
-            </TableHead>
+    <div className={classes.root}>
+      <Paper className={classes.paper}>
+        <EnhancedTableToolbar numSelected={selected.length} />
+        <TableContainer component={Paper} elevation={3} style={{ maxHeight: 400 }}>
+          <Table
+            className={classes.table}
+            aria-labelledby="tableTitle"
+            aria-label="enhanced table"
+          >
+            <EnhancedTableHead
+              classes={classes}
+              numSelected={selected.length}
+              order={order}
+              orderBy={orderBy}
+              //onSelectAllClick={handleSelectAllClick}
+              onRequestSort={handleRequestSort}
+              rowCount={rows.length}
+            />
             <TableBody>
-              {rows && rows.map((row) => (
-                <StyledTableRow key={row.name}>
-                  <NavLink to={`projects/${row.id}/dashboards`} style={{ textDecoration: "none" }}>
+              {stableSort(rows, getComparator(order, orderBy))
+                .map((row, index) => {
+                  const isItemSelected = isSelected(row.name);
+                  const labelId = `enhanced-table-checkbox-${index}`;
+
+                  return (
+                    <TableRow
+                      hover
+                     // onClick={(event) => handleClick(event, row.name)}
+                      role="checkbox"
+                      aria-checked={isItemSelected}
+                      tabIndex={-1}
+                      key={row.name}
+                      selected={isItemSelected}
+                    >
+                       <NavLink to={`projects/${row.id}/dashboards`} style={{ textDecoration: "none" }}>
                     <Link>
-                      <StyledTableCell component="th" scope="row"> <Button color="primary">{row.project}</Button></StyledTableCell>
-                    </Link>
-                  </NavLink>
-                  <StyledTableCell align="right"><Chip
+                      <TableCell component="th" id={labelId} scope="row" align="center" padding="none">
+                        {row.project}
+                      </TableCell>
+                      </Link>
+                      </NavLink>
+                      <TableCell align="center"><Chip
                     color="primary"
                     label={row.state}
                     size="small"
-                  /></StyledTableCell>
-                  <StyledTableCell align="right">{row.manager}</StyledTableCell>
-                  <StyledTableCell align="right">{row.completion}</StyledTableCell>
-                </StyledTableRow>
-              ))}
+                  /></TableCell>
+                      <TableCell align="center">{row.manager}</TableCell>
+                      <TableCell align="center"><CircularProgressWithLabel value={row.completion} /></TableCell>
+                    </TableRow>
+                  );
+                })}
+              
             </TableBody>
           </Table>
         </TableContainer>
+       
       </Paper>
       <AddDialog showDialog={showDialog} setShowDialog={setShowDialog} title={"Add Project"} type={"Project"} refreshProjects={refresh} showDate={true} />
-      {
-        userIsManager?
-        <Button
+      <Button
         variant="contained"
         color="primary"
         size="small"
@@ -130,9 +301,6 @@ export default function CustomizedTables({ projects, refresh, userIsManager }) {
       >
         Add new
       </Button>
-      :
-      null
-      }
     </div>
   );
 }
