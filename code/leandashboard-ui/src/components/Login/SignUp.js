@@ -7,6 +7,9 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Form from './Form'
 import img from '../../images/signIn.png'
+import {I18nProvider,LOCALES} from '../../i18n'
+import {FormattedMessage} from 'react-intl'
+import translate from '../../i18n/translate'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -48,17 +51,20 @@ const useStyles = makeStyles((theme) => ({
 export default function SignInSide() {
   const classes = useStyles();
   return (
+    <I18nProvider locale={LOCALES.FRENCH}>
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
       <Grid item xs={false} sm={4} md={7} className={classes.image} />
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
         <div className={classes.paper}>
+          
           <Typography component="h1" variant="h5">
-            Welcome to Lean Dashboard
+            {translate("hello")} to Lean Dashboard
           </Typography>
           <Form button="Sign Up" />
         </div>
       </Grid>
     </Grid>
+    </I18nProvider>
   );
 }

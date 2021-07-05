@@ -37,9 +37,9 @@ export default function VerticalButton(props) {
   }
   async function deleteDashboard(){
      await del(`/api/lean/projects/${id}/dashboard/${dashboardId}`)
-    if(response.ok){
-      history.push(`/projects/${id}/dashboards`)
-    }
+     if(response.ok){
+        history.push(`/projects/${id}/dashboards`)
+      }
   }
   return (
     <ButtonGroup

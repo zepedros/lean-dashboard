@@ -8,6 +8,7 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import { useState } from 'react'
+import {I18nProvider,LOCALES} from '../../i18n'
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -21,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SettingsPage(){
     const classes = useStyles();
-    const [language, setLanguage] = useState('');
+    const [language, setLanguage] = useState(LOCALES.ENGLISH);
   
     const handleChange = (event) => {
         setLanguage(event.target.value);
