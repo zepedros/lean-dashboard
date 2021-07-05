@@ -13,6 +13,8 @@ import WidgetsIcon from '@material-ui/icons/Widgets';
 import Link from '@material-ui/core/Link';
 import { NavLink } from 'react-router-dom';
 import DashboardSettingsDialog from './DashboardSettingsDialog'
+import useFetch from 'use-http'
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -27,9 +29,17 @@ export default function VerticalButton(props) {
   const classes = useStyles();
   const [showDialog, setShowDialog] = useState(false)
   let { id, dashboardId } = useParams();
+  var {del,response } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
+  const history = useHistory()
 
   function handleOpenDialog() {
     setShowDialog(true)
+  }
+  async function deleteDashboard(){
+     await del(`/api/lean/projects/${id}/dashboard/${dashboardId}`)
+    if(response.ok){
+      history.push(`/projects/${id}/dashboards`)
+    }
   }
   return (
     <ButtonGroup
@@ -40,7 +50,6 @@ export default function VerticalButton(props) {
     >
       {!props.show ?
         <AddDashboardDialog showDialog={showDialog} setShowDialog={setShowDialog} refreshDashboards={props.refresh} title={props.title} />
-        //<AddDialog showDialog={showDialog} setShowDialog={setShowDialog} title={props.title} type={props.type}/>
         : null
       }
       {!props.show ?
@@ -81,7 +90,7 @@ export default function VerticalButton(props) {
       </Tooltip>
       {props.show ?
         <Tooltip title={props.title3} aria-label="add" placement="left">
-          <Button aria-label="add">
+          <Button aria-label="delete" onClick={deleteDashboard}>
             <DeleteIcon />
           </Button>
         </Tooltip>
