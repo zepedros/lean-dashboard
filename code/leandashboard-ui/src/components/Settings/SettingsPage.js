@@ -9,6 +9,8 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import { useState } from 'react'
 import {I18nProvider,LOCALES} from '../../i18n'
+import CreateAccountDialog from './CreateAccountDialog'
+import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -23,15 +25,20 @@ const useStyles = makeStyles((theme) => ({
 export default function SettingsPage(){
     const classes = useStyles();
     const [language, setLanguage] = useState(LOCALES.ENGLISH);
-  
+    const [showDialog, setShowDialog] = useState(false)
+
     const handleChange = (event) => {
         setLanguage(event.target.value);
     };
 
+    function handleOpenDialog() {
+        setShowDialog(true)
+      }
+
     const page = () => {
         return(
             <div>             
-                <Typography variant="h6" noWrap color="textPrimary">Lean Dashboard Settings</Typography>
+                <Typography variant="h5" noWrap color="textPrimary">Lean Dashboard Settings</Typography>
                 <Box display="flex" justifyContent="center" m={1} p={1} bgcolor="background.paper">
                     <Box p={1} bgcolor="background.paper">
                         <FormControl className={classes.formControl}>
@@ -51,6 +58,12 @@ export default function SettingsPage(){
                         </FormControl>
                     </Box>
                  </Box>
+                 <Box display="flex" justifyContent="center" m={1} p={1} bgcolor="background.paper">
+
+                 <CreateAccountDialog showDialog={showDialog} setShowDialog={setShowDialog} />
+                        <Button color="primary" onClick={handleOpenDialog}>Create an Account</Button>
+                        </Box>
+
             </div>
         ) 
     }
