@@ -543,7 +543,7 @@ function services(db, auth) {
                     }
                     return db.addCredential(projectId, credentialName, credentialSource, credentials)
                         .then(credentialId => {
-                            return response.makePostResponse(200, `${projectId}/credentials/${credentialId}`)
+                            return response.makePostResponse(201, `${projectId}/credentials/${credentialId}`)
                         })
                         .catch(err => {
                             throw err

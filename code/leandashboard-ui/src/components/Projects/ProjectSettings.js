@@ -33,14 +33,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ProjectSettings({project}) {
+export default function ProjectSettings({project, update}) {
   const classes = useStyles()
   return (
     <List className={classes.list}>
       <Typography component="h1" variant="h4">
         {project.name} Settings
       </Typography>
-      <NameDescForm project={project} />
+      <NameDescForm project={project} updateProject={update}/>
       <AddMemberForm />
       <AddCredentials project={project} />
     </List>

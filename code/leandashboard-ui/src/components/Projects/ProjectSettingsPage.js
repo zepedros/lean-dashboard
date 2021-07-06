@@ -13,13 +13,17 @@ export default function ProjectSettingsPage() {
     let { id } = useParams();
     const context = useContext(UserContext)
     const [userCanEditProject, setUserCanEditProject] = useState(false)
+    const [refresh, setRefresh] = useState(false)
     const [project, setProject] = useState()
     const { get, response, loading } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
 
     useEffect(() => {
         getProjectById()
-    }, [userCanEditProject])
+    }, [userCanEditProject, refresh])
 
+    function refreshProject() {
+        setRefresh(!refresh)
+    }
     async function getProjectById() {
         const getProjectById = await get(`/api/lean/projects/${id}`)
         const userInfo = await get(`/api/lean/users/username/${context.credentials.username}`)
@@ -40,12 +44,12 @@ export default function ProjectSettingsPage() {
                     <div>
                         <Hidden mdUp>
                             <Grid item xs={12} sm={12} md={12}>
-                                <NavBar component={<ProjectSettingsMobile project={project} />} title={project?.name} />
+                                <NavBar component={<ProjectSettingsMobile project={project} update={refreshProject} />} title={project?.name} />
                             </Grid>
                         </Hidden>
                         <Hidden smDown>
                             <Grid item xs={12} sm={12} md={12}>
-                                <NavBar component={<ProjectSettings project={project} />} title={project?.name} />
+                                <NavBar component={<ProjectSettings project={project} update={refreshProject} />} title={project?.name} />
                             </Grid>
                         </Hidden>
                     </div>

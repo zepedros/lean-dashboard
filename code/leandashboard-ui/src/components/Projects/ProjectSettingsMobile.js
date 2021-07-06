@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function ProjectSettingsMobile({project}) {
+export default function ProjectSettingsMobile({project, update}) {
   const classes = useStyles()
   return (
     <Container className={classes.container}>
@@ -48,7 +48,7 @@ export default function ProjectSettingsMobile({project}) {
         <Typography component="h1" variant="h4">
           {project.name} Settings
         </Typography>
-        <NameDescForm project={project} />
+        <NameDescForm project={project} updateProject={update}/>
         <AddMemberForm />
         <AddCredentials project={project} />
       </List>
