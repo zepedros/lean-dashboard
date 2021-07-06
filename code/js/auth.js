@@ -19,6 +19,14 @@ function makeAuth(authization) {
 
         },
 
+        getAllUsers: async function(){
+            return authization.user.get()
+                .then(users => users)
+                .catch(err => {
+                    throw error.makeErrorResponse(err.status, err.message)
+                })
+        },
+
         deleteUser: async function(userToDeleteInfo){
             return authization.user.delete(userToDeleteInfo.id)
                 .then(res => {

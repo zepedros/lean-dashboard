@@ -354,14 +354,19 @@ function services(db, auth) {
             return await auth.createUser(username, password)
         },
 
-        getUserById: async function(userId, userMakingRequest){
+        getAllUsers: async function(userMakingRequest) {
+            if (userMakingRequest.id !== 1) return Promise.reject((error.makeErrorResponse(error.UNAUTHORIZED, "You don't have access to this resource")))
+            return await auth.getAllUsers()
+        },
+
+        getUserById: async function (userId, userMakingRequest) {
             if (!userMakingRequest) return Promise.reject((error.makeErrorResponse(error.UNAUTHORIZED, "You are not logged in")))
             return await auth.getUserById(userId)
         },
 
-        getUserByUsername: async function(username, userMakingRequest){
+        getUserByUsername: async function (username, userMakingRequest) {
             if (!userMakingRequest) return Promise.reject((error.makeErrorResponse(error.UNAUTHORIZED, "You are not logged in")))
-            if(username !== userMakingRequest.username && userMakingRequest.id !== 1) return Promise.reject((error.makeErrorResponse(error.FORBIDDEN, "You can't retrieve another user's info")))
+            if (username !== userMakingRequest.username && userMakingRequest.id !== 1) return Promise.reject((error.makeErrorResponse(error.FORBIDDEN, "You can't retrieve another user's info")))
             const ret = await auth.getUserByUsername(username)
             delete ret.password
             return ret
@@ -436,7 +441,7 @@ function services(db, auth) {
         },
 
         loginLocal: async function (req, res) {
-            if(!req.body.user && !req.body.password){
+            if (!req.body.user && !req.body.password) {
                 throw error.makeErrorResponse(error.ARGUMENT_ERROR, `Please indicate a username and password`)
             }
             const user = await auth.getUserByUsername(req.body.username)
@@ -607,7 +612,7 @@ function services(db, auth) {
                 const userInfo = await this.getUserByUsername(username, userMakingRequest)
                 return auth.getUserRoles(userInfo)
             }
-            return Promise.reject(error.makeErrorResponse(error.FORBIDDEN,'User does not have access to this request'))
+            return Promise.reject(error.makeErrorResponse(error.FORBIDDEN, 'User does not have access to this request'))
         }
     };
 }

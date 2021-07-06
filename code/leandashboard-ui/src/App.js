@@ -5,6 +5,7 @@ import SignIn from './components/Login/SignIn';
 import SignUp from './components/Login/SignUp';
 import About from './components/FooterLinks/About';
 import ProjectsPage from './components/Projects/ProjectsPage';
+import UsersPage from './components/Users/UsersPage';
 import DashboardsPage from './components/Dashboards/DashboardsPage'
 import DashboardPage from './components/Dashboard/DashboardPage'
 import SettingsPage from './components/Settings/SettingsPage'
@@ -92,6 +93,11 @@ function App() {
             <Route exact path="/settings">
               <EnsureCredentials redirect="/signIn">
                 <SettingsPage />
+              </EnsureCredentials>
+            </Route>
+            <Route exact path="/users">
+              <EnsureCredentials redirect="/signIn">
+                <UsersPage />
               </EnsureCredentials>
             </Route>
           </Switch>

@@ -158,6 +158,12 @@ function webapi(app, services, auth, authization) {
                 .catch(err => errHandler(err, res))
         },
 
+        getAllUsers: function (req, res){
+            services.getAllUsers(req.user)
+                .then(resp => answerHandler(resp, res, resp.statusCode))
+                .catch(err => errHandler(err, res))
+        },
+
         getUserById: function (req, res) {
             services.getUserById(req.params.id, req.user)
                 .then(resp => answerHandler(resp, res))
@@ -335,6 +341,7 @@ function webapi(app, services, auth, authization) {
 
     app.post('/lean/register', theWebApi.createUser)
     app.get('/api/lean/users/:id', theWebApi.getUserById)
+    app.get('/api/lean/users', theWebApi.getAllUsers)
     app.get('/api/lean/users/username/:username', theWebApi.getUserByUsername)
     app.delete('/lean/users/:username', theWebApi.deleteUser)
     app.put('/lean/users/:username/username', theWebApi.editUsername)

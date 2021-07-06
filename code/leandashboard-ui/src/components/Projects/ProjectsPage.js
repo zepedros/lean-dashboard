@@ -32,10 +32,10 @@ export default function ProjectsPage() {
 
     async function loadProjects() {
         const getProjects = await get('/api/lean/projects')
-        let alisa
+        let ret
         console.log('alisa');
         if (getProjects) {
-            alisa = getProjects.map(project => {
+            ret = getProjects.map(project => {
                 getUsername(project.owner).then(() => {
                     if (response.ok) {
                         project.owner = response.data.username
@@ -44,7 +44,7 @@ export default function ProjectsPage() {
                 return project
             })
             console.log(projects)
-            if (response.ok) setProjects(alisa)
+            if (response.ok) setProjects(ret)
         }
         else setProjects(undefined)
     }
