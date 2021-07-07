@@ -16,7 +16,8 @@ import Button from '@material-ui/core/Button';
 import Link from '@material-ui/core/Link';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import IconButton from '@material-ui/core/IconButton';
-import Chip from '@material-ui/core/Chip';
+import DeleteIcon from '@material-ui/icons/Delete';
+
 const StyledTableCell = withStyles((theme) => ({
   head: {
     backgroundColor: theme.palette.common.black,
@@ -35,8 +36,8 @@ const StyledTableRow = withStyles((theme) => ({
   },
 }))(TableRow);
 
-function createData(username) {
-  return { username };
+function createData(username, id) {
+  return { username, id };
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -65,11 +66,11 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function CustomizedTables({ projects: users, refresh, userIsManager }) {
+export default function CustomizedTables({ projects: users, refresh, deleteIconOnClick }) {
   const classes = useStyles();
   const [showFilter, setShowFilter] = useState(false)
   const [showDialog, setShowDialog] = useState(false)
-  const rows = users ? users.map(user => { return createData(user.username) }) : undefined
+  const rows = users ? users.map(user => { return createData(user.username, user.id) }) : undefined
 
   function handleOpenDialog() {
     setShowDialog(true)
@@ -91,12 +92,18 @@ export default function CustomizedTables({ projects: users, refresh, userIsManag
             <TableHead className={classes.root}>
               <TableRow>
                 <StyledTableCell>User</StyledTableCell>
+                <StyledTableCell></StyledTableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {rows && rows.map((row) => (
                 <StyledTableRow key={row.name}>
                   <StyledTableCell align="left">{row.username}</StyledTableCell>
+                  <StyledTableCell align="right">
+                    <Button align="right">
+                      <DeleteIcon color="primary"></DeleteIcon>
+                    </Button>
+                  </StyledTableCell>
                 </StyledTableRow>
               ))}
             </TableBody>

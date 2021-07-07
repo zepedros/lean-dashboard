@@ -8,51 +8,49 @@ import { makeStyles } from '@material-ui/core/styles';
 import img from '../../../images/NotFound.png'
 import { useHistory } from 'react-router';
 
+export default function Error({ statusCode, message, customImage }) {
+  const useStyles = makeStyles((theme) => ({
+    root: {
+      height: '100vh',
+    },
+    linkColor: {
+      color: "#3CAA91",
+    },
+    image: {
+      backgroundImage: `url(${customImage? customImage : img})`,
+      backgroundRepeat: 'no-repeat',
+      backgroundColor:
+        theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+    },
+    paper: {
+      margin: theme.spacing(8, 4),
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+    },
+    logo: {
+      fontFamily: "Work Sans, sans-serif",
+      fontWeight: 800,
+      color: "#00000",
+      textAlign: "left",
+    },
+    form: {
+      width: '100%', // Fix IE 11 issue.
+      marginTop: theme.spacing(1),
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    height: '100vh',
-  },
-  linkColor: {
-    color: "#3CAA91",
-  },
-  image: {
-    backgroundImage: `url(${img})`,
-    backgroundRepeat: 'no-repeat',
-    backgroundColor:
-      theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-  },
-  paper: {
-    margin: theme.spacing(8, 4),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-  logo: {
-    fontFamily: "Work Sans, sans-serif",
-    fontWeight: 800,
-    color: "#00000",
-    textAlign: "left",
-  },
-  form: {
-    width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
-
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-    color: "#3CAA91",
-  },
-  button: {
-    color: "#3CAA91",
-  },
-}));
+    },
+    submit: {
+      margin: theme.spacing(3, 0, 2),
+      color: "#3CAA91",
+    },
+    button: {
+      color: "#3CAA91",
+    },
+  }));
 
 
-
-export default function Error({ statusCode, message }) {
   const classes = useStyles();
   const history = useHistory()
 
