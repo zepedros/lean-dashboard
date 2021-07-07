@@ -382,9 +382,9 @@ function services(db, auth) {
             const userIsManager = await auth.checkIfUserHasRole(userToDeleteInfo, 'manager')
             return await this.getProjects(userToDelete, userToDeleteInfo)
                 .then(projects => {
-                    projects?.forEach(project => this.removeUserFromProject(project.id, userToDelete, userMakingRequest))
+                    projects.forEach(project => this.removeUserFromProject(project.id, userToDelete, userMakingRequest))
                     if (userIsManager) {
-                        projects?.filter(project => project.owner === userToDeleteInfo.id)
+                        projects.filter(project => project.owner === userToDeleteInfo.id)
                             .forEach(project => {
                                 this.changeProjectOwner(project.id, 'superuser', userMakingRequest)
                             })

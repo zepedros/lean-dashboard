@@ -47,7 +47,7 @@ module.exports = {
         return fetch.makeGetRequest(uri)
             .then(body => {
                 if (body.hits) {
-                    if (body.hits.hits.length) {
+                    if (body.hits.hits) {
                         return body.hits.hits.map(hit => {
                             hit._source.id = hit._id
                             return hit._source
@@ -65,7 +65,7 @@ module.exports = {
         return fetch.makeGetRequest(uri)
             .then(body => {
                 if (body.hits) {
-                    if (body.hits.hits.length) {
+                    if (body.hits.hits) {
                         return body.hits.hits.map(hit => {
                             hit._source.id = hit._id
                             return hit._source
