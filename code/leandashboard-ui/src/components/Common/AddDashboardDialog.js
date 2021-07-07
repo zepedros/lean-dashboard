@@ -8,6 +8,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from '@material-ui/core/Button';
 import useFetch from 'use-http'
+import {FormattedMessage} from 'react-intl';
 
 export default function AddDashboardDialog({ showDialog, setShowDialog, title, refreshDashboards }) {
     const [input, setInput] = useState({ name: "", description: "" })
@@ -61,13 +62,13 @@ export default function AddDashboardDialog({ showDialog, setShowDialog, title, r
                 <DialogTitle id="form-dialog-title">{title}</DialogTitle>
                 <DialogContent>
                     <DialogContentText>
-                        Create a new dashboard
+                        <FormattedMessage id="Dashboards.dialogButton.subTitle" /> 
                     </DialogContentText>
                     <TextField
                         autoFocus
                         margin="dense"
                         id="ProjectName"
-                        label="Name"
+                        label={<FormattedMessage id="Dashboards.dialogButton.name" /> }
                         error={nameError}
                         helperText="Please input a name."
                         type="name"
@@ -79,7 +80,7 @@ export default function AddDashboardDialog({ showDialog, setShowDialog, title, r
                         autoFocus
                         margin="dense"
                         id="ProjectDescription"
-                        label="Description"
+                        label={<FormattedMessage id="Dashboards.dialogButton.description" /> }
                         error={descriptionError}
                         helperText="Please input a description."
                         type="description"
@@ -90,7 +91,7 @@ export default function AddDashboardDialog({ showDialog, setShowDialog, title, r
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose} color="primary">
-                        Cancel
+                    <FormattedMessage id="Dashboards.dialogButton.cancel" />
                     </Button>
                     <Button onClick={handleSubmit} color="primary">
                         {title}

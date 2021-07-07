@@ -8,6 +8,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Container } from '@material-ui/core';
 import FAB from '../Common/FAB'
 import { useParams } from "react-router-dom";
+import {FormattedMessage} from 'react-intl';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -57,7 +58,8 @@ export default function DashboardsList({ dashboards, refresh, userIsManager }) {
     <div>
       <Container className={classes.root}>
         <Typography component="h1" variant="h5">
-          Dashboards
+        <FormattedMessage id="Dashboards.dashboards" />
+
         </Typography>
         <IconButton end='end' className={classes.filter} onClick={handleFilter}>
           <FilterListIcon />
@@ -71,7 +73,7 @@ export default function DashboardsList({ dashboards, refresh, userIsManager }) {
         </List>
         {
           userIsManager?
-          <FAB addTitle={"Add Dashboard"} settingsTitle={"Project Settings"} refresh={refresh} refreshDashboards={refresh} show={false} path={`/projects/${id}/settings`} function={handleOpenDialog} showDialog={showDialog} setShowDialog={setShowDialog} />
+          <FAB addTitle={<FormattedMessage id="Dashboards.VerticalButton.firstButton" />} settingsTitle={<FormattedMessage id="Dashboards.VerticalButton.secondButton" />} refresh={refresh} refreshDashboards={refresh} show={false} path={`/projects/${id}/settings`} function={handleOpenDialog} showDialog={showDialog} setShowDialog={setShowDialog} />
           :
           null
         }

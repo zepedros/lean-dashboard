@@ -1,6 +1,7 @@
 import React from "react";
 import { styled } from '@material-ui/core/styles';
 import { compose, spacing, palette } from '@material-ui/system';
+import {FormattedMessage} from 'react-intl';
 
 const Box = styled('div')(compose(spacing, palette));
 
@@ -11,10 +12,10 @@ export default function SectionShortDescription() {
                 Lean Dashboard
             </h1>
             <p className="MuiTypography-root MuiTypography-h6 MuiTypography-colorTextSecondary MuiTypography-paragraph MuiTypography-alignCenter">
-                Everything you need to
+                <FormattedMessage  id="HomePage.slogan1"/>
             </p>
             <p className="MuiTypography-root MuiTypography-h6 MuiTypography-colorTextSecondary MuiTypography-paragraph MuiTypography-alignCenter">
-                know about your project
+            <FormattedMessage  id="HomePage.slogan2"/>
             </p>
         </Box>
     )

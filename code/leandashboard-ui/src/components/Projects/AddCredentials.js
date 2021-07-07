@@ -10,6 +10,8 @@ import Grid from '@material-ui/core/Grid';
 import { Typography } from "@material-ui/core";
 import { useFetch } from "use-http";
 import { useParams } from "react-router";
+import {FormattedMessage} from 'react-intl';
+
 const useStyles = makeStyles(theme => ({
   formControl: {
     margin: theme.spacing(1),
@@ -51,7 +53,7 @@ export default function AddCredentials() {
     return (
       <div>
         <Button variant="contained" color="primary" onClick={submit}>
-          Submit
+          <FormattedMessage id="ProjectSettings.submit"/>
         </Button>
       </div>
     )
@@ -96,9 +98,9 @@ export default function AddCredentials() {
   return (
     <div>
       <div>
-        <Typography component="h6" variant="h6">Add Credentials</Typography>
+        <Typography component="h6" variant="h6"><FormattedMessage id="ProjectSettings.addCredentials"/></Typography>
         <FormControl className={classes.formControl}>
-          <InputLabel id="demo-simple-select-outlined-label">Tools</InputLabel>
+          <InputLabel id="demo-simple-select-outlined-label"><FormattedMessage id="ProjectSettings.tools"/></InputLabel>
           <Select
             native
             value={selectedValue}

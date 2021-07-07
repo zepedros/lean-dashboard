@@ -6,6 +6,7 @@ import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import { Typography } from "@material-ui/core";
+import {FormattedMessage} from 'react-intl';
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -39,7 +40,9 @@ export default function AddMemberForm() {
   return (
     <Grid container >
       <form className={classes.form}>
-        <Typography component="h6" variant="h6" style={{ textAlign: "center" }}>Add Members</Typography>
+        <Typography component="h6" variant="h6" style={{ textAlign: "center" }}> 
+          <FormattedMessage id="ProjectSettings.addMembers"/>
+        </Typography>
         <Grid item>
           <TextField
             label=""
@@ -68,7 +71,7 @@ export default function AddMemberForm() {
           </FormControl>
         </Grid>
         <Button variant="contained" color="primary">
-          Submit
+        <FormattedMessage id="ProjectSettings.submit"/>
         </Button>
       </form>
     </Grid>

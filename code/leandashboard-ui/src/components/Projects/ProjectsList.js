@@ -9,6 +9,7 @@ import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import { Container } from '@material-ui/core';
 import AddDialog from '../Common/AddDialog.js'
+import {FormattedMessage} from 'react-intl';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -62,7 +63,7 @@ export default function ProjectsList({ projects, refresh, userIsManager }) {
     <div>
       <Container className={classes.root}>
         <Typography component="h1" variant="h5">
-          My Projects
+          <FormattedMessage id="Projects.projects" />
         </Typography>
         <IconButton end='end' className={classes.filter} onClick={handleFilter}>
           <FilterListIcon />
@@ -72,7 +73,7 @@ export default function ProjectsList({ projects, refresh, userIsManager }) {
             return <ProjectItem key={project.id} project={project} />
           })}
         </List>
-        <AddDialog showDialog={showDialog} setShowDialog={setShowDialog} title={"Add Project"} type={"Create new Project"} refreshProjects={refresh} showDate={true} />
+        <AddDialog showDialog={showDialog} setShowDialog={setShowDialog} title={<FormattedMessage id="Projects.dialogButton.title"/>} type={<FormattedMessage id="Projects.dialogButton.subTitle"/>}  refreshProjects={refresh} showDate={true} />
         {
           userIsManager?
           <Fab color="primary" aria-label="add" className={classes.button} onClick={handleOpenDialog} >

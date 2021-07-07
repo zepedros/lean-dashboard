@@ -11,6 +11,7 @@ import Grid from '@material-ui/core/Grid';
 import Link from '@material-ui/core/Link';
 import Copyright from './CopyRight'
 import { useHistory } from 'react-router-dom';
+import {FormattedMessage} from 'react-intl';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -95,7 +96,7 @@ export default function Form(props) {
         required
         fullWidth
         id="usermane"
-        label="Username"
+        label={<FormattedMessage id="login.username" /> }
         value={Username}
         name="username"
         onChange={e => SetUsername(e.target.value)}
@@ -109,7 +110,7 @@ export default function Form(props) {
         required
         fullWidth
         name="password"
-        label="Password"
+        label={<FormattedMessage id="login.password" /> }
         value={Password}
         onChange={e => SetPassword(e.target.value)}
         type="password"
@@ -118,7 +119,7 @@ export default function Form(props) {
       />
       <FormControlLabel
         control={<Checkbox value="remember" onChange={e => setRemember(e.target.checked)} />}
-        label="Remember me"
+        label={<FormattedMessage id="login.remember" /> }
       />
       <Button
         onClick={handleSubmit}
@@ -131,7 +132,7 @@ export default function Form(props) {
       <Grid container>
         <Grid item xs>
           <Link href="#" variant="body2" className={classes.input}>
-            Forgot password?
+          <FormattedMessage id="login.forgotPass" /> 
           </Link>
         </Grid>
       </Grid>

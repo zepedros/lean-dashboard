@@ -5,6 +5,7 @@ import FAB from '../Common/FAB'
 import { useHistory } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
+import {FormattedMessage} from 'react-intl';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -59,7 +60,7 @@ export default function DashboardWidgetsList({ widgets }) {
                                 )
                             })}
                         </Grid>
-                        <FAB addTitle={"Add Widget"} settingsTitle={"Dashboard Settings"} show={true} function={redirectTemplateWidgetPage} />
+                        <FAB addTitle={<FormattedMessage id="Dashboard.VerticalButton.firstButton"/>} settingsTitle={<FormattedMessage id="Dashboard.VerticalButton.secondButton"/>}show={true} function={redirectTemplateWidgetPage} />
                     </Container>
                     :
                     <h1>

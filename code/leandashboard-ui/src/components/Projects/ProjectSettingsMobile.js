@@ -6,6 +6,8 @@ import NameDescForm from "./NameDescForm";
 import Grid from '@material-ui/core/Grid';
 import List from '@material-ui/core/List';
 import { Container } from "@material-ui/core";
+import {FormattedMessage} from 'react-intl';
+
 const testITems =
 {
   pid: 1,
@@ -46,7 +48,7 @@ export default function ProjectSettingsMobile({project, update}) {
     <Container className={classes.container}>
       <List className={classes.list}>
         <Typography component="h1" variant="h4">
-          {project.name} Settings
+          {project.name} <FormattedMessage id="ProjectSettings.settings"/>
         </Typography>
         <NameDescForm project={project} updateProject={update}/>
         <AddMemberForm />

@@ -24,6 +24,7 @@ import Popover from '@material-ui/core/Popover';
 import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import UserContext from '../../common/UserContext';
+import {FormattedMessage} from 'react-intl';
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -100,13 +101,13 @@ export default function PermanentDrawerLeft(props) {
                     <ListItemIcon>
                         <PersonOutlineIcon />
                     </ListItemIcon>
-                    <ListItemText primary="Profile" />
+                    <ListItemText primary={<FormattedMessage id="NavBar.profile" /> } />
                 </ListItem>
                 <ListItem button onClick={handleLogout} >
                     <ListItemIcon>
                         <ExitToAppIcon />
                     </ListItemIcon>
-                    <ListItemText primary="Log Out" />
+                    <ListItemText primary={<FormattedMessage id="NavBar.logOut" /> } />
                 </ListItem>
             </Popover>
         );
@@ -137,25 +138,25 @@ export default function PermanentDrawerLeft(props) {
                         <ListItemIcon>
                             <HomeIcon />
                         </ListItemIcon>
-                        <ListItemText primary="Home" />
+                        <ListItemText primary={<FormattedMessage id="NavBar.home" /> } />
                     </ListItem>
                     <ListItem button>
                         <ListItemIcon>
                             <NotificationsIcon />
                         </ListItemIcon>
-                        <ListItemText primary="Notifications" />
+                        <ListItemText primary={<FormattedMessage id="NavBar.notifications" /> } />
                     </ListItem>
                     <ListItem button component={Link} to="/settings">
                         <ListItemIcon>
                             <SettingsIcon />
                         </ListItemIcon>
-                        <ListItemText primary="Settings" />
+                        <ListItemText primary={<FormattedMessage id="NavBar.settings" /> } />
                     </ListItem>
                     <ListItem button onClick={handleClick}>
                         <ListItemIcon>
                             <AccountCircleIcon />
                         </ListItemIcon>
-                        <ListItemText primary="Account" />
+                        <ListItemText primary={<FormattedMessage id="NavBar.account" /> } />
                     </ListItem>
                     {popover()}
                 </Drawer>
@@ -166,10 +167,10 @@ export default function PermanentDrawerLeft(props) {
                 <Hidden mdUp>
                     <Container>
                         <BottomNavigation value={NavigationValue} onChange={handleChange} className={classes.navigation}>
-                            <BottomNavigationAction component={Link} to="/projects" label="Home" value="Home" icon={<HomeIcon />} />
-                            <BottomNavigationAction label="Notifications" value="Notifications" icon={<NotificationsIcon />} />
-                            <BottomNavigationAction component={Link} to="/settings" label="Settings" value="Settings" icon={<SettingsIcon />} />
-                            <BottomNavigationAction label="Account" value="Account" onClick={handleClick} icon={<AccountCircleIcon />} />
+                            <BottomNavigationAction component={Link} to="/projects" label={<FormattedMessage id="NavBar.home" /> } value="Home" icon={<HomeIcon />} />
+                            <BottomNavigationAction label={<FormattedMessage id="NavBar.notifications" /> } value="Notifications" icon={<NotificationsIcon />} />
+                            <BottomNavigationAction component={Link} to="/settings" label={<FormattedMessage id="NavBar.settings" /> } value="Settings" icon={<SettingsIcon />} />
+                            <BottomNavigationAction label={<FormattedMessage id="NavBar.account" /> } value="Account" onClick={handleClick} icon={<AccountCircleIcon />} />
                             {popover()}
                         </BottomNavigation>
                     </Container>

@@ -1,6 +1,7 @@
 import { AppBar, Toolbar, Typography, makeStyles, Button } from "@material-ui/core";
 import React from "react";
 import { Link } from "react-router-dom";
+import {FormattedMessage} from 'react-intl';
 
 export default function Header() {
   const useStyles = makeStyles(() => ({
@@ -41,11 +42,11 @@ export default function Header() {
 
   const headersData = [
     {
-      label: "Sign up",
+      label: "signUp",
       href: "/signUp",
     },
     {
-      label: "Sign in",
+      label: "signIn",
       href: "/signIn",
     },
   ];
@@ -62,7 +63,7 @@ export default function Header() {
             className: menuButton,
           }}
         >
-          {label}
+          <FormattedMessage id={`login.${label}`} defaultMessage="Merda"/>
         </Button>
       );
     });

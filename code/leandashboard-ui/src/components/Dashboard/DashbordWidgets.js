@@ -4,6 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import Widget from "../Widgets/Widget";
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
+import {FormattedMessage} from 'react-intl';
 
 const useStyles = makeStyles((theme) => ({
     container: {
@@ -37,7 +38,7 @@ export default function DashboardWidgets({ name, widgets }) {
                                 })}
                             </Grid>
                         </Container>
-                        <VerticalButton title1={"Add Widget"} title2={"Dashboard Settings"} title3={"Delete Dashboard"} title4={"Widgets Settings"} show={true} />
+                        <VerticalButton title1={<FormattedMessage id="Dashboard.VerticalButton.firstButton"/>} title2={<FormattedMessage id="Dashboard.VerticalButton.secondButton"/>} title3={<FormattedMessage id="Dashboard.VerticalButton.thirdButton"/>}title4={<FormattedMessage id="Dashboard.VerticalButton.fourthButton"/>} show={true} />
                     </div>
                     :
                     <h1>

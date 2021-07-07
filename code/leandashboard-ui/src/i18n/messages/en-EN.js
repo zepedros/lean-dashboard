@@ -12,7 +12,8 @@ export default {
            forgotPass: 'Forgot Password?'
        },
        HomePage:{
-                slogan: 'Everything you need to know about your project',
+                slogan1: 'Everything you need to ',
+                slogan2:'know about your project',
                 integrations: 'Integrations',
                 images:{
                     title: 'Easy and Simple',

@@ -5,6 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import DashboardsCard from './DashboardsCard'
 import VerticalButton from '../Common/VerticalButton'
+import {FormattedMessage} from 'react-intl';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -42,7 +43,7 @@ export default function DashboardsCards({ dashboards, refresh, userIsManager }) 
     <div>
       <Container className={classes.cardGrid} maxWidth="md" >
         <Typography component="h1" variant="h5" style={{ textAlign: "center" }}>
-          Dashboards
+        <FormattedMessage id="Dashboards.dashboards" /> 
         </Typography>
         <Grid container spacing={5}>
           {
@@ -53,7 +54,7 @@ export default function DashboardsCards({ dashboards, refresh, userIsManager }) 
         </Grid>
         {
           userIsManager?
-          <VerticalButton title1={"Add Dashboard"} title2={"Project Settings"} title={"Add Dashboard"} refresh={refresh} type={"Create new Dashboard"} show={false} settings={true}/>
+          <VerticalButton title1={<FormattedMessage id="Dashboards.VerticalButton.firstButton" />}title2={<FormattedMessage id="Dashboards.VerticalButton.secondButton" />} title={<FormattedMessage id="Dashboards.dialogButton.title" />} refresh={refresh} type={<FormattedMessage id="Dashboards.dialogButton.subTitle" />} show={false} settings={true}/>
           :
           null
         }

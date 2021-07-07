@@ -17,6 +17,11 @@ import EnsureCredentials from './common/EnsureCredentials';
 import UserContext, { createRepository } from './common/UserContext';
 import useFetch from 'use-http'
 import { useEffect, useState } from 'react'
+import {FormattedMessage} from 'react-intl'
+import {IntlProvider } from "react-intl"
+import English from "./i18n/messages/en-EN"
+import Portuguese from "./i18n/messages/pt-PT"
+import {I18nProvider,LOCALES} from './i18n'
 
 function App() {
   const { get, post } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
@@ -48,8 +53,19 @@ function App() {
     }
   }
 
+  const local = navigator.language;
+
+let lang;
+if(local=== "en-en"){
+  lang=English
+}else{
+  lang=Portuguese
+}
+
   console.log(currentSessionContext.credentials)
   return (
+
+    <I18nProvider locale={LOCALES.PORTUGUESE}>
     <div className="App">
       <UserContext.Provider value={currentSessionContext}>
         < Router>
@@ -104,6 +120,7 @@ function App() {
         </Router>
       </UserContext.Provider>
     </div >
+    </I18nProvider>
   )
 }
 export default App;

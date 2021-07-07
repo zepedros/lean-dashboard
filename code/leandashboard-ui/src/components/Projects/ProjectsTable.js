@@ -28,6 +28,7 @@ import { NavLink } from 'react-router-dom';
 import Link from '@material-ui/core/Link';
 import CircularProgressWithLabel from '../Common/CircularProgressWithLabel'
 import Chip from '@material-ui/core/Chip';
+import {FormattedMessage} from 'react-intl';
 
 function createData(id, project, state, manager, completion) {
   return { id, project, state, manager, completion };
@@ -60,10 +61,10 @@ function stableSort(array, comparator) {
 }
 
 const headCells = [
-  { id: 'project', numeric: false, disablePadding: true, label: 'Project' },
-  { id: 'state', numeric: true, disablePadding: false, label: 'State' },
-  { id: 'owner', numeric: true, disablePadding: false, label: 'Manager' },
-  { id: 'completion', numeric: true, disablePadding: false, label: 'Completion' },
+  { id: 'project', numeric: false, disablePadding: true, label: <FormattedMessage id="Projects.project"/> },
+  { id: 'state', numeric: true, disablePadding: false, label: <FormattedMessage id="Projects.state"/> },
+  { id: 'owner', numeric: true, disablePadding: false, label: <FormattedMessage id="Projects.manager"/>  },
+  { id: 'completion', numeric: true, disablePadding: false, label: <FormattedMessage id="Projects.completion"/> },
 ];
 
 function EnhancedTableHead(props) {
@@ -149,7 +150,7 @@ const EnhancedTableToolbar = (props) => {
     >
       
         <Typography className={classes.title} variant="h6" id="tableTitle" component="div">
-          My Projects
+          <FormattedMessage id="Projects.projects" /> 
         </Typography>
      
 
@@ -290,7 +291,7 @@ export default function EnhancedTable({ projects, refresh }) {
         </TableContainer>
        
       </Paper>
-      <AddDialog showDialog={showDialog} setShowDialog={setShowDialog} title={"Add Project"} type={"Project"} refreshProjects={refresh} showDate={true} />
+      <AddDialog showDialog={showDialog} setShowDialog={setShowDialog} title={<FormattedMessage id="Projects.dialogButton.title"/>} type={<FormattedMessage id="Projects.dialogButton.subTitle"/>} refreshProjects={refresh} showDate={true} />
       <Button
         variant="contained"
         color="primary"
@@ -299,7 +300,7 @@ export default function EnhancedTable({ projects, refresh }) {
         startIcon={<AddIcon />}
         onClick={handleOpenDialog}
       >
-        Add new
+        <FormattedMessage id="Projects.button" /> 
       </Button>
     </div>
   );

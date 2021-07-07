@@ -11,6 +11,7 @@ import UserContext from '../../common/UserContext';
 import { useContext } from 'react';
 import Form from './Form'
 import Copyright from './CopyRight';
+import {FormattedMessage} from 'react-intl';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -63,17 +64,17 @@ export default function SignIn() {
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
         <div className={classes.paper}>
           <Typography component="h1" variant="h5">
-            Welcome to Lean Dashboard
+            <FormattedMessage id="login.welcome" /> Lean Dashboard
           </Typography>
           <Grid item>
             <Typography component="h7" variant="h8">
-              Don't have an account?
+            <FormattedMessage id="login.forgotPass" /> 
               <Link href="#" variant="body2" className={classes.linkColor}>
                 {"Sign Up"}
               </Link>
             </Typography>
           </Grid>
-          <Form button="Sign In" login={true} />
+          <Form button={ <FormattedMessage id="login.signIn" /> } login={true} />
         </div>
       </Grid>
     </Grid>

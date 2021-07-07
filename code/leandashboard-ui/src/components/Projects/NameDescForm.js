@@ -6,6 +6,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import { useState } from 'react';
 import { useFetch } from 'use-http';
 import { useParams } from 'react-router';
+import {FormattedMessage} from 'react-intl';
+
 const useStyles = makeStyles((theme) => ({
     form: {
         width: '100%', // Fix IE 11 issue.
@@ -68,7 +70,7 @@ export default function NameDescForm(props) {
                     />
                 </Grid>
                 <Button variant="contained" color="primary" onClick={submit}>
-                    Submit
+                    <FormattedMessage id="ProjectSettings.submit"/>
                 </Button>
             </form>
         </Grid>

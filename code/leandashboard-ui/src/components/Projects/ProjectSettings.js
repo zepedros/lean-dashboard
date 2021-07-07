@@ -5,6 +5,7 @@ import AddCredentials from './AddCredentials'
 import NameDescForm from "./NameDescForm";
 import Grid from '@material-ui/core/Grid';
 import List from '@material-ui/core/List';
+import {FormattedMessage} from 'react-intl';
 
 const testITems =
 {
@@ -38,7 +39,7 @@ export default function ProjectSettings({project, update}) {
   return (
     <List className={classes.list}>
       <Typography component="h1" variant="h4">
-        {project.name} Settings
+        {project.name} <FormattedMessage id="ProjectSettings.settings"/>
       </Typography>
       <NameDescForm project={project} updateProject={update}/>
       <AddMemberForm />

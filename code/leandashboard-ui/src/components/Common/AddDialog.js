@@ -10,6 +10,7 @@ import DateFnsUtils from '@date-io/date-fns'
 import { MuiPickersUtilsProvider } from '@material-ui/pickers'
 import useFetch from 'use-http'
 import { DatePicker } from "@material-ui/pickers";
+import {FormattedMessage} from 'react-intl';
 
 export default function AddProjectDialog({ showDialog, setShowDialog, title, type, refreshProjects, showDate }) {
     const [input, setInput] = useState({ name: "", description: "" })
@@ -78,7 +79,7 @@ export default function AddProjectDialog({ showDialog, setShowDialog, title, typ
                         autoFocus
                         margin="dense"
                         id="ProjectName"
-                        label="Name"
+                        label= {<FormattedMessage id="Projects.dialogButton.name"/>}
                         error={nameError}
                         helperText="Please input a name."
                         type="name"
@@ -90,7 +91,7 @@ export default function AddProjectDialog({ showDialog, setShowDialog, title, typ
                         autoFocus
                         margin="dense"
                         id="ProjectDescription"
-                        label="Description"
+                        label={<FormattedMessage id="Projects.dialogButton.description"/>}
                         error={descriptionError}
                         helperText="Please input a description."
                         type="description"
@@ -107,7 +108,7 @@ export default function AddProjectDialog({ showDialog, setShowDialog, title, typ
                                 clearable
                                 views={["date"]}
                                 format="dd/MM"
-                                label="End Date"
+                                label={ <FormattedMessage id="Projects.dialogButton.endDate"/>}
                                 disablePast={true}
                                 value={date}
                                 onChange={e => setDate(e)}
@@ -118,7 +119,7 @@ export default function AddProjectDialog({ showDialog, setShowDialog, title, typ
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose} color="primary">
-                        Cancel
+                    <FormattedMessage id="Projects.dialogButton.cancel"/>
                     </Button>
                     <Button onClick={handleSubmit} color="primary">
                         {title}

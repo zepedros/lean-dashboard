@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 import { useLocation } from 'react-router';
+import {FormattedMessage} from 'react-intl';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -56,19 +57,19 @@ export default function StickyFooter() {
 
   const footerData = [
     {
-      label: "About us",
+      label: "aboutUs",
       href: "/about",
     },
     {
-      label: "Terms",
+      label: "terms",
       href: "/terms",
     },
     {
-      label: "Privacy Policy",
+      label: "privacyPolicy",
       href: "/privacyPolicy",
     },
     {
-      label: "Contact us",
+      label: "contactUs",
       href: "/contact",
     },
   ];
@@ -85,7 +86,7 @@ export default function StickyFooter() {
             className: classes.menuButton,
           }}
         >
-          {label}
+          <FormattedMessage id={`HomePage.footer.${label}`}/>
         </Button>
       );
     });

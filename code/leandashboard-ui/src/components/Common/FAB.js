@@ -14,6 +14,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import WidgetsIcon from '@material-ui/icons/Widgets';
 import { __SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED } from 'react-dom';
 import { Link } from 'react-router-dom';
+import {FormattedMessage} from 'react-intl';
 
 const useStyles = makeStyles({
   list: {
@@ -72,7 +73,7 @@ export default function FAB(props) {
           <ListItem>
             <Button>
               <ListItemIcon> <DeleteIcon /></ListItemIcon>
-              <ListItemText primary={"Delete Dashboard"} />
+              <ListItemText primary={<FormattedMessage id="Dashboard.VerticalButton.thirdButton"/>} />
             </Button>
           </ListItem>
           : null
@@ -81,7 +82,7 @@ export default function FAB(props) {
           <ListItem>
             <Button>
               <ListItemIcon> <WidgetsIcon /></ListItemIcon>
-              <ListItemText primary={"Widgets Settings"} />
+              <ListItemText primary={<FormattedMessage id="Dashboard.VerticalButton.fourthButton"/>} />
             </Button>
           </ListItem>
           : null
