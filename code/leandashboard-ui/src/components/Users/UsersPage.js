@@ -12,8 +12,8 @@ import img from '../../images/Forbidden.png'
 export default function UsersPage() {
     const [users, setUsers] = useState([])
     const [refresh, setRefreshProjects] = useState(false)
-    const [userIsSuperuser, setUserIsSuperuser] = useState()
-    const { get, response, loading } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
+    const [userIsSuperuser, setUserIsSuperuser] = useState(true)
+    const { get, del, response, loading } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
     const context = useContext(UserContext)
 
     useEffect(() => {
@@ -33,12 +33,22 @@ export default function UsersPage() {
 
     async function loadUsers() {
         const getUsers = await get('/api/lean/users')
-        let ret
         console.log('alisa');
         if (getUsers) {
             setUsers(getUsers)
         }
         else setUsers([])
+    }
+
+    async function deleteUser(username){
+        const deleteUser = await del(`/api/lean/users/${username}`)
+        console.log('alisa')
+        if(response.ok){
+            alert('User was deleted')
+        }else{
+            alert(deleteUser.message)
+        }
+        //alert(`Deleted user with ID ${username}`)
     }
 
     async function checkIfUserIsSuperuser() {
@@ -68,7 +78,7 @@ export default function UsersPage() {
                                     </Hidden>
                                     <Hidden smDown>
                                         <Grid item xs={12} sm={12} md={12}>
-                                            <NavBar component={<UsersTable projects={users} refresh={doRefresh} userIsManager={userIsSuperuser} />} title={"LeanDashboard"} />
+                                            <NavBar component={<UsersTable projects={users} refresh={doRefresh} userIsManager={userIsSuperuser} deleteIconOnClick={deleteUser}  />} title={"LeanDashboard"} />
                                         </Grid>
                                     </Hidden>
                                 </div>

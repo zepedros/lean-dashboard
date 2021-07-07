@@ -343,7 +343,7 @@ function webapi(app, services, auth, authization) {
     app.get('/api/lean/users/:id', theWebApi.getUserById)
     app.get('/api/lean/users', theWebApi.getAllUsers)
     app.get('/api/lean/users/username/:username', theWebApi.getUserByUsername)
-    app.delete('/lean/users/:username', theWebApi.deleteUser)
+    app.delete('/api/lean/users/:username', theWebApi.deleteUser)
     app.put('/lean/users/:username/username', theWebApi.editUsername)
     app.put('/lean/users/:username/password', theWebApi.editPassword)
     app.post('/lean/login', async (req, res, next) => {

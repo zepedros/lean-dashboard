@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import { NavLink } from 'react-router-dom';
@@ -17,6 +17,13 @@ import Link from '@material-ui/core/Link';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
+import Container from '@material-ui/core/Container'
+
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -70,46 +77,95 @@ export default function CustomizedTables({ projects: users, refresh, deleteIconO
   const classes = useStyles();
   const [showFilter, setShowFilter] = useState(false)
   const [showDialog, setShowDialog] = useState(false)
+  const [userToDelete, setUserToDelete] = useState()
   const rows = users ? users.map(user => { return createData(user.username, user.id) }) : undefined
+  const [openDialog, setOpenDialog] = React.useState(false);
 
-  function handleOpenDialog() {
-    setShowDialog(true)
+
+  useEffect(() => {
+    console.log('User to delete is ' + userToDelete);
+}, [userToDelete])
+
+  const handleClickOpen = (username) => {
+    setUserToDelete(username)
+    setOpenDialog(true);
+  };
+
+  const handleClose = () => {
+    setUserToDelete(undefined)
+    setOpenDialog(false);
+  };
+
+
+  const deleteDialog = () => {
+    return (
+      <Dialog
+        open={openDialog}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">{`Do you want to delete ${userToDelete}'s account?`}</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Deleting a user account is not reversible and will remove that user from all it's project
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color="primary">
+            Cancel
+          </Button>
+          <Button onClick={() => deleteIconOnClick(userToDelete)} color="primary" autoFocus>
+            Delete
+          </Button>
+        </DialogActions>
+      </Dialog>
+    )
   }
+
+
+
+
 
   console.log(users)
 
   return (
     <div>
-      <Typography component="h1" variant="h5">
-        Lean Dashboard Users
-      </Typography>
-      <Paper >
-        <TableContainer component={Paper} elevation={3} style={{ maxHeight: 480 }}>
-          <IconButton aria-label="filter list" className={classes.filter}>
-            <FilterListIcon />
-          </IconButton>
-          <Table className={classes.table} aria-label="customized table" >
-            <TableHead className={classes.root}>
-              <TableRow>
-                <StyledTableCell>User</StyledTableCell>
-                <StyledTableCell></StyledTableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {rows && rows.map((row) => (
-                <StyledTableRow key={row.name}>
-                  <StyledTableCell align="left">{row.username}</StyledTableCell>
-                  <StyledTableCell align="right">
-                    <Button align="right">
-                      <DeleteIcon color="primary"></DeleteIcon>
-                    </Button>
-                  </StyledTableCell>
-                </StyledTableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </Paper>
+      <Container maxWidth="md">
+        <Typography component="h1" variant="h5">
+          Lean Dashboard Users
+        </Typography>
+        <Paper >
+          <TableContainer component={Paper} elevation={3} style={{ maxHeight: 480 }}>
+            <IconButton aria-label="filter list" className={classes.filter}>
+              <FilterListIcon />
+            </IconButton>
+            <Table className={classes.table} aria-label="customized table" >
+              <TableHead className={classes.root}>
+                <TableRow>
+                  <StyledTableCell align="center">User</StyledTableCell>
+                  <StyledTableCell></StyledTableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {rows && rows.map((row) => (
+                  <StyledTableRow key={row.id}>
+                    <StyledTableCell align="center">{row.username}</StyledTableCell>
+                    <StyledTableCell align="right">
+                      <Button align="right" onClick={() => handleClickOpen(row.username)}>
+                        <DeleteIcon color="primary"></DeleteIcon>
+                      </Button>
+                    </StyledTableCell>
+                  </StyledTableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </Paper>
+      </Container>
+      {
+        deleteDialog()
+      }
     </div>
   );
 }

@@ -1298,6 +1298,28 @@
 					"name": "Users",
 					"item": [
 						{
+							"name": "GET /api/lean/projects/users",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/lean/users",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"lean",
+										"users"
+									]
+								},
+								"description": "Get all project from a user (JIRA)"
+							},
+							"response": []
+						},
+						{
 							"name": "GET /api/lean/projects/user/{id}",
 							"request": {
 								"method": "GET",
@@ -1345,18 +1367,19 @@
 							"response": []
 						},
 						{
-							"name": "DELETE /api/lean/projects/users/{username}",
+							"name": "DELETE /api/lean/users/{username}",
 							"request": {
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8000/lean/users/temp",
+									"raw": "http://localhost:8000/api/lean/users/temp",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "8000",
 									"path": [
+										"api",
 										"lean",
 										"users",
 										"temp"
