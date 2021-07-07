@@ -8,6 +8,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from '@material-ui/core/Button';
 import useFetch from 'use-http'
+import {FormattedMessage} from 'react-intl';
 
 export default function ChangePasswordDialog({showDialog, setShowDialog}){
     const [input, setInput] = useState({ oldPassword: "", newPassword: "",confirmNewPassword:"" })
@@ -40,13 +41,13 @@ export default function ChangePasswordDialog({showDialog, setShowDialog}){
     return(
         <div>
             <Dialog open={showDialog} onClose={handleClose} aria-labelledby="form-dialog-title">
-                <DialogTitle id="form-dialog-title">Change Password</DialogTitle>
+                <DialogTitle id="form-dialog-title"><FormattedMessage id="Profile.changePassowrd.button"/></DialogTitle>
                 <DialogContent>
                     <TextField
                         autoFocus
                         margin="dense"
                         id="oldPassword"
-                        label="Old Password"
+                        label={<FormattedMessage id="Profile.changePassowrd.firstInput"/>}
                         error={oldPasswordError}
                         helperText="Please input your old password."
                         type="password"
@@ -58,7 +59,7 @@ export default function ChangePasswordDialog({showDialog, setShowDialog}){
                         autoFocus
                         margin="dense"
                         id="newPassword"
-                        label="New Password"
+                        label={<FormattedMessage id="Profile.changePassowrd.secondInput"/>}
                         error={newPassowrdError}
                         helperText="Please input your new password."
                         type="password"
@@ -70,7 +71,7 @@ export default function ChangePasswordDialog({showDialog, setShowDialog}){
                         autoFocus
                         margin="dense"
                         id="confirmNewPassword"
-                        label="Confirm New Password"
+                        label={<FormattedMessage id="Profile.changePassowrd.thirdInput"/>}
                         error={confirmNewPassowrdError}
                         helperText="Confirm your new password."
                         type="password"
@@ -81,10 +82,10 @@ export default function ChangePasswordDialog({showDialog, setShowDialog}){
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose} color="primary">
-                        Cancel
+                        <FormattedMessage id="Profile.changePassowrd.cancel"/>
                     </Button>
                     <Button onClick={handleSubmit} color="primary">
-                        Confirm
+                        <FormattedMessage id="Profile.changePassowrd.confirm"/>
                     </Button>
                 </DialogActions>
             </Dialog>

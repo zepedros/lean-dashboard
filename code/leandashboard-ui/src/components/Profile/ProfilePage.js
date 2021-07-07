@@ -14,6 +14,7 @@ import ChangePasswordDialog from "./ChangePasswordDialog";
 import { useState,useContext } from 'react'
 import Avatar from '@material-ui/core/Avatar';
 import UserContext from '../../common/UserContext';
+import {FormattedMessage} from 'react-intl';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -44,7 +45,7 @@ export default function ProfilePage(){
         return(
             <div>
                 
-                <Typography variant="h6" noWrap color="textPrimary">Profile</Typography>
+                <Typography variant="h6" noWrap color="textPrimary"><FormattedMessage id="Profile.profile"/></Typography>
                 <Box display="flex" p={1} justifyContent="center" bgcolor="background.paper">
                     
                         <div className={classes.root}>
@@ -53,7 +54,7 @@ export default function ProfilePage(){
                 </Box>
                 <Box display="flex" p={1} justifyContent="center" bgcolor="background.paper">
                     <FormControl className={classes.margin}>
-                    <InputLabel htmlFor="input-with-icon-adornment">Username</InputLabel>
+                    <InputLabel htmlFor="input-with-icon-adornment"><FormattedMessage id="Profile.username"/></InputLabel>
                     <Input
                     id="input-with-icon-adornment"
                     startAdornment={
@@ -69,7 +70,7 @@ export default function ProfilePage(){
                 <Box display="flex" p={1} bgcolor="background.paper">
                     <Box flexGrow={1}  justifyContent="flex-start"p={1} bgcolor="background.paper" >
                         <TextField
-                        label="Number of Projects"
+                        label={<FormattedMessage id="Profile.numberOfProjects"/>}
                         id="outlined-size-small"
                         defaultValue="5"
                         variant="outlined"
@@ -81,7 +82,7 @@ export default function ProfilePage(){
                 </Box>
                 <Box p={1} bgcolor="background.paper" >
                     <ChangePasswordDialog showDialog={showDialog} setShowDialog={setShowDialog} />
-                        <Button color="primary" onClick={handleOpenDialog}>Change Password</Button>
+                        <Button color="primary" onClick={handleOpenDialog}><FormattedMessage id="Profile.changePassowrd.button"/></Button>
                     </Box>
                
 

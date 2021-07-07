@@ -8,6 +8,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from '@material-ui/core/Button';
 import useFetch from 'use-http'
+import {FormattedMessage} from 'react-intl';
 
 export default function CreateAccountDialog({showDialog, setShowDialog}){
     const [input, setInput] = useState({ username: "", password: "" })
@@ -34,17 +35,16 @@ export default function CreateAccountDialog({showDialog, setShowDialog}){
     return(
         <div>
             <Dialog open={showDialog} onClose={handleClose} aria-labelledby="form-dialog-title">
-                <DialogTitle id="form-dialog-title">Create an Account</DialogTitle>
+                <DialogTitle id="form-dialog-title"><FormattedMessage id="Settings.createAccount"/></DialogTitle>
                 <DialogContent>
                 <DialogContentText>
-                As a superuser or project manager, you can create an account for a colleague. 
-                Username and password can be changed by your colleague.
+                 <FormattedMessage id="Settings.title"/>
                 </DialogContentText>
                     <TextField
                         autoFocus
                         margin="dense"
                         id="username"
-                        label="Username"
+                        label={<FormattedMessage id="Settings.username"/>}
                         error={usernameError}
                         helperText="Please input a username."
                         //type="password"
@@ -56,7 +56,7 @@ export default function CreateAccountDialog({showDialog, setShowDialog}){
                         autoFocus
                         margin="dense"
                         id="password"
-                        label="Password"
+                        label={<FormattedMessage id="Settings.password"/>}
                         error={passwordError}
                         helperText="Please input a password."
                         type="password"
@@ -67,10 +67,10 @@ export default function CreateAccountDialog({showDialog, setShowDialog}){
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose} color="primary">
-                        Cancel
+                        <FormattedMessage id="Settings.cancel"/>
                     </Button>
                     <Button onClick={handleSubmit} color="primary">
-                        Create an Account
+                        <FormattedMessage id="Settings.createAccount"/>
                     </Button>
                 </DialogActions>
             </Dialog>

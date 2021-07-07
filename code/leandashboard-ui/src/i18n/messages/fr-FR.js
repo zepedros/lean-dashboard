@@ -47,7 +47,9 @@ export default {
            home: 'Domicile',
            notifications: 'Notifications',
            settings: 'Paramètres',
-           account: 'Compte'
+           account: 'Compte',
+           profile: 'Profil',
+           logOut: 'Se déconnecter'
        }, 
        Dashboards:{
            dashboards: 'Tableaux de bord',
@@ -77,9 +79,12 @@ export default {
           addMembers: 'Ajouter des membres',
           addCredentials: "Ajouter des informations d'identification",
           roles: 'Rôles',
-          tools: 'Outils'
+          tools: 'Outils',
+          username:"Nom d'utilisateur"
       },
      Profile: {
+         profile:"Profil",
+         username:"Nom d'utilisateur",
          numberOfProjects: 'Nombre de projets',
          changePassowrd: {
              button: 'Changer le mot de passe',
@@ -89,6 +94,26 @@ export default {
              cancel: 'Annuler',
              confirm:'Confirmer'
          }
-     }  
+     },
+     Widget:{
+        button: "Ajouter un widget",
+        source: "Source",
+        config: "Configuration des widgets",
+        subTitle: "Sélectionnez les informations d'identification",
+        subTitle1: "Sélectionnez l'heure de mise à jour du widget",
+        time: "Temps",
+        interval:"intervalle de temps de mise à jour",
+        checkbox: "Date spécifique",
+        cancel:"Annuler"
+    } ,
+    Settings: {
+        settings: "Définitions",
+        language: "Langue",
+        createAccount: "Créer un compte",
+        title: "En tant que super utilisateur ou chef de projet, vous pouvez créer un compte pour un collègue. Le nom d'utilisateur et le mot de passe peuvent être modifiés par votre collègue.",
+        username:"Nom d'utilisateur",
+        password: "mot de passe",
+        cancel:"Annuler"
+    }   
     }
 }

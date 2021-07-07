@@ -12,6 +12,7 @@ import TemplateWidget from './TemplateWidget';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import { CircularProgress, Grid } from '@material-ui/core';
+import {FormattedMessage} from 'react-intl';
 
 const useStyles = makeStyles((theme) => ({
   table: {
@@ -85,7 +86,7 @@ export default function AddWidget() {
                     {template.name}
                   </Typography>
                   <Typography component="h1" variant="h6">
-                    Source: {template.source}
+                    <FormattedMessage id="Widget.source"/>: {template.source}
                   </Typography>
                 </>
               }
@@ -100,7 +101,7 @@ export default function AddWidget() {
         className={classes.button}
         onClick={() => { handleDialog() }}
       >
-        Add Widget
+        <FormattedMessage id="Widget.button"/>
       </Button>
     </div >
   )

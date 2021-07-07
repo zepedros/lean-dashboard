@@ -83,6 +83,8 @@ export default {
           username:"nome do utilizador"
       },
      Profile: {
+         profile:"Perfil",
+         username:"Nome de utilizador",
          numberOfProjects: 'Número de Projetos',
          changePassowrd: {
              button: 'Alterar palavra-chave',
@@ -92,6 +94,26 @@ export default {
              cancel: 'cancelar',
              confirm:'confirmar'
          }
-     }  
+     },
+     Widget:{
+         button: "Adicionar Widget",
+         source: "Fonte",
+         config: "Configuração do Widget",
+         subTitle: "Selecione as credenciais",
+         subTitle1: "Selecione o tempo de atualização do Widget",
+         time: "Tempo",
+         interval:"Intervalo de tempo de atualização",
+         checkbox: "Data Especifica",
+         cancel:"Cancelar"
+     } ,
+     Settings: {
+         settings: "Definições",
+         language: "Idioma",
+         createAccount: "Criar uma conta",
+         title: "Como super utilizador ou gerente de projeto, pode criar uma conta para um colega. Nome de utilizador e palavra-chave podem ser alteradas pelo seu colega.",
+         username:"Nome de utilizador",
+         password: "Palavra-chave",
+         cancel:"cancelar"
+     } 
     }
 }

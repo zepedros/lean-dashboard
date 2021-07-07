@@ -16,6 +16,7 @@ import { TimePicker, DatePicker } from "@material-ui/pickers";
 import { useParams } from "react-router-dom";
 import useFetch from 'use-http'
 import { useHistory } from "react-router-dom";
+import {FormattedMessage} from 'react-intl';
 
 export default function AddWidgetDialog({ showDialog, setShowDialog, source, templateId }) {
     const [selectedCredential, setSelectedCredential] = useState("")
@@ -111,10 +112,11 @@ export default function AddWidgetDialog({ showDialog, setShowDialog, source, tem
     return (
         <div>
             <Dialog open={showDialog} onClose={handleClose} aria-labelledby="form-dialog-title">
-                <DialogTitle id="form-dialog-title">Widget Configuration</DialogTitle>
+                <DialogTitle id="form-dialog-title"><FormattedMessage id="Widget.config"/></DialogTitle>
                 <DialogContent>
                     <DialogContentText>
-                        Select Credentials
+                    <FormattedMessage id="Widget.subTitle"/>
+                       
                     </DialogContentText>
                     <form>
                         <Select
@@ -133,7 +135,8 @@ export default function AddWidgetDialog({ showDialog, setShowDialog, source, tem
                         <DialogContentText>
                         </DialogContentText>
                         <DialogContentText>
-                            Select Widget Update Time
+                            <FormattedMessage id="Widget.subTitle1"/>
+                            
                         </DialogContentText>
                         <MuiPickersUtilsProvider utils={DateFnsUtils}>
                             <DialogContentText>
@@ -171,7 +174,7 @@ export default function AddWidgetDialog({ showDialog, setShowDialog, source, tem
                                         label="Time"
                                         value={time}
                                         onChange={e => setTime(e)}
-                                        helperText="Interval of time to update"
+                                        helperText={<FormattedMessage id="Widget.interval"/>}
                                     />
                                     <MonthWeekDayPicker props={month, weekday, setMonth, setWeekDay} />
                                 </div>
@@ -181,16 +184,16 @@ export default function AddWidgetDialog({ showDialog, setShowDialog, source, tem
                         </DialogContentText>
                         <FormControlLabel
                             control={<Checkbox value="date" onChange={e => setIsSpecificDate(e.target.checked)} />}
-                            label="Specific Date"
+                            label={<FormattedMessage id="Widget.checkbox"/>}
                         />
                     </form>
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose} color="primary">
-                        Cancel
+                        <FormattedMessage id="Widget.cancel"/>
                     </Button>
                     <Button onClick={handleSubmit} color="primary">
-                        Add Widget
+                        <FormattedMessage id="Widget.button"/>
                     </Button>
                 </DialogActions>
             </Dialog>

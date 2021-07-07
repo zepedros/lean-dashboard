@@ -54,19 +54,12 @@ function App() {
     }
   }
 
-  const local = navigator.language;
-
-let lang;
-if(local=== "en-en"){
-  lang=English
-}else{
-  lang=Portuguese
-}
+  
 
   console.log(currentSessionContext.credentials)
   return (
 
-    <I18nProvider locale={LOCALES.PORTUGUESE}>
+    <I18nProvider locale={localStorage.getItem("key")}>
     <div className="App">
       <UserContext.Provider value={currentSessionContext}>
         < Router>

@@ -47,7 +47,9 @@ export default {
            home: 'Home',
            notifications: 'Notifications',
            settings: 'Settings',
-           account: 'Account'
+           account: 'Account',
+           profile: 'Profile',
+           logOut: 'Log Out'
        }, 
        Dashboards:{
            dashboards: 'Dashboards',
@@ -80,7 +82,9 @@ export default {
           tools: 'Tools'
       },
      Profile: {
+         profile:"Profile",
          numberOfProjects: 'Number of Projects',
+         username:"username",
          changePassowrd: {
              button: 'Change Password',
              firstInput: 'Old Password',
@@ -89,6 +93,26 @@ export default {
              cancel: 'cancel',
              confirm:'confirm'
          }
+    },
+     Widget:{
+            button: "Add Widget",
+             source: "Source",
+             config: "Widget Configuration",
+             subTitle: "Select credentials",
+             subTitle1: "Select Widget Update Time",
+             time: "time",
+             interval:"update time interval",
+             checkbox: "Specific date",
+             cancel:"cancel"
+         } ,
+     Settings: {
+             settings: "Settings",
+             language: "Language",
+             createAccount: "Create an account",
+             title: "As a super user or project manager, you can create an account for a colleague. Username and password can be changed by your colleague.",
+             username:"username",
+             password: "password",
+             cancel:"cancel"
+         }   
      }  
-    }
 }

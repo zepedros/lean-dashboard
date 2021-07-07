@@ -11,6 +11,8 @@ import { useState } from 'react'
 import {I18nProvider,LOCALES} from '../../i18n'
 import CreateAccountDialog from './CreateAccountDialog'
 import Button from '@material-ui/core/Button';
+import {FormattedMessage} from 'react-intl';
+
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -24,11 +26,12 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SettingsPage(){
     const classes = useStyles();
-    const [language, setLanguage] = useState(LOCALES.ENGLISH);
+    const [language, setLanguage] = useState(LOCALES.PORTUGUESE);
     const [showDialog, setShowDialog] = useState(false)
 
     const handleChange = (event) => {
         setLanguage(event.target.value);
+        localStorage.setItem("key",event.target.value)
     };
 
     function handleOpenDialog() {
@@ -38,11 +41,11 @@ export default function SettingsPage(){
     const page = () => {
         return(
             <div>             
-                <Typography variant="h5" noWrap color="textPrimary">Lean Dashboard Settings</Typography>
+                <Typography variant="h5" noWrap color="textPrimary"><FormattedMessage id="Settings.settings" name={"Lean Dashboard"}/></Typography>
                 <Box display="flex" justifyContent="center" m={1} p={1} bgcolor="background.paper">
                     <Box p={1} bgcolor="background.paper">
                         <FormControl className={classes.formControl}>
-                            <InputLabel id="demo-simple-select-label">Language</InputLabel>
+                            <InputLabel id="demo-simple-select-label"><FormattedMessage id="Settings.language"/></InputLabel>
                             <Select
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"
@@ -50,10 +53,9 @@ export default function SettingsPage(){
                             onChange={handleChange}
                             defaultValue={10}
                             >
-                            <MenuItem value={10}>English</MenuItem>
-                            <MenuItem value={20}>Português</MenuItem>
-                            <MenuItem value={30}>Fançais</MenuItem>
-                            <MenuItem value={40}>Español</MenuItem>
+                            <MenuItem value={LOCALES.ENGLISH}>English</MenuItem>
+                            <MenuItem value={LOCALES.PORTUGUESE}>Português</MenuItem>
+                            <MenuItem value={LOCALES.FRENCH}>Fançais</MenuItem>
                             </Select>
                         </FormControl>
                     </Box>
@@ -61,7 +63,7 @@ export default function SettingsPage(){
                  <Box display="flex" justifyContent="center" m={1} p={1} bgcolor="background.paper">
 
                  <CreateAccountDialog showDialog={showDialog} setShowDialog={setShowDialog} />
-                        <Button color="primary" onClick={handleOpenDialog}>Create an Account</Button>
+                        <Button color="primary" onClick={handleOpenDialog}><FormattedMessage id="Settings.createAccount"/></Button>
                         </Box>
 
             </div>
