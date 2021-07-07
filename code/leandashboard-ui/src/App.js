@@ -22,6 +22,7 @@ import {IntlProvider } from "react-intl"
 import English from "./i18n/messages/en-EN"
 import Portuguese from "./i18n/messages/pt-PT"
 import {I18nProvider,LOCALES} from './i18n'
+import WidgetSettingsPage from './components/Dashboard/WidgetSettingsPage'
 
 function App() {
   const { get, post } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
@@ -94,6 +95,11 @@ if(local=== "en-en"){
             <Route exact path="/projects/:id/dashboards/:dashboardId/templates">
               <EnsureCredentials redirect="/signIn">
                 <AddWidgetPage />
+              </EnsureCredentials>
+            </Route>
+            <Route exact path="/projects/:id/dashboards/:dashboardId/settings">
+              <EnsureCredentials redirect="/signIn">
+                <WidgetSettingsPage />
               </EnsureCredentials>
             </Route>
             <Route exact path="/projects/:id/settings">

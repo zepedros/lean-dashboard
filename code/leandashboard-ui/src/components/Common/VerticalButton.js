@@ -29,17 +29,17 @@ export default function VerticalButton(props) {
   const classes = useStyles();
   const [showDialog, setShowDialog] = useState(false)
   let { id, dashboardId } = useParams();
-  var {del,response } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
+  var { del, response } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
   const history = useHistory()
 
   function handleOpenDialog() {
     setShowDialog(true)
   }
-  async function deleteDashboard(){
-     await del(`/api/lean/projects/${id}/dashboard/${dashboardId}`)
-     if(response.ok){
-        history.push(`/projects/${id}/dashboards`)
-      }
+  async function deleteDashboard() {
+    await del(`/api/lean/projects/${id}/dashboard/${dashboardId}`)
+    if (response.ok) {
+      history.push(`/projects/${id}/dashboards`)
+    }
   }
   return (
     <ButtonGroup
@@ -71,22 +71,22 @@ export default function VerticalButton(props) {
         : null
       }
       {!props.settings ?
-      <DashboardSettingsDialog showDialog={showDialog} setShowDialog={setShowDialog} />
-      :null
+        <DashboardSettingsDialog showDialog={showDialog} setShowDialog={setShowDialog} />
+        : null
       }
       <Tooltip title={props.title2} aria-label="add" placement="left">
-      {props.settings ?
-        <Button aria-label="add"  >    
+        {props.settings ?
+          <Button aria-label="add"  >
             <NavLink to={`/projects/${id}/settings`}>
               <SettingsIcon color='primary' />
             </NavLink>
-        </Button>
-        :
-        <Button aria-label="add"  onClick={handleOpenDialog}>    
-              <SettingsIcon color='primary' />            
-        </Button>
-  
-      }
+          </Button>
+          :
+          <Button aria-label="add" onClick={handleOpenDialog}>
+            <SettingsIcon color='primary' />
+          </Button>
+
+        }
       </Tooltip>
       {props.show ?
         <Tooltip title={props.title3} aria-label="add" placement="left">
@@ -99,7 +99,9 @@ export default function VerticalButton(props) {
       {props.show ?
         <Tooltip title={props.title4} aria-label="add" placement="left">
           <Button aria-label="add">
-            <WidgetsIcon />
+            <NavLink to={`/projects/${id}/dashboards/${dashboardId}/settings`}>
+              <WidgetsIcon color='primary' />
+            </NavLink>
           </Button>
         </Tooltip>
         : null
