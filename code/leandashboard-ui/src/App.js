@@ -54,13 +54,14 @@ function App() {
     }
   }
 
-  
+  //localStorage.setItem("key",LOCALES.PORTUGUESE)
 
   console.log(currentSessionContext.credentials)
   return (
 
-    <I18nProvider locale={localStorage.getItem("key")}>
+    
     <div className="App">
+      <I18nProvider locale={localStorage.getItem("key")}>
       <UserContext.Provider value={currentSessionContext}>
         < Router>
           <Switch>
@@ -116,10 +117,12 @@ function App() {
               </EnsureCredentials>
             </Route>
           </Switch>
+          
         </Router>
       </UserContext.Provider>
+      </I18nProvider>
     </div >
-    </I18nProvider>
+   
   )
 }
 export default App;
