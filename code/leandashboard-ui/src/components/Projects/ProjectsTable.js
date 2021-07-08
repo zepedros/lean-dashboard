@@ -215,8 +215,10 @@ export default function EnhancedTable({ projects, refresh }) {
    
     const totalDays = (new Date(project.endDate)- new Date(project.startDate))/ (1000 * 3600 * 24)
     const passDays = (new Date() - new Date(project.startDate))/ (1000 * 3600 * 24)
-    const percentageDaysMissing= passDays*100/totalDays
+    let percentageDaysMissing= passDays*100/totalDays
+    if(percentageDaysMissing >= 100) percentageDaysMissing=100
     project.completion=percentageDaysMissing.toFixed(1)
+    
     return percentageDaysMissing
   }
   const rows = projects ? projects.map(project => { {completionData(project)}return createData(project.id, project.name, project.state, project.owner,project.completion) }) : undefined

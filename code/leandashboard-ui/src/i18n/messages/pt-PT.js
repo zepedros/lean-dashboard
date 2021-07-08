@@ -44,7 +44,7 @@ export default {
            }
        },
        NavBar: {
-           home: 'Casa',//
+           home: 'Início',//
            notifications: 'Notificações',//
            settings: 'Definições',//
            account: 'Conta',//

@@ -44,7 +44,7 @@ export default {
            }
        },
        NavBar: {
-           home: 'Domicile',
+           home: 'Accueil',
            notifications: 'Notifications',
            settings: 'Paramètres',
            account: 'Compte',

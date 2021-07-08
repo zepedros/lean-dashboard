@@ -26,18 +26,19 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SettingsPage(){
     const classes = useStyles();
-    const [language, setLanguage] = useState(LOCALES.PORTUGUESE);
+    const [language, setLanguage] = useState(localStorage.getItem("key"));
     const [showDialog, setShowDialog] = useState(false)
 
     const handleChange = (event) => {
         setLanguage(event.target.value);
         localStorage.setItem("key",event.target.value)
+        window.location.reload();
     };
 
     function handleOpenDialog() {
         setShowDialog(true)
-      }
-
+    }
+    
     const page = () => {
         return(
             <div>             
@@ -51,7 +52,7 @@ export default function SettingsPage(){
                             id="demo-simple-select"
                             value={language}
                             onChange={handleChange}
-                            defaultValue={10}
+                            //defaultValue={language}
                             >
                             <MenuItem value={LOCALES.ENGLISH}>English</MenuItem>
                             <MenuItem value={LOCALES.PORTUGUESE}>Português</MenuItem>
@@ -65,7 +66,6 @@ export default function SettingsPage(){
                  <CreateAccountDialog showDialog={showDialog} setShowDialog={setShowDialog} />
                         <Button color="primary" onClick={handleOpenDialog}><FormattedMessage id="Settings.createAccount"/></Button>
                         </Box>
-
             </div>
         ) 
     }
