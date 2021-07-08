@@ -15,6 +15,7 @@ function webapi(app, services, auth, authization) {
 
         },
         getAllProjects: function (req, res) {
+            const alisa = req.headers
             services.getAllProjects(req.user)
                 .then(resp => {
                     console.log("Get All Lean Dashboards Projects")
