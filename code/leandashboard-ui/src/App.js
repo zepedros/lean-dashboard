@@ -17,11 +17,11 @@ import EnsureCredentials from './common/EnsureCredentials';
 import UserContext, { createRepository } from './common/UserContext';
 import useFetch from 'use-http'
 import { useEffect, useState } from 'react'
-import {FormattedMessage} from 'react-intl'
-import {IntlProvider } from "react-intl"
+import { FormattedMessage } from 'react-intl'
+import { IntlProvider } from "react-intl"
 import English from "./i18n/messages/en-EN"
 import Portuguese from "./i18n/messages/pt-PT"
-import {I18nProvider,LOCALES} from './i18n'
+import { I18nProvider, LOCALES } from './i18n'
 import WidgetSettingsPage from './components/Dashboard/WidgetSettingsPage'
 
 function App() {
@@ -54,75 +54,74 @@ function App() {
     }
   }
 
+  if(!localStorage.getItem("key")) localStorage.setItem("key",LOCALES.ENGLISH)
   //localStorage.setItem("key",LOCALES.PORTUGUESE)
 
   console.log(currentSessionContext.credentials)
   return (
-
-    
     <div className="App">
       <I18nProvider locale={localStorage.getItem("key")}>
-      <UserContext.Provider value={currentSessionContext}>
-        < Router>
-          <Switch>
-            <Route exact path="/" component={HomePage} />
-            <Route exact path="/signIn" component={SignIn}>
-              {userCredentials && <Redirect to="/projects" />}
-            </Route>
-            <Route exact path="/signUp" component={SignUp} />
-            <Route exact path="/about" component={About} />
-            <Route exact path="/projects">
-              <EnsureCredentials redirect="/signIn">
-                <ProjectsPage />
-              </EnsureCredentials>
-            </Route>
-            <Route exact path="/projects/:id/dashboards">
-              <EnsureCredentials redirect="/signIn">
-                <DashboardsPage />
-              </EnsureCredentials>
-            </Route>
-            <Route exact path="/projects/:id/dashboards/:dashboardId">
-              <EnsureCredentials redirect="/signIn">
-                <DashboardPage />
-              </EnsureCredentials>
-            </Route>
-            <Route exact path="/projects/:id/dashboards/:dashboardId/templates">
-              <EnsureCredentials redirect="/signIn">
-                <AddWidgetPage />
-              </EnsureCredentials>
-            </Route>
-            <Route exact path="/projects/:id/dashboards/:dashboardId/settings">
-              <EnsureCredentials redirect="/signIn">
-                <WidgetSettingsPage />
-              </EnsureCredentials>
-            </Route>
-            <Route exact path="/projects/:id/settings">
-              <EnsureCredentials redirect="/signIn">
-                <ProjectSettingsPage />
-              </EnsureCredentials>
-            </Route>
-            <Route exact path="/profile">
-              <EnsureCredentials redirect="/signIn">
-                <ProfilePage />
-              </EnsureCredentials>
-            </Route>
-            <Route exact path="/settings">
-              <EnsureCredentials redirect="/signIn">
-                <SettingsPage />
-              </EnsureCredentials>
-            </Route>
-            <Route exact path="/users">
-              <EnsureCredentials redirect="/signIn">
-                <UsersPage />
-              </EnsureCredentials>
-            </Route>
-          </Switch>
-          
-        </Router>
-      </UserContext.Provider>
+        <UserContext.Provider value={currentSessionContext}>
+          < Router>
+            <Switch>
+              <Route exact path="/" component={HomePage} />
+              <Route exact path="/signIn" component={SignIn}>
+                {userCredentials && <Redirect to="/projects" />}
+              </Route>
+              <Route exact path="/signUp" component={SignUp} />
+              <Route exact path="/about" component={About} />
+              <Route exact path="/projects">
+                <EnsureCredentials redirect="/signIn">
+                  <ProjectsPage />
+                </EnsureCredentials>
+              </Route>
+              <Route exact path="/projects/:id/dashboards">
+                <EnsureCredentials redirect="/signIn">
+                  <DashboardsPage />
+                </EnsureCredentials>
+              </Route>
+              <Route exact path="/projects/:id/dashboards/:dashboardId">
+                <EnsureCredentials redirect="/signIn">
+                  <DashboardPage />
+                </EnsureCredentials>
+              </Route>
+              <Route exact path="/projects/:id/dashboards/:dashboardId/templates">
+                <EnsureCredentials redirect="/signIn">
+                  <AddWidgetPage />
+                </EnsureCredentials>
+              </Route>
+              <Route exact path="/projects/:id/dashboards/:dashboardId/settings">
+                <EnsureCredentials redirect="/signIn">
+                  <WidgetSettingsPage />
+                </EnsureCredentials>
+              </Route>
+              <Route exact path="/projects/:id/settings">
+                <EnsureCredentials redirect="/signIn">
+                  <ProjectSettingsPage />
+                </EnsureCredentials>
+              </Route>
+              <Route exact path="/profile">
+                <EnsureCredentials redirect="/signIn">
+                  <ProfilePage />
+                </EnsureCredentials>
+              </Route>
+              <Route exact path="/settings">
+                <EnsureCredentials redirect="/signIn">
+                  <SettingsPage />
+                </EnsureCredentials>
+              </Route>
+              <Route exact path="/users">
+                <EnsureCredentials redirect="/signIn">
+                  <UsersPage />
+                </EnsureCredentials>
+              </Route>
+            </Switch>
+
+          </Router>
+        </UserContext.Provider>
       </I18nProvider>
     </div >
-   
+
   )
 }
 export default App;

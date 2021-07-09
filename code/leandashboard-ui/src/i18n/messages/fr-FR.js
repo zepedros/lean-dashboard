@@ -76,6 +76,7 @@ export default {
       ProjectSettings: {
           settings: 'Paramètres',
           submit: 'Soumettre',
+          credentials: 'TODO',
           addMembers: 'Ajouter des membres',
           addCredentials: "Ajouter des informations d'identification",
           roles: 'Rôles',

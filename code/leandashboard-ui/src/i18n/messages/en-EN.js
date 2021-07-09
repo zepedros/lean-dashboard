@@ -76,6 +76,7 @@ export default {
       ProjectSettings: {
           settings: 'Settings',
           submit: 'Submit',
+          credentials: 'Credentials',
           addMembers: 'Add Members',
           addCredentials: 'Add Credentials',
           roles: 'Roles',
