@@ -14,6 +14,7 @@
     "@testing-library/user-event": "^12.8.3",
     "chart.js": "^3.3.2",
     "date-fns": "^2.0.0-beta.5",
+    "flat": "^5.0.2",
     "js-cookie": "^2.2.1",
     "package.json": "^2.0.1",
     "pakage.json": "^1.0.0",

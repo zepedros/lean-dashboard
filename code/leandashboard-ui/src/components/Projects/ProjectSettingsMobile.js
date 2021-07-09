@@ -6,17 +6,9 @@ import NameDescForm from "./NameDescForm";
 import Grid from '@material-ui/core/Grid';
 import List from '@material-ui/core/List';
 import { Container } from "@material-ui/core";
-import {FormattedMessage} from 'react-intl';
-
-const testITems =
-{
-  pid: 1,
-  name: 'abc',
-  description: 'description',
-  owner: 'Manager',
-  state: 'Open'
-}
-
+import { FormattedMessage } from 'react-intl';
+import {useState} from 'react'
+import CredentialsList from "../Credentials/CredentialsList";
 const useStyles = makeStyles((theme) => ({
   root: {
     '& > *': {
@@ -42,17 +34,22 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function ProjectSettingsMobile({project, update}) {
+export default function ProjectSettingsMobile({ project, update }) {
   const classes = useStyles()
+  const [refresh, setRefresh] = useState(false)
+  function doRefresh() {
+    setRefresh(!refresh)
+  }
   return (
     <Container className={classes.container}>
       <List className={classes.list}>
         <Typography component="h1" variant="h4">
-          {project.name} <FormattedMessage id="ProjectSettings.settings"/>
+          {project.name} <FormattedMessage id="ProjectSettings.settings" />
         </Typography>
-        <NameDescForm project={project} updateProject={update}/>
+        <NameDescForm project={project} updateProject={update} />
         <AddMemberForm />
-        <AddCredentials project={project} />
+        <AddCredentials project={project} doRefresh={doRefresh}/>
+        <CredentialsList refresh={refresh}/>
       </List>
     </Container>
   )

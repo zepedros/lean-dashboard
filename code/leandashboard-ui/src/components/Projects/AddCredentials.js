@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function AddCredentials() {
+export default function AddCredentials({doRefresh}) {
   const [selectedValue, setSelectedValue] = useState("");
   const [credentialName, setCredentialName] = useState("")
   const [jiraCredential, setJiraCredential] = useState({ email: "", token: "", APIPath: "", APIVersion: "2" })
@@ -84,6 +84,7 @@ export default function AddCredentials() {
     }
     await post(`/api/lean/projects/${id}/credentials`, body)
     if(response.status === 201) {
+      doRefresh()
       alert('Credential Created')
     } else {
       alert(`${response.data.message}`)
@@ -92,7 +93,6 @@ export default function AddCredentials() {
     setJiraCredential({ email: "", token: "", APIPath: "", APIVersion: "2" })
     setAzureCredential({ email: "", token: "", Instance: "" })
     setCredentialName("")
-
   }
 
   return (

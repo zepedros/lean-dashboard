@@ -76,6 +76,7 @@ export default {
       ProjectSettings: {
           settings: 'Definições',
           submit: 'Submeter',
+          credentials: 'Credenciais',
           addMembers: 'Adicionar Membros',
           addCredentials: 'Adicionar Credenciais',
           roles: 'Papéis',
