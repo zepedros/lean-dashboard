@@ -33,19 +33,27 @@ export default function UsersPage() {
 
     async function loadUsers() {
         const getUsers = await get('/api/lean/users')
-        console.log('alisa');
+
         if (getUsers) {
             setUsers(getUsers)
         }
         else setUsers([])
+
+        const usersWithRoles = getUsers.map(user => {
+            /*const userRoles = get(`/api/lean/users/${user.username}/roles`)
+            return user['roles'] = userRoles*/
+            return get(`/api/lean/users/${user.username}/roles`)
+                .then(roles => user['roles'] = roles)
+        })
+        console.log(usersWithRoles);
     }
 
-    async function deleteUser(username){
+    async function deleteUser(username) {
         const deleteUser = await del(`/api/lean/users/${username}`)
         console.log('alisa')
-        if(response.ok){
+        if (response.ok) {
             alert('User was deleted')
-        }else{
+        } else {
             alert(deleteUser.message)
         }
         //alert(`Deleted user with ID ${username}`)
@@ -78,7 +86,7 @@ export default function UsersPage() {
                                     </Hidden>
                                     <Hidden smDown>
                                         <Grid item xs={12} sm={12} md={12}>
-                                            <NavBar component={<UsersTable projects={users} refresh={doRefresh} userIsManager={userIsSuperuser} deleteIconOnClick={deleteUser}  />} title={"LeanDashboard"} />
+                                            <NavBar component={<UsersTable projects={users} refresh={doRefresh} userIsManager={userIsSuperuser} deleteIconOnClick={deleteUser} />} title={"LeanDashboard"} />
                                         </Grid>
                                     </Hidden>
                                 </div>

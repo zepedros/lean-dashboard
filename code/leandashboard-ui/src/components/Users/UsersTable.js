@@ -24,6 +24,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import TuneIcon from '@material-ui/icons/Tune';
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -75,48 +76,76 @@ const useStyles = makeStyles((theme) => ({
 
 export default function CustomizedTables({ projects: users, refresh, deleteIconOnClick }) {
   const classes = useStyles();
-  const [showFilter, setShowFilter] = useState(false)
-  const [showDialog, setShowDialog] = useState(false)
   const [userToDelete, setUserToDelete] = useState()
+  const [selectedUserRoles, setSelectedUserRoles] = useState([])
   const rows = users ? users.map(user => { return createData(user.username, user.id) }) : undefined
-  const [openDialog, setOpenDialog] = React.useState(false);
+  const [deleteOpenDialog, setDeleteOpenDialog] = React.useState(false);
+  const [rolesOpenDialog, setRolesOpenDialog] = useState(false)
 
 
   useEffect(() => {
     console.log('User to delete is ' + userToDelete);
-}, [userToDelete])
+  }, [userToDelete])
 
-  const handleClickOpen = (username) => {
+  const handleDeleteClickOpen = (username) => {
     setUserToDelete(username)
-    setOpenDialog(true);
+    setDeleteOpenDialog(true);
   };
 
-  const handleClose = () => {
+  const handleDeleteClose = () => {
     setUserToDelete(undefined)
-    setOpenDialog(false);
+    setDeleteOpenDialog(false);
+  };
+
+  const handleRolesClickOpen = (username) => {
+    setSelectedUserRoles()
+    setRolesOpenDialog(true);
+  };
+
+  const handleRolesClickClose = () => {
+    setSelectedUserRoles([])
+    setRolesOpenDialog(false);
   };
 
 
   const deleteDialog = () => {
     return (
       <Dialog
-        open={openDialog}
-        onClose={handleClose}
+        open={deleteOpenDialog}
+        onClose={handleDeleteClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">{`Do you want to delete ${userToDelete}'s account?`}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            Deleting a user account is not reversible and will remove that user from all it's project
+            Deleting a user account is not reversible and will remove that user from all it's projects
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="primary">
+          <Button onClick={handleDeleteClose} color="primary">
             Cancel
           </Button>
           <Button onClick={() => deleteIconOnClick(userToDelete)} color="primary" autoFocus>
             Delete
+          </Button>
+        </DialogActions>
+      </Dialog>
+    )
+  }
+
+  const userRolesDialog = () => {
+    return (
+      <Dialog
+        open={rolesOpenDialog}
+        onClose={handleRolesClickClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">{`User Roles`}</DialogTitle>
+        <DialogActions>
+          <Button onClick={handleRolesClickClose} color="primary">
+            Close
           </Button>
         </DialogActions>
       </Dialog>
@@ -150,9 +179,14 @@ export default function CustomizedTables({ projects: users, refresh, deleteIconO
               <TableBody>
                 {rows && rows.map((row) => (
                   <StyledTableRow key={row.id}>
-                    <StyledTableCell align="center">{row.username}</StyledTableCell>
+                    <StyledTableCell
+                      align="center">{row.username}
+                    </StyledTableCell>
                     <StyledTableCell align="right">
-                      <Button align="right" onClick={() => handleClickOpen(row.username)}>
+                      <Button align="right" onClick={() => handleRolesClickOpen(row.username)}> 
+                        <TuneIcon color="primary"></TuneIcon>
+                      </Button>
+                      <Button align="right" onClick={() => handleDeleteClickOpen(row.username)}>
                         <DeleteIcon color="primary"></DeleteIcon>
                       </Button>
                     </StyledTableCell>
@@ -165,6 +199,9 @@ export default function CustomizedTables({ projects: users, refresh, deleteIconO
       </Container>
       {
         deleteDialog()
+      }
+      {
+        userRolesDialog()
       }
     </div>
   );
