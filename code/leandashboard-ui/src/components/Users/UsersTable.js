@@ -155,7 +155,7 @@ export default function CustomizedTables({ projects: users, refresh, deleteIconO
 
 
 
-
+  console.log('This are the users:')
   console.log(users)
 
   return (

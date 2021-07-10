@@ -32,20 +32,38 @@ export default function UsersPage() {
     }
 
     async function loadUsers() {
-        const getUsers = await get('/api/lean/users')
+        // const getUsers = await get('/api/lean/users')
 
-        if (getUsers) {
-            setUsers(getUsers)
+        // if (getUsers) {
+        //     setUsers(getUsers)
+        // }
+        // else setUsers([])
+
+        // const usersWithRoles = getUsers.map(user => {
+        //     /*const userRoles = get(`/api/lean/users/${user.username}/roles`)
+        //     return user['roles'] = userRoles*/
+        //     return get(`/api/lean/users/${user.username}/roles`)
+        //         .then(roles => user['roles'] = roles)
+        // })
+
+        // if(usersWithRoles){
+        //     setUsers(usersWithRoles)
+        // }else setUsers([])
+        // console.log(usersWithRoles);
+        const users = await get('/api/lean/users')
+        const usersWithRoles = users.map(async user => {
+            const roles = await get(`/api/lean/users/${user.username}/roles`);
+            let temp = user;
+            temp['roles'] = roles;
+            return temp;
+        })
+
+        if (Promise.all(usersWithRoles)) {
+            setUsers(usersWithRoles)
         }
         else setUsers([])
+        console.log('fim do loadUsers')
 
-        const usersWithRoles = getUsers.map(user => {
-            /*const userRoles = get(`/api/lean/users/${user.username}/roles`)
-            return user['roles'] = userRoles*/
-            return get(`/api/lean/users/${user.username}/roles`)
-                .then(roles => user['roles'] = roles)
-        })
-        console.log(usersWithRoles);
     }
 
     async function deleteUser(username) {
