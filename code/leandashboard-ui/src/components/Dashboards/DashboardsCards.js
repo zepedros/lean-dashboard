@@ -54,7 +54,13 @@ export default function DashboardsCards({ dashboards, refresh, userIsManager }) 
         </Grid>
         {
           userIsManager?
-          <VerticalButton title1={<FormattedMessage id="Dashboards.VerticalButton.firstButton" />}title2={<FormattedMessage id="Dashboards.VerticalButton.secondButton" />} title={<FormattedMessage id="Dashboards.dialogButton.title" />} refresh={refresh} type={<FormattedMessage id="Dashboards.dialogButton.subTitle" />} show={false} settings={true}/>
+          <VerticalButton title1={<FormattedMessage id="Dashboards.VerticalButton.firstButton" />}
+                          title2={<FormattedMessage id="Dashboards.VerticalButton.secondButton" />}
+                           title={<FormattedMessage id="Dashboards.dialogButton.title" />} 
+                           refresh={refresh} 
+                           type={<FormattedMessage id="Dashboards.dialogButton.subTitle" />} 
+                           show={false} 
+                           settings={true}/>
           :
           null
         }

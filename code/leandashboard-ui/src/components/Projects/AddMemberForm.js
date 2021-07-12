@@ -7,6 +7,9 @@ import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import { Typography } from "@material-ui/core";
 import {FormattedMessage} from 'react-intl';
+import { useState } from 'react'
+import { useParams } from "react-router-dom";
+import useFetch from 'use-http'
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -32,10 +35,36 @@ const useStyles = makeStyles((theme) => ({
 
 export default function AddMemberForm() {
   const classes = useStyles();
-  const [role, setRole] = React.useState('');
-  const handleChange = (event) => {
-    setRole(event.target.value);
-  };
+  const [input, setInput] = useState({ username: "" })
+  const [usernameError, setUsernameError] = useState(false)
+  const { post } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
+  let { id } = useParams();
+
+  function addMember(){
+    if (!input.username) {
+      alert('Please insert a username')
+      setUsernameError(true)
+      return
+    }
+    const body = {
+      username: input.username
+    }
+    postAddMember(body).then(postresp => {
+      console.log(postresp)
+      if (postresp.statusCode === 201) {
+          console.log('post done')
+          alert("Add Member done!")
+      } else {
+          alert("Error adding member")
+          console.log('no post')
+      }
+  })
+  setInput({ username: "" }); //not working
+  }
+  
+  async function postAddMember(body) {
+    return await post(`api/lean/projects/${id}/users`, body)
+}
 
   return (
     <Grid container >
@@ -44,33 +73,18 @@ export default function AddMemberForm() {
           <FormattedMessage id="ProjectSettings.addMembers"/>
         </Typography>
         <Grid item>
-          <TextField
-            label=""
+        <TextField
+            label={<FormattedMessage id="Settings.username"/>}
             id="outlined-margin-dense"
             className={classes.textField}
             placeholder="Username"
             margin="dense"
             variant="outlined"
+            onChange={e => { setInput({ username: e.target.value }) }}
+            error={usernameError}
           />
         </Grid>
-        <Grid item>
-          <FormControl variant="outlined" className={classes.formControl}>
-            <InputLabel id="demo-simple-select-outlined-label" >Roles</InputLabel>
-            <Select
-              labelId="demo-simple-select-outlined-label"
-              id="demo-simple-select-outlined"
-              value={role}
-              onChange={handleChange}
-              label="Roles"
-            >
-              <MenuItem value={10}>manager</MenuItem>
-              <MenuItem value={20}>admin</MenuItem>
-              <MenuItem value={30}>guest</MenuItem>
-              <MenuItem value={40}>Colaborator</MenuItem>
-            </Select>
-          </FormControl>
-        </Grid>
-        <Button variant="contained" color="primary">
+        <Button variant="contained" color="primary" onClick={addMember}>
         <FormattedMessage id="ProjectSettings.submit"/>
         </Button>
       </form>

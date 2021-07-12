@@ -9,16 +9,32 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from '@material-ui/core/Button';
 import useFetch from 'use-http'
 import {FormattedMessage} from 'react-intl';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import Input from '@material-ui/core/Input';
+import IconButton from '@material-ui/core/IconButton';
+import InputLabel from '@material-ui/core/InputLabel';
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
 
 export default function CreateAccountDialog({showDialog, setShowDialog}){
-    const [input, setInput] = useState({ username: "", password: "" })
+    const [input, setInput] = useState({ username: "", password: "", showPassword: false, })
     const [usernameError, setUsernameError] = useState(false)
     const [passwordError, setPasswordError] = useState(false)
-
+    const { post } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
+   
+    
 
     function handleClose() {
         setShowDialog(false)
     }
+    const handleClickShowPassword = () => {
+        setInput({ ...input, showPassword: !input.showPassword });
+      };
+
+      const handleMouseDownPassword = (event) => {
+        event.preventDefault();
+      }; 
+
     function handleSubmit() {
         if (!input.username) {
             alert('Please insert a username')
@@ -30,7 +46,25 @@ export default function CreateAccountDialog({showDialog, setShowDialog}){
             setPasswordError(true)
             return
         }
+
+        const body = {
+            username: input.username,
+            password: input.password
+        }
+        postCreateAccount(body).then(postresp => {
+            console.log(postresp)
+            if (postresp.statusCode === 201) {
+                console.log('post done')
+                alert("Account created!")
+            } else {
+                alert("Error creating Account")
+                console.log('no post')
+            }
+        })
         handleClose()
+    }
+    async function postCreateAccount(body) {
+        return await post('lean/register', body)
     }
     return(
         <div>
@@ -52,24 +86,32 @@ export default function CreateAccountDialog({showDialog, setShowDialog}){
                         helperText={usernameError}
                         fullWidth
                     />
-                    <TextField
-                        autoFocus
-                        margin="dense"
-                        id="password"
-                        label={<FormattedMessage id="Settings.password"/>}
-                        error={passwordError}
-                        helperText="Please input a password."
-                        type="password"
-                        onChange={e => { setInput({ username: input.username, password: e.target.value }) }}
-                        helperText={passwordError}
-                        fullWidth
-                    />
+                    
+                     <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
+                        <Input
+                            id="standard-adornment-password"
+                            type={input.showPassword ? 'text' : 'password'}
+                            value={input.password}
+                            //onChange={handleChange('password')}
+                            onChange={e => { setInput({ username: input.username, password: e.target.value }) }}
+                            endAdornment={
+                            <InputAdornment position="end">
+                                <IconButton
+                                aria-label="toggle password visibility"
+                                onClick={handleClickShowPassword}
+                                onMouseDown={handleMouseDownPassword}
+                                >
+                                {input.showPassword ? <Visibility /> : <VisibilityOff />}
+                                </IconButton>
+                            </InputAdornment>
+                            }
+                        />
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose} color="primary">
                         <FormattedMessage id="Settings.cancel"/>
                     </Button>
-                    <Button onClick={handleSubmit} color="primary">
+                    <Button onClick={handleSubmit} color="primary" >
                         <FormattedMessage id="Settings.createAccount"/>
                     </Button>
                 </DialogActions>

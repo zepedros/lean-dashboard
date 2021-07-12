@@ -6,27 +6,27 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from '@material-ui/core/Button';
-import DateFnsUtils from '@date-io/date-fns'
-import { MuiPickersUtilsProvider } from '@material-ui/pickers'
 import useFetch from 'use-http'
-import { DatePicker } from "@material-ui/pickers";
+import { useParams } from 'react-router';
 
-export default function AddProjectDialog({ showDialog, setShowDialog }) {
+
+export default function AddProjectDialog({ showDialog, setShowDialog,refreshDashboards }) {
     const [input, setInput] = useState({ name: "", description: "" })
-    const [date, setDate] = useState(new Date())
     const [nameError, setNameError] = useState(false)
     const [descriptionError, setDescriptionError] = useState(false)
-    const { post } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
+    const { put,response } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
+    let { id,dashboardId } = useParams();
 
     function handleClose() {
         setInput({ name: "", description: "" })
         setNameError(false)
         setDescriptionError(false)
         setShowDialog(false)
-        setDate(new Date())
+
     }
 
-    function handleSubmit() {
+
+    async function handleSubmit() {
         if (!input.name) {
             alert('Please insert a name!!')
             setNameError(true)
@@ -37,8 +37,13 @@ export default function AddProjectDialog({ showDialog, setShowDialog }) {
             setDescriptionError(true)
             return
         }
-       
-    
+        await put(`/api/lean/projects/${id}/dashboard/${dashboardId}`, { name: input.name, description: input.description })
+        if (response.status === 200) {
+            alert("Dashboard updated")
+            //update
+        } else {
+            alert(response.data.message)
+        }
         handleClose()
     }
 
