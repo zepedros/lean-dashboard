@@ -41,10 +41,7 @@ export default function Header() {
   const { header, logo, menuButton, toolbar } = useStyles();
 
   const headersData = [
-    {
-      label: "signUp",
-      href: "/signUp",
-    },
+    
     {
       label: "signIn",
       href: "/signIn",
@@ -52,21 +49,24 @@ export default function Header() {
   ];
 
   const getMenuButtons = () => {
-    return headersData.map(({ label, href }) => {
+   
       return (
+        <div>
         <Button variant="outlined" color="primary" maxWidth="sm"
           {...{
-            key: label,
+            key:  "signIn",
             color: "inherit",
-            to: href,
+            to: "/signIn",
             component: Link,
             className: menuButton,
           }}
         >
-          <FormattedMessage id={`login.${label}`} defaultMessage="Merda"/>
+          <FormattedMessage id={`login.signIn`} />
         </Button>
+        
+        </div>
       );
-    });
+   
   };
 
   const femmecubatorLogo = (

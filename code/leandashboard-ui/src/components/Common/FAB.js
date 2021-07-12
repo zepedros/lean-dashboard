@@ -71,7 +71,7 @@ export default function FAB(props) {
         </ListItem>
         {props.show ?
           <ListItem>
-            <Button>
+            <Button >
               <ListItemIcon> <DeleteIcon /></ListItemIcon>
               <ListItemText primary={<FormattedMessage id="Dashboard.VerticalButton.thirdButton"/>} />
             </Button>

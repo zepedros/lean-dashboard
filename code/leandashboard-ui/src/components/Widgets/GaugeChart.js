@@ -7,6 +7,7 @@ export default function(){
         colors={["#FF5F6D", "#FFC371"]} 
         arcWidth={0.3} 
         percent={0.37} 
+        textColor="#FF5F6D"
       />
     )
 }

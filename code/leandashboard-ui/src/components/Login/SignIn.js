@@ -65,15 +65,7 @@ export default function SignIn() {
         <div className={classes.paper}>
           <Typography component="h1" variant="h5">
             <FormattedMessage id="login.welcome" /> Lean Dashboard
-          </Typography>
-          <Grid item>
-            <Typography component="h7" variant="h8">
-            <FormattedMessage id="login.forgotPass" /> 
-              <Link href="#" variant="body2" className={classes.linkColor}>
-                {"Sign Up"}
-              </Link>
-            </Typography>
-          </Grid>
+          </Typography>   
           <Form button={ <FormattedMessage id="login.signIn" /> } login={true} />
         </div>
       </Grid>

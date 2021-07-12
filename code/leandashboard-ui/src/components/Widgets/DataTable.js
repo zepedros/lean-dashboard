@@ -7,6 +7,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import TableContainer from '@material-ui/core/TableContainer';
 
 const styles = theme => ({
   root: {
@@ -31,6 +32,13 @@ const rows = [
   createData('Eclair', 262, 16.0, 24, 6.0),
   createData('Cupcake', 305, 3.7, 67, 4.3),
   createData('Gingerbread', 356, 16.0, 49, 3.9),
+  createData('Cupcake', 305, 3.7, 67, 4.3),
+  createData('Cupcake', 305, 3.7, 67, 4.3),
+  createData('Cupcake', 305, 3.7, 67, 4.3),
+  createData('Cupcake', 305, 3.7, 67, 4.3),
+  createData('Cupcake', 305, 3.7, 67, 4.3),
+  createData('Cupcake', 305, 3.7, 67, 4.3),
+
 ];
 
 function SimpleTable(props) {
@@ -38,7 +46,8 @@ function SimpleTable(props) {
 
   return (
     <Paper className={classes.root}>
-      <Table className={classes.table}>
+      <TableContainer component={Paper} elevation={3} style={{ maxHeight: 400 }}>
+      <Table className={classes.table} >
         <TableHead>
           <TableRow>
             <TableCell>Dessert (100g serving)</TableCell>
@@ -62,6 +71,7 @@ function SimpleTable(props) {
           ))}
         </TableBody>
       </Table>
+      </TableContainer>
     </Paper>
   );
 }
