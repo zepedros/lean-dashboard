@@ -115,6 +115,13 @@ export default {
          username:"Nome de utilizador",
          password: "Palavra-chave",
          cancel:"cancelar"
-     } 
+     } ,
+     Credentials: {
+         name: 'Nome',
+         path: 'Caminho da API',
+         version: 'Versão da API',
+         username:"Nome de utilizador",
+         password: "Palavra-chave"
+     }
     }
 }

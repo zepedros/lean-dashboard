@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function CredentialsList({ refresh }) {
+export default function CredentialsList({ refresh, doRefresh }) {
   const classes = useStyles();
   const [credentials, setCredentials] = useState([])
   const [userIsManager, setUserIsManager] = useState(false)
@@ -69,10 +69,6 @@ export default function CredentialsList({ refresh }) {
     else setCredentials(undefined)
   }
 
-  async function getUsername(owner) {
-    return await get(`/api/lean/users/${owner}`)
-  }
-
   async function checkIfUserIsManager() {
     const userRoles = await get(`/api/lean/users/${context.credentials.username}/roles`)
     let userIsManager = false
@@ -85,17 +81,10 @@ export default function CredentialsList({ refresh }) {
   }
 
   const [showFilter, setShowFilter] = useState(false)
-  const [showDialog, setShowDialog] = useState(false)
 
   function handleFilter() {
     setShowFilter(!showFilter)
   }
-
-  function handleOpenDialog() {
-    setShowDialog(true)
-  }
-
-
 
   //TODO A PARTE QUE O BOTAO DO FILTRO LIGA
   return (
@@ -109,7 +98,7 @@ export default function CredentialsList({ refresh }) {
         </IconButton>
         <List dense={false} style={{ maxHeight: '70%', overflow: 'scroll' }}>
           {credentials && credentials.map(credential => {
-            return <CredentialsItem key={credential.id} credential={credential.credentials} />
+            return <CredentialsItem key={credential.id} credential={credential.credentials} refresh={doRefresh} credId={credential.id}/>
           })}
         </List>
       </Container>
