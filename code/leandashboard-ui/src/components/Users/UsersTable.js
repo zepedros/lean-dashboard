@@ -25,6 +25,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import TuneIcon from '@material-ui/icons/Tune';
+import Chip from '@material-ui/core/Chip';
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -74,7 +75,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function CustomizedTables({ projects: users, refresh, deleteIconOnClick }) {
+export default function CustomizedTables({ users, refresh, deleteIconOnClick }) {
   const classes = useStyles();
   const [userToDelete, setUserToDelete] = useState()
   const [selectedUserRoles, setSelectedUserRoles] = useState([])
@@ -84,8 +85,8 @@ export default function CustomizedTables({ projects: users, refresh, deleteIconO
 
 
   useEffect(() => {
-    console.log('User to delete is ' + userToDelete);
-  }, [userToDelete])
+    console.log('User roles are \n' + selectedUserRoles);
+  }, [selectedUserRoles])
 
   const handleDeleteClickOpen = (username) => {
     setUserToDelete(username)
@@ -98,7 +99,12 @@ export default function CustomizedTables({ projects: users, refresh, deleteIconO
   };
 
   const handleRolesClickOpen = (username) => {
-    setSelectedUserRoles()
+    let indexOfUser = users.findIndex(user => user.username === username)
+    //let selectedUser = users.filter(user => user.username === username)
+    let selectedUser = users[indexOfUser]
+    let roles = selectedUser.roles
+    console.log('user roles setting')
+    setSelectedUserRoles(roles)
     setRolesOpenDialog(true);
   };
 
@@ -143,6 +149,12 @@ export default function CustomizedTables({ projects: users, refresh, deleteIconO
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">{`User Roles`}</DialogTitle>
+        <DialogContent>
+          {selectedUserRoles.map(role => <Chip color="primary"
+                    label={role.role}
+                    size="small"
+                    onClick={() => {alert(role.role)}}/>)}
+        </DialogContent>
         <DialogActions>
           <Button onClick={handleRolesClickClose} color="primary">
             Close
@@ -151,12 +163,6 @@ export default function CustomizedTables({ projects: users, refresh, deleteIconO
       </Dialog>
     )
   }
-
-
-
-
-  console.log('This are the users:')
-  console.log(users)
 
   return (
     <div>
@@ -183,7 +189,7 @@ export default function CustomizedTables({ projects: users, refresh, deleteIconO
                       align="center">{row.username}
                     </StyledTableCell>
                     <StyledTableCell align="right">
-                      <Button align="right" onClick={() => handleRolesClickOpen(row.username)}> 
+                      <Button align="right" onClick={() => handleRolesClickOpen(row.username)}>
                         <TuneIcon color="primary"></TuneIcon>
                       </Button>
                       <Button align="right" onClick={() => handleDeleteClickOpen(row.username)}>

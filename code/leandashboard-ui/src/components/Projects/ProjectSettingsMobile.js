@@ -49,7 +49,7 @@ export default function ProjectSettingsMobile({ project, update }) {
         <NameDescForm project={project} updateProject={update} />
         <AddMemberForm />
         <AddCredentials project={project} doRefresh={doRefresh}/>
-        <CredentialsList refresh={refresh}/>
+        <CredentialsList refresh={refresh} doRefresh={doRefresh}/>
       </List>
     </Container>
   )

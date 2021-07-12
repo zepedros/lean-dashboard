@@ -6,7 +6,7 @@ import NameDescForm from "./NameDescForm";
 import Grid from '@material-ui/core/Grid';
 import List from '@material-ui/core/List';
 import { FormattedMessage } from 'react-intl';
-import CredentialsCards from "../Credentials/CredentialsCards";
+import CredentialsList from "../Credentials/CredentialsList";
 import {useState} from 'react'
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -40,7 +40,7 @@ export default function ProjectSettings({ project, update }) {
       <NameDescForm project={project} updateProject={update} />
       <AddMemberForm />
       <AddCredentials project={project} doRefresh={doRefresh}/>
-      <CredentialsCards refresh={refresh}/>
+      <CredentialsList refresh={refresh} doRefresh={doRefresh}/>
     </List>
   )
 }
