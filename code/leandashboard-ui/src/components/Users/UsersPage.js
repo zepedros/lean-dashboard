@@ -17,9 +17,7 @@ export default function UsersPage() {
     const context = useContext(UserContext)
 
     useEffect(() => {
-        loadUsers().then(() => {
-            console.log(response.data)
-        })
+        loadUsers()
     }, [refresh])
 
     useEffect(() => {
@@ -32,43 +30,20 @@ export default function UsersPage() {
     }
 
     async function loadUsers() {
-        // const getUsers = await get('/api/lean/users')
+        let getUsers = await get('/api/lean/users')
 
-        // if (getUsers) {
-        //     setUsers(getUsers)
-        // }
-        // else setUsers([])
-
-        // const usersWithRoles = getUsers.map(user => {
-        //     /*const userRoles = get(`/api/lean/users/${user.username}/roles`)
-        //     return user['roles'] = userRoles*/
-        //     return get(`/api/lean/users/${user.username}/roles`)
-        //         .then(roles => user['roles'] = roles)
-        // })
-
-        // if(usersWithRoles){
-        //     setUsers(usersWithRoles)
-        // }else setUsers([])
-        // console.log(usersWithRoles);
-        const users = await get('/api/lean/users')
-        const usersWithRoles = users.map(async user => {
-            const roles = await get(`/api/lean/users/${user.username}/roles`);
-            let temp = user;
-            temp['roles'] = roles;
-            return temp;
-        })
-
-        if (Promise.all(usersWithRoles)) {
-            setUsers(usersWithRoles)
+        for(let i = 0; i < getUsers.length; i++){
+            const userRoles = await get(`/api/lean/users/${getUsers[i].username}/roles`)
+            getUsers[i]['roles'] = userRoles
+        }
+        if (getUsers) {
+            setUsers(getUsers)
         }
         else setUsers([])
-        console.log('fim do loadUsers')
-
     }
 
     async function deleteUser(username) {
         const deleteUser = await del(`/api/lean/users/${username}`)
-        console.log('alisa')
         if (response.ok) {
             alert('User was deleted')
         } else {
@@ -104,7 +79,7 @@ export default function UsersPage() {
                                     </Hidden>
                                     <Hidden smDown>
                                         <Grid item xs={12} sm={12} md={12}>
-                                            <NavBar component={<UsersTable projects={users} refresh={doRefresh} userIsManager={userIsSuperuser} deleteIconOnClick={deleteUser} />} title={"LeanDashboard"} />
+                                            <NavBar component={<UsersTable users={users} refresh={doRefresh} userIsManager={userIsSuperuser} deleteIconOnClick={deleteUser} />} title={"LeanDashboard"} />
                                         </Grid>
                                     </Hidden>
                                 </div>
