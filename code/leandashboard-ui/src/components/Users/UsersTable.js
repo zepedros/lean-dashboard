@@ -2,7 +2,6 @@ import React from 'react';
 import { useState, useEffect } from 'react'
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
-import { NavLink } from 'react-router-dom';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
@@ -10,15 +9,11 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import AddDialog from '../Common/AddDialog.js'
-import AddIcon from '@material-ui/icons/Add';
 import Button from '@material-ui/core/Button';
-import Link from '@material-ui/core/Link';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Container from '@material-ui/core/Container'
-
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -26,6 +21,13 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import TuneIcon from '@material-ui/icons/Tune';
 import Chip from '@material-ui/core/Chip';
+import ClearIcon from '@material-ui/icons/Clear';
+import Divider from '@material-ui/core/Divider';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -75,52 +77,74 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function CustomizedTables({ users, refresh, deleteIconOnClick }) {
+export default function CustomizedTables({ users, refresh, deleteUser, removeRoleFromUser, addRoleToUser }) {
   const classes = useStyles();
   const [userToDelete, setUserToDelete] = useState()
+  const [userToAlterRoles, setUserToAlterRoles] = useState()
   const [selectedUserRoles, setSelectedUserRoles] = useState([])
+  const [roleToRemove, setRoleToRemove] = useState()
+  const [roleToGive, setRoleToGive] = React.useState('');
   const rows = users ? users.map(user => { return createData(user.username, user.id) }) : undefined
-  const [deleteOpenDialog, setDeleteOpenDialog] = React.useState(false);
+  const [deleteUserOpenDialog, setDeleteUserOpenDialog] = useState(false);
   const [rolesOpenDialog, setRolesOpenDialog] = useState(false)
+  const [removeRoleOpenDialog, setRemoveRoleOpenDialog] = useState(false)
+
+
+
 
 
   useEffect(() => {
     console.log('User roles are \n' + selectedUserRoles);
   }, [selectedUserRoles])
 
-  const handleDeleteClickOpen = (username) => {
+  const handleChange = (event) => {
+    setRoleToGive(event.target.value);
+  };
+
+  const handleDeleteUserOpen = (username) => {
     setUserToDelete(username)
-    setDeleteOpenDialog(true);
+    setDeleteUserOpenDialog(true);
   };
 
-  const handleDeleteClose = () => {
+  const handleDeleteUserClose = () => {
     setUserToDelete(undefined)
-    setDeleteOpenDialog(false);
+    setDeleteUserOpenDialog(false);
   };
 
-  const handleRolesClickOpen = (username) => {
+  const handleRolesOpen = (username) => {
     let indexOfUser = users.findIndex(user => user.username === username)
     //let selectedUser = users.filter(user => user.username === username)
     let selectedUser = users[indexOfUser]
     let roles = selectedUser.roles
-    console.log('user roles setting')
+    setUserToAlterRoles(username)
     setSelectedUserRoles(roles)
     setRolesOpenDialog(true);
   };
 
-  const handleRolesClickClose = () => {
+  const handleRolesClose = () => {
     setSelectedUserRoles([])
+    //setUserToAlterRoles(undefined)
     setRolesOpenDialog(false);
   };
 
+  const handleRemoveRoleOpen = (role) => {
+    setRoleToRemove(role)
+    setRemoveRoleOpenDialog(true)
+  };
 
-  const deleteDialog = () => {
+  const handleRemoveRoleClose = () => {
+    setUserToAlterRoles(undefined)
+    setRemoveRoleOpenDialog(false);
+  };
+
+
+  const deleteUserDialog = () => {
     return (
       <Dialog
-        open={deleteOpenDialog}
-        onClose={handleDeleteClose}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
+        open={deleteUserOpenDialog}
+        onClose={handleDeleteUserClose}
+        aria-labelledby="delete-user-alert-dialog"
+        aria-describedby="alert dialog to handle user deletion"
       >
         <DialogTitle id="alert-dialog-title">{`Do you want to delete ${userToDelete}'s account?`}</DialogTitle>
         <DialogContent>
@@ -129,10 +153,10 @@ export default function CustomizedTables({ users, refresh, deleteIconOnClick }) 
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleDeleteClose} color="primary">
+          <Button onClick={handleDeleteUserClose} color="primary">
             Cancel
           </Button>
-          <Button onClick={() => deleteIconOnClick(userToDelete)} color="primary" autoFocus>
+          <Button onClick={() => deleteUser(userToDelete)} color="primary" autoFocus>
             Delete
           </Button>
         </DialogActions>
@@ -144,23 +168,82 @@ export default function CustomizedTables({ users, refresh, deleteIconOnClick }) 
     return (
       <Dialog
         open={rolesOpenDialog}
-        onClose={handleRolesClickClose}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
+        fullWidth="sm"
+        maxWidth="sm"
+        onClose={handleRolesClose}
+        aria-labelledby="user-roles-alert-dialog"
+        aria-describedby="dialog used to show and manage roles"
       >
-        <DialogTitle id="alert-dialog-title">{`User Roles`}</DialogTitle>
+        <DialogTitle id="alert-dialog-title">{`${userToAlterRoles} Roles`}</DialogTitle>
         <DialogContent>
           {selectedUserRoles.map(role => <Chip color="primary"
-                    label={role.role}
-                    size="small"
-                    onClick={() => {alert(role.role)}}/>)}
+            label={role.role}
+            icon={<ClearIcon></ClearIcon>}
+            onClick={() => {
+              setRoleToRemove(role.role)
+              handleRemoveRoleOpen(role.role)
+            }}>
+          </Chip>)}
+          <DialogContent>
+            <Divider variant='fullWidth'></Divider>
+          </DialogContent>
+          <DialogContent>
+            Give user the role: {rolesSelectForm()} <Button onClick={() => addRoleToUser(userToAlterRoles, roleToGive)} align="right" variant="contained" color="primary">Add</Button>
+          </DialogContent>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleRolesClickClose} color="primary">
+          <Button onClick={handleRolesClose} color="primary">
             Close
           </Button>
         </DialogActions>
       </Dialog>
+    )
+  }
+
+  const removeRoleFromUserDialog = () => {
+    return (
+      <Dialog
+        open={removeRoleOpenDialog}
+        onClose={handleRemoveRoleClose}
+        aria-labelledby="remove-role-alert-dialog"
+        aria-describedby="dialog to confirm role removal from a user"
+      >
+        <DialogTitle id="alert-dialog-title">{`Do you want to remove the role ${roleToRemove} from the user ${userToAlterRoles}?`}</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            If removing the role manager from a user, all it's projects ownership will be given to the Superuser
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleRemoveRoleClose} color="primary">
+            Cancel
+          </Button>
+          <Button onClick={() => removeRoleFromUser(userToAlterRoles, roleToRemove)} color="primary" autoFocus>
+            Remove
+          </Button>
+        </DialogActions>
+      </Dialog>
+    )
+  }
+
+  const rolesSelectForm = () => {
+    return (
+      <FormControl variant="outlined" className={classes.formControl}>
+        <InputLabel id="demo-simple-select-outlined-label">Roles</InputLabel>
+        <Select
+          labelId="demo-simple-select-outlined-label"
+          id="demo-simple-select-outlined"
+          value={roleToGive}
+          onChange={handleChange}
+          label="Age"
+        >
+          <MenuItem value="">
+            <em>None</em>
+          </MenuItem>
+          <MenuItem value={'manager'}>Manager</MenuItem>
+          <MenuItem value={'Colaborator'}>Collaborator</MenuItem>
+        </Select>
+      </FormControl>
     )
   }
 
@@ -189,10 +272,10 @@ export default function CustomizedTables({ users, refresh, deleteIconOnClick }) 
                       align="center">{row.username}
                     </StyledTableCell>
                     <StyledTableCell align="right">
-                      <Button align="right" onClick={() => handleRolesClickOpen(row.username)}>
+                      <Button align="right" onClick={() => handleRolesOpen(row.username)}>
                         <TuneIcon color="primary"></TuneIcon>
                       </Button>
-                      <Button align="right" onClick={() => handleDeleteClickOpen(row.username)}>
+                      <Button align="right" onClick={() => handleDeleteUserOpen(row.username)}>
                         <DeleteIcon color="primary"></DeleteIcon>
                       </Button>
                     </StyledTableCell>
@@ -204,10 +287,13 @@ export default function CustomizedTables({ users, refresh, deleteIconOnClick }) 
         </Paper>
       </Container>
       {
-        deleteDialog()
+        deleteUserDialog()
       }
       {
         userRolesDialog()
+      }
+      {
+        removeRoleFromUserDialog()
       }
     </div>
   );

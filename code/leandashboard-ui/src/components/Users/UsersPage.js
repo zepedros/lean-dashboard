@@ -13,7 +13,7 @@ export default function UsersPage() {
     const [users, setUsers] = useState([])
     const [refresh, setRefreshProjects] = useState(false)
     const [userIsSuperuser, setUserIsSuperuser] = useState(true)
-    const { get, del, response, loading } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
+    const { get, del, post, response, loading } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
     const context = useContext(UserContext)
 
     useEffect(() => {
@@ -49,7 +49,28 @@ export default function UsersPage() {
         } else {
             alert(deleteUser.message)
         }
+        doRefresh()
         //alert(`Deleted user with ID ${username}`)
+    }
+
+    async function removeRoleFromUser(username, role){
+        const removeRole = await del(`/api/lean/users/${username}/roles/${role}`)
+        if (response.ok){
+            alert(`The role ${role} was removed from the user ${username}`)
+        } else {
+            alert(removeRole.message)
+        }
+    }
+
+    async function addRoleToUser(username, role){
+        const body = {"role" : role}
+        const removeRole = await post(`/api/lean/users/${username}/roles`, body)
+        console.log('giving user role');
+        if (response.ok){
+            alert(`The role ${role} was given to the user ${username}`)
+        } else {
+            alert(removeRole.message)
+        }
     }
 
     async function checkIfUserIsSuperuser() {
@@ -79,7 +100,7 @@ export default function UsersPage() {
                                     </Hidden>
                                     <Hidden smDown>
                                         <Grid item xs={12} sm={12} md={12}>
-                                            <NavBar component={<UsersTable users={users} refresh={doRefresh} userIsManager={userIsSuperuser} deleteIconOnClick={deleteUser} />} title={"LeanDashboard"} />
+                                            <NavBar component={<UsersTable users={users} refresh={doRefresh} userIsManager={userIsSuperuser} deleteUser={deleteUser} removeRoleFromUser={removeRoleFromUser} addRoleToUser={addRoleToUser}/>} title={"LeanDashboard"} />
                                         </Grid>
                                     </Hidden>
                                 </div>
