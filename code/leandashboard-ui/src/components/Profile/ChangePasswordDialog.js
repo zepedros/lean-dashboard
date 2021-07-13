@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { useParams } from "react-router-dom";
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
@@ -9,23 +9,34 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from '@material-ui/core/Button';
 import useFetch from 'use-http'
 import {FormattedMessage} from 'react-intl';
+import UserContext from '../../common/UserContext';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import Input from '@material-ui/core/Input';
+import IconButton from '@material-ui/core/IconButton';
+import InputLabel from '@material-ui/core/InputLabel';
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
 
 export default function ChangePasswordDialog({showDialog, setShowDialog}){
-    const [input, setInput] = useState({ oldPassword: "", newPassword: "",confirmNewPassword:"" })
-    const [oldPasswordError, setOldPasswordError] = useState(false)
+    const [input, setInput] = useState({  newPassword: "",confirmNewPassword:"" })
     const [newPassowrdError, setNewPassowordError] = useState(false)
     const [confirmNewPassowrdError, setconfirmNewPassowordError] = useState(false)
+    const { put,response } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
+    const context = useContext(UserContext)
 
 
     function handleClose() {
         setShowDialog(false)
     }
-    function handleSubmit() {
-        if (!input.oldPassword) {
-            alert('Please insert your Old Password')
-            setOldPasswordError(true)
-            return
-        }
+    const handleClickShowPassword = () => {
+        setInput({ ...input, showPassword: !input.showPassword });
+      };
+
+      const handleMouseDownPassword = (event) => {
+        event.preventDefault();
+      }; 
+    async function handleSubmit() {
+        
         if (!input.newPassword) {
             alert('Please insert your new password')
             setNewPassowordError(true)
@@ -36,6 +47,18 @@ export default function ChangePasswordDialog({showDialog, setShowDialog}){
             setconfirmNewPassowordError(true)
             return
         }
+        if(input.newPassword===input.confirmNewPassword){
+            
+            const body={
+                newPassword: input.confirmNewPassword
+            }
+            await put(`lean/users/${context.credentials.username}/password`,body)
+            alert('Password Changed')
+        }
+        else{
+            alert('Different passwords!')
+            return
+        }
         handleClose()
     }
     return(
@@ -43,18 +66,7 @@ export default function ChangePasswordDialog({showDialog, setShowDialog}){
             <Dialog open={showDialog} onClose={handleClose} aria-labelledby="form-dialog-title">
                 <DialogTitle id="form-dialog-title"><FormattedMessage id="Profile.changePassowrd.button"/></DialogTitle>
                 <DialogContent>
-                    <TextField
-                        autoFocus
-                        margin="dense"
-                        id="oldPassword"
-                        label={<FormattedMessage id="Profile.changePassowrd.firstInput"/>}
-                        error={oldPasswordError}
-                        helperText="Please input your old password."
-                        type="password"
-                        onChange={e => { setInput({ oldPassword: e.target.value, newPassword: input.newPassword,confirmNewPassword:input.confirmNewPassword }) }}
-                        helperText={oldPasswordError}
-                        fullWidth
-                    />
+                   
                     <TextField
                         autoFocus
                         margin="dense"
@@ -63,7 +75,7 @@ export default function ChangePasswordDialog({showDialog, setShowDialog}){
                         error={newPassowrdError}
                         helperText="Please input your new password."
                         type="password"
-                        onChange={e => { setInput({ oldPassword: input.oldPassword, newPassword: e.target.value,confirmNewPassword:input.confirmNewPassword }) }}
+                        onChange={e => { setInput({  newPassword: e.target.value,confirmNewPassword:input.confirmNewPassword }) }}
                         helperText={newPassowrdError}
                         fullWidth
                     />
@@ -75,10 +87,11 @@ export default function ChangePasswordDialog({showDialog, setShowDialog}){
                         error={confirmNewPassowrdError}
                         helperText="Confirm your new password."
                         type="password"
-                        onChange={e => { setInput({  oldPassword: input.oldPassword, newPassword: input.newPassword,confirmNewPassword: e.target.value }) }}
+                        onChange={e => { setInput({  newPassword: input.newPassword,confirmNewPassword: e.target.value }) }}
                         helperText={confirmNewPassowrdError}
                         fullWidth
                     />
+                   
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose} color="primary">

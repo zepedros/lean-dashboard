@@ -5,6 +5,7 @@ import Widget from "../Widgets/Widget";
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
 import {FormattedMessage} from 'react-intl';
+import GoBack from '../Common/GoBack';
 
 const useStyles = makeStyles((theme) => ({
     container: {
@@ -12,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
         width: '94%'
     },
     dashboardTitle: {
-        marginTop: '-2%',
+        marginTop: '0',
         textAlign: 'left',
         marginLeft: '0%',
         color: '#3CAA91'
@@ -23,10 +24,13 @@ export default function DashboardWidgets({ name, widgets }) {
     const classes = useStyles();
     return (
         <div>
+            <GoBack />
             {
                 widgets ?
                     <div>
-                        <Typography component="h1" variant="h3" className={classes.dashboardTitle}>
+                        
+                        
+                        <Typography component="h1" variant="h5" className={classes.dashboardTitle}>
                             {name}
                         </Typography>
                         <Container maxWidth="false" className={classes.container}>

@@ -12,7 +12,7 @@ import { useContext } from 'react';
 import Form from './Form'
 import Copyright from './CopyRight';
 import {FormattedMessage} from 'react-intl';
-
+import GoBack from '../Common/GoBack'
 const useStyles = makeStyles((theme) => ({
   root: {
     height: '100vh',
@@ -59,9 +59,11 @@ export default function SignIn() {
   const context = useContext(UserContext)
   return (
     <Grid container component="main" className={classes.root}>
+      
       <CssBaseline />
       <Grid item xs={false} sm={4} md={7} className={classes.image} />
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+        <GoBack />
         <div className={classes.paper}>
           <Typography component="h1" variant="h5">
             <FormattedMessage id="login.welcome" /> Lean Dashboard

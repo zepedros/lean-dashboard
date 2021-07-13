@@ -14,6 +14,7 @@ import { CircularProgress, Grid } from '@material-ui/core';
 import WidgetSettingsWidget from '../Widgets/WidgetSettingsWidget';
 import { useParams } from 'react-router';
 import WidgetSettingsDialog from './WidgetSettingsDialog';
+import GoBack from '../Common/GoBack';
 const useStyles = makeStyles((theme) => ({
     table: {
         minWidth: 700,
@@ -83,6 +84,7 @@ export default function WidgetSettings({ name, widgets, refresh, doRefresh }) {
     console.log(widgets)
     return (
         <div>
+            <GoBack/>
             {
                 widgets &&
                 <div>

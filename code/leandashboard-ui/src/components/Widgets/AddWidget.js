@@ -13,6 +13,7 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import { CircularProgress, Grid } from '@material-ui/core';
 import {FormattedMessage} from 'react-intl';
+import GoBack from '../Common/GoBack';
 
 const useStyles = makeStyles((theme) => ({
   table: {
@@ -70,6 +71,7 @@ export default function AddWidget() {
   console.log(templates)
   return (
     <div>
+      <GoBack />
       {loading && <CircularProgress />}
       <RadioGroup row aria-label="gender" onChange={handleChange}>
         <Grid alignItems="center">

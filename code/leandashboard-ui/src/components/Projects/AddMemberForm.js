@@ -58,8 +58,9 @@ export default function AddMemberForm() {
           alert("Error adding member")
           console.log('no post')
       }
+      setInput({ username: "" }); 
   })
-  setInput({ username: "" }); //not working
+    
   }
   
   async function postAddMember(body) {
@@ -82,6 +83,7 @@ export default function AddMemberForm() {
             variant="outlined"
             onChange={e => { setInput({ username: e.target.value }) }}
             error={usernameError}
+            value={input.username}
           />
         </Grid>
         <Button variant="contained" color="primary" onClick={addMember}>

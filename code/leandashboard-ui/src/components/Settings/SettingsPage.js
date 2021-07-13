@@ -12,6 +12,7 @@ import {I18nProvider,LOCALES} from '../../i18n'
 import CreateAccountDialog from './CreateAccountDialog'
 import Button from '@material-ui/core/Button';
 import {FormattedMessage} from 'react-intl';
+import Language from '../Common/Language';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -45,27 +46,17 @@ export default function SettingsPage(){
                 <Typography variant="h5" noWrap color="textPrimary"><FormattedMessage id="Settings.settings" name={"Lean Dashboard"}/></Typography>
                 <Box display="flex" justifyContent="center" m={1} p={1} bgcolor="background.paper">
                     <Box p={1} bgcolor="background.paper">
-                        <FormControl className={classes.formControl}>
-                            <InputLabel id="demo-simple-select-label"><FormattedMessage id="Settings.language"/></InputLabel>
-                            <Select
-                            labelId="demo-simple-select-label"
-                            id="demo-simple-select"
-                            value={language}
-                            onChange={handleChange}
-                            //defaultValue={language}
-                            >
-                            <MenuItem value={LOCALES.ENGLISH}>English</MenuItem>
-                            <MenuItem value={LOCALES.PORTUGUESE}>Português</MenuItem>
-                            <MenuItem value={LOCALES.FRENCH}>Fançais</MenuItem>
-                            </Select>
-                        </FormControl>
-                    </Box>
-                 </Box>
+                        <Typography>
+                            <FormattedMessage id="Settings.language"/>
+                        </Typography>
+                <Language/>
+                </Box>
+        </Box>
                  <Box display="flex" justifyContent="center" m={1} p={1} bgcolor="background.paper">
 
                  <CreateAccountDialog showDialog={showDialog} setShowDialog={setShowDialog} />
                         <Button color="primary" onClick={handleOpenDialog}><FormattedMessage id="Settings.createAccount"/></Button>
-                        </Box>
+                </Box>
             </div>
         ) 
     }

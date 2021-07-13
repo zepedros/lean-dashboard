@@ -8,6 +8,7 @@ import List from '@material-ui/core/List';
 import { FormattedMessage } from 'react-intl';
 import CredentialsList from "../Credentials/CredentialsList";
 import {useState} from 'react'
+import GoBack from "../Common/GoBack";
 const useStyles = makeStyles((theme) => ({
   root: {
     '& > *': {
@@ -33,14 +34,20 @@ export default function ProjectSettings({ project, update }) {
     setRefresh(!refresh)
   }
   return (
-    <List className={classes.list}>
-      <Typography component="h1" variant="h4">
-        {project.name} <FormattedMessage id="ProjectSettings.settings" />
-      </Typography>
-      <NameDescForm project={project} updateProject={update} />
-      <AddMemberForm />
-      <AddCredentials project={project} doRefresh={doRefresh}/>
-      <CredentialsList refresh={refresh} doRefresh={doRefresh}/>
-    </List>
+    
+   
+      
+      <List className={classes.list}>
+         <div>
+      <GoBack />
+        <Typography component="h1" variant="h4">
+          {project.name} <FormattedMessage id="ProjectSettings.settings" />
+        </Typography>
+        </div>
+        <NameDescForm project={project} updateProject={update} />
+        <AddMemberForm />
+        <AddCredentials project={project} doRefresh={doRefresh}/>
+        <CredentialsList refresh={refresh} doRefresh={doRefresh}/>
+      </List>
   )
 }

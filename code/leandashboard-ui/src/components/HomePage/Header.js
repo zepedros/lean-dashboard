@@ -2,6 +2,7 @@ import { AppBar, Toolbar, Typography, makeStyles, Button } from "@material-ui/co
 import React from "react";
 import { Link } from "react-router-dom";
 import {FormattedMessage} from 'react-intl';
+import Language from "../Common/Language";
 
 export default function Header() {
   const useStyles = makeStyles(() => ({
@@ -20,6 +21,7 @@ export default function Header() {
       fontWeight: 700,
       size: "20px",
       marginLeft: "38px",
+      
     },
     toolbar: {
       display: "flex",
@@ -40,18 +42,11 @@ export default function Header() {
 
   const { header, logo, menuButton, toolbar } = useStyles();
 
-  const headersData = [
-    
-    {
-      label: "signIn",
-      href: "/signIn",
-    },
-  ];
-
   const getMenuButtons = () => {
    
       return (
         <div>
+         <Language color={"white"}/>
         <Button variant="outlined" color="primary" maxWidth="sm"
           {...{
             key:  "signIn",
