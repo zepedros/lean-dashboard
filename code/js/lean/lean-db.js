@@ -43,7 +43,7 @@ module.exports = {
 
     getAllProjects: function (userMakingRequest) {
         //const uri = `${ES_URL}lean-projects/_search`
-        const uri = `${ES_URL}lean-projects/_search?q=members:${userMakingRequest.id} owner:${userMakingRequest.id}&default_operator=OR`
+        const uri = `${ES_URL}lean-projects/_search?size=1000&q=members:${userMakingRequest.id} owner:${userMakingRequest.id}&default_operator=OR`
         return fetch.makeGetRequest(uri)
             .then(body => {
                 if (body.hits) {
@@ -59,9 +59,9 @@ module.exports = {
 
     getProjects: function (user, userMakingRequest) {
         const uri = userMakingRequest.id === 1 ?
-            `${ES_URL}lean-projects/_search`
+            `${ES_URL}lean-projects/_search?size=1000`
             :
-            `${ES_URL}lean-projects/_search?q=members:${userMakingRequest.id} owner:${userMakingRequest.id}&default_operator=OR`
+            `${ES_URL}lean-projects/_search?size=1000&q=members:${userMakingRequest.id} owner:${userMakingRequest.id}&default_operator=OR`
         return fetch.makeGetRequest(uri)
             .then(body => {
                 if (body.hits) {
@@ -272,7 +272,7 @@ module.exports = {
     },
 
     getWidgetTemplates: async function () {
-        const uri = `${ES_URL}etl-templates/_search`
+        const uri = `${ES_URL}etl-templates/_search?size=100`
         return fetch.makeGetRequest(uri)
             .then(body => {
                 if (body.hits) {
