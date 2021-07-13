@@ -69,7 +69,7 @@ export default function AddWidgetDialog({ showDialog, setShowDialog, source, tem
                     minutes: `${time.getMinutes()}`,
                     hours: `${time.getHours()}`,
                     dayOfMonth: `${date.getDate()}`,
-                    dayOfWeek: "*",
+                    dayOfWeek: `${date.getDay()}`,
                     month: `${date.getMonth()}`
                 }
             }
@@ -176,7 +176,7 @@ export default function AddWidgetDialog({ showDialog, setShowDialog, source, tem
                                         onChange={e => setTime(e)}
                                         helperText={<FormattedMessage id="Widget.interval"/>}
                                     />
-                                    <MonthWeekDayPicker props={month, weekday, setMonth, setWeekDay} />
+                                    <MonthWeekDayPicker month={month} weekday={weekday} setMonth={setMonth} setWeekDay={setWeekDay} />
                                 </div>
                             }
                         </MuiPickersUtilsProvider>
