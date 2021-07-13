@@ -10,7 +10,6 @@ export default function MonthWeekDayPicker({ month, weekday, setMonth, setWeekDa
                 label='Month'
                 value={month}
                 onChange={event => setMonth(event.target.value)}
-                defaultValue="*"
                 input={<Input id="grouped-native-select" />}
             >
                 <option value="*">None</option>
@@ -34,7 +33,6 @@ export default function MonthWeekDayPicker({ month, weekday, setMonth, setWeekDa
                 label='Week Day'
                 value={weekday}
                 onChange={event => setWeekDay(event.target.value)}
-                defaultValue="*"
                 input={<Input id="grouped-native-select" />}
             >
                 <option value="*">None</option>

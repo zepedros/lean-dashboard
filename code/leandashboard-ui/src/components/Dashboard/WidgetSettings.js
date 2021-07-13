@@ -12,7 +12,8 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import { CircularProgress, Grid } from '@material-ui/core';
 import WidgetSettingsWidget from '../Widgets/WidgetSettingsWidget';
-
+import { useParams } from 'react-router';
+import WidgetSettingsDialog from './WidgetSettingsDialog';
 const useStyles = makeStyles((theme) => ({
     table: {
         minWidth: 700,
@@ -46,24 +47,37 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export default function WidgetSettings({ name, widgets }) {
+export default function WidgetSettings({ name, widgets, refresh, doRefresh }) {
     const classes = useStyles();
     const [selectWidget, setSelectWidget] = useState('');
+    const [widget, setWidget] = useState();
+    const [credentialsProject, setCredentials] = useState([])
     const [activeDialog, setDialog] = useState(false);
+    let { id, dashboardId } = useParams();
 
     const { get, response, loading } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
 
-    /*const handleChange = (event) => {
-        setSelectTemplate(event.target.value)
-        templates.map(template => {
-            if (template.id === event.target.value) {
-                setSourceTemplate(template.source)
-            }
-        })
-    };*/
+    async function getWidget(wId) {
+        const widgetResponse = await get(`/api/lean/projects/${id}/dashboard/${dashboardId}/widgets/${wId}`)
+        if (response.ok) {
+            setWidget(widgetResponse)
+        } else {
+            alert('Error obtaining widget settings')
+        }
+    }
 
-    function handleDialog() {
+    useEffect(() => { loadCredentials() }, [refresh])
+
+    async function loadCredentials() {
+        const getCredentials = await get(`api/lean/projects/${id}/credentials`)
+        console.log('AAAAAAAAAAAA')
+        console.log(getCredentials)
+        if (response.ok) setCredentials(getCredentials)
+    }
+
+    async function handleDialog() {
         if (!selectWidget) return alert('Please select a widget')
+        await getWidget(selectWidget)
         setDialog(true)
     }
     console.log(widgets)
@@ -75,7 +89,7 @@ export default function WidgetSettings({ name, widgets }) {
                     <Typography component="h1" variant="h3" className={classes.dashboardTitle}>
                         {name}
                     </Typography>
-                    <Container maxWidth="false" className={classes.container}>
+                    <Container maxWidth="false" className={classes.container} onChange={e => setSelectWidget(e.target.value)}>
                         <Grid container spacing={3} >
                             <RadioGroup row aria-label="gender" >
                                 {widgets.map((widget) =>
@@ -92,6 +106,7 @@ export default function WidgetSettings({ name, widgets }) {
                     </Container>
                 </div>
             }
+            <WidgetSettingsDialog openDialog={activeDialog} setOpenDialog={setDialog} widget={widget} credentialsProject={credentialsProject} refresh={doRefresh} />
             <Button
                 variant="contained"
                 color="primary"

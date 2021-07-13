@@ -11,7 +11,7 @@ import { useContext, useEffect } from 'react'
 import { useFetch } from 'use-http';
 import { useParams } from 'react-router';
 import UserContext from '../../common/UserContext';
-
+import { CircularProgress } from '@material-ui/core';
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '98%'
@@ -63,10 +63,10 @@ export default function CredentialsList({ refresh, doRefresh }) {
   async function loadCredentials() {
     const getCredentials = await get(`/api/lean/projects/${id}/credentials`)
     console.log(getCredentials)
-    if (getCredentials) {
+    if (response.status === 200) {
       setCredentials(getCredentials)
     }
-    else setCredentials(undefined)
+    else setCredentials([])
   }
 
   async function checkIfUserIsManager() {
@@ -89,6 +89,7 @@ export default function CredentialsList({ refresh, doRefresh }) {
   //TODO A PARTE QUE O BOTAO DO FILTRO LIGA
   return (
     <div>
+      {loading && <CircularProgress color="primary"/>}
       <Container className={classes.root}>
         <Typography component="h1" variant="h5">
           <FormattedMessage id="ProjectSettings.credentials" />

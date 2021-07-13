@@ -10,6 +10,7 @@ import Error from '../Common/Errors/Error';
 export default function WidgetSettingsPage() {
     const [dashboard, setDashboard] = useState([])
     const [title, setTitle] = useState("")
+    const [refresh, setRefresh] = useState(false)
     const [widgets, setWidgets] = useState([])
     const [errorResponse, setErrorResponse] = useState(false)
     const { get, response, loading } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
@@ -17,7 +18,7 @@ export default function WidgetSettingsPage() {
 
     useEffect(() => {
         loadDashboards()
-    }, [])
+    }, [refresh])
 
     async function loadDashboards() {
         const project = await get(`/api/lean/projects/${id}`)
@@ -33,6 +34,9 @@ export default function WidgetSettingsPage() {
         }
     }
 
+    function doRefresh() {
+        setRefresh(!refresh)
+    }
     /*async function loadWidgets(dashboards) {
         async function getWidget(widgetId) {
             const widgetResponse = await get(`/api/lean/projects/${id}/dashboard/${dashboardId}/widgets/${widgetId}`)
@@ -65,7 +69,7 @@ export default function WidgetSettingsPage() {
                         </Hidden>
                         <Hidden smDown>
                             <Grid item xs={12} sm={12} md={12}>
-                                <NavBar component={<WidgetSettings widgets={dashboard.widgets} name={dashboard.name}/>} title={title}/>
+                                <NavBar component={<WidgetSettings widgets={dashboard.widgets} name={dashboard.name} refresh={refresh} doRefresh={doRefresh}/>} title={title}/>
                             </Grid>
                         </Hidden>
                     </div>
