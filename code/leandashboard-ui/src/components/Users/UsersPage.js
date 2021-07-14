@@ -8,6 +8,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import UserContext from '../../common/UserContext';
 import Error from '../Common/Errors/Error'
 import img from '../../images/Forbidden.png'
+import UsersList from './UsersList'
 
 export default function UsersPage() {
     const [users, setUsers] = useState([])
@@ -32,7 +33,7 @@ export default function UsersPage() {
     async function loadUsers() {
         let getUsers = await get('/api/lean/users')
 
-        for(let i = 0; i < getUsers.length; i++){
+        for (let i = 0; i < getUsers.length; i++) {
             const userRoles = await get(`/api/lean/users/${getUsers[i].username}/roles`)
             getUsers[i]['roles'] = userRoles
         }
@@ -53,20 +54,20 @@ export default function UsersPage() {
         //alert(`Deleted user with ID ${username}`)
     }
 
-    async function removeRoleFromUser(username, role){
+    async function removeRoleFromUser(username, role) {
         const removeRole = await del(`/api/lean/users/${username}/roles/${role}`)
-        if (response.ok){
+        if (response.ok) {
             alert(`The role ${role} was removed from the user ${username}`)
         } else {
             alert(removeRole.message)
         }
     }
 
-    async function addRoleToUser(username, role){
-        const body = {"role" : role}
+    async function addRoleToUser(username, role) {
+        const body = { "role": role }
         const removeRole = await post(`/api/lean/users/${username}/roles`, body)
         console.log('giving user role');
-        if (response.ok){
+        if (response.ok) {
             alert(`The role ${role} was given to the user ${username}`)
         } else {
             alert(removeRole.message)
@@ -95,12 +96,12 @@ export default function UsersPage() {
                                 <div>
                                     <Hidden mdUp>
                                         <Grid item xs={12} sm={12} md={12}>
-
+                                            <NavBar component={<UsersList users={users} refresh={doRefresh} deleteUser={deleteUser} />} title={"LeanDashboard"} />
                                         </Grid>
                                     </Hidden>
                                     <Hidden smDown>
                                         <Grid item xs={12} sm={12} md={12}>
-                                            <NavBar component={<UsersTable users={users} refresh={doRefresh} userIsManager={userIsSuperuser} deleteUser={deleteUser} removeRoleFromUser={removeRoleFromUser} addRoleToUser={addRoleToUser}/>} title={"LeanDashboard"} />
+                                            <NavBar component={<UsersTable users={users} refresh={doRefresh} deleteUser={deleteUser} removeRoleFromUser={removeRoleFromUser} addRoleToUser={addRoleToUser} />} title={"LeanDashboard"} />
                                         </Grid>
                                     </Hidden>
                                 </div>
