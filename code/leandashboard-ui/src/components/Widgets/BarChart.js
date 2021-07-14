@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import { Bar } from 'react-chartjs-2';
 
-function GroupChart() {
+function GroupChart({}) {
 
     const [data, setData] = useState({});
+
 
     useEffect(() => {
         setData({

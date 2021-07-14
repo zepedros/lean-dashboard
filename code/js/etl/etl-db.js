@@ -48,7 +48,7 @@ const templates = [
         source: 'Jira',
         type:"DataTable",
         data: [{
-            "key": "key",
+            "id": "key",
             "summary": "a summary",
             "issuetype_name": "type of issue",
             "state": "state of issue"

@@ -46,7 +46,7 @@ export default function Widget({ widgetId }) {
         return (
             <Grid item md={size(widget.type)}>
                 <Card>
-                    <TemplateWidget type={widget.type} data={widget.data} />
+                    <TemplateWidget type={widget.type} widget={widget} />
                 </Card>
             </Grid>
         )

@@ -45,7 +45,7 @@ module.exports = {
     jiraIssuesDataTableTransform: async function (data, credentials) {
         let issues = (await data.getIssuesJira(credentials)).issues.map(issue => {
             return {
-                key : issue.key,
+                id : issue.key,
                 summary : issue.summary,
                 issuetype_name : issue.issuetype_name,
                 priority : issue.priority,

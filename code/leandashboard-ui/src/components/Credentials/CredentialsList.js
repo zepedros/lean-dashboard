@@ -63,10 +63,13 @@ export default function CredentialsList({ refresh, doRefresh }) {
   async function loadCredentials() {
     const getCredentials = await get(`/api/lean/projects/${id}/credentials`)
     console.log(getCredentials)
-    if (response.status === 200) {
+    if(getCredentials.statusCode){
+      setCredentials([])
+    }
+    else {
+      console.log(getCredentials)
       setCredentials(getCredentials)
     }
-    else setCredentials([])
   }
 
   async function checkIfUserIsManager() {
