@@ -45,9 +45,12 @@ export default function Widget({ widgetId }) {
     if (widget) {
         return (
             <Grid item md={size(widget.type)}>
-                <Card>
+               
+                    <Card>
                     <TemplateWidget type={widget.type} widget={widget} />
-                </Card>
+                    </Card>
+              
+               
             </Grid>
         )
     } else {
