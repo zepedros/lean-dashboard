@@ -13,6 +13,7 @@ import Card from '@material-ui/core/Card';
 import { Container } from '@material-ui/core';
 import CardContent from '@material-ui/core/CardContent';
 import { CircularProgress, Grid } from '@material-ui/core';
+import GoBack from "../Common/GoBack";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -77,9 +78,13 @@ export default function AddWidgetList() {
 
     return (
         <div>
+            
             {loading && <CircularProgress />}
+           
             <Container className={classes.root}>
+                
                 <Grid alignItems="center" style={{ maxHeight: '85%', overflow: 'scroll' }}>
+                <GoBack ></GoBack>
                     <RadioGroup column aria-label="gender" onChange={handleChange}>
                         {templates.map((template) =>
                             <FormControlLabel

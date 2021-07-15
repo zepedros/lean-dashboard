@@ -64,6 +64,7 @@ export default function WidgetSettingsPage() {
                     <div>
                         <Hidden mdUp>
                             <Grid item xs={12} sm={12} md={12}>
+                            <NavBar component={<WidgetSettings widgets={dashboard.widgets} name={dashboard.name} refresh={refresh} doRefresh={doRefresh}/>} title={title}/>
 
                             </Grid>
                         </Hidden>

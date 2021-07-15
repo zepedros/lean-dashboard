@@ -15,6 +15,10 @@ import WidgetsIcon from '@material-ui/icons/Widgets';
 import { __SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED } from 'react-dom';
 import { Link } from 'react-router-dom';
 import {FormattedMessage} from 'react-intl';
+import DeleteDashboardDialog from '../Dashboard/DeleteDashboardDialog';
+import { useState } from 'react';
+import { useParams } from "react-router-dom";
+import DashboardSettingsDialog from './DashboardSettingsDialog'
 
 const useStyles = makeStyles({
   list: {
@@ -35,6 +39,10 @@ const useStyles = makeStyles({
 
 export default function FAB(props) {
   const classes = useStyles();
+  const [showDeleteDialog, setShowDeleteDialog] = useState(false)
+  let { id, dashboardId } = useParams();
+  const [showDialog, setShowDialog] = useState(false)
+
   const [state, setState] = React.useState({
     bottom: false,
   });
@@ -45,6 +53,13 @@ export default function FAB(props) {
     }
     setState({ ...state, [anchor]: open });
   };
+  
+  function handleOpenDashboardDialog(){
+    setShowDeleteDialog(true)
+  }
+  function handleOpenDialog() {
+    setShowDialog(true)
+  }
 
   const list = (anchor) => (
     <div
@@ -63,15 +78,28 @@ export default function FAB(props) {
             <ListItemText primary={addTitle} />
           </Button>
         </ListItem>
-        <ListItem component={Link} to={props.path}>
+        {!props.show ?
+          <ListItem component={Link} to={props.path}>
           <Button>
             <ListItemIcon><SettingsIcon /></ListItemIcon>
             <ListItemText primary={settingsTitle} />
           </Button>
         </ListItem>
+        :
+        
+        <ListItem >
+        <DashboardSettingsDialog showDialog={showDialog} setShowDialog={setShowDialog} refreshDashboards={props.refresh}/>
+        <Button onClick={handleOpenDialog}>
+          <ListItemIcon><SettingsIcon /></ListItemIcon>
+          <ListItemText primary={settingsTitle} />
+        </Button>
+        </ListItem>
+        }
+        
         {props.show ?
           <ListItem>
-            <Button >
+            <DeleteDashboardDialog showDeleteDialog={showDeleteDialog} setShowDeleteDialog={setShowDeleteDialog}/>
+            <Button onClick={handleOpenDashboardDialog}>
               <ListItemIcon> <DeleteIcon /></ListItemIcon>
               <ListItemText primary={<FormattedMessage id="Dashboard.VerticalButton.thirdButton"/>} />
             </Button>
@@ -79,7 +107,7 @@ export default function FAB(props) {
           : null
         }
         {props.show ?
-          <ListItem>
+          <ListItem component={Link} to={`/projects/${id}/dashboards/${dashboardId}/settings`}>
             <Button>
               <ListItemIcon> <WidgetsIcon /></ListItemIcon>
               <ListItemText primary={<FormattedMessage id="Dashboard.VerticalButton.fourthButton"/>} />

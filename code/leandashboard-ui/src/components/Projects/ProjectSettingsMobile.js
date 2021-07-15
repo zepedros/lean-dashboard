@@ -9,6 +9,8 @@ import { Container } from "@material-ui/core";
 import { FormattedMessage } from 'react-intl';
 import {useState} from 'react'
 import CredentialsList from "../Credentials/CredentialsList";
+import GoBack from "../Common/GoBack";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     '& > *': {
@@ -42,7 +44,9 @@ export default function ProjectSettingsMobile({ project, update }) {
   }
   return (
     <Container className={classes.container}>
+      
       <List className={classes.list}>
+      <GoBack />
         <Typography component="h1" variant="h4">
           {project.name} <FormattedMessage id="ProjectSettings.settings" />
         </Typography>

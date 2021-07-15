@@ -6,6 +6,7 @@ import { useHistory } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import {FormattedMessage} from 'react-intl';
+import GoBack from "../Common/GoBack";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -50,9 +51,11 @@ export default function DashboardWidgetsList({ widgets }) {
 
     return (
         <div>
+            
             {
                 widgets ?
                     <Container className={classes.root}>
+                        <GoBack />
                         <Grid container allignItems="center" spacing={3} style={{ maxHeight: '85%', overflow: 'scroll' }}>
                             {widgets?.map(widget => {
                                 return (
