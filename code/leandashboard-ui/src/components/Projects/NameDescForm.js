@@ -57,6 +57,7 @@ export default function NameDescForm(props) {
                         //className={classes.textField}
                         margin="dense"
                         variant="outlined"
+                        label="Project Name"
                         onChange={e => setNewName(e.target.value)}
                     />
                 </Grid>
@@ -66,6 +67,7 @@ export default function NameDescForm(props) {
                         aria-label="maximum height"
                         value={newDescription}
                         className={classes.descriptionText}
+                        label="Project Description"
                         onChange={e => setNewDescription(e.target.value)}
                     />
                 </Grid>

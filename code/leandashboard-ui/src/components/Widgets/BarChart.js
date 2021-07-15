@@ -1,55 +1,89 @@
-import React, {useState, useEffect} from 'react';
 import { Bar } from 'react-chartjs-2';
+import {
+  Box,
+  Card,
+  CardContent,
+  CardHeader,
+  Divider,
+  useTheme,
+  colors
+} from '@material-ui/core';
 
-function GroupChart({}) {
+const BarChart = ({widget}) => {
+  const theme = useTheme();
+  var keys = Object.keys(widget.data[0].counts);
+  console.log(keys)
+  var labelsAux=[]
+  for(let i = 0; i < keys.length;i++){
+    labelsAux.push(Object.keys(widget.data[0].counts[i]))
+    console.log(widget.data[0].counts[i])
+  }
+ 
+  labelsAux = labelsAux.flat(Infinity)
+  
+  let dataAux= []
+  for(let i = 0; i<keys.length;i++){
+    dataAux.push(widget.data[0].counts[i][labelsAux[i]])
+  }
+  console.log(dataAux)
+  const data = {
+    labels: labelsAux,
+    datasets: [
+      { 
+        label: widget.data[0].sprintName,
+        data: dataAux,
+        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+        borderColor:'rgba(54, 162, 235, 0.2)',
+        borderWidth: 1,
 
-    const [data, setData] = useState({});
+      },
+    ],
+   
+  };
 
-
-    useEffect(() => {
-        setData({
-            labels: ['1', '2', '3', '4', '5', '6'],
-            datasets: [
-              {
-                label: '# of Red Votes',
-                data: [12, 19, 3, 5, 2, 3],
-                backgroundColor: 'rgb(255, 99, 132)',
-              },
-              {
-                label: '# of Blue Votes',
-                data: [2, 3, 20, 5, 1, 4],
-                backgroundColor: 'rgb(54, 162, 235)',
-              },
-              {
-                label: '# of Green Votes',
-                data: [3, 10, 13, 15, 22, 30],
-                backgroundColor: 'rgb(75, 192, 192)',
-              },
-            ],
-          });
-    }, []);
-
-    const options = {
-        scales: {
-          yAxes: [
-            {
-              ticks: {
-                beginAtZero: true,
-              },
-            },
-          ],
+  const options = {
+    scales: {
+      yAxes: [
+        {
+          ticks: {
+            beginAtZero: true,
+          },
         },
-      }
+      ],
+    },
+  };
+  return (
+    <div>
+    <Card {...widget}>
+      <CardHeader
+        title="Issues"
+      />
+      <Divider />
+      <CardContent>
+        <Box
+          sx={{
+            height: 400,
+            position: 'relative'
+          }}
+        >
+          <Bar
+            data={data}
+            options={options}
+          />
+        </Box>
+      </CardContent>
+      <Divider />
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'flex-end',
+          p: 2
+        }}
+      >
+      </Box>
+    </Card>
+    </div>
+  );
+};
 
-
-    return (
-    <>
-        <div className='header'>
-        <h1 className='title'>Grouped Bar Chart</h1>
-        </div>
-        <Bar data={data} options={options} />
-  </>
-    )
-}
-
-export default GroupChart;
+export default BarChart
