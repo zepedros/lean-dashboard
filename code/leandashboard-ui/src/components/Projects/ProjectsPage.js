@@ -35,16 +35,22 @@ export default function ProjectsPage() {
         let ret
         console.log('alisa');
         if (getProjects) {
-            ret = getProjects.map(project => {
+            
+            for(let project of getProjects){
+                const owner = await getUsername(project.owner)
+                console.log(owner)
+                project.owner = owner.username
+            }
+            /*ret = getProjects.map(project => {
                 getUsername(project.owner).then(() => {
                     if (response.ok) {
                         project.owner = response.data.username
                     }
                 })
                 return project
-            })
+            })*/
             console.log(projects)
-            if (response.ok) setProjects(ret)
+            if (response.ok) setProjects(getProjects)
         }
         else setProjects(undefined)
     }
