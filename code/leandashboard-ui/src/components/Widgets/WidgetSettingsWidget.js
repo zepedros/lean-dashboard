@@ -45,7 +45,7 @@ export default function WidgetSettingsWidget({ widgetId }) {
     if (widget) {
         return (
             <Card>
-                <TemplateWidget type={widget.type} data={widget.data} />
+                <TemplateWidget type={widget.type} widget={widget} />
             </Card>
         )
     } else {
