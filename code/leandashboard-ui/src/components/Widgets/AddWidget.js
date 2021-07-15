@@ -82,7 +82,7 @@ export default function AddWidget() {
               label={
                 <>
                   <Card>
-                    <TemplateWidget type={template.type} data={template.data} />
+                    <TemplateWidget type={template.type} widget={template} />
                   </Card>
                   <Typography component="h1" variant="h6">
                     {template.name}
