@@ -11,6 +11,7 @@ const templates = [
         name: 'Jira sprint gauge chart',
         function: 'postJiraSprintDateGaugeChart',
         source: 'Jira',
+        params: [],
         type:"GaugeChart",
         data: [{
             "sprintName": "Sprint",
@@ -26,6 +27,7 @@ const templates = [
         name: 'Jira issues bar chart',
         function: 'postJiraSprintIssuesBarChart',
         source: 'Jira',
+        params: [],
         type:"BarChart",
         data: [{
             "sprintName": "Sprint",
@@ -46,6 +48,7 @@ const templates = [
         "name": "Jira issues data table",
         function: 'postJiraIssuesDataTable',
         source: 'Jira',
+        params: [],
         type:"DataTable",
         data: [{
             "key": "key",
@@ -58,6 +61,7 @@ const templates = [
         name: 'Squash test results pie chart',
         function: 'postSquashTestsPieChart',
         source: 'Squash',
+        params: ["Project Name"],
         type:"PieChart",
         data: [{
             "total": 10,
@@ -89,6 +93,7 @@ const templates = [
         name: 'Squash test per iteration data table',
         function: 'postSquashTestPerIterationDataTable',
         source: 'Squash',
+        params: ["Project Name"],
         type:"DataTable",
         data: [{
             "campaign": 1,

@@ -286,7 +286,7 @@ function services(db, auth) {
             return db.getWidget(widgetId)
         },
 
-        addWidgetToDashboard: function (projectId, dashboardId, templateId, timeSettings, credentials, userMakingRequest) {
+        addWidgetToDashboard: function (projectId, dashboardId, templateId, timeSettings, credentials, params, userMakingRequest) {
             if (!projectId || !dashboardId || !templateId)
                 return Promise.reject(
                     error.makeErrorResponse(error.ARGUMENT_ERROR, 'Please indicate an ID for the project, dashboard and widget template in the path')
@@ -302,7 +302,7 @@ function services(db, auth) {
                             error.makeErrorResponse(error.FORBIDDEN, 'You cannot update dashboards from this project. Only the manager has that access.')
                         )
                     }
-                    return db.addWidgetToDashboard(projectId, dashboardId, templateId, timeSettings, credentials)
+                    return db.addWidgetToDashboard(projectId, dashboardId, templateId, timeSettings, credentials, params)
                         .then(createdId => {
                             scheduler.scheduleWidget(createdId, true)
                             return response.makePostResponse(response.CREATED, `${projectId}/dashboard/`, dashboardId)

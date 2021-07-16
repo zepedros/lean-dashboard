@@ -38,7 +38,7 @@ function webapi(app, services) {
         },
 
         postSquashTestPieChart: function (req, res) {
-            services.postSquashTestsPieChart(req.params.id, undefined, req.body.credentials)
+            services.postSquashTestsPieChart(req.body.projectName, undefined, req.body.credentials)
                 .then(resp => {
                     console.log("Post Squash Tests")
                     answerHandler(resp, res)
@@ -47,7 +47,7 @@ function webapi(app, services) {
         },
 
         postSquashTestPerIterationDataTable: function (req, res) {
-            services.postSquashTestPerIterationDataTable(req.params.id, undefined, req.body.credentials)
+            services.postSquashTestPerIterationDataTable(req.body.projectName, undefined, req.body.credentials)
                 .then(resp => {
                     console.log("Post Squash Tests per iteration")
                     answerHandler(resp, res)
@@ -220,8 +220,8 @@ function webapi(app, services) {
     app.get('/lean-etl/projectsAzure/:team/iterations/:id/workItems',theWebApi.getAzureIterationWorkItems)
     app.post('/lean-etl/issues', theWebApi.postIssues)
     app.post('/lean-etl/projects', theWebApi.postProjects)
-    app.post('/lean-etl/squashTests/:id', theWebApi.postSquashTestPieChart)
-    app.post('/lean-etl/squashIterationTests/:id', theWebApi.postSquashTestPerIterationDataTable)
+    app.post('/lean-etl/squashTests', theWebApi.postSquashTestPieChart)
+    app.post('/lean-etl/squashIterationTests', theWebApi.postSquashTestPerIterationDataTable)
 
     app.get('/lean-etl/sprint',theWebApi.getAllSprintsJira)
     app.get('/lean-etl/sprint/:id/issues',theWebApi.getSprintIssues)

@@ -75,6 +75,19 @@ module.exports = {
         }
         return ret
     },
+    getProjectSquashByName: async function (credentials, name) {
+        console.log(name)
+        const allProjects = await this.getProjectsSquash(credentials)
+        const project = allProjects.projects.filter(project=>{
+            if(project.name === name)
+                return project
+        })
+        if(project[0]) {
+            return project[0].id
+        } else {
+            return 0
+        }
+    },
     getProjectCampaignsSquash: async function (projectId, credentials) {
         const url = `${buildURI(credentials)}/projects/${projectId}/campaigns`
         const header = buildHeader(credentials)

@@ -32,7 +32,11 @@ function services(azureData, jiraData, squashData, db, auth) {
             return await db.postWidget(data,widgetId)
         },
 
-        postSquashTestsPieChart: async function(id,widgetId,credentials) {
+        postSquashTestsPieChart: async function(name,widgetId,credentials) {
+            const id = await squashData.getProjectSquashByName(credentials,name)
+            if(id === 0) {
+                console.log('no project with name')
+            }
             const data = await squashTransformer.squashProjectTestsPieChart(id,squashData,credentials)
             return await db.postWidget(data, widgetId)
         },
@@ -45,7 +49,11 @@ function services(azureData, jiraData, squashData, db, auth) {
             return await db.postWidget(data, widgetId)
         },
 
-        postSquashTestPerIterationDataTable: async function(id,widgetId, credentials) {
+        postSquashTestPerIterationDataTable: async function(name,widgetId, credentials) {
+            const id = await squashData.getProjectSquashByName(credentials,name)
+            if(id === 0) {
+                console.log('no project with name')
+            }
             let data = await squashTransformer.squashTestPerIterationDataTable(id,squashData, credentials)
             return await db.postWidget(data,widgetId)
         },

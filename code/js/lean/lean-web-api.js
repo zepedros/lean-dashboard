@@ -128,7 +128,7 @@ function webapi(app, services, auth, authization) {
         },
 
         addWidgetToDashboard: function (req, res) {
-            services.addWidgetToDashboard(req.params.id, req.params.dashboardId, req.params.widgetsId, req.body.timeSettings, req.body.credentials, req.user)
+            services.addWidgetToDashboard(req.params.id, req.params.dashboardId, req.params.widgetsId, req.body.timeSettings, req.body.credentials, req.body.params, req.user)
                 .then(resp => {
                     console.log("Add Widget to Dashboard")
                     answerHandler(resp, res,201)

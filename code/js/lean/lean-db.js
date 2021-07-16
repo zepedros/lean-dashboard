@@ -286,7 +286,7 @@ module.exports = {
             })
     },
 
-    addWidgetToDashboard: async function (projectId, dashboardId, widgetId, timeSettings, credentials) {
+    addWidgetToDashboard: async function (projectId, dashboardId, widgetId, timeSettings, credentials, params) {
         const uri = `${ES_URL}etl-templates/_doc/${widgetId}`
         const uriWidget = `${ES_URL}etl-widgets/_doc`
         const uriDashboard = `${ES_URL}lean-dashboards/_update/${dashboardId}`
@@ -303,7 +303,7 @@ module.exports = {
                         function: body._source.function,
                         source: body._source.source,
                         type: body._source.type,
-                        params: [],
+                        params: params,
                         updateTime: timeSettings,
                         credentials: aux[0].credentials,
                         data: body._source.data

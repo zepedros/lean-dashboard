@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "6f6c1751-b289-42e7-a2e3-20f9c4b9cf32",
+		"_postman_id": "5f9b2067-7bb5-451d-ba7e-9f0d9f00bc74",
 		"name": "Lean Dashboard",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -516,7 +516,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"credentials\": {\r\n        \"username\": \"guest_tpl\",\r\n        \"password\": \"password\",\r\n        \"APIPath\": \"demo.squashtest.org\"\r\n    }\r\n}",
+									"raw": "{\r\n    \"credentials\": {\r\n        \"username\": \"guest_tpl\",\r\n        \"password\": \"password\",\r\n        \"APIPath\": \"demo.squashtest.org\"\r\n    },\r\n    \"projectName\": \"Sandbox #2\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -524,7 +524,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:8000/lean-etl/squashTests/5",
+									"raw": "http://localhost:8000/lean-etl/squashTests",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -532,8 +532,7 @@
 									"port": "8000",
 									"path": [
 										"lean-etl",
-										"squashTests",
-										"5"
+										"squashTests"
 									]
 								}
 							},
@@ -546,7 +545,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"credentials\": {\r\n        \"username\": \"guest_tpl\",\r\n        \"password\": \"password\",\r\n        \"APIPath\": \"demo.squashtest.org\"\r\n    }\r\n}",
+									"raw": "{\r\n    \"credentials\": {\r\n        \"username\": \"guest_tpl\",\r\n        \"password\": \"password\",\r\n        \"APIPath\": \"demo.squashtest.org\"\r\n    },\r\n    \"projectName\": \"Sandbox #2\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -554,7 +553,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:8000/lean-etl/squashIterationTests/5",
+									"raw": "http://localhost:8000/lean-etl/squashIterationTests",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -562,8 +561,7 @@
 									"port": "8000",
 									"path": [
 										"lean-etl",
-										"squashIterationTests",
-										"5"
+										"squashIterationTests"
 									]
 								}
 							},
@@ -1168,7 +1166,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"timeSettings\": {\n        \"seconds\" : \"\",\n        \"minutes\" : \"*/1\",\n        \"hours\" : \"*\",\n        \"dayOfMonth\" : \"*\",\n        \"month\" : \"*\",\n        \"dayOfWeek\" : \"*\"\n    },\n    \"credentials\": \"JIRACredentials\"\n}",
+									"raw": "{\n    \"timeSettings\": {\n        \"seconds\" : \"\",\n        \"minutes\" : \"*/1\",\n        \"hours\" : \"*\",\n        \"dayOfMonth\" : \"*\",\n        \"month\" : \"*\",\n        \"dayOfWeek\" : \"*\"\n    },\n    \"credentials\": \"JIRACredentials\",\n    \"params\": []\n}",
 									"options": {
 										"raw": {
 											"language": "json"
