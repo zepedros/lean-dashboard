@@ -96,7 +96,7 @@ export default function UsersPage() {
                                 <div>
                                     <Hidden mdUp>
                                         <Grid item xs={12} sm={12} md={12}>
-                                            <NavBar component={<UsersList users={users} refresh={doRefresh} deleteUser={deleteUser} />} title={"LeanDashboard"} />
+                                            <NavBar component={<UsersList users={users} refresh={doRefresh} deleteUser={deleteUser} removeRoleFromUser={removeRoleFromUser} addRoleToUser={addRoleToUser} />} title={"LeanDashboard"} />
                                         </Grid>
                                     </Hidden>
                                     <Hidden smDown>

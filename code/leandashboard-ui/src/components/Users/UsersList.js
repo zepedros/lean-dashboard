@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function UsersList({ users, refresh, deleteUser }) {
+export default function UsersList({ users, refresh, deleteUser, removeRoleFromUser, addRoleToUser }) {
   const classes = useStyles();
   const [showFilter, setShowFilter] = useState(false)
   const [showDialog, setShowDialog] = useState(false)
@@ -68,7 +68,7 @@ export default function UsersList({ users, refresh, deleteUser }) {
         </IconButton>
         <List dense={false} style={{ maxHeight: '70%', overflow: 'scroll' }}>
           {users && users.map(user => {
-            return <UsersItem key={user.id} user={user} deleteUser={deleteUser} />
+            return <UsersItem key={user.id} user={user} deleteUser={deleteUser} removeRoleFromUser={removeRoleFromUser} addRoleToUser={addRoleToUser} />
           })}
         </List>
         <AddDialog showDialog={showDialog} setShowDialog={setShowDialog} title={<FormattedMessage id="Projects.dialogButton.title"/>} type={<FormattedMessage id="Projects.dialogButton.subTitle"/>}  refreshProjects={refresh} showDate={true} />
