@@ -13,23 +13,40 @@ import LaptopMacIcon from '@material-ui/icons/LaptopMac';
 import PhoneIcon from '@material-ui/icons/Phone';
 import TabletIcon from '@material-ui/icons/Tablet';
 
-const TrafficByDevice = (props) => {
+const PieChart = (props) => {
   const theme = useTheme();
+
+  var keys = Object.keys(props.widget.data[0].counts);
+  console.log(keys)
+  var labelsAux=[]
+  for(let i = 0; i < keys.length;i++){
+    labelsAux.push(props.widget.data[0].counts[i].status)
+    console.log(props.widget.data[0].counts[i].status)
+  }
+  console.log(labelsAux)
+
+  let dataAux= []
+  for(let i = 0; i<keys.length;i++){
+    dataAux.push(props.widget.data[0].counts[i].percentage)
+  }
+  console.log(dataAux)
   const data = {
     datasets: [
       {
-        data: [50, 30, 20],
+        data: dataAux,
         backgroundColor: [
           colors.indigo[500],
           colors.red[600],
-          colors.orange[600]
+          colors.orange[600],
+          colors.green[600],
+          colors.pink[200]
         ],
         borderWidth: 8,
         borderColor: colors.common.white,
         hoverBorderColor: colors.common.white
       }
     ],
-    labels: ['RUNNING', 'READY', 'SUCCESS']
+    labels: labelsAux
   };
 
   const options = {
@@ -76,7 +93,7 @@ const TrafficByDevice = (props) => {
   ];
 
   return (
-    <Card {...props}>
+    <Card {...props.widget}>
       <CardHeader title="Tests" />
       <Divider />
       <CardContent>
@@ -135,4 +152,4 @@ const TrafficByDevice = (props) => {
   );
 };
 
-export default TrafficByDevice;
+export default PieChart;
