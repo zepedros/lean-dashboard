@@ -12,11 +12,13 @@ export default function Widget({ widgetId }) {
     const [errorResponse, setErrorResponse] = useState()
     const { get, post, response, loading, error } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
     let { id, dashboardId } = useParams();
-
+    
     useEffect(() => {
-        getWidget()
-
-    }, [widgetId])
+        const interval = setInterval(() => {
+            getWidget()
+          }, 10000);
+          return () => clearInterval(interval);
+    })
     
     async function getWidget() {
         const widgetResponse = await get(`/api/lean/projects/${id}/dashboard/${dashboardId}/widgets/${widgetId}`)
