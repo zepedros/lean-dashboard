@@ -112,7 +112,7 @@ const templates = [
     }
 ]
 
-const ES_URL = 'http://localhost:9200/';
+const ES_URL = process.env.ELASTIC_URL
 
 module.exports = {
     getIssues: async function (){
