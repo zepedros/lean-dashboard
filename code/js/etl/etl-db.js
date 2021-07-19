@@ -156,7 +156,7 @@ module.exports = {
                 function: template.function,
                 source: template.source,
                 type: template.type,
-                params: [],
+                params: template.params,
                 timeSettings: {},
                 credentials: {},
                 data: template.data

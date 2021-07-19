@@ -345,19 +345,24 @@ module.exports = {
             })
     },
 
-    updateWidget: async function (projectId, widgetId, newTimeSettings, newCredentials) {
+    updateWidget: async function (projectId, widgetId, newTimeSettings, newCredentials, newParams) {
         const uriWidget = `${ES_URL}etl-widgets/_update/${widgetId}`
         const aux = await checkCredentialsInProject(this, projectId, newCredentials)
+        const widget = await this.getWidget(widgetId)
+        if(widget.params.length !== newParams.length) {
+            throw error.makeErrorResponse(error.CONFLICT, "Invalid Params")
+        }
         if (aux.length === 0) {
             throw error.makeErrorResponse(error.NOT_FOUND, "Credentials do not exist")
         }
         var body = {
             "script": {
                 "lang": "painless",
-                "inline": "ctx._source.credentials=params.credentials;ctx._source.updateTime=params.timeSettings",
+                "inline": "ctx._source.credentials=params.credentials;ctx._source.updateTime=params.timeSettings;ctx._source.params=params.params",
                 "params": {
                     "timeSettings": newTimeSettings,
-                    "credentials": aux[0].credentials
+                    "credentials": aux[0].credentials,
+                    "params": newParams
                 }
             }
         }

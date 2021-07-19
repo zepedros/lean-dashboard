@@ -137,7 +137,7 @@ function webapi(app, services, auth, authization) {
         },
 
         updateWidget: function (req, res) {
-            services.updateWidget(req.params.id, req.params.dashboardId, req.params.widgetsId, req.body.timeSettings, req.body.credentials, req.user)
+            services.updateWidget(req.params.id, req.params.dashboardId, req.params.widgetsId, req.body.timeSettings, req.body.credentials, req.body.params, req.user)
                 .then(resp => {
                     console.log("Update Widget")
                     answerHandler(resp, res)

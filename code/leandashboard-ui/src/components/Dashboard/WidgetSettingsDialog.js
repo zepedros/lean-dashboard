@@ -18,10 +18,13 @@ import { DialogContent } from "@material-ui/core";
 import { useFetch } from "use-http";
 import { useParams } from "react-router";
 import { useHistory } from "react-router";
+import { TextField } from "@material-ui/core";
+
 export default function WidgetSettingsDialog({ openDialog, setOpenDialog, widget, credentialsProject, refresh }) {
     console.log(credentialsProject)
     const [isSpecificDate, setIsSpecificDate] = useState(true)
     const [selectedCredential, setSelectedCredential] = useState("")
+    const [params, setParams] = useState([])
     const [time, setTime] = useState()
     const [deleteOpenDialog, setDeleteOpenDialog] = useState(false);
     const [date, setDate] = useState()
@@ -32,6 +35,7 @@ export default function WidgetSettingsDialog({ openDialog, setOpenDialog, widget
     const history = useHistory()
     function cronToDate() {
         setSelectedCredential(widget.credentials.name)
+        setParams(widget.params)
         const cron = widget.updateTime
         let time = new Date()
         const hours = cron.hours === '*' ? 0 : (cron.hours[0] === '*' ? cron.hours.substring(2) : cron.hours)
@@ -54,6 +58,25 @@ export default function WidgetSettingsDialog({ openDialog, setOpenDialog, widget
         }
         setDate(date)
         setTime(time)
+    }
+
+    const makeParams = () => {
+        let result = []
+        for (let i = 0; i < params.length; i++) {
+            result.push(<TextField
+                margin="dense"
+                id={params[i]}
+                defaultValue={params[i]}
+                type="name"
+                onChange={e => { 
+                    let aux = params
+                    aux[i] = e.target.value
+                    setParams(aux)
+                }}
+                fullWidth
+            />)
+        }
+        return result
     }
 
     async function handleDelete() {
@@ -137,7 +160,8 @@ export default function WidgetSettingsDialog({ openDialog, setOpenDialog, widget
         //TODO POST
         const body = {
             timeSettings: timeSettings,
-            credentials: selectedCredential
+            credentials: selectedCredential,
+            params: params
         }
         console.log(timeSettings)
         async function editWidget(body) {
@@ -181,6 +205,7 @@ export default function WidgetSettingsDialog({ openDialog, setOpenDialog, widget
                                     }
                                 })}
                             </Select>
+                            {makeParams()}
                             <DialogContentText>
                             </DialogContentText>
                             <DialogContentText>

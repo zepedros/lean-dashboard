@@ -52,7 +52,7 @@ export default function ProjectsPage() {
             console.log(projects)
             if (response.ok) setProjects(getProjects)
         }
-        else setProjects(undefined)
+        else setProjects([])
     }
 
     async function getUsername(owner) {

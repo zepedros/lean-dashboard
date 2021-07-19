@@ -16,12 +16,14 @@ import { TimePicker, DatePicker } from "@material-ui/pickers";
 import { useParams } from "react-router-dom";
 import useFetch from 'use-http'
 import { useHistory } from "react-router-dom";
-import {FormattedMessage} from 'react-intl';
+import { FormattedMessage } from 'react-intl';
+import { TextField } from '@material-ui/core';
 
-export default function AddWidgetDialog({ showDialog, setShowDialog, source, templateId }) {
+export default function AddWidgetDialog({ showDialog, setShowDialog, source, templateId, templateParams }) {
     const [selectedCredential, setSelectedCredential] = useState("")
     const [isSpecificDate, setIsSpecificDate] = useState(false)
     const [time, setTime] = useState(new Date())
+    const [params, setParams] = useState([])
     const [date, setDate] = useState(new Date())
     const [credentialsProject, setCredentials] = useState([])
     const { get, post, response } = useFetch('http://localhost:3000/api', { credentials: "same-origin" })
@@ -47,7 +49,28 @@ export default function AddWidgetDialog({ showDialog, setShowDialog, source, tem
         setWeekDay("*")
     }
 
+    const makeParams = () => {
+        let result = []
+        console.log('ENTERED MAKE PARAMS')
+        for (let i = 0; i < templateParams.length; i++) {
+            result.push(<TextField
+                margin="dense"
+                id={templateParams[i]}
+                label={templateParams[i]}
+                type="name"
+                onChange={e => { 
+                    let aux = params
+                    aux[i] = e.target.value
+                    setParams(aux)
+                }}
+                fullWidth
+            />)
+        }
+        return result
+    }
+
     function handleSubmit() {
+        console.log(params)
         let timeSettings
         if (isSpecificDate) {
             if (!time) {
@@ -90,7 +113,8 @@ export default function AddWidgetDialog({ showDialog, setShowDialog, source, tem
         //TODO POST
         const body = {
             timeSettings: timeSettings,
-            credentials: selectedCredential
+            credentials: selectedCredential,
+            params: params
         }
         async function postWidget(body) {
             return await post(`/api/lean/projects/${id}/dashboard/${dashboardId}/widgets/${templateId}`, body)
@@ -112,11 +136,10 @@ export default function AddWidgetDialog({ showDialog, setShowDialog, source, tem
     return (
         <div>
             <Dialog open={showDialog} onClose={handleClose} aria-labelledby="form-dialog-title">
-                <DialogTitle id="form-dialog-title"><FormattedMessage id="Widget.config"/></DialogTitle>
+                <DialogTitle id="form-dialog-title"><FormattedMessage id="Widget.config" /></DialogTitle>
                 <DialogContent>
                     <DialogContentText>
-                    <FormattedMessage id="Widget.subTitle"/>
-                       
+                        <FormattedMessage id="Widget.subTitle" />
                     </DialogContentText>
                     <form>
                         <Select
@@ -132,11 +155,11 @@ export default function AddWidgetDialog({ showDialog, setShowDialog, source, tem
                                 }
                             })}
                         </Select>
+                        {makeParams()}
                         <DialogContentText>
                         </DialogContentText>
                         <DialogContentText>
-                            <FormattedMessage id="Widget.subTitle1"/>
-                            
+                            <FormattedMessage id="Widget.subTitle1" />
                         </DialogContentText>
                         <MuiPickersUtilsProvider utils={DateFnsUtils}>
                             <DialogContentText>
@@ -174,7 +197,7 @@ export default function AddWidgetDialog({ showDialog, setShowDialog, source, tem
                                         label="Time"
                                         value={time}
                                         onChange={e => setTime(e)}
-                                        helperText={<FormattedMessage id="Widget.interval"/>}
+                                        helperText={<FormattedMessage id="Widget.interval" />}
                                     />
                                     <MonthWeekDayPicker month={month} weekday={weekday} setMonth={setMonth} setWeekDay={setWeekDay} />
                                 </div>
@@ -184,16 +207,16 @@ export default function AddWidgetDialog({ showDialog, setShowDialog, source, tem
                         </DialogContentText>
                         <FormControlLabel
                             control={<Checkbox value="date" onChange={e => setIsSpecificDate(e.target.checked)} />}
-                            label={<FormattedMessage id="Widget.checkbox"/>}
+                            label={<FormattedMessage id="Widget.checkbox" />}
                         />
                     </form>
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose} color="primary">
-                        <FormattedMessage id="Widget.cancel"/>
+                        <FormattedMessage id="Widget.cancel" />
                     </Button>
                     <Button onClick={handleSubmit} color="primary">
-                        <FormattedMessage id="Widget.button"/>
+                        <FormattedMessage id="Widget.button" />
                     </Button>
                 </DialogActions>
             </Dialog>

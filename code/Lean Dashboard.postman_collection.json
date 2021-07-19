@@ -1201,7 +1201,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"timeSettings\": {\n        \"seconds\" : \"\",\n        \"minutes\" : \"*/1\",\n        \"hours\" : \"*\",\n        \"dayOfMonth\" : \"*\",\n        \"month\" : \"*\",\n        \"dayOfWeek\" : \"*\"\n    },\n    \"credentials\": \"JIRACredentials\"\n}",
+									"raw": "{\n    \"timeSettings\": {\n        \"seconds\" : \"\",\n        \"minutes\" : \"*/1\",\n        \"hours\" : \"*\",\n        \"dayOfMonth\" : \"*\",\n        \"month\" : \"*\",\n        \"dayOfWeek\" : \"*\"\n    },\n    \"credentials\": \"teste\",\n    \"params\": [\"Sandbox #2\"]\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1209,7 +1209,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:8000/api/lean/projects/ePkBzXkBM-3hOBzM-3-Q/dashboard/efkCzXkBM-3hOBzMIX-_/widgets/h_kHzXkBM-3hOBzM2n_s",
+									"raw": "http://localhost:8000/api/lean/projects/7GZvv3oBvTSU8GYG9GI3/dashboard/72Zyv3oBvTSU8GYGF2Ib/widgets/-2aHv3oBvTSU8GYGdmKS",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -1219,11 +1219,11 @@
 										"api",
 										"lean",
 										"projects",
-										"ePkBzXkBM-3hOBzM-3-Q",
+										"7GZvv3oBvTSU8GYG9GI3",
 										"dashboard",
-										"efkCzXkBM-3hOBzMIX-_",
+										"72Zyv3oBvTSU8GYGF2Ib",
 										"widgets",
-										"h_kHzXkBM-3hOBzM2n_s"
+										"-2aHv3oBvTSU8GYGdmKS"
 									]
 								}
 							},
