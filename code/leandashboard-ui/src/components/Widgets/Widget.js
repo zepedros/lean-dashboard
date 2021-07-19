@@ -13,6 +13,11 @@ export default function Widget({ widgetId }) {
     const { get, post, response, loading, error } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
     let { id, dashboardId } = useParams();
 
+    useEffect(() => {
+        getWidget()
+
+    }, [widgetId])
+    
     async function getWidget() {
         const widgetResponse = await get(`/api/lean/projects/${id}/dashboard/${dashboardId}/widgets/${widgetId}`)
         if (response.ok) {
@@ -33,10 +38,7 @@ export default function Widget({ widgetId }) {
         }
     }
 
-    useEffect(() => {
-        getWidget()
-
-    }, [widgetId])
+    
 
     if (errorResponse) {
         return <Error statusCode={error.statusCode} message={error.message} />

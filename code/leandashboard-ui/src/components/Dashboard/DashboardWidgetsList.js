@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function DashboardWidgetsList({ widgets }) {
+export default function DashboardWidgetsList({  name, widgets,description,refresh }) {
     const classes = useStyles();
     let history = useHistory();
     let { id, dashboardId } = useParams();
@@ -63,7 +63,15 @@ export default function DashboardWidgetsList({ widgets }) {
                                 )
                             })}
                         </Grid>
-                        <FAB addTitle={<FormattedMessage id="Dashboard.VerticalButton.firstButton"/>} settingsTitle={<FormattedMessage id="Dashboard.VerticalButton.secondButton"/>}show={true} function={redirectTemplateWidgetPage} />
+                        <FAB 
+                            addTitle={<FormattedMessage id="Dashboard.VerticalButton.firstButton"/>} 
+                            settingsTitle={<FormattedMessage id="Dashboard.VerticalButton.secondButton"/>}
+                            show={true} 
+                            function={redirectTemplateWidgetPage} 
+                            nameDashboard={name}
+                            descriptionDashboard={description}
+                            refresh={refresh}
+                            />
                     </Container>
                     :
                     <h1>

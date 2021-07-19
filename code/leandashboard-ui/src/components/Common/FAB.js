@@ -88,7 +88,7 @@ export default function FAB(props) {
         :
         
         <ListItem >
-        <DashboardSettingsDialog showDialog={showDialog} setShowDialog={setShowDialog} refreshDashboards={props.refresh}/>
+        <DashboardSettingsDialog showDialog={showDialog} setShowDialog={setShowDialog} refreshDashboards={props.refresh} name={props.nameDashboard} description={props.descriptionDashboard}/>
         <Button onClick={handleOpenDialog}>
           <ListItemIcon><SettingsIcon /></ListItemIcon>
           <ListItemText primary={settingsTitle} />

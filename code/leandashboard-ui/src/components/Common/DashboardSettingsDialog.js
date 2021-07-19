@@ -10,27 +10,16 @@ import useFetch from 'use-http'
 import { useParams } from 'react-router';
 
 
-export default function AddDialogDialog({ showDialog, setShowDialog,refreshDashboards }) {
+export default function AddDialogDialog({ showDialog, setShowDialog,refreshDashboards,name,description }) {
     const { get,put,response } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
     const [nameError, setNameError] = useState(false)
     const [descriptionError, setDescriptionError] = useState(false)
     let { id,dashboardId } = useParams();
-    const [newName, setNewName] = useState("")
-    const [newDescription, setNewDescription] = useState("")
+    const [newName, setNewName] = useState(name)
+    const [newDescription, setNewDescription] = useState(description)
     const [refresh, setRefreshDashboard] = useState(false)
 
-    useEffect(() => {
-        getDashboard().then(() => {
-            console.log(response.data)
-        })
-    }, [refresh])
-
-    async function getDashboard(){
-        const dashboard= await get(`/api/lean/projects/${id}/dashboard/${dashboardId}`)
-        setNewName(dashboard.name)
-        setNewDescription(dashboard.description)
-    }
-    function handleClose() {
+      function handleClose() {
         //setInput({ name: "", description: "" })
         setNameError(false)
         setDescriptionError(false)
@@ -54,8 +43,8 @@ export default function AddDialogDialog({ showDialog, setShowDialog,refreshDashb
         await put(`/api/lean/projects/${id}/dashboard/${dashboardId}`, { name: newName, description: newDescription })
         if (response.status === 200) {
             alert("Dashboard updated")
-            setRefreshDashboard(true)
-            //update
+            refreshDashboards()
+            
         } else {
             alert(response.data.message)
         }

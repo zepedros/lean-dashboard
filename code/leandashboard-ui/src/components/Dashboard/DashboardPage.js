@@ -15,10 +15,12 @@ export default function DashboardPage() {
     const [errorResponse, setErrorResponse] = useState(undefined)
     const { get, response, loading, error } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
     let { id, dashboardId } = useParams();
+    const [refresh, setRefresh] = useState(false)
+
 
     useEffect(() => {
         loadDashboards()
-    }, [])
+    }, [refresh])
 
     async function loadDashboards() {
         const project = await get(`/api/lean/projects/${id}`)
@@ -32,6 +34,9 @@ export default function DashboardPage() {
             setErrorResponse(dashboardResponse)
         }
     }
+    function refreshDashboards() {
+        setRefresh(!refresh)
+    }
 
     return (
         <div>
@@ -42,12 +47,12 @@ export default function DashboardPage() {
                     <div>
                         <Hidden mdUp>
                             <Grid item xs={12} sm={12} md={12}>
-                                <NavBar title={title} component={<DashboardWidgetsList name={dashboard.name} widgets={dashboard.widgets} />} />
+                                <NavBar title={title} component={<DashboardWidgetsList name={dashboard.name}  description={dashboard.description} refresh={refreshDashboards} widgets={dashboard.widgets} />} />
                             </Grid>
                         </Hidden>
                         <Hidden smDown>
                             <Grid item xs={12} sm={12} md={12}>
-                                <NavBar title={title} component={<DashboardWidgets name={dashboard.name} widgets={dashboard.widgets} />} />
+                                <NavBar title={title} component={<DashboardWidgets name={dashboard.name} description={dashboard.description} refresh={refreshDashboards} widgets={dashboard.widgets} />} />
                             </Grid>
                         </Hidden>
                     </div>

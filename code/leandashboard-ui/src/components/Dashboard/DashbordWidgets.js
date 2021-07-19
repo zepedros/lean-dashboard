@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export default function DashboardWidgets({ name, widgets }) {
+export default function DashboardWidgets({ name, widgets,description,refresh }) {
     const classes = useStyles();
     return (
         <div>
@@ -42,7 +42,15 @@ export default function DashboardWidgets({ name, widgets }) {
                                 })}
                             </Grid>
                         </Container>
-                        <VerticalButton title1={<FormattedMessage id="Dashboard.VerticalButton.firstButton"/>} title2={<FormattedMessage id="Dashboard.VerticalButton.secondButton"/>} title3={<FormattedMessage id="Dashboard.VerticalButton.thirdButton"/>}title4={<FormattedMessage id="Dashboard.VerticalButton.fourthButton"/>} show={true} />
+                        <VerticalButton 
+                            title1={<FormattedMessage id="Dashboard.VerticalButton.firstButton"/>} 
+                            title2={<FormattedMessage id="Dashboard.VerticalButton.secondButton"/>} 
+                            title3={<FormattedMessage id="Dashboard.VerticalButton.thirdButton"/>}
+                            title4={<FormattedMessage id="Dashboard.VerticalButton.fourthButton"/>} 
+                            show={true} 
+                            nameDashboard={name}
+                            descriptionDashboard={description}
+                            refresh={refresh}/>
                     </div>
                     :
                     <h1>

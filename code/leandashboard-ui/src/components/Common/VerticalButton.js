@@ -70,7 +70,7 @@ export default function VerticalButton(props) {
         : null
       }
       {!props.settings ?
-        <DashboardSettingsDialog showDialog={showDialog} setShowDialog={setShowDialog} refreshDashboards={props.refresh}/>
+        <DashboardSettingsDialog showDialog={showDialog} setShowDialog={setShowDialog} refreshDashboards={props.refresh} name={props.nameDashboard} description={props.descriptionDashboard}/>
         : null
       }
       <Tooltip title={props.title2} aria-label="add" placement="left">
