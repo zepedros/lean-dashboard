@@ -30,7 +30,7 @@ const templates = [
         params: [],
         type:"BarChart",
         data: [{
-            "sprintName": "Sprint",
+            "name": "Sprint",
             "counts": [
                 {
                     "To Do": 1
@@ -118,11 +118,25 @@ const templates = [
         type: "BarChart",
         data: [
             {
-                "total": 20,
-                "done": 2,
-                "new": 4,
-                "approved": 6,
-                "committed": 8
+                "name":"",
+                "counts":[
+                    {
+                        "total": 20
+                    },
+                    {
+                        "done": 2
+                    },
+                    {
+                        "new": 4
+                    },
+                    {
+                        "approved": 6
+                    },
+                    {
+                        "committed": 8
+                    }
+
+                ]
             }
         ]
     }

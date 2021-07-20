@@ -30,7 +30,7 @@ const BarChart = ({widget}) => {
     labels: labelsAux,
     datasets: [
       { 
-        label: widget.data[0].sprintName,
+        label: widget.data[0].name,
         data: dataAux,
         backgroundColor: 'rgba(54, 162, 235, 0.2)',
         borderColor:'rgba(54, 162, 235, 0.2)',
@@ -56,7 +56,7 @@ const BarChart = ({widget}) => {
     <div>
     <Card {...widget}>
       <CardHeader
-        title="Issues"
+        title="TITLE"
       />
       <Divider />
       <CardContent>

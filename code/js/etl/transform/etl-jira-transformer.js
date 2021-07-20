@@ -90,7 +90,7 @@ module.exports = {
                 })
             }
             widget.data.push({
-                sprintName: sprint.name,
+                name : sprint.name,
                 counts: alisa
             })
         }

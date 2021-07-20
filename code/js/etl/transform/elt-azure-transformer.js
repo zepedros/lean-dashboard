@@ -48,15 +48,37 @@ module.exports = {
             name: "Azure Work Item by State Bar Graph",
             data: []
         }
-        let counts = {
-            total: 0,
-            done: 0,
-            new: 0,
-            approved: 0,
-            committed: 0
-        }
+        /*let counts = {
+            name:"",
+            aux:[
+                {
+                    total: 0,
+                    done: 0,
+                    new: 0,
+                    approved: 0,
+                    committed: 0
+                }
+            ]
+        }*/
 
-        data.map(workItem => {
+        let counts = {}
+        data.forEach(
+            function (x) {
+                counts[x.state] = (counts[x.state] || 0) + 1;
+            });
+
+        let alisa = []
+        for (const prop in counts) {
+            alisa.push({
+                [prop]: counts[prop]
+            })
+        }
+        widget.data.push({
+            name : "",
+            counts: alisa
+        })
+
+        /*data.map(workItem => {
             switch(workItem.state) {
                 case "Done" : counts.done++; break;
                 case "New" : counts.new++; break;
@@ -65,7 +87,7 @@ module.exports = {
             }
             counts.total++
         })
-        widget.data.push(counts)
+        widget.data.push(counts)*/
         return widget
     }
 }
