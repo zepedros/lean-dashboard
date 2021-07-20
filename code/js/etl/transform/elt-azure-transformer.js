@@ -41,5 +41,31 @@ module.exports = {
             "title": refObject.fields["System.Title"],
             "description": refObject.fields["System.Description"]
         }
+    },
+
+    azureWorkItemsByStateBarGraph: async function (data, credentials) {
+        let widget = {
+            name: "Azure Work Item by State Bar Graph",
+            data: []
+        }
+        let counts = {
+            total: 0,
+            done: 0,
+            new: 0,
+            approved: 0,
+            committed: 0
+        }
+
+        data.map(workItem => {
+            switch(workItem.state) {
+                case "Done" : counts.done++; break;
+                case "New" : counts.new++; break;
+                case "Approved" : counts.approved++; break;
+                case "Committed" : counts.committed++; break;
+            }
+            counts.total++
+        })
+        widget.data.push(counts)
+        return widget
     }
 }

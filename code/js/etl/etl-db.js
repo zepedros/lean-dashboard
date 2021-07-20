@@ -109,6 +109,22 @@ const templates = [
                 }
             ]
         }]
+    },
+    {
+        name: 'Azure Work Item by State Bar Graph',
+        function: 'postAzureWorkItemByStateBarGraph',
+        source: 'Azure',
+        params: ["Team Name", "Iteration Name"],
+        type: "BarChart",
+        data: [
+            {
+                "total": 20,
+                "done": 2,
+                "new": 4,
+                "approved": 6,
+                "committed": 8
+            }
+        ]
     }
 ]
 

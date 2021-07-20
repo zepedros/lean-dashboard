@@ -1,6 +1,8 @@
 'use strict';
 const jiraTransformer = require('./transform/etl-jira-transformer')
 const squashTransformer = require('./transform/etl-squash-transformer')
+const azureTransformer = require('./transform/elt-azure-transformer')
+
 function services(azureData, jiraData, squashData, db, auth) {
 
     const error = require('../error')
@@ -56,6 +58,21 @@ function services(azureData, jiraData, squashData, db, auth) {
             }
             let data = await squashTransformer.squashTestPerIterationDataTable(id,squashData, credentials)
             return await db.postWidget(data,widgetId)
+        },
+
+        postAzureWorkItemByStateBarGraph: async function(teamName, iterationName, widgetId, credentials) {
+            const iterationId = await azureData.getIterationByName(teamName,iterationName,credentials)
+            if(iterationId === 0) {
+                console.log('no project with name')
+                return
+            }
+            const workItems = await azureData.getAzureIterationWorkItems(teamName, iterationId, credentials)
+            if(workItems.statusCode === 404) {
+                console.log('No such team or iteration')
+            } else {
+                const data = await azureTransformer.azureWorkItemsByStateBarGraph(workItems.workItems,credentials)
+                return await db.postWidget(data, widgetId)
+            }
         },
 
         getIssuesByIdJira: async function (id, credentials) {

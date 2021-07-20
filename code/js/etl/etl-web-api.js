@@ -192,6 +192,14 @@ function webapi(app, services) {
                     answerHandler(resp,res)
                 })
                 .catch(err => errHandler(err,res))
+        },
+        postAzureWorkItemByStateBarGraph(req,res) {
+            services.postAzureWorkItemByStateBarGraph(req.params.team,req.body.iterationName,undefined,req.body.credentials)
+                .then(resp => {
+                    console.log("posted widget")
+                    answerHandler(resp,res)
+                })
+                .catch(err => errHandler(err,res))
         }
 
 
@@ -218,6 +226,8 @@ function webapi(app, services) {
     app.get('/lean-etl/projectsAzure/:id/teams', theWebApi.getAzureTeams) //testing
     app.get('/lean-etl/projectsAzure/:team/iterations', theWebApi.getAzureIterations)
     app.get('/lean-etl/projectsAzure/:team/iterations/:id/workItems',theWebApi.getAzureIterationWorkItems)
+    app.post('/lean-etl/projectsAzure/:team/iterations/workItems',theWebApi.postAzureWorkItemByStateBarGraph)
+
     app.post('/lean-etl/issues', theWebApi.postIssues)
     app.post('/lean-etl/projects', theWebApi.postProjects)
     app.post('/lean-etl/squashTests', theWebApi.postSquashTestPieChart)

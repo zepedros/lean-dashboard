@@ -708,6 +708,38 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "POST /lean-etl/projectsAzure/{team}/iterations/workItems",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"credentials\": {\r\n        \"email\" : \"leandashboardproject@gmail.com\",\r\n        \"token\" : \"cwryfikv3hrslmoqiz4wz2otexf7o5aj4qtouhm37ndglel5dkbq\",\r\n        \"Instance\" : \"dev.azure.com/leandashboardproject\"\r\n    },\r\n    \"iterationName\" : \"Sprint 1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/lean-etl/projectsAzure/Lean Dashboard demo/iterations/workItems",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"lean-etl",
+										"projectsAzure",
+										"Lean Dashboard demo",
+										"iterations",
+										"workItems"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				}

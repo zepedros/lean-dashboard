@@ -134,5 +134,17 @@ module.exports = {
         }
         if (workItem.ok === false) throw error.makeErrorResponse(workItem.status, workItem.statusText)
         return azure_transformer.getAzureWorkItemObject(workItem)
+    },
+    getIterationByName: async function(teamName, iterationName, credentials) {
+        const iterations = await this.getAzureIterations(teamName,credentials)
+        const iteration = iterations.iterations.filter(iteration=>{
+            if(iteration.name === iterationName)
+                return iteration
+        })
+        if(iteration[0]) {
+            return iteration[0].id
+        } else {
+            return 0
+        }
     }
 }
