@@ -15,6 +15,7 @@ import { useState,useContext } from 'react'
 import Avatar from '@material-ui/core/Avatar';
 import UserContext from '../../common/UserContext';
 import {FormattedMessage} from 'react-intl';
+import {useLocation} from "react-router-dom";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -33,14 +34,16 @@ const useStyles = makeStyles((theme) => ({
       },
   }));
 
-export default function ProfilePage(){
+export default function ProfilePage(props){
     const classes = useStyles();
     const [showDialog, setShowDialog] = useState(false)
     const context = useContext(UserContext)
+    let data = useLocation();
 
     function handleOpenDialog() {
         setShowDialog(true)
       }
+    
     const page = () => {
         return(
             <div>
@@ -72,7 +75,7 @@ export default function ProfilePage(){
                         <TextField
                         label={<FormattedMessage id="Profile.numberOfProjects"/>}
                         id="outlined-size-small"
-                        defaultValue="5"
+                        defaultValue={data.state.numberProjects}
                         variant="outlined"
                         size="small"
                         disabled

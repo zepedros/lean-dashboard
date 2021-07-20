@@ -81,6 +81,7 @@ export default function PermanentDrawerLeft(props) {
     const open = Boolean(anchorEl);
     const id = open ? 'simple-popover' : undefined;
 
+    const projectNumber = props.projectNumber
     const popover = () => {
         return (
             <Popover
@@ -97,7 +98,7 @@ export default function PermanentDrawerLeft(props) {
                     horizontal: 'center',
                 }}
             >
-                <ListItem button component={Link} to="/profile">
+                <ListItem button component={Link} to={{ pathname: "/profile", state:{numberProjects:projectNumber}}}>
                     <ListItemIcon>
                         <PersonOutlineIcon />
                     </ListItemIcon>

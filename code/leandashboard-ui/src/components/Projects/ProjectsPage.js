@@ -79,12 +79,12 @@ export default function ProjectsPage() {
                     <div>
                         <Hidden mdUp>
                             <Grid item xs={12} sm={12} md={12}>
-                                <NavBar component={<ProjectsList projects={projects} refresh={doRefresh} userIsManager={userIsManager} />} title={"LeanDashboard"} />
+                                <NavBar component={<ProjectsList projects={projects} refresh={doRefresh} userIsManager={userIsManager} />} title={"LeanDashboard"} projectNumber={projects.length}/>
                             </Grid>
                         </Hidden>
                         <Hidden smDown>
                             <Grid item xs={12} sm={12} md={12}>
-                                <NavBar component={<ProjectsTable projects={projects} refresh={doRefresh} userIsManager={userIsManager} />} title={"LeanDashboard"} />
+                                <NavBar component={<ProjectsTable projects={projects} refresh={doRefresh} userIsManager={userIsManager} />} title={"LeanDashboard"} projectNumber={projects.length}/>
                             </Grid>
                         </Hidden>
                     </div>
