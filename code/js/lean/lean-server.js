@@ -7,13 +7,20 @@ const PORT = process.argv[2] || DEFAULT_PORT;
 async function setup() {
 
     const express = require('express');
+    //const test = require('../../leandashboard-ui/build')
     const app = express();
+    if (process.env.NODE_ENV === 'production') {
+        app.use(express.static('../../leandashboard-ui/build'))
+        app.get('/*', function (req, res) {
+            res.sendFile(path.join(__dirname, 'build', 'index.html'));
+        })
+    }
     const bodyParser = require('body-parser');
 
     app.use(bodyParser.json());
-    app.use(bodyParser.urlencoded({extended: true}))
+    app.use(bodyParser.urlencoded({ extended: true }))
 
-    require('dotenv').config({path: "../.env"})
+    require('dotenv').config({ path: "../.env" })
 
     const authizationDbConfig = {
         "host": process.env.HOST,
@@ -26,7 +33,7 @@ async function setup() {
     }
 
     const rbacOptions = {
-        roles : ["manager", "admin", "guest", "Colaborator"],
+        roles: ["manager", "admin", "guest", "Colaborator"],
         permissions: [
             { "resource": "lean", "action": "GET" },
             { "resource": "lean", "action": "POST" },
@@ -48,7 +55,7 @@ async function setup() {
     }
 
     const authization = await (require('@authization/authization')
-        .setup({app: app, db: authizationDbConfig,rbac_opts: rbacOptions}))
+        .setup({ app: app, db: authizationDbConfig, rbac_opts: rbacOptions }))
         .catch(err => console.log(`Error setting up Authization Module:\n${err}`))
 
     const authCreator = require('../auth')
