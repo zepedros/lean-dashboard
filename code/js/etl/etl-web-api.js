@@ -200,9 +200,15 @@ function webapi(app, services) {
                     answerHandler(resp,res)
                 })
                 .catch(err => errHandler(err,res))
+        },
+        postAzureIterationsDataTable(req,res) {
+            services.postAzureIterationDataTable(req.params.team,undefined,req.body.credentials)
+                .then(resp => {
+                    console.log("posted widget")
+                    answerHandler(resp,res)
+                })
+                .catch(err => errHandler(err,res))
         }
-
-
     };
 
     app.get('/lean-etl/issuesJira', theWebApi.getIssuesJira) //testing
@@ -227,6 +233,7 @@ function webapi(app, services) {
     app.get('/lean-etl/projectsAzure/:team/iterations', theWebApi.getAzureIterations)
     app.get('/lean-etl/projectsAzure/:team/iterations/:id/workItems',theWebApi.getAzureIterationWorkItems)
     app.post('/lean-etl/projectsAzure/:team/iterations/workItems',theWebApi.postAzureWorkItemByStateBarGraph)
+    app.post('/lean-etl/projectsAzure/:team/iterations',theWebApi.postAzureIterationsDataTable)
 
     app.post('/lean-etl/issues', theWebApi.postIssues)
     app.post('/lean-etl/projects', theWebApi.postProjects)
