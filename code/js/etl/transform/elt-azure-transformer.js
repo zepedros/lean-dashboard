@@ -29,6 +29,7 @@ module.exports = {
             "timeFrame": refObject.attributes.timeFrame
         }
     },
+
     getAzureWorkItemObject: function (refObject) {
         return {
             "id": refObject.id,
@@ -88,6 +89,29 @@ module.exports = {
             counts.total++
         })
         widget.data.push(counts)*/
+        return widget
+    },
+
+    azureIterationDataTableTransform: async function (data, credentials) {
+        let iterations = data.map(iteration => {
+            return {
+                name : iteration.name,
+                startDate : iteration.startDate,
+                finishDate : iteration.finishDate,
+                timeFrame: iteration.timeFrame
+            }
+        })
+
+        let widget = {
+            name : "Azure iterations data table",
+            columns: [
+                'Name',
+                'Start Date',
+                'Finish Date',
+                'Time Frame'
+            ],
+            data : iterations
+        }
         return widget
     }
 }

@@ -75,6 +75,12 @@ function services(azureData, jiraData, squashData, db, auth) {
             }
         },
 
+        postAzureIterationDataTable: async function(teamName, widgetId, credentials) {
+            const iterations = await azureData.getAzureIterations(teamName, credentials)
+            const data = await azureTransformer.azureIterationDataTableTransform(iterations.iterations,credentials)
+            return await db.postWidget(data, widgetId)
+        },
+
         getIssuesByIdJira: async function (id, credentials) {
             return jiraData.getIssuesByIdJira(id, credentials)
         },

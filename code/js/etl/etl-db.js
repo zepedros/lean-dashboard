@@ -45,7 +45,7 @@ const templates = [
         }]
     },
     {
-        "name": "Jira issues data table",
+        name: "Jira issues data table",
         function: 'postJiraIssuesDataTable',
         source: 'Jira',
         params: [],
@@ -139,6 +139,19 @@ const templates = [
                 ]
             }
         ]
+    },
+    {
+        name: "Azure iterations data table",
+        function: 'postAzureIterationDataTable',
+        source: 'Azure',
+        params: ["Team Name"],
+        type:"DataTable",
+        data: [{
+            "name" : "Iteration Name",
+            "startDate" : "2021-04-18T00:00:00Z",
+            "finishDate" : "2021-05-09T00:00:00Z",
+            "timeFrame": "past"
+        }]
     }
 ]
 

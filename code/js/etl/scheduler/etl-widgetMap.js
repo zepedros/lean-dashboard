@@ -21,10 +21,14 @@ module.exports = {
         widgetMap.set("postJiraIssuesDataTable",
             function (widgetId, credentials) {
                 services.postJiraIssuesDataTable(widgetId, credentials)
-            }),
+            })
         widgetMap.set("postAzureWorkItemByStateBarGraph",
             function (teamName, iterationName, widgetId, credentials) {
                 services.postAzureWorkItemByStateBarGraph(teamName, iterationName, widgetId, credentials)
+            })
+        widgetMap.set("postAzureIterationDataTable",
+            function (teamName, widgetId, credentials) {
+                services.postAzureIterationDataTable(teamName, widgetId, credentials)
             })
 
         return widgetMap
