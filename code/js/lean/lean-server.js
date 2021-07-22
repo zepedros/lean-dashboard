@@ -7,12 +7,13 @@ const PORT = process.argv[2] || DEFAULT_PORT;
 async function setup() {
 
     const express = require('express');
+    const path = require('path');
     //const test = require('../../leandashboard-ui/build')
     const app = express();
     if (process.env.NODE_ENV === 'production') {
         app.use(express.static('../../leandashboard-ui/build'))
         app.get('/*', function (req, res) {
-            res.sendFile(path.join(__dirname, 'build', 'index.html'));
+            res.sendFile(path.join('../../', 'leandashboard-ui/build', 'index.html'));
         })
     }
     const bodyParser = require('body-parser');
