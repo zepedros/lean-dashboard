@@ -17,6 +17,7 @@
     "date-fns": "^2.0.0-beta.5",
     "flat": "^5.0.2",
     "js-cookie": "^2.2.1",
+    "material-ui-flags": "^1.2.4",
     "package.json": "^2.0.1",
     "pakage.json": "^1.0.0",
     "rbac": "^5.0.3",

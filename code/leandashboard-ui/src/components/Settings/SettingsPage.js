@@ -49,7 +49,7 @@ export default function SettingsPage(){
                         <Typography>
                             <FormattedMessage id="Settings.language"/>
                         </Typography>
-                <Language/>
+                <Language color={false}/>
                 </Box>
         </Box>
                  <Box display="flex" justifyContent="center" m={1} p={1} bgcolor="background.paper">

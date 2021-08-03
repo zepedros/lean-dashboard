@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-export default function Language({color}) {
+export default function Language(props) {
     
     const classes = useStyles();
     const [language, setLanguage] = useState(localStorage.getItem("key"));
@@ -45,11 +45,11 @@ export default function Language({color}) {
                             id="demo-simple-select"
                             value={language}
                             onChange={handleChange}
-                            style={{ color: "white" }}
+                            style={{ color: props.color ? "white" : "black" }}
                             >
-                            <MenuItem value={LOCALES.ENGLISH} style={{ color: "white" }}>English</MenuItem>
-                            <MenuItem value={LOCALES.PORTUGUESE} style={{ color: "white" }}>Português</MenuItem>
-                            <MenuItem value={LOCALES.FRENCH} style={{ color: "white" }}>Fançais</MenuItem>
+                            <MenuItem value={LOCALES.ENGLISH} style={{ color: "black" }}>English</MenuItem>
+                            <MenuItem value={LOCALES.PORTUGUESE} style={{ color: "black" }}>Português</MenuItem>
+                            <MenuItem value={LOCALES.FRENCH} style={{ color: "black" }}>Fançais</MenuItem>
                             </Select>
                         </FormControl>
           

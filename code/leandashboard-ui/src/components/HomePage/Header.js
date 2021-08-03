@@ -34,6 +34,9 @@ export default function Header() {
       <div>
         <Toolbar className={toolbar}>
           {femmecubatorLogo}
+          <div >         
+            <Language color={true}/>
+          </div>
           <div>{getMenuButtons()}</div>
         </Toolbar>
       </div>
@@ -46,7 +49,6 @@ export default function Header() {
    
       return (
         <div>
-         <Language color={"white"}/>
         <Button variant="outlined" color="primary" maxWidth="sm"
           {...{
             key:  "signIn",

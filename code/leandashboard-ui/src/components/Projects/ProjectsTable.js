@@ -155,11 +155,7 @@ const EnhancedTableToolbar = (props) => {
      
 
       
-        <Tooltip title="Filter list">
-          <IconButton aria-label="filter list">
-            <FilterListIcon />
-          </IconButton>
-        </Tooltip>
+       
    
     </Toolbar>
   );
@@ -204,6 +200,7 @@ const useStyles = makeStyles((theme) => ({
     padding: '0 30px',
     boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
   },
+  
 }));
 
 export default function EnhancedTable({ projects, refresh }) {
@@ -279,11 +276,12 @@ export default function EnhancedTable({ projects, refresh }) {
                       </NavLink>
                       <TableCell align="center"><Chip
                     color="primary"
+                    style={{backgroundColor:'#3CAA91'}}
                     label={row.state}
                     size="small"
                   /></TableCell>
                       <TableCell align="center">{row.manager}</TableCell>
-                      <TableCell align="center"><CircularProgressWithLabel value={row.completion} /></TableCell>
+                      <TableCell align="center"><CircularProgressWithLabel  value={row.completion} /></TableCell>
                     </TableRow>
                   );
                 })}
