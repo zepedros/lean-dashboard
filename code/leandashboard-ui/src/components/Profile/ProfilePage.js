@@ -32,9 +32,19 @@ const useStyles = makeStyles((theme) => ({
         width: theme.spacing(7),
         height: theme.spacing(7),
       },
+      disabledInput: {
+        "& .MuiInputBase-root.Mui-disabled": {
+          color: "black"
+        }
+      },
+      disabledInputUser: {
+        "& .Mui-disabled": {
+          color: "black"
+        }
+    }
   }));
 
-export default function ProfilePage(props){
+export default function ProfilePage(){
     const classes = useStyles();
     const [showDialog, setShowDialog] = useState(false)
     const context = useContext(UserContext)
@@ -66,7 +76,8 @@ export default function ProfilePage(props){
                         </InputAdornment>
                     }
                     defaultValue={context.credentials.username}
-                    disabled
+                    className={classes.disabledInputUser}
+                    disabled={true}
                     />
                     </FormControl>
                 </Box>
@@ -77,9 +88,10 @@ export default function ProfilePage(props){
                         id="outlined-size-small"
                         defaultValue={data.state.numberProjects}
                         variant="outlined"
+                        className={classes.disabledInput}
                         size="small"
                         disabled
-                        color="black"
+                       
                         />
                     </Box>
                 </Box>

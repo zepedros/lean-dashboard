@@ -4,6 +4,9 @@ import HomePage from './components/HomePage/HomePage';
 import SignIn from './components/Login/SignIn';
 import SignUp from './components/Login/SignUp';
 import About from './components/FooterLinks/About';
+import Contact from './components/FooterLinks/Contact';
+import PrivacyPolicy from './components/FooterLinks/PrivacyPolicy';
+import Terms from './components/FooterLinks/Terms';
 import ProjectsPage from './components/Projects/ProjectsPage';
 import UsersPage from './components/Users/UsersPage';
 import DashboardsPage from './components/Dashboards/DashboardsPage'
@@ -17,10 +20,6 @@ import EnsureCredentials from './common/EnsureCredentials';
 import UserContext, { createRepository } from './common/UserContext';
 import useFetch from 'use-http'
 import { useEffect, useState } from 'react'
-import { FormattedMessage } from 'react-intl'
-import { IntlProvider } from "react-intl"
-import English from "./i18n/messages/en-EN"
-import Portuguese from "./i18n/messages/pt-PT"
 import { I18nProvider, LOCALES } from './i18n'
 import WidgetSettingsPage from './components/Dashboard/WidgetSettingsPage'
 
@@ -70,6 +69,9 @@ function App() {
               </Route>
               <Route exact path="/signUp" component={SignUp} />
               <Route exact path="/about" component={About} />
+              <Route exact path="/contact" component={Contact} />
+              <Route exact path="/terms" component={Terms} />
+              <Route exact path="/privacyPolicy" component={PrivacyPolicy} />
               <Route exact path="/projects">
                 <EnsureCredentials redirect="/signIn">
                   <ProjectsPage />

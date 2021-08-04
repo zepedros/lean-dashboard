@@ -78,16 +78,18 @@ export default function AddWidget() {
       <GoBack />
       {loading && <CircularProgress />}
       <RadioGroup row aria-label="gender" onChange={handleChange}>
-        <Grid alignItems="center">
+        <Grid container spacing={2}>
           {templates.map((template) =>
             <FormControlLabel
               control={<Radio />}
               value={template.id}
               label={
                 <>
+                <Grid item md={12} sm={12}>
                   <Card>
                     <TemplateWidget type={template.type} widget={template} />
                   </Card>
+                  </Grid>
                   <Typography component="h1" variant="h6">
                     {template.name}
                   </Typography>

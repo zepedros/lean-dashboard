@@ -6,6 +6,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 import { useLocation } from 'react-router';
 import {FormattedMessage} from 'react-intl';
+import { Link } from "react-router-dom";
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -82,7 +84,7 @@ export default function StickyFooter() {
             key: label,
             color: "inherit",
             to: href,
-            // component: RouterLink,
+            component: Link,
             className: classes.menuButton,
           }}
         >
