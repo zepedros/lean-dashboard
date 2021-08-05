@@ -30,11 +30,10 @@ export default function DashboardsCard({ dashboard }) {
         <CardContent className={classes.cardContent}>
           <DashboardIcon fontSize="large" style={{ fill: "black" }} />
           <Typography gutterBottom variant="h5" component="h2">
-            <NavLink to={`dashboards/${dashboard.id}/`} style={{ textDecoration: "none" }} >
-              <Link>
-                {dashboard.name}
-              </Link>
-            </NavLink>
+            
+            <Link href={`dashboards/${dashboard.id}/`} color="inherit">
+              {dashboard.name}
+            </Link>
           </Typography>
         </CardContent>
       </Card>

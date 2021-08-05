@@ -70,11 +70,11 @@ export default function ProjectsItem({ project }) {
                 </ListItemAvatar>
                 <ListItemText
                     primary={
-                        <NavLink to={`projects/${project.id}/dashboards`} style={{ textDecoration: "none" }} >
-                            <Link>
+                       
+                            <Link href={`projects/${project.id}/dashboards`} color="inherit">
                                 {project.name}
                             </Link>
-                        </NavLink>
+                       
                     }
                     secondary={(project.description !== undefined) ? project.description : null}
                 />

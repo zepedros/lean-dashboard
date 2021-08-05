@@ -52,11 +52,9 @@ export default function DashboardsItem({ dashboard }) {
                 </ListItemAvatar>
                 <ListItemText
                     primary={
-                        <NavLink to={`dashboards/${dashboard.id}/`} style={{ textDecoration: "none" }} >
-                            <Link>
-                                {dashboard.name}
-                            </Link>
-                        </NavLink>
+                        <Link href={`dashboards/${dashboard.id}/`} color="inherit">
+                            {dashboard.name}
+                        </Link>
                     }
                     secondary={(dashboard.description !== undefined) ? dashboard.description : null}
                 />

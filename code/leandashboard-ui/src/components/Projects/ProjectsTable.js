@@ -267,13 +267,11 @@ export default function EnhancedTable({ projects, refresh }) {
                       key={row.name}
                       selected={isItemSelected}
                     >
-                       <NavLink to={`projects/${row.id}/dashboards`} style={{ textDecoration: "none" }}>
-                    <Link>
-                      <TableCell component="th" id={labelId} scope="row" align="center" padding="none">
+                      
+                      <TableCell component={Link} href={`projects/${row.id}/dashboards`} id={labelId} scope="row" align="center" padding="none">
                         {row.project}
                       </TableCell>
-                      </Link>
-                      </NavLink>
+                     
                       <TableCell align="center"><Chip
                     color="primary"
                     style={{backgroundColor:'#3CAA91'}}

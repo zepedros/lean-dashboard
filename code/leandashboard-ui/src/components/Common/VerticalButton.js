@@ -10,11 +10,8 @@ import { useParams } from "react-router-dom";
 import { useState } from 'react';
 import AddDashboardDialog from '../Common/AddDashboardDialog'
 import WidgetsIcon from '@material-ui/icons/Widgets';
-import Link from '@material-ui/core/Link';
 import { NavLink } from 'react-router-dom';
 import DashboardSettingsDialog from './DashboardSettingsDialog'
-import useFetch from 'use-http'
-import { useHistory } from 'react-router-dom';
 
 import DeleteDashboardDialog from '../Dashboard/DeleteDashboardDialog'
 const useStyles = makeStyles((theme) => ({
@@ -30,7 +27,6 @@ export default function VerticalButton(props) {
   const classes = useStyles();
   const [showDialog, setShowDialog] = useState(false)
   let { id, dashboardId } = useParams();
-  var { del, response } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
   const [showDeleteDialog, setShowDeleteDialog] = useState(false)
 
   function handleOpenDialog() {

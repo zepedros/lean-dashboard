@@ -129,13 +129,7 @@ export default function Form(props) {
       >
         {props.button}
       </Button>
-      <Grid container>
-        <Grid item xs>
-          <Link href="#" variant="body2" className={classes.input}>
-          <FormattedMessage id="login.forgotPass" /> 
-          </Link>
-        </Grid>
-      </Grid>
+     
       <Box mt={5}>
         <Copyright />
       </Box>

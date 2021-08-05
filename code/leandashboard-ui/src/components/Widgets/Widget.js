@@ -14,6 +14,12 @@ export default function Widget({ widgetId }) {
     let { id, dashboardId } = useParams();
     
     useEffect(() => {
+        
+        getWidget()
+          
+    },[])
+
+    useEffect(() => {
         const interval = setInterval(() => {
             getWidget()
           }, 10000);

@@ -32,24 +32,13 @@ export default function ProjectsPage() {
 
     async function loadProjects() {
         const getProjects = await get('/api/lean/projects')
-        let ret
-        console.log('alisa');
+        
         if (getProjects) {
-            
             for(let project of getProjects){
                 const owner = await getUsername(project.owner)
                 console.log(owner)
                 project.owner = owner.username
             }
-            /*ret = getProjects.map(project => {
-                getUsername(project.owner).then(() => {
-                    if (response.ok) {
-                        project.owner = response.data.username
-                    }
-                })
-                return project
-            })*/
-            console.log(projects)
             if (response.ok) setProjects(getProjects)
         }
         else setProjects([])
@@ -79,12 +68,12 @@ export default function ProjectsPage() {
                     <div>
                         <Hidden mdUp>
                             <Grid item xs={12} sm={12} md={12}>
-                                <NavBar component={<ProjectsList projects={projects} refresh={doRefresh} userIsManager={userIsManager} />} title={"LeanDashboard"} projectNumber={projects.length}/>
+                                <NavBar component={<ProjectsList projects={projects} refresh={doRefresh} userIsManager={userIsManager} />} title={"LeanDashboard"} />
                             </Grid>
                         </Hidden>
                         <Hidden smDown>
                             <Grid item xs={12} sm={12} md={12}>
-                                <NavBar component={<ProjectsTable projects={projects} refresh={doRefresh} userIsManager={userIsManager} />} title={"LeanDashboard"} projectNumber={projects.length}/>
+                                <NavBar component={<ProjectsTable projects={projects} refresh={doRefresh} userIsManager={userIsManager} />} title={"LeanDashboard"} />
                             </Grid>
                         </Hidden>
                     </div>

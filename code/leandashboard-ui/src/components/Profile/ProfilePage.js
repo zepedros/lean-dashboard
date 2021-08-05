@@ -6,7 +6,6 @@ import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import FormControl from '@material-ui/core/FormControl';
 import TextField from '@material-ui/core/TextField';
-import Grid from '@material-ui/core/Grid';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
@@ -15,7 +14,9 @@ import { useState,useContext } from 'react'
 import Avatar from '@material-ui/core/Avatar';
 import UserContext from '../../common/UserContext';
 import {FormattedMessage} from 'react-intl';
-import {useLocation} from "react-router-dom";
+import useFetch from 'use-http'
+import { useEffect } from 'react'
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -48,7 +49,25 @@ export default function ProfilePage(){
     const classes = useStyles();
     const [showDialog, setShowDialog] = useState(false)
     const context = useContext(UserContext)
-    let data = useLocation();
+    const { get, response, loading } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
+    const [projects, setProjects] = useState([])
+
+
+    useEffect(() => {
+      loadProjects().then(() => {
+          console.log(response.data)
+      })
+  }, [])
+
+  async function loadProjects() {
+    const getProjects = await get('/api/lean/projects')
+   
+    if (response.ok) setProjects(getProjects)
+    
+    console.log(projects)
+    }
+    
+
 
     function handleOpenDialog() {
         setShowDialog(true)
@@ -57,7 +76,11 @@ export default function ProfilePage(){
     const page = () => {
         return(
             <div>
-                
+                {loading ?
+                  <CircularProgress color="primary" />
+                  :
+
+                <div>
                 <Typography variant="h6" noWrap color="textPrimary"><FormattedMessage id="Profile.profile"/></Typography>
                 <Box display="flex" p={1} justifyContent="center" bgcolor="background.paper">
                     
@@ -83,10 +106,11 @@ export default function ProfilePage(){
                 </Box>
                 <Box display="flex" p={1} bgcolor="background.paper">
                     <Box flexGrow={1}  justifyContent="flex-start"p={1} bgcolor="background.paper" >
+                      
                         <TextField
                         label={<FormattedMessage id="Profile.numberOfProjects"/>}
                         id="outlined-size-small"
-                        defaultValue={data.state.numberProjects}
+                        defaultValue={projects.length}
                         variant="outlined"
                         className={classes.disabledInput}
                         size="small"
@@ -100,7 +124,8 @@ export default function ProfilePage(){
                         <Button color="primary" onClick={handleOpenDialog}><FormattedMessage id="Profile.changePassowrd.button"/></Button>
                     </Box>
                
-
+            </div>
+            }
             </div>
         ) 
     }
