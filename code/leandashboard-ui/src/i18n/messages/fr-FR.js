@@ -114,7 +114,8 @@ export default {
         title: "En tant que super utilisateur ou chef de projet, vous pouvez créer un compte pour un collègue. Le nom d'utilisateur et le mot de passe peuvent être modifiés par votre collègue.",
         username:"Nom d'utilisateur",
         password: "mot de passe",
-        cancel:"Annuler"
+        cancel:"Annuler",
+        userManagement: "gestion des utilisateurs"
     }   
     }
 }

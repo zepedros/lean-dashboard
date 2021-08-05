@@ -96,7 +96,8 @@ export function createRepository(get, post) {
                         history.push('/projects')
                     })
                 } else {
-                    alert(response.message)
+                    console.log('login failed')
+                    alert(response.message || 'There was an error logging in')
                     return false
                 }
             })

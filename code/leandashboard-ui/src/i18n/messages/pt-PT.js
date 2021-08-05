@@ -114,7 +114,8 @@ export default {
          title: "Como super utilizador ou gerente de projeto, pode criar uma conta para um colega. Nome de utilizador e palavra-chave podem ser alteradas pelo seu colega.",
          username:"Nome de utilizador",
          password: "Palavra-chave",
-         cancel:"cancelar"
+         cancel:"cancelar",
+         userManagement: "Gestão de utilizadores"
      } ,
      Credentials: {
          name: 'Nome',

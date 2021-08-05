@@ -113,7 +113,8 @@ export default {
              title: "As a super user or project manager, you can create an account for a colleague. Username and password can be changed by your colleague.",
              username:"username",
              password: "password",
-             cancel:"cancel"
+             cancel:"cancel",
+             userManagement: "User management"
          }   
      }  
 }
