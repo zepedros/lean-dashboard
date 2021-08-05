@@ -43,6 +43,15 @@ function services(azureData, jiraData, squashData, db, auth) {
             return await db.postWidget(data, widgetId)
         },
 
+        postSquashTestsBarChart: async function(name,widgetId,credentials) {
+            const id = await squashData.getProjectSquashByName(credentials,name)
+            if(id === 0) {
+                console.log('no project with name')
+            }
+            const data = await squashTransformer.squashProjectTestsBarChart(id,squashData,credentials)
+            return await db.postWidget(data, widgetId)
+        },
+
         postJiraSprintDateGaugeChart: async function(widgetId, credentials){
             const data = await jiraTransformer.jiraSprintDateGaugeChart(jiraData, credentials)
                 .catch(err => {

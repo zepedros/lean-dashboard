@@ -90,6 +90,35 @@ const templates = [
         }]
     },
     {
+        name: 'Squash test results bar chart',
+        function: 'postSquashTestsBarChart',
+        source: 'Squash',
+        params: ["Project Name"],
+        type:"BarChart",
+        data: [
+            {
+                "name": "Squash Tests Bar Chart",
+                "counts": [
+                    {
+                        "SUCCESS": 10
+                    },
+                    {
+                        "READY": 30
+                    },
+                    {
+                        "FAILURE": 5
+                    },
+                    {
+                        "RUNNING": 20
+                    },
+                    {
+                        "BLOCKED": 10
+                    }
+                ]
+            }
+        ]
+    },
+    {
         name: 'Squash test per iteration data table',
         function: 'postSquashTestPerIterationDataTable',
         source: 'Squash',

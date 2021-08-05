@@ -539,6 +539,35 @@
 							"response": []
 						},
 						{
+							"name": "POST /lean-etl/squashTests Copy",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"credentials\": {\r\n        \"username\": \"guest_tpl\",\r\n        \"password\": \"password\",\r\n        \"APIPath\": \"demo.squashtest.org\"\r\n    },\r\n    \"projectName\": \"Sandbox #2\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/lean-etl/squashBarTests",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"lean-etl",
+										"squashBarTests"
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "POST /lean-etl/squashIterationTests/{id}",
 							"request": {
 								"method": "POST",

@@ -49,6 +49,7 @@ const useStyles = makeStyles((theme) => ({
 export default function AddWidgetList() {
     const classes = useStyles();
     const [selectTemplate, setSelectTemplate] = useState('');
+    const [selectParams, setSelectParams] = useState([]);
     const [templates, setTemplates] = useState([]);
     const [sourceTemplate, setSourceTemplate] = useState('');
     const [activeDialog, setDialog] = useState(false);
@@ -62,6 +63,7 @@ export default function AddWidgetList() {
         templates.map(template => {
             if (template.id === event.target.value) {
                 setSourceTemplate(template.source)
+                setSelectParams(template.params)
             }
         })
     };
@@ -107,7 +109,7 @@ export default function AddWidgetList() {
                         )}
                     </RadioGroup >
                 </Grid>
-                <AddWidgetDialog showDialog={activeDialog} setShowDialog={setDialog} source={sourceTemplate} templateId={selectTemplate} />
+                <AddWidgetDialog showDialog={activeDialog} setShowDialog={setDialog} source={sourceTemplate} templateId={selectTemplate} templateParams={selectParams}/>
                 <Button
                     variant="contained"
                     color="primary"

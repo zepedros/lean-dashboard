@@ -134,5 +134,32 @@ module.exports = {
             data: result
         }
         return widget
+    },
+    squashProjectTestsBarChart: async function(id,data, credentials) {
+        let widget = {
+            name: "Squash test results bar chart",
+            data: []
+        }
+        const allCampaignsTests = (await data.getSquashTestsPlans(id, credentials))
+
+        let counts = {}
+        allCampaignsTests.forEach(
+            function (x) {
+                x["test-items"].forEach( testItem => {
+                    counts[testItem.execution_status] = (counts[testItem.execution_status] || 0) + 1;
+                })
+            });
+
+        let alisa = []
+        for (const prop in counts) {
+            alisa.push({
+                [prop]: counts[prop]
+            })
+        }
+        widget.data.push({
+            name : "Squash Tests Bar Chart",
+            counts: alisa
+        })
+        return widget
     }
 }

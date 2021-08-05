@@ -208,6 +208,14 @@ function webapi(app, services) {
                     answerHandler(resp,res)
                 })
                 .catch(err => errHandler(err,res))
+        },
+        postSquashTestsBarChart(req,res) {
+            services.postSquashTestsBarChart(req.body.projectName,undefined,req.body.credentials)
+                .then(resp => {
+                    console.log("posted widget")
+                    answerHandler(resp,res)
+                })
+                .catch(err => errHandler(err,res))
         }
     };
 
@@ -239,7 +247,7 @@ function webapi(app, services) {
     app.post('/lean-etl/projects', theWebApi.postProjects)
     app.post('/lean-etl/squashTests', theWebApi.postSquashTestPieChart)
     app.post('/lean-etl/squashIterationTests', theWebApi.postSquashTestPerIterationDataTable)
-
+    app.post('/lean-etl/squashBarTests', theWebApi.postSquashTestsBarChart)
     app.get('/lean-etl/sprint',theWebApi.getAllSprintsJira)
     app.get('/lean-etl/sprint/:id/issues',theWebApi.getSprintIssues)
 

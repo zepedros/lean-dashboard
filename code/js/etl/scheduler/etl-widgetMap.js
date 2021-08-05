@@ -31,6 +31,11 @@ module.exports = {
                 services.postAzureIterationDataTable(teamName, widgetId, credentials)
             })
 
+        widgetMap.set("postSquashTestsBarChart",
+            function (id, widgetId, credentials) {
+                services.postSquashTestsBarChart(id, widgetId, credentials)
+            })
+
         return widgetMap
     }
 }
