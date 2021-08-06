@@ -12,11 +12,9 @@ import {
 const BarChart = ({widget}) => {
   const theme = useTheme();
   var keys = Object.keys(widget.data[0].counts);
-  console.log(keys)
   var labelsAux=[]
   for(let i = 0; i < keys.length;i++){
     labelsAux.push(Object.keys(widget.data[0].counts[i]))
-    console.log(widget.data[0].counts[i])
   }
  
   labelsAux = labelsAux.flat(Infinity)
@@ -25,7 +23,7 @@ const BarChart = ({widget}) => {
   for(let i = 0; i<keys.length;i++){
     dataAux.push(widget.data[0].counts[i][labelsAux[i]])
   }
-  console.log(dataAux)
+
   const data = {
     labels: labelsAux,
     datasets: [

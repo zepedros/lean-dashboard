@@ -9,9 +9,6 @@ import {
   colors,
   useTheme
 } from '@material-ui/core';
-import LaptopMacIcon from '@material-ui/icons/LaptopMac';
-import PhoneIcon from '@material-ui/icons/Phone';
-import TabletIcon from '@material-ui/icons/Tablet';
 
 const PieChart = (props) => {
   const theme = useTheme();
@@ -71,30 +68,9 @@ const PieChart = (props) => {
     }
   };
 
-  const devices = [
-    {
-      title: 'RUNNING',
-      value: 100,
-      icon: LaptopMacIcon,
-      color: colors.indigo[500]
-    },
-    {
-      title: 'READY',
-      value: 0,
-      icon: TabletIcon,
-      color: colors.red[600]
-    },
-    {
-      title: 'SUCCESS',
-      value: 0,
-      icon: PhoneIcon,
-      color: colors.orange[600]
-    }
-  ];
-
   return (
     <Card {...props.widget}>
-      <CardHeader title="Tests" />
+      <CardHeader title={props.widget.name} />
       <Divider />
       <CardContent>
         <Box
@@ -108,45 +84,6 @@ const PieChart = (props) => {
             options={options}
           />
         </Box>
-        {props.template ?
-          <Box
-            sx={{
-              display: 'flex',
-              justifyContent: 'center',
-              pt: 2
-            }}
-          >
-            {devices.map(({
-              color,
-              icon: Icon,
-              title,
-              value
-            }) => (
-              <Box
-                key={title}
-                sx={{
-                  p: 1,
-                  textAlign: 'center'
-                }}
-              >
-                <Icon color="action" />
-                <Typography
-                  color="textPrimary"
-                  variant="body1"
-                >
-                  {title}
-                </Typography>
-                <Typography
-                  style={{ color }}
-                  variant="h2"
-                >
-                  {value}
-                  %
-                </Typography>
-              </Box>
-            ))}
-          </Box> : null
-        }
       </CardContent>
     </Card>
   );

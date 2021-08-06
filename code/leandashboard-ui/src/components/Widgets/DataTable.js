@@ -5,7 +5,7 @@ export default function DataTable({ widget }) {
 
   console.log(widget)
   var keys = Object.keys(widget.data[0]);
-  console.log(keys)
+
   const columns = () => {
     let columns = [{
       id: 'id',

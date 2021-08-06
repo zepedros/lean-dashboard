@@ -181,6 +181,40 @@ const templates = [
             "finishDate" : "2021-05-09T00:00:00Z",
             "timeFrame": "past"
         }]
+    },
+    {
+        name: 'Azure Bug by State Pie Chart',
+        function: 'postAzureBugByStatePieChart',
+        source: 'Azure',
+        params: ["Team Name", "Iteration Name"],
+        type:"PieChart",
+        data: [
+            {
+                "total": 10,
+                "counts": [
+                    {
+                        "status": "New",
+                        "percentage": "20"
+                    },
+                    {
+                        "status": "Approved",
+                        "percentage": "20"
+                    },
+                    {
+                        "status": "Committed",
+                        "percentage": "20"
+                    },
+                    {
+                        "status": "Done",
+                        "percentage": "20"
+                    },
+                    {
+                        "status": "Removed",
+                        "percentage": "20"
+                    }
+                ]
+            }
+        ]
     }
 ]
 
