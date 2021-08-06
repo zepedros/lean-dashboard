@@ -1,12 +1,10 @@
 import Grid from '@material-ui/core/Grid';
 import NavBar from '../Common/NavBar'
 import { Hidden } from '@material-ui/core';
-import FAB from '../Common/FAB'
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from 'react'
 import useFetch from 'use-http'
 import DashboardWidgets from './DashbordWidgets';
-import { useHistory } from "react-router-dom";
 import Error from '../Common/Errors/Error'
 import DashboardWidgetsList from './DashboardWidgetsList'
 export default function DashboardPage() {

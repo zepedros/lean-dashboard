@@ -7,6 +7,8 @@ import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import Error from '../Common/Errors/Error'
 
+
+
 export default function Widget({ widgetId }) {
     const [widget, setWidget] = useState()
     const [errorResponse, setErrorResponse] = useState()

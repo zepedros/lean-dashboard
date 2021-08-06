@@ -29,12 +29,6 @@ export default function DashboardsPage() {
     }, [refresh])
     useEffect(() => { loadProjects() }, [setProject])
 
-    /*
-    useEffect(() => {
-        checkIfUserIsManager()
-        .then(() => console.log(`User is manager: ${userIsManager}`))
-    }, [userIsManager])*/
-
     async function loadDashboards() {
         const getDashboards = await get(`/api/lean/projects/${id}/dashboards`)
         if (response.ok) {

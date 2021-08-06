@@ -14,6 +14,7 @@ import CardContent from '@material-ui/core/CardContent';
 import { CircularProgress, Grid } from '@material-ui/core';
 import {FormattedMessage} from 'react-intl';
 import GoBack from '../Common/GoBack';
+import Container from '@material-ui/core/Container';
 
 const useStyles = makeStyles((theme) => ({
   table: {
@@ -36,6 +37,18 @@ const useStyles = makeStyles((theme) => ({
     position: "relative",
     left: "45%"
   },
+  container: {
+    marginLeft: '-2.2%',
+    width: '94%'
+},
+card: {
+  display: 'flex',
+  flexDirection: 'column',
+  textAlign: "bottom",
+  width: "400px",
+  height: "300px",
+  backgroundColor: '',
+},
 }));
 
 export default function AddWidget() {
@@ -74,6 +87,7 @@ export default function AddWidget() {
     <div>
       <GoBack />
       {loading && <CircularProgress />}
+      <Container maxWidth="false" className={classes.container}>
       <RadioGroup row aria-label="gender" onChange={handleChange}>
         <Grid container spacing={2}>
           {templates.map((template) =>
@@ -83,7 +97,7 @@ export default function AddWidget() {
               label={
                 <>
                 <Grid item md={12} sm={12}>
-                  <Card>
+                  <Card className={classes.card}>
                     <TemplateWidget type={template.type} widget={template} />
                   </Card>
                   </Grid>
@@ -99,6 +113,7 @@ export default function AddWidget() {
           )}
         </Grid>
       </RadioGroup >
+      </Container>
       <AddWidgetDialog showDialog={activeDialog} setShowDialog={setDialog} source={sourceTemplate} templateId={selectTemplate}  templateParams={selectParams}/>
       <Button
         variant="contained"
