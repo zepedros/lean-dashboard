@@ -37,7 +37,7 @@ module.exports = {
             "workItemType": refObject.fields["System.WorkItemType"],
             "state": refObject.fields["System.State"],
             "reason": refObject.fields["System.Reason"],
-            "assignedTo": refObject.fields["System.AssignedTo"].displayName,
+            "assignedTo": refObject.fields["System.AssignedTo"]?.displayName,
             "createdDate": refObject.fields["System.CreatedDate"],
             "title": refObject.fields["System.Title"],
             "description": refObject.fields["System.Description"]
@@ -49,18 +49,6 @@ module.exports = {
             name: "Azure Work Item by State Bar Graph",
             data: []
         }
-        /*let counts = {
-            name:"",
-            aux:[
-                {
-                    total: 0,
-                    done: 0,
-                    new: 0,
-                    approved: 0,
-                    committed: 0
-                }
-            ]
-        }*/
 
         let counts = {}
         data.forEach(
@@ -78,17 +66,6 @@ module.exports = {
             name : "",
             counts: alisa
         })
-
-        /*data.map(workItem => {
-            switch(workItem.state) {
-                case "Done" : counts.done++; break;
-                case "New" : counts.new++; break;
-                case "Approved" : counts.approved++; break;
-                case "Committed" : counts.committed++; break;
-            }
-            counts.total++
-        })
-        widget.data.push(counts)*/
         return widget
     },
 
@@ -112,6 +89,72 @@ module.exports = {
             ],
             data : iterations
         }
+        return widget
+    },
+
+    azureTestCaseByStatePieChart: async function(data, credentials) {
+        let widget = {
+            name: "Azure Tests by State pie chart",
+            data: []
+        }
+
+        let counts = new Map()
+        let total = 0
+        for (const workItem of data) {
+            if(workItem.workItemType === "Bug") {
+                if (counts.has(workItem.state)) {
+                    counts.set(workItem.state, counts.get(workItem.state) + 1)
+                } else {
+                    counts.set(workItem.state, 1)
+                }
+                total++
+            }
+        }
+        let mapJson = Array.from(counts.entries())
+        let result = []
+        for (const map of mapJson) {
+            result.push({
+                "status": map[0],
+                "percentage": ((map[1] / total) * 100).toFixed(2)
+            })
+        }
+        widget.data.push({
+            total: total,
+            counts: result
+        })
+        return widget
+    },
+
+    azureBugByStatePieChart: async function(data, credentials) {
+        let widget = {
+            name: "Azure Bugs by State pie chart",
+            data: []
+        }
+
+        let counts = new Map()
+        let total = 0
+        for (const workItem of data) {
+            if(workItem.workItemType === "Bug") {
+                if (counts.has(workItem.state)) {
+                    counts.set(workItem.state, counts.get(workItem.state) + 1)
+                } else {
+                    counts.set(workItem.state, 1)
+                }
+                total++
+            }
+        }
+        let mapJson = Array.from(counts.entries())
+        let result = []
+        for (const map of mapJson) {
+            result.push({
+                "status": map[0],
+                "percentage": ((map[1] / total) * 100).toFixed(2)
+            })
+        }
+        widget.data.push({
+            total: total,
+            counts: result
+        })
         return widget
     }
 }

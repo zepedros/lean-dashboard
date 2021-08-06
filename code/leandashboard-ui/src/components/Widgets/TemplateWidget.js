@@ -5,7 +5,7 @@ import GaugeChart from './GaugeChart'
 export default function ({ type, widget }) {
     switch (type) {
         case "BarChart": return (<BarChart widget={widget}/>)
-        case "PieChart": return (<PieChart widget={widget} template={undefined} />)
+        case "PieChart": return (<PieChart widget={widget}/>)
         case "DataTable": return (<DataTable widget={widget}/>)
         case "GaugeChart": return (<GaugeChart widget={widget}/>)
         default: return <div></div>

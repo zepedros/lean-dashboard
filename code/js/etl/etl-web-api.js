@@ -152,6 +152,14 @@ function webapi(app, services) {
                 })
                 .catch(err => errHandler(err, res))
         },
+        getAzureTestCases: function (req,res) {
+            services.getAzureTestCases(req.params.team, req.body.credentials)
+                .then(resp => {
+                    console.log("Get Azure test cases")
+                    answerHandler(resp, res)
+                })
+                .catch(err => errHandler(err, res))
+        },
         postIssues: function (req, res) {
             services.postIssues()
                 .then(resp => {
@@ -216,6 +224,14 @@ function webapi(app, services) {
                     answerHandler(resp,res)
                 })
                 .catch(err => errHandler(err,res))
+        },
+        postAzureBugByStatePieChart(req,res) {
+            services.postAzureBugByStatePieChart(req.params.team,req.body.iterationName,undefined,req.body.credentials)
+                .then(resp => {
+                    console.log("posted widget")
+                    answerHandler(resp,res)
+                })
+                .catch(err => errHandler(err,res))
         }
     };
 
@@ -239,8 +255,10 @@ function webapi(app, services) {
     app.get('/lean-etl/projectsAzure', theWebApi.getAzureProjects) //testing
     app.get('/lean-etl/projectsAzure/:id/teams', theWebApi.getAzureTeams) //testing
     app.get('/lean-etl/projectsAzure/:team/iterations', theWebApi.getAzureIterations)
+    app.get('/lean-etl/projectsAzure/:team/tests', theWebApi.getAzureTestCases)
     app.get('/lean-etl/projectsAzure/:team/iterations/:id/workItems',theWebApi.getAzureIterationWorkItems)
     app.post('/lean-etl/projectsAzure/:team/iterations/workItems',theWebApi.postAzureWorkItemByStateBarGraph)
+    app.post('/lean-etl/projectsAzure/:team/iterations/bugs',theWebApi.postAzureBugByStatePieChart)
     app.post('/lean-etl/projectsAzure/:team/iterations',theWebApi.postAzureIterationsDataTable)
 
     app.post('/lean-etl/issues', theWebApi.postIssues)

@@ -56,8 +56,6 @@ export default function AddWidget() {
       if (template.id === event.target.value) {
         setSourceTemplate(template.source)
         setSelectParams(template.params)
-        console.log('SETPARAMS')
-        console.log(template)
       }
     })
   };
@@ -72,7 +70,6 @@ export default function AddWidget() {
     if (response.ok) setTemplates(getTemplates)
   }
 
-  console.log(templates)
   return (
     <div>
       <GoBack />

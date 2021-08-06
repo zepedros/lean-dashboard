@@ -84,6 +84,21 @@ function services(azureData, jiraData, squashData, db, auth) {
             }
         },
 
+        postAzureBugByStatePieChart: async function(teamName, iterationName, widgetId, credentials) {
+            const iterationId = await azureData.getIterationByName(teamName,iterationName,credentials)
+            if(iterationId === 0) {
+                console.log('no project with name')
+                return
+            }
+            const workItems = await azureData.getAzureIterationWorkItems(teamName, iterationId, credentials)
+            if(workItems.statusCode === 404) {
+                console.log('No such team or iteration')
+            } else {
+                const data = await azureTransformer.azureBugByStatePieChart(workItems.workItems,credentials)
+                return await db.postWidget(data, widgetId)
+            }
+        },
+
         postAzureIterationDataTable: async function(teamName, widgetId, credentials) {
             const iterations = await azureData.getAzureIterations(teamName, credentials)
             const data = await azureTransformer.azureIterationDataTableTransform(iterations.iterations,credentials)
@@ -140,6 +155,9 @@ function services(azureData, jiraData, squashData, db, auth) {
         },
         getAzureIterationWorkItems: function (teamName, iterationId, credentials) {
             return azureData.getAzureIterationWorkItems(teamName,iterationId, credentials)
+        },
+        getAzureTestCases: function (teamName, credentials) {
+            return azureData.getAzureTestCases(teamName,credentials)
         }
     };
     return theServices;
