@@ -19,7 +19,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import TuneIcon from '@material-ui/icons/Tune';
+import FaceIcon from '@material-ui/icons/Face';
 import Chip from '@material-ui/core/Chip';
 import ClearIcon from '@material-ui/icons/Clear';
 import Divider from '@material-ui/core/Divider';
@@ -28,6 +28,13 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import EditIcon from '@material-ui/icons/Edit';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import Input from '@material-ui/core/Input';
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import { FormattedMessage } from 'react-intl';
+import TextField from '@material-ui/core/TextField';
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -81,6 +88,7 @@ export default function CustomizedTables({ users, refresh, deleteUser, removeRol
   const classes = useStyles();
   const [userToDelete, setUserToDelete] = useState()
   const [userToAlterRoles, setUserToAlterRoles] = useState()
+  const [userToEdit, setUserToEdit] = useState()
   const [selectedUserRoles, setSelectedUserRoles] = useState([])
   const [roleToRemove, setRoleToRemove] = useState()
   const [roleToGive, setRoleToGive] = React.useState('');
@@ -88,6 +96,9 @@ export default function CustomizedTables({ users, refresh, deleteUser, removeRol
   const [deleteUserOpenDialog, setDeleteUserOpenDialog] = useState(false);
   const [rolesOpenDialog, setRolesOpenDialog] = useState(false)
   const [removeRoleOpenDialog, setRemoveRoleOpenDialog] = useState(false)
+  const [userEditingOpenDialog, setUserEditingOpenDialog] = useState(false)
+  const [input, setInput] = useState({ username: "", password: "", showPassword: false, })
+
 
 
 
@@ -109,6 +120,14 @@ export default function CustomizedTables({ users, refresh, deleteUser, removeRol
   const handleDeleteUserClose = () => {
     setUserToDelete(undefined)
     setDeleteUserOpenDialog(false);
+  };
+
+  const handleClickShowPassword = () => {
+    setInput({ ...input, showPassword: !input.showPassword });
+  };
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
   };
 
   const handleRolesOpen = (username) => {
@@ -136,6 +155,16 @@ export default function CustomizedTables({ users, refresh, deleteUser, removeRol
     setUserToAlterRoles(undefined)
     setRemoveRoleOpenDialog(false);
   };
+
+  const handleEditingOpen = (username) => {
+    setUserToEdit(username)
+    setUserEditingOpenDialog(true)
+  };
+
+  const handleEditingClose = () => {
+    setUserToEdit(undefined)
+    setUserEditingOpenDialog(false)
+  }
 
 
   const deleteUserDialog = () => {
@@ -226,6 +255,64 @@ export default function CustomizedTables({ users, refresh, deleteUser, removeRol
     )
   }
 
+  const editUserDialog = () => {
+    return (
+      <Dialog
+        open={userEditingOpenDialog}
+        onClose={handleEditingClose}
+        aria-labelledby="user-editing-alert-dialog"
+        aria-describedby="dialog to edit details about a user"
+      >
+        <DialogTitle id="alert-dialog-title">{`Edit user ${userToEdit}`}</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Change the current user's password or username
+          </DialogContentText>
+          <div>
+            <InputLabel htmlFor="new-username">New Username</InputLabel>
+            <Input
+              id="new-username"
+              label={<FormattedMessage id="New Username" />}
+              value={input.username}
+              //onChange={handleChange('password')}
+              onChange={e => { setInput({username: e.target.value, password: input.password }) }}
+              
+            />
+            <Button color="primary" align="right" onClick={() => alert(`Changing username of ${userToEdit} to ${input.username}`)}>Change Username</Button>
+          </div>
+          <div>
+            <InputLabel htmlFor="standard-adornment-password">New Password</InputLabel>
+            <Input
+              id="standard-adornment-password"
+              type={input.showPassword ? 'text' : 'password'}
+              label={<FormattedMessage id="New Password" />}
+              value={input.password}
+              //onChange={handleChange('password')}
+              onChange={e => { setInput({ username: input.username, password: e.target.value }) }}
+              endAdornment={
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={handleClickShowPassword}
+                    onMouseDown={handleMouseDownPassword}
+                  >
+                    {input.showPassword ? <Visibility /> : <VisibilityOff />}
+                  </IconButton>
+                </InputAdornment>
+              }
+            />
+            <Button color="primary" onClick={() => alert(`Changing username of ${userToEdit} to ${input.password}`)}>Change Password</Button>
+          </div>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleEditingClose} color="primary">
+            Close
+          </Button>
+        </DialogActions>
+      </Dialog>
+    )
+  }
+
   const rolesSelectForm = () => {
     return (
       <FormControl variant="outlined" className={classes.formControl}>
@@ -273,10 +360,13 @@ export default function CustomizedTables({ users, refresh, deleteUser, removeRol
                     </StyledTableCell>
                     <StyledTableCell align="right">
                       <Button align="right" onClick={() => handleRolesOpen(row.username)}>
-                        <TuneIcon color="primary"></TuneIcon>
+                        <FaceIcon color="primary"></FaceIcon>
                       </Button>
                       <Button align="right" onClick={() => handleDeleteUserOpen(row.username)}>
                         <DeleteIcon color="primary"></DeleteIcon>
+                      </Button>
+                      <Button align="right" onClick={() => handleEditingOpen(row.username)}>
+                        <EditIcon color="primary"></EditIcon>
                       </Button>
                     </StyledTableCell>
                   </StyledTableRow>
@@ -294,6 +384,9 @@ export default function CustomizedTables({ users, refresh, deleteUser, removeRol
       }
       {
         removeRoleFromUserDialog()
+      }
+      {
+        editUserDialog()
       }
     </div>
   );
