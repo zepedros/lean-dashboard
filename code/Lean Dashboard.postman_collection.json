@@ -703,6 +703,40 @@
 							"response": []
 						},
 						{
+							"name": "GET /lean-etl/projectsAzure/{id}/tests",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"credentials\": {\r\n        \"email\" : \"leandashboardproject@gmail.com\",\r\n        \"token\" : \"cwryfikv3hrslmoqiz4wz2otexf7o5aj4qtouhm37ndglel5dkbq\",\r\n        \"Instance\" : \"dev.azure.com/leandashboardproject\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/lean-etl/projectsAzure/Lean Dashboard demo/tests",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"lean-etl",
+										"projectsAzure",
+										"Lean Dashboard demo",
+										"tests"
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "GET /lean-etl/projectsAzure/{team}/iterations/{id}/workItems",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
@@ -765,6 +799,69 @@
 										"Lean Dashboard demo",
 										"iterations",
 										"workItems"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "POST /lean-etl/projectsAzure/{team}/iterations/bugs",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"credentials\": {\r\n        \"email\" : \"leandashboardproject@gmail.com\",\r\n        \"token\" : \"cwryfikv3hrslmoqiz4wz2otexf7o5aj4qtouhm37ndglel5dkbq\",\r\n        \"Instance\" : \"dev.azure.com/leandashboardproject\"\r\n    },\r\n    \"iterationName\" : \"Sprint 1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/lean-etl/projectsAzure/Lean Dashboard demo/iterations/bugs",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"lean-etl",
+										"projectsAzure",
+										"Lean Dashboard demo",
+										"iterations",
+										"bugs"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "POST /lean-etl/projectsAzure/{team}/tests",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"credentials\": {\r\n        \"email\" : \"leandashboardproject@gmail.com\",\r\n        \"token\" : \"cwryfikv3hrslmoqiz4wz2otexf7o5aj4qtouhm37ndglel5dkbq\",\r\n        \"Instance\" : \"dev.azure.com/leandashboardproject\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/lean-etl/projectsAzure/Lean Dashboard demo/tests",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"lean-etl",
+										"projectsAzure",
+										"Lean Dashboard demo",
+										"tests"
 									]
 								}
 							},

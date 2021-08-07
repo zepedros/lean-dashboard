@@ -232,6 +232,14 @@ function webapi(app, services) {
                     answerHandler(resp,res)
                 })
                 .catch(err => errHandler(err,res))
+        },
+        postAzureTestCaseByStatePieChart(req,res) {
+            services.postAzureTestCaseByStatePieChart(req.params.team,undefined,req.body.credentials)
+                .then(resp => {
+                    console.log("posted widget")
+                    answerHandler(resp,res)
+                })
+                .catch(err => errHandler(err,res))
         }
     };
 
@@ -259,6 +267,7 @@ function webapi(app, services) {
     app.get('/lean-etl/projectsAzure/:team/iterations/:id/workItems',theWebApi.getAzureIterationWorkItems)
     app.post('/lean-etl/projectsAzure/:team/iterations/workItems',theWebApi.postAzureWorkItemByStateBarGraph)
     app.post('/lean-etl/projectsAzure/:team/iterations/bugs',theWebApi.postAzureBugByStatePieChart)
+    app.post('/lean-etl/projectsAzure/:team/tests',theWebApi.postAzureTestCaseByStatePieChart)
     app.post('/lean-etl/projectsAzure/:team/iterations',theWebApi.postAzureIterationsDataTable)
 
     app.post('/lean-etl/issues', theWebApi.postIssues)

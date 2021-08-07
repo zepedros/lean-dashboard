@@ -100,15 +100,13 @@ module.exports = {
 
         let counts = new Map()
         let total = 0
-        for (const workItem of data) {
-            if(workItem.workItemType === "Bug") {
-                if (counts.has(workItem.state)) {
-                    counts.set(workItem.state, counts.get(workItem.state) + 1)
-                } else {
-                    counts.set(workItem.state, 1)
-                }
-                total++
+        for (const testCase of data.workItems) {
+            if (counts.has(testCase.state)) {
+                counts.set(testCase.state, counts.get(testCase.state) + 1)
+            } else {
+                counts.set(testCase.state, 1)
             }
+            total++
         }
         let mapJson = Array.from(counts.entries())
         let result = []

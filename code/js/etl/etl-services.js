@@ -99,6 +99,16 @@ function services(azureData, jiraData, squashData, db, auth) {
             }
         },
 
+        postAzureTestCaseByStatePieChart: async function(teamName, widgetId, credentials) {
+            const testCases = await azureData.getAzureTestCases(teamName,credentials)
+            if(testCases.statusCode === 404) {
+                console.log('No such team or iteration')
+            } else {
+                const data = await azureTransformer.azureTestCaseByStatePieChart(testCases, credentials)
+                return await db.postWidget(data, widgetId)
+            }
+        },
+
         postAzureIterationDataTable: async function(teamName, widgetId, credentials) {
             const iterations = await azureData.getAzureIterations(teamName, credentials)
             const data = await azureTransformer.azureIterationDataTableTransform(iterations.iterations,credentials)

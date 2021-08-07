@@ -119,6 +119,33 @@ module.exports = {
         }
         return jsonData
     },
+    getAzureTestCases: async function(teamName, credentials) {
+        const url = `${buildURI(credentials)}${teamName}/_apis/wit/wiql?api-version=6.0`
+        let headers = buildHeader(credentials)
+        headers["Content-Type"] = "application/json"
+        const body = {
+            "query": "Select [System.Id], [System.Title], [System.State] From WorkItems Where [System.WorkItemType] = 'Test Case'"
+        }
+        let testCases
+        try {
+            testCases = await fetcher.makePostRequest(url,body, headers)
+        } catch (ex) {
+            if (ex.type === 'invalid-json') {
+                throw error.makeErrorResponse(error.ARGUMENT_ERROR, 'Credentials Wrong')
+            } else {
+                throw error.makeErrorResponse(error.ARGUMENT_ERROR, 'APIPath does not exist')
+            }
+        }
+        if (testCases.ok === false) throw error.makeErrorResponse(testCases.status, testCases.statusText)
+        let jsonData = {
+            workItems: [],
+            total : testCases.workItems.length
+        };
+        for(const testCase of testCases.workItems) {
+            jsonData.workItems.push(await this.getAzureWorkItem(testCase.id, credentials))
+        }
+        return jsonData
+    },
     getAzureWorkItem: async function(workItemId, credentials) {
         const url = `${buildURI(credentials)}_apis/wit/workitems/${workItemId}?api-version=6.1-preview.3`
         const headers = buildHeader(credentials)

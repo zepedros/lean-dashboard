@@ -38,6 +38,10 @@ module.exports = {
             function (teamName, iterationName, widgetId, credentials) {
                 services.postAzureBugByStatePieChart(teamName, iterationName, widgetId, credentials)
             })
+        widgetMap.set("postAzureTestCaseByStatePieChart",
+            function (teamName, widgetId, credentials) {
+                services.postAzureTestCaseByStatePieChart(teamName, widgetId, credentials)
+            })
 
         return widgetMap
     }

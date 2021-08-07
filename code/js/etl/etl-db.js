@@ -215,6 +215,32 @@ const templates = [
                 ]
             }
         ]
+    },
+    {
+        name: 'Azure Test Case by State Pie Chart',
+        function: 'postAzureTestCaseByStatePieChart',
+        source: 'Azure',
+        params: ["Team Name"],
+        type:"PieChart",
+        data: [
+            {
+                "total": 12,
+                "counts": [
+                    {
+                        "status": "Design",
+                        "percentage": "33"
+                    },
+                    {
+                        "status": "Ready",
+                        "percentage": "33"
+                    },
+                    {
+                        "status": "Closed",
+                        "percentage": "34"
+                    }
+                ]
+            }
+        ]
     }
 ]
 
