@@ -14,7 +14,7 @@ export default function UsersPage() {
     const [users, setUsers] = useState([])
     const [refresh, setRefreshProjects] = useState(false)
     const [userIsSuperuser, setUserIsSuperuser] = useState(true)
-    const { get, del, post, response, loading } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
+    const { get, del, post, put, response, loading } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
     const context = useContext(UserContext)
 
     useEffect(() => {
@@ -74,6 +74,28 @@ export default function UsersPage() {
         }
     }
 
+    async function changeUsername(username, newUsername) {
+        console.log('username changed');
+        const res = await put(`lean/users/${username}/username`, { "newUsername": newUsername })
+        if (res.statusCode === 200) {
+            alert(`Changed username of ${username} to ${newUsername} sucessfully`)
+            doRefresh()
+        } else {
+            alert(res.message || `Error changing ${username}'s username`)
+        }
+    }
+
+    async function changePassword(username, newPassword) {
+        console.log('password changed');
+        const res = await put(`lean/users/${username}/password`, { "newPassword": newPassword })
+        if (res.statusCode === 200) {
+            alert(`Changed password of user ${username} sucessfully`)
+            doRefresh()
+        } else {
+            alert(res.message || `Error changing ${username}'s username`)
+        }
+    }
+
     async function checkIfUserIsSuperuser() {
         const userInfo = await get(`/api/lean/users/username/${context.credentials.username}`)
         if (userInfo.id === 1) {
@@ -91,7 +113,7 @@ export default function UsersPage() {
                     <CircularProgress color="primary" style={{
                         position: 'absolute', left: '50%', top: '50%',
                         transform: 'translate(-50%, -50%)'
-                    }}/>
+                    }} />
                     :
                     <div>
                         {
@@ -104,7 +126,7 @@ export default function UsersPage() {
                                     </Hidden>
                                     <Hidden smDown>
                                         <Grid item xs={12} sm={12} md={12}>
-                                            <NavBar component={<UsersTable users={users} refresh={doRefresh} deleteUser={deleteUser} removeRoleFromUser={removeRoleFromUser} addRoleToUser={addRoleToUser} />} title={"LeanDashboard"} />
+                                            <NavBar component={<UsersTable users={users} refresh={doRefresh} deleteUser={deleteUser} removeRoleFromUser={removeRoleFromUser} addRoleToUser={addRoleToUser} changeUsername={changeUsername} changePassword={changePassword} />} title={"LeanDashboard"} />
                                         </Grid>
                                     </Hidden>
                                 </div>

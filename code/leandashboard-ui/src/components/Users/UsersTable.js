@@ -35,6 +35,7 @@ import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import { FormattedMessage } from 'react-intl';
 import TextField from '@material-ui/core/TextField';
+import useFetch from 'use-http'
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -84,7 +85,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function CustomizedTables({ users, refresh, deleteUser, removeRoleFromUser, addRoleToUser }) {
+export default function CustomizedTables({ users, refresh, deleteUser, removeRoleFromUser, addRoleToUser, changeUsername, changePassword }) {
   const classes = useStyles();
   const [userToDelete, setUserToDelete] = useState()
   const [userToAlterRoles, setUserToAlterRoles] = useState()
@@ -98,6 +99,7 @@ export default function CustomizedTables({ users, refresh, deleteUser, removeRol
   const [removeRoleOpenDialog, setRemoveRoleOpenDialog] = useState(false)
   const [userEditingOpenDialog, setUserEditingOpenDialog] = useState(false)
   const [input, setInput] = useState({ username: "", password: "", showPassword: false, })
+  const { get, del, post, put, response, loading } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
 
 
 
@@ -275,10 +277,17 @@ export default function CustomizedTables({ users, refresh, deleteUser, removeRol
               label={<FormattedMessage id="New Username" />}
               value={input.username}
               //onChange={handleChange('password')}
-              onChange={e => { setInput({username: e.target.value, password: input.password }) }}
-              
+              onChange={e => { setInput({ username: e.target.value, password: input.password }) }}
+
             />
-            <Button color="primary" align="right" onClick={() => alert(`Changing username of ${userToEdit} to ${input.username}`)}>Change Username</Button>
+            <Button color="primary" align="right" onClick={() => {
+              if (input.username === '') {
+                alert('Please enter a username')
+              } else {
+                changeUsername(userToEdit, input.username)
+              }
+              //setUserEditingOpenDialog(false)
+            }}>Change Username</Button>
           </div>
           <div>
             <InputLabel htmlFor="standard-adornment-password">New Password</InputLabel>
@@ -301,7 +310,13 @@ export default function CustomizedTables({ users, refresh, deleteUser, removeRol
                 </InputAdornment>
               }
             />
-            <Button color="primary" onClick={() => alert(`Changing username of ${userToEdit} to ${input.password}`)}>Change Password</Button>
+            <Button color="primary" onClick={() => {
+              if (input.password === '') {
+                alert('Please enter a password')
+              } else {
+                changePassword(userToEdit, input.password)
+              }
+            }}>Change Password</Button>
           </div>
         </DialogContent>
         <DialogActions>
