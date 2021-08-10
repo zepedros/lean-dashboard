@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function AddMemberForm() {
+export default function AddMemberForm({refresh}) {
   const classes = useStyles();
   const [input, setInput] = useState({ username: "" })
   const [usernameError, setUsernameError] = useState(false)
@@ -53,6 +53,7 @@ export default function AddMemberForm() {
       console.log(postresp)
       if (postresp.statusCode === 201) {
           console.log('post done')
+          refresh()
           alert("Add Member done!")
       } else {
           alert("Error adding member")

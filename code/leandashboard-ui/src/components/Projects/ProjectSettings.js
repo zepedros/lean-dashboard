@@ -9,6 +9,7 @@ import { FormattedMessage } from 'react-intl';
 import CredentialsList from "../Credentials/CredentialsList";
 import {useState} from 'react'
 import GoBack from "../Common/GoBack";
+import ProjectUsersList from "./ProjectUsersList";
 const useStyles = makeStyles((theme) => ({
   root: {
     '& > *': {
@@ -27,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ProjectSettings({ project, update }) {
+export default function ProjectSettings({ project, update, users, deleteUser }) {
   const classes = useStyles()
   const [refresh, setRefresh] = useState(false)
   function doRefresh() {
@@ -45,7 +46,8 @@ export default function ProjectSettings({ project, update }) {
         </Typography>
         </div>
         <NameDescForm project={project} updateProject={update} />
-        <AddMemberForm />
+        <AddMemberForm refresh={update}/>
+        <ProjectUsersList users={users} refresh={doRefresh} deleteUser={deleteUser} />
         <AddCredentials project={project} doRefresh={doRefresh}/>
         <CredentialsList refresh={refresh} doRefresh={doRefresh}/>
       </List>

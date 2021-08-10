@@ -7,6 +7,7 @@ import Grid from '@material-ui/core/Grid';
 import List from '@material-ui/core/List';
 import { Container } from "@material-ui/core";
 import { FormattedMessage } from 'react-intl';
+import ProjectUsersList from "./ProjectUsersList";
 import {useState} from 'react'
 import CredentialsList from "../Credentials/CredentialsList";
 import GoBack from "../Common/GoBack";
@@ -36,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function ProjectSettingsMobile({ project, update }) {
+export default function ProjectSettingsMobile({ project, update, users, deleteUser }) {
   const classes = useStyles()
   const [refresh, setRefresh] = useState(false)
   function doRefresh() {
@@ -51,7 +52,8 @@ export default function ProjectSettingsMobile({ project, update }) {
           {project.name} <FormattedMessage id="ProjectSettings.settings" />
         </Typography>
         <NameDescForm project={project} updateProject={update} />
-        <AddMemberForm />
+        <AddMemberForm refresh={update}/>
+        <ProjectUsersList users={users} refresh={doRefresh} deleteUser={deleteUser} />
         <AddCredentials project={project} doRefresh={doRefresh}/>
         <CredentialsList refresh={refresh} doRefresh={doRefresh}/>
       </List>

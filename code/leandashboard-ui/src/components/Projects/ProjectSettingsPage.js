@@ -15,7 +15,8 @@ export default function ProjectSettingsPage() {
     const [userCanEditProject, setUserCanEditProject] = useState(false)
     const [refresh, setRefresh] = useState(false)
     const [project, setProject] = useState()
-    const { get, response, loading } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
+    const [users, setUsers] = useState([])
+    const { get, del, response, loading } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
 
     useEffect(() => {
         getProjectById()
@@ -31,10 +32,31 @@ export default function ProjectSettingsPage() {
         if (getProjectById?.owner === userInfo.id || userInfo?.id === 1) {
             setProject(getProjectById)
             setUserCanEditProject(true)
+
+            let users = []
+            for (let i = 0; i < getProjectById.members.length; i++) {
+                console.log(getProjectById.members[i])
+                if (getProjectById?.owner !==  getProjectById.members[i] || getProjectById.members[i] !== 1) {
+                    const user = await get(`/api/lean/users/${getProjectById.members[i]}`)
+                    users.push(user)
+                }
+            }
+            setUsers(users)
         } else {
             setProject(undefined)
             setUserCanEditProject(false)
         }
+    }
+
+    async function deleteUser(username) {
+        const deleteUser = await del(`/api/lean/projects/${id}/users/${username}`)
+        if (response.ok) {
+            alert('User was deleted from project')
+        } else {
+            alert(deleteUser.message)
+        }
+        refreshProject()
+        //alert(`Deleted user with ID ${username}`)
     }
 
     return (
@@ -44,12 +66,12 @@ export default function ProjectSettingsPage() {
                     <div>
                         <Hidden mdUp>
                             <Grid item xs={12} sm={12} md={12}>
-                                <NavBar component={<ProjectSettingsMobile project={project} update={refreshProject} />} title={project?.name} />
+                                <NavBar component={<ProjectSettingsMobile project={project} update={refreshProject} users={users} deleteUser={deleteUser} />} title={project?.name} />
                             </Grid>
                         </Hidden>
                         <Hidden smDown>
                             <Grid item xs={12} sm={12} md={12}>
-                                <NavBar component={<ProjectSettings project={project} update={refreshProject} />} title={project?.name} />
+                                <NavBar component={<ProjectSettings project={project} update={refreshProject} users={users} deleteUser={deleteUser} />} title={project?.name} />
                             </Grid>
                         </Hidden>
                     </div>
