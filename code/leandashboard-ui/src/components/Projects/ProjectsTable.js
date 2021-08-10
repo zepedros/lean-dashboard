@@ -29,6 +29,7 @@ import Link from '@material-ui/core/Link';
 import CircularProgressWithLabel from '../Common/CircularProgressWithLabel'
 import Chip from '@material-ui/core/Chip';
 import {FormattedMessage} from 'react-intl';
+import { SignalCellularNullSharp } from '@material-ui/icons';
 
 function createData(id, project, state, manager, completion) {
   return { id, project, state, manager, completion };
@@ -203,7 +204,7 @@ const useStyles = makeStyles((theme) => ({
   
 }));
 
-export default function EnhancedTable({ projects, refresh }) {
+export default function EnhancedTable({ projects, refresh, userIsManager }) {
   const classes = useStyles();
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('calories');
@@ -290,7 +291,9 @@ export default function EnhancedTable({ projects, refresh }) {
        
       </Paper>
       <AddDialog showDialog={showDialog} setShowDialog={setShowDialog} title={<FormattedMessage id="Projects.dialogButton.title"/>} type={<FormattedMessage id="Projects.dialogButton.subTitle"/>} refreshProjects={refresh} showDate={true} />
-      <Button
+      {
+        userIsManager?
+        <Button
         variant="contained"
         color="primary"
         size="small"
@@ -300,6 +303,9 @@ export default function EnhancedTable({ projects, refresh }) {
       >
         <FormattedMessage id="Projects.button" /> 
       </Button>
+      :
+      null
+      }
     </div>
   );
 }
