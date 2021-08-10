@@ -14,8 +14,9 @@ import Divider from '@material-ui/core/Divider'
 import Collapse from '@material-ui/core/Collapse'
 import { deepOrange, deepPurple } from '@material-ui/core/colors';
 import { green, pink, purple, orange, blue } from '@material-ui/core/colors';
-import TuneIcon from '@material-ui/icons/Tune';
+import FaceIcon from '@material-ui/icons/Face';
 import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
 import MenuItem from '@material-ui/core/MenuItem';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -28,6 +29,11 @@ import ClearIcon from '@material-ui/icons/Clear';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import Input from '@material-ui/core/Input';
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import { FormattedMessage } from 'react-intl';
 
 const useStyles = makeStyles((theme) => ({
     dropdown: {
@@ -64,17 +70,20 @@ const useStyles = makeStyles((theme) => ({
 
 }))
 
-export default function UsersItem({ user, deleteUser, removeRoleFromUser, addRoleToUser }) {
+export default function UsersItem({ user, deleteUser, removeRoleFromUser, addRoleToUser, changeUsername, changePassword }) {
     const styles = useStyles()
     const [showMore, setShowMore] = useState(false)
     const [userToDelete, setUserToDelete] = useState()
     const [userToAlterRoles, setUserToAlterRoles] = useState()
+    const [userToEdit, setUserToEdit] = useState()
     const [selectedUserRoles, setSelectedUserRoles] = useState([])
     const [roleToRemove, setRoleToRemove] = useState()
     const [roleToGive, setRoleToGive] = useState('');
     const [deleteUserOpenDialog, setDeleteUserOpenDialog] = useState(false);
     const [rolesOpenDialog, setRolesOpenDialog] = useState(false)
     const [removeRoleOpenDialog, setRemoveRoleOpenDialog] = useState(false)
+    const [userEditingOpenDialog, setUserEditingOpenDialog] = useState(false)
+    const [input, setInput] = useState({ username: "", password: "", showPassword: false, })
 
     function handleClick() {
         setShowMore(!showMore)
@@ -83,6 +92,14 @@ export default function UsersItem({ user, deleteUser, removeRoleFromUser, addRol
     const handleChange = (event) => {
         setRoleToGive(event.target.value);
     };
+
+    const handleClickShowPassword = () => {
+        setInput({ ...input, showPassword: !input.showPassword });
+      };
+    
+      const handleMouseDownPassword = (event) => {
+        event.preventDefault();
+      };
 
     const colors = [styles.orange, styles.purple, styles.pink, styles.green, styles.blue]
     const itemColor = () => {
@@ -121,6 +138,16 @@ export default function UsersItem({ user, deleteUser, removeRoleFromUser, addRol
         setUserToAlterRoles(undefined)
         setRemoveRoleOpenDialog(false);
     };
+
+    const handleEditingOpen = (username) => {
+        setUserToEdit(username)
+        setUserEditingOpenDialog(true)
+    };
+
+    const handleEditingClose = () => {
+        setUserToEdit(undefined)
+        setUserEditingOpenDialog(false)
+    }
 
 
     const deleteUserDialog = () => {
@@ -232,6 +259,78 @@ export default function UsersItem({ user, deleteUser, removeRoleFromUser, addRol
         )
     }
 
+    const editUserDialog = () => {
+        return (
+          <Dialog
+            open={userEditingOpenDialog}
+            onClose={handleEditingClose}
+            aria-labelledby="user-editing-alert-dialog"
+            aria-describedby="dialog to edit details about a user"
+          >
+            <DialogTitle id="alert-dialog-title">{`Edit user ${userToEdit}`}</DialogTitle>
+            <DialogContent>
+              <DialogContentText id="alert-dialog-description">
+                Change the current user's password or username
+              </DialogContentText>
+              <div>
+                <InputLabel htmlFor="new-username">New Username</InputLabel>
+                <Input
+                  id="new-username"
+                  label={<FormattedMessage id="New Username" />}
+                  value={input.username}
+                  //onChange={handleChange('password')}
+                  onChange={e => { setInput({ username: e.target.value, password: input.password }) }}
+    
+                />
+                <Button color="primary" align="right" onClick={() => {
+                    console.log('inside change username');
+                  if (input.username === '') {
+                    alert('Please enter a username')
+                  } else {
+                    changeUsername(userToEdit, input.username)
+                  }
+                  //setUserEditingOpenDialog(false)
+                }}>Change Username</Button>
+              </div>
+              <div>
+                <InputLabel htmlFor="standard-adornment-password">New Password</InputLabel>
+                <Input
+                  id="standard-adornment-password"
+                  type={input.showPassword ? 'text' : 'password'}
+                  label={<FormattedMessage id="New Password" />}
+                  value={input.password}
+                  //onChange={handleChange('password')}
+                  onChange={e => { setInput({ username: input.username, password: e.target.value }) }}
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={handleClickShowPassword}
+                        onMouseDown={handleMouseDownPassword}
+                      >
+                        {input.showPassword ? <Visibility /> : <VisibilityOff />}
+                      </IconButton>
+                    </InputAdornment>
+                  }
+                />
+                <Button color="primary" onClick={() => {
+                  if (input.password === '') {
+                    alert('Please enter a password')
+                  } else {
+                    changePassword(userToEdit, input.password)
+                  }
+                }}>Change Password</Button>
+              </div>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={handleEditingClose} color="primary">
+                Close
+              </Button>
+            </DialogActions>
+          </Dialog>
+        )
+      }
+
     return (
         <div>
             <ListItem key={user.id} alignItems="flex-start">
@@ -252,12 +351,17 @@ export default function UsersItem({ user, deleteUser, removeRoleFromUser, addRol
             <Collapse in={showMore} timeout="auto" unmountOnExit>
                 <MenuItem onClick={() => { handleDeleteUserOpen(user.username) }}>
                     <ListItem divider={true} >
-                        Delete {<div align="right"><DeleteIcon align="right"></DeleteIcon></div>}
+                        Delete user {<div align="right"><DeleteIcon align="right"></DeleteIcon></div>}
                     </ListItem>
                 </MenuItem>
                 <MenuItem onClick={() => handleRolesOpen(user.username)}>
                     <ListItem >
-                        Roles {<TuneIcon></TuneIcon>}
+                        User roles {<FaceIcon></FaceIcon>}
+                    </ListItem>
+                </MenuItem>
+                <MenuItem onClick={() => handleEditingOpen(user.username)}>
+                    <ListItem >
+                        Edit user {<EditIcon></EditIcon>}
                     </ListItem>
                 </MenuItem>
             </Collapse>
@@ -270,6 +374,9 @@ export default function UsersItem({ user, deleteUser, removeRoleFromUser, addRol
             }
             {
                 removeRoleFromUserDialog()
+            }
+            {
+                editUserDialog()
             }
         </div>
     );
