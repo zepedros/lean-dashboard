@@ -236,7 +236,7 @@ function services(db, auth) {
             }
             return db.getProjectById(projectId, userMakingRequest)
                 .then(project => {
-                    if (project.owner !== userMakingRequest.id && userMakingRequest.id !== 1 && project.members.indexOf(userMakingRequest.id)) {
+                    if (project.owner !== userMakingRequest.id && userMakingRequest.id !== 1 && project.members.indexOf(userMakingRequest.id) === -1) {
                         return Promise.reject(
                             error.makeErrorResponse(error.FORBIDDEN, 'You cannot access dashboards from this project. Only the manager and team members have that access.')
                         )
@@ -460,7 +460,7 @@ function services(db, auth) {
             if (!userToAddInfo) throw error.makeErrorResponse(error.NOT_FOUND, "User doesn't exist")
             const project = await db.getProjectById(projectId, userMakingRequest)
 
-            if (project.owner !== userMakingRequest.id && userMakingRequest.username !== "superuser") throw error.makeErrorResponse(error.FORBIDDEN, "User doesn't have access to this project")
+            if (project.owner !== userMakingRequest.id && userMakingRequest.id !== 1) throw error.makeErrorResponse(error.FORBIDDEN, "User doesn't have access to this project")
             if (project.members.includes(userToAddInfo.id)) throw error.makeErrorResponse(error.CONFLICT, "User already belongs to project")
 
             return db.addUserToProject(projectId, userToAddInfo.id)
