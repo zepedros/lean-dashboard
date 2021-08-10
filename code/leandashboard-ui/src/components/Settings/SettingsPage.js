@@ -2,14 +2,8 @@ import NavBar from '../Common/NavBar'
 import Box from '@material-ui/core/Box';
 import { Typography } from "@material-ui/core"
 import { makeStyles } from '@material-ui/core/styles';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
 import { useState, useContext, useEffect } from 'react'
 import {useHistory } from 'react-router'
-import { I18nProvider, LOCALES } from '../../i18n'
 import CreateAccountDialog from './CreateAccountDialog'
 import Button from '@material-ui/core/Button';
 import { FormattedMessage } from 'react-intl';
@@ -33,7 +27,7 @@ export default function SettingsPage() {
     const [language, setLanguage] = useState(localStorage.getItem("key"));
     const [showDialog, setShowDialog] = useState(false)
     const [userIsSuperuser, setUserIsSuperuser] = useState(true)
-    const { get, del, post, response, loading } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
+    const { get } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
     const context = useContext(UserContext)
     const history = useHistory()
 

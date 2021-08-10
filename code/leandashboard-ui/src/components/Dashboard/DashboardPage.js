@@ -11,7 +11,7 @@ export default function DashboardPage() {
     const [dashboard, setDashboard] = useState([])
     const [title, setTitle] = useState("")
     const [errorResponse, setErrorResponse] = useState(undefined)
-    const { get, response, loading, error } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
+    const { get, response } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
     let { id, dashboardId } = useParams();
     const [refresh, setRefresh] = useState(false)
 

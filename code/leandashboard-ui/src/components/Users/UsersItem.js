@@ -1,8 +1,6 @@
 import { useState } from 'react'
 import AccountTreeIcon from '@material-ui/icons/AccountTree';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
-import Link from '@material-ui/core/Link';
-import { NavLink } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
@@ -13,7 +11,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Divider from '@material-ui/core/Divider'
 import Collapse from '@material-ui/core/Collapse'
 import { deepOrange, deepPurple } from '@material-ui/core/colors';
-import { green, pink, purple, orange, blue } from '@material-ui/core/colors';
+import { green, pink, blue } from '@material-ui/core/colors';
 import FaceIcon from '@material-ui/icons/Face';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';

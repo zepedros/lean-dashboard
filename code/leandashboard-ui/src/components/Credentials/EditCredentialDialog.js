@@ -13,7 +13,7 @@ import { Input } from "@material-ui/core"
 
 export default function EditCredentialDialog({ credential, refresh, credId, openDialog, setOpenDialog }) {
     const [inputName, setInputName] = useState(credential.name)
-    const { put, response, loading } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
+    const { put, response } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
     const credentialInfo = credential.credential
     const [inputCredential, setInputCredential] = useState(credentialInfo)
     let { id } = useParams();

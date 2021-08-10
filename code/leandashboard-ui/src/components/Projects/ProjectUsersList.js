@@ -5,8 +5,6 @@ import IconButton from '@material-ui/core/IconButton';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import Fab from '@material-ui/core/Fab';
-import AddIcon from '@material-ui/icons/Add';
 import { Container } from '@material-ui/core';
 import AddDialog from '../Common/AddDialog.js'
 import { FormattedMessage } from 'react-intl';

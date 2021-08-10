@@ -37,7 +37,7 @@ module.exports = {
             "workItemType": refObject.fields["System.WorkItemType"],
             "state": refObject.fields["System.State"],
             "reason": refObject.fields["System.Reason"],
-            "assignedTo": refObject.fields["System.AssignedTo"]?.displayName,
+            //"assignedTo": refObject.fields["System.AssignedTo"]?.displayName,
             "createdDate": refObject.fields["System.CreatedDate"],
             "title": refObject.fields["System.Title"],
             "description": refObject.fields["System.Description"]

@@ -6,7 +6,6 @@ import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import DashboardIcon from '@material-ui/icons/Dashboard';
-import { NavLink } from 'react-router-dom';
 
 const useStyles = makeStyles({
   root: {

@@ -51,13 +51,12 @@ export default function NameDescForm(props) {
             <form className={classes.form}>
                 <Grid item>
                     <TextField
-                        label=""
+                        label="Project Name"
                         id="outlined-margin-dense"
                         value={newName}
                         //className={classes.textField}
                         margin="dense"
                         variant="outlined"
-                        label="Project Name"
                         onChange={e => setNewName(e.target.value)}
                     />
                 </Grid>

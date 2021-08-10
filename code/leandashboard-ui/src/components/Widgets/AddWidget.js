@@ -10,7 +10,6 @@ import { useState, useEffect } from 'react'
 import useFetch from 'use-http'
 import TemplateWidget from './TemplateWidget';
 import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
 import { CircularProgress, Grid } from '@material-ui/core';
 import {FormattedMessage} from 'react-intl';
 import GoBack from '../Common/GoBack';

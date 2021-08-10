@@ -10,7 +10,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Divider from '@material-ui/core/Divider'
 import Collapse from '@material-ui/core/Collapse'
 import { deepOrange, deepPurple } from '@material-ui/core/colors';
-import { green, pink, purple, orange, blue } from '@material-ui/core/colors';
+import { green, pink, blue } from '@material-ui/core/colors';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import { Button } from '@material-ui/core';
 import CreateIcon from '@material-ui/icons/Create';
@@ -22,11 +22,8 @@ import { DialogContentText } from '@material-ui/core';
 import { DialogActions } from '@material-ui/core';
 import { useFetch } from 'use-http';
 import { useParams } from 'react-router';
-import { TextField } from '@material-ui/core';
-import { FormattedMessage } from 'react-intl';
-import { Select } from '@material-ui/core';
-import { Input } from '@material-ui/core';
 import EditCredentialDialog from './EditCredentialDialog';
+
 const useStyles = makeStyles((theme) => ({
     dropdown: {
         transition: theme.transitions.create(["transform"], {
@@ -67,7 +64,7 @@ export default function CredentialsItem({ credential, refresh, credId }) {
     const [deleteOpenDialog, setDeleteOpenDialog] = useState(false);
     const [editOpenDialog, setEditOpenDialog] = useState(false);
     const [showMore, setShowMore] = useState(false)
-    const { del, response, loading } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
+    const { del, response } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
     const credentialInfo = credential.credential
     let { id } = useParams();
     function handleClick() {

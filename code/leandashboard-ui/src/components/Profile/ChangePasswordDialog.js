@@ -1,27 +1,20 @@
 import { useContext, useState } from 'react'
-import { useParams } from "react-router-dom";
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from '@material-ui/core/Button';
 import useFetch from 'use-http'
 import {FormattedMessage} from 'react-intl';
 import UserContext from '../../common/UserContext';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import Input from '@material-ui/core/Input';
-import IconButton from '@material-ui/core/IconButton';
-import InputLabel from '@material-ui/core/InputLabel';
-import Visibility from '@material-ui/icons/Visibility';
-import VisibilityOff from '@material-ui/icons/VisibilityOff';
+
 
 export default function ChangePasswordDialog({showDialog, setShowDialog}){
     const [input, setInput] = useState({  newPassword: "",confirmNewPassword:"" })
     const [newPassowrdError, setNewPassowordError] = useState(false)
     const [confirmNewPassowrdError, setconfirmNewPassowordError] = useState(false)
-    const { put,response } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
+    const { put } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
     const context = useContext(UserContext)
 
 

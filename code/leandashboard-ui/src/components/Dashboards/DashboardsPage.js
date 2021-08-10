@@ -3,17 +3,14 @@ import Grid from '@material-ui/core/Grid';
 import NavBar from '../Common/NavBar'
 import DashboardsList from './DashboardsList'
 import { Hidden } from '@material-ui/core';
-import { useHistory } from 'react-router';
 import useFetch from 'use-http'
 import { useState, useEffect, useContext } from 'react'
 import { useParams } from "react-router-dom";
 import Error from '../Common/Errors/Error'
 import UserContext from '../../common/UserContext';
-import { TabContext } from '@material-ui/lab';
 
 export default function DashboardsPage() {
 
-    const history = useHistory()
     const [error, setError] = useState(undefined)
     const [dashboards, setDashboards] = useState([])
     const [project, setProject] = useState([])

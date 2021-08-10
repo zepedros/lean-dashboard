@@ -8,12 +8,12 @@ import { useParams } from "react-router-dom";
 import WidgetSettings from './WidgetSettings';
 import Error from '../Common/Errors/Error';
 export default function WidgetSettingsPage() {
+
     const [dashboard, setDashboard] = useState([])
     const [title, setTitle] = useState("")
     const [refresh, setRefresh] = useState(false)
-    const [widgets, setWidgets] = useState([])
     const [errorResponse, setErrorResponse] = useState(false)
-    const { get, response, loading } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
+    const { get, response } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
     let { id, dashboardId } = useParams();
 
     useEffect(() => {

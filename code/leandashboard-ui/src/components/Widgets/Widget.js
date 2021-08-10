@@ -12,7 +12,7 @@ import Error from '../Common/Errors/Error'
 export default function Widget({ widgetId }) {
     const [widget, setWidget] = useState()
     const [errorResponse, setErrorResponse] = useState()
-    const { get, post, response, loading, error } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
+    const { get, response, error } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
     let { id, dashboardId } = useParams();
     
     useEffect(() => {

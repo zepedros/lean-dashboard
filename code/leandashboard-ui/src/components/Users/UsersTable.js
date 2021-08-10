@@ -25,7 +25,6 @@ import ClearIcon from '@material-ui/icons/Clear';
 import Divider from '@material-ui/core/Divider';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import EditIcon from '@material-ui/icons/Edit';
@@ -34,8 +33,6 @@ import Input from '@material-ui/core/Input';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import { FormattedMessage } from 'react-intl';
-import TextField from '@material-ui/core/TextField';
-import useFetch from 'use-http'
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -99,12 +96,6 @@ export default function CustomizedTables({ users, refresh, deleteUser, removeRol
   const [removeRoleOpenDialog, setRemoveRoleOpenDialog] = useState(false)
   const [userEditingOpenDialog, setUserEditingOpenDialog] = useState(false)
   const [input, setInput] = useState({ username: "", password: "", showPassword: false, })
-  const { get, del, post, put, response, loading } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
-
-
-
-
-
 
   useEffect(() => {
     console.log('User roles are \n' + selectedUserRoles);

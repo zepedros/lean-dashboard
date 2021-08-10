@@ -3,7 +3,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import AddMemberForm from './AddMemberForm'
 import AddCredentials from './AddCredentials'
 import NameDescForm from "./NameDescForm";
-import Grid from '@material-ui/core/Grid';
 import List from '@material-ui/core/List';
 import { Container } from "@material-ui/core";
 import { FormattedMessage } from 'react-intl';

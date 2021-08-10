@@ -8,13 +8,12 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import { useState, useEffect } from 'react'
 import useFetch from 'use-http'
 import { Container } from '@material-ui/core';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import { CircularProgress, Grid } from '@material-ui/core';
+import {  Grid } from '@material-ui/core';
 import WidgetSettingsWidget from '../Widgets/WidgetSettingsWidget';
 import { useParams } from 'react-router';
 import WidgetSettingsDialog from './WidgetSettingsDialog';
 import GoBack from '../Common/GoBack';
+
 const useStyles = makeStyles((theme) => ({
     table: {
         minWidth: 700,
@@ -56,7 +55,7 @@ export default function WidgetSettings({ name, widgets, refresh, doRefresh }) {
     const [activeDialog, setDialog] = useState(false);
     let { id, dashboardId } = useParams();
 
-    const { get, response, loading } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
+    const { get, response } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
 
     async function getWidget(wId) {
         const widgetResponse = await get(`/api/lean/projects/${id}/dashboard/${dashboardId}/widgets/${wId}`)

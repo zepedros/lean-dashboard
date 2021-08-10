@@ -5,9 +5,8 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import ListItemText from '@material-ui/core/ListItemText';
 import Avatar from '@material-ui/core/Avatar';
 import Divider from '@material-ui/core/Divider'
-import { NavLink } from 'react-router-dom';
 import { deepOrange, deepPurple } from '@material-ui/core/colors';
-import { green, pink,purple,orange } from '@material-ui/core/colors';
+import { green, pink } from '@material-ui/core/colors';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({

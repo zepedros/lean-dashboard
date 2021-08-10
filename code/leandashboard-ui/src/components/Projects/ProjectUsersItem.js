@@ -1,22 +1,15 @@
 import { useState } from 'react'
 import AccountTreeIcon from '@material-ui/icons/AccountTree';
-import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
-import Link from '@material-ui/core/Link';
-import { NavLink } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
 import Avatar from '@material-ui/core/Avatar';
-import IconButton from '@material-ui/core/IconButton';
 import Divider from '@material-ui/core/Divider'
-import Collapse from '@material-ui/core/Collapse'
 import { deepOrange, deepPurple } from '@material-ui/core/colors';
-import { green, pink, purple, orange, blue } from '@material-ui/core/colors';
-import FaceIcon from '@material-ui/icons/Face';
+import { green, pink, blue } from '@material-ui/core/colors';
 import DeleteIcon from '@material-ui/icons/Delete';
-import EditIcon from '@material-ui/icons/Edit';
 import MenuItem from '@material-ui/core/MenuItem';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -24,16 +17,6 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from '@material-ui/core/Button';
-import Chip from '@material-ui/core/Chip';
-import ClearIcon from '@material-ui/icons/Clear';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import InputLabel from '@material-ui/core/InputLabel';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import Input from '@material-ui/core/Input';
-import Visibility from '@material-ui/icons/Visibility';
-import VisibilityOff from '@material-ui/icons/VisibilityOff';
-import { FormattedMessage } from 'react-intl';
 
 const useStyles = makeStyles((theme) => ({
     dropdown: {
