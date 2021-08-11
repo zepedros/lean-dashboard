@@ -1,12 +1,11 @@
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
-import Widget from "../Widgets/Widget";
-import FAB from '../Common/FAB'
-import { useHistory } from "react-router-dom";
-import { useParams } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
-import {FormattedMessage} from 'react-intl';
+import { FormattedMessage } from 'react-intl';
+import { useHistory, useParams } from "react-router-dom";
+import FAB from '../Common/FAB';
 import GoBack from "../Common/GoBack";
+import Widget from "../Widgets/Widget";
 
 const useStyles = makeStyles((theme) => ({
     root: {

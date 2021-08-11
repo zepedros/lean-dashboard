@@ -1,24 +1,21 @@
-import React from 'react';
-import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
-import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
+import { makeStyles } from '@material-ui/core/styles';
+import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import AddIcon from '@material-ui/icons/Add';
-import SettingsIcon from '@material-ui/icons/Settings';
-import AddDashboardDialog from '../Common/AddDashboardDialog'
 import DeleteIcon from '@material-ui/icons/Delete';
+import SettingsIcon from '@material-ui/icons/Settings';
 import WidgetsIcon from '@material-ui/icons/Widgets';
-import { __SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED } from 'react-dom';
-import { Link } from 'react-router-dom';
-import {FormattedMessage} from 'react-intl';
+import clsx from 'clsx';
+import React, { useState } from 'react';
+import { FormattedMessage } from 'react-intl';
+import { Link, useParams } from 'react-router-dom';
+import AddDashboardDialog from '../Common/AddDashboardDialog';
 import DeleteDashboardDialog from '../Dashboard/DeleteDashboardDialog';
-import { useState } from 'react';
-import { useParams } from "react-router-dom";
-import DashboardSettingsDialog from './DashboardSettingsDialog'
+import DashboardSettingsDialog from './DashboardSettingsDialog';
 
 const useStyles = makeStyles({
   list: {

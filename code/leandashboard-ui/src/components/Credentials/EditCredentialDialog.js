@@ -1,15 +1,8 @@
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Input, Select, TextField } from "@material-ui/core"
 import { useState } from "react"
-import { useFetch } from "use-http"
-import { Dialog } from "@material-ui/core"
-import { useParams } from "react-router"
-import { TextField } from "@material-ui/core"
 import { FormattedMessage } from "react-intl"
-import { Select } from "@material-ui/core"
-import { DialogTitle } from "@material-ui/core"
-import { DialogContent } from "@material-ui/core"
-import { DialogActions } from "@material-ui/core"
-import { Button } from "@material-ui/core"
-import { Input } from "@material-ui/core"
+import { useParams } from "react-router"
+import { useFetch } from "use-http"
 
 export default function EditCredentialDialog({ credential, refresh, credId, openDialog, setOpenDialog }) {
     const [inputName, setInputName] = useState(credential.name)

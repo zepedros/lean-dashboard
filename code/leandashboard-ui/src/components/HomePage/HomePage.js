@@ -1,10 +1,10 @@
-import Header from './Header';
-import SectionShortDescription from './SectionShortDescription'
-import Integrations from './Integrations'
-import Divider from '@material-ui/core/Divider'
-import Description from './Description'
-import Footer from './Footer'
+import Divider from '@material-ui/core/Divider';
 import React from "react";
+import Description from './Description';
+import Footer from './Footer';
+import Header from './Header';
+import Integrations from './Integrations';
+import SectionShortDescription from './SectionShortDescription';
 
 export default function HomePage() {
     return (

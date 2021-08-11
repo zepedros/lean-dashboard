@@ -1,12 +1,11 @@
-
-import NavBar from '../Common/NavBar'
-import Grid from '@material-ui/core/Grid';
 import { Hidden } from '@material-ui/core';
+import Grid from '@material-ui/core/Grid';
 import { useEffect, useState } from 'react';
-import { useFetch } from 'use-http';
 import { useParams } from "react-router-dom";
-import WidgetSettings from './WidgetSettings';
+import { useFetch } from 'use-http';
 import Error from '../Common/Errors/Error';
+import NavBar from '../Common/NavBar';
+import WidgetSettings from './WidgetSettings';
 export default function WidgetSettingsPage() {
 
     const [dashboard, setDashboard] = useState([])
@@ -37,23 +36,6 @@ export default function WidgetSettingsPage() {
     function doRefresh() {
         setRefresh(!refresh)
     }
-    /*async function loadWidgets(dashboards) {
-        async function getWidget(widgetId) {
-            const widgetResponse = await get(`/api/lean/projects/${id}/dashboard/${dashboardId}/widgets/${widgetId}`)
-            if (response.ok) {
-                return widgetResponse
-            } else {
-                // error
-            }
-        }
-        let widgets = []
-        dashboards.widgets.map(widget => {
-            getWidget(widget).then((result) => {
-                widgets.push(result)
-            })
-        })
-        setWidgets(widgets)
-    }*/
 
     return (
         <div>

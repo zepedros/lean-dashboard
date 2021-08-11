@@ -1,12 +1,11 @@
+import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import useFetch from 'use-http'
-import { useHistory } from 'react-router-dom';
-import { useParams } from "react-router-dom";
-import Button from '@material-ui/core/Button'
+import { useHistory, useParams } from 'react-router-dom';
+import useFetch from 'use-http';
 
 export default function DeleteDashboardDialog({showDeleteDialog,setShowDeleteDialog}){
     var { del, response } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })

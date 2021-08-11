@@ -1,6 +1,6 @@
 import DialogContentText from '@material-ui/core/DialogContentText';
-import Select from "@material-ui/core/Select";
 import Input from "@material-ui/core/Input";
+import Select from "@material-ui/core/Select";
 
 export default function MonthWeekDayPicker({ month, weekday, setMonth, setWeekDay }) {
     return (

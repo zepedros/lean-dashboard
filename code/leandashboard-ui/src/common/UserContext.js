@@ -42,36 +42,6 @@ class AuthizationRbac {
     }
 }
 
-/*
-//nao e usado??
-export const usePermission = (resource, roles) => {
-    const [rbac, setRbac] = useState(undefined);
-    const [permissions, setPermissions] = useState(['']);
-    useEffect(() => {
-        //chamada a api para obter o rbac do utilizador
-        configService().getRbacOptions().then(options => setRbac(new AuthizationRbac(options)));
-    }, []);
-    const setPerms = useCallback(() => {
-        //configurar as permissoes do utilizador
-        const possiblePerms = [{ action: 'GET' }, { action: 'POST' }, { action: 'PUT' }, { action: 'DELETE' }].map(value => ({ ...value, resource }));
-        console.log('roles:', roles)
-        if (rbac) {
-            setPermissions(rbac.canAll(roles, possiblePerms));
-        }
-    }, []);
-    useEffect(() => {
-        if (rbac) {
-            rbac.init().then(() => {
-                setPerms();
-            });
-        }
-    }, [rbac]);
-    useEffect(() => { console.log('perms:', permissions) }, [permissions]);
-
-    return [permissions, setPerms];
-};
-*/
-
 export function createRepository(get, post) {
     const KEY = 'lean-dashboard-credentials'
     return {

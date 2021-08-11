@@ -1,7 +1,7 @@
-import { AppBar, Toolbar, Typography, makeStyles, Button } from "@material-ui/core";
+import { AppBar, Button, makeStyles, Toolbar, Typography } from "@material-ui/core";
 import React from "react";
+import { FormattedMessage } from 'react-intl';
 import { Link } from "react-router-dom";
-import {FormattedMessage} from 'react-intl';
 import Language from "../Common/Language";
 
 export default function Header() {

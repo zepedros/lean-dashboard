@@ -1,15 +1,13 @@
-import React from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
+import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
-import img from '../../images/signIn.png'
-import UserContext from '../../common/UserContext';
-import { useContext } from 'react';
-import Form from './Form'
-import {FormattedMessage} from 'react-intl';
-import GoBack from '../Common/GoBack'
+import Typography from '@material-ui/core/Typography';
+import React from 'react';
+import { FormattedMessage } from 'react-intl';
+import img from '../../images/signIn.png';
+import GoBack from '../Common/GoBack';
+import Form from './Form';
 
 const useStyles = makeStyles((theme) => ({
   root: {

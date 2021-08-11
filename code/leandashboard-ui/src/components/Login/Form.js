@@ -1,14 +1,14 @@
-import Checkbox from '@material-ui/core/Checkbox';
-import TextField from '@material-ui/core/TextField';
-import { useContext, useState } from 'react';
-import { UserContext } from '../../common/UserContext'
-import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
+import Checkbox from '@material-ui/core/Checkbox';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { makeStyles } from '@material-ui/core/styles';
-import Copyright from './CopyRight'
+import TextField from '@material-ui/core/TextField';
+import { useContext, useState } from 'react';
+import { FormattedMessage } from 'react-intl';
 import { useHistory } from 'react-router-dom';
-import {FormattedMessage} from 'react-intl';
+import { UserContext } from '../../common/UserContext';
+import Copyright from './CopyRight';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -60,7 +60,6 @@ export default function Form(props) {
   const [Username, SetUsername] = useState("")
   const [Password, SetPassword] = useState("")
   const [remember, setRemember] = useState(false)
-  //const { post, response } = useFetch('http://localhost:3000/api', { credentials: "same-origin" })
   const context = useContext(UserContext)
   const history = useHistory()
 

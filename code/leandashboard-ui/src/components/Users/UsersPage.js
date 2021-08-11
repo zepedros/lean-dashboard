@@ -1,14 +1,14 @@
-import UsersTable from './UsersTable'
-import Grid from '@material-ui/core/Grid';
-import NavBar from '../Common/NavBar'
 import { Hidden } from '@material-ui/core';
-import useFetch from 'use-http'
-import { useState, useEffect, useContext } from 'react'
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Grid from '@material-ui/core/Grid';
+import { useContext, useEffect, useState } from 'react';
+import useFetch from 'use-http';
 import UserContext from '../../common/UserContext';
-import Error from '../Common/Errors/Error'
-import img from '../../images/Forbidden.png'
-import UsersList from './UsersList'
+import img from '../../images/Forbidden.png';
+import Error from '../Common/Errors/Error';
+import NavBar from '../Common/NavBar';
+import UsersList from './UsersList';
+import UsersTable from './UsersTable';
 
 export default function UsersPage() {
     const [users, setUsers] = useState([])
@@ -23,7 +23,6 @@ export default function UsersPage() {
 
     useEffect(() => {
         checkIfUserIsSuperuser()
-            .then(() => console.log(`User is superuser: ${userIsSuperuser}`))
     }, [userIsSuperuser])
 
     function doRefresh() {
@@ -51,7 +50,6 @@ export default function UsersPage() {
             alert(deleteUser.message)
         }
         doRefresh()
-        //alert(`Deleted user with ID ${username}`)
     }
 
     async function removeRoleFromUser(username, role) {

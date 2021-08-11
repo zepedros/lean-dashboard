@@ -1,13 +1,12 @@
-import { Bar } from 'react-chartjs-2';
 import {
   Box,
   Card,
   CardContent,
   CardHeader,
   Divider,
-  useTheme,
-  colors
+  useTheme
 } from '@material-ui/core';
+import { Bar } from 'react-chartjs-2';
 
 const BarChart = ({widget}) => {
   const theme = useTheme();

@@ -1,31 +1,30 @@
 //import logo from './logo.svg';
+import { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
+import useFetch from 'use-http';
 import './App.css';
-import HomePage from './components/HomePage/HomePage';
-import SignIn from './components/Login/SignIn';
-import SignUp from './components/Login/SignUp';
+import EnsureCredentials from './common/EnsureCredentials';
+import UserContext, { createRepository } from './common/UserContext';
+import DashboardPage from './components/Dashboard/DashboardPage';
+import WidgetSettingsPage from './components/Dashboard/WidgetSettingsPage';
+import DashboardsPage from './components/Dashboards/DashboardsPage';
 import About from './components/FooterLinks/About';
 import Contact from './components/FooterLinks/Contact';
 import PrivacyPolicy from './components/FooterLinks/PrivacyPolicy';
 import Terms from './components/FooterLinks/Terms';
-import ProjectsPage from './components/Projects/ProjectsPage';
-import UsersPage from './components/Users/UsersPage';
-import DashboardsPage from './components/Dashboards/DashboardsPage'
-import DashboardPage from './components/Dashboard/DashboardPage'
-import SettingsPage from './components/Settings/SettingsPage'
-import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
-import AddWidgetPage from './components/Widgets/AddWigetPage';
+import HomePage from './components/HomePage/HomePage';
+import SignIn from './components/Login/SignIn';
+import SignUp from './components/Login/SignUp';
+import ProfilePage from './components/Profile/ProfilePage';
 import ProjectSettingsPage from './components/Projects/ProjectSettingsPage';
-import ProfilePage from './components/Profile/ProfilePage'
-import EnsureCredentials from './common/EnsureCredentials';
-import UserContext, { createRepository } from './common/UserContext';
-import useFetch from 'use-http'
-import { useEffect, useState } from 'react'
-import { I18nProvider, LOCALES } from './i18n'
-import WidgetSettingsPage from './components/Dashboard/WidgetSettingsPage'
+import ProjectsPage from './components/Projects/ProjectsPage';
+import SettingsPage from './components/Settings/SettingsPage';
+import UsersPage from './components/Users/UsersPage';
+import AddWidgetPage from './components/Widgets/AddWigetPage';
+import { I18nProvider, LOCALES } from './i18n';
 
 function App() {
   const { get, post } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
-
   const userRepository = createRepository(get, post)
   const [userCredentials, setUserCredentials] = useState(userRepository.isLoggedIn())
 
@@ -41,7 +40,7 @@ function App() {
         }
       })
     }
-  }, [])
+  }, [get,post,userCredentials])
 
   const currentSessionContext = {
     credentials: userCredentials,
@@ -54,9 +53,7 @@ function App() {
   }
 
   if(!localStorage.getItem("key")) localStorage.setItem("key",LOCALES.ENGLISH)
-  //localStorage.setItem("key",LOCALES.PORTUGUESE)
 
-  console.log(currentSessionContext.credentials)
   return (
     <div className="App">
       <I18nProvider locale={localStorage.getItem("key")}>
@@ -118,12 +115,10 @@ function App() {
                 </EnsureCredentials>
               </Route>
             </Switch>
-
           </Router>
         </UserContext.Provider>
       </I18nProvider>
     </div >
-
   )
 }
 export default App;

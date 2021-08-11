@@ -1,27 +1,25 @@
-import { useState } from 'react'
-import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import Button from '@material-ui/core/Button';
-import useFetch from 'use-http'
-import { FormattedMessage } from 'react-intl';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import Input from '@material-ui/core/Input';
 import IconButton from '@material-ui/core/IconButton';
+import Input from '@material-ui/core/Input';
+import InputAdornment from '@material-ui/core/InputAdornment';
 import InputLabel from '@material-ui/core/InputLabel';
+import TextField from '@material-ui/core/TextField';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import { useState } from 'react';
+import { FormattedMessage } from 'react-intl';
+import useFetch from 'use-http';
 
 export default function CreateAccountDialog({ showDialog, setShowDialog }) {
     const [input, setInput] = useState({ username: "", password: "", showPassword: false, })
     const [usernameError, setUsernameError] = useState(false)
     const [passwordError, setPasswordError] = useState(false)
     const { post } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
-
-
 
     function handleClose() {
         setShowDialog(false)
@@ -117,5 +115,4 @@ export default function CreateAccountDialog({ showDialog, setShowDialog }) {
             </Dialog>
         </div>
     )
-
 }

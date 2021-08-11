@@ -1,22 +1,21 @@
-import { useState } from 'react'
-import AccountTreeIcon from '@material-ui/icons/AccountTree';
-import { makeStyles } from '@material-ui/core/styles';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
-import ListItemText from '@material-ui/core/ListItemText';
 import Avatar from '@material-ui/core/Avatar';
-import Divider from '@material-ui/core/Divider'
-import { deepOrange, deepPurple } from '@material-ui/core/colors';
-import { green, pink, blue } from '@material-ui/core/colors';
-import DeleteIcon from '@material-ui/icons/Delete';
-import MenuItem from '@material-ui/core/MenuItem';
+import Button from '@material-ui/core/Button';
+import { blue, deepOrange, deepPurple, green, pink } from '@material-ui/core/colors';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import Button from '@material-ui/core/Button';
+import Divider from '@material-ui/core/Divider';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import ListItemText from '@material-ui/core/ListItemText';
+import MenuItem from '@material-ui/core/MenuItem';
+import { makeStyles } from '@material-ui/core/styles';
+import AccountTreeIcon from '@material-ui/icons/AccountTree';
+import DeleteIcon from '@material-ui/icons/Delete';
+import { useState } from 'react';
 
 const useStyles = makeStyles((theme) => ({
     dropdown: {

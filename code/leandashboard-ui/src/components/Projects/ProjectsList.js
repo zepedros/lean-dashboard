@@ -1,15 +1,15 @@
-import { useState } from 'react'
-import ProjectItem from './ProjectItem';
-import List from '@material-ui/core/List';
-import IconButton from '@material-ui/core/IconButton';
-import FilterListIcon from '@material-ui/icons/FilterList';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import Fab from '@material-ui/core/Fab';
-import AddIcon from '@material-ui/icons/Add';
 import { Container } from '@material-ui/core';
-import AddDialog from '../Common/AddDialog.js'
-import {FormattedMessage} from 'react-intl';
+import Fab from '@material-ui/core/Fab';
+import IconButton from '@material-ui/core/IconButton';
+import List from '@material-ui/core/List';
+import { makeStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import AddIcon from '@material-ui/icons/Add';
+import FilterListIcon from '@material-ui/icons/FilterList';
+import { useState } from 'react';
+import { FormattedMessage } from 'react-intl';
+import AddDialog from '../Common/AddDialog.js';
+import ProjectItem from './ProjectItem';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -55,8 +55,6 @@ export default function ProjectsList({ projects, refresh, userIsManager }) {
   function handleOpenDialog() {
     setShowDialog(true)
   }
-
-  
 
   //TODO A PARTE QUE O BOTAO DO FILTRO LIGA
   return (

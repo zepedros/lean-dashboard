@@ -1,32 +1,24 @@
-import { Doughnut } from 'react-chartjs-2';
 import {
   Box,
   Card,
   CardContent,
-  CardHeader,
-  Divider,
-  Typography,
-  colors,
-  useTheme
+  CardHeader, colors, Divider, useTheme
 } from '@material-ui/core';
+import { Doughnut } from 'react-chartjs-2';
 
 const PieChart = (props) => {
   const theme = useTheme();
 
   var keys = Object.keys(props.widget.data[0].counts);
-  console.log(keys)
   var labelsAux=[]
   for(let i = 0; i < keys.length;i++){
     labelsAux.push(props.widget.data[0].counts[i].status)
-    console.log(props.widget.data[0].counts[i].status)
   }
-  console.log(labelsAux)
 
   let dataAux= []
   for(let i = 0; i<keys.length;i++){
     dataAux.push(props.widget.data[0].counts[i].percentage)
   }
-  console.log(dataAux)
   const data = {
     datasets: [
       {

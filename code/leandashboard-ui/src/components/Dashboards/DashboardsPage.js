@@ -1,13 +1,13 @@
-import DashboardsCards from './DashboardsCards'
-import Grid from '@material-ui/core/Grid';
-import NavBar from '../Common/NavBar'
-import DashboardsList from './DashboardsList'
 import { Hidden } from '@material-ui/core';
-import useFetch from 'use-http'
-import { useState, useEffect, useContext } from 'react'
+import Grid from '@material-ui/core/Grid';
+import { useContext, useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
-import Error from '../Common/Errors/Error'
+import useFetch from 'use-http';
 import UserContext from '../../common/UserContext';
+import Error from '../Common/Errors/Error';
+import NavBar from '../Common/NavBar';
+import DashboardsCards from './DashboardsCards';
+import DashboardsList from './DashboardsList';
 
 export default function DashboardsPage() {
 
@@ -52,17 +52,6 @@ export default function DashboardsPage() {
     function refreshDashboards() {
         setRefresh(!refresh)
     }
-
-    /*
-    async function checkIfUserIsManager(){
-        const userInfo = await get(`/api/lean/users/username/${context.credentials.username}`)
-        
-        if (project?.owner === userInfo.id || userInfo?.id === 1) {
-            setUserIsManager(true)
-        } else {
-            setUserIsManager(false)
-        }
-    }*/
 
     return (
         <div>

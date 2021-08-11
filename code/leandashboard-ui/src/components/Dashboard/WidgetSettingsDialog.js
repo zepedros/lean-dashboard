@@ -1,24 +1,12 @@
-import { Dialog } from "@material-ui/core";
-import { useState } from "react";
-import { Button } from "@material-ui/core";
-import { DialogActions } from "@material-ui/core";
-import { FormattedMessage } from "react-intl";
-import { FormControlLabel } from "@material-ui/core";
-import { DialogContentText } from "@material-ui/core";
-import { TimePicker } from "@material-ui/pickers";
-import { DatePicker } from "@material-ui/pickers";
-import MonthWeekDayPicker from "../Widgets/MonthWeekDayPicker";
-import { Select } from "@material-ui/core";
-import { Input } from "@material-ui/core";
-import { MuiPickersUtilsProvider } from "@material-ui/pickers";
-import DateFnsUtils from '@date-io/date-fns'
+import DateFnsUtils from '@date-io/date-fns';
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, FormControlLabel, Input, Select, TextField } from "@material-ui/core";
 import Checkbox from '@material-ui/core/Checkbox';
-import { DialogTitle } from "@material-ui/core";
-import { DialogContent } from "@material-ui/core";
+import { DatePicker, MuiPickersUtilsProvider, TimePicker } from "@material-ui/pickers";
+import { useState } from "react";
+import { FormattedMessage } from "react-intl";
+import { useHistory, useParams } from "react-router";
 import { useFetch } from "use-http";
-import { useParams } from "react-router";
-import { useHistory } from "react-router";
-import { TextField } from "@material-ui/core";
+import MonthWeekDayPicker from "../Widgets/MonthWeekDayPicker";
 
 export default function WidgetSettingsDialog({ openDialog, setOpenDialog, widget, credentialsProject, refresh }) {
     console.log(credentialsProject)
@@ -157,7 +145,7 @@ export default function WidgetSettingsDialog({ openDialog, setOpenDialog, widget
                 month: `${month}`
             }
         }
-        //TODO POST
+        
         const body = {
             timeSettings: timeSettings,
             credentials: selectedCredential,

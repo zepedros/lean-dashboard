@@ -1,18 +1,16 @@
-import React from 'react';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Typography from '@material-ui/core/Typography';
+import { Container, Grid } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
-import { makeStyles } from '@material-ui/core/styles';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
-import { useState, useEffect } from 'react'
-import useFetch from 'use-http'
-import { Container } from '@material-ui/core';
-import {  Grid } from '@material-ui/core';
-import WidgetSettingsWidget from '../Widgets/WidgetSettingsWidget';
+import { makeStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
-import WidgetSettingsDialog from './WidgetSettingsDialog';
+import useFetch from 'use-http';
 import GoBack from '../Common/GoBack';
+import WidgetSettingsWidget from '../Widgets/WidgetSettingsWidget';
+import WidgetSettingsDialog from './WidgetSettingsDialog';
 
 const useStyles = makeStyles((theme) => ({
     table: {
@@ -70,8 +68,6 @@ export default function WidgetSettings({ name, widgets, refresh, doRefresh }) {
 
     async function loadCredentials() {
         const getCredentials = await get(`api/lean/projects/${id}/credentials`)
-        console.log('AAAAAAAAAAAA')
-        console.log(getCredentials)
         if (response.ok) setCredentials(getCredentials)
     }
 

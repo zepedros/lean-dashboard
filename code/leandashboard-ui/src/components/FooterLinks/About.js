@@ -1,8 +1,8 @@
-import React from 'react';
-import Header from '../HomePage/Header'
-import Divider from '@material-ui/core/Divider'
 import Container from '@material-ui/core/Container';
-import Footer from '../HomePage/Footer'
+import Divider from '@material-ui/core/Divider';
+import React from 'react';
+import Footer from '../HomePage/Footer';
+import Header from '../HomePage/Header';
 
 export default function About() {
     return (

@@ -1,7 +1,7 @@
-import React from "react";
 import { styled } from '@material-ui/core/styles';
-import { compose, spacing, palette } from '@material-ui/system';
-import {FormattedMessage} from 'react-intl';
+import { compose, palette, spacing } from '@material-ui/system';
+import React from "react";
+import { FormattedMessage } from 'react-intl';
 
 const Box = styled('div')(compose(spacing, palette));
 

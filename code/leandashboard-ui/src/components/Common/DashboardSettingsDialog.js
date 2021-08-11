@@ -1,33 +1,30 @@
-import { useState } from 'react'
-import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import Button from '@material-ui/core/Button';
-import useFetch from 'use-http'
+import TextField from '@material-ui/core/TextField';
+import { useState } from 'react';
 import { useParams } from 'react-router';
+import useFetch from 'use-http';
 
-
-export default function AddDialogDialog({ showDialog, setShowDialog,refreshDashboards,name,description }) {
-    const { put,response } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
+export default function AddDialogDialog({ showDialog, setShowDialog, refreshDashboards, name, description }) {
+    const { put, response } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
     const [nameError, setNameError] = useState(false)
     const [descriptionError, setDescriptionError] = useState(false)
-    let { id,dashboardId } = useParams();
+    let { id, dashboardId } = useParams();
     const [newName, setNewName] = useState(name)
     const [newDescription, setNewDescription] = useState(description)
 
-      function handleClose() {
+    function handleClose() {
         setNameError(false)
         setDescriptionError(false)
         setShowDialog(false)
-
     }
-   
 
     async function handleSubmit() {
-       
+
         if (!newName) {
             alert('Please insert a name!!')
             setNameError(true)
@@ -42,13 +39,13 @@ export default function AddDialogDialog({ showDialog, setShowDialog,refreshDashb
         if (response.status === 200) {
             alert("Dashboard updated")
             refreshDashboards()
-            
+
         } else {
             alert(response.data.message)
         }
         handleClose()
     }
-    
+
     return (
         <div>
             <Dialog open={showDialog} onClose={handleClose} aria-labelledby="form-dialog-title">
@@ -65,7 +62,7 @@ export default function AddDialogDialog({ showDialog, setShowDialog,refreshDashb
                         error={nameError}
                         helperText="Please input a name."
                         type="name"
-                        onChange={e => { setNewName(e.target.value ) }}
+                        onChange={e => { setNewName(e.target.value) }}
                         helperText={nameError}
                         fullWidth
                         value={newName}
@@ -78,7 +75,7 @@ export default function AddDialogDialog({ showDialog, setShowDialog,refreshDashb
                         error={descriptionError}
                         helperText="Please input a description."
                         type="description"
-                        onChange={e => { setNewDescription( e.target.value ) }}
+                        onChange={e => { setNewDescription(e.target.value) }}
                         helperText={descriptionError}
                         fullWidth
                         value={newDescription}

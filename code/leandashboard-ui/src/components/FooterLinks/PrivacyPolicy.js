@@ -1,7 +1,7 @@
+import Divider from '@material-ui/core/Divider';
 import React from 'react';
-import Header from '../HomePage/Header'
-import Divider from '@material-ui/core/Divider'
-import Footer from '../HomePage/Footer'
+import Footer from '../HomePage/Footer';
+import Header from '../HomePage/Header';
 
 export default function PrivacyPolicy() {
     return (

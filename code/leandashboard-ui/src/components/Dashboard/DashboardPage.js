@@ -1,12 +1,12 @@
-import Grid from '@material-ui/core/Grid';
-import NavBar from '../Common/NavBar'
 import { Hidden } from '@material-ui/core';
+import Grid from '@material-ui/core/Grid';
+import { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
-import { useState, useEffect } from 'react'
-import useFetch from 'use-http'
+import useFetch from 'use-http';
+import Error from '../Common/Errors/Error';
+import NavBar from '../Common/NavBar';
+import DashboardWidgetsList from './DashboardWidgetsList';
 import DashboardWidgets from './DashbordWidgets';
-import Error from '../Common/Errors/Error'
-import DashboardWidgetsList from './DashboardWidgetsList'
 export default function DashboardPage() {
     const [dashboard, setDashboard] = useState([])
     const [title, setTitle] = useState("")

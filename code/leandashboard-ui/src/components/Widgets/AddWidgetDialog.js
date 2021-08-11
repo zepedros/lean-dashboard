@@ -1,23 +1,21 @@
-import { useState, useEffect } from 'react'
-import Dialog from '@material-ui/core/Dialog';
+import DateFnsUtils from '@date-io/date-fns';
+import { TextField } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
 import Checkbox from '@material-ui/core/Checkbox';
-import DateFnsUtils from '@date-io/date-fns'
-import { MuiPickersUtilsProvider } from '@material-ui/pickers'
+import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import Button from '@material-ui/core/Button';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Select from "@material-ui/core/Select";
 import Input from "@material-ui/core/Input";
-import MonthWeekDayPicker from './MonthWeekDayPicker';
-import { TimePicker, DatePicker } from "@material-ui/pickers";
-import { useParams } from "react-router-dom";
-import useFetch from 'use-http'
-import { useHistory } from "react-router-dom";
+import Select from "@material-ui/core/Select";
+import { DatePicker, MuiPickersUtilsProvider, TimePicker } from '@material-ui/pickers';
+import { useEffect, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
-import { TextField } from '@material-ui/core';
+import { useHistory, useParams } from "react-router-dom";
+import useFetch from 'use-http';
+import MonthWeekDayPicker from './MonthWeekDayPicker';
 
 export default function AddWidgetDialog({ showDialog, setShowDialog, source, templateId, templateParams }) {
     const [selectedCredential, setSelectedCredential] = useState("")
@@ -110,7 +108,6 @@ export default function AddWidgetDialog({ showDialog, setShowDialog, source, tem
             alert('Please select a credential')
             return
         }
-        //TODO POST
         const body = {
             timeSettings: timeSettings,
             credentials: selectedCredential,

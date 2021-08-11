@@ -1,13 +1,13 @@
-import { useState } from 'react'
-import UsersItem from './UsersItem';
-import List from '@material-ui/core/List';
-import IconButton from '@material-ui/core/IconButton';
-import FilterListIcon from '@material-ui/icons/FilterList';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
 import { Container } from '@material-ui/core';
-import AddDialog from '../Common/AddDialog.js'
-import {FormattedMessage} from 'react-intl';
+import IconButton from '@material-ui/core/IconButton';
+import List from '@material-ui/core/List';
+import { makeStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import FilterListIcon from '@material-ui/icons/FilterList';
+import { useState } from 'react';
+import { FormattedMessage } from 'react-intl';
+import AddDialog from '../Common/AddDialog.js';
+import UsersItem from './UsersItem';
 
 const useStyles = makeStyles((theme) => ({
   root: {

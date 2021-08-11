@@ -1,22 +1,21 @@
-import { Typography } from "@material-ui/core"
-import NavBar from '../Common/NavBar'
-import { makeStyles } from '@material-ui/core/styles';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
-import InputAdornment from '@material-ui/core/InputAdornment';
+import { Typography } from "@material-ui/core";
+import Avatar from '@material-ui/core/Avatar';
+import Box from '@material-ui/core/Box';
+import Button from '@material-ui/core/Button';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import FormControl from '@material-ui/core/FormControl';
+import Input from '@material-ui/core/Input';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import InputLabel from '@material-ui/core/InputLabel';
+import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import Button from '@material-ui/core/Button';
-import Box from '@material-ui/core/Box';
-import ChangePasswordDialog from "./ChangePasswordDialog";
-import { useState, useContext } from 'react'
-import Avatar from '@material-ui/core/Avatar';
-import UserContext from '../../common/UserContext';
+import { useContext, useEffect, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
-import useFetch from 'use-http'
-import { useEffect } from 'react'
-import CircularProgress from '@material-ui/core/CircularProgress';
+import useFetch from 'use-http';
+import UserContext from '../../common/UserContext';
+import NavBar from '../Common/NavBar';
+import ChangePasswordDialog from "./ChangePasswordDialog";
 
 
 const useStyles = makeStyles((theme) => ({

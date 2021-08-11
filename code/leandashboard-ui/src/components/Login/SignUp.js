@@ -1,15 +1,13 @@
-import React, { useContext } from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Link from '@material-ui/core/Link';
-import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
+import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
-import Form from './Form'
-import img from '../../images/signIn.png'
-import {I18nProvider,LOCALES} from '../../i18n'
-import {FormattedMessage} from 'react-intl'
-import translate from '../../i18n/translate'
+import Typography from '@material-ui/core/Typography';
+import React from 'react';
+import { I18nProvider, LOCALES } from '../../i18n';
+import translate from '../../i18n/translate';
+import img from '../../images/signIn.png';
+import Form from './Form';
 
 const useStyles = makeStyles((theme) => ({
   root: {

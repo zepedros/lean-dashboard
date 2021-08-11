@@ -1,19 +1,18 @@
-import React from 'react';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Typography from '@material-ui/core/Typography';
+import { CircularProgress, Grid } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
-import { makeStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import Container from '@material-ui/core/Container';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
-import AddWidgetDialog from './AddWidgetDialog';
-import { useState, useEffect } from 'react'
-import useFetch from 'use-http'
-import TemplateWidget from './TemplateWidget';
-import Card from '@material-ui/core/Card';
-import { CircularProgress, Grid } from '@material-ui/core';
-import {FormattedMessage} from 'react-intl';
+import { makeStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import React, { useEffect, useState } from 'react';
+import { FormattedMessage } from 'react-intl';
+import useFetch from 'use-http';
 import GoBack from '../Common/GoBack';
-import Container from '@material-ui/core/Container';
+import AddWidgetDialog from './AddWidgetDialog';
+import TemplateWidget from './TemplateWidget';
 
 const useStyles = makeStyles((theme) => ({
   table: {

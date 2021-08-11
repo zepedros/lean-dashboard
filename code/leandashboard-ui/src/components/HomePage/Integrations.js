@@ -1,12 +1,11 @@
-import React from "react";
-import { styled } from '@material-ui/core/styles';
-import { compose, spacing, palette } from '@material-ui/system';
-import { makeStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
-import jira from '../../images/jira.png'
-import azure from '../../images/azure.png'
-import squash from '../../images/squash.jpg'
-import {FormattedMessage} from 'react-intl';
+import { makeStyles, styled } from '@material-ui/core/styles';
+import { compose, palette, spacing } from '@material-ui/system';
+import React from "react";
+import { FormattedMessage } from 'react-intl';
+import azure from '../../images/azure.png';
+import jira from '../../images/jira.png';
+import squash from '../../images/squash.jpg';
 
 const Box = styled('div')(compose(spacing, palette));
 
@@ -26,8 +25,6 @@ const useStyles = makeStyles((theme) => ({
 export default function Integrations() {
     const classes = useStyles();
     return (
-        
-
         <Box color="white" bgcolor="white" p={1}>
             <h1 className="MuiTypography-root MuiTypography-h2 MuiTypography-colorTextPrimary MuiTypography-gutterBottom MuiTypography-alignCenter">
                 <FormattedMessage id="HomePage.integrations" />
@@ -38,8 +35,5 @@ export default function Integrations() {
                 <Avatar alt="Squash" src={squash} />
             </div>
         </Box>
-      
-
-         
     )
 }

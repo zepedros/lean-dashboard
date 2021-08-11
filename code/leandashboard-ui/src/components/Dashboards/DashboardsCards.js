@@ -1,11 +1,11 @@
-import React from 'react';
+import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
-import Container from '@material-ui/core/Container';
-import DashboardsCard from './DashboardsCard'
-import VerticalButton from '../Common/VerticalButton'
-import {FormattedMessage} from 'react-intl';
+import React from 'react';
+import { FormattedMessage } from 'react-intl';
+import VerticalButton from '../Common/VerticalButton';
+import DashboardsCard from './DashboardsCard';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -37,7 +37,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function DashboardsCards({ dashboards, refresh, userIsManager }) {
   const classes = useStyles();
-  //  const bull = <span className={classes.bullet}>•</span>;
 
   return (
     <div>

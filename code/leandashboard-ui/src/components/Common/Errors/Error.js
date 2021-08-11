@@ -1,12 +1,12 @@
-import React from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import Grid from '@material-ui/core/Grid';
 import Link from '@material-ui/core/Link';
 import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import img from '../../../images/NotFound.png'
+import Typography from '@material-ui/core/Typography';
+import React from 'react';
 import { useHistory } from 'react-router';
+import img from '../../../images/NotFound.png';
 
 export default function Error({ statusCode, message, customImage }) {
   const useStyles = makeStyles((theme) => ({

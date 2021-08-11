@@ -1,37 +1,36 @@
-import React from 'react';
-import { useState, useEffect } from 'react'
-import { withStyles, makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import Chip from '@material-ui/core/Chip';
+import Container from '@material-ui/core/Container';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Divider from '@material-ui/core/Divider';
+import FormControl from '@material-ui/core/FormControl';
+import IconButton from '@material-ui/core/IconButton';
+import Input from '@material-ui/core/Input';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import Paper from '@material-ui/core/Paper';
+import Select from '@material-ui/core/Select';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import FilterListIcon from '@material-ui/icons/FilterList';
-import IconButton from '@material-ui/core/IconButton';
-import DeleteIcon from '@material-ui/icons/Delete';
-import Container from '@material-ui/core/Container'
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import FaceIcon from '@material-ui/icons/Face';
-import Chip from '@material-ui/core/Chip';
 import ClearIcon from '@material-ui/icons/Clear';
-import Divider from '@material-ui/core/Divider';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
+import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import Input from '@material-ui/core/Input';
+import FaceIcon from '@material-ui/icons/Face';
+import FilterListIcon from '@material-ui/icons/FilterList';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import React, { useEffect, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 const StyledTableCell = withStyles((theme) => ({
@@ -125,7 +124,6 @@ export default function CustomizedTables({ users, refresh, deleteUser, removeRol
 
   const handleRolesOpen = (username) => {
     let indexOfUser = users.findIndex(user => user.username === username)
-    //let selectedUser = users.filter(user => user.username === username)
     let selectedUser = users[indexOfUser]
     let roles = selectedUser.roles
     setUserToAlterRoles(username)

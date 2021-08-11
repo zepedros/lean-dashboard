@@ -1,13 +1,12 @@
-import DashboardIcon from '@material-ui/icons/Dashboard';
+import Avatar from '@material-ui/core/Avatar';
+import { deepOrange, deepPurple, green, pink } from '@material-ui/core/colors';
+import Divider from '@material-ui/core/Divider';
 import Link from '@material-ui/core/Link';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import ListItemText from '@material-ui/core/ListItemText';
-import Avatar from '@material-ui/core/Avatar';
-import Divider from '@material-ui/core/Divider'
-import { deepOrange, deepPurple } from '@material-ui/core/colors';
-import { green, pink } from '@material-ui/core/colors';
 import { makeStyles } from '@material-ui/core/styles';
+import DashboardIcon from '@material-ui/icons/Dashboard';
 
 const useStyles = makeStyles((theme) => ({
     root: {

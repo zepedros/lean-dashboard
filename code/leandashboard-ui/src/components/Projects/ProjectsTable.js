@@ -1,6 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import clsx from 'clsx';
+import Button from '@material-ui/core/Button';
+import Chip from '@material-ui/core/Chip';
+import Link from '@material-ui/core/Link';
+import Paper from '@material-ui/core/Paper';
 import { lighten, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -11,15 +12,13 @@ import TableRow from '@material-ui/core/TableRow';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import Paper from '@material-ui/core/Paper';
 import AddIcon from '@material-ui/icons/Add';
-import AddDialog from '../Common/AddDialog.js'
-import Button from '@material-ui/core/Button';
-import { useState } from 'react'
-import Link from '@material-ui/core/Link';
-import CircularProgressWithLabel from '../Common/CircularProgressWithLabel'
-import Chip from '@material-ui/core/Chip';
-import {FormattedMessage} from 'react-intl';
+import clsx from 'clsx';
+import PropTypes from 'prop-types';
+import React, { useState } from 'react';
+import { FormattedMessage } from 'react-intl';
+import AddDialog from '../Common/AddDialog.js';
+import CircularProgressWithLabel from '../Common/CircularProgressWithLabel';
 
 function createData(id, project, state, manager, completion) {
   return { id, project, state, manager, completion };
@@ -52,14 +51,14 @@ function stableSort(array, comparator) {
 }
 
 const headCells = [
-  { id: 'project', numeric: false, disablePadding: true, label: <FormattedMessage id="Projects.project"/> },
-  { id: 'state', numeric: true, disablePadding: false, label: <FormattedMessage id="Projects.state"/> },
-  { id: 'owner', numeric: true, disablePadding: false, label: <FormattedMessage id="Projects.manager"/>  },
-  { id: 'completion', numeric: true, disablePadding: false, label: <FormattedMessage id="Projects.completion"/> },
+  { id: 'project', numeric: false, disablePadding: true, label: <FormattedMessage id="Projects.project" /> },
+  { id: 'state', numeric: true, disablePadding: false, label: <FormattedMessage id="Projects.state" /> },
+  { id: 'owner', numeric: true, disablePadding: false, label: <FormattedMessage id="Projects.manager" /> },
+  { id: 'completion', numeric: true, disablePadding: false, label: <FormattedMessage id="Projects.completion" /> },
 ];
 
 function EnhancedTableHead(props) {
-  const { classes, onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } = props;
+  const { classes, order, orderBy, onRequestSort } = props;
   const createSortHandler = (property) => (event) => {
     onRequestSort(event, property);
   };
@@ -67,7 +66,7 @@ function EnhancedTableHead(props) {
   return (
     <TableHead className={classes.root}>
       <TableRow >
-        
+
         {headCells.map((headCell) => (
           <TableCell
             key={headCell.id}
@@ -76,7 +75,7 @@ function EnhancedTableHead(props) {
             sortDirection={orderBy === headCell.id ? order : false}
             aria-labelledby="tableTitle"
 
-            >
+          >
             <TableSortLabel
               active={orderBy === headCell.id}
               direction={orderBy === headCell.id ? order : 'asc'}
@@ -114,13 +113,13 @@ const useToolbarStyles = makeStyles((theme) => ({
   highlight:
     theme.palette.type === 'light'
       ? {
-          color: theme.palette.secondary.main,
-          backgroundColor: lighten(theme.palette.secondary.light, 0.85),
-        }
+        color: theme.palette.secondary.main,
+        backgroundColor: lighten(theme.palette.secondary.light, 0.85),
+      }
       : {
-          color: theme.palette.text.primary,
-          backgroundColor: theme.palette.secondary.dark,
-        },
+        color: theme.palette.text.primary,
+        backgroundColor: theme.palette.secondary.dark,
+      },
   title: {
     flex: '1 1 100%',
   },
@@ -139,15 +138,9 @@ const EnhancedTableToolbar = (props) => {
         [classes.highlight]: numSelected > 0,
       })}
     >
-      
-        <Typography className={classes.title} variant="h6" id="tableTitle" component="div">
-          <FormattedMessage id="Projects.projects" /> 
-        </Typography>
-     
-
-      
-       
-   
+      <Typography className={classes.title} variant="h6" id="tableTitle" component="div">
+        <FormattedMessage id="Projects.projects" />
+      </Typography>
     </Toolbar>
   );
 };
@@ -191,7 +184,7 @@ const useStyles = makeStyles((theme) => ({
     padding: '0 30px',
     boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
   },
-  
+
 }));
 
 export default function EnhancedTable({ projects, refresh, userIsManager }) {
@@ -200,16 +193,16 @@ export default function EnhancedTable({ projects, refresh, userIsManager }) {
   const [orderBy, setOrderBy] = React.useState('calories');
   const [selected, setSelected] = React.useState([]);
   const completionData = (project) => {
-   
-    const totalDays = (new Date(project.endDate)- new Date(project.startDate))/ (1000 * 3600 * 24)
-    const passDays = (new Date() - new Date(project.startDate))/ (1000 * 3600 * 24)
-    let percentageDaysMissing= passDays*100/totalDays
-    if(percentageDaysMissing >= 100) percentageDaysMissing=100
-    project.completion=percentageDaysMissing.toFixed(1)
-    
+
+    const totalDays = (new Date(project.endDate) - new Date(project.startDate)) / (1000 * 3600 * 24)
+    const passDays = (new Date() - new Date(project.startDate)) / (1000 * 3600 * 24)
+    let percentageDaysMissing = passDays * 100 / totalDays
+    if (percentageDaysMissing >= 100) percentageDaysMissing = 100
+    project.completion = percentageDaysMissing.toFixed(1)
+
     return percentageDaysMissing
   }
-  const rows = projects ? projects.map(project => { {completionData(project)}return createData(project.id, project.name, project.state, project.owner,project.completion) }) : undefined
+  const rows = projects ? projects.map(project => { { completionData(project) } return createData(project.id, project.name, project.state, project.owner, project.completion) }) : undefined
   const [showDialog, setShowDialog] = useState(false)
 
   function handleOpenDialog() {
@@ -251,50 +244,50 @@ export default function EnhancedTable({ projects, refresh, userIsManager }) {
                   return (
                     <TableRow
                       hover
-                     // onClick={(event) => handleClick(event, row.name)}
+                      // onClick={(event) => handleClick(event, row.name)}
                       role="checkbox"
                       aria-checked={isItemSelected}
                       tabIndex={-1}
                       key={row.name}
                       selected={isItemSelected}
                     >
-                      
+
                       <TableCell component={Link} href={`projects/${row.id}/dashboards`} id={labelId} scope="row" align="center" padding="none">
                         {row.project}
                       </TableCell>
-                     
+
                       <TableCell align="center"><Chip
-                    color="primary"
-                    style={{backgroundColor:'#3CAA91'}}
-                    label={row.state}
-                    size="small"
-                  /></TableCell>
+                        color="primary"
+                        style={{ backgroundColor: '#3CAA91' }}
+                        label={row.state}
+                        size="small"
+                      /></TableCell>
                       <TableCell align="center">{row.manager}</TableCell>
-                      <TableCell align="center"><CircularProgressWithLabel  value={row.completion} /></TableCell>
+                      <TableCell align="center"><CircularProgressWithLabel value={row.completion} /></TableCell>
                     </TableRow>
                   );
                 })}
-              
+
             </TableBody>
           </Table>
         </TableContainer>
-       
+
       </Paper>
-      <AddDialog showDialog={showDialog} setShowDialog={setShowDialog} title={<FormattedMessage id="Projects.dialogButton.title"/>} type={<FormattedMessage id="Projects.dialogButton.subTitle"/>} refreshProjects={refresh} showDate={true} />
+      <AddDialog showDialog={showDialog} setShowDialog={setShowDialog} title={<FormattedMessage id="Projects.dialogButton.title" />} type={<FormattedMessage id="Projects.dialogButton.subTitle" />} refreshProjects={refresh} showDate={true} />
       {
-        userIsManager?
-        <Button
-        variant="contained"
-        color="primary"
-        size="small"
-        className={classes.button}
-        startIcon={<AddIcon />}
-        onClick={handleOpenDialog}
-      >
-        <FormattedMessage id="Projects.button" /> 
-      </Button>
-      :
-      null
+        userIsManager ?
+          <Button
+            variant="contained"
+            color="primary"
+            size="small"
+            className={classes.button}
+            startIcon={<AddIcon />}
+            onClick={handleOpenDialog}
+          >
+            <FormattedMessage id="Projects.button" />
+          </Button>
+          :
+          null
       }
     </div>
   );

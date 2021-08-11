@@ -1,21 +1,20 @@
-import TemplateWidget from "./TemplateWidget";
-import { useState, useEffect } from 'react'
-import { useParams } from "react-router-dom";
-import CircularProgress from '@material-ui/core/CircularProgress';
-import useFetch from 'use-http'
 import Card from '@material-ui/core/Card';
-import Error from '../Common/Errors/Error'
+import CircularProgress from '@material-ui/core/CircularProgress';
+import { useEffect, useState } from 'react';
+import { useParams } from "react-router-dom";
+import useFetch from 'use-http';
+import Error from '../Common/Errors/Error';
+import TemplateWidget from "./TemplateWidget";
 
 export default function WidgetSettingsWidget({ widgetId }) {
     const [widget, setWidget] = useState()
     const [errorResponse, setErrorResponse] = useState()
     const { get, response, error } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
     let { id, dashboardId } = useParams();
-    
+
     async function getWidget() {
         const widgetResponse = await get(`/api/lean/projects/${id}/dashboard/${dashboardId}/widgets/${widgetId}`)
         if (response.ok) {
-            console.log(widgetId);
             setWidget(widgetResponse)
         } else {
             setErrorResponse(widgetResponse)
@@ -34,7 +33,6 @@ export default function WidgetSettingsWidget({ widgetId }) {
 
     useEffect(() => {
         getWidget()
-
     }, [widgetId])
 
     if (errorResponse) {

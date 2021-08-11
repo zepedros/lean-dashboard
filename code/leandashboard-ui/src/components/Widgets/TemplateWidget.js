@@ -1,7 +1,7 @@
-import DataTable from './DataTable'
-import PieChart from './PieChart'
 import BarChart from './BarChart'
+import DataTable from './DataTable'
 import GaugeChart from './GaugeChart'
+import PieChart from './PieChart'
 export default function ({ type, widget }) {
     switch (type) {
         case "BarChart": return (<BarChart widget={widget}/>)

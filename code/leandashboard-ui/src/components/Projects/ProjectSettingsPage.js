@@ -1,13 +1,13 @@
-import NavBar from '../Common/NavBar'
-import ProjectSettings from './ProjectSettings'
-import Grid from '@material-ui/core/Grid';
-import { useParams } from "react-router-dom";
-import UserContext from '../../common/UserContext';
-import { useContext, useState, useEffect } from 'react';
-import useFetch from 'use-http';
-import Error from '../Common/Errors/Error';
-import ProjectSettingsMobile from './ProjectSettingsMobile';
 import { Hidden } from '@material-ui/core';
+import Grid from '@material-ui/core/Grid';
+import { useContext, useEffect, useState } from 'react';
+import { useParams } from "react-router-dom";
+import useFetch from 'use-http';
+import UserContext from '../../common/UserContext';
+import Error from '../Common/Errors/Error';
+import NavBar from '../Common/NavBar';
+import ProjectSettings from './ProjectSettings';
+import ProjectSettingsMobile from './ProjectSettingsMobile';
 
 export default function ProjectSettingsPage() {
     let { id } = useParams();
@@ -36,7 +36,7 @@ export default function ProjectSettingsPage() {
             let users = []
             for (let i = 0; i < getProjectById.members.length; i++) {
                 console.log(getProjectById.members[i])
-                if (getProjectById?.owner !==  getProjectById.members[i] || getProjectById.members[i] !== 1) {
+                if (getProjectById?.owner !== getProjectById.members[i] || getProjectById.members[i] !== 1) {
                     const user = await get(`/api/lean/users/${getProjectById.members[i]}`)
                     users.push(user)
                 }
@@ -56,7 +56,6 @@ export default function ProjectSettingsPage() {
             alert(deleteUser.message)
         }
         refreshProject()
-        //alert(`Deleted user with ID ${username}`)
     }
 
     return (

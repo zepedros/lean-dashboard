@@ -1,19 +1,17 @@
-import React from 'react';
+import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
-import AddIcon from '@material-ui/icons/Add';
 import { makeStyles } from '@material-ui/core/styles';
 import Tooltip from '@material-ui/core/Tooltip';
-import SettingsIcon from '@material-ui/icons/Settings';
-import Button from '@material-ui/core/Button'
+import AddIcon from '@material-ui/icons/Add';
 import DeleteIcon from '@material-ui/icons/Delete';
-import { useParams } from "react-router-dom";
-import { useState } from 'react';
-import AddDashboardDialog from '../Common/AddDashboardDialog'
+import SettingsIcon from '@material-ui/icons/Settings';
 import WidgetsIcon from '@material-ui/icons/Widgets';
-import { NavLink } from 'react-router-dom';
-import DashboardSettingsDialog from './DashboardSettingsDialog'
+import React, { useState } from 'react';
+import { NavLink, useParams } from "react-router-dom";
+import AddDashboardDialog from '../Common/AddDashboardDialog';
+import DeleteDashboardDialog from '../Dashboard/DeleteDashboardDialog';
+import DashboardSettingsDialog from './DashboardSettingsDialog';
 
-import DeleteDashboardDialog from '../Dashboard/DeleteDashboardDialog'
 const useStyles = makeStyles((theme) => ({
   button: {
     width: '5%',

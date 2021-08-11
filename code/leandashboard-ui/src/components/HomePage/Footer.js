@@ -1,11 +1,11 @@
-import React from 'react';
+import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Toolbar from '@material-ui/core/Toolbar';
-import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+import React from 'react';
+import { FormattedMessage } from 'react-intl';
 import { useLocation } from 'react-router';
-import {FormattedMessage} from 'react-intl';
 import { Link } from "react-router-dom";
 
 

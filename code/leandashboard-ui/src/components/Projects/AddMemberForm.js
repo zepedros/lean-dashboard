@@ -1,13 +1,12 @@
-import React from 'react';
+import { Typography } from "@material-ui/core";
+import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-import Grid from '@material-ui/core/Grid';
-import Button from '@material-ui/core/Button';
-import { Typography } from "@material-ui/core";
-import {FormattedMessage} from 'react-intl';
-import { useState } from 'react'
+import React, { useState } from 'react';
+import { FormattedMessage } from 'react-intl';
 import { useParams } from "react-router-dom";
-import useFetch from 'use-http'
+import useFetch from 'use-http';
 
 const useStyles = makeStyles((theme) => ({
   formControl: {

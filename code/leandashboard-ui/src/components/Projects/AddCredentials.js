@@ -1,16 +1,16 @@
-import React, { useState } from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import InputLabel from "@material-ui/core/InputLabel";
-import Input from "@material-ui/core/Input";
-import FormControl from "@material-ui/core/FormControl";
-import Select from "@material-ui/core/Select";
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import Grid from '@material-ui/core/Grid';
 import { Typography } from "@material-ui/core";
-import { useFetch } from "use-http";
+import Button from '@material-ui/core/Button';
+import FormControl from "@material-ui/core/FormControl";
+import Grid from '@material-ui/core/Grid';
+import Input from "@material-ui/core/Input";
+import InputLabel from "@material-ui/core/InputLabel";
+import Select from "@material-ui/core/Select";
+import { makeStyles } from "@material-ui/core/styles";
+import TextField from '@material-ui/core/TextField';
+import React, { useState } from "react";
+import { FormattedMessage } from 'react-intl';
 import { useParams } from "react-router";
-import {FormattedMessage} from 'react-intl';
+import { useFetch } from "use-http";
 
 const useStyles = makeStyles(theme => ({
   formControl: {
@@ -98,7 +98,7 @@ export default function AddCredentials({doRefresh}) {
   return (
     <div>
       <div>
-        <Typography component="h6" variant="h6"><FormattedMessage id="ProjectSettings.addCredentials"/></Typography>
+        <Typography component="h1" variant="h5"><FormattedMessage id="ProjectSettings.addCredentials"/></Typography>
         <FormControl className={classes.formControl}>
           <InputLabel id="demo-simple-select-outlined-label"><FormattedMessage id="ProjectSettings.tools"/></InputLabel>
           <Select
