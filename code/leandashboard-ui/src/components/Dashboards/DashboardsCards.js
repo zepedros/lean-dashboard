@@ -48,7 +48,7 @@ export default function DashboardsCards({ dashboards, refresh, userIsManager }) 
         <Grid container spacing={5}>
           {
             dashboards.map((dashboard) => {
-              return <DashboardsCard key={dashboard.id} dashboard={dashboard} />
+              return <DashboardsCard key={dashboard.id} dashboard={dashboard} user={userIsManager}/>
             })
           }
         </Grid>

@@ -6,6 +6,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
 import {FormattedMessage} from 'react-intl';
 import GoBack from '../Common/GoBack';
+import {useLocation} from 'react-router-dom'
+import { useState} from 'react'
 
 const useStyles = makeStyles((theme) => ({
     container: {
@@ -22,6 +24,11 @@ const useStyles = makeStyles((theme) => ({
 
 export default function DashboardWidgets({ name, widgets,description,refresh }) {
     const classes = useStyles();
+    const location = useLocation()
+    const  userIsManager  = location
+    //console.log(userIsManager.state)
+    const [user, setUserIsManager] = useState(userIsManager.state)
+    console.log("user " +user.userIsManager)
     return (
         <div>
             <GoBack />
@@ -42,15 +49,19 @@ export default function DashboardWidgets({ name, widgets,description,refresh }) 
                                 })}
                             </Grid>
                         </Container>
+                        {user.userIsManager ? 
                         <VerticalButton 
-                            title1={<FormattedMessage id="Dashboard.VerticalButton.firstButton"/>} 
-                            title2={<FormattedMessage id="Dashboard.VerticalButton.secondButton"/>} 
-                            title3={<FormattedMessage id="Dashboard.VerticalButton.thirdButton"/>}
-                            title4={<FormattedMessage id="Dashboard.VerticalButton.fourthButton"/>} 
-                            show={true} 
-                            nameDashboard={name}
-                            descriptionDashboard={description}
-                            refresh={refresh}/>
+                        title1={<FormattedMessage id="Dashboard.VerticalButton.firstButton"/>} 
+                        title2={<FormattedMessage id="Dashboard.VerticalButton.secondButton"/>} 
+                        title3={<FormattedMessage id="Dashboard.VerticalButton.thirdButton"/>}
+                        title4={<FormattedMessage id="Dashboard.VerticalButton.fourthButton"/>} 
+                        show={true} 
+                        nameDashboard={name}
+                        descriptionDashboard={description}
+                        refresh={refresh}/>
+                        :
+                        null}
+                        
                     </div>
                     :
                     <h1>
