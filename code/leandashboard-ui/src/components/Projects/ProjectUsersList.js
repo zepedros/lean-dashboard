@@ -1,4 +1,4 @@
-import { Container } from '@material-ui/core';
+import { Container, Tooltip } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
 import List from '@material-ui/core/List';
 import { makeStyles } from '@material-ui/core/styles';
@@ -59,9 +59,11 @@ export default function ProjectUsersList({ users, refresh, deleteUser }) {
                 <Typography component="h1" variant="h5">
                     <FormattedMessage id="Settings.userManagement" />
                 </Typography>
-                <IconButton end='end' className={classes.filter} onClick={handleFilter}>
-                    <FilterListIcon />
-                </IconButton>
+                <Tooltip title="Add Roles" aria-label="add" placement="left">
+                    <IconButton end='end' className={classes.filter} onClick={handleFilter}>
+                        <FilterListIcon />
+                    </IconButton>
+                </Tooltip>
                 {users.length === 0 ?
                     <Typography component="h1" variant="h5">
                         No users

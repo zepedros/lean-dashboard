@@ -4,7 +4,6 @@ import CardMedia from '@material-ui/core/CardMedia';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import React from "react";
-
 //const Box = styled('div')(compose(spacing, palette));
 const useStyles = makeStyles({
     image1: {
@@ -25,8 +24,8 @@ export default function CardsDescription(props) {
             <CardMedia
                 className={classes}
                 component="img"
-                height="140"
-                image="/components/tests.png"
+                height="250"
+                image={props.img}
             />
             <CardContent>
                 <Typography variant="body2" color="textSecondary" component="p">

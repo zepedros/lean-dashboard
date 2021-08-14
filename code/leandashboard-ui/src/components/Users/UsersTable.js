@@ -32,6 +32,7 @@ import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import React, { useEffect, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
+import { Tooltip } from '@material-ui/core';
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -78,7 +79,10 @@ const useStyles = makeStyles((theme) => ({
   },
   root: {
     backgroundColor: 'orange'
-  }
+  },
+  formControl: {
+    minWidth: 100,
+  },
 }));
 
 export default function CustomizedTables({ users, refresh, deleteUser, removeRoleFromUser, addRoleToUser, changeUsername, changePassword }) {
@@ -194,8 +198,8 @@ export default function CustomizedTables({ users, refresh, deleteUser, removeRol
         aria-labelledby="user-roles-alert-dialog"
         aria-describedby="dialog used to show and manage roles"
       >
-        <DialogTitle id="alert-dialog-title">{`${userToAlterRoles} Roles`}</DialogTitle>
-        <DialogContent>
+        <DialogTitle id="alert-dialog-title" align="center">{`${userToAlterRoles} Roles`}</DialogTitle>
+        <DialogContent align="center">
           {selectedUserRoles.map(role => <Chip color="primary"
             label={role.role}
             icon={<ClearIcon></ClearIcon>}
@@ -207,7 +211,7 @@ export default function CustomizedTables({ users, refresh, deleteUser, removeRol
           <DialogContent>
             <Divider variant='fullWidth'></Divider>
           </DialogContent>
-          <DialogContent>
+          <DialogContent align="center">
             Give user the role: {rolesSelectForm()} <Button onClick={() => addRoleToUser(userToAlterRoles, roleToGive)} align="right" variant="contained" color="primary">Add</Button>
           </DialogContent>
         </DialogContent>
@@ -326,7 +330,7 @@ export default function CustomizedTables({ users, refresh, deleteUser, removeRol
           id="demo-simple-select-outlined"
           value={roleToGive}
           onChange={handleChange}
-          label="Age"
+          label="Roles"
         >
           <MenuItem value="">
             <em>None</em>
@@ -346,9 +350,6 @@ export default function CustomizedTables({ users, refresh, deleteUser, removeRol
         </Typography>
         <Paper >
           <TableContainer component={Paper} elevation={3} style={{ maxHeight: 480 }}>
-            <IconButton aria-label="filter list" className={classes.filter}>
-              <FilterListIcon />
-            </IconButton>
             <Table className={classes.table} aria-label="customized table" >
               <TableHead className={classes.root}>
                 <TableRow>
@@ -363,15 +364,21 @@ export default function CustomizedTables({ users, refresh, deleteUser, removeRol
                       align="center">{row.username}
                     </StyledTableCell>
                     <StyledTableCell align="right">
-                      <Button align="right" onClick={() => handleRolesOpen(row.username)}>
-                        <FaceIcon color="primary"></FaceIcon>
-                      </Button>
-                      <Button align="right" onClick={() => handleDeleteUserOpen(row.username)}>
-                        <DeleteIcon color="primary"></DeleteIcon>
-                      </Button>
-                      <Button align="right" onClick={() => handleEditingOpen(row.username)}>
-                        <EditIcon color="primary"></EditIcon>
-                      </Button>
+                    <Tooltip title="Add Roles" aria-label="add" placement="left">
+                        <Button align="right" onClick={() => handleRolesOpen(row.username)}>
+                          <FaceIcon color="primary"></FaceIcon>
+                        </Button>
+                      </Tooltip>
+                      <Tooltip title="Delete Account" aria-label="add" placement="left">
+                        <Button align="right" onClick={() => handleDeleteUserOpen(row.username)}>
+                          <DeleteIcon color="primary"></DeleteIcon>
+                        </Button>
+                      </Tooltip>
+                      <Tooltip title="Edit User" aria-label="add" placement="left">
+                        <Button align="right" onClick={() => handleEditingOpen(row.username)}>
+                          <EditIcon color="primary"></EditIcon>
+                        </Button>
+                      </Tooltip>
                     </StyledTableCell>
                   </StyledTableRow>
                 ))}
