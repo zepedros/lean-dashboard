@@ -36,15 +36,11 @@ const useStyles = makeStyles((theme) => ({
 export default function DashboardsItem({ dashboard }) {
     const classes = useStyles();
 
-    const colors = [classes.orange, classes.purple, classes.pink, classes.green]
-    const itemColor = () => {
-        return(colors[Math.floor(Math.random()*colors.length)])
-    }
     return (
         <div>
             <ListItem alignItems="flex-start" key={dashboard.id}>
                 <ListItemAvatar>
-                    <Avatar className={itemColor()} variant="rounded">
+                    <Avatar className={classes.orange} variant="rounded">
                         <DashboardIcon />
                     </Avatar>
                 </ListItemAvatar>

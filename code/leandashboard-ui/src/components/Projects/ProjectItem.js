@@ -49,12 +49,12 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 export default function ProjectsItem({ project }) {
-    const styles = useStyles()
+    const classes = useStyles()
     const [showMore, setShowMore] = useState(false)
     function handleClick() {
         setShowMore(!showMore)
     }
-    const colors = [styles.orange, styles.purple, styles.pink, styles.green,styles.blue]
+    const colors = [classes.orange, classes.purple, classes.pink, classes.green,classes.blue]
     const itemColor = () => {
         return(colors[Math.floor(Math.random()*colors.length)])
     }
@@ -62,7 +62,7 @@ export default function ProjectsItem({ project }) {
         <div>
             <ListItem key={project.id} alignItems="flex-start">
                 <ListItemAvatar>
-                    <Avatar variant="rounded" className={itemColor()}>
+                    <Avatar variant="rounded" className={classes.blue}>
                         <AccountTreeIcon />
                     </Avatar>
                 </ListItemAvatar>
@@ -78,7 +78,7 @@ export default function ProjectsItem({ project }) {
                 />
                 <ListItemSecondaryAction>
                     <IconButton edge="end" onClick={handleClick}>
-                        <ArrowForwardIosIcon className={[styles.dropdown, showMore ? styles.dropdownOpen : styles.dropdownClosed]} />
+                        <ArrowForwardIosIcon className={[classes.dropdown, showMore ? classes.dropdownOpen : classes.dropdownClosed]} />
                     </IconButton>
                 </ListItemSecondaryAction>
             </ListItem>
