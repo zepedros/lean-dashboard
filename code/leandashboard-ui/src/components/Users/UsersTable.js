@@ -33,6 +33,9 @@ import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import React, { useEffect, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Tooltip } from '@material-ui/core';
+import PasswordStrengthBar from 'react-password-strength-bar';
+import messages from '../../i18n/messages';
+import { I18nProvider, LOCALES } from '../../i18n';
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -303,6 +306,7 @@ export default function CustomizedTables({ users, refresh, deleteUser, removeRol
                 </InputAdornment>
               }
             />
+            <PasswordStrengthBar password={input.password} minLength={7} scoreWords={(messages[localStorage.getItem("key")].Settings.passwordStrength)} />
             <Button color="primary" onClick={() => {
               if (input.password === '') {
                 alert('Please enter a password')
@@ -364,7 +368,7 @@ export default function CustomizedTables({ users, refresh, deleteUser, removeRol
                       align="center">{row.username}
                     </StyledTableCell>
                     <StyledTableCell align="right">
-                    <Tooltip title="Add Roles" aria-label="add" placement="left">
+                      <Tooltip title="Add Roles" aria-label="add" placement="left">
                         <Button align="right" onClick={() => handleRolesOpen(row.username)}>
                           <FaceIcon color="primary"></FaceIcon>
                         </Button>

@@ -27,6 +27,7 @@
     "react-gauge-chart": "^0.3.0",
     "react-google-button": "^0.7.2",
     "react-intl": "^5.20.4",
+    "react-password-strength-bar": "^0.3.5",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "use-http": "^1.0.21",

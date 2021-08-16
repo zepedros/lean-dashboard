@@ -115,7 +115,9 @@ export default {
         username:"Nom d'utilisateur",
         password: "mot de passe",
         cancel:"Annuler",
-        userManagement: "gestion des utilisateurs"
+        userManagement: "gestion des utilisateurs",
+        passwordStrength: ['faible', 'faible', 'okay', 'bien', 'fort'],
+        weakPassword: ""
     }   
     }
 }

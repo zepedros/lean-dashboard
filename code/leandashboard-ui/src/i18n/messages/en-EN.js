@@ -114,7 +114,8 @@ export default {
              username:"username",
              password: "password",
              cancel:"cancel",
-             userManagement: "User management"
+             userManagement: "User management",
+             passwordStrength: ['weak', 'weak', 'okay', 'good', 'strong']
          }   
      }  
 }

@@ -14,6 +14,8 @@ import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import { useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import useFetch from 'use-http';
+import PasswordStrengthBar from 'react-password-strength-bar';
+import messages from '../../i18n/messages';
 
 export default function CreateAccountDialog({ showDialog, setShowDialog }) {
     const [input, setInput] = useState({ username: "", password: "", showPassword: false, })
@@ -103,6 +105,8 @@ export default function CreateAccountDialog({ showDialog, setShowDialog }) {
                             </InputAdornment>
                         }
                     />
+                    <PasswordStrengthBar password={input.password} minLength={7} scoreWords={(messages[localStorage.getItem("key")].Settings.passwordStrength)} />
+
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose} color="primary">

@@ -42,7 +42,7 @@ export default function Language(props) {
       >
         <MenuItem value={LOCALES.ENGLISH} style={{ color: "black" }}>English</MenuItem>
         <MenuItem value={LOCALES.PORTUGUESE} style={{ color: "black" }}>Português</MenuItem>
-        <MenuItem value={LOCALES.FRENCH} style={{ color: "black" }}>Fançais</MenuItem>
+        <MenuItem value={LOCALES.FRENCH} style={{ color: "black" }}>Français</MenuItem>
       </Select>
     </FormControl>
   )

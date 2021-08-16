@@ -115,7 +115,8 @@ export default {
          username:"Nome de utilizador",
          password: "Palavra-chave",
          cancel:"cancelar",
-         userManagement: "Gestão de utilizadores"
+         userManagement: "Gestão de utilizadores",
+         passwordStrength: ['fraca', 'fraca', 'okay', 'boa', 'forte']
      } ,
      Credentials: {
          name: 'Nome',

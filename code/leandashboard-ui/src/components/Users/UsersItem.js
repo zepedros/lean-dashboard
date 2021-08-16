@@ -31,6 +31,8 @@ import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import { useState } from 'react';
 import { FormattedMessage } from 'react-intl';
+import PasswordStrengthBar from 'react-password-strength-bar';
+import messages from '../../i18n/messages';
 
 const useStyles = makeStyles((theme) => ({
     dropdown: {
@@ -92,11 +94,11 @@ export default function UsersItem({ user, deleteUser, removeRoleFromUser, addRol
 
     const handleClickShowPassword = () => {
         setInput({ ...input, showPassword: !input.showPassword });
-      };
-    
-      const handleMouseDownPassword = (event) => {
+    };
+
+    const handleMouseDownPassword = (event) => {
         event.preventDefault();
-      };
+    };
 
     const colors = [styles.orange, styles.purple, styles.pink, styles.green, styles.blue]
     const itemColor = () => {
@@ -256,75 +258,77 @@ export default function UsersItem({ user, deleteUser, removeRoleFromUser, addRol
 
     const editUserDialog = () => {
         return (
-          <Dialog
-            open={userEditingOpenDialog}
-            onClose={handleEditingClose}
-            aria-labelledby="user-editing-alert-dialog"
-            aria-describedby="dialog to edit details about a user"
-          >
-            <DialogTitle id="alert-dialog-title">{`Edit user ${userToEdit}`}</DialogTitle>
-            <DialogContent>
-              <DialogContentText id="alert-dialog-description">
-                Change the current user's password or username
-              </DialogContentText>
-              <div>
-                <InputLabel htmlFor="new-username">New Username</InputLabel>
-                <Input
-                  id="new-username"
-                  label={<FormattedMessage id="New Username" />}
-                  value={input.username}
-                  //onChange={handleChange('password')}
-                  onChange={e => { setInput({ username: e.target.value, password: input.password }) }}
-    
-                />
-                <Button color="primary" align="right" onClick={() => {
-                    console.log('inside change username');
-                  if (input.username === '') {
-                    alert('Please enter a username')
-                  } else {
-                    changeUsername(userToEdit, input.username)
-                  }
-                  //setUserEditingOpenDialog(false)
-                }}>Change Username</Button>
-              </div>
-              <div>
-                <InputLabel htmlFor="standard-adornment-password">New Password</InputLabel>
-                <Input
-                  id="standard-adornment-password"
-                  type={input.showPassword ? 'text' : 'password'}
-                  label={<FormattedMessage id="New Password" />}
-                  value={input.password}
-                  //onChange={handleChange('password')}
-                  onChange={e => { setInput({ username: input.username, password: e.target.value }) }}
-                  endAdornment={
-                    <InputAdornment position="end">
-                      <IconButton
-                        aria-label="toggle password visibility"
-                        onClick={handleClickShowPassword}
-                        onMouseDown={handleMouseDownPassword}
-                      >
-                        {input.showPassword ? <Visibility /> : <VisibilityOff />}
-                      </IconButton>
-                    </InputAdornment>
-                  }
-                />
-                <Button color="primary" onClick={() => {
-                  if (input.password === '') {
-                    alert('Please enter a password')
-                  } else {
-                    changePassword(userToEdit, input.password)
-                  }
-                }}>Change Password</Button>
-              </div>
-            </DialogContent>
-            <DialogActions>
-              <Button onClick={handleEditingClose} color="primary">
-                Close
-              </Button>
-            </DialogActions>
-          </Dialog>
+            <Dialog
+                open={userEditingOpenDialog}
+                onClose={handleEditingClose}
+                aria-labelledby="user-editing-alert-dialog"
+                aria-describedby="dialog to edit details about a user"
+            >
+                <DialogTitle id="alert-dialog-title">{`Edit user ${userToEdit}`}</DialogTitle>
+                <DialogContent>
+                    <DialogContentText id="alert-dialog-description">
+                        Change the current user's password or username
+                    </DialogContentText>
+                    <div>
+                        <InputLabel htmlFor="new-username">New Username</InputLabel>
+                        <Input
+                            id="new-username"
+                            label={<FormattedMessage id="New Username" />}
+                            value={input.username}
+                            //onChange={handleChange('password')}
+                            onChange={e => { setInput({ username: e.target.value, password: input.password }) }}
+
+                        />
+                        <Button color="primary" align="right" onClick={() => {
+                            console.log('inside change username');
+                            if (input.username === '') {
+                                alert('Please enter a username')
+                            } else {
+                                changeUsername(userToEdit, input.username)
+                            }
+                            //setUserEditingOpenDialog(false)
+                        }}>Change Username</Button>
+                    </div>
+                    <div>
+                        <InputLabel htmlFor="standard-adornment-password">New Password</InputLabel>
+                        <Input
+                            id="standard-adornment-password"
+                            type={input.showPassword ? 'text' : 'password'}
+                            label={<FormattedMessage id="New Password" />}
+                            value={input.password}
+                            //onChange={handleChange('password')}
+                            onChange={e => { setInput({ username: input.username, password: e.target.value }) }}
+                            endAdornment={
+                                <InputAdornment position="end">
+                                    <IconButton
+                                        aria-label="toggle password visibility"
+                                        onClick={handleClickShowPassword}
+                                        onMouseDown={handleMouseDownPassword}
+                                    >
+                                        {input.showPassword ? <Visibility /> : <VisibilityOff />}
+                                    </IconButton>
+                                </InputAdornment>
+                            }
+                        />
+                        <PasswordStrengthBar password={input.password} minLength={7} scoreWords={(messages[localStorage.getItem("key")].Settings.passwordStrength)} />
+
+                        <Button color="primary" onClick={() => {
+                            if (input.password === '') {
+                                alert('Please enter a password')
+                            } else {
+                                changePassword(userToEdit, input.password)
+                            }
+                        }}>Change Password</Button>
+                    </div>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleEditingClose} color="primary">
+                        Close
+                    </Button>
+                </DialogActions>
+            </Dialog>
         )
-      }
+    }
 
     return (
         <div>
