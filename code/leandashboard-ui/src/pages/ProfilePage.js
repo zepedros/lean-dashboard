@@ -13,9 +13,9 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import { useContext, useEffect, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import useFetch from 'use-http';
-import UserContext from '../../common/UserContext';
-import NavBar from '../Common/NavBar';
-import ChangePasswordDialog from "./ChangePasswordDialog";
+import UserContext from '../common/UserContext';
+import NavBar from '../components/Common/NavBar';
+import ChangePasswordDialog from "../components/Profile/ChangePasswordDialog";
 
 
 const useStyles = makeStyles((theme) => ({

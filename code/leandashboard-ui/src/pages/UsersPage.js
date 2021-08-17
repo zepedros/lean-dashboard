@@ -3,12 +3,12 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import Grid from '@material-ui/core/Grid';
 import { useContext, useEffect, useState } from 'react';
 import useFetch from 'use-http';
-import UserContext from '../../common/UserContext';
-import img from '../../images/Forbidden.png';
-import Error from '../Common/Errors/Error';
-import NavBar from '../Common/NavBar';
-import UsersList from './UsersList';
-import UsersTable from './UsersTable';
+import UserContext from '../common/UserContext';
+import img from '../images/Forbidden.png';
+import Error from '../components/Common/Errors/Error';
+import NavBar from '../components/Common/NavBar';
+import UsersList from '../components/Users/UsersList';
+import UsersTable from '../components/Users/UsersTable';
 
 export default function UsersPage() {
     const [users, setUsers] = useState([])

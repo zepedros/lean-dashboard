@@ -1,12 +1,12 @@
-import ProjectsList from './ProjectsList'
-import ProjectsTable from './ProjectsTable'
+import ProjectsList from '../components/Projects/ProjectsList'
+import ProjectsTable from '../components/Projects/ProjectsTable'
 import Grid from '@material-ui/core/Grid';
-import NavBar from '../Common/NavBar'
+import NavBar from '../components/Common/NavBar'
 import { Hidden } from '@material-ui/core';
 import useFetch from 'use-http'
 import { useState, useEffect, useContext } from 'react'
 import CircularProgress from '@material-ui/core/CircularProgress';
-import UserContext from '../../common/UserContext';
+import UserContext from '../common/UserContext';
 
 export default function ProjectsPage() {
     const [projects, setProjects] = useState([])

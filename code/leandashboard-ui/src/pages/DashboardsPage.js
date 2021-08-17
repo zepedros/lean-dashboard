@@ -3,11 +3,11 @@ import Grid from '@material-ui/core/Grid';
 import { useContext, useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
 import useFetch from 'use-http';
-import UserContext from '../../common/UserContext';
-import Error from '../Common/Errors/Error';
-import NavBar from '../Common/NavBar';
-import DashboardsCards from './DashboardsCards';
-import DashboardsList from './DashboardsList';
+import UserContext from '../common/UserContext';
+import Error from '../components/Common/Errors/Error';
+import NavBar from '../components/Common/NavBar';
+import DashboardsCards from '../components/Dashboards/DashboardsCards';
+import DashboardsList from '../components/Dashboards/DashboardsList';
 
 export default function DashboardsPage() {
 

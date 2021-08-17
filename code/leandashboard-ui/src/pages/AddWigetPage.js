@@ -3,9 +3,9 @@ import Grid from '@material-ui/core/Grid';
 import { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
 import { useFetch } from 'use-http';
-import NavBar from '../Common/NavBar';
-import AddWidget from './AddWidget';
-import AddWidgetList from './AddWidgetList';
+import NavBar from '../components/Common/NavBar';
+import AddWidget from '../components/Widgets/AddWidget';
+import AddWidgetList from '../components/Widgets/AddWidgetList';
 
 export default function AddWidgetPage() {
     const [name, setName] = useState()

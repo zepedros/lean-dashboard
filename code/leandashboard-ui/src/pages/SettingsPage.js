@@ -6,10 +6,10 @@ import { useContext, useEffect, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { useHistory } from 'react-router';
 import useFetch from 'use-http';
-import UserContext from '../../common/UserContext';
-import Language from '../Common/Language';
-import NavBar from '../Common/NavBar';
-import CreateAccountDialog from './CreateAccountDialog';
+import UserContext from '../common/UserContext';
+import Language from '../components/Common/Language';
+import NavBar from '../components/Common/NavBar';
+import CreateAccountDialog from '../components/Settings/CreateAccountDialog';
 const useStyles = makeStyles((theme) => ({
     formControl: {
         margin: theme.spacing(1),

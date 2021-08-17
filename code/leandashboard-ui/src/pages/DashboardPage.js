@@ -3,10 +3,10 @@ import Grid from '@material-ui/core/Grid';
 import { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
 import useFetch from 'use-http';
-import Error from '../Common/Errors/Error';
-import NavBar from '../Common/NavBar';
-import DashboardWidgetsList from './DashboardWidgetsList';
-import DashboardWidgets from './DashbordWidgets';
+import Error from '../components/Common/Errors/Error';
+import NavBar from '../components/Common/NavBar';
+import DashboardWidgetsList from '../components/Dashboard/DashboardWidgetsList';
+import DashboardWidgets from '../components/Dashboard/DashbordWidgets';
 export default function DashboardPage() {
     const [dashboard, setDashboard] = useState([])
     const [title, setTitle] = useState("")

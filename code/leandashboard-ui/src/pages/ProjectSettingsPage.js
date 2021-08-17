@@ -3,11 +3,11 @@ import Grid from '@material-ui/core/Grid';
 import { useContext, useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
 import useFetch from 'use-http';
-import UserContext from '../../common/UserContext';
-import Error from '../Common/Errors/Error';
-import NavBar from '../Common/NavBar';
-import ProjectSettings from './ProjectSettings';
-import ProjectSettingsMobile from './ProjectSettingsMobile';
+import UserContext from '../common/UserContext';
+import Error from '../components/Common/Errors/Error';
+import NavBar from '../components/Common/NavBar';
+import ProjectSettings from './../components/Projects/ProjectSettings';
+import ProjectSettingsMobile from './../components/Projects/ProjectSettingsMobile';
 
 export default function ProjectSettingsPage() {
     let { id } = useParams();
