@@ -100,11 +100,6 @@ export default function UsersItem({ user, deleteUser, removeRoleFromUser, addRol
         event.preventDefault();
     };
 
-    const colors = [styles.orange, styles.purple, styles.pink, styles.green, styles.blue]
-    const itemColor = () => {
-        return (colors[Math.floor(Math.random() * colors.length)])
-    }
-
     const handleDeleteUserOpen = (username) => {
         setUserToDelete(username)
         setDeleteUserOpenDialog(true);
@@ -177,7 +172,7 @@ export default function UsersItem({ user, deleteUser, removeRoleFromUser, addRol
         return (
             <Dialog
                 open={rolesOpenDialog}
-                fullWidth="sm"
+                fullWidth={true}
                 maxWidth="sm"
                 onClose={handleRolesClose}
                 aria-labelledby="user-roles-alert-dialog"
@@ -334,7 +329,7 @@ export default function UsersItem({ user, deleteUser, removeRoleFromUser, addRol
         <div>
             <ListItem key={user.id} alignItems="flex-start">
                 <ListItemAvatar>
-                    <Avatar variant="rounded" className={itemColor()}>
+                    <Avatar variant="rounded" className={styles.blue}>
                         <AccountTreeIcon />
                     </Avatar>
                 </ListItemAvatar>
@@ -343,7 +338,7 @@ export default function UsersItem({ user, deleteUser, removeRoleFromUser, addRol
                 />
                 <ListItemSecondaryAction>
                     <IconButton edge="end" onClick={handleClick}>
-                        <ArrowForwardIosIcon className={[styles.dropdown, showMore ? styles.dropdownOpen : styles.dropdownClosed]} />
+                        <ArrowForwardIosIcon className={styles.dropdown, showMore ? styles.dropdownOpen : styles.dropdownClosed} />
                     </IconButton>
                 </ListItemSecondaryAction>
             </ListItem>

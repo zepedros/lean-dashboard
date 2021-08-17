@@ -195,7 +195,7 @@ export default function CustomizedTables({ users, refresh, deleteUser, removeRol
     return (
       <Dialog
         open={rolesOpenDialog}
-        fullWidth="sm"
+        fullWidth={true}
         maxWidth="sm"
         onClose={handleRolesClose}
         aria-labelledby="user-roles-alert-dialog"

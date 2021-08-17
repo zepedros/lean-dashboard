@@ -54,10 +54,7 @@ export default function ProjectsItem({ project }) {
     function handleClick() {
         setShowMore(!showMore)
     }
-    const colors = [classes.orange, classes.purple, classes.pink, classes.green,classes.blue]
-    const itemColor = () => {
-        return(colors[Math.floor(Math.random()*colors.length)])
-    }
+    
     return (
         <div>
             <ListItem key={project.id} alignItems="flex-start">
@@ -78,7 +75,7 @@ export default function ProjectsItem({ project }) {
                 />
                 <ListItemSecondaryAction>
                     <IconButton edge="end" onClick={handleClick}>
-                        <ArrowForwardIosIcon className={[classes.dropdown, showMore ? classes.dropdownOpen : classes.dropdownClosed]} />
+                        <ArrowForwardIosIcon className={classes.dropdown, showMore ? classes.dropdownOpen : classes.dropdownClosed} />
                     </IconButton>
                 </ListItemSecondaryAction>
             </ListItem>

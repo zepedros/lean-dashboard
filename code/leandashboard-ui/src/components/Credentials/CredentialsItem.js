@@ -136,9 +136,9 @@ export default function CredentialsItem({ credential, refresh, credId }) {
                     primary={credential.name}
                     secondary={credential.source}
                 />
-                <ListItemSecondaryAction>
+                <ListItemSecondaryAction >
                     <IconButton edge="end" onClick={handleClick}>
-                        <ArrowForwardIosIcon className={[styles.dropdown, showMore ? styles.dropdownOpen : styles.dropdownClosed]} />
+                        <ArrowForwardIosIcon className={styles.dropdown, showMore ? styles.dropdownOpen : styles.dropdownClosed} />
                     </IconButton>
                 </ListItemSecondaryAction>
             </ListItem>

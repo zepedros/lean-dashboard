@@ -49,7 +49,7 @@ export default function Header() {
    
       return (
         <div>
-        <Button variant="outlined" color="primary" maxWidth="sm"
+        <Button variant="outlined" color="primary" 
           {...{
             key:  "signIn",
             color: "inherit",

@@ -17,11 +17,11 @@ if (local === "en-en") {
 }
 
 ReactDOM.render(
-  <React.StrictMode>
+  //<React.StrictMode>
     <IntlProvider locale={local} messages={Portuguese}>
       <App />
-    </IntlProvider>
-  </React.StrictMode >,
+    </IntlProvider>,
+  //</React.StrictMode >
   document.getElementById('root')
 );
 

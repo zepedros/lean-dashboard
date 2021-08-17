@@ -35,10 +35,10 @@ export default function Widget({ widgetId }) {
     const size = (type) => {
         console.log(type)
         switch (type) {
-            case "BarChart": return '6'
-            case "PieChart": return '6'
-            case "DataTable": return '12'
-            case "GaugeChart": return '4'
+            case "BarChart": return 6
+            case "PieChart": return 6
+            case "DataTable": return 12
+            case "GaugeChart": return 4
             default: return <div></div>
         }
     }

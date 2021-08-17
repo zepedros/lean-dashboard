@@ -1,12 +1,12 @@
-import { Hidden } from '@material-ui/core';
-import CircularProgress from '@material-ui/core/CircularProgress';
+import ProjectsList from './ProjectsList'
+import ProjectsTable from './ProjectsTable'
 import Grid from '@material-ui/core/Grid';
-import { useContext, useEffect, useState } from 'react';
-import useFetch from 'use-http';
+import NavBar from '../Common/NavBar'
+import { Hidden } from '@material-ui/core';
+import useFetch from 'use-http'
+import { useState, useEffect, useContext } from 'react'
+import CircularProgress from '@material-ui/core/CircularProgress';
 import UserContext from '../../common/UserContext';
-import NavBar from '../Common/NavBar';
-import ProjectsList from './ProjectsList';
-import ProjectsTable from './ProjectsTable';
 
 export default function ProjectsPage() {
     const [projects, setProjects] = useState([])
@@ -16,11 +16,14 @@ export default function ProjectsPage() {
     const context = useContext(UserContext)
 
     useEffect(() => {
-        loadProjects()
+        loadProjects().then(() => {
+            console.log(response.data)
+        })
     }, [refresh])
 
     useEffect(() => {
         checkIfUserIsManager()
+            .then(() => console.log(`User is manager: ${userIsManager}`))
     }, [userIsManager])
 
     function doRefresh() {
@@ -29,9 +32,11 @@ export default function ProjectsPage() {
 
     async function loadProjects() {
         const getProjects = await get('/api/lean/projects')
+        
         if (getProjects) {
             for(let project of getProjects){
                 const owner = await getUsername(project.owner)
+                console.log(owner)
                 project.owner = owner.username
             }
             if (response.ok) setProjects(getProjects)
@@ -74,5 +79,6 @@ export default function ProjectsPage() {
                     </div>
             }
         </div>
+
     );
 }

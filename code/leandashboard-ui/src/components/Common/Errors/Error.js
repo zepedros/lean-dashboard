@@ -64,7 +64,7 @@ export default function Error({ statusCode, message, customImage }) {
             {statusCode}
           </Typography>
           <Grid item>
-            <Typography component="h7" variant="h8">
+            <Typography component="h6" variant="h6">
               {message}
             </Typography>
             <div>

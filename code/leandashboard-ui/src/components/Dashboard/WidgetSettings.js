@@ -86,7 +86,7 @@ export default function WidgetSettings({ name, widgets, refresh, doRefresh }) {
                     <Typography component="h1" variant="h3" className={classes.dashboardTitle}>
                         {name}
                     </Typography>
-                    <Container maxWidth="false" className={classes.container} onChange={e => setSelectWidget(e.target.value)}>
+                    <Container maxWidth={false} className={classes.container} onChange={e => setSelectWidget(e.target.value)}>
                         <Grid container spacing={3} >
                             <RadioGroup row aria-label="gender" >
                                 {widgets.map((widget) =>

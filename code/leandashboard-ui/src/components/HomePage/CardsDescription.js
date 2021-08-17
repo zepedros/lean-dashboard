@@ -22,7 +22,7 @@ export default function CardsDescription(props) {
     return (
         <Card className={classes.root}>
             <CardMedia
-                className={classes}
+                //className={classes}
                 component="img"
                 height="250"
                 image={props.img}

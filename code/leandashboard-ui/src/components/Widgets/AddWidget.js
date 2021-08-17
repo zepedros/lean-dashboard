@@ -85,7 +85,7 @@ export default function AddWidget() {
     <div>
       <GoBack />
       {loading && <CircularProgress />}
-      <Container maxWidth="false" className={classes.container}>
+      <Container maxWidth={false} className={classes.container}>
       <RadioGroup row aria-label="gender" onChange={handleChange}>
         <Grid container spacing={2}>
           {templates.map((template) =>

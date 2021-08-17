@@ -1,13 +1,13 @@
-import { Typography } from '@material-ui/core';
+import VerticalButton from '../Common/VerticalButton'
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
-import { makeStyles } from '@material-ui/core/styles';
-import { useState } from 'react';
-import { FormattedMessage } from 'react-intl';
-import { useLocation } from 'react-router-dom';
-import GoBack from '../Common/GoBack';
-import VerticalButton from '../Common/VerticalButton';
 import Widget from "../Widgets/Widget";
+import { makeStyles } from '@material-ui/core/styles';
+import { Typography } from '@material-ui/core';
+import {FormattedMessage} from 'react-intl';
+import GoBack from '../Common/GoBack';
+import {useLocation} from 'react-router-dom'
+import { useState} from 'react'
 
 const useStyles = makeStyles((theme) => ({
     container: {
@@ -26,7 +26,9 @@ export default function DashboardWidgets({ name, widgets,description,refresh }) 
     const classes = useStyles();
     const location = useLocation()
     const  userIsManager  = location
+    //console.log(userIsManager.state)
     const [user, setUserIsManager] = useState(userIsManager.state)
+    console.log("user " +user.userIsManager)
     return (
         <div>
             <GoBack />
@@ -38,7 +40,7 @@ export default function DashboardWidgets({ name, widgets,description,refresh }) 
                         <Typography component="h1" variant="h5" className={classes.dashboardTitle}>
                             {name}
                         </Typography>
-                        <Container maxWidth="false" className={classes.container}>
+                        <Container maxWidth={false} className={classes.container}>
                             <Grid container spacing={3} >
                                 {widgets?.map(widget => {
                                     return (
