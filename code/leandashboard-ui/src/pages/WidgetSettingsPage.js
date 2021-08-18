@@ -6,6 +6,8 @@ import { useFetch } from 'use-http';
 import Error from '../components/Common/Errors/Error';
 import NavBar from '../components/Common/NavBar';
 import WidgetSettings from '../components/Dashboard/WidgetSettings';
+import WidgetSettingsList from '../components/Dashboard/WidgetSettingsList';
+
 export default function WidgetSettingsPage() {
 
     const [dashboard, setDashboard] = useState([])
@@ -46,7 +48,7 @@ export default function WidgetSettingsPage() {
                     <div>
                         <Hidden mdUp>
                             <Grid item xs={12} sm={12} md={12}>
-                            <NavBar component={<WidgetSettings widgets={dashboard.widgets} name={dashboard.name} refresh={refresh} doRefresh={doRefresh}/>} title={title}/>
+                            <NavBar component={<WidgetSettingsList widgets={dashboard.widgets} name={dashboard.name} refresh={refresh} doRefresh={doRefresh}/>} title={title}/>
 
                             </Grid>
                         </Hidden>

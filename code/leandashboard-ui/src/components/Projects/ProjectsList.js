@@ -10,7 +10,7 @@ import { useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import AddDialog from '../Common/AddDialog.js';
 import ProjectItem from './ProjectItem';
-
+import { Button } from '@material-ui/core';
 const useStyles = makeStyles((theme) => ({
   root: {
     position: 'fixed',
@@ -71,16 +71,16 @@ export default function ProjectsList({ projects, refresh, userIsManager }) {
             return <ProjectItem key={project.id} project={project} />
           })}
         </List>
-        <AddDialog showDialog={showDialog} setShowDialog={setShowDialog} title={<FormattedMessage id="Projects.dialogButton.title"/>} type={<FormattedMessage id="Projects.dialogButton.subTitle"/>}  refreshProjects={refresh} showDate={true} />
+        <AddDialog showDialog={showDialog} setShowDialog={setShowDialog} title={<FormattedMessage id="Projects.dialogButton.title" />} type={<FormattedMessage id="Projects.dialogButton.subTitle" />} refreshProjects={refresh} showDate={true} />
         {
-          userIsManager?
-          <Fab color="primary" aria-label="add" className={classes.button} onClick={handleOpenDialog} >
-          <AddIcon />
-        </Fab>
-        :
-        null
+          userIsManager ?
+        <Button variant="contained" color="primary" size="small" className={classes.button} onClick={handleOpenDialog}>
+          +
+        </Button>
+      :
+      null
         }
       </Container>
-    </div>
+    </div >
   );
 }

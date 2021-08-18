@@ -33,7 +33,6 @@ export default function Widget({ widgetId }) {
         }
     }
     const size = (type) => {
-        console.log(type)
         switch (type) {
             case "BarChart": return 6
             case "PieChart": return 6
@@ -48,6 +47,15 @@ export default function Widget({ widgetId }) {
     }
 
     if (widget) {
+        if(widget.type === "DataTable") {
+            return (
+                <Grid item xs={size(widget.type)}>
+                    <Card>
+                        <TemplateWidget type={widget.type} widget={widget} />
+                    </Card>
+                </Grid>
+            )
+        }
         return (
             <Grid item md={size(widget.type)}>
                 <Card>
