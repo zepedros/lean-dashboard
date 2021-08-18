@@ -6,7 +6,7 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router';
+import { useHistory,useParams } from 'react-router';
 import useFetch from 'use-http';
 import GoBack from '../Common/GoBack';
 import WidgetSettingsWidget from '../Widgets/WidgetSettingsWidget';

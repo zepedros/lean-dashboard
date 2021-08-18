@@ -253,7 +253,7 @@ export default function EnhancedTable({ projects, refresh, userIsManager }) {
                     >
 
                       <TableCell  id={labelId} scope="row" align="center" padding="none">
-                        <Link href={`projects/${row.id}/dashboards`}>
+                        <Link href={`projects/${row.id}/dashboards`} color="inherit">
                         {row.project}
                         </Link>
                       </TableCell>

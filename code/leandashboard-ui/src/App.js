@@ -20,6 +20,7 @@ import ProjectsPage from './pages/ProjectsPage';
 import SettingsPage from './pages/SettingsPage';
 import UsersPage from './pages/UsersPage';
 import AddWidgetPage from './pages/AddWigetPage';
+import SlideShow from './components/Dashboard/SlideShowDashboard'
 import { I18nProvider, LOCALES } from './i18n';
 
 function App() {
@@ -111,6 +112,11 @@ function App() {
               <Route exact path="/users">
                 <EnsureCredentials redirect="/signIn">
                   <UsersPage />
+                </EnsureCredentials>
+              </Route>
+              <Route exact path="/projects/:id/dashboards/:dashboardId/slideShow">
+                <EnsureCredentials redirect="/signIn">
+                  <SlideShow />
                 </EnsureCredentials>
               </Route>
             </Switch>

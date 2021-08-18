@@ -3,11 +3,15 @@ import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Widget from "../Widgets/Widget";
 import { makeStyles } from '@material-ui/core/styles';
-import { Typography } from '@material-ui/core';
+import {  Typography } from '@material-ui/core';
 import {FormattedMessage} from 'react-intl';
 import GoBack from '../Common/GoBack';
 import {useLocation} from 'react-router-dom'
 import { useState} from 'react'
+import Button from '@material-ui/core/Button';
+import SlideShowDashbord from '../Dashboard/SlideShowDashboard'
+import { useHistory,useParams } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
     container: {
@@ -29,17 +33,31 @@ export default function DashboardWidgets({ name, widgets,description,refresh }) 
     console.log(userIsManager)
     const [user, setUserIsManager] = useState(userIsManager.state)
     console.log("user " +user.userIsManager)
+    let { id,dashboardId } = useParams();
+
     return (
         <div>
             <GoBack />
+            
             {
                 widgets ?
                     <div>
                         
-                        
+                        <div>
                         <Typography component="h1" variant="h5" className={classes.dashboardTitle}>
                             {name}
                         </Typography>
+                        <Link to={{
+                                pathname:`/projects/${id}/dashboards/${dashboardId}/slideShow/`,
+                                state:{
+                                    dashboard:widgets,
+                                    name:name
+                                }}}>
+                            <Button variant="contained" color="primary" >
+                                Apresentation mode
+                            </Button>
+                        </Link>
+                        </div>
                         <Container maxWidth={false} className={classes.container}>
                             <Grid container spacing={3} >
                                 {widgets?.map(widget => {

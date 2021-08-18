@@ -19,6 +19,9 @@ const useStyles = makeStyles({
     height: "150px",
     backgroundColor: '',
   },
+  link:{
+    color: "black"
+  }
 });
 //const colorCards = ['#FFE633', '#339FFF', '#3CAA91', '#7FAA3C']
 export default function DashboardsCard({ dashboard,user }) {
@@ -35,7 +38,7 @@ export default function DashboardsCard({ dashboard,user }) {
               state: {
                   userIsManager: user
               }
-            }}>
+            }} style={{ color: 'black' ,textDecoration:"none"}}>
               {dashboard.name}
             </Link>
            
