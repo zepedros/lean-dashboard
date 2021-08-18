@@ -26,7 +26,7 @@ export default function DashboardWidgets({ name, widgets,description,refresh }) 
     const classes = useStyles();
     const location = useLocation()
     const  userIsManager  = location
-    //console.log(userIsManager.state)
+    console.log(userIsManager)
     const [user, setUserIsManager] = useState(userIsManager.state)
     console.log("user " +user.userIsManager)
     return (

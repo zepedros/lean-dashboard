@@ -121,7 +121,7 @@ export default function AddWidgetDialog({ showDialog, setShowDialog, source, tem
             if (postresp.statusCode === 201) {
                 console.log('post done')
                 alert("Widget created!")
-                history.push(`/projects/${id}/dashboards/${dashboardId}/`);
+                history.push({pathname:`/projects/${id}/dashboards/${dashboardId}/`,state:{userIsManager:true}});
             } else {
                 alert("Error creating Widget")
                 console.log('no post')
@@ -144,8 +144,9 @@ export default function AddWidgetDialog({ showDialog, setShowDialog, source, tem
                             onChange={event => setSelectedCredential(event.target.value)}
                             defaultValue={""}
                             input={<Input id="grouped-native-select" />}
+                            
                         >
-                            <option value="">None</option>
+                            <option value="" key="">None</option>
                             {credentialsProject.map(cp => {
                                 if (cp.credentials.source == source) {
                                     return <option value={cp.credentials.name}>{cp.credentials.name}</option>

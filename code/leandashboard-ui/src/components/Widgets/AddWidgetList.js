@@ -80,15 +80,16 @@ export default function AddWidgetList() {
             
             {loading && <CircularProgress />}
            
-            <Container className={classes.root}>
+            <Container  className={classes.root}>
                 
-                <Grid alignItems="center" style={{ maxHeight: '85%', overflow: 'scroll' }}>
+                <Grid  style={{ maxHeight: '85%', overflow: 'scroll' }}>
                 <GoBack ></GoBack>
-                    <RadioGroup column aria-label="gender" onChange={handleChange}>
+                    <RadioGroup  aria-label="gender" onChange={handleChange}>
                         {templates.map((template) =>
                             <FormControlLabel
                                 control={<Radio />}
                                 value={template.id}
+                                key={template.id}
                                 label={
                                     <>
                                         <Card>

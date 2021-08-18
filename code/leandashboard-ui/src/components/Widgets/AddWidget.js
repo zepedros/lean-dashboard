@@ -92,6 +92,7 @@ export default function AddWidget() {
             <FormControlLabel
               control={<Radio />}
               value={template.id}
+              key={template.id}
               label={
                 <>
                 <Grid item md={12} sm={12}>

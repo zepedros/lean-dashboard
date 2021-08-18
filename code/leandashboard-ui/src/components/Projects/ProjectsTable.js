@@ -252,11 +252,13 @@ export default function EnhancedTable({ projects, refresh, userIsManager }) {
                       selected={isItemSelected}
                     >
 
-                      <TableCell component={Link} href={`projects/${row.id}/dashboards`} id={labelId} scope="row" align="center" padding="none">
+                      <TableCell  id={labelId} scope="row" align="center" padding="none">
+                        <Link href={`projects/${row.id}/dashboards`}>
                         {row.project}
+                        </Link>
                       </TableCell>
 
-                      <TableCell align="center"><Chip
+                      <TableCell align="center" ><Chip
                         color="primary"
                         style={{ backgroundColor: '#3CAA91' }}
                         label={row.state}

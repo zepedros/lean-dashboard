@@ -335,12 +335,13 @@ export default function CustomizedTables({ users, refresh, deleteUser, removeRol
           value={roleToGive}
           onChange={handleChange}
           label="Roles"
+          
         >
-          <MenuItem value="">
+          <MenuItem value="" >
             <em>None</em>
           </MenuItem>
-          <MenuItem value={'manager'}>Manager</MenuItem>
-          <MenuItem value={'Colaborator'}>Collaborator</MenuItem>
+          <MenuItem value={'manager'} >Manager</MenuItem>
+          <MenuItem value={'Colaborator'} >Collaborator</MenuItem>
         </Select>
       </FormControl>
     )

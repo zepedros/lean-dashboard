@@ -72,7 +72,7 @@ export default function CredentialsItem({ credential, refresh, credId }) {
         let result = []
         for (var property in credentialInfo) {
             result.push(
-                <ListItem>
+                <ListItem key={credId}>
                     <ListItemText
                         primary={property}
                         secondary={credentialInfo[property]}
