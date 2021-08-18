@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.4.2)  18 AUG 2021 01:37
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.4.2)  18 AUG 2021 16:13
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -292,58 +292,58 @@ Package pdftex.def Info: digital-prototype.png  used on input line 397.
 Chapter 5.
 [20
 
-]
+] [21]
 Chapter 6.
-<HomePage.png, id=88, 1368.11125pt x 751.80875pt>
+<HomePage.png, id=91, 1368.11125pt x 751.80875pt>
 File: HomePage.png Graphic file (type png)
 <use HomePage.png>
-Package pdftex.def Info: HomePage.png  used on input line 425.
+Package pdftex.def Info: HomePage.png  used on input line 432.
 (pdftex.def)             Requested size: 441.01772pt x 242.35034pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<SignIn.png, id=89, 1372.12625pt x 787.94376pt>
+<SignIn.png, id=92, 1372.12625pt x 787.94376pt>
 File: SignIn.png Graphic file (type png)
 <use SignIn.png>
-Package pdftex.def Info: SignIn.png  used on input line 436.
+Package pdftex.def Info: SignIn.png  used on input line 443.
 (pdftex.def)             Requested size: 441.01772pt x 253.25327pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[21
+[22
 
-] [22 <./HomePage.png> <./SignIn.png>]
+] [23 <./HomePage.png> <./SignIn.png>]
 Chapter 7.
-[23
-
-]
-Chapter 8.
 [24
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 461--463
+Chapter 8.
+[25
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 468--470
 []\OT1/cmr/m/n/10 Jira- Soft-ware de-vel-op-ment tool used by ag-ile teams
  []
 
 
-Overfull \hbox (43.8444pt too wide) in paragraph at lines 470--472
+Overfull \hbox (43.8444pt too wide) in paragraph at lines 477--479
 []\OT1/cmr/m/n/10 RBAC - Role-based Ac-cess Con-trol \OT1/cmtt/m/n/10 https://e
 n.wikipedia.org/wiki/Role-based[]access[]control 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 482--484
+Underfull \hbox (badness 10000) in paragraph at lines 489--491
 []\OT1/cmr/m/n/10 Authization Mod-ule https://github.com/dleandro/Authenticatio
 n-and-Authorization-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 485--487
+Underfull \hbox (badness 10000) in paragraph at lines 492--494
 []\OT1/cmr/m/n/10 PostgreSQL: The World's Most Ad-vanced Open Source Re-la-tion
 al Database
  []
 
-[25
+[26
 
 ] (./main.aux) ) 
 Here is how much of TeX's memory you used:
@@ -363,10 +363,10 @@ mr12.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmt
 t10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfrm100
 0.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfrm1200.
 pfb>
-Output written on main.pdf (25 pages, 1084058 bytes).
+Output written on main.pdf (26 pages, 1084636 bytes).
 PDF statistics:
- 134 PDF objects out of 1000 (max. 8388607)
- 80 compressed objects within 1 object stream
+ 137 PDF objects out of 1000 (max. 8388607)
+ 82 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  56 words of extra memory for PDF output out of 10000 (max. 10000000)
 

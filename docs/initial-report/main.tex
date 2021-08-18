@@ -404,8 +404,15 @@ The following section explains the current implementation for the client’s sid
 \section{React vs Angular}
 React was our choice over Angular. The reason behind such decision was that Angular has a lot of concepts and syntax to learn, as well as the fact that Angular's documentation is much longer and we believe it might take some time to learn a new language given that the time frame is relatively short. React is easier to learn in the short term than Angular and the group that is developing this project would attend a course to learn react, which would be an asset.
 \section{Client Architecture}
+ The Figure demonstrates how the team organizes the Client-Side code. 
+ \newline
+The component defines a class that contains data and logic and is associated with an HTML that defines a view.
+\newline
+Pages is a class that connects with Lean Dashboard API to provide data to the components and aggregate the necessary components to be displayed. 
 \section{Components}
+Components are the building blocks of the React app. The components is a JavaScript function that optionally accepts properties and returns a React element that describes how a section of the User Interface should appear on the user screen. 
 \section{Pages}
+Inside the Pages directory, we have the web pages where interact with the server and provide data for the components.  
 \section{Client Side Error Handling}
 \section{Authization}
 \chapter{User Interface and Functionalities}

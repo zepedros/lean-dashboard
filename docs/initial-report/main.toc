@@ -20,9 +20,9 @@
 \contentsline {section}{\numberline {5.2}Client Architecture}{20}%
 \contentsline {section}{\numberline {5.3}Components}{20}%
 \contentsline {section}{\numberline {5.4}Pages}{20}%
-\contentsline {section}{\numberline {5.5}Client Side Error Handling}{20}%
-\contentsline {section}{\numberline {5.6}Authization}{20}%
-\contentsline {chapter}{\numberline {6}User Interface and Functionalities}{21}%
-\contentsline {section}{\numberline {6.1}User Interface}{21}%
-\contentsline {chapter}{\numberline {7}Deployment}{23}%
-\contentsline {chapter}{\numberline {8}Conclusion}{24}%
+\contentsline {section}{\numberline {5.5}Client Side Error Handling}{21}%
+\contentsline {section}{\numberline {5.6}Authization}{21}%
+\contentsline {chapter}{\numberline {6}User Interface and Functionalities}{22}%
+\contentsline {section}{\numberline {6.1}User Interface}{22}%
+\contentsline {chapter}{\numberline {7}Deployment}{24}%
+\contentsline {chapter}{\numberline {8}Conclusion}{25}%
