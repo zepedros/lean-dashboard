@@ -443,25 +443,39 @@ In figure 5.1, we have the Home Page, it is the first page the user sees. Here t
 
 In figure 5.2, is the view that represents the entrance to the user account. It is composed by a form of two text input boxes that receive the username and the password.
 
-
+\section{Login Page}
+The login page is where the user enters the credentials necessary to log onto our application.
+They only have to input a valid username and its associated password to enter.
+\newline
+The page has a checkbox the user can toggle to allow the browser to keep track of the session. 
+The user's session information is stored in two different storages.
+\newline
+The session storage is used when the user does not want the browser to remember them since the information is cleared when they close the tab.
+\newline
+The local storage is used when the user toggles the "Remember Me" checkbox. This storage will save the session information and won't be cleared until the user logs off.
+So that this effect can be verified, the application verifies if the browser has any saved session, if it's not saved the client redirects the user to the login page if the user is trying to access a restricted page.
+\newline
+The user's username is stored within the application by using the React Hook "UseContext" to later be used for the required API calls.
+In case the session information is saved, the client sends a request to the API to authenticate the user within the application.
+\newline
 
 \section{Projects Page}
-This view presents the user the projects that his on. The page display in form of a table or list of the projects composed by name, state, manager ,and completion, which is the percentage of completion of the projects. The manager or superuser role can add a project by pressing the button. Once clicked will show up a pop-up to fill with name, description, and end date.
+This view presents the user the projects that he is on. The page displays in form of a table or list of the projects composed by name, state, manager ,and completion, which is the percentage of completion of the projects. The manager or superuser role can add a project by pressing the button. Once clicked will show up a pop-up to fill with name, description, and end date.
 
 \section{Dashboards Page}
 This page gives the user a view of the dashboards inside of a project. Can be displayed in form of a list or a group of cards. On this page, we can add a dashboard and be redirected to the projects settings page. On mobile, the way that options appear is with a swipeable drawer and for other screens with a group of buttons displayed on the left side of the screen.
 
 \section{Dashboard Page}
 On this page, the user will see the widgets of one dashboard. This page offers four options in the group of buttons or a swipeable drawer, such as add widgets,  dashboard settings, delete a dashboard, and edit widgets.
-By clicking on the first option, the user will be redirected to a page where is all the template widgets can be added to Lean Dashboard. 
-The second option is a pop-up to change the name and description of a project.
-The third is a pop-up to delete the dashboard and the fourth button will be redirected to a page similar to the template widgets to edit the widget, like deleting or change the update time.
+By clicking on the first option, the user will be redirected to a page where all the template widgets that can be added to Lean Dashboard are presented.
+The second option is a pop-up to change the name and description of a dashboard.
+The third is a pop-up to delete the dashboard and the fourth button will be redirected to a page similar to the template widgets to edit a specific widget, like deleting it, changing the credentials being used, or the update time.
 
 \section{Settings Page}
-This view is where the user can change the language. If the user is a superuser, he can add users to the Lean Dashboard application and in the user's management, the superuser can see all the users in the application and can add roles or delete roles for a specific user, delete users or change his username or password. 
+This view is where the user can change the application's display language. If the user is a superuser, he can add users to the Lean Dashboard application or access the User Management page where all the users in the application can be viewed and edited, by adding or deleting roles for a specific user, deleting users or changing his username or password. 
 
 \section{Projects Settings}
-All the project settings are deal with on this page, where the manager or superuser can change the name or description of the projects, add users and add credentials, later add widgets with these credentials.
+All the project settings are dealt with on this page, where the project manager or superuser can change the name or description of the projects, add users or platform credentials, that will  later be used to add widgets.
 \chapter{Deployment}
 
 \chapter{Conclusion}
