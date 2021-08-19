@@ -409,10 +409,10 @@ React was our choice over Angular. The reason behind such decision was that Angu
 The component defines a class that contains data and logic and is associated with an HTML that defines a view.
 \newline
 Pages is a class that connects with Lean Dashboard API to provide data to the components and aggregate the necessary components to be displayed. 
-\section{Components}
+\section{Pages and Components}
 Components are the building blocks of the React app. The components is a JavaScript function that optionally accepts properties and returns a React element that describes how a section of the User Interface should appear on the user screen. 
-\section{Pages}
-Inside the Pages directory, we have the web pages where interact with the server and provide data for the components.  
+
+Inside the Pages directory, we have the web pages where interact with the server and provide data for the components. This package contains the views of the general pages and uses the components to create these pages. 
 \section{Client Side Error Handling}
 \section{Authization}
 \chapter{User Interface and Functionalities}
@@ -433,17 +433,35 @@ As of now, the client application has multi-language support for 3 languages: En
 \caption{Home Page}
 \end{figure}
 \begin{figure}[h!]
-
-In figure 5.1, we have the Home Page, it is the first page the user sees. The page has 6 components. 
-In the header, we have buttons for the user to register or login in and enter the application.
-In the footer, we have 4 links with information about the team and application such as About, Terms, Privacy Policy and, contact us.
-
-In figure 5.2, is the view that represents the entrance to the user account. It is composed by a form of two text input boxes that receive the username and the password.
 \center
     \includegraphics[width=\textwidth]{SignIn.png}
 \caption{Sign In}
 \end{figure}
 
+In figure 5.1, we have the Home Page, it is the first page the user sees. Here the user can change the language of the application and may begin his Log In process, by pressing the Sign-in button. Once the button is clicked the user will be redirected to the Sign-in page where he will be inserting his credentials to enter the application.
+
+
+In figure 5.2, is the view that represents the entrance to the user account. It is composed by a form of two text input boxes that receive the username and the password.
+
+
+
+\section{Projects Page}
+This view presents the user the projects that his on. The page display in form of a table or list of the projects composed by name, state, manager ,and completion, which is the percentage of completion of the projects. The manager or superuser role can add a project by pressing the button. Once clicked will show up a pop-up to fill with name, description, and end date.
+
+\section{Dashboards Page}
+This page gives the user a view of the dashboards inside of a project. Can be displayed in form of a list or a group of cards. On this page, we can add a dashboard and be redirected to the projects settings page. On mobile, the way that options appear is with a swipeable drawer and for other screens with a group of buttons displayed on the left side of the screen.
+
+\section{Dashboard Page}
+On this page, the user will see the widgets of one dashboard. This page offers four options in the group of buttons or a swipeable drawer, such as add widgets,  dashboard settings, delete a dashboard, and edit widgets.
+By clicking on the first option, the user will be redirected to a page where is all the template widgets can be added to Lean Dashboard. 
+The second option is a pop-up to change the name and description of a project.
+The third is a pop-up to delete the dashboard and the fourth button will be redirected to a page similar to the template widgets to edit the widget, like deleting or change the update time.
+
+\section{Settings Page}
+This view is where the user can change the language. If the user is a superuser, he can add users to the Lean Dashboard application and in the user's management, the superuser can see all the users in the application and can add roles or delete roles for a specific user, delete users or change his username or password. 
+
+\section{Projects Settings}
+All the project settings are deal with on this page, where the manager or superuser can change the name or description of the projects, add users and add credentials, later add widgets with these credentials.
 \chapter{Deployment}
 
 \chapter{Conclusion}

@@ -1,28 +1,32 @@
 \babel@toc {english}{}
-\contentsline {chapter}{\numberline {1}Introduction}{5}{}%
-\contentsline {section}{\numberline {1.1}Report Organization}{5}{}%
-\contentsline {chapter}{\numberline {2}Functionalities}{6}{}%
-\contentsline {section}{\numberline {2.1}Implemented functionalities}{6}{}%
-\contentsline {section}{\numberline {2.2}Research and planning}{7}{}%
-\contentsline {section}{\numberline {2.3}Functionalities to be added}{7}{}%
-\contentsline {chapter}{\numberline {3}Architecture}{8}{}%
-\contentsline {section}{\numberline {3.1}Architecture Principles}{8}{}%
-\contentsline {section}{\numberline {3.2}Software Architecture}{9}{}%
-\contentsline {section}{\numberline {3.3}Scheme of the back-end}{10}{}%
-\contentsline {section}{\numberline {3.4}Data Model}{12}{}%
-\contentsline {section}{\numberline {3.5}Authization module, Backoffice and Access control}{15}{}%
-\contentsline {chapter}{\numberline {4}User Experience Research}{16}{}%
-\contentsline {section}{\numberline {4.1}Red routes diagram}{16}{}%
-\contentsline {section}{\numberline {4.2}Information Architecture}{18}{}%
-\contentsline {section}{\numberline {4.3}Digital Prototype}{19}{}%
-\contentsline {chapter}{\numberline {5}Client Application}{20}{}%
-\contentsline {section}{\numberline {5.1}React vs Angular}{20}{}%
-\contentsline {section}{\numberline {5.2}Client Architecture}{20}{}%
-\contentsline {section}{\numberline {5.3}Components}{20}{}%
-\contentsline {section}{\numberline {5.4}Pages}{20}{}%
-\contentsline {section}{\numberline {5.5}Client Side Error Handling}{21}{}%
-\contentsline {section}{\numberline {5.6}Authization}{21}{}%
-\contentsline {chapter}{\numberline {6}User Interface and Functionalities}{22}{}%
-\contentsline {section}{\numberline {6.1}User Interface}{22}{}%
-\contentsline {chapter}{\numberline {7}Deployment}{24}{}%
-\contentsline {chapter}{\numberline {8}Conclusion}{25}{}%
+\contentsline {chapter}{\numberline {1}Introduction}{5}%
+\contentsline {section}{\numberline {1.1}Report Organization}{5}%
+\contentsline {chapter}{\numberline {2}Functionalities}{6}%
+\contentsline {section}{\numberline {2.1}Implemented functionalities}{6}%
+\contentsline {section}{\numberline {2.2}Research and planning}{7}%
+\contentsline {section}{\numberline {2.3}Functionalities to be added}{7}%
+\contentsline {chapter}{\numberline {3}Architecture}{8}%
+\contentsline {section}{\numberline {3.1}Architecture Principles}{8}%
+\contentsline {section}{\numberline {3.2}Software Architecture}{9}%
+\contentsline {section}{\numberline {3.3}Scheme of the back-end}{10}%
+\contentsline {section}{\numberline {3.4}Data Model}{12}%
+\contentsline {section}{\numberline {3.5}Authization module, Backoffice and Access control}{15}%
+\contentsline {chapter}{\numberline {4}User Experience Research}{16}%
+\contentsline {section}{\numberline {4.1}Red routes diagram}{16}%
+\contentsline {section}{\numberline {4.2}Information Architecture}{18}%
+\contentsline {section}{\numberline {4.3}Digital Prototype}{19}%
+\contentsline {chapter}{\numberline {5}Client Application}{20}%
+\contentsline {section}{\numberline {5.1}React vs Angular}{20}%
+\contentsline {section}{\numberline {5.2}Client Architecture}{20}%
+\contentsline {section}{\numberline {5.3}Pages and Components}{20}%
+\contentsline {section}{\numberline {5.4}Client Side Error Handling}{21}%
+\contentsline {section}{\numberline {5.5}Authization}{21}%
+\contentsline {chapter}{\numberline {6}User Interface and Functionalities}{22}%
+\contentsline {section}{\numberline {6.1}User Interface}{22}%
+\contentsline {section}{\numberline {6.2}Projects Page}{22}%
+\contentsline {section}{\numberline {6.3}Dashboards Page}{23}%
+\contentsline {section}{\numberline {6.4}Dashboard Page}{24}%
+\contentsline {section}{\numberline {6.5}Settings Page}{24}%
+\contentsline {section}{\numberline {6.6}Projects Settings}{24}%
+\contentsline {chapter}{\numberline {7}Deployment}{25}%
+\contentsline {chapter}{\numberline {8}Conclusion}{26}%
