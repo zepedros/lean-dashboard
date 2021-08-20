@@ -4,7 +4,6 @@
 \contentsline {chapter}{\numberline {2}Functionalities}{6}{}%
 \contentsline {section}{\numberline {2.1}Implemented functionalities}{6}{}%
 \contentsline {section}{\numberline {2.2}Research and planning}{7}{}%
-\contentsline {section}{\numberline {2.3}Functionalities to be added}{7}{}%
 \contentsline {chapter}{\numberline {3}Architecture}{8}{}%
 \contentsline {section}{\numberline {3.1}Architecture Principles}{8}{}%
 \contentsline {section}{\numberline {3.2}Software Architecture}{9}{}%
@@ -20,14 +19,14 @@
 \contentsline {section}{\numberline {5.2}Client Architecture}{20}{}%
 \contentsline {section}{\numberline {5.3}Pages and Components}{20}{}%
 \contentsline {section}{\numberline {5.4}Client Side Error Handling}{21}{}%
-\contentsline {section}{\numberline {5.5}Authization}{21}{}%
+\contentsline {section}{\numberline {5.5}Client Side Access Control}{21}{}%
 \contentsline {chapter}{\numberline {6}User Interface and Functionalities}{22}{}%
 \contentsline {section}{\numberline {6.1}User Interface}{22}{}%
-\contentsline {section}{\numberline {6.2}Login Page}{22}{}%
+\contentsline {section}{\numberline {6.2}Sign In Page}{23}{}%
 \contentsline {section}{\numberline {6.3}Projects Page}{24}{}%
 \contentsline {section}{\numberline {6.4}Dashboards Page}{24}{}%
-\contentsline {section}{\numberline {6.5}Dashboard Page}{24}{}%
-\contentsline {section}{\numberline {6.6}Settings Page}{24}{}%
-\contentsline {section}{\numberline {6.7}Projects Settings}{24}{}%
-\contentsline {chapter}{\numberline {7}Deployment}{25}{}%
-\contentsline {chapter}{\numberline {8}Conclusion}{26}{}%
+\contentsline {section}{\numberline {6.5}Dashboard Page}{25}{}%
+\contentsline {section}{\numberline {6.6}Settings Page}{25}{}%
+\contentsline {section}{\numberline {6.7}Projects Settings}{26}{}%
+\contentsline {chapter}{\numberline {7}Deployment}{27}{}%
+\contentsline {chapter}{\numberline {8}Conclusion}{28}{}%

@@ -85,14 +85,12 @@ Finally, the Client Application chapter. Here, we explain the reason for the cho
 \chapter{Functionalities}
 The functionalities section is destined to list and describe the functionalities that the final application will provide the user with.
 
-In this section, information such as what is already implemented within the application, the research and planning that was made for the project and, the functionalities that will still be added to the project can be found in more detail.
-
-All of this information will be updated in future reports as we continue to improve the project.
+In this section, information such as what is already implemented within the application and the research and planning that was made for the project.
 
 
-The solution will be a responsive mobile-first web application that will allow to consult and aggregate the information of various platforms. Inside a project, a manager will be able to add various dashboards that will then have the desired widgets. The widgets are the structures that hold and show the desired information regarding issues, tests, and sprints from platforms such as Jira\cite{JIRA}, Squash\cite{SQUASH} and Azure\cite{AZURE}. A manager will then be able to add various users to its project so that those users can consult all the dashboards with the relevant information in each widget.
+The solution is a responsive mobile-first web application that allows the user to consult and aggregate the information of various platforms. Inside a project, a manager is be able to add various dashboards that will then have the desired widgets. The widgets are the structures that hold and show the desired information regarding issues, tests, and sprints from platforms such as Jira\cite{JIRA}, Squash\cite{SQUASH} and Azure\cite{AZURE}. A manager will then be able to add various users to its project so that those users can consult all the dashboards with the relevant information in each widget.
 \section{Implemented functionalities}
-By the time of the delivery of this report, this are the features implemented:
+By the time of the delivery of this report, these are the features implemented:
  
 \begin{itemize}
      \item Retrieving the data from the multiple APIs. As of right now, we can access the three supported APIs to obtain the relevant information
@@ -114,6 +112,13 @@ By the time of the delivery of this report, this are the features implemented:
      \item Automatically updating widgets with the use of a scheduler. Users can set a period to refresh existing widgets, making sure the most up to date information is being displayed. The process and technology chosen for the scheduler will be explained in the back end portion of this report
 
      \item Setting the credentials for all the platforms. When creating a widget, a user can set up the desired credentials, to choose the data source for a specific widget
+
+     \item Back-office Management with funcionalities to create, delete and edit user accounts
+
+     \item Front-end client application based on React technology
+
+     \item Multi language support for the client application
+
 \end{itemize}
 
 \section{Research and planning}
@@ -124,14 +129,6 @@ In this section, we display the set of aspects, that despite technically not bei
     \item Red routes diagram. This diagram is part of the Experience research further developed ahead.
     \item Information architecture\cite{INFOARCH}. A diagram that displays the existing paths/flows of the client application
     \item Study of the React\cite{REACT} technology for the development of the client application
-\end{itemize}
-
-\section{Functionalities to be added}
-\begin{itemize}
-    \item Finishing management of projects by the back-office manager. Add functionalities such as deleting users and changing usernames
-    \item Full authentication and authorization
-    \item Revisiting the structure of widgets. As more widgets are added to the application, re-analyzing the structure of widgets is an important step
-    \item Finishing the client application with the React technology 
 \end{itemize}
 
 \chapter{Architecture}
@@ -409,12 +406,14 @@ React was our choice over Angular. The reason behind such decision was that Angu
 The component defines a class that contains data and logic and is associated with an HTML that defines a view.
 \newline
 Pages is a class that connects with Lean Dashboard API to provide data to the components and aggregate the necessary components to be displayed. 
+
 \section{Pages and Components}
 Components are the building blocks of the React app. The components is a JavaScript function that optionally accepts properties and returns a React element that describes how a section of the User Interface should appear on the user screen. 
 
 Inside the Pages directory, we have the web pages where interact with the server and provide data for the components. This package contains the views of the general pages and uses the components to create these pages. 
 \section{Client Side Error Handling}
-\section{Authization}
+\section{Client Side Access Control}
+
 \chapter{User Interface and Functionalities}
 The following section present the graphical user interface (UI) of the application.
 \section{User Interface}
@@ -432,19 +431,12 @@ As of now, the client application has multi-language support for 3 languages: En
     \includegraphics[width=\textwidth]{HomePage.png}
 \caption{Home Page}
 \end{figure}
-\begin{figure}[h!]
-\center
-    \includegraphics[width=\textwidth]{SignIn.png}
-\caption{Sign In}
-\end{figure}
 
-In figure 5.1, we have the Home Page, it is the first page the user sees. Here the user can change the language of the application and may begin his Log In process, by pressing the Sign-in button. Once the button is clicked the user will be redirected to the Sign-in page where he will be inserting his credentials to enter the application.
+In figure 6.1, we have the Home Page, it is the first page the user sees. Here the user can change the language of the application and may begin his Log In process, by pressing the Sign-in button. Once the button is clicked the user will be redirected to the Sign-in page where he will be inserting his credentials to enter the application.
 
 
-In figure 5.2, is the view that represents the entrance to the user account. It is composed by a form of two text input boxes that receive the username and the password.
-
-\section{Login Page}
-The login page is where the user enters the credentials necessary to log onto our application.
+\section{Sign In Page}
+The sign in page is where the user enters the credentials necessary to sign into our application.
 They only have to input a valid username and its associated password to enter.
 \newline
 The page has a checkbox the user can toggle to allow the browser to keep track of the session. 
@@ -457,25 +449,66 @@ So that this effect can be verified, the application verifies if the browser has
 \newline
 The user's username is stored within the application by using the React Hook "UseContext" to later be used for the required API calls.
 In case the session information is saved, the client sends a request to the API to authenticate the user within the application.
-\newline
+
+\begin{figure}[h!]
+\center
+    \includegraphics[width=\textwidth]{SignIn.png}
+\caption{Sign In}
+\end{figure}
+
+\newpage 
+
+In figure 6.2, is the view that represents the entrance to the user account. It is composed by a form of two text input boxes that receive the username and the password.
 
 \section{Projects Page}
-This view presents the user the projects that he is on. The page displays in form of a table or list of the projects composed by name, state, manager ,and completion, which is the percentage of completion of the projects. The manager or superuser role can add a project by pressing the button. Once clicked will show up a pop-up to fill with name, description, and end date.
+This view presents to the user the projects that he is on. The page displays in form of a table or list of the projects composed by name, state, manager ,and completion, which is the percentage of completion of the projects. The manager or superuser role can add a project by pressing the button. Once clicked will show up a pop-up to fill with name, description, and end date.
+
+\begin{figure}[h!]
+\center
+    \includegraphics[width=\textwidth]{projectsPage.png}
+\caption{Projects Page}
+\end{figure}
 
 \section{Dashboards Page}
-This page gives the user a view of the dashboards inside of a project. Can be displayed in form of a list or a group of cards. On this page, we can add a dashboard and be redirected to the projects settings page. On mobile, the way that options appear is with a swipeable drawer and for other screens with a group of buttons displayed on the left side of the screen.
+This page gives the user a view of the dashboards inside of a project. It can be displayed in form of a list or a group of cards. On this page, we can add a dashboard and be redirected to the project's settings page. On mobile, the way that options appear is with a swipeable drawer and for other screens with a group of buttons displayed on the left side of the screen.
 
+\begin{figure}[h!]
+\center
+    \includegraphics[width=\textwidth]{dashboardsPage.png}
+\caption{Dashboards Page}
+\end{figure}
+
+\newpage
 \section{Dashboard Page}
 On this page, the user will see the widgets of one dashboard. This page offers four options in the group of buttons or a swipeable drawer, such as add widgets,  dashboard settings, delete a dashboard, and edit widgets.
 By clicking on the first option, the user will be redirected to a page where all the template widgets that can be added to Lean Dashboard are presented.
 The second option is a pop-up to change the name and description of a dashboard.
 The third is a pop-up to delete the dashboard and the fourth button will be redirected to a page similar to the template widgets to edit a specific widget, like deleting it, changing the credentials being used, or the update time.
 
+\begin{figure}[h!]
+\center
+    \includegraphics[width=\textwidth]{dashboardPage.png}
+\caption{Dashboard Page and Widget View}
+\end{figure}
+
 \section{Settings Page}
 This view is where the user can change the application's display language. If the user is a superuser, he can add users to the Lean Dashboard application or access the User Management page where all the users in the application can be viewed and edited, by adding or deleting roles for a specific user, deleting users or changing his username or password. 
 
+\begin{figure}[h!]
+\center
+    \includegraphics[width=\textwidth]{settingsPage.png}
+\caption{Settings Page}
+\end{figure}
+
 \section{Projects Settings}
 All the project settings are dealt with on this page, where the project manager or superuser can change the name or description of the projects, add users or platform credentials, that will  later be used to add widgets.
+
+\begin{figure}[h!]
+\center
+    \includegraphics[width=\textwidth]{projectsettingsPage.png}
+\caption{Project Settings Page}
+\end{figure}
+
 \chapter{Deployment}
 
 \chapter{Conclusion}

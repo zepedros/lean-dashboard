@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2021.4.2)  19 AUG 2021 19:23
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2021.4.2)  20 AUG 2021 16:22
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -221,7 +221,7 @@ Chapter 3.
 File: lean-dashboard-software-architecture.png Graphic file (type png)
 <use lean-dashboard-software-architecture.png>
 Package pdftex.def Info: lean-dashboard-software-architecture.png  used on inpu
-t line 157.
+t line 154.
 (pdftex.def)             Requested size: 441.01772pt x 204.67085pt.
 [8
 
@@ -229,29 +229,29 @@ t line 157.
 <arquitetura software.png, id=42, 658.46pt x 432.61626pt>
 File: arquitetura software.png Graphic file (type png)
 <use arquitetura software.png>
-Package pdftex.def Info: arquitetura software.png  used on input line 185.
+Package pdftex.def Info: arquitetura software.png  used on input line 182.
 (pdftex.def)             Requested size: 441.01772pt x 289.75897pt.
  [10 <./arquitetura software.png>] [11]
 <modelo de dados.png, id=50, 764.8575pt x 1086.0575pt>
 File: modelo de dados.png Graphic file (type png)
 <use modelo de dados.png>
-Package pdftex.def Info: modelo de dados.png  used on input line 223.
+Package pdftex.def Info: modelo de dados.png  used on input line 220.
 (pdftex.def)             Requested size: 441.01772pt x 626.21826pt.
  [12 <./modelo de dados.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 229--231
+Underfull \hbox (badness 10000) in paragraph at lines 226--228
 
  []
 
 <formato das credentials.png, id=55, 532.99126pt x 302.12875pt>
 File: formato das credentials.png Graphic file (type png)
 <use formato das credentials.png>
-Package pdftex.def Info: formato das credentials.png  used on input line 267.
+Package pdftex.def Info: formato das credentials.png  used on input line 264.
 (pdftex.def)             Requested size: 441.01772pt x 250.00151pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 271--275
+Underfull \hbox (badness 10000) in paragraph at lines 268--272
 
  []
 
@@ -259,7 +259,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 271--275
 <lean-rbac-model.png, id=64, 944.52875pt x 377.41pt>
 File: lean-rbac-model.png Graphic file (type png)
 <use lean-rbac-model.png>
-Package pdftex.def Info: lean-rbac-model.png  used on input line 324.
+Package pdftex.def Info: lean-rbac-model.png  used on input line 321.
 (pdftex.def)             Requested size: 441.01772pt x 176.21944pt.
  [15 <./lean-rbac-model.png>]
 Chapter 4.
@@ -269,19 +269,19 @@ Chapter 4.
 <red-routes.png, id=72, 2658.93375pt x 2179.14125pt>
 File: red-routes.png Graphic file (type png)
 <use red-routes.png>
-Package pdftex.def Info: red-routes.png  used on input line 364.
+Package pdftex.def Info: red-routes.png  used on input line 361.
 (pdftex.def)             Requested size: 441.01772pt x 361.4381pt.
  [17 <./red-routes.png (PNG copy)>]
 <information-architecture.png, id=76, 647.41875pt x 234.8775pt>
 File: information-architecture.png Graphic file (type png)
 <use information-architecture.png>
-Package pdftex.def Info: information-architecture.png  used on input line 379.
+Package pdftex.def Info: information-architecture.png  used on input line 376.
 (pdftex.def)             Requested size: 441.01772pt x 159.99771pt.
  [18 <./information-architecture.png>]
 <digital-prototype.png, id=80, 569.12625pt x 475.7775pt>
 File: digital-prototype.png Graphic file (type png)
 <use digital-prototype.png>
-Package pdftex.def Info: digital-prototype.png  used on input line 397.
+Package pdftex.def Info: digital-prototype.png  used on input line 394.
 (pdftex.def)             Requested size: 441.01772pt x 368.6947pt.
 
 [19 <./digital-prototype.png>]
@@ -294,71 +294,91 @@ Underfull \vbox (badness 6691) has occurred while \output is active []
 ]
 [21]
 Chapter 6.
-<HomePage.png, id=91, 1368.11125pt x 751.80875pt>
+<HomePage.png, id=91, 1018.55531pt x 448.67625pt>
 File: HomePage.png Graphic file (type png)
 <use HomePage.png>
-Package pdftex.def Info: HomePage.png  used on input line 432.
-(pdftex.def)             Requested size: 441.01772pt x 242.35034pt.
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-<SignIn.png, id=92, 1372.12625pt x 787.94376pt>
-File: SignIn.png Graphic file (type png)
-<use SignIn.png>
-Package pdftex.def Info: SignIn.png  used on input line 437.
-(pdftex.def)             Requested size: 441.01772pt x 253.25327pt.
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 447--461
-
- []
-
+Package pdftex.def Info: HomePage.png  used on input line 431.
+(pdftex.def)             Requested size: 441.01772pt x 194.26889pt.
 [22
 
-]
-Underfull \vbox (badness 10000) has occurred while \output is active []
+ <./homePage.png>]
+<SignIn.png, id=96, 1027.58907pt x 461.47406pt>
+File: SignIn.png Graphic file (type png)
+<use SignIn.png>
+Package pdftex.def Info: SignIn.png  used on input line 455.
+(pdftex.def)             Requested size: 441.01772pt x 198.05676pt.
+ [23 <./SignIn.png>]
+<projectsPage.png, id=101, 1027.58907pt x 459.21562pt>
+File: projectsPage.png Graphic file (type png)
+<use projectsPage.png>
+Package pdftex.def Info: projectsPage.png  used on input line 468.
+(pdftex.def)             Requested size: 441.01772pt x 197.0875pt.
+<dashboardsPage.png, id=102, 1026.83624pt x 457.71pt>
+File: dashboardsPage.png Graphic file (type png)
+<use dashboardsPage.png>
+Package pdftex.def Info: dashboardsPage.png  used on input line 477.
+(pdftex.def)             Requested size: 441.01772pt x 196.581pt.
 
- [23 <./homePage.png> <./SignIn.png>] [24]
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[24 <./projectsPage.png>]
+<dashboardPage.png, id=107, 1012.5328pt x 459.21562pt>
+File: dashboardPage.png Graphic file (type png)
+<use dashboardPage.png>
+Package pdftex.def Info: dashboardPage.png  used on input line 490.
+(pdftex.def)             Requested size: 441.01772pt x 200.01643pt.
+ [25 <./dashboardsPage.png> <./dashboardPage.png>]
+<settingsPage.png, id=114, 1027.58907pt x 460.72125pt>
+File: settingsPage.png Graphic file (type png)
+<use settingsPage.png>
+Package pdftex.def Info: settingsPage.png  used on input line 499.
+(pdftex.def)             Requested size: 441.01772pt x 197.73367pt.
+<projectsettingsPage.png, id=115, 1014.79124pt x 459.96844pt>
+File: projectsettingsPage.png Graphic file (type png)
+<use projectsettingsPage.png>
+Package pdftex.def Info: projectsettingsPage.png  used on input line 508.
+(pdftex.def)             Requested size: 441.01772pt x 199.89516pt.
+
+[26 <./settingsPage.png> <./projectsettingsPage.png>]
 Chapter 7.
-[25
+[27
 
 ]
 Chapter 8.
-[26
+[28
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 500--502
+Underfull \hbox (badness 10000) in paragraph at lines 533--535
 []\OT1/cmr/m/n/10 Jira- Soft-ware de-vel-op-ment tool used by ag-ile teams
  []
 
 
-Overfull \hbox (43.8444pt too wide) in paragraph at lines 509--511
+Overfull \hbox (43.8444pt too wide) in paragraph at lines 542--544
 []\OT1/cmr/m/n/10 RBAC - Role-based Ac-cess Con-trol \OT1/cmtt/m/n/10 https://e
 n.wikipedia.org/wiki/Role-based[]access[]control 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 521--523
+Underfull \hbox (badness 10000) in paragraph at lines 554--556
 []\OT1/cmr/m/n/10 Authization Mod-ule https://github.com/dleandro/Authenticatio
 n-and-Authorization-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 524--526
+Underfull \hbox (badness 10000) in paragraph at lines 557--559
 []\OT1/cmr/m/n/10 PostgreSQL: The World's Most Ad-vanced Open Source Re-la-tion
 al Database
  []
 
-[27
+[29
 
 ] (./main.aux) ) 
 Here is how much of TeX's memory you used:
- 3246 strings out of 478994
- 49788 string characters out of 5862208
+ 3276 strings out of 478994
+ 50423 string characters out of 5862208
  358522 words of memory out of 5000000
- 20686 multiletter control sequences out of 15000+600000
+ 20711 multiletter control sequences out of 15000+600000
  409737 words of font info for 48 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  68i,13n,74p,706b,317s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -370,10 +390,10 @@ f-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2021/texmf-dist/fon
 ts/type1/public/amsfonts/cm/cmtt10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/
 public/cm-super/sfrm1000.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/cm-
 super/sfrm1200.pfb>
-Output written on main.pdf (27 pages, 1087792 bytes).
+Output written on main.pdf (29 pages, 958367 bytes).
 PDF statistics:
- 140 PDF objects out of 1000 (max. 8388607)
- 84 compressed objects within 1 object stream
+ 156 PDF objects out of 1000 (max. 8388607)
+ 88 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 56 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 81 words of extra memory for PDF output out of 10000 (max. 10000000)
 
