@@ -206,6 +206,7 @@ export default function CustomizedTables({ users, refresh, deleteUser, removeRol
           {selectedUserRoles.map(role => <Chip color="primary"
             label={role.role}
             icon={<ClearIcon></ClearIcon>}
+            key={role.role}
             onClick={() => {
               setRoleToRemove(role.role)
               handleRemoveRoleOpen(role.role)

@@ -67,6 +67,7 @@ export default function AddWidget() {
       if (template.id === event.target.value) {
         setSourceTemplate(template.source)
         setSelectParams(template.params)
+        console.log(template)
       }
     })
   };

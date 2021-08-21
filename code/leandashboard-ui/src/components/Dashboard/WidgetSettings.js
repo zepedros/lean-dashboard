@@ -93,6 +93,7 @@ export default function WidgetSettings({ name, widgets, refresh, doRefresh }) {
                                     <FormControlLabel
                                         control={<Radio />}
                                         value={widget}
+                                        key={widget}
                                         label={
                                             <WidgetSettingsWidget widgetId={widget} />
                                         }

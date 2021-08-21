@@ -343,17 +343,17 @@ export default function UsersItem({ user, deleteUser, removeRoleFromUser, addRol
                 </ListItemSecondaryAction>
             </ListItem>
             <Collapse in={showMore} timeout="auto" unmountOnExit>
-                <MenuItem onClick={() => { handleDeleteUserOpen(user.username) }}>
+                <MenuItem component="div" onClick={() => { handleDeleteUserOpen(user.username) }}>
                     <ListItem divider={true} >
                         Delete user {<div align="right"><DeleteIcon align="right"></DeleteIcon></div>}
                     </ListItem>
                 </MenuItem>
-                <MenuItem onClick={() => handleRolesOpen(user.username)}>
+                <MenuItem component="div" onClick={() => handleRolesOpen(user.username)}>
                     <ListItem >
                         User roles {<FaceIcon></FaceIcon>}
                     </ListItem>
                 </MenuItem>
-                <MenuItem onClick={() => handleEditingOpen(user.username)}>
+                <MenuItem component="div" onClick={() => handleEditingOpen(user.username)}>
                     <ListItem >
                         Edit user {<EditIcon></EditIcon>}
                     </ListItem>

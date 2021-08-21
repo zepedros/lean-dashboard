@@ -189,7 +189,8 @@ export default function WidgetSettingsDialog({ openDialog, setOpenDialog, widget
                             >
                                 {credentialsProject.map(cp => {
                                     if (cp.credentials.source == widget.credentials.source) {
-                                        return <option value={cp.credentials.name}>{cp.credentials.name}</option>
+                                        console.log(cp)
+                                        return <option value={cp.credentials.name} key={cp.credentials.name}>{cp.credentials.name}</option>
                                     }
                                 })}
                             </Select>

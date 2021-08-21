@@ -88,12 +88,13 @@ export default function WidgetSettingsList({ name, widgets, refresh, doRefresh }
                         <Typography component="h1" variant="h3" className={classes.dashboardTitle}>
                             {name}
                         </Typography>
-                        <Grid alignItems="center" style={{ maxHeight: '85%', overflow: 'scroll' }}>
+                        <Grid style={{ maxHeight: '85%', overflow: 'scroll' }}>
                             <RadioGroup row aria-label="gender" >
                                 {widgets.map((widget) =>
                                     <FormControlLabel
                                         control={<Radio />}
                                         value={widget}
+                                        key={widget}
                                         label={
                                             <WidgetSettingsWidget widgetId={widget} />
                                         }

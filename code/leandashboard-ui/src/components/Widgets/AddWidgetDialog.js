@@ -143,10 +143,15 @@ export default function AddWidgetDialog({ showDialog, setShowDialog, source, tem
                             native
                             onChange={event => setSelectedCredential(event.target.value)}
                             defaultValue={""}
-                            input={<Input id="grouped-native-select" />}
-                            
+                            input={<Input id="grouped-native-select" />}   
                         >
-                            
+                            <option value="" key="">None</option>
+                            {credentialsProject.map(cp => {
+                                
+                                if (cp.credentials.source == source) {
+                                    return <option value={cp.credentials.name} key={cp.credentials.id}>{cp.credentials.name}</option>
+                                }
+                            })}
                         </Select>
                         {makeParams()}
                         <DialogContentText>
