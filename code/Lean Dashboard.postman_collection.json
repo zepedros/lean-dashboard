@@ -6,6 +6,1053 @@
 	},
 	"item": [
 		{
+			"name": "Lean",
+			"item": [
+				{
+					"name": "Projects",
+					"item": [
+						{
+							"name": "/api/lean/projects",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/lean/projects",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"lean",
+										"projects"
+									]
+								},
+								"description": "Get All projects from Lean Dashboard"
+							},
+							"response": []
+						},
+						{
+							"name": "/api/lean/projects/user/{username}",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/lean/projects/user/superuser",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"lean",
+										"projects",
+										"user",
+										"superuser"
+									]
+								},
+								"description": "Get All projects from Lean Dashboard for a specific user"
+							},
+							"response": []
+						},
+						{
+							"name": "/api/lean/projects",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"new project with date from temp user\",\n    \"description\": \"testing dates for temp user\",\n    \"startDate\" : \"06-23-2021\",\n    \"endDate\" : \"06-20-2031\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/lean/projects",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"lean",
+										"projects"
+									]
+								},
+								"description": "Create a project"
+							},
+							"response": []
+						},
+						{
+							"name": "/api/lean/projects/{id}",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/lean/projects/dPfiOXoB7uaFwnIMOTzN",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"lean",
+										"projects",
+										"dPfiOXoB7uaFwnIMOTzN"
+									]
+								},
+								"description": "Get a specific project"
+							},
+							"response": []
+						},
+						{
+							"name": "/api/lean/projects/{id}",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\" : \"Testing update function\",\n    \"description\" : \"Testing\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/lean/projects/U_fZOXoB7uaFwnIMcTwn",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"lean",
+										"projects",
+										"U_fZOXoB7uaFwnIMcTwn"
+									]
+								},
+								"description": "Update name or description from a project"
+							},
+							"response": []
+						},
+						{
+							"name": "/api/lean/projects/{id}/owner",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"newOwner\": \"superuser\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/lean/projects/L1Z3TnoBlSjgkE0xGbsI/owner",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"lean",
+										"projects",
+										"L1Z3TnoBlSjgkE0xGbsI",
+										"owner"
+									]
+								},
+								"description": "Update name or description from a project"
+							},
+							"response": []
+						},
+						{
+							"name": "/api/lean/projects/{id}",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/lean/projects/O6_3o3kB52sP8UCyIltt",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"lean",
+										"projects",
+										"O6_3o3kB52sP8UCyIltt"
+									]
+								},
+								"description": "Deletes a project, making it an \"Archived\" project"
+							},
+							"response": []
+						},
+						{
+							"name": "/api/lean/projects/:id/users",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"temp\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/lean/projects/H1ZnTnoBlSjgkE0xobvD/users",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"lean",
+										"projects",
+										"H1ZnTnoBlSjgkE0xobvD",
+										"users"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/api/lean/projects/:id/users/{username}",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/lean/projects/vxuewnkBE0sk1r1Qi0ZN/users/zepedroj",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"lean",
+										"projects",
+										"vxuewnkBE0sk1r1Qi0ZN",
+										"users",
+										"zepedroj"
+									]
+								},
+								"description": "Deletes a specific user from the specific project"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Dashboards",
+					"item": [
+						{
+							"name": "/api/lean/projects/{id}/dashboards",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/lean/projects/VpStcnoB7HcdE2OwxI0K/dashboards",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"lean",
+										"projects",
+										"VpStcnoB7HcdE2OwxI0K",
+										"dashboards"
+									]
+								},
+								"description": "Gets all dashboards for a specific project"
+							},
+							"response": []
+						},
+						{
+							"name": "/api/lean/projects/{id}/dashboard/{dashboardId}",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/lean/projects/VpStcnoB7HcdE2OwxI0K/dashboard/V5TNcnoB7HcdE2Ow340a",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"lean",
+										"projects",
+										"VpStcnoB7HcdE2OwxI0K",
+										"dashboard",
+										"V5TNcnoB7HcdE2Ow340a"
+									]
+								},
+								"description": "Gets a specific dashboard for a specific project"
+							},
+							"response": []
+						},
+						{
+							"name": "/api/lean/projects/{id}/dashboard",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"New Dashboard\",\n    \"description\": \"description\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/lean/projects/ePkBzXkBM-3hOBzM-3-Q/dashboard",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"lean",
+										"projects",
+										"ePkBzXkBM-3hOBzM-3-Q",
+										"dashboard"
+									]
+								},
+								"description": "Add a dashboard to a Project"
+							},
+							"response": []
+						},
+						{
+							"name": "/api/lean/projects/{id}/dashboard/{dashboardId}/widgets/{widgetId}",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/lean/projects/ePkBzXkBM-3hOBzM-3-Q/dashboard/efkCzXkBM-3hOBzMIX-_/widgets/fPkDzXkBM-3hOBzMYH-4",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"lean",
+										"projects",
+										"ePkBzXkBM-3hOBzM-3-Q",
+										"dashboard",
+										"efkCzXkBM-3hOBzMIX-_",
+										"widgets",
+										"fPkDzXkBM-3hOBzMYH-4"
+									]
+								},
+								"description": "Deletes a specific dashboard from a specific project"
+							},
+							"response": []
+						},
+						{
+							"name": "/api/lean/projects/{id}/dashboard/{dashboardId}",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Update Dashboard Lean Dashboard\",\n    \"description\": \"description Lean Dashboard\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/lean/projects/-XDijnkB7Od3lsy2PgdZ/dashboard/-3D6jnkB7Od3lsy2PAfE",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"lean",
+										"projects",
+										"-XDijnkB7Od3lsy2PgdZ",
+										"dashboard",
+										"-3D6jnkB7Od3lsy2PAfE"
+									]
+								},
+								"description": "Edits the dashboard information"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Widgets",
+					"item": [
+						{
+							"name": "/api/lean/projects/widgets/templates",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/lean/projects/widgets/templates",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"lean",
+										"projects",
+										"widgets",
+										"templates"
+									]
+								},
+								"description": "Shows all the widget templates for the application"
+							},
+							"response": []
+						},
+						{
+							"name": "/api/lean/projects/{id}/dashboard/{dashboardId}/widgets/{widgetIdTemplate}",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"timeSettings\": {\n        \"seconds\" : \"\",\n        \"minutes\" : \"*/1\",\n        \"hours\" : \"*\",\n        \"dayOfMonth\" : \"*\",\n        \"month\" : \"*\",\n        \"dayOfWeek\" : \"*\"\n    },\n    \"credentials\": \"JIRACredentials\",\n    \"params\": []\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/lean/projects/ePkBzXkBM-3hOBzM-3-Q/dashboard/efkCzXkBM-3hOBzMIX-_/widgets/gvkGzXkBM-3hOBzM3n--",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"lean",
+										"projects",
+										"ePkBzXkBM-3hOBzM-3-Q",
+										"dashboard",
+										"efkCzXkBM-3hOBzMIX-_",
+										"widgets",
+										"gvkGzXkBM-3hOBzM3n--"
+									]
+								},
+								"description": "Posts a widget in a dashboard"
+							},
+							"response": []
+						},
+						{
+							"name": "/api/lean/projects/{id}/dashboard/{dashboardId/widgets/{widgetsId}}",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"timeSettings\": {\n        \"seconds\" : \"\",\n        \"minutes\" : \"*/1\",\n        \"hours\" : \"*\",\n        \"dayOfMonth\" : \"*\",\n        \"month\" : \"*\",\n        \"dayOfWeek\" : \"*\"\n    },\n    \"credentials\": \"teste\",\n    \"params\": [\"Sandbox #2\"]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/lean/projects/7GZvv3oBvTSU8GYG9GI3/dashboard/72Zyv3oBvTSU8GYGF2Ib/widgets/-2aHv3oBvTSU8GYGdmKS",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"lean",
+										"projects",
+										"7GZvv3oBvTSU8GYG9GI3",
+										"dashboard",
+										"72Zyv3oBvTSU8GYGF2Ib",
+										"widgets",
+										"-2aHv3oBvTSU8GYGdmKS"
+									]
+								},
+								"description": "Edits a widget's information"
+							},
+							"response": []
+						},
+						{
+							"name": "/api/lean/projects/{id}/dashboard/{dashboardId/widgets/{widgetsId}}",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"timeSettings\": {\n        \"seconds\" : \"\",\n        \"minutes\" : \"*/1\",\n        \"hours\" : \"*\",\n        \"dayOfMonth\" : \"*\",\n        \"month\" : \"*\",\n        \"dayOfWeek\" : \"*\"\n    },\n    \"credentials\": \"JIRACredentials\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/lean/projects/VpStcnoB7HcdE2OwxI0K/dashboard/V5TNcnoB7HcdE2Ow340a/widgets/W5TPcnoB7HcdE2Owe42S",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"lean",
+										"projects",
+										"VpStcnoB7HcdE2OwxI0K",
+										"dashboard",
+										"V5TNcnoB7HcdE2Ow340a",
+										"widgets",
+										"W5TPcnoB7HcdE2Owe42S"
+									]
+								},
+								"description": "Deletes a widget from the dashboard"
+							},
+							"response": []
+						},
+						{
+							"name": "/api/lean/projects/{projectId}/dashboard/{dashboardId}/widgets/{widgetId}",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/lean/projects/VpStcnoB7HcdE2OwxI0K/dashboard/V5TNcnoB7HcdE2Ow340a/widgets/W5TPcnoB7HcdE2Owe42S",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"lean",
+										"projects",
+										"VpStcnoB7HcdE2OwxI0K",
+										"dashboard",
+										"V5TNcnoB7HcdE2Ow340a",
+										"widgets",
+										"W5TPcnoB7HcdE2Owe42S"
+									]
+								},
+								"description": "Gets a specific widget"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Users",
+					"item": [
+						{
+							"name": "/api/lean/projects/users",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/lean/users",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"lean",
+										"users"
+									]
+								},
+								"description": "Gets all users"
+							},
+							"response": []
+						},
+						{
+							"name": "/api/lean/projects/user/{id}",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/lean/users/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"lean",
+										"users",
+										"1"
+									]
+								},
+								"description": "Gets a specific user by id"
+							},
+							"response": []
+						},
+						{
+							"name": "/api/lean/projects/user/{username}",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/lean/users/username/zepedros",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"lean",
+										"users",
+										"username",
+										"zepedros"
+									]
+								},
+								"description": "Get a specific user by username"
+							},
+							"response": []
+						},
+						{
+							"name": "/api/lean/users/{username}",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/lean/users/temp",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"lean",
+										"users",
+										"temp"
+									]
+								},
+								"description": "Deletes a user"
+							},
+							"response": []
+						},
+						{
+							"name": "/api/lean/users/{username}/roles",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/lean/users/superuser/roles",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"lean",
+										"users",
+										"superuser",
+										"roles"
+									]
+								},
+								"description": "Get the user roles"
+							},
+							"response": []
+						},
+						{
+							"name": "/api/lean/users/{username}/roles",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"role\":\"manager\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/lean/users/temp/roles",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"lean",
+										"users",
+										"temp",
+										"roles"
+									]
+								},
+								"description": "Gives the user a role"
+							},
+							"response": []
+						},
+						{
+							"name": "/api/lean/users/{username}/roles/{role}",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"role\":\"manager\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/lean/users/zepedros/roles/manager",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"lean",
+										"users",
+										"zepedros",
+										"roles",
+										"manager"
+									]
+								},
+								"description": "Deletes a role from the user"
+							},
+							"response": []
+						},
+						{
+							"name": "/api/lean/register",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\" : \"temp\",\r\n    \"password\"  : \"Testpassword123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/lean/register",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"lean",
+										"register"
+									]
+								},
+								"description": "Creates a user"
+							},
+							"response": []
+						},
+						{
+							"name": "/api/lean/login",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\" : \"superuser\",\r\n    \"password\"  : \"Superuser123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/lean/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"lean",
+										"login"
+									]
+								},
+								"description": "Logs a user onto our application, can be accessed by anyone"
+							},
+							"response": []
+						},
+						{
+							"name": "/api/lean/logout",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/lean/logout",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"lean",
+										"logout"
+									]
+								},
+								"description": "Logs a user out of the application, can be used by anyone"
+							},
+							"response": []
+						},
+						{
+							"name": "/lean/users/{username}/username",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"newUsername\": \"chris\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/lean/users/zepedros/username",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"lean",
+										"users",
+										"zepedros",
+										"username"
+									]
+								},
+								"description": "Edits an existing user's username"
+							},
+							"response": []
+						},
+						{
+							"name": "/lean/users/{username}/password",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"newPassword\": \"Testpassword123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/lean/users/zepedros/password",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"lean",
+										"users",
+										"zepedros",
+										"password"
+									]
+								},
+								"description": "Edits an existing user's password"
+							},
+							"response": []
+						}
+					],
+					"description": "Only the superuser can access these endpoints"
+				},
+				{
+					"name": "Credentials",
+					"item": [
+						{
+							"name": "/api/lean/projects/{id}/credentials",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/lean/projects/ePkBzXkBM-3hOBzM-3-Q/credentials",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"lean",
+										"projects",
+										"ePkBzXkBM-3hOBzM-3-Q",
+										"credentials"
+									]
+								},
+								"description": "Gets all project credentials"
+							},
+							"response": []
+						},
+						{
+							"name": "/api/lean/projects/{id}/credentials/{credentialId}",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/lean/projects/srQIw3kBDPtJKyKYIIqf/credentials/uLQLw3kBDPtJKyKYW4o7",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"lean",
+										"projects",
+										"srQIw3kBDPtJKyKYIIqf",
+										"credentials",
+										"uLQLw3kBDPtJKyKYW4o7"
+									]
+								},
+								"description": "Gets a specific credential from the project"
+							},
+							"response": []
+						},
+						{
+							"name": "/api/lean/projects/{id}/credentials",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\" : \"abc\",\r\n    \"source\" : \"Jira\",\r\n    \"credential\": {\r\n        \"email\" : \"leandashboardproject@gmail.com\",\r\n        \"token\" : \"LPcyGdZolN906MvzdwPHF045\",\r\n        \"APIPath\" : \"leandashboard.atlassian.net\",\r\n        \"APIVersion\" : 3\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/lean/projects/ePkBzXkBM-3hOBzM-3-Q/credentials",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"lean",
+										"projects",
+										"ePkBzXkBM-3hOBzM-3-Q",
+										"credentials"
+									]
+								},
+								"description": "Creates a credential within the project"
+							},
+							"response": []
+						},
+						{
+							"name": "/api/lean/projects/{id}/credentials/{credentialId}",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/lean/projects/srQIw3kBDPtJKyKYIIqf/credentials/uLQLw3kBDPtJKyKYW4o7",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"lean",
+										"projects",
+										"srQIw3kBDPtJKyKYIIqf",
+										"credentials",
+										"uLQLw3kBDPtJKyKYW4o7"
+									]
+								},
+								"description": "Deletes a credential from the project"
+							},
+							"response": []
+						},
+						{
+							"name": "/api/lean/projects/{id}/credentials/{credentialId}",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\" : \"abcd\",\r\n    \"source\" : \"Jira\",\r\n    \"credential\": {\r\n        \"email\" : \"leandashboardproject@gmail.com\",\r\n        \"token\" : \"LPcyGdZolN906MvzdwPHF045\",\r\n        \"APIPath\" : \"leandashboard.atlassian.net\",\r\n        \"APIVersion\" : 3\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/lean/projects/hkqC0nkBD1XHrm2KaUW7/credentials/iEqD0nkBD1XHrm2KKkVe",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"lean",
+										"projects",
+										"hkqC0nkBD1XHrm2KaUW7",
+										"credentials",
+										"iEqD0nkBD1XHrm2KKkVe"
+									]
+								},
+								"description": "Edits a specific credential"
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
 			"name": "ETL",
 			"item": [
 				{
@@ -893,1057 +1940,6 @@
 										"projectsAzure",
 										"Lean Dashboard demo",
 										"iterations"
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				}
-			]
-		},
-		{
-			"name": "Lean",
-			"item": [
-				{
-					"name": "Projects",
-					"item": [
-						{
-							"name": "GET /api/lean/projects",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8000/api/lean/projects",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8000",
-									"path": [
-										"api",
-										"lean",
-										"projects"
-									]
-								},
-								"description": "Get All projects from Lean Dashboard"
-							},
-							"response": []
-						},
-						{
-							"name": "GET /api/lean/projects/user/{username}",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8000/api/lean/projects/user/superuser",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8000",
-									"path": [
-										"api",
-										"lean",
-										"projects",
-										"user",
-										"superuser"
-									]
-								},
-								"description": "Get All projects from Lean Dashboard"
-							},
-							"response": []
-						},
-						{
-							"name": "POST /api/lean/projects",
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"name\": \"new project with date from temp user\",\n    \"description\": \"testing dates for temp user\",\n    \"startDate\" : \"06-23-2021\",\n    \"endDate\" : \"06-20-2031\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://localhost:8000/api/lean/projects",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8000",
-									"path": [
-										"api",
-										"lean",
-										"projects"
-									]
-								},
-								"description": "Create a project"
-							},
-							"response": []
-						},
-						{
-							"name": "GET /api/lean/projects/{id}",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8000/api/lean/projects/dPfiOXoB7uaFwnIMOTzN",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8000",
-									"path": [
-										"api",
-										"lean",
-										"projects",
-										"dPfiOXoB7uaFwnIMOTzN"
-									]
-								},
-								"description": "Get a specific project"
-							},
-							"response": []
-						},
-						{
-							"name": "PUT /api/lean/projects/{id}",
-							"request": {
-								"method": "PUT",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"name\" : \"Testing update function\",\n    \"description\" : \"Testing\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://localhost:8000/api/lean/projects/U_fZOXoB7uaFwnIMcTwn",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8000",
-									"path": [
-										"api",
-										"lean",
-										"projects",
-										"U_fZOXoB7uaFwnIMcTwn"
-									]
-								},
-								"description": "Update name or description from a project"
-							},
-							"response": []
-						},
-						{
-							"name": "PUT /api/lean/projects/{id}/owner",
-							"request": {
-								"method": "PUT",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"newOwner\": \"superuser\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://localhost:8000/api/lean/projects/L1Z3TnoBlSjgkE0xGbsI/owner",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8000",
-									"path": [
-										"api",
-										"lean",
-										"projects",
-										"L1Z3TnoBlSjgkE0xGbsI",
-										"owner"
-									]
-								},
-								"description": "Update name or description from a project"
-							},
-							"response": []
-						},
-						{
-							"name": "DELETE /api/lean/projects/{id}",
-							"request": {
-								"method": "DELETE",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8000/api/lean/projects/O6_3o3kB52sP8UCyIltt",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8000",
-									"path": [
-										"api",
-										"lean",
-										"projects",
-										"O6_3o3kB52sP8UCyIltt"
-									]
-								},
-								"description": "Delete a project"
-							},
-							"response": []
-						},
-						{
-							"name": "POST /api/lean/projects/:id/users",
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"username\": \"temp\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://localhost:8000/api/lean/projects/H1ZnTnoBlSjgkE0xobvD/users",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8000",
-									"path": [
-										"api",
-										"lean",
-										"projects",
-										"H1ZnTnoBlSjgkE0xobvD",
-										"users"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "DELETE /api/lean/projects/:id/users/{username}",
-							"request": {
-								"method": "DELETE",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8000/api/lean/projects/vxuewnkBE0sk1r1Qi0ZN/users/zepedroj",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8000",
-									"path": [
-										"api",
-										"lean",
-										"projects",
-										"vxuewnkBE0sk1r1Qi0ZN",
-										"users",
-										"zepedroj"
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				},
-				{
-					"name": "Dashboards",
-					"item": [
-						{
-							"name": "GET /api/lean/projects/{id}/dashboards",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8000/api/lean/projects/VpStcnoB7HcdE2OwxI0K/dashboards",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8000",
-									"path": [
-										"api",
-										"lean",
-										"projects",
-										"VpStcnoB7HcdE2OwxI0K",
-										"dashboards"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "GET /api/lean/projects/{id}/dashboard/{dashboardId}",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8000/api/lean/projects/VpStcnoB7HcdE2OwxI0K/dashboard/V5TNcnoB7HcdE2Ow340a",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8000",
-									"path": [
-										"api",
-										"lean",
-										"projects",
-										"VpStcnoB7HcdE2OwxI0K",
-										"dashboard",
-										"V5TNcnoB7HcdE2Ow340a"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "POST /api/lean/projects/{id}/dashboard",
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"name\": \"New Dashboard\",\n    \"description\": \"description\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://localhost:8000/api/lean/projects/ePkBzXkBM-3hOBzM-3-Q/dashboard",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8000",
-									"path": [
-										"api",
-										"lean",
-										"projects",
-										"ePkBzXkBM-3hOBzM-3-Q",
-										"dashboard"
-									]
-								},
-								"description": "Add a dashboard to a Project"
-							},
-							"response": []
-						},
-						{
-							"name": "Get /api/lean/projects/{id}/dashboard/{dashboardId}",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8000/api/lean/projects/J6QAi3kBVVFqsUowgTSz/dashboard/KKQAi3kBVVFqsUowzjQS",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8000",
-									"path": [
-										"api",
-										"lean",
-										"projects",
-										"J6QAi3kBVVFqsUowgTSz",
-										"dashboard",
-										"KKQAi3kBVVFqsUowzjQS"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "DELETE /api/lean/projects/{id}/dashboard/{dashboardId}/widgets/{widgetId}",
-							"request": {
-								"method": "DELETE",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8000/api/lean/projects/ePkBzXkBM-3hOBzM-3-Q/dashboard/efkCzXkBM-3hOBzMIX-_/widgets/fPkDzXkBM-3hOBzMYH-4",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8000",
-									"path": [
-										"api",
-										"lean",
-										"projects",
-										"ePkBzXkBM-3hOBzM-3-Q",
-										"dashboard",
-										"efkCzXkBM-3hOBzMIX-_",
-										"widgets",
-										"fPkDzXkBM-3hOBzMYH-4"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "POST /api/lean/projects/{id}/dashboard/{dashboardId}",
-							"request": {
-								"method": "PUT",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"name\": \"Update Dashboard Lean Dashboard\",\n    \"description\": \"description Lean Dashboard\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://localhost:8000/api/lean/projects/-XDijnkB7Od3lsy2PgdZ/dashboard/-3D6jnkB7Od3lsy2PAfE",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8000",
-									"path": [
-										"api",
-										"lean",
-										"projects",
-										"-XDijnkB7Od3lsy2PgdZ",
-										"dashboard",
-										"-3D6jnkB7Od3lsy2PAfE"
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				},
-				{
-					"name": "Widgets",
-					"item": [
-						{
-							"name": "GET /api/lean/projects/widgets/templates",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8000/api/lean/projects/widgets/templates",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8000",
-									"path": [
-										"api",
-										"lean",
-										"projects",
-										"widgets",
-										"templates"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "POST /api/lean/projects/{id}/dashboard/{dashboardId}/widgets/{widgetIdTemplate}",
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"timeSettings\": {\n        \"seconds\" : \"\",\n        \"minutes\" : \"*/1\",\n        \"hours\" : \"*\",\n        \"dayOfMonth\" : \"*\",\n        \"month\" : \"*\",\n        \"dayOfWeek\" : \"*\"\n    },\n    \"credentials\": \"JIRACredentials\",\n    \"params\": []\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://localhost:8000/api/lean/projects/ePkBzXkBM-3hOBzM-3-Q/dashboard/efkCzXkBM-3hOBzMIX-_/widgets/gvkGzXkBM-3hOBzM3n--",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8000",
-									"path": [
-										"api",
-										"lean",
-										"projects",
-										"ePkBzXkBM-3hOBzM-3-Q",
-										"dashboard",
-										"efkCzXkBM-3hOBzMIX-_",
-										"widgets",
-										"gvkGzXkBM-3hOBzM3n--"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "PUT /api/lean/projects/{id}/dashboard/{dashboardId/widgets/{widgetsId}}",
-							"request": {
-								"method": "PUT",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"timeSettings\": {\n        \"seconds\" : \"\",\n        \"minutes\" : \"*/1\",\n        \"hours\" : \"*\",\n        \"dayOfMonth\" : \"*\",\n        \"month\" : \"*\",\n        \"dayOfWeek\" : \"*\"\n    },\n    \"credentials\": \"teste\",\n    \"params\": [\"Sandbox #2\"]\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://localhost:8000/api/lean/projects/7GZvv3oBvTSU8GYG9GI3/dashboard/72Zyv3oBvTSU8GYGF2Ib/widgets/-2aHv3oBvTSU8GYGdmKS",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8000",
-									"path": [
-										"api",
-										"lean",
-										"projects",
-										"7GZvv3oBvTSU8GYG9GI3",
-										"dashboard",
-										"72Zyv3oBvTSU8GYGF2Ib",
-										"widgets",
-										"-2aHv3oBvTSU8GYGdmKS"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "DELETE /api/lean/projects/{id}/dashboard/{dashboardId/widgets/{widgetsId}}",
-							"request": {
-								"method": "DELETE",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"timeSettings\": {\n        \"seconds\" : \"\",\n        \"minutes\" : \"*/1\",\n        \"hours\" : \"*\",\n        \"dayOfMonth\" : \"*\",\n        \"month\" : \"*\",\n        \"dayOfWeek\" : \"*\"\n    },\n    \"credentials\": \"JIRACredentials\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://localhost:8000/api/lean/projects/VpStcnoB7HcdE2OwxI0K/dashboard/V5TNcnoB7HcdE2Ow340a/widgets/W5TPcnoB7HcdE2Owe42S",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8000",
-									"path": [
-										"api",
-										"lean",
-										"projects",
-										"VpStcnoB7HcdE2OwxI0K",
-										"dashboard",
-										"V5TNcnoB7HcdE2Ow340a",
-										"widgets",
-										"W5TPcnoB7HcdE2Owe42S"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "GET /api/lean/projects/zHDmnXkB7Od3lsy2NAj5/dashboard/zXDmnXkB7Od3lsy2dwgs/widgets/inAYq3kB7Od3lsy2rwm1",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8000/api/lean/projects/VpStcnoB7HcdE2OwxI0K/dashboard/V5TNcnoB7HcdE2Ow340a/widgets/W5TPcnoB7HcdE2Owe42S",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8000",
-									"path": [
-										"api",
-										"lean",
-										"projects",
-										"VpStcnoB7HcdE2OwxI0K",
-										"dashboard",
-										"V5TNcnoB7HcdE2Ow340a",
-										"widgets",
-										"W5TPcnoB7HcdE2Owe42S"
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				},
-				{
-					"name": "Users",
-					"item": [
-						{
-							"name": "GET /api/lean/projects/users",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8000/api/lean/users",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8000",
-									"path": [
-										"api",
-										"lean",
-										"users"
-									]
-								},
-								"description": "Get all project from a user (JIRA)"
-							},
-							"response": []
-						},
-						{
-							"name": "GET /api/lean/projects/user/{id}",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8000/api/lean/users/1",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8000",
-									"path": [
-										"api",
-										"lean",
-										"users",
-										"1"
-									]
-								},
-								"description": "Get all project from a user (JIRA)"
-							},
-							"response": []
-						},
-						{
-							"name": "GET /api/lean/projects/user/{username}",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8000/api/lean/users/username/zepedros",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8000",
-									"path": [
-										"api",
-										"lean",
-										"users",
-										"username",
-										"zepedros"
-									]
-								},
-								"description": "Get all project from a user (JIRA)"
-							},
-							"response": []
-						},
-						{
-							"name": "DELETE /api/lean/users/{username}",
-							"request": {
-								"method": "DELETE",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8000/api/lean/users/temp",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8000",
-									"path": [
-										"api",
-										"lean",
-										"users",
-										"temp"
-									]
-								},
-								"description": "Get all project from a user (JIRA)"
-							},
-							"response": []
-						},
-						{
-							"name": "GET /api/lean/users/{username}/roles",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8000/api/lean/users/superuser/roles",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8000",
-									"path": [
-										"api",
-										"lean",
-										"users",
-										"superuser",
-										"roles"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "POST /api/lean/users/{username}/roles",
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"role\":\"manager\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://localhost:8000/api/lean/users/temp/roles",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8000",
-									"path": [
-										"api",
-										"lean",
-										"users",
-										"temp",
-										"roles"
-									]
-								},
-								"description": "Get all project from a user (JIRA)"
-							},
-							"response": []
-						},
-						{
-							"name": "POST /api/lean/users/{username}/roles/{role}",
-							"request": {
-								"method": "DELETE",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"role\":\"manager\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://localhost:8000/api/lean/users/zepedros/roles/manager",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8000",
-									"path": [
-										"api",
-										"lean",
-										"users",
-										"zepedros",
-										"roles",
-										"manager"
-									]
-								},
-								"description": "Get all project from a user (JIRA)"
-							},
-							"response": []
-						},
-						{
-							"name": "POST /api/lean/register",
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"username\" : \"temp\",\r\n    \"password\"  : \"Testpassword123\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://localhost:8000/lean/register",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8000",
-									"path": [
-										"lean",
-										"register"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "POST /api/lean/login",
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"username\" : \"superuser\",\r\n    \"password\"  : \"Superuser123\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://localhost:8000/lean/login",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8000",
-									"path": [
-										"lean",
-										"login"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "POST /api/lean/logout",
-							"request": {
-								"method": "POST",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8000/lean/logout",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8000",
-									"path": [
-										"lean",
-										"logout"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "PUT /lean/users/{username}/username",
-							"request": {
-								"method": "PUT",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"newUsername\": \"chris\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://localhost:8000/lean/users/zepedros/username",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8000",
-									"path": [
-										"lean",
-										"users",
-										"zepedros",
-										"username"
-									]
-								},
-								"description": "Edits an existing user's username"
-							},
-							"response": []
-						},
-						{
-							"name": "PUT /lean/users/{username}/password",
-							"request": {
-								"method": "PUT",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"newPassword\": \"Testpassword123\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://localhost:8000/lean/users/zepedros/password",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8000",
-									"path": [
-										"lean",
-										"users",
-										"zepedros",
-										"password"
-									]
-								},
-								"description": "Edits an existing user's password"
-							},
-							"response": []
-						}
-					]
-				},
-				{
-					"name": "Credentials",
-					"item": [
-						{
-							"name": "GET /api/lean/projects/{id}/credentials",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8000/api/lean/projects/ePkBzXkBM-3hOBzM-3-Q/credentials",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8000",
-									"path": [
-										"api",
-										"lean",
-										"projects",
-										"ePkBzXkBM-3hOBzM-3-Q",
-										"credentials"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "GET /api/lean/projects/{id}/credentials/{credentialId}",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8000/api/lean/projects/srQIw3kBDPtJKyKYIIqf/credentials/uLQLw3kBDPtJKyKYW4o7",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8000",
-									"path": [
-										"api",
-										"lean",
-										"projects",
-										"srQIw3kBDPtJKyKYIIqf",
-										"credentials",
-										"uLQLw3kBDPtJKyKYW4o7"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "POST /api/lean/projects/{id}/credentials",
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"name\" : \"abc\",\r\n    \"source\" : \"Jira\",\r\n    \"credential\": {\r\n        \"email\" : \"leandashboardproject@gmail.com\",\r\n        \"token\" : \"LPcyGdZolN906MvzdwPHF045\",\r\n        \"APIPath\" : \"leandashboard.atlassian.net\",\r\n        \"APIVersion\" : 3\r\n    }\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://localhost:8000/api/lean/projects/ePkBzXkBM-3hOBzM-3-Q/credentials",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8000",
-									"path": [
-										"api",
-										"lean",
-										"projects",
-										"ePkBzXkBM-3hOBzM-3-Q",
-										"credentials"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "DELETE /api/lean/projects/{id}/credentials/{credentialId}",
-							"request": {
-								"method": "DELETE",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8000/api/lean/projects/srQIw3kBDPtJKyKYIIqf/credentials/uLQLw3kBDPtJKyKYW4o7",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8000",
-									"path": [
-										"api",
-										"lean",
-										"projects",
-										"srQIw3kBDPtJKyKYIIqf",
-										"credentials",
-										"uLQLw3kBDPtJKyKYW4o7"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "PUT /api/lean/projects/{id}/credentials/{credentialId}",
-							"request": {
-								"method": "PUT",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"name\" : \"abcd\",\r\n    \"source\" : \"Jira\",\r\n    \"credential\": {\r\n        \"email\" : \"leandashboardproject@gmail.com\",\r\n        \"token\" : \"LPcyGdZolN906MvzdwPHF045\",\r\n        \"APIPath\" : \"leandashboard.atlassian.net\",\r\n        \"APIVersion\" : 3\r\n    }\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://localhost:8000/api/lean/projects/hkqC0nkBD1XHrm2KaUW7/credentials/iEqD0nkBD1XHrm2KKkVe",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8000",
-									"path": [
-										"api",
-										"lean",
-										"projects",
-										"hkqC0nkBD1XHrm2KaUW7",
-										"credentials",
-										"iEqD0nkBD1XHrm2KKkVe"
 									]
 								}
 							},

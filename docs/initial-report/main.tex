@@ -3,6 +3,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
 \usepackage{url}
+\usepackage{pdfpages}
 \usepackage[export]{adjustbox}
 \usepackage{indentfirst}
 % pdflatex
@@ -65,55 +66,57 @@ Nowadays, within a company, it is even more important to have an organized and c
 Each member of the team must keep track of high amounts of information and since it is not uncommon that when working on a project a couple of platforms are used to keep track and share work done by the various members, useful information can be scattered on a vast amount of platforms, and sometimes even inside a single platform.
 The information relative to a project can be obtained from different sources and it is all aggregated in one place, readily available to be displayed to a work team to better guide a certain project's development.
 
-The Lean Dashboard Project will be developed to help the company's workers keeping track of all the possible tasks for their projects, gathering all the information needed for the various activities from the many sources that are necessary, presenting it on an easy to read and reactive web application.
-The project at hands will be developed in partnership with Inetum\cite{INETUM} and will centre around the development of a responsive web application capable of running on a multitude of devices, ranging from smartphones to desktop computers to large screens such as TV’s. This web application will display to a work team of a company all the information regarding various projects being worked on. 
-The information being displayed will show the team what needs to be addressed in the project at hands, such as milestones, bugs, and current errors in the project.
+The Lean Dashboard Project was developed to help the company's workers keeping track of all the possible tasks for their projects, gathering all the information needed for the various activities from the many sources that are necessary, presenting it on an easy to read and reactive web application.
+The project at hands was developed in partnership with Inetum\cite{INETUM} and centred around the development of a responsive web application capable of running on a multitude of devices, ranging from smartphones to desktop computers to large screens such as TV’s. This web application displays to a work team of a company all the information regarding various projects being worked on. 
+The information being displayed shows the team what needs to be addressed in the project at hands, such as milestones, bugs, and current errors in the project.
+
+The project required the development of 3 principal components: an ETL procedure, a web API and a client application. This report will explain these 3 components in more depth further on.
+The first two were developed using the Node.JS programming language while the client application was developped using the React library.
 
 \section{Report Organization}
-In this report, we will explain the early drafts of the implemented solution to the problem at hands, as well as provide a more in-depth analysis of the architecture and technology choices.
+In this report, we explain the implemented solution to the problem at hands, as well as provide a more in-depth analysis of the architecture and technology choices.
 
-In the Functionalities chapter, we will expose which features from the project are currently implemented and working, as well as the ones that are yet to be implemented. Additionally, we also showcase a couple of aspects regarding planning and research.
+In the Functionalities chapter, we will expose the features that were implemented for the project's application. Additionally, we also showcase a couple of aspects regarding planning and research.
 
 Next up, in the Architecture chapter, we will discuss aspects such as the implementation of the software being developed, decisions made by us and how certain problems were solved.
 
-Furthermore, we dedicate a chapter to the research done in regards to User Experience for our application where we will display some of the steps we took in preparing our client application in terms of User Experience.
+Furthermore, we dedicate a chapter to the research done in regards to User Experience for our application where we display some of the steps we took in preparing our client application in terms of User Experience.
 
-Finally, the Client Application chapter. Here, we explain the reason for the chosen development platform and display some of the pages that are already made.  
+On the Client Application chapter, we explain the reason for the chosen development platform, how the client application works and display some of the pages that are already made.  
 
+Finally, on the Deployment chapter, we explain the choices made for the deployment platform and how it was made.
 
 
 \chapter{Functionalities}
-The functionalities section is destined to list and describe the functionalities that the final application will provide the user with.
+The functionalities section is destined to list and describe the functionalities that the final application provides the user with.
 
-In this section, information such as what is already implemented within the application and the research and planning that was made for the project.
+In this section, information such as what was implemented within the application and the research and planning that was made for the project is present.
 
 
 The solution is a responsive mobile-first web application that allows the user to consult and aggregate the information of various platforms. Inside a project, a manager is be able to add various dashboards that will then have the desired widgets. The widgets are the structures that hold and show the desired information regarding issues, tests, and sprints from platforms such as Jira\cite{JIRA}, Squash\cite{SQUASH} and Azure\cite{AZURE}. A manager will then be able to add various users to its project so that those users can consult all the dashboards with the relevant information in each widget.
 \section{Implemented functionalities}
-By the time of the delivery of this report, these are the features implemented:
+These are the features implemented within the final application:
  
 \begin{itemize}
-     \item Retrieving the data from the multiple APIs. As of right now, we can access the three supported APIs to obtain the relevant information
+     \item Retrieving the data from the multiple APIs. We can access three supported APIs to obtain the relevant information, these being Jira, Squash and Azure.
     
-     \item Authentication of local users using the Authization Module. With the help of the module, we can now create new users, log in and logout out of users of local accounts.
+     \item Authentication of local users using the Authization Module. With the help of the module, we can create and edit users, log in and logout users of local accounts.
     
-     \item In addition to users, we also support roles for the given users: Superuser, Manager and Collaborator. Further on we will address these Role-based access control\cite{RBAC} (RBAC) roles and permissions
+     \item In addition to users, we also support roles for the given users: Superuser, Manager and Collaborator.
     
-     \item Back-office implementation was started. With this, managers can now do actions such as add new members to a project, remove current project members as well as give certain users roles
+     \item Back-office functionality. With this, managers can do actions such as add new members to a project, remove current project members as well as give certain users roles.
 
-     \item Creating new projects. Authorized users can add new projects to the platform and manage them
+     \item Creating new projects. Authorized users can add new projects to the platform and manage them.
 
      \item Creating various Dashboards inside an existing project. After creating a project, it is also possible to include new dashboards in said project
 
-     \item Transforming the retrieved data in a widget format. The retrieved data is not yet in the desired format and needs to be adapted (we will cover the formatting of widgets later on in this report)
+     \item Transforming the retrieved data in a widget format.
 
      \item Creating a widget and adding it to an existing dashboard with the use of existing templates, that aid the user by showing them the type of existing widgets.
 
-     \item Automatically updating widgets with the use of a scheduler. Users can set a period to refresh existing widgets, making sure the most up to date information is being displayed. The process and technology chosen for the scheduler will be explained in the back end portion of this report
+     \item Automatically updating widgets with the use of a scheduler. Users can set a time period to refresh existing widgets, making sure the most up to date information is being displayed. The process and technology chosen for the scheduler is explained in the back end portion of this report
 
      \item Setting the credentials for all the platforms. When creating a widget, a user can set up the desired credentials, to choose the data source for a specific widget
-
-     \item Back-office Management with funcionalities to create, delete and edit user accounts
 
      \item Front-end client application based on React technology
 
@@ -125,28 +128,28 @@ By the time of the delivery of this report, these are the features implemented:
 In this section, we display the set of aspects, that despite technically not being functionalities, are essential aspects for the development of this project:
 
 \begin{itemize}
-    \item Digital prototype of the User Experience. The Digital prototype developed allowed us to conduct a series of usability tests (that are still ongoing). Details about these tests will be discussed further ahead in the report
+    \item Digital prototype of the User Experience. The Digital prototype developed allowed us to conduct a series of usability tests. Details about these tests are discussed further ahead in the report
     \item Red routes diagram. This diagram is part of the Experience research further developed ahead.
     \item Information architecture\cite{INFOARCH}. A diagram that displays the existing paths/flows of the client application
     \item Study of the React\cite{REACT} technology for the development of the client application
 \end{itemize}
 
 \chapter{Architecture}
-This chapter is dedicated to cover topics like the software's architecture, the data model and the principles under which the application is being developed. 
+This chapter is dedicated to cover topics like the software's architecture, the data model and the principles under which the application was developed. 
 
 It contains information on how the application works and how its various modules and components interact with each other, as well as the structure of the necessary information being stored in the database and the application's authentication and authorization flow.
 \section{Architecture Principles}
-The software solution being developed in the Lean Dashboard is divided into three main components: the ETL\cite{ETLPROC}, the Lean Dashboard Server and the client application.
+The software solution in the Lean Dashboard is divided into three main components: the ETL\cite{ETLPROC}, the Lean Dashboard Server and the client application.
  
-The ETL component, which stands for Extract, Transform and Load,  is responsible for obtaining the information from the various APIs and then transforming it to the desired format, widgets, and then proceeding to store them in a database. Both the topics of widgets and the storage solution being used will be addressed in this report in the Data model.
+The ETL component, which stands for Extract, Transform and Load, is responsible for obtaining the information from the various APIs and then transforming it to the desired format, widgets, and then proceeding to store them in a database. Both the topics of widgets and the storage solution being used are addressed in this report in the Data model.
  
 With the use of the ETL procedure in our application, we bring a couple of advantages to the way we interact with the data being displayed. Since having near-real-time information is enough, with the Extract component we can avoid making high amounts of requests to the various APIs and avoiding overload them.
  
-Additionally, by adapting the extracted information (the Transform component) we can have a format of data that closely resembles the type and aspect of details we are trying the show to the user in each widget (we will also showcase the aspect of a widget in our application).Finally, with the information transformed to the desired format, when can then use a No-SQL database to store it and later decide how we will display it to the users 
+Additionally, by adapting the extracted information (the Transform component) we can have a format of data that closely resembles the type and aspect of details we are trying to show to the user in each widget (we will also showcase the aspect of a widget in our application). Finally, with the information transformed to the desired format, when can then use a No-SQL database to store it and later use that information to display to the users 
  
-The Lean Dashboard server ends up serving as a gatherer of information. Inside this server, we will have all of the various projects, created by users, and each one will have its dashboards. Dashboards will be used to group the various widgets, and the user is the one to choose which dashboards will contain which widgets (these being the same widgets that we're created by the Extract, Transform and Load procedure).
+The Lean Dashboard server ends up serving as a gatherer of information. Inside this server, we have all of the various projects, created by users, and each one will have its dashboards. Dashboards will be used to group the various widgets, and the user is the one to choose which dashboards will contain which widgets (these being the same widgets that we're created by the Extract, Transform and Load procedure).
  
-Lastly, we have the client application. The client application will be responsible for showing the user all of its projects. Users (if they are given these permissions) will be able to consult but also edit projects and dashboards. The main goal will be checking on the widgets inside a certain dashboard since those are the objects that contain the information being retrieved and transformed by the ETL.
+Lastly, we have the client application. The client application is responsible for showing the user all of its projects. Users (if they are given these permissions) will be able to consult but also edit projects and dashboards. The main goal will be checking on the widgets inside a certain dashboard since those are the objects that contain the information being retrieved and transformed by the ETL.
 
 \section{Software Architecture}
 \begin{figure}[h!]
@@ -168,13 +171,13 @@ The ETL procedure is constantly running and updating the existing widgets on the
 
 In the middle of the scheme is the core of the application, the Web Server, and its API.
 
-The Web Server is responsible for processing the requests that will be sent by the Single Page Application (SPA), as well as managing the NoSQL database running on ElasticSearch\cite{ES}.
-
+The Web Server is responsible for processing the requests that are sent by the Single Page Application (SPA), as well as managing the NoSQL database running on ElasticSearch\cite{ES}.
 It interacts with an authorization and authentication module, the Authization module, to manage the users and their roles within the application.
 
 The API supports a varied range of operations that can be called by the user to manipulate the information inside the database. It presents the user with methods to obtain, create, update, and delete the information in the database.
+The API's endpoints can be found with more depth within Appendix A present in this document.
 
-Lastly on the rightmost side of the diagram, there is the SPA, the component that will be accessed by the application user on their preferred device. To provide the user with the best experience, this SPA will be developed as a mobile-first, responsive web application capable of supporting different types of display screens, starting from the smartphone up to the bigger ones like a regular desktop computer or a TV screen.
+Lastly on the rightmost side of the diagram, there is the SPA, the component that will be accessed by the application user on their preferred device. To provide the user with the best experience, this SPA was developed as a mobile-first, responsive web application capable of supporting different types of display screens, starting from the smartphone up to the bigger ones like a regular desktop computer or a TV screen.
 \newpage
 \section{Scheme of the back-end}
 \begin{figure}[h!]
@@ -205,7 +208,7 @@ It contains 2 Map objects with distinct functionalities, the widgetMap is respon
 
 After the process of obtaining information is complete it calls the DB module so that this information can be stored.
   \item The Data module's task is accessing the selected information sources, currently Azure, Jira, and Squash, and sending them to the Transformer module for some light filtering, returning the retrieved object with only the necessary information for its transformation.
-  \item The Transformer module's job is to transform the data into the required information for the widget to be displayed. Currently, it transforms the data into widgets such as a Pie Chart, a Data Table, or a Gauge Chart.
+  \item The Transformer module's job is to transform the data into the required information for the widget to be displayed. It transforms the data into widgets such as a Pie Chart, a Data Table, or a Gauge Chart.
   \item Finally, the DB module is responsible for updating the widget's information with the updated data obtained from the ETL procedure.
 \end{itemize}
 
@@ -228,7 +231,7 @@ Each object is detailed as the following:
 
 \textbf{Lean Projects}
 
-This is the index where all the Projects created with our application will be stored, acting as the main gatherer of information.
+This is the index where all the Projects created with our application are stored, acting as the main gatherer of information.
 
 It has information over who created it (Owner), the Project's name, its description, and a unique identifier.
 
@@ -326,9 +329,9 @@ Below the Superuser, the Manager role will act in a similar way to the Superuser
 Finally, the role of Collaborator. Being the role with fewer permissions, users with this role will only be able to access projects they are members of.
 
 \chapter{User Experience Research}
-This section will cover our User Experience research and studies on how our application will be controlled.
+This section covers our User Experience research and studies on how our application should be controlled.
 
-Our research on every necessary item to develop an application that is easy and intuitive to use and will be presented here.
+Our research on every necessary item to develop an application that is easy and intuitive to use will be presented here.
 
 User Experience, commonly called UX, is the term used when referring to how users interact with a certain product. If we use an analogy, if we were to open a door, it is more about how the door handle is used than what shape or colour it has, or what material it is made from. 
 
@@ -344,7 +347,7 @@ A  Red Routes matrix is developed to aid a designer to identify the crucial and 
 In the process of identifying Red Routes, there are some factors to be considered:
 \begin{itemize}
 	\item  Critical: Tasks that deliver relevant value to users
- 	\item Frequency: Tasks there are performed at high frequency, usually represent the use cases of over 90\% of users.
+ 	\item Frequency: Tasks that are performed at high frequency, usually represent the use cases of over 90\% of users.
  	\item Key-value drivers: Red Routes drive the key business metrics
  	\item  Impact: Red Routes affects significantly the overall user experience
 \end{itemize}
@@ -396,10 +399,16 @@ We utilized the platform Figma\cite{FIGMA} to develop our Digital Prototype on f
 \end{figure}
 
 \chapter{Client Application}
-The following section explains the current implementation for the client’s side of the application. This section is responsible for the visual of the system.
+The following section explains the implementation for the client’s side of the application. 
+
+On this section it is mostly explained the decisions made when implementing the client application, aswell as what each page of the application is used for and how they function.
  
 \section{React vs Angular}
-React was our choice over Angular. The reason behind such decision was that Angular has a lot of concepts and syntax to learn, as well as the fact that Angular's documentation is much longer and we believe it might take some time to learn a new language given that the time frame is relatively short. React is easier to learn in the short term than Angular and the group that is developing this project would attend a course to learn react, which would be an asset.
+React was our choice over Angular. The reason behind such decision was that Angular has a lot of concepts and syntax to learn, as well as the fact that Angular's documentation is much longer and we believe it might take some time to learn a new language given that the time frame is relatively short. React is easier to learn in the short term than Angular and the group that developed this project would attend a course to learn react, which would be an asset.
+
+React is an open-source JavaScript library focused on the development of user interfaces. With this library developping web applications, SPA (Single Page Application) or mobile applications turns into a very easy task since it offers great benefits in modularity and promotes a very clear flow of data and events. This greatly facilitates the development and planning of complex apps.
+We make use of the React Router library for the routing of the application. It enables the navigation among views of various components in a React Application and keeps the user interface in sync with the URL. It greatly helps with developping the application's navigation and how each page should look like.
+
 \section{Client Architecture}
  The Figure demonstrates how the team organizes the Client-Side code. 
  \newline
@@ -415,7 +424,7 @@ Inside the Pages directory, we have the web pages where interact with the server
 \section{Client Side Access Control}
 
 \chapter{User Interface and Functionalities}
-The following section present the graphical user interface (UI) of the application.
+The following section presents the graphical user interface (UI) of the application.
 \section{User Interface}
 With help from the information gathered from the user experience tests, the front-end application started development using React.
 \newline
@@ -520,7 +529,7 @@ to learn how to implement the necessary API requests to obtain the ETL data.
 
 The project also taught the group a lot about the research and planning of an application's user experience as the team has never been introduced to such a topic. Conducting the research on UX and usability tests showed us a new perspective on application development.
 
-According to our initial planning, some of the tasks took longer than we were expecting, especially the ETL procedure as it took some time to learn and adapt to our application, but overall the application is taking shape since as of the date of this report the only core part missing is the single page application and its interaction with the Web API, though some parts are already implemented like the Home Page and the Login Page.
+According to our initial planning, some of the tasks took longer than we were expecting, especially the ETL procedure as it took some time to learn and adapt to our application, but overall the application was finished successfully with good results solving the main problem of aggregating all the spread information in one place for a team to see, while having an easy to use and intuitive design that adapts to every type of device and supports various display languages.
 
 
 
@@ -568,4 +577,14 @@ https://miro.com/
 
 \bibitem{NODECRON} node-cron  https://www.npmjs.com/package/node-cron
 \end{thebibliography}
+
+\appendix
+
+\includepdf[pages=1,scale=0.9,offset=0mm -75,pagecommand={
+  \begin{flushleft}  
+    \section*{Appendix A - API Documentation}
+  \end{flushleft}}]{API Documentation.pdf}
+
+\includepdf[pages=2-,scale=0.9]{API Documentation.pdf}
+
 \end{document}
