@@ -79,7 +79,7 @@ export default function WidgetSettings({ name, widgets, refresh, doRefresh }) {
     console.log(widgets)
     return (
         <div>
-            <GoBack/>
+            <GoBack />
             {
                 widgets &&
                 <div>

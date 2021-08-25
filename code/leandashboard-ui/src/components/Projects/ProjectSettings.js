@@ -9,6 +9,7 @@ import AddCredentials from './AddCredentials';
 import AddMemberForm from './AddMemberForm';
 import NameDescForm from "./NameDescForm";
 import ProjectUsersList from "./ProjectUsersList";
+import {  useParams } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,12 +32,13 @@ const useStyles = makeStyles((theme) => ({
 export default function ProjectSettings({ project, update, users, deleteUser }) {
   const classes = useStyles()
   const [refresh, setRefresh] = useState(false)
+  let { id, dashboardId } = useParams();
   function doRefresh() {
     setRefresh(!refresh)
   }
   return (
     <List className={classes.list}>
-      <GoBack />
+      <GoBack link={`/projects/${id}/dashboards`}/>
       <Typography style={{marginRight:"5%"}}component="h1" variant="h4">
         {project.name} <FormattedMessage id="ProjectSettings.settings" />
       </Typography>

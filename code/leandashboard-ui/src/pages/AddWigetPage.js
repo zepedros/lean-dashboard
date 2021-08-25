@@ -9,7 +9,7 @@ import AddWidgetList from '../components/Widgets/AddWidgetList';
 
 export default function AddWidgetPage() {
     const [name, setName] = useState()
-    const { get, response, loading } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
+    const { get, response } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
     let { id } = useParams();
     useEffect(()=>{
         loadName()

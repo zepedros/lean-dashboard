@@ -13,6 +13,7 @@ import useFetch from 'use-http';
 import GoBack from '../Common/GoBack';
 import AddWidgetDialog from './AddWidgetDialog';
 import TemplateWidget from './TemplateWidget';
+import { useParams } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   table: {
@@ -56,6 +57,7 @@ export default function AddWidget() {
   const [templates, setTemplates] = useState([]);
   const [sourceTemplate, setSourceTemplate] = useState('');
   const [activeDialog, setDialog] = useState(false);
+  let { id, dashboardId } = useParams();
 
   const { get, response, loading } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
 

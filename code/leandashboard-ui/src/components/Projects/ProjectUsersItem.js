@@ -115,7 +115,7 @@ export default function ProjectUsersItem({ user, deleteUser }) {
                     primary={user.username}
                 />
                 <ListItemSecondaryAction>
-                    <MenuItem onClick={() => { handleDeleteUserOpen(user.username) }}>
+                    <MenuItem component="div" onClick={() => { handleDeleteUserOpen(user.username) }}>
                         <div align="right"><DeleteIcon align="right"></DeleteIcon></div>
                     </MenuItem>
                 </ListItemSecondaryAction>

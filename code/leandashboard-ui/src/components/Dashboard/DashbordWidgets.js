@@ -30,14 +30,12 @@ export default function DashboardWidgets({ name, widgets,description,refresh }) 
     const classes = useStyles();
     const location = useLocation()
     const  userIsManager  = location
-    console.log(userIsManager)
     const [user, setUserIsManager] = useState(userIsManager.state)
-    console.log("user " +user.userIsManager)
     let { id,dashboardId } = useParams();
 
     return (
         <div>
-            <GoBack />
+            <GoBack link={`/projects/${id}/dashboards`}/>
             
             {
                 widgets ?
@@ -67,7 +65,7 @@ export default function DashboardWidgets({ name, widgets,description,refresh }) 
                                 })}
                             </Grid>
                         </Container>
-                        {user.userIsManager ? 
+                        { user.userIsManager ? 
                         <VerticalButton 
                         title1={<FormattedMessage id="Dashboard.VerticalButton.firstButton"/>} 
                         title2={<FormattedMessage id="Dashboard.VerticalButton.secondButton"/>} 

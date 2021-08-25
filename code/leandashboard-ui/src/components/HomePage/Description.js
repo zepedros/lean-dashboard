@@ -1,4 +1,3 @@
-import { CardMedia } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles, styled } from '@material-ui/core/styles';
 import { compose, palette, spacing } from '@material-ui/system';

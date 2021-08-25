@@ -58,7 +58,7 @@ export default function SignIn() {
       <CssBaseline />
       <Grid item xs={false} sm={4} md={7} className={classes.image} />
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
-        <GoBack />
+        <GoBack link={"/"}/>
         <div className={classes.paper}>
           <Typography component="h1" variant="h5">
             <FormattedMessage id="login.welcome" /> Lean Dashboard

@@ -129,7 +129,7 @@ export default function AddWidgetDialog({ showDialog, setShowDialog, source, tem
         })
         handleClose()
     }
-    //TODO A PARTE QUE O BOTAO DO FILTRO LIGA
+
     return (
         <div>
             <Dialog open={showDialog} onClose={handleClose} aria-labelledby="form-dialog-title">
@@ -145,11 +145,11 @@ export default function AddWidgetDialog({ showDialog, setShowDialog, source, tem
                             defaultValue={""}
                             input={<Input id="grouped-native-select" />}   
                         >
-                            <option value="" key="">None</option>
+                            <option value="" key={templateId}>None</option>
                             {credentialsProject.map(cp => {
                                 
                                 if (cp.credentials.source == source) {
-                                    return <option value={cp.credentials.name} key={cp.credentials.id}>{cp.credentials.name}</option>
+                                    return <option value={cp.credentials.name} key={cp.credentials.name}>{cp.credentials.name}</option>
                                 }
                             })}
                         </Select>

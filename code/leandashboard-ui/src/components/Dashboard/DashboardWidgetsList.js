@@ -54,7 +54,7 @@ export default function DashboardWidgetsList({  name, widgets,description,refres
             {
                 widgets ?
                     <Container className={classes.root}>
-                        <GoBack />
+                        <GoBack link={`/projects/${id}/dashboards`}/>
                         <Grid container alignItems="center" spacing={3} style={{ maxHeight: '85%', overflow: 'scroll' }}>
                             {widgets?.map(widget => {
                                 return (

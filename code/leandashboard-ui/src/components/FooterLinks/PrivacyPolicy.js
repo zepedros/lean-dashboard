@@ -10,7 +10,7 @@ export default function PrivacyPolicy() {
         <div>
             <Header />
             <Divider />
-            <GoBack />
+            <GoBack link={"/"}/>
             <Container maxWidth="sm">
 
             <h1 className="MuiTypography-root MuiTypography-h2 MuiTypography-colorTextPrimary MuiTypography-gutterBottom MuiTypography-alignCenter">

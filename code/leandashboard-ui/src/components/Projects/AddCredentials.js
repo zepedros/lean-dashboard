@@ -105,7 +105,7 @@ export default function AddCredentials({doRefresh}) {
             native
             value={selectedValue}
             onChange={event => setSelectedValue(event.target.value)}
-            defaultValue=""
+           // defaultValue=""
             input={<Input id="grouped-native-select" />}
           >
             <option value={0}>None</option>
@@ -225,7 +225,7 @@ export default function AddCredentials({doRefresh}) {
                   }
                   setJiraCredential(aux)
                 }}
-                defaultValue="2"
+               // defaultValue="2"
                 input={<Input id="grouped-native-select" />}
               >
                 <option value={"2"}>2</option>
