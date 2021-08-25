@@ -1,32 +1,32 @@
 \babel@toc {english}{}
-\contentsline {chapter}{\numberline {1}Introduction}{5}{}%
-\contentsline {section}{\numberline {1.1}Report Organization}{5}{}%
-\contentsline {chapter}{\numberline {2}Functionalities}{7}{}%
-\contentsline {section}{\numberline {2.1}Implemented functionalities}{7}{}%
-\contentsline {section}{\numberline {2.2}Research and planning}{8}{}%
-\contentsline {chapter}{\numberline {3}Architecture}{9}{}%
-\contentsline {section}{\numberline {3.1}Architecture Principles}{9}{}%
-\contentsline {section}{\numberline {3.2}Software Architecture}{10}{}%
-\contentsline {section}{\numberline {3.3}Scheme of the back-end}{11}{}%
-\contentsline {section}{\numberline {3.4}Data Model}{13}{}%
-\contentsline {section}{\numberline {3.5}Authization module, Backoffice and Access control}{16}{}%
-\contentsline {chapter}{\numberline {4}User Experience Research}{17}{}%
-\contentsline {section}{\numberline {4.1}Red routes diagram}{17}{}%
-\contentsline {section}{\numberline {4.2}Information Architecture}{19}{}%
-\contentsline {section}{\numberline {4.3}Digital Prototype}{20}{}%
-\contentsline {chapter}{\numberline {5}Client Application}{21}{}%
-\contentsline {section}{\numberline {5.1}React vs Angular}{21}{}%
-\contentsline {section}{\numberline {5.2}Client Architecture}{21}{}%
-\contentsline {section}{\numberline {5.3}Pages and Components}{21}{}%
-\contentsline {section}{\numberline {5.4}Client Side Error Handling}{22}{}%
-\contentsline {section}{\numberline {5.5}Client Side Access Control}{22}{}%
-\contentsline {chapter}{\numberline {6}User Interface and Functionalities}{23}{}%
-\contentsline {section}{\numberline {6.1}User Interface}{23}{}%
-\contentsline {section}{\numberline {6.2}Sign In Page}{24}{}%
-\contentsline {section}{\numberline {6.3}Projects Page}{25}{}%
-\contentsline {section}{\numberline {6.4}Dashboards Page}{25}{}%
-\contentsline {section}{\numberline {6.5}Dashboard Page}{26}{}%
-\contentsline {section}{\numberline {6.6}Settings Page}{26}{}%
-\contentsline {section}{\numberline {6.7}Projects Settings}{27}{}%
-\contentsline {chapter}{\numberline {7}Deployment}{28}{}%
-\contentsline {chapter}{\numberline {8}Conclusion}{29}{}%
+\contentsline {chapter}{\numberline {1}Introduction}{5}%
+\contentsline {section}{\numberline {1.1}Report Organization}{5}%
+\contentsline {chapter}{\numberline {2}Functionalities}{7}%
+\contentsline {section}{\numberline {2.1}Implemented functionalities}{7}%
+\contentsline {section}{\numberline {2.2}Research and planning}{8}%
+\contentsline {chapter}{\numberline {3}Architecture}{9}%
+\contentsline {section}{\numberline {3.1}Architecture Principles}{9}%
+\contentsline {section}{\numberline {3.2}Software Architecture}{10}%
+\contentsline {section}{\numberline {3.3}Scheme of the back-end}{11}%
+\contentsline {section}{\numberline {3.4}Data Model}{13}%
+\contentsline {section}{\numberline {3.5}Authization module, Backoffice and Access control}{16}%
+\contentsline {chapter}{\numberline {4}User Experience Research}{17}%
+\contentsline {section}{\numberline {4.1}Red routes diagram}{17}%
+\contentsline {section}{\numberline {4.2}Information Architecture}{19}%
+\contentsline {section}{\numberline {4.3}Digital Prototype and Usability tests}{20}%
+\contentsline {chapter}{\numberline {5}Client Application}{22}%
+\contentsline {section}{\numberline {5.1}React vs Angular}{22}%
+\contentsline {section}{\numberline {5.2}Client Architecture}{22}%
+\contentsline {section}{\numberline {5.3}Pages and Components}{22}%
+\contentsline {section}{\numberline {5.4}Client Side Error Handling}{23}%
+\contentsline {section}{\numberline {5.5}Client Side Access Control}{23}%
+\contentsline {chapter}{\numberline {6}User Interface and Functionalities}{24}%
+\contentsline {section}{\numberline {6.1}User Interface}{24}%
+\contentsline {section}{\numberline {6.2}Sign In Page}{25}%
+\contentsline {section}{\numberline {6.3}Projects Page}{26}%
+\contentsline {section}{\numberline {6.4}Dashboards Page}{26}%
+\contentsline {section}{\numberline {6.5}Dashboard Page}{27}%
+\contentsline {section}{\numberline {6.6}Settings Page}{27}%
+\contentsline {section}{\numberline {6.7}Projects Settings}{28}%
+\contentsline {chapter}{\numberline {7}Deployment}{29}%
+\contentsline {chapter}{\numberline {8}Conclusion}{30}%

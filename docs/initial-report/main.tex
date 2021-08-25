@@ -71,7 +71,7 @@ The project at hands was developed in partnership with Inetum\cite{INETUM} and c
 The information being displayed shows the team what needs to be addressed in the project at hands, such as milestones, bugs, and current errors in the project.
 
 The project required the development of 3 principal components: an ETL procedure, a web API and a client application. This report will explain these 3 components in more depth further on.
-The first two were developed using the Node.JS programming language while the client application was developped using the React library.
+The first two were developed using the Node.JS programming language while the client application was developed using the React library.
 
 \section{Report Organization}
 In this report, we explain the implemented solution to the problem at hands, as well as provide a more in-depth analysis of the architecture and technology choices.
@@ -82,10 +82,9 @@ Next up, in the Architecture chapter, we will discuss aspects such as the implem
 
 Furthermore, we dedicate a chapter to the research done in regards to User Experience for our application where we display some of the steps we took in preparing our client application in terms of User Experience.
 
-On the Client Application chapter, we explain the reason for the chosen development platform, how the client application works and display some of the pages that are already made.  
+On the Client Application chapter, we explain the reason for the chosen development platform, how the client application works and display some of the web pages.  
 
-Finally, on the Deployment chapter, we explain the choices made for the deployment platform and how it was made.
-
+In the Deployment chapter, we explain the choices made for the deployment platform and how it was made. Finally, in the Conclusion chapter, we expose the learned lessons and future work for forthcoming versions.
 
 \chapter{Functionalities}
 The functionalities section is destined to list and describe the functionalities that the final application provides the user with.
@@ -108,19 +107,19 @@ These are the features implemented within the final application:
 
      \item Creating new projects. Authorized users can add new projects to the platform and manage them.
 
-     \item Creating various Dashboards inside an existing project. After creating a project, it is also possible to include new dashboards in said project
+     \item Creating various Dashboards inside an existing project. After creating a project, it is also possible to include new dashboards in said project.
 
      \item Transforming the retrieved data in a widget format.
 
      \item Creating a widget and adding it to an existing dashboard with the use of existing templates, that aid the user by showing them the type of existing widgets.
 
-     \item Automatically updating widgets with the use of a scheduler. Users can set a time period to refresh existing widgets, making sure the most up to date information is being displayed. The process and technology chosen for the scheduler is explained in the back end portion of this report
+     \item Automatically updating widgets with the use of a scheduler. Users can set a time period to refresh existing widgets, making sure the most up to date information is being displayed. The process and technology chosen for the scheduler is explained in the back end portion of this report.
 
-     \item Setting the credentials for all the platforms. When creating a widget, a user can set up the desired credentials, to choose the data source for a specific widget
+     \item Setting the credentials for all the platforms. When creating a widget, a user can set up the desired credentials, to choose the data source for a specific widget.
 
-     \item Front-end client application based on React technology
+     \item Front-end client application based on React technology.
 
-     \item Multi language support for the client application
+     \item Multi language support for the client application.
 
 \end{itemize}
 
@@ -128,10 +127,10 @@ These are the features implemented within the final application:
 In this section, we display the set of aspects, that despite technically not being functionalities, are essential aspects for the development of this project:
 
 \begin{itemize}
-    \item Digital prototype of the User Experience. The Digital prototype developed allowed us to conduct a series of usability tests. Details about these tests are discussed further ahead in the report
     \item Red routes diagram. This diagram is part of the Experience research further developed ahead.
-    \item Information architecture\cite{INFOARCH}. A diagram that displays the existing paths/flows of the client application
-    \item Study of the React\cite{REACT} technology for the development of the client application
+    \item Information architecture\cite{INFOARCH}. A diagram that displays the existing paths/flows of the client application.
+    \item Digital prototype of the User Experience. The Digital prototype developed allowed us to conduct a series of usability tests. Details about these tests are discussed further ahead in the report.
+    \item Study of the React\cite{REACT} technology for the development of the client application.
 \end{itemize}
 
 \chapter{Architecture}
@@ -346,17 +345,17 @@ A  Red Routes matrix is developed to aid a designer to identify the crucial and 
  
 In the process of identifying Red Routes, there are some factors to be considered:
 \begin{itemize}
-	\item  Critical: Tasks that deliver relevant value to users
+	\item  Critical: Tasks that deliver relevant value to users.
  	\item Frequency: Tasks that are performed at high frequency, usually represent the use cases of over 90\% of users.
- 	\item Key-value drivers: Red Routes drive the key business metrics
- 	\item  Impact: Red Routes affects significantly the overall user experience
+ 	\item Key-value drivers: Red Routes drive the key business metrics.
+ 	\item  Impact: Red Routes affects significantly the overall user experience.
 \end{itemize}
 Through identification of our users' top tasks, we can:
 \begin{itemize}
-	\item Foresee users' needs
-	\item Develop a website utilizing users' needs
-	\item Target fundamental website pages
-	\item Conduct usability tests
+	\item Foresee users' needs.
+	\item Develop a website utilizing users' needs.
+	\item Target fundamental website pages.
+	\item Conduct usability tests.
 \end{itemize}	
 Regarding the identification of Red Routes' major advantage, it aids the team to identify the most important content and functionality rooted in usefulness to most users.  Further, it supports a team in the selection of the minimum viable product (MVP), which leads to a more significant product roadmap design with the purpose of continuous iteration and overcome potential usability barriers on relevant user journeys. 
 \begin{figure}[h!]
@@ -383,12 +382,23 @@ The main factor that leads people to visit different websites is content. It is 
 With this diagram, we can better plan the making to the various resources by achieving a flowchart that dictates if the various flowchart accesses make sense (and easily correct them if they don't).
 
 \newpage
-\section{Digital Prototype}
+\section{Digital Prototype and Usability Tests}
 A Digital Prototype is a tool used in UX research to develop a mock user interface that can be utilized in use-case tests. These tests gather a small group of people and establish a task that all users need to complete. 
  
 A Digital Prototype is how we validate our basic idea and the premises underpinning it by collecting user feedback.
 With the obtained results, we can then determine what aspects need to be addressed in the Digital Prototype by us developed.
- 
+
+The usability tests were performed by five Inetum employees, the team used five simple use-cases to test the digital prototype. The use-cases that were used: 
+ \begin{itemize}
+	\item USE CASE 1: A user creates a Lean Dashboard account and creates a project. Then log out of your account.
+	\item USE CASE 2: A user already with an account created, creates a dashboard in an existing project.
+	\item USE CASE 3: A user with an account created creates a widget in an existing project and dashboard.
+	\item USE CASE 4: A user already with an account created, adds a member to his existing project.
+	\item USE CASE 5:A user already with an account created, changes the project name.
+\end{itemize}	
+
+After performing all tests, the team changed some web flows, buttons and created new pages based on the interviewee's feedback. 
+
 This research and planning done beforehand (before the full implementation of the client application) can greatly decrease implementation costs since it is much easier to make modifications to this mocked user interface than it is to make some of the same changes on the client application code.
 We utilized the platform Figma\cite{FIGMA} to develop our Digital Prototype on figure 4.3:
  
