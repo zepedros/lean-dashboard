@@ -23,6 +23,11 @@ const useStyles = makeStyles((theme) => ({
         textAlign: 'left',
         marginLeft: '0%',
         color: '#3CAA91'
+    },
+    cont:{
+        marginTop: '-3%',
+        textAlign: 'left',
+        marginLeft: '80%',
     }
 }));
 
@@ -42,19 +47,26 @@ export default function DashboardWidgets({ name, widgets,description,refresh }) 
                     <div>
                         
                         <div>
+                        <Container maxWidth={false} >
+                            <Grid container>
                         <Typography component="h1" variant="h5" className={classes.dashboardTitle}>
                             {name}
                         </Typography>
-                        <Link to={{
+                        </Grid>
+                        <Grid container>
+                        <Link className={classes.cont} to={{
                                 pathname:`/projects/${id}/dashboards/${dashboardId}/slideShow/`,
                                 state:{
                                     dashboard:widgets,
                                     name:name
                                 }}}>
-                            <Button variant="contained" color="primary" >
+                            <Button variant="contained" color="#3CAA91" >
                                 Apresentation mode
                             </Button>
                         </Link>
+                        </Grid>
+                        </Container>
+                        <p></p>
                         </div>
                         <Container maxWidth={false} className={classes.container}>
                             <Grid container spacing={3} >

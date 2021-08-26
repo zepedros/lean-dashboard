@@ -13,7 +13,7 @@
 \contentsline {chapter}{\numberline {4}User Experience Research}{17}%
 \contentsline {section}{\numberline {4.1}Red routes diagram}{17}%
 \contentsline {section}{\numberline {4.2}Information Architecture}{19}%
-\contentsline {section}{\numberline {4.3}Digital Prototype and Usability tests}{20}%
+\contentsline {section}{\numberline {4.3}Digital Prototype and Usability Tests}{20}%
 \contentsline {chapter}{\numberline {5}Client Application}{22}%
 \contentsline {section}{\numberline {5.1}React vs Angular}{22}%
 \contentsline {section}{\numberline {5.2}Client Architecture}{22}%

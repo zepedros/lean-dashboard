@@ -51,12 +51,15 @@ export default function ProjectsPage() {
     async function checkIfUserIsManager() {
         const userRoles = await get(`/api/lean/users/${context.credentials.username}/roles`)
         let userIsManager = false
-        userRoles.forEach(role => {
-            if (role.role === 'manager' || role.role === 'admin') {
-                userIsManager = true
-            }
-        })
-        setUserIsManager(userIsManager)
+        console.log(userRoles)
+        if(userRoles != undefined){
+            userRoles.forEach(role => {
+                if (role.role === 'manager' || role.role === 'admin') {
+                    userIsManager = true
+                }
+            })
+            setUserIsManager(userIsManager)
+        }
     }
 
     return (
