@@ -394,7 +394,7 @@ The usability tests were performed by five Inetum employees, the team used five 
 	\item USE CASE 2: A user already with an account created, creates a dashboard in an existing project.
 	\item USE CASE 3: A user with an account created creates a widget in an existing project and dashboard.
 	\item USE CASE 4: A user already with an account created, adds a member to his existing project.
-	\item USE CASE 5:A user already with an account created, changes the project name.
+	\item USE CASE 5: A user already with an account created, changes the project name.
 \end{itemize}	
 
 After performing all tests, the team changed some web flows, buttons and created new pages based on the interviewee's feedback. 
@@ -419,17 +419,72 @@ React was our choice over Angular. The reason behind such decision was that Angu
 React is an open-source JavaScript library focused on the development of user interfaces. With this library developing web applications, SPA (Single Page Application) or mobile applications turns into a very easy task since it offers great benefits in modularity and promotes a very clear flow of data and events. This greatly facilitates the development and planning of complex apps.
 We make use of the React Router library for the routing of the application. It enables the navigation among views of various components in a React Application and keeps the user interface in sync with the URL. It greatly helps with developing the application's navigation and how each page should look like.
 
-\section{Client Architecture}
- The Figure demonstrates how the team organizes the Client-Side code. 
- \newline
-The component defines a class that contains data and logic and is associated with an HTML that defines a view.
+\section{React Hooks}
+
+React has very powerful tools to use when writing code for an application. These tools are know as "Hooks".
+Hooks are functions that allow us to “hook into” React state and lifecycle features from function components. Most of the hooks are built-in with the React library.
 \newline
-Pages is a class that connects with Lean Dashboard API to provide data to the components and aggregate the necessary components to be displayed. 
+On our client application we use 4 main hooks, these being:
+ \begin{itemize}
+	\item useState:
+
+This hook is used to store state within our components, we mostly used it to save the data we fetch from our API and the input for the application.
+	\item useEffect:
+
+useEffect is a hook that allows us to run and control certain effects on our components. The effect is run whenever a component is loaded or when the data in one of the dependencies is changed. In the context of our application, we use this hook to run the necessary functions to obtain data from the API and store it in the state.
+	\item useContext:
+
+This hook is use to store context within our application. Within our application we use it to save the session context of the application. Whenever a user logs on to the application, their credentials are stored as context and it is used to ensure the user is still logged onto the application.
+	\item useFetch: useFetch is a custom hook that allows us to make fetch requests to our API.
+\end{itemize}
+
+\section{Client Architecture}
+\begin{figure}[h!]
+\center
+    \includegraphics[width=\textwidth]{client app architecture.png}
+\caption{Application Components and Data Fetch}
+\end{figure}
+On Figure 5.1 is our client's structure. 
+
+On the leftmost part of the diagram we have the component organization, these can be distinguished by page components and regular components.
+The page component is where all of the smaller components are organised. 
+\newline
+The page component is also the one responsible for making the requests to the API and save the data on the state, as shown on the rightmost part of the diagram.
+\newline
+The state is then passed down to the regular components so they can display the necessary data to the user.
+The regular components can be reused on various page components.
+
+\newpage
+\begin{figure}[h!]
+\center
+    \includegraphics{client app interations.png}
+\caption{Application Data Flow}
+\end{figure}
+On figure 5.2 is the data flow of our application.
+The App is the main entrance to our application, this is where the routing and session context verification is done.
+App accesses the React Router to define the necessary URL for the application, depending on the URL the Router provides the user with the specific page component if the user stored context with useContext has valid credentials.
 
 \section{Pages and Components}
 Components are the building blocks of the React app. The components is a JavaScript function that optionally accepts properties and returns a React element that describes how a section of the User Interface should appear on the user screen. 
 
 Inside the Pages directory, we have the web pages where interact with the server and provide data for the components. This package contains the views of the general pages and uses the components to create these pages. 
+\newpage
+
+\section{Client Side Widgets}
+
+Widgets are among the most important parts of our application. They are how the information obtained from the various APIs will be displayed.
+\newline
+As such each type of widget we support is it's separate component. 
+\newline
+We provide 4 types of different widgets:
+ \begin{itemize}
+	\item Bar Chart
+	\item Data Table
+	\item Gauge Chart
+	\item Pie Chart
+\end{itemize}
+These widgets were developped in such a way that can adapt to any form of data that is sent to them, for example, the Data Table will have the necessary columns to display the data and the Pie Chart will have as many divisions as required.
+
 \section{Client Side Error Handling}
 \section{Client Side Access Control}
 
@@ -503,6 +558,12 @@ On this page, the user will see the widgets of one dashboard. This page offers f
 By clicking on the first option, the user will be redirected to a page where all the template widgets that can be added to Lean Dashboard are presented.
 The second option is a pop-up to change the name and description of a dashboard.
 The third is a pop-up to delete the dashboard and the fourth button will be redirected to a page similar to the template widgets to edit a specific widget, like deleting it, changing the credentials being used, or the update time.
+\newline
+Adding a widget to a dashboard requires the user to select a template from the list of supported widgets.
+After this has been decided, the user is presented with a dialogue with the required widget informations.
+The user must select credentials according to the source of the widget and the update time settings.
+When the user edits the time settings, they are presented with a clock if it is a time input or a calendar if it is a date input.
+When the user comfirms this action they are redirected to the dashboard page and can see the newly added widget.
 
 \begin{figure}[h!]
 \center
