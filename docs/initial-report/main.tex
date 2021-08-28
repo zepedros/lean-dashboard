@@ -420,22 +420,25 @@ React is an open-source JavaScript library focused on the development of user in
 We make use of the React Router library for the routing of the application. It enables the navigation among views of various components in a React Application and keeps the user interface in sync with the URL. It greatly helps with developing the application's navigation and how each page should look like.
 
 \section{React Hooks}
+React has very powerful tools to use when writing code for an application. These tools are known as "Hooks".
 
-React has very powerful tools to use when writing code for an application. These tools are know as "Hooks".
-Hooks are functions that allow us to “hook into” React state and lifecycle features from function components. Most of the hooks are built-in with the React library.
+Hooks are functions that allow us to “hook into” React state and lifecycle features from function components. Most of the hooks are built-in with the React library. By using these Hooks we can use state and other React features without writing a class.
+
+Since we ended up using the React technology for the development of the application front end, it is essential to give shed some details about the most important Hooks we used.
 \newline
 On our client application we use 4 main hooks, these being:
+\newpage
  \begin{itemize}
-	\item useState:
+	\item useState\cite{USESTATE}:
 
-This hook is used to store state within our components, we mostly used it to save the data we fetch from our API and the input for the application.
-	\item useEffect:
+This hook is used to store the state within our components. Throughout the application, we mostly used it to save the data we fetch from our API and the input for the application, but also to save information regarding the user rules (for example, if the user logged in as a manager, that information will be saved in state variable when the user is checking it profiles).
+	\item useEffect\cite{USEEFFECT}:
 
 useEffect is a hook that allows us to run and control certain effects on our components. The effect is run whenever a component is loaded or when the data in one of the dependencies is changed. In the context of our application, we use this hook to run the necessary functions to obtain data from the API and store it in the state.
-	\item useContext:
+	\item useContext\cite{USECONTEXT}:
 
 This hook is use to store context within our application. Within our application we use it to save the session context of the application. Whenever a user logs on to the application, their credentials are stored as context and it is used to ensure the user is still logged onto the application.
-	\item useFetch: useFetch is a custom hook that allows us to make fetch requests to our API.
+	\item useFetch\cite{USEFETCH}: useFetch is a custom hook that allows us to make fetch requests to our API.
 \end{itemize}
 
 \section{Client Architecture}
@@ -487,6 +490,84 @@ These widgets were developped in such a way that can adapt to any form of data t
 
 \section{Client Side Error Handling}
 \section{Client Side Access Control}
+To keep in line with the rules of access to each project and its dashboards, in each project and dashboard a given user tries to access, a set of verifications are put inset.
+
+Usually, a list of the user's projects is shown right after the login, and the user chooses which project it wants to interact with and see all its dashboards by clicking on it:
+\begin{figure}[h!]
+\center
+    \includegraphics[width=\textwidth]{projectsPage.png}
+\caption{Projects page presented to every user after logging in}
+\end{figure}
+
+The projects presented in that list only include the projects the user is allowed to see, and thus no further verification is necessary.
+However, a user can try and access a specific project’s dashboards by typing the entire URL. To control possible illegal accesses, we must verify the result of each request made:
+\begin{figure}[h!]
+\center
+    \includegraphics[width=\textwidth]{load-projects.png}
+\caption{Function responsible for fetching all the projects}
+\end{figure}
+
+Using the react hook use-http (the hook used for all the requests to the server) we fetch all the project’s dashboards.
+Depending on the result, the page shown to the user can be the project’s corresponding dashboards, in case of a successful request:
+\begin{figure}[h!]
+\center
+    \includegraphics[width=\textwidth]{dashboardsPage.png}
+\caption{The dashboards page shown to a user, after selecting a specific project}
+\end{figure}
+
+\newpage
+Otherwise, the user will be greeted with an error page, in case it tries to see the dashboards of a project it doesn't have access to:
+
+\begin{figure}[h!]
+\center
+    \includegraphics[width=\textwidth]{error-403.png}
+\caption{Error page shown to a user when trying to access a project it doesn't have access to}
+\end{figure}
+
+Additionally, if a user tries to access a specific dashboard’s widgets by manually entering the URL, the application will have the same behaviour and display an error page.
+
+\section{Client Side Access Control}
+Since there are different roles in this application (collaborators, managers and one superuser) it is necessary to impose a set of restrictions when it comes to the various permissions (such as create and delete projects and dashboards, manage users, editing widgets...).
+
+For example, the projects page will vary whether the user logged in is or not a manager. A regular user will not have an Add Button, since it does not have that permission, only managers and the superuser do:
+\begin{figure}[h!]
+\center
+    \includegraphics[width=\textwidth]{projectsPage.png}
+\caption{Projects page with the "Add Button", presented to managers and the superuser }
+\end{figure}
+
+\begin{figure}[h!]
+\center
+    \includegraphics[width=\textwidth]{projectsPageNoAddButton.png}
+\caption{Projects page without the "Add Button", presented to all collaborators}
+\end{figure}
+
+\pagebreak
+This verification however requires an extra request from the API: 
+\begin{figure}[h!]
+\center
+    \includegraphics[width=\textwidth]{checkIfUserIsManager.png}
+\caption{Function responsible for fetching all of the user's roles and check if the user is or not a manager or the superuser}
+\end{figure}
+
+\newpage
+Here, we use the context (in this case, the context is the React hook useContext) which stores the current user logged in and once we have its username, we make a get request for the user's roles. 
+If the current user happens to be a manager or a superuser, we use the react hook useState to set the Boolean state variable userIsManager variable with true. The button will then be available for the addition of new projects.
+The same method is used to verify if a user can access the back-office page. Whenever a user accesses the settings page, the same verification is made and only the superuser and managers will see the button to access the back-office page:
+
+\begin{figure}[h!]
+\center
+    \includegraphics[width=\textwidth]{settingsPage.png}
+\caption{Settings page presented to managers and the superuser}
+\end{figure}
+
+\begin{figure}[h!]
+\center
+    \includegraphics[width=\textwidth]{settingsPageForCollaborators.png}
+\caption{Settings page for all collaborators}
+\end{figure}
+
+
 
 \chapter{User Interface and Functionalities}
 The following section presents the graphical user interface (UI) of the application.
@@ -590,7 +671,11 @@ All the project settings are dealt with on this page, where the project manager 
 \end{figure}
 
 \chapter{Deployment}
+For the deployment of the application, we ended up choosing the Heroku\cite{HEROKU} platform. This was the platform chosen since it was used previously in the Software Laboratory course and thus all three students add some past experience with the procedure of deploying an application on this service.
 
+In order to take care of the storage of all the users and the projects (and their respective dashboards and widgets) we used two addons: Heroku Postgres\cite{HEROKUPOSTGRES} and Bonsai Elasticsearch\cite{BONSAIELASTICSEARCH}, respectively.
+
+After having the storage situation handled, we followed the official React guide for deploying an application\cite{REACTDEPLOYMENT}. With that, we then followed the guide from the Heroku Buildpack for Create React App, with a Node.js server
 \chapter{Conclusion}
 
 Developing this project, allowed the team to apply the experience acquired along the course in this project.
@@ -648,7 +733,33 @@ https://miro.com/
 \bibitem{NODE} Node.JS  https://nodejs.org/en/
 
 \bibitem{NODECRON} node-cron  https://www.npmjs.com/package/node-cron
+
+\bibitem{USESTATE} Using the State Hook
+https://reactjs.org/docs/hooks-state.html
+
+\bibitem{USEEFFECT} Using the Effect Hook
+https://reactjs.org/docs/hooks-effect.html
+
+\bibitem{USECONTEXT} Context Hook
+https://reactjs.org/docs/context.html
+
+\bibitem{USEFETCH} Fetch Hook
+https://use-http.com
+
+\bibitem{HEROKU} Heroku - Cloud Application Platform
+https://www.heroku.com/home
+
+\bibitem{HEROKUPOSTGRES} - Heroku Postgres
+https://www.heroku.com/postgres
+
+\bibitem{BONSAIELASTICSEARCH} - Bonsai Elasticsearch
+https://bonsai.io/
+
+\bibitem{REACTDEPLOYMENT} - React Deployment
+https://create-react-app.dev/docs/deployment/
 \end{thebibliography}
+
+
 
 \appendix
 
