@@ -488,7 +488,6 @@ We provide 4 types of different widgets:
 \end{itemize}
 These widgets were developped in such a way that can adapt to any form of data that is sent to them, for example, the Data Table will have the necessary columns to display the data and the Pie Chart will have as many divisions as required.
 
-\section{Client Side Error Handling}
 \section{Client Side Access Control}
 To keep in line with the rules of access to each project and its dashboards, in each project and dashboard a given user tries to access, a set of verifications are put inset.
 
@@ -676,6 +675,12 @@ For the deployment of the application, we ended up choosing the Heroku\cite{HERO
 In order to take care of the storage of all the users and the projects (and their respective dashboards and widgets) we used two addons: Heroku Postgres\cite{HEROKUPOSTGRES} and Bonsai Elasticsearch\cite{BONSAIELASTICSEARCH}, respectively.
 
 After having the storage situation handled, we followed the official React guide for deploying an application\cite{REACTDEPLOYMENT}. With that, we then followed the guide from the Heroku Buildpack for Create React App, with a Node.js server
+
+\chapter{Work Methodology}
+This chapter explained the methodology and what the team did to ensure the quality of work in this application. 
+
+\section{Tests}
+To guarantee the server's robustness, the team made numerous tests. The analysis was the possible error situations and their results and the successful cases.  The technology that chooses to do the tests was Frisby.
 \chapter{Conclusion}
 
 Developing this project, allowed the team to apply the experience acquired along the course in this project.
