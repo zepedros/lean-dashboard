@@ -12,7 +12,7 @@ test('Login: Test for status 200 & Content-Type', async () => {
         .expect('header', 'Content-Type', 'application/json; charset=utf-8')
 })
 
-test('Get All Projects', async () => {
+test('Get All Projects: for status code 200', async () => {
     return frisby.post(`${SERVER_URI}lean/login`, user)
         .expect('status', 200)
         .expect('header', 'Content-Type', 'application/json; charset=utf-8')

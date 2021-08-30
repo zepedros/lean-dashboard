@@ -643,7 +643,7 @@ Adding a widget to a dashboard requires the user to select a template from the l
 After this has been decided, the user is presented with a dialogue with the required widget informations.
 The user must select credentials according to the source of the widget and the update time settings.
 When the user edits the time settings, they are presented with a clock if it is a time input or a calendar if it is a date input.
-When the user comfirms this action they are redirected to the dashboard page and can see the newly added widget.
+When the user confirms this action they are redirected to the dashboard page and can see the newly added widget.
 
 \begin{figure}[h!]
 \center
@@ -681,6 +681,13 @@ This chapter explained the methodology and what the team did to ensure the quali
 
 \section{Tests}
 To guarantee the server's robustness, the team made numerous tests. The analysis was the possible error situations and their results and the successful cases.  The technology that chooses to do the tests was Frisby.
+\begin{figure}[h!]
+\center
+    \includegraphics[width=\textwidth]{tests.png}
+\caption{Unit test implementation example}
+\end{figure}
+
+The figure above illustrates two unit tests, the first one is a successful login and the second is to get all project belongs to the superuser.
 \chapter{Conclusion}
 
 Developing this project, allowed the team to apply the experience acquired along the course in this project.
