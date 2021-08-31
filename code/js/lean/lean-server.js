@@ -1,6 +1,6 @@
 'use strict'
 
-const DEFAULT_PORT = 8000;
+const DEFAULT_PORT = process.env.PORT || 8000;
 
 const PORT = process.argv[2] || DEFAULT_PORT;
 
@@ -82,6 +82,6 @@ async function setup() {
 
 setup().then(app => {
     app.listen(PORT);
-    console.log(`Listening at port ${PORT}\nAccess http://localhost:8000/ to start`);
+    console.log(`Listening at port ${PORT}\nAccess http://localhost:${PORT}/ to start`);
 })
 
