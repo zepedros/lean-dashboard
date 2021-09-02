@@ -100,7 +100,7 @@ export default function CredentialsList({ refresh, doRefresh }) {
         </IconButton>
         <List dense={false} style={{ maxHeight: '70%', overflow: 'scroll' }}>
           {credentials && credentials.map(credential => {
-            return <CredentialsItem key={credential.id} credential={credential.credentials} refresh={doRefresh} credId={credential.id}/>
+            return <CredentialsItem key={credential.credentials} credential={credential.credentials} refresh={doRefresh} credId={credential.id}/>
           })}
         </List>
       </Container>

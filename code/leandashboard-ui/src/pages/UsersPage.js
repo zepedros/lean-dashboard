@@ -106,25 +106,25 @@ export default function UsersPage() {
 
     return (
         <div>
-            {
-                loading ?
-                    <CircularProgress color="primary" style={{
-                        position: 'absolute', left: '50%', top: '50%',
-                        transform: 'translate(-50%, -50%)'
-                    }} />
-                    :
+            
                     <div>
                         {
                             userIsSuperuser ?
                                 <div>
                                     <Hidden mdUp>
                                         <Grid item xs={12} sm={12} md={12}>
-                                            <NavBar component={<UsersList users={users} refresh={doRefresh} deleteUser={deleteUser} removeRoleFromUser={removeRoleFromUser} addRoleToUser={addRoleToUser} changeUsername={changeUsername} changePassword={changePassword} />} title={"LeanDashboard"} />
+                                            <NavBar component={loading ? <CircularProgress color="primary" style={{
+                        position: 'absolute', left: '50%', top: '50%',
+                        transform: 'translate(-50%, -50%)'
+                    }} />:<UsersList users={users} refresh={doRefresh} deleteUser={deleteUser} removeRoleFromUser={removeRoleFromUser} addRoleToUser={addRoleToUser} changeUsername={changeUsername} changePassword={changePassword} />} title={"LeanDashboard"} />
                                         </Grid>
                                     </Hidden>
                                     <Hidden smDown>
                                         <Grid item xs={12} sm={12} md={12}>
-                                            <NavBar component={<UsersTable users={users} refresh={doRefresh} deleteUser={deleteUser} removeRoleFromUser={removeRoleFromUser} addRoleToUser={addRoleToUser} changeUsername={changeUsername} changePassword={changePassword} />} title={"LeanDashboard"} />
+                                            <NavBar component={loading ? <CircularProgress color="primary" style={{
+                        position: 'absolute', left: '50%', top: '50%',
+                        transform: 'translate(-50%, -50%)'
+                    }} />:<UsersTable users={users} refresh={doRefresh} deleteUser={deleteUser} removeRoleFromUser={removeRoleFromUser} addRoleToUser={addRoleToUser} changeUsername={changeUsername} changePassword={changePassword} />} title={"LeanDashboard"} />
                                         </Grid>
                                     </Hidden>
                                 </div>
@@ -132,7 +132,7 @@ export default function UsersPage() {
                                 <Error statusCode={403} message={`You can't access this page`} customImage={img} />
                         }
                     </div>
-            }
+            
         </div>
 
     );

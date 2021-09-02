@@ -64,23 +64,21 @@ export default function ProjectsPage() {
 
     return (
         <div>
-            {
-                loading ?
-                    <CircularProgress color="primary" />
-                    :
+            
+                
                     <div>
                         <Hidden mdUp>
                             <Grid item xs={12} sm={12} md={12}>
-                                <NavBar component={<ProjectsList projects={projects} refresh={doRefresh} userIsManager={userIsManager} />} title={"LeanDashboard"} />
+                                <NavBar component={loading ? <CircularProgress color="primary" />: <ProjectsList projects={projects} refresh={doRefresh} userIsManager={userIsManager} /> } title={"LeanDashboard"} />
                             </Grid>
                         </Hidden>
                         <Hidden smDown>
                             <Grid item xs={12} sm={12} md={12}>
-                                <NavBar component={<ProjectsTable projects={projects} refresh={doRefresh} userIsManager={userIsManager} />} title={"LeanDashboard"} />
+                                <NavBar component={loading ? <CircularProgress color="primary" /> : <ProjectsTable projects={projects} refresh={doRefresh} userIsManager={userIsManager} />} title={"LeanDashboard"} />
                             </Grid>
                         </Hidden>
                     </div>
-            }
+            
         </div>
 
     );
