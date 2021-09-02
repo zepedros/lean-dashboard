@@ -16,7 +16,7 @@ const Uri = {
     GET_GROUP_BY_ID: (id) => `${baseUri}_doc/${id}`,
     CREAT_GROUP: `${baseUri}_doc/`
 }
-const ES_URL = 'http://localhost:9200/';
+const ES_URL = process.env.ELASTIC_URL;
 
 module.exports = {
 
