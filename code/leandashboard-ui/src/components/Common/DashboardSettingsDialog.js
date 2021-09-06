@@ -10,7 +10,7 @@ import { useParams } from 'react-router';
 import useFetch from 'use-http';
 
 export default function AddDialogDialog({ showDialog, setShowDialog, refreshDashboards, name, description }) {
-    const { put, response } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
+    const { put, response } = useFetch(process.env.REACT_APP_API_FETCH_URI, { cachePolicy: "no-cache", credentials: "same-origin" })
     const [nameError, setNameError] = useState(false)
     const [descriptionError, setDescriptionError] = useState(false)
     let { id, dashboardId } = useParams();

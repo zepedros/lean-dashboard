@@ -18,7 +18,7 @@ export default function WidgetSettingsDialog({ openDialog, setOpenDialog, widget
     const [date, setDate] = useState()
     const [month, setMonth] = useState("*")
     const [weekday, setWeekDay] = useState("*")
-    const { del, put, response } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
+    const { del, put, response } = useFetch(process.env.REACT_APP_API_FETCH_URI, { cachePolicy: "no-cache", credentials: "same-origin" })
     let { id, dashboardId } = useParams();
     const history = useHistory()
     function cronToDate() {

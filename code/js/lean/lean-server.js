@@ -9,12 +9,6 @@ async function setup() {
     const express = require('express');
     const path = require('path');
     const app = express();
-    if (process.env.NODE_ENV === 'production') {
-        app.use(express.static(path.join(__dirname, '../leandashboard-ui/build')));
-        app.get('/*', function (req, res) {
-            res.sendFile(path.join(__dirname, '../leandashboard-ui/build', 'index.html'));
-        })
-    }
     const bodyParser = require('body-parser');
 
     app.use(bodyParser.json());
@@ -74,7 +68,7 @@ async function setup() {
     const scheduler = require('../etl/scheduler/etl-scheduler')
     scheduler.widgetMapBuilder()
     const services = servicesCreator(db, auth);
-    const webapi = webApiCreator(app, services, auth, authization);
+    const webapi = webApiCreator(app, services, auth, authization, express);
 
     return app
 }

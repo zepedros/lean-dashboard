@@ -12,7 +12,7 @@ export default function ProjectsPage() {
     const [projects, setProjects] = useState([])
     const [refresh, setRefreshProjects] = useState(false)
     const [userIsManager, setUserIsManager] = useState(false)
-    const { get, response, loading } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
+    const { get, response, loading } = useFetch(process.env.REACT_APP_API_FETCH_URI, { cachePolicy: "no-cache", credentials: "same-origin" })
     const context = useContext(UserContext)
 
     useEffect(() => {

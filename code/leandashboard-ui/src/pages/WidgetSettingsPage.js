@@ -14,7 +14,7 @@ export default function WidgetSettingsPage() {
     const [title, setTitle] = useState("")
     const [refresh, setRefresh] = useState(false)
     const [errorResponse, setErrorResponse] = useState(false)
-    const { get, response } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
+    const { get, response } = useFetch(process.env.REACT_APP_API_FETCH_URI, { cachePolicy: "no-cache", credentials: "same-origin" })
     let { id, dashboardId } = useParams();
 
     useEffect(() => {

@@ -16,7 +16,7 @@ export default function DashboardsPage() {
     const [project, setProject] = useState([])
     const [refresh, setRefresh] = useState(false)
     const [userIsManager, setUserIsManager] = useState(false)
-    const { get, response } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
+    const { get, response } = useFetch(process.env.REACT_APP_API_FETCH_URI, { cachePolicy: "no-cache", credentials: "same-origin" })
     let { id } = useParams();
     const context = useContext(UserContext)
 

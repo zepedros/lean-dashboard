@@ -53,7 +53,7 @@ export default function WidgetSettingsList({ name, widgets, refresh, doRefresh }
     const [activeDialog, setDialog] = useState(false);
     let { id, dashboardId } = useParams();
 
-    const { get, response } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
+    const { get, response } = useFetch(process.env.REACT_APP_API_FETCH_URI, { cachePolicy: "no-cache", credentials: "same-origin" })
 
     async function getWidget(wId) {
         const widgetResponse = await get(`/api/lean/projects/${id}/dashboard/${dashboardId}/widgets/${wId}`)

@@ -8,7 +8,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import useFetch from 'use-http';
 
 export default function DeleteDashboardDialog({showDeleteDialog,setShowDeleteDialog}){
-    var { del, response } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
+    var { del, response } = useFetch(process.env.REACT_APP_API_FETCH_URI, { cachePolicy: "no-cache", credentials: "same-origin" })
     let { id, dashboardId } = useParams();
     const history = useHistory()
 

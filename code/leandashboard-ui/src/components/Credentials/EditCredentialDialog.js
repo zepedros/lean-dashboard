@@ -6,7 +6,7 @@ import { useFetch } from "use-http"
 
 export default function EditCredentialDialog({ credential, refresh, credId, openDialog, setOpenDialog }) {
     const [inputName, setInputName] = useState(credential.name)
-    const { put, response } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
+    const { put, response } = useFetch(process.env.REACT_APP_API_FETCH_URI, { cachePolicy: "no-cache", credentials: "same-origin" })
     const credentialInfo = credential.credential
     const [inputCredential, setInputCredential] = useState(credentialInfo)
     let { id } = useParams();

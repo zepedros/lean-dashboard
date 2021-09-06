@@ -14,7 +14,7 @@ export default function AddDashboardDialog({ showDialog, setShowDialog, title, r
     const [input, setInput] = useState({ name: "", description: "" })
     const [nameError, setNameError] = useState(false)
     const [descriptionError, setDescriptionError] = useState(false)
-    const { post } = useFetch('http://localhost:3000/api', { credentials: "same-origin" })
+    const { post } = useFetch(process.env.REACT_APP_API_FETCH_URI, { credentials: "same-origin" })
     let { id } = useParams();
 
     function handleClose() {

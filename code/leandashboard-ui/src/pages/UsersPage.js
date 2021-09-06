@@ -14,7 +14,7 @@ export default function UsersPage() {
     const [users, setUsers] = useState([])
     const [refresh, setRefreshProjects] = useState(false)
     const [userIsSuperuser, setUserIsSuperuser] = useState(true)
-    const { get, del, post, put, response, loading } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
+    const { get, del, post, put, response, loading } = useFetch(process.env.REACT_APP_API_FETCH_URI, { cachePolicy: "no-cache", credentials: "same-origin" })
     const context = useContext(UserContext)
 
     useEffect(() => {

@@ -24,7 +24,7 @@ import SlideShow from './components/Dashboard/SlideShowDashboard'
 import { I18nProvider, LOCALES } from './i18n';
 
 function App() {
-  const { get, post } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
+  const { get, post } = useFetch(process.env.REACT_APP_API_FETCH_URI, { cachePolicy: "no-cache", credentials: "same-origin" })
   const userRepository = createRepository(get, post)
   const [userCredentials, setUserCredentials] = useState(userRepository.isLoggedIn())
 

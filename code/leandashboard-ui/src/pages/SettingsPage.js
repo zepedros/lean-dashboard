@@ -25,7 +25,7 @@ export default function SettingsPage() {
     const [language, setLanguage] = useState(localStorage.getItem("key"));
     const [showDialog, setShowDialog] = useState(false)
     const [userIsSuperuser, setUserIsSuperuser] = useState(true)
-    const { get } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
+    const { get } = useFetch(process.env.REACT_APP_API_FETCH_URI, { cachePolicy: "no-cache", credentials: "same-origin" })
     const context = useContext(UserContext)
     const history = useHistory()
 

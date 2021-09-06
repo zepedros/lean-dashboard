@@ -59,7 +59,7 @@ export default function AddWidget() {
   const [activeDialog, setDialog] = useState(false);
   let { id, dashboardId } = useParams();
 
-  const { get, response, loading } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
+  const { get, response, loading } = useFetch(process.env.REACT_APP_API_FETCH_URI, { cachePolicy: "no-cache", credentials: "same-origin" })
 
   useEffect(() => { loadTemplates() }, [])
 

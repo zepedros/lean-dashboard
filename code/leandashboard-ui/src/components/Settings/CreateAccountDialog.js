@@ -21,7 +21,7 @@ export default function CreateAccountDialog({ showDialog, setShowDialog }) {
     const [input, setInput] = useState({ username: "", password: "", showPassword: false, })
     const [usernameError, setUsernameError] = useState(false)
     const [passwordError, setPasswordError] = useState(false)
-    const { post } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
+    const { post } = useFetch(process.env.REACT_APP_API_FETCH_URI, { cachePolicy: "no-cache", credentials: "same-origin" })
 
     function handleClose() {
         setShowDialog(false)
