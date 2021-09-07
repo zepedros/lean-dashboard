@@ -37,11 +37,7 @@ const useStyles = makeStyles((theme) => ({
         bottom: '15%',
         background: 'linear-gradient(45deg, #3CAA91 30%, #3CAA91 90%)',
         color: 'white',
-    },
-    filter: {
-        position: "relative",
-        left: "45%"
-    },
+    }
 }));
 
 export default function AddWidgetList() {

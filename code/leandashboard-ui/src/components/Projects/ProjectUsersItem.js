@@ -62,9 +62,9 @@ export default function ProjectUsersItem({ user, deleteUser }) {
         setShowMore(!showMore)
     }
 
-    const colors = [styles.orange, styles.purple, styles.pink, styles.green, styles.blue]
+    const colors = [styles.purple]
     const itemColor = () => {
-        return (colors[Math.floor(Math.random() * colors.length)])
+        return (colors[0])
     }
 
     const handleDeleteUserOpen = (username) => {

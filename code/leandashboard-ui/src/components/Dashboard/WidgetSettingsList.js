@@ -29,10 +29,6 @@ const useStyles = makeStyles((theme) => ({
         background: 'linear-gradient(45deg, #3CAA91 30%, #3CAA91 90%)',
         color: 'white',
     },
-    filter: {
-        position: "relative",
-        left: "45%"
-    },
     dashboardTitle: {
         marginTop: '-2%',
         textAlign: 'left',

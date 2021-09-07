@@ -3,7 +3,6 @@ import IconButton from '@material-ui/core/IconButton';
 import List from '@material-ui/core/List';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import FilterListIcon from '@material-ui/icons/FilterList';
 import { useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { useParams } from "react-router-dom";
@@ -34,22 +33,15 @@ const useStyles = makeStyles((theme) => ({
     bottom: '15%',
     background: 'linear-gradient(45deg, #3CAA91 30%, #3CAA91 90%)',
     color: 'white',
-  },
-  filter: {
-    position: "relative",
-    left: "45%"
-  },
+  }
 }));
 
 export default function DashboardsList({ dashboards, refresh, userIsManager }) {
   const classes = useStyles();
-  const [showFilter, setShowFilter] = useState(false)
   const [showDialog, setShowDialog] = useState(false)
 
   let { id } = useParams();
-  function handleFilter() {
-    setShowFilter(!showFilter)
-  }
+ 
   function handleOpenDialog() {
     setShowDialog(true)
   }
@@ -61,13 +53,11 @@ export default function DashboardsList({ dashboards, refresh, userIsManager }) {
         <FormattedMessage id="Dashboards.dashboards" />
 
         </Typography>
-        <IconButton end='end' className={classes.filter} onClick={handleFilter}>
-          <FilterListIcon />
-        </IconButton>
+       
         <List dense={false} style={{ maxHeight: '70%', overflow: 'scroll' }}>
           {
             dashboards.map(dashboard => {
-              return <DashboardItem key={dashboard.id} dashboard={dashboard} />
+              return <DashboardItem key={dashboard.id} dashboard={dashboard} user={userIsManager}/>
             })
           }
         </List>

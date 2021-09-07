@@ -19,9 +19,6 @@ export default function Header() {
     menuButton: {
       fontFamily: "Open Sans, sans-serif",
       fontWeight: 700,
-      size: "20px",
-      marginLeft: "38px",
-      
     },
     toolbar: {
       display: "flex",
@@ -29,7 +26,7 @@ export default function Header() {
     },
   }));
 
-  const displayDesktop = () => {
+  const dispaly = () => {
     return (
       <div>
         <Toolbar className={toolbar}>
@@ -73,7 +70,7 @@ export default function Header() {
   )
   return (
     <header>
-      <AppBar className={header}> {displayDesktop()}</AppBar>
+      <AppBar className={header}> {dispaly()}</AppBar>
     </header>
   );
 }

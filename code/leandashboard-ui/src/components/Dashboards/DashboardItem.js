@@ -1,7 +1,7 @@
 import Avatar from '@material-ui/core/Avatar';
 import { deepOrange, deepPurple, green, pink } from '@material-ui/core/colors';
 import Divider from '@material-ui/core/Divider';
-import Link from '@material-ui/core/Link';
+import { Link } from 'react-router-dom';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
       },
   }));
 
-export default function DashboardsItem({ dashboard }) {
+export default function DashboardsItem({ dashboard, user }) {
     const classes = useStyles();
 
     return (
@@ -46,9 +46,14 @@ export default function DashboardsItem({ dashboard }) {
                 </ListItemAvatar>
                 <ListItemText
                     primary={
-                        <Link href={`dashboards/${dashboard.id}/`} color="inherit">
-                            {dashboard.name}
-                        </Link>
+                      <Link to={{
+                        pathname:`dashboards/${dashboard.id}/`,
+                        state: {
+                            userIsManager: user
+                        }
+                      }} style={{ color: 'black' ,textDecoration:"none"}}>
+                        {dashboard.name}
+                      </Link>
                     }
                     secondary={(dashboard.description !== undefined) ? dashboard.description : null}
                 />

@@ -3,7 +3,6 @@ import IconButton from '@material-ui/core/IconButton';
 import List from '@material-ui/core/List';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import FilterListIcon from '@material-ui/icons/FilterList';
 import { useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import AddDialog from '../Common/AddDialog.js';
@@ -34,21 +33,12 @@ const useStyles = makeStyles((theme) => ({
     background: 'linear-gradient(45deg, #3CAA91 30%, #3CAA91 90%)',
     color: 'white',
 
-  },
-  filter: {
-    position: "relative",
-    left: "45%"
-  },
+  }
 }));
 
 export default function UsersList({ users, refresh, deleteUser, removeRoleFromUser, addRoleToUser, changeUsername, changePassword }) {
   const classes = useStyles();
-  const [showFilter, setShowFilter] = useState(false)
   const [showDialog, setShowDialog] = useState(false)
-
-  function handleFilter() {
-    setShowFilter(!showFilter)
-  }
 
   function handleOpenDialog() {
     setShowDialog(true)
@@ -61,9 +51,6 @@ export default function UsersList({ users, refresh, deleteUser, removeRoleFromUs
         <Typography component="h1" variant="h5">
           <FormattedMessage id="Projects.projects" />
         </Typography>
-        <IconButton end='end' className={classes.filter} onClick={handleFilter}>
-          <FilterListIcon />
-        </IconButton>
         <List dense={false} style={{ maxHeight: '70%', overflow: 'scroll' }}>
           {users && users.map(user => {
             return <UsersItem key={user.id} user={user} deleteUser={deleteUser} removeRoleFromUser={removeRoleFromUser} addRoleToUser={addRoleToUser} changeUsername={changeUsername} changePassword={changePassword} />

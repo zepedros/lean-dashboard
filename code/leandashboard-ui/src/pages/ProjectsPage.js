@@ -64,8 +64,7 @@ export default function ProjectsPage() {
 
     return (
         <div>
-            
-                
+
                     <div>
                         <Hidden mdUp>
                             <Grid item xs={12} sm={12} md={12}>

@@ -62,7 +62,7 @@ export default function NameDescForm(props) {
                 </Grid>
                 <Grid item>
                     <TextareaAutosize
-                        rowsMax={4}
+                        maxRows={4}
                         aria-label="maximum height"
                         value={newDescription}
                         className={classes.descriptionText}
