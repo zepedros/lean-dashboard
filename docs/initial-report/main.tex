@@ -74,7 +74,7 @@ The project required the development of 3 principal components: an ETL procedure
 The first two were developed using the Node.JS programming language while the client application was developed using the React library.
 
 \section{Report Organization}
-In this report, we explain the implemented solution to the problem at hands, as well as provide a more in-depth analysis of the architecture and technology choices.
+In this report, we explain the implemented solution to the problem at hand, as well as provide a more in-depth analysis of the architecture and technology choices. The organization of the report is based on the temporal order that we made throughout the project.
 
 In the Functionalities chapter, we will expose the features that were implemented for the project's application. Additionally, we also showcase a couple of aspects regarding planning and research.
 
@@ -243,7 +243,7 @@ The members simply act as viewers of the information within the project, they ca
 
 \textbf{Users}
 
-The users are highlighted in a different color on the scheme to better differentiate them from the data model since they aren't being stored in the database our application manages and are being stored in the Authization module's database.
+The users are highlighted in a different colour  on the scheme to better differentiate them from the data model since they aren't being stored in the database our application manages and are being stored in the Authization module's database.
 
 Each user will have a username and a password so they can log in to our application, as well as a unique identifier within the database to be used by the array of members within the Lean Projects Objects.
 
@@ -364,14 +364,14 @@ Regarding the identification of Red Routes' major advantage, it aids the team to
 \caption{Red Routes Diagram}
 \end{figure}
 
-The team designed the Red Routes for Lean Dashboard application, as we can see in figure 4.1, based on the list of Personas that Inetum provided. We took into account the above factors to create the Red Routes in the best way possible.
+The team designed the Red Routes for Lean Dashboard application, as we can see in figure 4.1, based on the list of Personas that Inetum provided. We considered the above factors to create the Red Routes in the best way possible.
 \newpage
 
 \section{Information Architecture}
-Information architecture(IA) consists of capability of sorting and designing the content of not only the web, but also websites and mobile applications. 
+Information architecture (IA) consists of capability of sorting and designing the content of not only the web, but also websites and mobile applications. 
 The main purpose of information architecture is to organize content to facilitate the users' process of tuning to the product's functionality and thus, finding anything they might want easily.
 There are several elements that can affect the content structure, among which, IA experts tend to regard the specifics of the target audience's needs. This can be justified by the fact that the IA prioritizes user satisfaction.
-The main factor that leads people to visit different websites is content. It is commonly shared that producing valuable content for users is crucial, but so is ensuring that the content is easily found. We use Personas that Inetum provided as a tool to find the most adequate IA, and ran usability tests.
+The main factor that leads people to visit different websites is content. It is commonly shared that producing valuable content for users is crucial, but so is ensuring that the content is easily found. We use Personas that Inetum provided as a tool to find the most adequate IA and ran usability tests.
  
 \begin{figure}[h!]
 \center
@@ -411,10 +411,10 @@ We utilized the platform Figma\cite{FIGMA} to develop our Digital Prototype on f
 \chapter{Client Application}
 The following section explains the implementation for the client’s side of the application. 
 
-On this section it is mostly explained the decisions made when implementing the client application, aswell as what each page of the application is used for and how they function.
+On this section it is mostly explained the decisions made when implementing the client application, as well as what each page of the application is used for and how they function.
  
 \section{React vs Angular}
-React was our choice over Angular. The reason behind such decision was that Angular has a lot of concepts and syntax to learn, as well as the fact that Angular's documentation is much longer and we believe it might take some time to learn a new language given that the time frame is relatively short. React is easier to learn in the short term than Angular and the group that developed this project would attend a course to learn react, which would be an asset.
+React was our choice over Angular. The reason behind such decision was that Angular has a lot of concepts and syntax to learn, as well as the fact that Angular's documentation is much longer, and we believe it might take some time to learn a new language given that the time frame is relatively short. React is easier to learn in the short term than Angular and the group that developed this project would attend a course to learn react, which would be an asset.
 
 React is an open-source JavaScript library focused on the development of user interfaces. With this library developing web applications, SPA (Single Page Application) or mobile applications turns into a very easy task since it offers great benefits in modularity and promotes a very clear flow of data and events. This greatly facilitates the development and planning of complex apps.
 We make use of the React Router library for the routing of the application. It enables the navigation among views of various components in a React Application and keeps the user interface in sync with the URL. It greatly helps with developing the application's navigation and how each page should look like.
@@ -422,7 +422,7 @@ We make use of the React Router library for the routing of the application. It e
 \section{React Hooks}
 React has very powerful tools to use when writing code for an application. These tools are known as "Hooks".
 
-Hooks are functions that allow us to “hook into” React state and lifecycle features from function components. Most of the hooks are built-in with the React library. By using these Hooks we can use state and other React features without writing a class.
+Hooks are functions that allow us to “hook into” React state and lifecycle features from function components. Most of the hooks are built-in with the React library. By using these Hooks, we can use state and other React features without writing a class.
 
 Since we ended up using the React technology for the development of the application front end, it is essential to give shed some details about the most important Hooks we used.
 \newline
@@ -437,7 +437,7 @@ This hook is used to store the state within our components. Throughout the appli
 useEffect is a hook that allows us to run and control certain effects on our components. The effect is run whenever a component is loaded or when the data in one of the dependencies is changed. In the context of our application, we use this hook to run the necessary functions to obtain data from the API and store it in the state.
 	\item useContext\cite{USECONTEXT}:
 
-This hook is use to store context within our application. Within our application we use it to save the session context of the application. Whenever a user logs on to the application, their credentials are stored as context and it is used to ensure the user is still logged onto the application.
+This hook is use to store context within our application. Within our application we use it to save the session context of the application. Whenever a user logs on to the application, their credentials are stored as context, and it is used to ensure the user is still logged onto the application.
 	\item useFetch\cite{USEFETCH}: useFetch is a custom hook that allows us to make fetch requests to our API.
 \end{itemize}
 
@@ -449,8 +449,8 @@ This hook is use to store context within our application. Within our application
 \end{figure}
 On Figure 5.1 is our client's structure. 
 
-On the leftmost part of the diagram we have the component organization, these can be distinguished by page components and regular components.
-The page component is where all of the smaller components are organised. 
+On the leftmost part of the diagram, we have the component organization, these can be distinguished by page components and regular components.
+The page component is where all the smaller components are organised. 
 \newline
 The page component is also the one responsible for making the requests to the API and save the data on the state, as shown on the rightmost part of the diagram.
 \newline
@@ -486,7 +486,7 @@ We provide 4 types of different widgets:
 	\item Gauge Chart
 	\item Pie Chart
 \end{itemize}
-These widgets were developped in such a way that can adapt to any form of data that is sent to them, for example, the Data Table will have the necessary columns to display the data and the Pie Chart will have as many divisions as required.
+These widgets were developed in such a way that can adapt to any form of data that is sent to them, for example, the Data Table will have the necessary columns to display the data and the Pie Chart will have as many divisions as required.
 
 \section{Client Side Access Control}
 To keep in line with the rules of access to each project and its dashboards, in each project and dashboard a given user tries to access, a set of verifications are put inset.
@@ -615,7 +615,7 @@ In case the session information is saved, the client sends a request to the API 
 In figure 6.2, is the view that represents the entrance to the user account. It is composed by a form of two text input boxes that receive the username and the password.
 
 \section{Projects Page}
-This view presents to the user the projects that he is on. The page displays in form of a table or list of the projects composed by name, state, manager ,and completion, which is the percentage of completion of the projects. The manager or superuser role can add a project by pressing the button. Once clicked will show up a pop-up to fill with name, description, and end date.
+This view presents to the user the projects that he is on. The page displays in form of a table or list of the projects composed by name, state, manager, and completion, which is the percentage of completion of the projects. The manager or superuser role can add a project by pressing the button. Once clicked will show up a pop-up to fill with name, description, and end date.
 
 \begin{figure}[h!]
 \center
@@ -634,16 +634,16 @@ This page gives the user a view of the dashboards inside of a project. It can be
 
 \newpage
 \section{Dashboard Page}
-On this page, the user will see the widgets of one dashboard. This page offers four options in the group of buttons or a swipeable drawer, such as add widgets,  dashboard settings, delete a dashboard, and edit widgets.
+On this page, the user will see the widgets of one dashboard. This page offers four options in the group of buttons or a swipeable drawer, such as add widgets, dashboard settings, delete a dashboard, and edit widgets.
 By clicking on the first option, the user will be redirected to a page where all the template widgets that can be added to Lean Dashboard are presented.
 The second option is a pop-up to change the name and description of a dashboard.
-The third is a pop-up to delete the dashboard and the fourth button will be redirected to a page similar to the template widgets to edit a specific widget, like deleting it, changing the credentials being used, or the update time.
+The third is a pop-up to delete the dashboard and the fourth button will be redirected to a page like the template widgets to edit a specific widget, like deleting it, changing the credentials being used, or the update time.
 \newline
 Adding a widget to a dashboard requires the user to select a template from the list of supported widgets.
-After this has been decided, the user is presented with a dialogue with the required widget informations.
+After this has been decided, the user is presented with a dialogue with the required widget information's.
 The user must select credentials according to the source of the widget and the update time settings.
 When the user edits the time settings, they are presented with a clock if it is a time input or a calendar if it is a date input.
-When the user confirms this action they are redirected to the dashboard page and can see the newly added widget.
+When the user confirms this action, they are redirected to the dashboard page and can see the newly added widget.
 
 \begin{figure}[h!]
 \center
@@ -652,7 +652,7 @@ When the user confirms this action they are redirected to the dashboard page and
 \end{figure}
 
 \section{Settings Page}
-This view is where the user can change the application's display language. If the user is a superuser, he can add users to the Lean Dashboard application or access the User Management page where all the users in the application can be viewed and edited, by adding or deleting roles for a specific user, deleting users or changing his username or password. 
+This view is where the user can change the application's display language. If the user is a superuser, he can add users to the Lean Dashboard application or access the User Management page where all the users in the application can be viewed and edited, by adding or deleting roles for a specific user, deleting users, or changing his username or password. 
 
 \begin{figure}[h!]
 \center
@@ -661,7 +661,7 @@ This view is where the user can change the application's display language. If th
 \end{figure}
 
 \section{Projects Settings}
-All the project settings are dealt with on this page, where the project manager or superuser can change the name or description of the projects, add users or platform credentials, that will  later be used to add widgets.
+All the project settings are dealt with on this page, where the project manager or superuser can change the name or description of the projects, add users or platform credentials, that will later be used to add widgets.
 
 \begin{figure}[h!]
 \center
