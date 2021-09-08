@@ -123,7 +123,7 @@ These are the features implemented within the application:
 
 \end{itemize}
 
-Throughout this report, we will explain how we implement these features.
+Throughout this report, we will explain how we implemented these features (each in their respective chapter) and give further detail about them.
 
 \chapter{Architecture}
 This chapter is dedicated to cover topics like the software's architecture, the data model, and the principles under which the application was developed. 
@@ -663,12 +663,10 @@ All the project settings are dealt with on this page, where the project manager 
 \caption{Project Settings Page}
 \end{figure}
 
-\chapter{Work Methodology and Deployment}
-This chapter explained the methodology and what the team did to ensure the quality of work in this application and deployment. 
+\chapter{Tests and Deployment}
+In this chapter we will go over the methodology and what the team did to ensure the quality of work in this application as well as the steps for the deployment of the application
 
-\section{Tests}
-
-To guarantee the server's robustness, the team made numerous tests. The analysis was the possible error situations and their results and the successful cases. The technology that chooses to do the tests was Frisby.
+To guarantee the server's robustness, the team made numerous tests. These tests were also vital to ensure the correct functioning of the application before we could start working on the deployment.  The analysis was the possible error situations and their results and the successful cases. The technology that chooses to do the tests was Frisby.
 
 \begin{figure}[h!]
 \center
@@ -678,12 +676,40 @@ To guarantee the server's robustness, the team made numerous tests. The analysis
 
 The figure above illustrates two unit tests, the first one is a successful login and the second is to get all project belongs to the superuser.
 
+This tests also
+
 \section{Deployment}
-For the deployment of the application, we ended up choosing the Heroku\cite{HEROKU} platform. This was the platform chosen since it was used previously in the Software Laboratory course and thus all three students add some experience with the procedure of deploying an application on this service.
+For the deployment of the application, we ended up choosing the Heroku platform. This was the platform chosen since it was used previously in the Software Laboratory course and thus all three students add some experience with the procedure of deploying an application on this service.
 
-To take care of the storage of all the users and the projects (and their respective dashboards and widgets) we used two addons: Heroku Postgres\cite{HEROKUPOSTGRES} and Bonsai Elasticsearch\cite{BONSAIELASTICSEARCH}, respectively.
 
-After having the storage situation handled, we followed the official React guide for deploying an application\cite{REACTDEPLOYMENT}. With that, we then followed the guide from the Heroku Buildpack for Create React App, with a Node.js server
+Since now we are hosting the application outside our local machines, to take care of the storage of all the users and the projects (and their respective dashboards and widgets) we used two addons: Heroku Postgres\cite{HEROKUPOSTGRES} and Bonsai. The Heroku Postgres add-on will provide us with a PostgreSQL database for the user storage and all the projects and their dashboards and widgets will be stored in the Bonsai Elasticsearch cluster provided.
+
+After having the storage situation handled, we followed the official React guide for deploying an application\cite{REACTDEPLOYMENT} to the Heroku platform. With that, we then followed the guide from the Heroku Buildpack for Create React App, with a Node.js server
+
+\newpage
+Before deploying the application itself we had to set up the start and build scripts inside the package.json file. These scripts respectively tell what commands need to be executed in the application startup and in the build process:
+
+
+\begin{figure}[h!]
+\center
+  \includegraphics[width=\textwidth]{packageJsonScripts.png}
+\caption{Scripts for the React application}
+\end{figure}
+
+For the startup script, we simply startup the server with the node command. For the build command, we started by installing all the necessary modules in the package.json with the npm install command. Following that, we installed the standalone Authization module with the command given by its authors.
+After that, we change directories to the folder containing all the files regarding the React client and install the necessary modules in package.json for the client application.
+Finally, with modules installed for the React application, we use the command npm run build to generate the production build folder of the application, used when running a React application in production mode.
+
+To correctly deploy the Lean Dashboard application, we had to set up the code structure according to the instructions of the guide. That means that we need to have the server's components in the first directory and have a folder for all the files regarding the React client:
+
+\begin{figure}[h!]
+\center
+  \includegraphics[width=\textwidth]{deploymentFolder.png}
+\caption{Files and folders organization in the Heroku repository}
+\end{figure}
+
+
+
 \chapter{Conclusion}
 
 Developing this project, allowed the team to apply the experience acquired along the course in this project.
