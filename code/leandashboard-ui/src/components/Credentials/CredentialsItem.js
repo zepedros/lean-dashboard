@@ -66,7 +66,7 @@ export default function CredentialsItem({ credential, refresh, credId }) {
     }
     const colors = [styles.orange, styles.purple, styles.pink, styles.green, styles.blue]
     const itemColor = () => {
-        return (colors[Math.floor(Math.random() * colors.length)])
+        return (colors[0])
     }
     const buildCredential = () => {
         let result = []

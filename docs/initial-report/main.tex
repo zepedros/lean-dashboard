@@ -171,13 +171,13 @@ The API's endpoints can be found with more depth within Appendix A present in th
 Lastly on the rightmost side of the diagram, there is the SPA, the component that will be accessed by the application user on their preferred device. To provide the user with the best experience, this SPA was developed as a mobile-first, responsive web application capable of supporting different types of display screens, starting from the smartphone up to the bigger ones like a regular desktop computer or a TV screen.
 
 \chapter{Server Implementation}
-\section{Scheme of the back-end and Extract, Transform and Load}
+\section{Scheme of the Server and Extract, Transform and Load}
 \begin{figure}[h!]
 \center
   \includegraphics[width=\textwidth]{arquitetura software.png}
   \caption{Back-end structure and modules interactions}
 \end{figure}
-Figure 3.2 depicts the application's back-end and the information flow between its main components. On the left, we have the Lean Dashboard Server and, on the right, the ETL Procedure, the two key components of the application's back-end.
+Figure 4.1 depicts the application's back-end and the information flow between its main components. On the left, we have the Lean Dashboard Server and, on the right, the ETL Procedure, the two key components of the application's back-end.
 
 These two components interact with one another so that the ETL knows what sort of information it should obtain.
 
@@ -216,7 +216,7 @@ To better facilitate the getting and storage of information, we divided each obj
   \caption{Database Data Model}
 \end{figure}
 
-Figure 3.3 depicts the application's data model and the object's structures. Each of these objects contains the necessary fields to store the needed information for the application. 
+Figure 4.2 depicts the application's data model and the object's structures. Each of these objects contains the necessary fields to store the needed information for the application. 
 \newpage
 Each object is detailed as the following:
 \newline
@@ -262,7 +262,7 @@ This credential object is structured as such for each of the information sources
 
 Each source requires a different form of credential so that the authentication on their web API is successful. These credentials are mandatory as the ETL procedure cannot access the specified information source's API without them.
 \newline
-According to figure 3.4:
+According to figure 4.3:
 \newline
 
 Azure requires an email, a token, and an Instance field related to the project within the API.
@@ -357,7 +357,7 @@ Regarding the identification of Red Routes' major advantage, it aids the team to
 \caption{Red Routes Diagram}
 \end{figure}
 
-The team designed the Red Routes for the Lean Dashboard application, as we can see in figure 4.1, based on the list of Personas that Inetum provided. We considered the above factors to create the Red Routes in the best way possible.
+The team designed the Red Routes for the Lean Dashboard application, as we can see in figure 5.1, based on the list of Personas that Inetum provided. We considered the above factors to create the Red Routes in the best way possible.
 \newpage
 
 \section{Information Architecture}
@@ -393,7 +393,7 @@ The usability tests were performed by five Inetum employees, the team used five 
 After performing all tests, the team changed some web flows, buttons and created new pages based on the interviewee's feedback. 
 
 This research and planning done beforehand (before the full implementation of the client application) can greatly decrease implementation costs since it is much easier to make modifications to this mocked user interface than it is to make some of the same changes on the client application code.
-We utilized the platform Figma\cite{FIGMA} to develop our Digital Prototype on figure 4.3:
+We utilized the platform Figma\cite{FIGMA} to develop our Digital Prototype on figure 5.3:
  
 \begin{figure}[h!]
 \center
@@ -440,7 +440,7 @@ This hook is used to store the context within our application. Within our applic
   \includegraphics[width=\textwidth]{client app architecture.png}
 \caption{Application Components and Data Fetch}
 \end{figure}
-On Figure 5.1 is our client's structure. 
+On Figure 6.1 is our client's structure. 
 
 On the leftmost part of the diagram, we have the component organization, these can be distinguished by page components and regular components.
 The page component is where all the smaller components are organized. 
@@ -456,7 +456,7 @@ The regular components can be reused on various page components.
   \includegraphics{client app interations.png}
 \caption{Application Data Flow}
 \end{figure}
-Figure 5.2 is the data flow of our application.
+Figure 6.2 is the data flow of our application.
 The App is the main entrance to our application, this is where the routing and session context verification is done.
 The app accesses the React Router to define the necessary URL for the application, depending on the URL the Router provides the user with the specific page component if the user stored context with useContext has valid credentials.
 
@@ -578,7 +578,7 @@ As of now, the client application has multi-language support for 3 languages: En
 \caption{Home Page}
 \end{figure}
 
-In figure 6.1, we have the Home Page, it is the first page the user sees. Here the user can change the language of the application and may begin his Log In process, by pressing the Sign-in button. Once the button is clicked the user will be redirected to the Sign-in page where he will be inserting his credentials to enter the application.
+In figure 7.1, we have the Home Page, it is the first page the user sees. Here the user can change the language of the application and may begin his Log In process, by pressing the Sign-in button. Once the button is clicked the user will be redirected to the Sign-in page where he will be inserting his credentials to enter the application.
 
 
 \section{Sign In Page}

@@ -6,7 +6,7 @@
 \contentsline {section}{\numberline {3.1}Architecture Principles and Components}{9}%
 \contentsline {section}{\numberline {3.2}Software Architecture}{10}%
 \contentsline {chapter}{\numberline {4}Server Implementation}{11}%
-\contentsline {section}{\numberline {4.1}Scheme of the back-end and Extract, Transform and Load}{11}%
+\contentsline {section}{\numberline {4.1}Scheme of the Server and Extract, Transform and Load}{11}%
 \contentsline {section}{\numberline {4.2}Data Model}{14}%
 \contentsline {section}{\numberline {4.3}Authization module, Backoffice and Access control}{17}%
 \contentsline {chapter}{\numberline {5}User Experience Research}{18}%
@@ -29,7 +29,6 @@
 \contentsline {section}{\numberline {7.6}Settings Page}{35}%
 \contentsline {section}{\numberline {7.7}User Management}{35}%
 \contentsline {section}{\numberline {7.8}Projects Settings}{36}%
-\contentsline {chapter}{\numberline {8}Work Methodology and Deployment}{37}%
-\contentsline {section}{\numberline {8.1}Tests}{37}%
-\contentsline {section}{\numberline {8.2}Deployment}{37}%
-\contentsline {chapter}{\numberline {9}Conclusion}{39}%
+\contentsline {chapter}{\numberline {8}Tests and Deployment}{37}%
+\contentsline {section}{\numberline {8.1}Deployment}{38}%
+\contentsline {chapter}{\numberline {9}Conclusion}{41}%

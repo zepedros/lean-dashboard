@@ -40,9 +40,8 @@ card: {
   display: 'flex',
   flexDirection: 'column',
   textAlign: "bottom",
-  width: "400px",
-  height: "300px",
-  backgroundColor: '',
+  width: "300px",
+  //height: "410px",
 },
 }));
 

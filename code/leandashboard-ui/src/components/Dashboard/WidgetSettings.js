@@ -11,6 +11,7 @@ import useFetch from 'use-http';
 import GoBack from '../Common/GoBack';
 import WidgetSettingsWidget from '../Widgets/WidgetSettingsWidget';
 import WidgetSettingsDialog from './WidgetSettingsDialog';
+import Card from '@material-ui/core/Card';
 
 const useStyles = makeStyles((theme) => ({
     table: {
@@ -38,7 +39,14 @@ const useStyles = makeStyles((theme) => ({
     container: {
         marginLeft: '-2.2%',
         width: '94%'
-    }
+    },
+    card: {
+  display: 'flex',
+  flexDirection: 'column',
+  textAlign: "bottom",
+  width: "300px",
+  
+},
 }));
 
 export default function WidgetSettings({ name, widgets, refresh, doRefresh }) {
@@ -79,7 +87,7 @@ export default function WidgetSettings({ name, widgets, refresh, doRefresh }) {
             {
                 widgets &&
                 <div>
-                    <Typography component="h1" variant="h3" className={classes.dashboardTitle}>
+                    <Typography component="h1" variant="h5" className={classes.dashboardTitle}>
                         {name}
                     </Typography>
                     <Container maxWidth={false} className={classes.container} onChange={e => setSelectWidget(e.target.value)}>
@@ -91,7 +99,13 @@ export default function WidgetSettings({ name, widgets, refresh, doRefresh }) {
                                         value={widget}
                                         key={widget}
                                         label={
-                                            <WidgetSettingsWidget widgetId={widget} />
+                                            <>
+                                             <Grid item md={12} sm={12}>
+                                                <Card className={classes.card}>
+                                                    <WidgetSettingsWidget widgetId={widget} />
+                                                </Card>
+                                            </Grid>
+                                            </>
                                         }
                                     />
                                 )}
