@@ -29,5 +29,5 @@
 \contentsline {section}{\numberline {7.7}Projects Settings}{39}{}%
 \contentsline {chapter}{\numberline {8}Tests and Deployment}{40}{}%
 \contentsline {section}{\numberline {8.1}Tests}{40}{}%
-\contentsline {section}{\numberline {8.2}Deployment}{40}{}%
-\contentsline {chapter}{\numberline {9}Conclusion}{43}{}%
+\contentsline {section}{\numberline {8.2}Deployment}{41}{}%
+\contentsline {chapter}{\numberline {9}Conclusion}{44}{}%

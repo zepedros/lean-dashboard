@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2021.4.2)  9 SEP 2021 23:06
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2021.4.2)  9 SEP 2021 23:23
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -541,391 +541,393 @@ Chapter 8.
 File: tests.png Graphic file (type png)
 <use tests.png>
 Package pdftex.def Info: tests.png  used on input line 696.
-(pdftex.def)             Requested size: 441.01772pt x 310.95183pt.
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-<packageJsonScripts.png, id=188, 936.49875pt x 110.4125pt>
-File: packageJsonScripts.png Graphic file (type png)
-<use packageJsonScripts.png>
-Package pdftex.def Info: packageJsonScripts.png  used on input line 714.
-(pdftex.def)             Requested size: 441.01772pt x 51.99664pt.
+(pdftex.def)             Requested size: 536.40474pt x 378.2135pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [40
 
 ]
-<deploymentFolder.png, id=192, 279.0425pt x 298.11375pt>
+<packageJsonScripts.png, id=191, 936.49875pt x 110.4125pt>
+File: packageJsonScripts.png Graphic file (type png)
+<use packageJsonScripts.png>
+Package pdftex.def Info: packageJsonScripts.png  used on input line 715.
+(pdftex.def)             Requested size: 441.01772pt x 51.99664pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[41 <./tests.png>]
+<deploymentFolder.png, id=196, 279.0425pt x 298.11375pt>
 File: deploymentFolder.png Graphic file (type png)
 <use deploymentFolder.png>
-Package pdftex.def Info: deploymentFolder.png  used on input line 726.
+Package pdftex.def Info: deploymentFolder.png  used on input line 727.
 (pdftex.def)             Requested size: 441.01772pt x 471.17377pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[41 <./tests.png> <./packageJsonScripts.png>] [42 <./deploymentFolder.png>]
+[42 <./packageJsonScripts.png>] [43 <./deploymentFolder.png>]
 Chapter 9.
-[43
+[44
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 752--754
+Underfull \hbox (badness 10000) in paragraph at lines 753--755
 []\OT1/cmr/m/n/10 Jira- Soft-ware de-vel-op-ment tool used by ag-ile teams
  []
 
 
-Overfull \hbox (43.8444pt too wide) in paragraph at lines 761--763
+Overfull \hbox (43.8444pt too wide) in paragraph at lines 762--764
 []\OT1/cmr/m/n/10 RBAC - Role-based Ac-cess Con-trol \OT1/cmtt/m/n/10 https://e
 n.wikipedia.org/wiki/Role-based[]access[]control 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 773--775
+Underfull \hbox (badness 10000) in paragraph at lines 774--776
 []\OT1/cmr/m/n/10 Authization Mod-ule https://github.com/dleandro/Authenticatio
 n-and-Authorization-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 776--778
+Underfull \hbox (badness 10000) in paragraph at lines 777--779
 []\OT1/cmr/m/n/10 PostgreSQL: The World's Most Ad-vanced Open Source Re-la-tion
 al Database
  []
 
-<API Documentation.pdf, id=206, 598.235pt x 845.1575pt>
+<API Documentation.pdf, id=209, 598.235pt x 845.1575pt>
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf>
-Package pdftex.def Info: API Documentation.pdf  used on input line 822.
+Package pdftex.def Info: API Documentation.pdf  used on input line 823.
 (pdftex.def)             Requested size: 598.23354pt x 845.15544pt.
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf>
-Package pdftex.def Info: API Documentation.pdf  used on input line 822.
+Package pdftex.def Info: API Documentation.pdf  used on input line 823.
 (pdftex.def)             Requested size: 598.23354pt x 845.15544pt.
-<API Documentation.pdf, id=209, page=1, 598.235pt x 845.1575pt>
+<API Documentation.pdf, id=212, page=1, 598.235pt x 845.1575pt>
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf, page 1>
-Package pdftex.def Info: API Documentation.pdf , page1 used on input line 822.
+Package pdftex.def Info: API Documentation.pdf , page1 used on input line 823.
 (pdftex.def)             Requested size: 598.23354pt x 845.15544pt.
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf, page 1>
-Package pdftex.def Info: API Documentation.pdf , page1 used on input line 822.
+Package pdftex.def Info: API Documentation.pdf , page1 used on input line 823.
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
-[44
+[45
 
 ]
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf, page 1>
-Package pdftex.def Info: API Documentation.pdf , page1 used on input line 822.
+Package pdftex.def Info: API Documentation.pdf , page1 used on input line 823.
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf, page 1>
-Package pdftex.def Info: API Documentation.pdf , page1 used on input line 822.
+Package pdftex.def Info: API Documentation.pdf , page1 used on input line 823.
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf, page 1>
-Package pdftex.def Info: API Documentation.pdf , page1 used on input line 822.
-(pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
- [45 <./API Documentation.pdf>]
-File: API Documentation.pdf Graphic file (type pdf)
-<use API Documentation.pdf>
-Package pdftex.def Info: API Documentation.pdf  used on input line 824.
-(pdftex.def)             Requested size: 598.23354pt x 845.15544pt.
-File: API Documentation.pdf Graphic file (type pdf)
-<use API Documentation.pdf>
-Package pdftex.def Info: API Documentation.pdf  used on input line 824.
-(pdftex.def)             Requested size: 598.23354pt x 845.15544pt.
-<API Documentation.pdf, id=265, page=2, 598.235pt x 845.1575pt>
-File: API Documentation.pdf Graphic file (type pdf)
-<use API Documentation.pdf, page 2>
-Package pdftex.def Info: API Documentation.pdf , page2 used on input line 824.
-(pdftex.def)             Requested size: 598.23354pt x 845.15544pt.
-File: API Documentation.pdf Graphic file (type pdf)
-<use API Documentation.pdf, page 2>
-Package pdftex.def Info: API Documentation.pdf , page2 used on input line 824.
-(pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
-File: API Documentation.pdf Graphic file (type pdf)
-<use API Documentation.pdf, page 2>
-Package pdftex.def Info: API Documentation.pdf , page2 used on input line 824.
-(pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
-File: API Documentation.pdf Graphic file (type pdf)
-<use API Documentation.pdf, page 2>
-Package pdftex.def Info: API Documentation.pdf , page2 used on input line 824.
-(pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
-File: API Documentation.pdf Graphic file (type pdf)
-<use API Documentation.pdf, page 2>
-Package pdftex.def Info: API Documentation.pdf , page2 used on input line 824.
+Package pdftex.def Info: API Documentation.pdf , page1 used on input line 823.
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
  [46 <./API Documentation.pdf>]
-<API Documentation.pdf, id=283, page=3, 598.235pt x 845.1575pt>
 File: API Documentation.pdf Graphic file (type pdf)
-<use API Documentation.pdf, page 3>
-Package pdftex.def Info: API Documentation.pdf , page3 used on input line 824.
+<use API Documentation.pdf>
+Package pdftex.def Info: API Documentation.pdf  used on input line 825.
+(pdftex.def)             Requested size: 598.23354pt x 845.15544pt.
+File: API Documentation.pdf Graphic file (type pdf)
+<use API Documentation.pdf>
+Package pdftex.def Info: API Documentation.pdf  used on input line 825.
+(pdftex.def)             Requested size: 598.23354pt x 845.15544pt.
+<API Documentation.pdf, id=268, page=2, 598.235pt x 845.1575pt>
+File: API Documentation.pdf Graphic file (type pdf)
+<use API Documentation.pdf, page 2>
+Package pdftex.def Info: API Documentation.pdf , page2 used on input line 825.
+(pdftex.def)             Requested size: 598.23354pt x 845.15544pt.
+File: API Documentation.pdf Graphic file (type pdf)
+<use API Documentation.pdf, page 2>
+Package pdftex.def Info: API Documentation.pdf , page2 used on input line 825.
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
 File: API Documentation.pdf Graphic file (type pdf)
-<use API Documentation.pdf, page 3>
-Package pdftex.def Info: API Documentation.pdf , page3 used on input line 824.
+<use API Documentation.pdf, page 2>
+Package pdftex.def Info: API Documentation.pdf , page2 used on input line 825.
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
 File: API Documentation.pdf Graphic file (type pdf)
-<use API Documentation.pdf, page 3>
-Package pdftex.def Info: API Documentation.pdf , page3 used on input line 824.
+<use API Documentation.pdf, page 2>
+Package pdftex.def Info: API Documentation.pdf , page2 used on input line 825.
+(pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
+File: API Documentation.pdf Graphic file (type pdf)
+<use API Documentation.pdf, page 2>
+Package pdftex.def Info: API Documentation.pdf , page2 used on input line 825.
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
  [47 <./API Documentation.pdf>]
-<API Documentation.pdf, id=288, page=4, 598.235pt x 845.1575pt>
+<API Documentation.pdf, id=286, page=3, 598.235pt x 845.1575pt>
 File: API Documentation.pdf Graphic file (type pdf)
-<use API Documentation.pdf, page 4>
-Package pdftex.def Info: API Documentation.pdf , page4 used on input line 824.
+<use API Documentation.pdf, page 3>
+Package pdftex.def Info: API Documentation.pdf , page3 used on input line 825.
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
 File: API Documentation.pdf Graphic file (type pdf)
-<use API Documentation.pdf, page 4>
-Package pdftex.def Info: API Documentation.pdf , page4 used on input line 824.
+<use API Documentation.pdf, page 3>
+Package pdftex.def Info: API Documentation.pdf , page3 used on input line 825.
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
 File: API Documentation.pdf Graphic file (type pdf)
-<use API Documentation.pdf, page 4>
-Package pdftex.def Info: API Documentation.pdf , page4 used on input line 824.
+<use API Documentation.pdf, page 3>
+Package pdftex.def Info: API Documentation.pdf , page3 used on input line 825.
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
  [48 <./API Documentation.pdf>]
-<API Documentation.pdf, id=293, page=5, 598.235pt x 845.1575pt>
+<API Documentation.pdf, id=291, page=4, 598.235pt x 845.1575pt>
 File: API Documentation.pdf Graphic file (type pdf)
-<use API Documentation.pdf, page 5>
-Package pdftex.def Info: API Documentation.pdf , page5 used on input line 824.
+<use API Documentation.pdf, page 4>
+Package pdftex.def Info: API Documentation.pdf , page4 used on input line 825.
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
 File: API Documentation.pdf Graphic file (type pdf)
-<use API Documentation.pdf, page 5>
-Package pdftex.def Info: API Documentation.pdf , page5 used on input line 824.
+<use API Documentation.pdf, page 4>
+Package pdftex.def Info: API Documentation.pdf , page4 used on input line 825.
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
 File: API Documentation.pdf Graphic file (type pdf)
-<use API Documentation.pdf, page 5>
-Package pdftex.def Info: API Documentation.pdf , page5 used on input line 824.
+<use API Documentation.pdf, page 4>
+Package pdftex.def Info: API Documentation.pdf , page4 used on input line 825.
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
  [49 <./API Documentation.pdf>]
-<API Documentation.pdf, id=299, page=6, 598.235pt x 845.1575pt>
+<API Documentation.pdf, id=297, page=5, 598.235pt x 845.1575pt>
 File: API Documentation.pdf Graphic file (type pdf)
-<use API Documentation.pdf, page 6>
-Package pdftex.def Info: API Documentation.pdf , page6 used on input line 824.
+<use API Documentation.pdf, page 5>
+Package pdftex.def Info: API Documentation.pdf , page5 used on input line 825.
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
 File: API Documentation.pdf Graphic file (type pdf)
-<use API Documentation.pdf, page 6>
-Package pdftex.def Info: API Documentation.pdf , page6 used on input line 824.
+<use API Documentation.pdf, page 5>
+Package pdftex.def Info: API Documentation.pdf , page5 used on input line 825.
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
 File: API Documentation.pdf Graphic file (type pdf)
-<use API Documentation.pdf, page 6>
-Package pdftex.def Info: API Documentation.pdf , page6 used on input line 824.
+<use API Documentation.pdf, page 5>
+Package pdftex.def Info: API Documentation.pdf , page5 used on input line 825.
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
  [50 <./API Documentation.pdf>]
-<API Documentation.pdf, id=304, page=7, 598.235pt x 845.1575pt>
+<API Documentation.pdf, id=302, page=6, 598.235pt x 845.1575pt>
 File: API Documentation.pdf Graphic file (type pdf)
-<use API Documentation.pdf, page 7>
-Package pdftex.def Info: API Documentation.pdf , page7 used on input line 824.
+<use API Documentation.pdf, page 6>
+Package pdftex.def Info: API Documentation.pdf , page6 used on input line 825.
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
 File: API Documentation.pdf Graphic file (type pdf)
-<use API Documentation.pdf, page 7>
-Package pdftex.def Info: API Documentation.pdf , page7 used on input line 824.
+<use API Documentation.pdf, page 6>
+Package pdftex.def Info: API Documentation.pdf , page6 used on input line 825.
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
 File: API Documentation.pdf Graphic file (type pdf)
-<use API Documentation.pdf, page 7>
-Package pdftex.def Info: API Documentation.pdf , page7 used on input line 824.
+<use API Documentation.pdf, page 6>
+Package pdftex.def Info: API Documentation.pdf , page6 used on input line 825.
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
  [51 <./API Documentation.pdf>]
-<API Documentation.pdf, id=309, page=8, 598.235pt x 845.1575pt>
+<API Documentation.pdf, id=307, page=7, 598.235pt x 845.1575pt>
 File: API Documentation.pdf Graphic file (type pdf)
-<use API Documentation.pdf, page 8>
-Package pdftex.def Info: API Documentation.pdf , page8 used on input line 824.
+<use API Documentation.pdf, page 7>
+Package pdftex.def Info: API Documentation.pdf , page7 used on input line 825.
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
 File: API Documentation.pdf Graphic file (type pdf)
-<use API Documentation.pdf, page 8>
-Package pdftex.def Info: API Documentation.pdf , page8 used on input line 824.
+<use API Documentation.pdf, page 7>
+Package pdftex.def Info: API Documentation.pdf , page7 used on input line 825.
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
 File: API Documentation.pdf Graphic file (type pdf)
-<use API Documentation.pdf, page 8>
-Package pdftex.def Info: API Documentation.pdf , page8 used on input line 824.
+<use API Documentation.pdf, page 7>
+Package pdftex.def Info: API Documentation.pdf , page7 used on input line 825.
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
  [52 <./API Documentation.pdf>]
-<API Documentation.pdf, id=320, page=9, 598.235pt x 845.1575pt>
+<API Documentation.pdf, id=312, page=8, 598.235pt x 845.1575pt>
 File: API Documentation.pdf Graphic file (type pdf)
-<use API Documentation.pdf, page 9>
-Package pdftex.def Info: API Documentation.pdf , page9 used on input line 824.
+<use API Documentation.pdf, page 8>
+Package pdftex.def Info: API Documentation.pdf , page8 used on input line 825.
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
 File: API Documentation.pdf Graphic file (type pdf)
-<use API Documentation.pdf, page 9>
-Package pdftex.def Info: API Documentation.pdf , page9 used on input line 824.
+<use API Documentation.pdf, page 8>
+Package pdftex.def Info: API Documentation.pdf , page8 used on input line 825.
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
 File: API Documentation.pdf Graphic file (type pdf)
-<use API Documentation.pdf, page 9>
-Package pdftex.def Info: API Documentation.pdf , page9 used on input line 824.
+<use API Documentation.pdf, page 8>
+Package pdftex.def Info: API Documentation.pdf , page8 used on input line 825.
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
  [53 <./API Documentation.pdf>]
-<API Documentation.pdf, id=325, page=10, 598.235pt x 845.1575pt>
+<API Documentation.pdf, id=323, page=9, 598.235pt x 845.1575pt>
 File: API Documentation.pdf Graphic file (type pdf)
-<use API Documentation.pdf, page 10>
-Package pdftex.def Info: API Documentation.pdf , page10 used on input line 824.
-
+<use API Documentation.pdf, page 9>
+Package pdftex.def Info: API Documentation.pdf , page9 used on input line 825.
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
 File: API Documentation.pdf Graphic file (type pdf)
-<use API Documentation.pdf, page 10>
-Package pdftex.def Info: API Documentation.pdf , page10 used on input line 824.
-
+<use API Documentation.pdf, page 9>
+Package pdftex.def Info: API Documentation.pdf , page9 used on input line 825.
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
 File: API Documentation.pdf Graphic file (type pdf)
-<use API Documentation.pdf, page 10>
-Package pdftex.def Info: API Documentation.pdf , page10 used on input line 824.
-
+<use API Documentation.pdf, page 9>
+Package pdftex.def Info: API Documentation.pdf , page9 used on input line 825.
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
  [54 <./API Documentation.pdf>]
-<API Documentation.pdf, id=330, page=11, 598.235pt x 845.1575pt>
+<API Documentation.pdf, id=328, page=10, 598.235pt x 845.1575pt>
+File: API Documentation.pdf Graphic file (type pdf)
+<use API Documentation.pdf, page 10>
+Package pdftex.def Info: API Documentation.pdf , page10 used on input line 825.
+
+(pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
+File: API Documentation.pdf Graphic file (type pdf)
+<use API Documentation.pdf, page 10>
+Package pdftex.def Info: API Documentation.pdf , page10 used on input line 825.
+
+(pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
+File: API Documentation.pdf Graphic file (type pdf)
+<use API Documentation.pdf, page 10>
+Package pdftex.def Info: API Documentation.pdf , page10 used on input line 825.
+
+(pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
+ [55 <./API Documentation.pdf>]
+<API Documentation.pdf, id=334, page=11, 598.235pt x 845.1575pt>
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf, page 11>
-Package pdftex.def Info: API Documentation.pdf , page11 used on input line 824.
+Package pdftex.def Info: API Documentation.pdf , page11 used on input line 825.
 
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf, page 11>
-Package pdftex.def Info: API Documentation.pdf , page11 used on input line 824.
+Package pdftex.def Info: API Documentation.pdf , page11 used on input line 825.
 
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf, page 11>
-Package pdftex.def Info: API Documentation.pdf , page11 used on input line 824.
+Package pdftex.def Info: API Documentation.pdf , page11 used on input line 825.
 
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
 
-[55 <./API Documentation.pdf>]
-<API Documentation.pdf, id=336, page=12, 598.235pt x 845.1575pt>
+[56 <./API Documentation.pdf>]
+<API Documentation.pdf, id=339, page=12, 598.235pt x 845.1575pt>
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf, page 12>
-Package pdftex.def Info: API Documentation.pdf , page12 used on input line 824.
-
-(pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
-File: API Documentation.pdf Graphic file (type pdf)
-<use API Documentation.pdf, page 12>
-Package pdftex.def Info: API Documentation.pdf , page12 used on input line 824.
+Package pdftex.def Info: API Documentation.pdf , page12 used on input line 825.
 
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf, page 12>
-Package pdftex.def Info: API Documentation.pdf , page12 used on input line 824.
-
-(pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
- [56 <./API Documentation.pdf>]
-<API Documentation.pdf, id=341, page=13, 598.235pt x 845.1575pt>
-File: API Documentation.pdf Graphic file (type pdf)
-<use API Documentation.pdf, page 13>
-Package pdftex.def Info: API Documentation.pdf , page13 used on input line 824.
+Package pdftex.def Info: API Documentation.pdf , page12 used on input line 825.
 
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
 File: API Documentation.pdf Graphic file (type pdf)
-<use API Documentation.pdf, page 13>
-Package pdftex.def Info: API Documentation.pdf , page13 used on input line 824.
-
-(pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
-File: API Documentation.pdf Graphic file (type pdf)
-<use API Documentation.pdf, page 13>
-Package pdftex.def Info: API Documentation.pdf , page13 used on input line 824.
+<use API Documentation.pdf, page 12>
+Package pdftex.def Info: API Documentation.pdf , page12 used on input line 825.
 
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
  [57 <./API Documentation.pdf>]
-<API Documentation.pdf, id=346, page=14, 598.235pt x 845.1575pt>
+<API Documentation.pdf, id=344, page=13, 598.235pt x 845.1575pt>
 File: API Documentation.pdf Graphic file (type pdf)
-<use API Documentation.pdf, page 14>
-Package pdftex.def Info: API Documentation.pdf , page14 used on input line 824.
+<use API Documentation.pdf, page 13>
+Package pdftex.def Info: API Documentation.pdf , page13 used on input line 825.
 
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
 File: API Documentation.pdf Graphic file (type pdf)
-<use API Documentation.pdf, page 14>
-Package pdftex.def Info: API Documentation.pdf , page14 used on input line 824.
+<use API Documentation.pdf, page 13>
+Package pdftex.def Info: API Documentation.pdf , page13 used on input line 825.
 
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
 File: API Documentation.pdf Graphic file (type pdf)
-<use API Documentation.pdf, page 14>
-Package pdftex.def Info: API Documentation.pdf , page14 used on input line 824.
+<use API Documentation.pdf, page 13>
+Package pdftex.def Info: API Documentation.pdf , page13 used on input line 825.
 
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
  [58 <./API Documentation.pdf>]
-<API Documentation.pdf, id=351, page=15, 598.235pt x 845.1575pt>
+<API Documentation.pdf, id=349, page=14, 598.235pt x 845.1575pt>
 File: API Documentation.pdf Graphic file (type pdf)
-<use API Documentation.pdf, page 15>
-Package pdftex.def Info: API Documentation.pdf , page15 used on input line 824.
+<use API Documentation.pdf, page 14>
+Package pdftex.def Info: API Documentation.pdf , page14 used on input line 825.
 
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
 File: API Documentation.pdf Graphic file (type pdf)
-<use API Documentation.pdf, page 15>
-Package pdftex.def Info: API Documentation.pdf , page15 used on input line 824.
+<use API Documentation.pdf, page 14>
+Package pdftex.def Info: API Documentation.pdf , page14 used on input line 825.
 
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
 File: API Documentation.pdf Graphic file (type pdf)
-<use API Documentation.pdf, page 15>
-Package pdftex.def Info: API Documentation.pdf , page15 used on input line 824.
+<use API Documentation.pdf, page 14>
+Package pdftex.def Info: API Documentation.pdf , page14 used on input line 825.
 
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
  [59 <./API Documentation.pdf>]
-<API Documentation.pdf, id=356, page=16, 598.235pt x 845.1575pt>
+<API Documentation.pdf, id=354, page=15, 598.235pt x 845.1575pt>
+File: API Documentation.pdf Graphic file (type pdf)
+<use API Documentation.pdf, page 15>
+Package pdftex.def Info: API Documentation.pdf , page15 used on input line 825.
+
+(pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
+File: API Documentation.pdf Graphic file (type pdf)
+<use API Documentation.pdf, page 15>
+Package pdftex.def Info: API Documentation.pdf , page15 used on input line 825.
+
+(pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
+File: API Documentation.pdf Graphic file (type pdf)
+<use API Documentation.pdf, page 15>
+Package pdftex.def Info: API Documentation.pdf , page15 used on input line 825.
+
+(pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
+ [60 <./API Documentation.pdf>]
+<API Documentation.pdf, id=359, page=16, 598.235pt x 845.1575pt>
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf, page 16>
-Package pdftex.def Info: API Documentation.pdf , page16 used on input line 824.
+Package pdftex.def Info: API Documentation.pdf , page16 used on input line 825.
 
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf, page 16>
-Package pdftex.def Info: API Documentation.pdf , page16 used on input line 824.
+Package pdftex.def Info: API Documentation.pdf , page16 used on input line 825.
 
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf, page 16>
-Package pdftex.def Info: API Documentation.pdf , page16 used on input line 824.
+Package pdftex.def Info: API Documentation.pdf , page16 used on input line 825.
 
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
 
-[60 <./API Documentation.pdf>]
-<API Documentation.pdf, id=361, page=17, 598.235pt x 845.1575pt>
+[61 <./API Documentation.pdf>]
+<API Documentation.pdf, id=365, page=17, 598.235pt x 845.1575pt>
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf, page 17>
-Package pdftex.def Info: API Documentation.pdf , page17 used on input line 824.
-
-(pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
-File: API Documentation.pdf Graphic file (type pdf)
-<use API Documentation.pdf, page 17>
-Package pdftex.def Info: API Documentation.pdf , page17 used on input line 824.
+Package pdftex.def Info: API Documentation.pdf , page17 used on input line 825.
 
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf, page 17>
-Package pdftex.def Info: API Documentation.pdf , page17 used on input line 824.
-
-(pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
- [61 <./API Documentation.pdf>]
-<API Documentation.pdf, id=367, page=18, 598.235pt x 845.1575pt>
-File: API Documentation.pdf Graphic file (type pdf)
-<use API Documentation.pdf, page 18>
-Package pdftex.def Info: API Documentation.pdf , page18 used on input line 824.
+Package pdftex.def Info: API Documentation.pdf , page17 used on input line 825.
 
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
 File: API Documentation.pdf Graphic file (type pdf)
-<use API Documentation.pdf, page 18>
-Package pdftex.def Info: API Documentation.pdf , page18 used on input line 824.
-
-(pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
-File: API Documentation.pdf Graphic file (type pdf)
-<use API Documentation.pdf, page 18>
-Package pdftex.def Info: API Documentation.pdf , page18 used on input line 824.
+<use API Documentation.pdf, page 17>
+Package pdftex.def Info: API Documentation.pdf , page17 used on input line 825.
 
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
  [62 <./API Documentation.pdf>]
-<API Documentation.pdf, id=372, page=19, 598.235pt x 845.1575pt>
+<API Documentation.pdf, id=370, page=18, 598.235pt x 845.1575pt>
+File: API Documentation.pdf Graphic file (type pdf)
+<use API Documentation.pdf, page 18>
+Package pdftex.def Info: API Documentation.pdf , page18 used on input line 825.
+
+(pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
+File: API Documentation.pdf Graphic file (type pdf)
+<use API Documentation.pdf, page 18>
+Package pdftex.def Info: API Documentation.pdf , page18 used on input line 825.
+
+(pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
+File: API Documentation.pdf Graphic file (type pdf)
+<use API Documentation.pdf, page 18>
+Package pdftex.def Info: API Documentation.pdf , page18 used on input line 825.
+
+(pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
+ [63 <./API Documentation.pdf>]
+<API Documentation.pdf, id=375, page=19, 598.235pt x 845.1575pt>
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf, page 19>
-Package pdftex.def Info: API Documentation.pdf , page19 used on input line 824.
+Package pdftex.def Info: API Documentation.pdf , page19 used on input line 825.
 
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf, page 19>
-Package pdftex.def Info: API Documentation.pdf , page19 used on input line 824.
+Package pdftex.def Info: API Documentation.pdf , page19 used on input line 825.
 
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf, page 19>
-Package pdftex.def Info: API Documentation.pdf , page19 used on input line 824.
+Package pdftex.def Info: API Documentation.pdf , page19 used on input line 825.
 
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
- [63 <./API Documentation.pdf>] (./main.aux) ) 
+ [64 <./API Documentation.pdf>] (./main.aux) ) 
 Here is how much of TeX's memory you used:
  4752 strings out of 478994
  73477 string characters out of 5862208
@@ -942,10 +944,10 @@ mr10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><
 c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb><c:/texliv
 e/2021/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb><c:/texlive/2021/tex
 mf-dist/fonts/type1/public/cm-super/sfrm1200.pfb>
-Output written on main.pdf (63 pages, 1484985 bytes).
+Output written on main.pdf (64 pages, 1485349 bytes).
 PDF statistics:
- 405 PDF objects out of 1000 (max. 8388607)
- 226 compressed objects within 3 object streams
+ 408 PDF objects out of 1000 (max. 8388607)
+ 228 compressed objects within 3 object streams
  0 named destinations out of 1000 (max. 500000)
  276 words of extra memory for PDF output out of 10000 (max. 10000000)
 
