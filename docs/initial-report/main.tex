@@ -84,7 +84,7 @@ Furthermore, we dedicate a chapter to the research done regarding User Experienc
 
 On The Client Implementation chapter, the team gives more details about the choice of technology and details the implementation on the client-side.
 
-On the Client Application chapter, we explain the reason for the chosen development platform, how the client application works and display some of the web pages.  
+On the User Interface chapter, we explain the reason for the chosen development platform, how the client application works and display some of the web pages.  
 
 In the Tests and Deployment chapter, we explain the choices made for the deployment platform and how it was made, as well as the tests made to ensure the application was working as planned. Finally, in the Conclusion chapter, we expose the learned lessons and future work for forthcoming versions.
 
@@ -501,6 +501,7 @@ These widgets were developed in such a way that they can adapt to any form of da
 \caption{Data Table}
 \end{figure}
 
+\newpage
 \section{Client Side Access Control}
 To keep in line with the rules of access to each project and its dashboards, in each project and dashboard a given user tries to access, a set of verifications are put inset.
 
@@ -651,6 +652,7 @@ The third is a pop-up to delete the dashboard and the fourth button will be redi
 \newline
 Adding a widget to a dashboard requires the user to select a template from the list of supported widgets. After this has been decided, the user is presented with a dialogue where the required information for the widget to function is introduced. The user must select the credentials according to the source of the widget and insert the update time settings. When the user edits the time settings, they are presented with a clock if it is a time input or a calendar if it is a date input. When the user confirms this action, they are redirected to the dashboard page and can see the newly added widget. To refresh the widget with the real information, we use a useEffect to request an endpoint to get the most updated widget information every minute.
 
+\newpage
 \begin{figure}[h!]
 \center
   \includegraphics[width=\textwidth]{dashboardPage.png}
