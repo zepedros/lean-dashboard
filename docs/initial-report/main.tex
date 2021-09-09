@@ -80,7 +80,11 @@ In the Functionalities chapter, we will expose the features that were implemente
 
 Next up, in the Architecture chapter, we will discuss aspects such as the implementation of the software being developed, decisions made by us and how certain problems were solved.
 
+On the Server Implementation chapter explain in further detail the implementation.
+
 Furthermore, we dedicate a chapter to the research done regarding User Experience for our application where we display some of the steps we took in preparing our client application in terms of User Experience.
+
+On The Client Implementation chapter, the team gives more details about the choice of technology and details the implementation on the client-side.
 
 On the Client Application chapter, we explain the reason for the chosen development platform, how the client application works and display some of the web pages.  
 
@@ -88,9 +92,7 @@ In the Tests and Deployment chapter, we explain the choices made for the deploym
 
 \chapter{Functionalities}
 
-The functionalities chapter is destined to list and describe the functionalities that the application provides the user with.
-
-The solution is a responsive mobile-first web application that allows the user to consult and aggregate the information of various platforms. Inside a project, a manager is able to add various dashboards that will then have the desired widgets. The widgets are the structures that hold and show the desired information regarding issues, tests, and sprints from platforms such as Jira\cite{JIRA}, Squash\cite{SQUASH} and Azure\cite{AZURE}. A manager will then be able to add various users to its project so that those users can consult all the dashboards with the relevant information in each widget.
+The functionalities chapter details the features and solution that the application provides to the user. This solution is a responsive mobile-first web application that allows the user to consult and aggregate the information of various platforms. Inside a project, a manager is able to add various dashboards that will then have the desired widgets. The widgets are the structures that hold and show the desired information regarding issues, tests, and sprints from platforms such as Jira\cite{JIRA}, Squash\cite{SQUASH} and Azure\cite{AZURE}. A manager will then be able to add various users to its project so that those users can consult all the dashboards with the relevant information in each widget.
 
 These are the features implemented within the application:
  
@@ -171,7 +173,7 @@ Lastly on the rightmost side of the diagram, there is the SPA, the component tha
 
 \chapter{Server Implementation}
 This chapter contains information on how the application works and how its various modules and components interact with each other, as well as the structure of the necessary information being stored in the database and the application's authentication and authorization flow.
-\section{Scheme of the Server and Extract, Transform and Load}
+\section{Lean Server and Extract, Transform and Load(ETL) structure}
 \begin{figure}[h!]
 \center
   \includegraphics[width=\textwidth]{arquitetura software.png}
@@ -183,7 +185,7 @@ These two components interact with one another so that the ETL knows what sort o
 
 The Lean Dashboard Server is composed of 3 Node.JS\cite{NODE} modules:
 \begin{itemize}
- \item The Web API module is responsible for catching the requests sent to the API, filtering the parameters and body fields, and sending them to the Services module.
+ \item The Web API module is responsible for handling the requests sent to the API, filtering the parameters and body fields, and sending them to the Services module.
  \item The Services module will process every request the Web API receives and forms a function call to the Database(DB) module. If the request consists of modifying or creating a Widget object it will make a call towards the Scheduler module in the ETL.
  \item The DB module is responsible to access and modify the ElasticSearch based database, containing all the necessary functions to create, obtain, delete, and edit the database. It also verifies if the inputted parameters are valid within the context of the application, preventing the existence of duplicates or the association of members to a project who aren't registered in the application, for example.
 \end{itemize}
@@ -303,9 +305,10 @@ The data object is where all the transformed ETL information will be stored. It 
 
 \newpage
 \section{Authization module, Backoffice and Access control}
- To give our users authorization and authentication features we had to think of a way of letting users create accounts, have users with different roles inside the application, and have different roles have their privileges. To give users that set of features, and as a request from Inetum, we utilized a Node module called Authization\cite{AUTHIZATION}. 
+As per request from Inetum, we implemented a solution to let users create accounts, and have different levels of access based on their roles, which can vary according to their authorizations inside of the application. 
+As solution, we use a Node module called Authization\cite{AUTHIZATION}. 
 
-As a reference point, this module was a project developed by the ISEL students Tiago Matias, Diogo Leandro, and João Barata of the LEIC programme as a final project of the Project and Seminar course, and was also developed in partnership with Inetum. It serves as a module that allows to set up an RBAC model with various roles, permissions and decide which roles should have access to what permissions. The module will also take care of aspects such as login, logout, and the creation of users. Since the module requires a SQL Database for the storage of users, we had to use PostgreSQL\cite{POSTGRESQL} to handle the storage of users, the created roles, and permissions.
+As a reference point, this module was a project developed by the ISEL students Tiago Matias, Diogo Leandro, and João Barata of the LEIC programme as a final project of the Project and Seminar course, and was also developed in partnership with Inetum. This module allows us to set up an RBAC model with various roles, permissions and decide which roles should have access to what permissions. The module will also take care of aspects such as login, logout, and the creation of users. Since the module requires a SQL Database for the storage of users, we had to use PostgreSQL\cite{POSTGRESQL} to handle the storage of users, the created roles, and permissions.
 
 As for the RBAC model, it was requested that there were three types of users: a master user, with every kind of access and ultimate control (that includes access to every existing project, both seeing and editing them), a user that would be able to manage certain projects and create new ones and finally a user with only permission to see projects he is a part of.
 With that said, we came up with an RBAC model with the roles Superuser, Manager, and Collaborator, with the following accesses:
@@ -402,20 +405,19 @@ We utilized the platform Figma\cite{FIGMA} to develop our Digital Prototype on f
 \end{figure}
 
 \chapter{Client Implementation}
-The following chapter explains the implementation for the client’s side of the application. 
-
-In this chapter, it is mostly explained the decisions made when implementing the client application, as well as what each page of the application is used for and how they function.
+The following chapter explains the implementation of the application on the client’s side. This chapter explains the decision of implementing the client-side. 
  
 \section{React vs Angular}
-React was our choice over Angular. The reason behind such a decision was that Angular has a lot of concepts and syntax to learn, as well as the fact that Angular's documentation is much longer, and we believe it might take some time to learn a new language given that the time frame was relatively short. React is easier to learn in the short term and the group that developed this project would attend a course to learn react, which would be an asset.
 
 React is an open-source JavaScript library focused on the development of user interfaces. With this library developing web applications, SPA (Single Page Application), or mobile applications turns into a very easy task since it offers great benefits in modularity and promotes a very clear flow of data and events. This greatly facilitates the development and planning of complex apps.
 We make use of the React Router library for the routing of the application. It enables the navigation among views of various components in a React Application and keeps the user interface in sync with the URL. It greatly helps with developing the application's navigation and how each page should look like.
+React was our choice over Angular. The reason behind such a decision was that Angular has a lot of concepts and syntax to learn, as well as the fact that Angular's documentation is much longer, and we believe it might take some time to learn a new language given that the time frame was relatively short. React is easier to learn in the short term and the group that developed this project would attend a course to learn react, which would be an asset.
 
 \section{React Hooks}
 React has very powerful tools to use when writing code for an application. These tools are known as "Hooks".
 
-Hooks are functions that allow us to "hook into" React state and lifecycle features from function components. Most of the hooks are built-in with the React library. By using these Hooks, we can use state and other React features without writing a class.
+Hooks are functions that allow us to "hook into" React state and lifecycle features from function components. The state object is where you store property values that belongs to the component. When the state object changes, the component re-renders. Components are the building blocks of the React app, they are a JavaScript function that optionally accepts properties and return a React element that describes how a section of the User Interface should appear on the user screen.  
+Most of the hooks are built-in with the React library. By using these Hooks, we can use state and other React features without writing a class.
 
 Since we ended up using the React technology for the development of the application front end, it is essential to give shed some details about the most important Hooks we used.
 \newline
@@ -460,12 +462,6 @@ Figure 6.2 is the data flow of our application.
 The App is the main entrance to our application, this is where the routing and session context verification is done.
 The app accesses the React Router to define the necessary URL for the application. Depending on the URL, the Router provides the user with the specific page component if the user context stored with useContext has valid credentials.
 
-\section{Pages and Components}
-Components are the building blocks of the React app. The components are a JavaScript function that optionally accepts properties and return a React element that describes how a section of the User Interface should appear on the user screen. 
-
-Inside the Pages directory, we have the web pages components, where interaction with the server is made, providing that data to the other components. This package contains the views of the general pages and uses the components to create these pages. 
-\newpage
-
 \section{Client Side Widgets}
 
 Widgets are among the most important parts of our application. They are how the information obtained from the various APIs will be displayed.
@@ -474,12 +470,13 @@ As such each type of widget we support is its separate component.
 \newline
 We provide 4 types of different widgets:
  \begin{itemize}
-	\item Bar Chart
-	\item Data Table
-	\item Gauge Chart
-	\item Pie Chart
+	\item Gauge Chart (figue 6.3)
+	\item Pie Table (figure 6.4)
+	\item Bar Chart (figure 6.5)
+	\item Data Chart (figure 6.6)
 \end{itemize}
 These widgets were developed in such a way that they can adapt to any form of data that is sent to them, for example, the Data Table will have the necessary columns to display the data and the Pie Chart will have as many divisions as required. To help the creation of the charts we use packages like react-chartjs-2 and react-gauge-chart.
+
 \begin{figure}[h!]
 \center
   \includegraphics[]{gauge-chart.png}
@@ -586,15 +583,13 @@ The same method is used to verify if a user can access the back-office page. Whe
 
 
 \chapter{User Interface}
-The following chapter presents the graphical user interface (UI) of the application.
+The following chapter presents the graphical user interface (UI) of the application. The following views are responsive and its from desktop view. Same views are different on mobile.
 
-With help from the information gathered from the user experience tests, the front-end application started development using React.
-\newline
 Based on the low fidelity prototype designed to conduct the tests, we implemented the necessary pages and components for the application.
-\newline
+
 Each component is designed in a way that makes recycling them on other pages easier and each page was easily and quickly implemented by using the Material UI Framework, an easy-to-use tool that provides pre-made components.
 Material UI also provides methods and tools to design pages according to the screen size being used to view the client application, making implementing the mobile and desktop pages a much simpler task.
-\newline
+
 As of now, the client application has multi-language support for 3 languages: English, Portuguese, and French. It uses i18n to translate.
  
 \begin{figure}[h!]
@@ -665,7 +660,9 @@ Adding a widget to a dashboard requires the user to select a template from the l
 \end{figure}
 
 \section{Settings Page}
-This view is where the user can change the application's display language. If the user is a superuser, he can add users to the Lean Dashboard application or access the User Management page where all the users in the application can be viewed and edited. The superuser can edit the users by adding or deleting roles for a specific user, deleting users, or changing his username or password. 
+This view is where the user can change the application's display language. To implement the language changer, we use a package called React-intl. The team stores messages in separates files, which file is a language for every component. 
+By stored the select language locally, we passed it to IntProvider, a component used to overwrite default messages, and finally, reload the page. 
+If the user is a superuser, he can add users to the Lean Dashboard application or access the User Management page where all the users in the application can be viewed and edited. The superuser can edit the users by adding or deleting roles for a specific user, deleting users, or changing his username or password. 
 
 \begin{figure}[h!]
 \center
@@ -691,6 +688,7 @@ All the project settings are dealt with on this page, where the project manager 
 \chapter{Tests and Deployment}
 In this chapter we will go over the methodology and what the team did to ensure the quality of work in this application as well as the steps for the deployment of the application
 
+\section{Tests}
 To guarantee the server's robustness, the team made numerous tests. These tests were also vital to ensure the correct functioning of the application before we could start working on the deployment.  The analysis was the possible error situations and their results and the successful cases. The technology that was chosen to do the tests was Frisby.
 
 \begin{figure}[h!]
