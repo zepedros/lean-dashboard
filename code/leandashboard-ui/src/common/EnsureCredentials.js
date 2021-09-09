@@ -5,6 +5,6 @@ import UserContext from './UserContext'
  */
 export default function EnsureCredentials({ redirect, children }) {
     return <UserContext.Consumer>
-        {value => value && value.credentials ? <> {children} </> : <Redirect to={redirect} />}
+        {value => (value && value.credentials) && document.cookie.split("=")[1] ? <> {children} </> : <Redirect to={redirect} />}
     </UserContext.Consumer>
 }
