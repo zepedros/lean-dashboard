@@ -76,21 +76,21 @@ The first two were developed using the Node.JS programming language while the cl
 \section{Report Organization}
 In this report, we explain the implemented solution to the problem at hand, as well as provide a more in-depth analysis of the architecture and technology choices. The organization of the report is based on the temporal order that we made throughout the project.
 
-In the Functionalities chapter, we will expose the features that were implemented for the project's application. Additionally, we also showcase a couple of aspects regarding planning and research.
+In the Functionalities chapter, we will expose the features that were implemented for the project's application.
 
 Next up, in the Architecture chapter, we will discuss aspects such as the implementation of the software being developed, decisions made by us and how certain problems were solved.
 
-Furthermore, we dedicate a chapter to the research done regarding User Experience for our application where we display some of the steps, we took in preparing our client application in terms of User Experience.
+Furthermore, we dedicate a chapter to the research done regarding User Experience for our application where we display some of the steps we took in preparing our client application in terms of User Experience.
 
 On the Client Application chapter, we explain the reason for the chosen development platform, how the client application works and display some of the web pages.  
 
-In the Deployment chapter, we explain the choices made for the deployment platform and how it was made. Finally, in the Conclusion chapter, we expose the learned lessons and future work for forthcoming versions.
+In the Tests and Deployment chapter, we explain the choices made for the deployment platform and how it was made, as well as the tests made to ensure the application was working as planned. Finally, in the Conclusion chapter, we expose the learned lessons and future work for forthcoming versions.
 
 \chapter{Functionalities}
 
 The functionalities chapter is destined to list and describe the functionalities that the application provides the user with.
 
-The solution is a responsive mobile-first web application that allows the user to consult and aggregate the information of various platforms. Inside a project, a manager is to be able to add various dashboards that will then have the desired widgets. The widgets are the structures that hold and show the desired information regarding issues, tests, and sprints from platforms such as Jira\cite{JIRA}, Squash\cite{SQUASH} and Azure\cite{AZURE}. A manager will then be able to add various users to its project so that those users can consult all the dashboards with the relevant information in each widget.
+The solution is a responsive mobile-first web application that allows the user to consult and aggregate the information of various platforms. Inside a project, a manager is able to add various dashboards that will then have the desired widgets. The widgets are the structures that hold and show the desired information regarding issues, tests, and sprints from platforms such as Jira\cite{JIRA}, Squash\cite{SQUASH} and Azure\cite{AZURE}. A manager will then be able to add various users to its project so that those users can consult all the dashboards with the relevant information in each widget.
 
 These are the features implemented within the application:
  
@@ -132,9 +132,9 @@ It contains information on how the application works and how its various modules
 \section{Architecture Principles and Components}
 The software solution in the Lean Dashboard is divided into three main components: the ETL\cite{ETLPROC}, the Lean Dashboard Server, and the client application.
  
-The ETL component, which stands for Extract, Transform and Load, is responsible for obtaining the information from the various APIs and then transforming it to the desired format, widgets, and then proceeding to store them in a database. Both the topics of widgets and the storage solution being used are addressed in this report in the Data model.
+The ETL component, which stands for Extract, Transform and Load, is responsible for obtaining the information from the various APIs and then transforming it to the desired format, the widgets, and then proceeding to store them in a database. Both the topics of widgets and the storage solution being used are addressed in this report in the Data model.
  
-With the use of the ETL procedure in our application, we bring a couple of advantages to the way we interact with the data being displayed. Since having near-real-time information is enough, with the Extract component we can avoid making high amounts of requests to the various APIs and avoiding overload them.
+With the use of the ETL procedure in our application, we bring a couple of advantages to the way we interact with the data being displayed. Since having near-real-time information is enough, with the Extract component we can avoid making high amounts of requests to the various APIs and avoid overloading them.
  
 Additionally, by adapting the extracted information (the Transform component) we can have a format of data that closely resembles the type and aspect of details we are trying to show to the user in each widget (we will also showcase the aspect of a widget in our application). Finally, with the information transformed to the desired format, when can then use a No-SQL database to store it and later use that information to display to the users 
  
@@ -184,7 +184,7 @@ These two components interact with one another so that the ETL knows what sort o
 The Lean Dashboard Server is composed of 3 Node.JS\cite{NODE} modules:
 \begin{itemize}
  \item The Web API module is responsible for catching the requests sent to the API, filtering the parameters and body fields, and sending them to the Services module.
- \item The services module will process every request the Web API receives and forms a function call to the Database(DB) module. If the request consists of modifying or creating a Widget object it will make a call towards the Scheduler module in the ETL.
+ \item The Services module will process every request the Web API receives and forms a function call to the Database(DB) module. If the request consists of modifying or creating a Widget object it will make a call towards the Scheduler module in the ETL.
  \item The DB module is responsible to access and modify the ElasticSearch based database, containing all the necessary functions to create, obtain, delete, and edit the database. It also verifies if the inputted parameters are valid within the context of the application, preventing the existence of duplicates or the association of members to a project who aren't registered in the application, for example.
 \end{itemize}
 \newpage
@@ -303,9 +303,9 @@ The data object is where all the transformed ETL information will be stored. It 
 
 \newpage
 \section{Authization module, Backoffice and Access control}
- To give our users authorization and authentication features we had to think of a way of letting users create accounts, have users with different roles inside the application, and have different roles have their privileges. To give users that set of features, and as a request of Inetum, we utilized a Node module called Authization\cite{AUTHIZATION}. 
+ To give our users authorization and authentication features we had to think of a way of letting users create accounts, have users with different roles inside the application, and have different roles have their privileges. To give users that set of features, and as a request from Inetum, we utilized a Node module called Authization\cite{AUTHIZATION}. 
 
-As a reference point, this module was a project developed last year by the ISEL students Tiago Matias, Diogo Leandro, and João Barata of the LEIC programme as a final project of the Project and Seminar course, and was also developed in partnership with Inetum, and serves as a module that allows to set up an RBAC model with various roles, permissions and decide which roles should have access to what permissions. The module will also take care of aspects such as login, logout, and the creation of users. Since the module requires a SQL Database for the storage of users, we had to use PostgreSQL\cite{POSTGRESQL} to handle the storage of users, the created roles, and permissions.
+As a reference point, this module was a project developed by the ISEL students Tiago Matias, Diogo Leandro, and João Barata of the LEIC programme as a final project of the Project and Seminar course, and was also developed in partnership with Inetum. It serves as a module that allows to set up an RBAC model with various roles, permissions and decide which roles should have access to what permissions. The module will also take care of aspects such as login, logout, and the creation of users. Since the module requires a SQL Database for the storage of users, we had to use PostgreSQL\cite{POSTGRESQL} to handle the storage of users, the created roles, and permissions.
 
 As for the RBAC model, it was requested that there were three types of users: a master user, with every kind of access and ultimate control (that includes access to every existing project, both seeing and editing them), a user that would be able to manage certain projects and create new ones and finally a user with only permission to see projects he is a part of.
 With that said, we came up with an RBAC model with the roles Superuser, Manager, and Collaborator, with the following accesses:
@@ -334,14 +334,14 @@ Following that, we developed a digital prototype that would allow us to make a s
 With that said, we believe the User Experience research done by the group is something that can greatly improve the result of the client application, whilst saving implementation time by allowing us to make some decisions beforehand. Usually, problems are easier to solve in a digital prototype than they are in code.
 
 \section{Red routes diagram}
-A Red Routes matrix is developed to aid a designer to identify the crucial and frequent tasks which users perform with our product. It consists of a matrix that delivers the frequency of performing, as well as the number of users who perform a specific task.
+A Red Routes matrix is developed to aid a designer in identifying the crucial and frequent tasks which users perform with our product. It consists of a matrix that delivers the frequency of performing, as well as the number of users who perform a specific task.
  
 In the process of identifying Red Routes, there are some factors to be considered:
 \begin{itemize}
 	\item Critical: Tasks that deliver relevant value to users.
  	\item Frequency: Tasks that are performed at high frequency, usually represent the use cases of over 90\% of users.
  	\item Key-value drivers: Red Routes drive the key business metrics.
- 	\item Impact: Red Routes significantly affects the overall user experience.
+ 	\item Impact: Red Routes significantly affect the overall user experience.
 \end{itemize}
 Through identification of our users' top tasks, we can:
 \begin{itemize}
@@ -350,7 +350,7 @@ Through identification of our users' top tasks, we can:
 	\item Target fundamental website pages.
 	\item Conduct usability tests.
 \end{itemize}	
-Regarding the identification of Red Routes' major advantage, it aids the team to identify the most important content and functionality rooted in usefulness to most users. Further, it supports a team in the selection of the minimum viable product (MVP), which leads to a more significant product roadmap design with the purpose of continuous iteration and overcome potential usability barriers on relevant user journeys. 
+Regarding the identification of Red Routes' major advantage, it aids the team in identifying the most important content and functionality rooted in usefulness to most users. Further, it supports a team in the selection of the minimum viable product (MVP), which leads to a more significant product roadmap design with the purpose of continuous iteration and overcome potential usability barriers on relevant user journeys. 
 \begin{figure}[h!]
 \center
   \includegraphics[width=\textwidth]{red-routes.png}
@@ -379,15 +379,15 @@ With this diagram, we can better plan the making to the various resources by ach
 A Digital Prototype is a tool used in UX research to develop a mock user interface that can be utilized in use-case tests. These tests gather a small group of people and establish a task that all users need to complete. 
  
 A Digital Prototype is how we validate our basic idea and the premises underpinning it by collecting user feedback.
-With the obtained results, we can then determine what aspects need to be addressed in the Digital Prototype by us developed.
+With the obtained results, we can then determine what aspects need to be addressed in the Digital Prototype.
 
-The usability tests were performed by five Inetum employees, the team used five simple use-cases to test the digital prototype. The use-cases that were used: 
+The usability tests were performed by five Inetum employees, the team used five simple use-cases to test the digital prototype. These are the use-cases that were used: 
  \begin{itemize}
-	\item USE CASE 1: A user creates a Lean Dashboard account and creates a project. Then log out of your account.
+	\item USE CASE 1: A user creates a Lean Dashboard account and creates a project. Then log out of their account.
 	\item USE CASE 2: A user already with an account created, creates a dashboard in an existing project.
 	\item USE CASE 3: A user with an account created creates a widget in an existing project and dashboard.
-	\item USE CASE 4: A user already with an account created, adds a member to his existing project.
-	\item USE CASE 5: A user already with an account created, changes the project name.
+	\item USE CASE 4: A user with an account created, adds a member to his existing project.
+	\item USE CASE 5: A user with an account created, changes the project's name.
 \end{itemize}	
 
 After performing all tests, the team changed some web flows, buttons and created new pages based on the interviewee's feedback. 
@@ -404,10 +404,10 @@ We utilized the platform Figma\cite{FIGMA} to develop our Digital Prototype on f
 \chapter{Client Implementation}
 The following chapter explains the implementation for the client’s side of the application. 
 
-This section, it is mostly explained the decisions made when implementing the client application, as well as what each page of the application is used for and how they function.
+In this chapter, it is mostly explained the decisions made when implementing the client application, as well as what each page of the application is used for and how they function.
  
 \section{React vs Angular}
-React was our choice over Angular. The reason behind such a decision was that Angular has a lot of concepts and syntax to learn, as well as the fact that Angular's documentation is much longer, and we believe it might take some time to learn a new language given that the time frame is relatively short. React is easier to learn in the short term than Angular and the group that developed this project would attend a course to learn react, which would be an asset.
+React was our choice over Angular. The reason behind such a decision was that Angular has a lot of concepts and syntax to learn, as well as the fact that Angular's documentation is much longer, and we believe it might take some time to learn a new language given that the time frame was relatively short. React is easier to learn in the short term and the group that developed this project would attend a course to learn react, which would be an asset.
 
 React is an open-source JavaScript library focused on the development of user interfaces. With this library developing web applications, SPA (Single Page Application), or mobile applications turns into a very easy task since it offers great benefits in modularity and promotes a very clear flow of data and events. This greatly facilitates the development and planning of complex apps.
 We make use of the React Router library for the routing of the application. It enables the navigation among views of various components in a React Application and keeps the user interface in sync with the URL. It greatly helps with developing the application's navigation and how each page should look like.
@@ -415,7 +415,7 @@ We make use of the React Router library for the routing of the application. It e
 \section{React Hooks}
 React has very powerful tools to use when writing code for an application. These tools are known as "Hooks".
 
-Hooks are functions that allow us to “hook into” React state and lifecycle features from function components. Most of the hooks are built-in with the React library. By using these Hooks, we can use state and other React features without writing a class.
+Hooks are functions that allow us to "hook into" React state and lifecycle features from function components. Most of the hooks are built-in with the React library. By using these Hooks, we can use state and other React features without writing a class.
 
 Since we ended up using the React technology for the development of the application front end, it is essential to give shed some details about the most important Hooks we used.
 \newline
@@ -424,7 +424,7 @@ On our client application we use 4 main hooks, these being:
  \begin{itemize}
 	\item useState\cite{USESTATE}:
 
-This hook is used to store the state within our components. Throughout the application, we mostly used it to save the data we fetch from our API and the input for the application, but also to save information regarding the user rules (for example, if the user logged in as a manager, that information will be saved in state variable when the user is checking it profiles).
+This hook is used to store the state within our components. Throughout the application, we mostly used it to save the data we fetch from our API and input from the user, but also to save information regarding the user rules (for example, if the user logged in as a manager, that information will be saved in state variable when the user is checking their profile).
 	\item useEffect\cite{USEEFFECT}:
 
 useEffect is a hook that allows us to run and control certain effects on our components. The effect is run whenever a component is loaded or when the data in one of the dependencies is changed. In the context of our application, we use this hook to run the necessary functions to obtain data from the API and store it in the state.
@@ -458,12 +458,12 @@ The regular components can be reused on various page components.
 \end{figure}
 Figure 6.2 is the data flow of our application.
 The App is the main entrance to our application, this is where the routing and session context verification is done.
-The app accesses the React Router to define the necessary URL for the application, depending on the URL the Router provides the user with the specific page component if the user stored context with useContext has valid credentials.
+The app accesses the React Router to define the necessary URL for the application. Depending on the URL, the Router provides the user with the specific page component if the user context stored with useContext has valid credentials.
 
 \section{Pages and Components}
-Components are the building blocks of the React app. The components is a JavaScript function that optionally accepts properties and returns a React element that describes how a section of the User Interface should appear on the user screen. 
+Components are the building blocks of the React app. The components are a JavaScript function that optionally accepts properties and return a React element that describes how a section of the User Interface should appear on the user screen. 
 
-Inside the Pages directory, we have the web pages where interact with the server and provide data for the components. This package contains the views of the general pages and uses the components to create these pages. 
+Inside the Pages directory, we have the web pages components, where interaction with the server is made, providing that data to the other components. This package contains the views of the general pages and uses the components to create these pages. 
 \newpage
 
 \section{Client Side Widgets}
@@ -479,7 +479,32 @@ We provide 4 types of different widgets:
 	\item Gauge Chart
 	\item Pie Chart
 \end{itemize}
-These widgets were developed in such a way that can adapt to any form of data that is sent to them, for example, the Data Table will have the necessary columns to display the data and the Pie Chart will have as many divisions as required. To help the creation of the charts we use packages like react-chartjs-2 and react-gauge-chart. 
+These widgets were developed in such a way that they can adapt to any form of data that is sent to them, for example, the Data Table will have the necessary columns to display the data and the Pie Chart will have as many divisions as required. To help the creation of the charts we use packages like react-chartjs-2 and react-gauge-chart.
+\begin{figure}[h!]
+\center
+  \includegraphics[]{gauge-chart.png}
+\caption{Gauge Chart}
+\end{figure}
+
+\begin{figure}[h!]
+\center
+  \includegraphics[]{pie-chart.png}
+\caption{Pie Chart}
+\end{figure}
+
+\newpage
+
+\begin{figure}[h!]
+\center
+  \includegraphics[]{bar-chart.png}
+\caption{Bar Chart}
+\end{figure}
+
+\begin{figure}[h!]
+\center
+  \includegraphics[width=\textwidth]{data-table.png}
+\caption{Data Table}
+\end{figure}
 
 \section{Client Side Access Control}
 To keep in line with the rules of access to each project and its dashboards, in each project and dashboard a given user tries to access, a set of verifications are put inset.
@@ -561,8 +586,8 @@ The same method is used to verify if a user can access the back-office page. Whe
 
 
 \chapter{User Interface}
-The following section presents the graphical user interface (UI) of the application.
-\section{User Interface}
+The following chapter presents the graphical user interface (UI) of the application.
+
 With help from the information gathered from the user experience tests, the front-end application started development using React.
 \newline
 Based on the low fidelity prototype designed to conduct the tests, we implemented the necessary pages and components for the application.
@@ -583,7 +608,7 @@ In figure 7.1, we have the Home Page, it is the first page the user sees. Here t
 
 \section{Sign In Page}
 The sign-in page is where the user enters the credentials necessary to sign into our application.
-They only must input a valid username and its associated password to enter.
+They must input a valid username and its associated password to enter.
 \newline
 The page has a checkbox the user can toggle to allow the browser to keep track of the session. 
 The user's session information is stored in two different storages.
@@ -591,7 +616,7 @@ The user's session information is stored in two different storages.
 The session storage is used when the user does not want the browser to remember them since the information is cleared when they close the tab.
 \newline
 The local storage is used when the user toggles the "Remember Me" checkbox. This storage will save the session information and won't be cleared until the user logs off.
-So that this effect can be verified, the application verifies if the browser has any saved session, if it's not saved the client redirects the user to the login page if the user is trying to access a restricted page.
+So that this effect can be verified, the application verifies if the browser has any saved session, if its not saved the client redirects the user to the login page if the user is trying to access a restricted page.
 \newline
 The user's username is stored within the application by using the React Hook "UseContext" to later be used for the required API calls.
 In case the session information is saved, the client sends a request to the API to authenticate the user within the application.
@@ -604,10 +629,10 @@ In case the session information is saved, the client sends a request to the API 
 
 \newpage 
 
-In figure 6.2, is the view that represents the entrance to the user account. It is composed by a form of two text input boxes that receive the username and the password.
+On figure 7.2 we have the view that represents the entrance to the user account. It is composed by a form of two text input boxes that receive the username and the password.
 
 \section{Projects Page}
-This view presents to the user the projects that he is on. The page displays in form of a table or list of the projects composed by name, state, manager, and completion, which is the percentage of completion of the projects. The manager or superuser role can add a project by pressing the button. Once clicked will show up a pop-up to fill with name, description, and end date.
+This view presents to the user the projects that he is on. The page displays in form of a table or list of the projects composed by name, state, manager, and completion, which is the percentage of completion of the projects. The manager or superuser can add a project by pressing the "Add" button. Once this button is clicked, the application will show a pop-up with text fields to fill with name, description, and end date of the project.
 
 \begin{figure}[h!]
 \center
@@ -616,7 +641,7 @@ This view presents to the user the projects that he is on. The page displays in 
 \end{figure}
 
 \section{Dashboards Page}
-This page gives the user a view of the dashboards inside of a project. It can be displayed in form of a list or a group of cards. On this page, we can add a dashboard and be redirected to the project's settings page. On mobile, the way that options appear is with a swipeable drawer and for other screens with a group of buttons displayed on the left side of the screen.
+This page gives the user a view of the dashboards inside of a project. It can be displayed in form of a list or a group of cards. On this page, we can add a dashboard and be redirected to the project's settings page. On mobile, the options are shown with a swipeable drawer and for bigger screens with a group of buttons displayed on the right side of the screen.
 
 \begin{figure}[h!]
 \center
@@ -631,7 +656,7 @@ By clicking on the first option, the user will be redirected to a page where all
 The second option is a pop-up to change the name and description of a dashboard.
 The third is a pop-up to delete the dashboard and the fourth button will be redirected to a page like the template widgets to edit a specific widget, like deleting it, changing the credentials being used, or the update time.
 \newline
-Adding a widget to a dashboard requires the user to select a template from the list of supported widgets. After this has been decided, the user is presented with a dialogue with the required widget information. The user must select credentials according to the source of the widget and the update time settings. When the user edits the time settings, they are presented with a clock if it is a time input or a calendar if it is a date input. When the user confirms this action, they are redirected to the dashboard page and can see the newly added widget. To refresh the widget with the real information, we use a useEffect to request an endpoint to get the widgets every minute.
+Adding a widget to a dashboard requires the user to select a template from the list of supported widgets. After this has been decided, the user is presented with a dialogue where the required information for the widget to function is introduced. The user must select the credentials according to the source of the widget and insert the update time settings. When the user edits the time settings, they are presented with a clock if it is a time input or a calendar if it is a date input. When the user confirms this action, they are redirected to the dashboard page and can see the newly added widget. To refresh the widget with the real information, we use a useEffect to request an endpoint to get the most updated widget information every minute.
 
 \begin{figure}[h!]
 \center
@@ -640,7 +665,7 @@ Adding a widget to a dashboard requires the user to select a template from the l
 \end{figure}
 
 \section{Settings Page}
-This view is where the user can change the application's display language. If the user is a superuser, he can add users to the Lean Dashboard application or access the User Management page where all the users in the application can be viewed and edited, by adding or deleting roles for a specific user, deleting users, or changing his username or password. 
+This view is where the user can change the application's display language. If the user is a superuser, he can add users to the Lean Dashboard application or access the User Management page where all the users in the application can be viewed and edited. The superuser can edit the users by adding or deleting roles for a specific user, deleting users, or changing his username or password. 
 
 \begin{figure}[h!]
 \center
@@ -666,7 +691,7 @@ All the project settings are dealt with on this page, where the project manager 
 \chapter{Tests and Deployment}
 In this chapter we will go over the methodology and what the team did to ensure the quality of work in this application as well as the steps for the deployment of the application
 
-To guarantee the server's robustness, the team made numerous tests. These tests were also vital to ensure the correct functioning of the application before we could start working on the deployment.  The analysis was the possible error situations and their results and the successful cases. The technology that chooses to do the tests was Frisby.
+To guarantee the server's robustness, the team made numerous tests. These tests were also vital to ensure the correct functioning of the application before we could start working on the deployment.  The analysis was the possible error situations and their results and the successful cases. The technology that was chosen to do the tests was Frisby.
 
 \begin{figure}[h!]
 \center
@@ -674,13 +699,10 @@ To guarantee the server's robustness, the team made numerous tests. These tests 
 \caption{Unit test implementation example}
 \end{figure}
 
-The figure above illustrates two unit tests, the first one is a successful login and the second is to get all project belongs to the superuser.
-
-This tests also
+The figure above illustrates two unit tests, the first one is a successful login and the second obtains all project belongs to the superuser successfully.
 
 \section{Deployment}
 For the deployment of the application, we ended up choosing the Heroku platform. This was the platform chosen since it was used previously in the Software Laboratory course and thus all three students add some experience with the procedure of deploying an application on this service.
-
 
 Since now we are hosting the application outside our local machines, to take care of the storage of all the users and the projects (and their respective dashboards and widgets) we used two addons: Heroku Postgres\cite{HEROKUPOSTGRES} and Bonsai. The Heroku Postgres add-on will provide us with a PostgreSQL database for the user storage and all the projects and their dashboards and widgets will be stored in the Bonsai Elasticsearch cluster provided.
 
@@ -718,7 +740,7 @@ This project provided the opportunity to work with Inetum and developing a web a
 
 The project also taught the group a lot about the research and planning of an application's user experience as the team has never been introduced to such a topic. Conducting the research on UX and usability tests showed us a new perspective on application development.
 
-In the long term, the following versions can have other functionalities like features to the digital accessibility, which means making the application more inclusive for all users, drag and drop the widgets in the dashboard making the dashboard more configurable, and creation of more widgets.
+In the long term, the following versions of the application could have other functionalities such as digital accessibility, which means making the application more inclusive for disabled users, drag and drop the widgets in the dashboard making the dashboard more configurable, and creation of more widgets.
 
 According to our initial planning, some of the tasks took longer than we were expecting, especially the ETL procedure as it took some time to learn and adapt to our application, but overall the application was finished successfully with good results solving the main problem of aggregating all the spread information in one place for a team to see while having an easy to use and intuitive design that adapts to every type of device and supports various display languages.
 
