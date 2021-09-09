@@ -126,9 +126,7 @@ These are the features implemented within the application:
 Throughout this report, we will explain how we implemented these features (each in their respective chapter) and give further detail about them.
 
 \chapter{Architecture}
-This chapter is dedicated to cover topics like the software's architecture, the data model, and the principles under which the application was developed. 
-
-It contains information on how the application works and how its various modules and components interact with each other, as well as the structure of the necessary information being stored in the database and the application's authentication and authorization flow.
+This chapter is dedicated to cover topics like the software's architecture and his components under which the application was developed. 
 \section{Architecture Principles and Components}
 The software solution in the Lean Dashboard is divided into three main components: the ETL\cite{ETLPROC}, the Lean Dashboard Server, and the client application.
  
@@ -143,6 +141,7 @@ The Lean Dashboard server ends up serving as a gatherer of information. Inside t
 Lastly, we have the client application. The client application is responsible for showing the user all its projects. Users (if they are given these permissions) will be able to consult but also edit projects and dashboards. The main goal will be checking on the widgets inside a certain dashboard since those are the objects that contain the information being retrieved and transformed by the ETL.
 
 \section{Software Architecture}
+
 \begin{figure}[h!]
 \center
   \includegraphics[width=\textwidth]{lean-dashboard-software-architecture.png}
@@ -171,6 +170,7 @@ The API's endpoints can be found with more depth within Appendix A present in th
 Lastly on the rightmost side of the diagram, there is the SPA, the component that will be accessed by the application user on their preferred device. To provide the user with the best experience, this SPA was developed as a mobile-first, responsive web application capable of supporting different types of display screens, starting from the smartphone up to the bigger ones like a regular desktop computer or a TV screen.
 
 \chapter{Server Implementation}
+This chapter contains information on how the application works and how its various modules and components interact with each other, as well as the structure of the necessary information being stored in the database and the application's authentication and authorization flow.
 \section{Scheme of the Server and Extract, Transform and Load}
 \begin{figure}[h!]
 \center
@@ -708,7 +708,6 @@ Since now we are hosting the application outside our local machines, to take car
 
 After having the storage situation handled, we followed the official React guide for deploying an application\cite{REACTDEPLOYMENT} to the Heroku platform. With that, we then followed the guide from the Heroku Buildpack for Create React App, with a Node.js server
 
-\newpage
 Before deploying the application itself we had to set up the start and build scripts inside the package.json file. These scripts respectively tell what commands need to be executed in the application startup and in the build process:
 
 

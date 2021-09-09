@@ -1,45 +1,48 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2021.4.2)  9 SEP 2021 17:01
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.4.2)  9 SEP 2021 17:17
 entering extended mode
  restricted \write18 enabled.
+ file:line:error style messages enabled.
  %&-line parsing enabled.
 **main.tex
 (./main.tex
-LaTeX2e <2020-10-01> patch level 4
-L3 programming layer <2021-02-18>
-(c:/texlive/2021/texmf-dist/tex/latex/base/report.cls
-Document Class: report 2020/04/10 v1.4m Standard LaTeX document class
-(c:/texlive/2021/texmf-dist/tex/latex/base/size10.clo
-File: size10.clo 2020/04/10 v1.4m Standard LaTeX file (size option)
+LaTeX2e <2020-02-02> patch level 5
+L3 programming layer <2020-03-06>
+(/usr/local/texlive/2020/texmf-dist/tex/latex/base/report.cls
+Document Class: report 2019/12/20 v1.4l Standard LaTeX document class
+(/usr/local/texlive/2020/texmf-dist/tex/latex/base/size10.clo
+File: size10.clo 2019/12/20 v1.4l Standard LaTeX file (size option)
 )
-\c@part=\count179
-\c@chapter=\count180
-\c@section=\count181
-\c@subsection=\count182
-\c@subsubsection=\count183
-\c@paragraph=\count184
-\c@subparagraph=\count185
-\c@figure=\count186
-\c@table=\count187
+\c@part=\count167
+\c@chapter=\count168
+\c@section=\count169
+\c@subsection=\count170
+\c@subsubsection=\count171
+\c@paragraph=\count172
+\c@subparagraph=\count173
+\c@figure=\count174
+\c@table=\count175
 \abovecaptionskip=\skip47
 \belowcaptionskip=\skip48
-\bibindent=\dimen138
+\bibindent=\dimen134
 )
-(c:/texlive/2021/texmf-dist/tex/generic/babel/babel.sty
-Package: babel 2021/03/24 3.56 The Babel package
+(/usr/local/texlive/2020/texmf-dist/tex/generic/babel/babel.sty
+Package: babel 2020/03/22 3.42 The Babel package
 
-(c:/texlive/2021/texmf-dist/tex/generic/babel/babel.def
-File: babel.def 2021/03/24 3.56 Babel common definitions
-\babel@savecnt=\count188
-\U@D=\dimen139
-\l@babelnohyphens=\language87
-
-(c:/texlive/2021/texmf-dist/tex/generic/babel/txtbabel.def)
-\bbl@readstream=\read2
+(/usr/local/texlive/2020/texmf-dist/tex/generic/babel/switch.def
+File: switch.def 2020/03/22 3.42 Babel switching mechanism
 )
-\bbl@dirlevel=\count189
-
-(c:/texlive/2021/texmf-dist/tex/generic/babel-english/english.ldf
+(/usr/local/texlive/2020/texmf-dist/tex/generic/babel-english/english.ldf
 Language: english 2017/06/06 v3.3r English support from the babel system
+
+(/usr/local/texlive/2020/texmf-dist/tex/generic/babel/babel.def
+File: babel.def 2020/03/22 3.42 Babel common definitions
+\babel@savecnt=\count176
+\U@D=\dimen135
+
+(/usr/local/texlive/2020/texmf-dist/tex/generic/babel/txtbabel.def)
+\bbl@readstream=\read2
+\bbl@dirlevel=\count177
+)
 Package babel Info: \l@canadian = using hyphenrules for english
 (babel)             (\language0) on input line 102.
 Package babel Info: \l@australian = using hyphenrules for ukenglish
@@ -47,67 +50,77 @@ Package babel Info: \l@australian = using hyphenrules for ukenglish
 Package babel Info: \l@newzealand = using hyphenrules for ukenglish
 (babel)             (\language21) on input line 108.
 ))
-(c:/texlive/2021/texmf-dist/tex/latex/base/inputenc.sty
-Package: inputenc 2020/08/01 v1.3d Input encoding file
+(/usr/local/texlive/2020/texmf-dist/tex/latex/base/inputenc.sty
+Package: inputenc 2018/08/11 v1.3c Input encoding file
 \inpenc@prehook=\toks15
 \inpenc@posthook=\toks16
 )
-(c:/texlive/2021/texmf-dist/tex/latex/graphics/graphicx.sty
-Package: graphicx 2020/09/09 v1.2b Enhanced LaTeX Graphics (DPC,SPQR)
+(/usr/local/texlive/2020/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2019/11/30 v1.2a Enhanced LaTeX Graphics (DPC,SPQR)
 
-(c:/texlive/2021/texmf-dist/tex/latex/graphics/keyval.sty
+(/usr/local/texlive/2020/texmf-dist/tex/latex/graphics/keyval.sty
 Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
 \KV@toks@=\toks17
 )
-(c:/texlive/2021/texmf-dist/tex/latex/graphics/graphics.sty
-Package: graphics 2020/08/30 v1.4c Standard LaTeX Graphics (DPC,SPQR)
+(/usr/local/texlive/2020/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2019/11/30 v1.4a Standard LaTeX Graphics (DPC,SPQR)
 
-(c:/texlive/2021/texmf-dist/tex/latex/graphics/trig.sty
+(/usr/local/texlive/2020/texmf-dist/tex/latex/graphics/trig.sty
 Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
 )
-(c:/texlive/2021/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+(/usr/local/texlive/2020/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
 Package graphics Info: Driver file: pdftex.def on input line 105.
 
-(c:/texlive/2021/texmf-dist/tex/latex/graphics-def/pdftex.def
-File: pdftex.def 2020/10/05 v1.2a Graphics/color driver for pdftex
+(/usr/local/texlive/2020/texmf-dist/tex/latex/graphics-def/pdftex.def
+File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
 ))
-\Gin@req@height=\dimen140
-\Gin@req@width=\dimen141
+\Gin@req@height=\dimen136
+\Gin@req@width=\dimen137
 )
-(c:/texlive/2021/texmf-dist/tex/latex/url/url.sty
+(/usr/local/texlive/2020/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip16
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
-(c:/texlive/2021/texmf-dist/tex/latex/pdfpages/pdfpages.sty
-Package: pdfpages 2021/03/06 v0.5t Insert pages of external PDF documents (AM)
+(/usr/local/texlive/2020/texmf-dist/tex/latex/pdfpages/pdfpages.sty
+Package: pdfpages 2020/01/28 v0.5q Insert pages of external PDF documents (AM)
 
-(c:/texlive/2021/texmf-dist/tex/latex/base/ifthen.sty
+(/usr/local/texlive/2020/texmf-dist/tex/latex/base/ifthen.sty
 Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
 )
-(c:/texlive/2021/texmf-dist/tex/latex/tools/calc.sty
+(/usr/local/texlive/2020/texmf-dist/tex/latex/tools/calc.sty
 Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count190
-\calc@Bcount=\count191
-\calc@Adimen=\dimen142
-\calc@Bdimen=\dimen143
+\calc@Acount=\count178
+\calc@Bcount=\count179
+\calc@Adimen=\dimen138
+\calc@Bdimen=\dimen139
 \calc@Askip=\skip49
 \calc@Bskip=\skip50
 LaTeX Info: Redefining \setlength on input line 80.
 LaTeX Info: Redefining \addtolength on input line 81.
-\calc@Ccount=\count192
+\calc@Ccount=\count180
 \calc@Cskip=\skip51
 )
-(c:/texlive/2021/texmf-dist/tex/latex/eso-pic/eso-pic.sty
-Package: eso-pic 2020/10/14 v3.0a eso-pic (RN)
-\ESO@tempdima=\dimen144
-\ESO@tempdimb=\dimen145
+(/usr/local/texlive/2020/texmf-dist/tex/latex/eso-pic/eso-pic.sty
+Package: eso-pic 2018/04/12 v2.0h eso-pic (RN)
 
-(c:/texlive/2021/texmf-dist/tex/latex/xcolor/xcolor.sty
+(/usr/local/texlive/2020/texmf-dist/tex/generic/atbegshi/atbegshi.sty
+Package: atbegshi 2019/12/05 v1.19 At begin shipout hook (HO)
+
+(/usr/local/texlive/2020/texmf-dist/tex/generic/infwarerr/infwarerr.sty
+Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
+)
+(/usr/local/texlive/2020/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
+Package: ltxcmds 2019/12/15 v1.24 LaTeX kernel commands for general use (HO)
+)
+(/usr/local/texlive/2020/texmf-dist/tex/generic/iftex/iftex.sty
+Package: iftex 2020/03/06 v1.0d TeX engine tests
+))
+(/usr/local/texlive/2020/texmf-dist/tex/latex/xcolor/xcolor.sty
 Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
 
-(c:/texlive/2021/texmf-dist/tex/latex/graphics-cfg/color.cfg
+(/usr/local/texlive/2020/texmf-dist/tex/latex/graphics-cfg/color.cfg
 File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
 Package xcolor Info: Driver file: pdftex.def on input line 225.
@@ -121,82 +134,80 @@ Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
 Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
 ))
-\AM@pagewidth=\dimen146
-\AM@pageheight=\dimen147
-\AM@fboxrule=\dimen148
+\AM@pagewidth=\dimen140
+\AM@pageheight=\dimen141
 
-(c:/texlive/2021/texmf-dist/tex/latex/pdfpages/pppdftex.def
-File: pppdftex.def 2021/03/06 v0.5t Pdfpages driver for pdfTeX (AM)
+(/usr/local/texlive/2020/texmf-dist/tex/latex/pdfpages/pppdftex.def
+File: pppdftex.def 2020/01/28 v0.5q Pdfpages driver for pdfTeX (AM)
 )
-\pdfpages@includegraphics@status=\count193
-\AM@pagebox=\box47
+\AM@pagebox=\box45
 \AM@global@opts=\toks18
-\AM@pagecnt=\count194
+\AM@pagecnt=\count181
 \AM@toc@title=\toks19
-\c@AM@survey=\count195
-\AM@templatesizebox=\box48
+\c@AM@survey=\count182
+\AM@templatesizebox=\box46
 )
-(c:/texlive/2021/texmf-dist/tex/latex/adjustbox/adjustbox.sty
-Package: adjustbox 2020/08/19 v1.3 Adjusting TeX boxes (trim, clip, ...)
+(/usr/local/texlive/2020/texmf-dist/tex/latex/adjustbox/adjustbox.sty
+Package: adjustbox 2019/01/04 v1.2 Adjusting TeX boxes (trim, clip, ...)
 
-(c:/texlive/2021/texmf-dist/tex/latex/xkeyval/xkeyval.sty
-Package: xkeyval 2020/11/20 v2.8 package option processing (HA)
+(/usr/local/texlive/2020/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+Package: xkeyval 2014/12/03 v2.7a package option processing (HA)
 
-(c:/texlive/2021/texmf-dist/tex/generic/xkeyval/xkeyval.tex
-(c:/texlive/2021/texmf-dist/tex/generic/xkeyval/xkvutils.tex
+(/usr/local/texlive/2020/texmf-dist/tex/generic/xkeyval/xkeyval.tex
+(/usr/local/texlive/2020/texmf-dist/tex/generic/xkeyval/xkvutils.tex
 \XKV@toks=\toks20
 \XKV@tempa@toks=\toks21
 )
-\XKV@depth=\count196
+\XKV@depth=\count183
 File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
 ))
-(c:/texlive/2021/texmf-dist/tex/latex/adjustbox/adjcalc.sty
+(/usr/local/texlive/2020/texmf-dist/tex/latex/adjustbox/adjcalc.sty
 Package: adjcalc 2012/05/16 v1.1 Provides advanced setlength with multiple back
 -ends (calc, etex, pgfmath)
 )
-(c:/texlive/2021/texmf-dist/tex/latex/adjustbox/trimclip.sty
-Package: trimclip 2020/08/19 v1.2 Trim and clip general TeX material
+(/usr/local/texlive/2020/texmf-dist/tex/latex/adjustbox/trimclip.sty
+Package: trimclip 2018/04/08 v1.1 Trim and clip general TeX material
 
-(c:/texlive/2021/texmf-dist/tex/latex/collectbox/collectbox.sty
+(/usr/local/texlive/2020/texmf-dist/tex/latex/collectbox/collectbox.sty
 Package: collectbox 2012/05/17 v0.4b Collect macro arguments as boxes
-\collectedbox=\box49
+\collectedbox=\box47
 )
-\tc@llx=\dimen149
-\tc@lly=\dimen150
-\tc@urx=\dimen151
-\tc@ury=\dimen152
+\tc@llx=\dimen142
+\tc@lly=\dimen143
+\tc@urx=\dimen144
+\tc@ury=\dimen145
 Package trimclip Info: Using driver 'tc-pdftex.def'.
 
-(c:/texlive/2021/texmf-dist/tex/latex/adjustbox/tc-pdftex.def
+(/usr/local/texlive/2020/texmf-dist/tex/latex/adjustbox/tc-pdftex.def
 File: tc-pdftex.def 2019/01/04 v2.2 Clipping driver for pdftex
 ))
-\adjbox@Width=\dimen153
-\adjbox@Height=\dimen154
-\adjbox@Depth=\dimen155
-\adjbox@Totalheight=\dimen156
-\adjbox@pwidth=\dimen157
-\adjbox@pheight=\dimen158
-\adjbox@pdepth=\dimen159
-\adjbox@ptotalheight=\dimen160
+\adjbox@Width=\dimen146
+\adjbox@Height=\dimen147
+\adjbox@Depth=\dimen148
+\adjbox@Totalheight=\dimen149
+\adjbox@pwidth=\dimen150
+\adjbox@pheight=\dimen151
+\adjbox@pdepth=\dimen152
+\adjbox@ptotalheight=\dimen153
 
-(c:/texlive/2021/texmf-dist/tex/latex/ifoddpage/ifoddpage.sty
+(/usr/local/texlive/2020/texmf-dist/tex/latex/ifoddpage/ifoddpage.sty
 Package: ifoddpage 2016/04/23 v1.1 Conditionals for odd/even page detection
-\c@checkoddpage=\count197
+\c@checkoddpage=\count184
 )
-(c:/texlive/2021/texmf-dist/tex/latex/varwidth/varwidth.sty
+(/usr/local/texlive/2020/texmf-dist/tex/latex/varwidth/varwidth.sty
 Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
-\@vwid@box=\box50
-\sift@deathcycles=\count198
-\@vwid@loff=\dimen161
-\@vwid@roff=\dimen162
+\@vwid@box=\box48
+\sift@deathcycles=\count185
+\@vwid@loff=\dimen154
+\@vwid@roff=\dimen155
 ))
-(c:/texlive/2021/texmf-dist/tex/latex/tools/indentfirst.sty
+(/usr/local/texlive/2020/texmf-dist/tex/latex/tools/indentfirst.sty
 Package: indentfirst 1995/11/23 v1.03 Indent first paragraph (DPC)
 )
-(c:/texlive/2021/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
-File: l3backend-pdftex.def 2021-03-18 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count199
-\l__pdf_internal_box=\box51
+(/usr/local/texlive/2020/texmf-dist/tex/latex/l3backend/l3backend-pdfmode.def
+File: l3backend-pdfmode.def 2020-03-12 L3 backend support: PDF mode
+\l__kernel_color_stack_int=\count186
+\l__pdf_internal_box=\box49
 )
 (./main.aux)
 \openout1 = `main.aux'.
@@ -215,36 +226,36 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 21.
 LaTeX Font Info:    ... okay on input line 21.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 21.
 LaTeX Font Info:    ... okay on input line 21.
- (c:/texlive/2021/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+
+(/usr/local/texlive/2020/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count266
-\scratchdimen=\dimen163
-\scratchbox=\box52
-\nofMPsegments=\count267
-\nofMParguments=\count268
+\scratchcounter=\count187
+\scratchdimen=\dimen156
+\scratchbox=\box50
+\nofMPsegments=\count188
+\nofMParguments=\count189
 \everyMPshowfont=\toks22
-\MPscratchCnt=\count269
-\MPscratchDim=\dimen164
-\MPnumerator=\count270
-\makeMPintoPDFobject=\count271
+\MPscratchCnt=\count190
+\MPscratchDim=\dimen157
+\MPnumerator=\count191
+\makeMPintoPDFobject=\count192
 \everyMPtoPDFconversion=\toks23
-) (c:/texlive/2021/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+) (/usr/local/texlive/2020/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 85.
 
-(c:/texlive/2021/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+(/usr/local/texlive/2020/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-(c:/texlive/2021/texmf-dist/tex/latex/pdflscape/pdflscape.sty
+\AtBeginShipoutBox=\box51
+
+(/usr/local/texlive/2020/texmf-dist/tex/latex/pdflscape/pdflscape.sty
 Package: pdflscape 2019/12/05 v0.12 Display of landscape pages in PDF (HO)
 
-(c:/texlive/2021/texmf-dist/tex/generic/iftex/iftex.sty
-Package: iftex 2020/03/06 v1.0d TeX engine tests
-)
-(c:/texlive/2021/texmf-dist/tex/latex/graphics/lscape.sty
-Package: lscape 2020/05/28 v3.02 Landscape Pages (DPC)
+(/usr/local/texlive/2020/texmf-dist/tex/latex/graphics/lscape.sty
+Package: lscape 2000/10/22 v3.01 Landscape Pages (DPC)
 )
 Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 )
@@ -261,8 +272,8 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 45.
  [1
 
-{c:/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./logoISEL.png>
-] [2] (./main.toc
+{/usr/local/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./logoI
+SEL.png>] [2] (./main.toc
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <7> on input line 3.
 LaTeX Font Info:    External font `cmex10' loaded for size
@@ -291,34 +302,38 @@ Chapter 3.
 File: lean-dashboard-software-architecture.png Graphic file (type png)
 <use lean-dashboard-software-architecture.png>
 Package pdftex.def Info: lean-dashboard-software-architecture.png  used on inpu
-t line 148.
+t line 147.
 (pdftex.def)             Requested size: 441.01772pt x 204.67085pt.
-[9
 
-] [10 <./lean-dashboard-software-architecture.png>]
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [9
+
+]
+[10 <./lean-dashboard-software-architecture.png>] [11]
 Chapter 4.
-<arquitetura software.png, id=45, 653.44125pt x 432.61626pt>
+<arquitetura software.png, id=48, 653.44125pt x 432.61626pt>
 File: arquitetura software.png Graphic file (type png)
 <use arquitetura software.png>
 Package pdftex.def Info: arquitetura software.png  used on input line 177.
 (pdftex.def)             Requested size: 441.01772pt x 291.97697pt.
+[12
 
-Underfull \vbox (badness 5105) has occurred while \output is active []
-
- [11
-
- <./arquitetura software.png>] [12] [13]
-<modelo de dados.png, id=57, 764.8575pt x 1086.0575pt>
+ <./arquitetura software.png>] [13] [14]
+<modelo de dados.png, id=60, 764.8575pt x 1086.0575pt>
 File: modelo de dados.png Graphic file (type png)
 <use modelo de dados.png>
 Package pdftex.def Info: modelo de dados.png  used on input line 215.
 (pdftex.def)             Requested size: 441.01772pt x 626.21826pt.
- [14 <./modelo de dados.png>]
+ [15 <./modelo de dados.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 221--223
 
  []
 
-<formato das credentials.png, id=62, 532.99126pt x 302.12875pt>
+<formato das credentials.png, id=65, 532.99126pt x 302.12875pt>
 File: formato das credentials.png Graphic file (type png)
 <use formato das credentials.png>
 Package pdftex.def Info: formato das credentials.png  used on input line 259.
@@ -331,30 +346,30 @@ Underfull \hbox (badness 10000) in paragraph at lines 263--267
 
  []
 
-[15] [16 <./formato das credentials.png>]
-<lean-rbac-model.png, id=70, 944.52875pt x 377.41pt>
+[16] [17 <./formato das credentials.png>]
+<lean-rbac-model.png, id=73, 944.52875pt x 377.41pt>
 File: lean-rbac-model.png Graphic file (type png)
 <use lean-rbac-model.png>
 Package pdftex.def Info: lean-rbac-model.png  used on input line 316.
 (pdftex.def)             Requested size: 441.01772pt x 176.21944pt.
- [17 <./lean-rbac-model.png>]
+ [18 <./lean-rbac-model.png>]
 Chapter 5.
-[18
+[19
 
 ]
-<red-routes.png, id=78, 2658.93375pt x 2179.14125pt>
+<red-routes.png, id=82, 2658.93375pt x 2179.14125pt>
 File: red-routes.png Graphic file (type png)
 <use red-routes.png>
 Package pdftex.def Info: red-routes.png  used on input line 356.
 (pdftex.def)             Requested size: 441.01772pt x 361.4381pt.
- [19 <./red-routes.png (PNG copy)>]
-<information-architecture.png, id=83, 901.3675pt x 323.2075pt>
+ [20 <./red-routes.png (PNG copy)>]
+<information-architecture.png, id=86, 901.3675pt x 323.2075pt>
 File: information-architecture.png Graphic file (type png)
 <use information-architecture.png>
 Package pdftex.def Info: information-architecture.png  used on input line 371.
 (pdftex.def)             Requested size: 441.01772pt x 158.14127pt.
- [20 <./information-architecture.png>]
-<digital-prototype.png, id=88, 569.12625pt x 475.7775pt>
+ [21 <./information-architecture.png>]
+<digital-prototype.png, id=91, 569.12625pt x 475.7775pt>
 File: digital-prototype.png Graphic file (type png)
 <use digital-prototype.png>
 Package pdftex.def Info: digital-prototype.png  used on input line 400.
@@ -363,46 +378,46 @@ Package pdftex.def Info: digital-prototype.png  used on input line 400.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[21] [22 <./digital-prototype.png>]
+[22] [23 <./digital-prototype.png>]
 Chapter 6.
-[23
+[24
 
 ]
-<client app architecture.png, id=98, 733.74126pt x 322.20375pt>
+<client app architecture.png, id=101, 733.74126pt x 322.20375pt>
 File: client app architecture.png Graphic file (type png)
 <use client app architecture.png>
 Package pdftex.def Info: client app architecture.png  used on input line 440.
 (pdftex.def)             Requested size: 441.01772pt x 193.66296pt.
- [24 <./client app architecture.png>]
-<client app interations.png, id=103, 121.45375pt x 362.35374pt>
+ [25 <./client app architecture.png>]
+<client app interations.png, id=107, 121.45375pt x 362.35374pt>
 File: client app interations.png Graphic file (type png)
 <use client app interations.png>
 Package pdftex.def Info: client app interations.png  used on input line 456.
 (pdftex.def)             Requested size: 121.45343pt x 362.35286pt.
- [25 <./client app interations.png>]
-<gauge-chart.png, id=109, 290.58563pt x 148.30406pt>
+ [26 <./client app interations.png>]
+<gauge-chart.png, id=112, 290.58563pt x 148.30406pt>
 File: gauge-chart.png Graphic file (type png)
 <use gauge-chart.png>
 Package pdftex.def Info: gauge-chart.png  used on input line 485.
 (pdftex.def)             Requested size: 290.58492pt x 148.30368pt.
-<pie-chart.png, id=110, 240.9pt x 136.25906pt>
+<pie-chart.png, id=113, 240.9pt x 136.25906pt>
 File: pie-chart.png Graphic file (type png)
 <use pie-chart.png>
 Package pdftex.def Info: pie-chart.png  used on input line 491.
 (pdftex.def)             Requested size: 240.8994pt x 136.25871pt.
 
-[26 <./gauge-chart.png> <./pie-chart.png>]
-<bar-chart.png, id=116, 295.1025pt x 205.5178pt>
+[27 <./gauge-chart.png> <./pie-chart.png>]
+<bar-chart.png, id=119, 295.1025pt x 205.5178pt>
 File: bar-chart.png Graphic file (type png)
 <use bar-chart.png>
 Package pdftex.def Info: bar-chart.png  used on input line 499.
 (pdftex.def)             Requested size: 295.10176pt x 205.5173pt.
-<data-table.png, id=117, 706.13812pt x 297.36093pt>
+<data-table.png, id=120, 706.13812pt x 297.36093pt>
 File: data-table.png Graphic file (type png)
 <use data-table.png>
 Package pdftex.def Info: data-table.png  used on input line 505.
 (pdftex.def)             Requested size: 441.01772pt x 185.71854pt.
-<projectsPage.png, id=118, 1027.58907pt x 459.21562pt>
+<projectsPage.png, id=121, 1027.58907pt x 459.21562pt>
 File: projectsPage.png Graphic file (type png)
 <use projectsPage.png>
 Package pdftex.def Info: projectsPage.png  used on input line 515.
@@ -411,7 +426,7 @@ Package pdftex.def Info: projectsPage.png  used on input line 515.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<load-projects.png, id=119, 626.34pt x 165.61874pt>
+<load-projects.png, id=122, 626.34pt x 165.61874pt>
 File: load-projects.png Graphic file (type png)
 <use load-projects.png>
 Package pdftex.def Info: load-projects.png  used on input line 523.
@@ -419,7 +434,7 @@ Package pdftex.def Info: load-projects.png  used on input line 523.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<dashboardsPage.png, id=120, 1026.83624pt x 457.71pt>
+<dashboardsPage.png, id=123, 1026.83624pt x 457.71pt>
 File: dashboardsPage.png Graphic file (type png)
 <use dashboardsPage.png>
 Package pdftex.def Info: dashboardsPage.png  used on input line 531.
@@ -427,8 +442,8 @@ Package pdftex.def Info: dashboardsPage.png  used on input line 531.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[27 <./bar-chart.png> <./data-table.png>]
-<error-403.png, id=126, 551.05875pt x 310.15875pt>
+[28 <./bar-chart.png> <./data-table.png>]
+<error-403.png, id=129, 551.05875pt x 310.15875pt>
 File: error-403.png Graphic file (type png)
 <use error-403.png>
 Package pdftex.def Info: error-403.png  used on input line 540.
@@ -437,12 +452,12 @@ Package pdftex.def Info: error-403.png  used on input line 540.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[28 <./projectsPage.png> <./load-projects.png> <./dashboardsPage.png>]
+[29 <./projectsPage.png> <./load-projects.png> <./dashboardsPage.png>]
 File: projectsPage.png Graphic file (type png)
 <use projectsPage.png>
 Package pdftex.def Info: projectsPage.png  used on input line 551.
 (pdftex.def)             Requested size: 441.01772pt x 197.0875pt.
-<projectsPageNoAddButton.png, id=133, 626.34pt x 352.31625pt>
+<projectsPageNoAddButton.png, id=136, 626.34pt x 352.31625pt>
 File: projectsPageNoAddButton.png Graphic file (type png)
 <use projectsPageNoAddButton.png>
 Package pdftex.def Info: projectsPageNoAddButton.png  used on input line 557.
@@ -454,28 +469,28 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [29 <./error-403.png>]
-<checkIfUserIsManager.png, id=138, 626.34pt x 175.65625pt>
+ [30 <./error-403.png>]
+<checkIfUserIsManager.png, id=141, 626.34pt x 175.65625pt>
 File: checkIfUserIsManager.png Graphic file (type png)
 <use checkIfUserIsManager.png>
 Package pdftex.def Info: checkIfUserIsManager.png  used on input line 565.
 (pdftex.def)             Requested size: 441.01772pt x 123.68756pt.
- [30 <./projectsPageNoAddButton.png> <./checkIfUserIsManager.png>]
-<settingsPage.png, id=144, 1027.58907pt x 460.72125pt>
+ [31 <./projectsPageNoAddButton.png> <./checkIfUserIsManager.png>]
+<settingsPage.png, id=148, 1027.58907pt x 460.72125pt>
 File: settingsPage.png Graphic file (type png)
 <use settingsPage.png>
 Package pdftex.def Info: settingsPage.png  used on input line 576.
 (pdftex.def)             Requested size: 441.01772pt x 197.73367pt.
-<settingsPageForCollaborators.png, id=145, 626.34pt x 352.31625pt>
+<settingsPageForCollaborators.png, id=149, 626.34pt x 352.31625pt>
 File: settingsPageForCollaborators.png Graphic file (type png)
 <use settingsPageForCollaborators.png>
 Package pdftex.def Info: settingsPageForCollaborators.png  used on input line 5
 82.
 (pdftex.def)             Requested size: 441.01772pt x 248.08194pt.
 
-[31 <./settingsPage.png> <./settingsPageForCollaborators.png>]
+[32 <./settingsPage.png> <./settingsPageForCollaborators.png>]
 Chapter 7.
-<HomePage.png, id=152, 1018.55531pt x 448.67625pt>
+<HomePage.png, id=155, 1018.55531pt x 448.67625pt>
 File: HomePage.png Graphic file (type png)
 <use HomePage.png>
 Package pdftex.def Info: HomePage.png  used on input line 602.
@@ -483,15 +498,15 @@ Package pdftex.def Info: HomePage.png  used on input line 602.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [32
+ [33
 
- <./homePage.png>]
-<SignIn.png, id=157, 1027.58907pt x 461.47406pt>
+ <./HomePage.png>]
+<SignIn.png, id=160, 1027.58907pt x 461.47406pt>
 File: SignIn.png Graphic file (type png)
 <use SignIn.png>
 Package pdftex.def Info: SignIn.png  used on input line 626.
 (pdftex.def)             Requested size: 441.01772pt x 198.05676pt.
- [33 <./SignIn.png>]
+ [34 <./SignIn.png>]
 File: projectsPage.png Graphic file (type png)
 <use projectsPage.png>
 Package pdftex.def Info: projectsPage.png  used on input line 639.
@@ -504,8 +519,8 @@ Package pdftex.def Info: dashboardsPage.png  used on input line 648.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[34]
-<dashboardPage.png, id=165, 1012.5328pt x 459.21562pt>
+[35]
+<dashboardPage.png, id=168, 1012.5328pt x 459.21562pt>
 File: dashboardPage.png Graphic file (type png)
 <use dashboardPage.png>
 Package pdftex.def Info: dashboardPage.png  used on input line 663.
@@ -521,7 +536,7 @@ Package pdftex.def Info: settingsPage.png  used on input line 672.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<UserManagement.png, id=166, 1445.4pt x 704.6325pt>
+<UserManagement.png, id=169, 1445.4pt x 704.6325pt>
 File: UserManagement.png Graphic file (type png)
 <use UserManagement.png>
 Package pdftex.def Info: UserManagement.png  used on input line 679.
@@ -529,8 +544,8 @@ Package pdftex.def Info: UserManagement.png  used on input line 679.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[35]
-<projectsettingsPage.png, id=170, 1014.79124pt x 459.96844pt>
+[36]
+<projectsettingsPage.png, id=173, 1014.79124pt x 459.96844pt>
 File: projectsettingsPage.png Graphic file (type png)
 <use projectsettingsPage.png>
 Package pdftex.def Info: projectsettingsPage.png  used on input line 687.
@@ -539,10 +554,10 @@ Package pdftex.def Info: projectsettingsPage.png  used on input line 687.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[36 <./dashboardPage.png>] [37 <./UserManagement.png> <./projectsettingsPage.pn
+[37 <./dashboardPage.png>] [38 <./UserManagement.png> <./projectsettingsPage.pn
 g>]
 Chapter 8.
-<tests.png, id=181, 670.505pt x 472.76625pt>
+<tests.png, id=184, 670.505pt x 472.76625pt>
 File: tests.png Graphic file (type png)
 <use tests.png>
 Package pdftex.def Info: tests.png  used on input line 698.
@@ -550,18 +565,18 @@ Package pdftex.def Info: tests.png  used on input line 698.
 
 Underfull \vbox (badness 3407) has occurred while \output is active []
 
- [38
+ [39
 
- <./tests.png>] [39]
+ <./tests.png>]
 <packageJsonScripts.png, id=189, 936.49875pt x 110.4125pt>
 File: packageJsonScripts.png Graphic file (type png)
 <use packageJsonScripts.png>
-Package pdftex.def Info: packageJsonScripts.png  used on input line 717.
+Package pdftex.def Info: packageJsonScripts.png  used on input line 716.
 (pdftex.def)             Requested size: 441.01772pt x 51.99664pt.
 <deploymentFolder.png, id=190, 279.0425pt x 298.11375pt>
 File: deploymentFolder.png Graphic file (type png)
 <use deploymentFolder.png>
-Package pdftex.def Info: deploymentFolder.png  used on input line 729.
+Package pdftex.def Info: deploymentFolder.png  used on input line 728.
 (pdftex.def)             Requested size: 441.01772pt x 471.17377pt.
 
 
@@ -572,24 +587,24 @@ Chapter 9.
 [42
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 755--757
+Underfull \hbox (badness 10000) in paragraph at lines 754--756
 []\OT1/cmr/m/n/10 Jira- Soft-ware de-vel-op-ment tool used by ag-ile teams
  []
 
 
-Overfull \hbox (43.8444pt too wide) in paragraph at lines 764--766
+Overfull \hbox (43.8444pt too wide) in paragraph at lines 763--765
 []\OT1/cmr/m/n/10 RBAC - Role-based Ac-cess Con-trol \OT1/cmtt/m/n/10 https://e
 n.wikipedia.org/wiki/Role-based[]access[]control 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 776--778
+Underfull \hbox (badness 10000) in paragraph at lines 775--777
 []\OT1/cmr/m/n/10 Authization Mod-ule https://github.com/dleandro/Authenticatio
 n-and-Authorization-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 779--781
+Underfull \hbox (badness 10000) in paragraph at lines 778--780
 []\OT1/cmr/m/n/10 PostgreSQL: The World's Most Ad-vanced Open Source Re-la-tion
 al Database
  []
@@ -597,196 +612,196 @@ al Database
 <API Documentation.pdf, id=202, 598.235pt x 845.1575pt>
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf>
-Package pdftex.def Info: API Documentation.pdf  used on input line 825.
+Package pdftex.def Info: API Documentation.pdf  used on input line 824.
 (pdftex.def)             Requested size: 598.23354pt x 845.15544pt.
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf>
-Package pdftex.def Info: API Documentation.pdf  used on input line 825.
+Package pdftex.def Info: API Documentation.pdf  used on input line 824.
 (pdftex.def)             Requested size: 598.23354pt x 845.15544pt.
 <API Documentation.pdf, id=205, page=1, 598.235pt x 845.1575pt>
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf, page 1>
-Package pdftex.def Info: API Documentation.pdf , page1 used on input line 825.
+Package pdftex.def Info: API Documentation.pdf , page1 used on input line 824.
 (pdftex.def)             Requested size: 598.23354pt x 845.15544pt.
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf, page 1>
-Package pdftex.def Info: API Documentation.pdf , page1 used on input line 825.
+Package pdftex.def Info: API Documentation.pdf , page1 used on input line 824.
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
 [43
 
 ]
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf, page 1>
-Package pdftex.def Info: API Documentation.pdf , page1 used on input line 825.
+Package pdftex.def Info: API Documentation.pdf , page1 used on input line 824.
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf, page 1>
-Package pdftex.def Info: API Documentation.pdf , page1 used on input line 825.
+Package pdftex.def Info: API Documentation.pdf , page1 used on input line 824.
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf, page 1>
-Package pdftex.def Info: API Documentation.pdf , page1 used on input line 825.
+Package pdftex.def Info: API Documentation.pdf , page1 used on input line 824.
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
  [44 <./API Documentation.pdf>]
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf>
-Package pdftex.def Info: API Documentation.pdf  used on input line 827.
+Package pdftex.def Info: API Documentation.pdf  used on input line 826.
 (pdftex.def)             Requested size: 598.23354pt x 845.15544pt.
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf>
-Package pdftex.def Info: API Documentation.pdf  used on input line 827.
+Package pdftex.def Info: API Documentation.pdf  used on input line 826.
 (pdftex.def)             Requested size: 598.23354pt x 845.15544pt.
 <API Documentation.pdf, id=262, page=2, 598.235pt x 845.1575pt>
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf, page 2>
-Package pdftex.def Info: API Documentation.pdf , page2 used on input line 827.
+Package pdftex.def Info: API Documentation.pdf , page2 used on input line 826.
 (pdftex.def)             Requested size: 598.23354pt x 845.15544pt.
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf, page 2>
-Package pdftex.def Info: API Documentation.pdf , page2 used on input line 827.
+Package pdftex.def Info: API Documentation.pdf , page2 used on input line 826.
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf, page 2>
-Package pdftex.def Info: API Documentation.pdf , page2 used on input line 827.
+Package pdftex.def Info: API Documentation.pdf , page2 used on input line 826.
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf, page 2>
-Package pdftex.def Info: API Documentation.pdf , page2 used on input line 827.
+Package pdftex.def Info: API Documentation.pdf , page2 used on input line 826.
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf, page 2>
-Package pdftex.def Info: API Documentation.pdf , page2 used on input line 827.
+Package pdftex.def Info: API Documentation.pdf , page2 used on input line 826.
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
  [45 <./API Documentation.pdf>]
 <API Documentation.pdf, id=280, page=3, 598.235pt x 845.1575pt>
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf, page 3>
-Package pdftex.def Info: API Documentation.pdf , page3 used on input line 827.
+Package pdftex.def Info: API Documentation.pdf , page3 used on input line 826.
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf, page 3>
-Package pdftex.def Info: API Documentation.pdf , page3 used on input line 827.
+Package pdftex.def Info: API Documentation.pdf , page3 used on input line 826.
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf, page 3>
-Package pdftex.def Info: API Documentation.pdf , page3 used on input line 827.
+Package pdftex.def Info: API Documentation.pdf , page3 used on input line 826.
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
  [46 <./API Documentation.pdf>]
 <API Documentation.pdf, id=285, page=4, 598.235pt x 845.1575pt>
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf, page 4>
-Package pdftex.def Info: API Documentation.pdf , page4 used on input line 827.
+Package pdftex.def Info: API Documentation.pdf , page4 used on input line 826.
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf, page 4>
-Package pdftex.def Info: API Documentation.pdf , page4 used on input line 827.
+Package pdftex.def Info: API Documentation.pdf , page4 used on input line 826.
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf, page 4>
-Package pdftex.def Info: API Documentation.pdf , page4 used on input line 827.
+Package pdftex.def Info: API Documentation.pdf , page4 used on input line 826.
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
  [47 <./API Documentation.pdf>]
 <API Documentation.pdf, id=290, page=5, 598.235pt x 845.1575pt>
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf, page 5>
-Package pdftex.def Info: API Documentation.pdf , page5 used on input line 827.
+Package pdftex.def Info: API Documentation.pdf , page5 used on input line 826.
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf, page 5>
-Package pdftex.def Info: API Documentation.pdf , page5 used on input line 827.
+Package pdftex.def Info: API Documentation.pdf , page5 used on input line 826.
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf, page 5>
-Package pdftex.def Info: API Documentation.pdf , page5 used on input line 827.
+Package pdftex.def Info: API Documentation.pdf , page5 used on input line 826.
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
  [48 <./API Documentation.pdf>]
 <API Documentation.pdf, id=295, page=6, 598.235pt x 845.1575pt>
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf, page 6>
-Package pdftex.def Info: API Documentation.pdf , page6 used on input line 827.
+Package pdftex.def Info: API Documentation.pdf , page6 used on input line 826.
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf, page 6>
-Package pdftex.def Info: API Documentation.pdf , page6 used on input line 827.
+Package pdftex.def Info: API Documentation.pdf , page6 used on input line 826.
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf, page 6>
-Package pdftex.def Info: API Documentation.pdf , page6 used on input line 827.
+Package pdftex.def Info: API Documentation.pdf , page6 used on input line 826.
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
  [49 <./API Documentation.pdf>]
 <API Documentation.pdf, id=301, page=7, 598.235pt x 845.1575pt>
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf, page 7>
-Package pdftex.def Info: API Documentation.pdf , page7 used on input line 827.
+Package pdftex.def Info: API Documentation.pdf , page7 used on input line 826.
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf, page 7>
-Package pdftex.def Info: API Documentation.pdf , page7 used on input line 827.
+Package pdftex.def Info: API Documentation.pdf , page7 used on input line 826.
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf, page 7>
-Package pdftex.def Info: API Documentation.pdf , page7 used on input line 827.
+Package pdftex.def Info: API Documentation.pdf , page7 used on input line 826.
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
  [50 <./API Documentation.pdf>]
 <API Documentation.pdf, id=306, page=8, 598.235pt x 845.1575pt>
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf, page 8>
-Package pdftex.def Info: API Documentation.pdf , page8 used on input line 827.
+Package pdftex.def Info: API Documentation.pdf , page8 used on input line 826.
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf, page 8>
-Package pdftex.def Info: API Documentation.pdf , page8 used on input line 827.
+Package pdftex.def Info: API Documentation.pdf , page8 used on input line 826.
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf, page 8>
-Package pdftex.def Info: API Documentation.pdf , page8 used on input line 827.
+Package pdftex.def Info: API Documentation.pdf , page8 used on input line 826.
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
  [51 <./API Documentation.pdf>]
 <API Documentation.pdf, id=317, page=9, 598.235pt x 845.1575pt>
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf, page 9>
-Package pdftex.def Info: API Documentation.pdf , page9 used on input line 827.
+Package pdftex.def Info: API Documentation.pdf , page9 used on input line 826.
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf, page 9>
-Package pdftex.def Info: API Documentation.pdf , page9 used on input line 827.
+Package pdftex.def Info: API Documentation.pdf , page9 used on input line 826.
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf, page 9>
-Package pdftex.def Info: API Documentation.pdf , page9 used on input line 827.
+Package pdftex.def Info: API Documentation.pdf , page9 used on input line 826.
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
  [52 <./API Documentation.pdf>]
 <API Documentation.pdf, id=322, page=10, 598.235pt x 845.1575pt>
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf, page 10>
-Package pdftex.def Info: API Documentation.pdf , page10 used on input line 827.
+Package pdftex.def Info: API Documentation.pdf , page10 used on input line 826.
 
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf, page 10>
-Package pdftex.def Info: API Documentation.pdf , page10 used on input line 827.
+Package pdftex.def Info: API Documentation.pdf , page10 used on input line 826.
 
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf, page 10>
-Package pdftex.def Info: API Documentation.pdf , page10 used on input line 827.
+Package pdftex.def Info: API Documentation.pdf , page10 used on input line 826.
 
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
  [53 <./API Documentation.pdf>]
 <API Documentation.pdf, id=327, page=11, 598.235pt x 845.1575pt>
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf, page 11>
-Package pdftex.def Info: API Documentation.pdf , page11 used on input line 827.
+Package pdftex.def Info: API Documentation.pdf , page11 used on input line 826.
 
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf, page 11>
-Package pdftex.def Info: API Documentation.pdf , page11 used on input line 827.
+Package pdftex.def Info: API Documentation.pdf , page11 used on input line 826.
 
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf, page 11>
-Package pdftex.def Info: API Documentation.pdf , page11 used on input line 827.
+Package pdftex.def Info: API Documentation.pdf , page11 used on input line 826.
 
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
 
@@ -794,85 +809,85 @@ Package pdftex.def Info: API Documentation.pdf , page11 used on input line 827.
 <API Documentation.pdf, id=332, page=12, 598.235pt x 845.1575pt>
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf, page 12>
-Package pdftex.def Info: API Documentation.pdf , page12 used on input line 827.
+Package pdftex.def Info: API Documentation.pdf , page12 used on input line 826.
 
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf, page 12>
-Package pdftex.def Info: API Documentation.pdf , page12 used on input line 827.
+Package pdftex.def Info: API Documentation.pdf , page12 used on input line 826.
 
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf, page 12>
-Package pdftex.def Info: API Documentation.pdf , page12 used on input line 827.
+Package pdftex.def Info: API Documentation.pdf , page12 used on input line 826.
 
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
  [55 <./API Documentation.pdf>]
 <API Documentation.pdf, id=338, page=13, 598.235pt x 845.1575pt>
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf, page 13>
-Package pdftex.def Info: API Documentation.pdf , page13 used on input line 827.
+Package pdftex.def Info: API Documentation.pdf , page13 used on input line 826.
 
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf, page 13>
-Package pdftex.def Info: API Documentation.pdf , page13 used on input line 827.
+Package pdftex.def Info: API Documentation.pdf , page13 used on input line 826.
 
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf, page 13>
-Package pdftex.def Info: API Documentation.pdf , page13 used on input line 827.
+Package pdftex.def Info: API Documentation.pdf , page13 used on input line 826.
 
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
  [56 <./API Documentation.pdf>]
 <API Documentation.pdf, id=343, page=14, 598.235pt x 845.1575pt>
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf, page 14>
-Package pdftex.def Info: API Documentation.pdf , page14 used on input line 827.
+Package pdftex.def Info: API Documentation.pdf , page14 used on input line 826.
 
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf, page 14>
-Package pdftex.def Info: API Documentation.pdf , page14 used on input line 827.
+Package pdftex.def Info: API Documentation.pdf , page14 used on input line 826.
 
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf, page 14>
-Package pdftex.def Info: API Documentation.pdf , page14 used on input line 827.
+Package pdftex.def Info: API Documentation.pdf , page14 used on input line 826.
 
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
  [57 <./API Documentation.pdf>]
 <API Documentation.pdf, id=348, page=15, 598.235pt x 845.1575pt>
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf, page 15>
-Package pdftex.def Info: API Documentation.pdf , page15 used on input line 827.
+Package pdftex.def Info: API Documentation.pdf , page15 used on input line 826.
 
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf, page 15>
-Package pdftex.def Info: API Documentation.pdf , page15 used on input line 827.
+Package pdftex.def Info: API Documentation.pdf , page15 used on input line 826.
 
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf, page 15>
-Package pdftex.def Info: API Documentation.pdf , page15 used on input line 827.
+Package pdftex.def Info: API Documentation.pdf , page15 used on input line 826.
 
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
  [58 <./API Documentation.pdf>]
 <API Documentation.pdf, id=353, page=16, 598.235pt x 845.1575pt>
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf, page 16>
-Package pdftex.def Info: API Documentation.pdf , page16 used on input line 827.
+Package pdftex.def Info: API Documentation.pdf , page16 used on input line 826.
 
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf, page 16>
-Package pdftex.def Info: API Documentation.pdf , page16 used on input line 827.
+Package pdftex.def Info: API Documentation.pdf , page16 used on input line 826.
 
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf, page 16>
-Package pdftex.def Info: API Documentation.pdf , page16 used on input line 827.
+Package pdftex.def Info: API Documentation.pdf , page16 used on input line 826.
 
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
 
@@ -880,71 +895,72 @@ Package pdftex.def Info: API Documentation.pdf , page16 used on input line 827.
 <API Documentation.pdf, id=358, page=17, 598.235pt x 845.1575pt>
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf, page 17>
-Package pdftex.def Info: API Documentation.pdf , page17 used on input line 827.
+Package pdftex.def Info: API Documentation.pdf , page17 used on input line 826.
 
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf, page 17>
-Package pdftex.def Info: API Documentation.pdf , page17 used on input line 827.
+Package pdftex.def Info: API Documentation.pdf , page17 used on input line 826.
 
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf, page 17>
-Package pdftex.def Info: API Documentation.pdf , page17 used on input line 827.
+Package pdftex.def Info: API Documentation.pdf , page17 used on input line 826.
 
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
  [60 <./API Documentation.pdf>]
 <API Documentation.pdf, id=363, page=18, 598.235pt x 845.1575pt>
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf, page 18>
-Package pdftex.def Info: API Documentation.pdf , page18 used on input line 827.
+Package pdftex.def Info: API Documentation.pdf , page18 used on input line 826.
 
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf, page 18>
-Package pdftex.def Info: API Documentation.pdf , page18 used on input line 827.
+Package pdftex.def Info: API Documentation.pdf , page18 used on input line 826.
 
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf, page 18>
-Package pdftex.def Info: API Documentation.pdf , page18 used on input line 827.
+Package pdftex.def Info: API Documentation.pdf , page18 used on input line 826.
 
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
  [61 <./API Documentation.pdf>]
 <API Documentation.pdf, id=369, page=19, 598.235pt x 845.1575pt>
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf, page 19>
-Package pdftex.def Info: API Documentation.pdf , page19 used on input line 827.
+Package pdftex.def Info: API Documentation.pdf , page19 used on input line 826.
 
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf, page 19>
-Package pdftex.def Info: API Documentation.pdf , page19 used on input line 827.
+Package pdftex.def Info: API Documentation.pdf , page19 used on input line 826.
 
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
 File: API Documentation.pdf Graphic file (type pdf)
 <use API Documentation.pdf, page 19>
-Package pdftex.def Info: API Documentation.pdf , page19 used on input line 827.
+Package pdftex.def Info: API Documentation.pdf , page19 used on input line 826.
 
 (pdftex.def)             Requested size: 538.40652pt x 760.63474pt.
  [62 <./API Documentation.pdf>] (./main.aux) ) 
 Here is how much of TeX's memory you used:
- 4752 strings out of 478994
- 73477 string characters out of 5862208
- 385605 words of memory out of 5000000
- 22134 multiletter control sequences out of 15000+600000
- 409737 words of font info for 48 fonts, out of 8000000 for 9000
+ 4731 strings out of 480608
+ 73756 string characters out of 5903631
+ 325597 words of memory out of 5000000
+ 20510 multiletter control sequences out of 15000+600000
+ 538645 words of font info for 45 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 68i,18n,83p,760b,542s stack positions out of 5000i,500n,10000p,200000b,80000s
-{c:/texlive/2021/texmf-dist/fonts
-/enc/dvips/cm-super/cm-super-ts1.enc}<c:/texlive/2021/texmf-dist/fonts/type1/pu
-blic/amsfonts/cm/cmbx10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsf
-onts/cm/cmbx12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/c
-mr10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><
-c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb><c:/texliv
-e/2021/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb><c:/texlive/2021/tex
-mf-dist/fonts/type1/public/cm-super/sfrm1200.pfb>
-Output written on main.pdf (62 pages, 1484368 bytes).
+ 41i,19n,51p,760b,545s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texlive/2020/texmf-di
+st/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/local/texlive/2020/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2020/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2020/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2020/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2020/texmf-dist/font
+s/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2020/texmf-dist/fonts
+/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2020/texmf-dist/fonts/t
+ype1/public/cm-super/sfrm1200.pfb>
+Output written on main.pdf (62 pages, 1484284 bytes).
 PDF statistics:
  402 PDF objects out of 1000 (max. 8388607)
  224 compressed objects within 3 object streams
