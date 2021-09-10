@@ -24,14 +24,14 @@ export default function SettingsPage() {
     const classes = useStyles();
     const [language, setLanguage] = useState(localStorage.getItem("key"));
     const [showDialog, setShowDialog] = useState(false)
-    const [userIsSuperuser, setUserIsSuperuser] = useState(true)
+    const [userIsManager, setUserIsManager] = useState(true)
     const { get } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
     const context = useContext(UserContext)
     const history = useHistory()
 
     useEffect(() => {
-        checkIfUserIsSuperuser()
-    }, [userIsSuperuser])
+        checkIfUserIsManager()
+    }, [userIsManager])
 
     const handleChange = (event) => {
         setLanguage(event.target.value);
@@ -43,12 +43,27 @@ export default function SettingsPage() {
         setShowDialog(true)
     }
 
+    /*
     async function checkIfUserIsSuperuser() {
         const userInfo = await get(`/api/lean/users/username/${context.credentials.username}`)
         if (userInfo.id === 1) {
             setUserIsSuperuser(true)
         } else {
             setUserIsSuperuser(false)
+        }
+    }*/
+
+    async function checkIfUserIsManager() {
+        const userRoles = await get(`/api/lean/users/${context.credentials.username}/roles`)
+        let userIsManager = false
+        console.log(userRoles)
+        if(userRoles != undefined){
+            userRoles.forEach(role => {
+                if (role.role === 'manager' || role.role === 'admin') {
+                    userIsManager = true
+                }
+            })
+            setUserIsManager(userIsManager)
         }
     }
 
@@ -67,7 +82,7 @@ export default function SettingsPage() {
                 <Divider variant="middle" />
                 <p />
                 {
-                    userIsSuperuser ?
+                    userIsManager ?
                         <div>
                             <Box display="flex" justifyContent="center" m={1} p={1} bgcolor="background.paper">
                                 <CreateAccountDialog showDialog={showDialog} setShowDialog={setShowDialog} />

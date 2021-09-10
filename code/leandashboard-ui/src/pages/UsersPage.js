@@ -13,7 +13,7 @@ import UsersTable from '../components/Users/UsersTable';
 export default function UsersPage() {
     const [users, setUsers] = useState([])
     const [refresh, setRefreshProjects] = useState(false)
-    const [userIsSuperuser, setUserIsSuperuser] = useState(true)
+    const [userIsManager, setUserIsManager] = useState(false)
     const { get, del, post, put, response, loading } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
     const context = useContext(UserContext)
 
@@ -22,8 +22,9 @@ export default function UsersPage() {
     }, [refresh])
 
     useEffect(() => {
-        checkIfUserIsSuperuser()
-    }, [userIsSuperuser])
+        checkIfUserIsManager()
+        console.log(`User is manager: ${userIsManager}`)
+    }, [userIsManager])
 
     function doRefresh() {
         setRefreshProjects(!refresh)
@@ -94,12 +95,28 @@ export default function UsersPage() {
         }
     }
 
+    /*
     async function checkIfUserIsSuperuser() {
         const userInfo = await get(`/api/lean/users/username/${context.credentials.username}`)
         if (userInfo.id === 1) {
             setUserIsSuperuser(true)
         } else {
             setUserIsSuperuser(false)
+        }
+    }*/
+
+    async function checkIfUserIsManager() {
+        const userRoles = await get(`/api/lean/users/${context.credentials.username}/roles`)
+        let isManager = false
+        console.log(userRoles)
+        if(userRoles != undefined){
+            userRoles.forEach(role => {
+                if (role.role === 'manager' || role.role === 'admin') {
+                    isManager = true
+                }
+            })
+
+            setUserIsManager(isManager)
         }
     }
 
@@ -115,7 +132,7 @@ export default function UsersPage() {
                     :
                     <div>
                         {
-                            userIsSuperuser ?
+                            userIsManager ?
                                 <div>
                                     <Hidden mdUp>
                                         <Grid item xs={12} sm={12} md={12}>
