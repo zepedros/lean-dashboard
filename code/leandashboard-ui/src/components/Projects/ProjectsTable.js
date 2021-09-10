@@ -19,9 +19,11 @@ import React, { useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import AddDialog from '../Common/AddDialog.js';
 import CircularProgressWithLabel from '../Common/CircularProgressWithLabel';
+import { Tooltip } from '@material-ui/core';
+import InfoIcon from '@material-ui/icons/Info';
 
-function createData(id, project, state, manager, completion) {
-  return { id, project, state, manager, completion };
+function createData(id, project, state, manager, completion, description) {
+  return { id, project, state, manager, completion, description };
 }
 
 function descendingComparator(a, b, orderBy) {
@@ -71,7 +73,6 @@ function EnhancedTableHead(props) {
           <TableCell
             key={headCell.id}
             align="center"
-            padding={headCell.disablePadding ? 'none' : 'normal'}
             sortDirection={orderBy === headCell.id ? order : false}
             aria-labelledby="tableTitle"
 
@@ -201,7 +202,8 @@ export default function EnhancedTable({ projects, refresh, userIsManager }) {
 
     return percentageDaysMissing
   }
-  const rows = projects ? projects.map(project => { { completionData(project) } return createData(project.id, project.name, project.state, project.owner, project.completion) }) : undefined
+  console.log(projects)
+  const rows = projects ? projects.map(project => { { completionData(project) } return createData(project.id, project.name, project.state, project.owner, project.completion, project.description) }) : undefined
   const [showDialog, setShowDialog] = useState(false)
 
   function handleOpenDialog() {
@@ -250,10 +252,13 @@ export default function EnhancedTable({ projects, refresh, userIsManager }) {
                       selected={isItemSelected}
                     >
 
-                      <TableCell  id={labelId} scope="row" align="center" padding="none">
+                      <TableCell id={labelId} scope="row" align="center" padding="none">
                         <Link href={`projects/${row.id}/dashboards`} color="inherit">
-                        {row.project}
+                          {row.project}
                         </Link>
+                        <Tooltip title={row.description} arrow>
+                          <InfoIcon fontSize='small'/>
+                        </Tooltip>
                       </TableCell>
 
                       <TableCell align="center" ><Chip

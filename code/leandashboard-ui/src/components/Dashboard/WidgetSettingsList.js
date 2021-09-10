@@ -72,7 +72,6 @@ export default function WidgetSettingsList({ name, widgets, refresh, doRefresh }
         await getWidget(selectWidget)
         setDialog(true)
     }
-    console.log(widgets)
     return (
         <div>
             {

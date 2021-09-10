@@ -49,7 +49,7 @@ export default function UsersList({ users, refresh, deleteUser, removeRoleFromUs
     <div>
       <Container className={classes.root}>
         <Typography component="h1" variant="h5">
-          <FormattedMessage id="Projects.projects" />
+          Lean Dashboard Users
         </Typography>
         <List dense={false} style={{ maxHeight: '70%', overflow: 'scroll' }}>
           {users && users.map(user => {

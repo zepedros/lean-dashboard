@@ -72,7 +72,7 @@ export default function CredentialsItem({ credential, refresh, credId }) {
         let result = []
         for (var property in credentialInfo) {
             result.push(
-                <ListItem key={credId}>
+                <ListItem key={property + credId}>
                     <ListItemText
                         primary={property}
                         secondary={credentialInfo[property]}
@@ -126,7 +126,7 @@ export default function CredentialsItem({ credential, refresh, credId }) {
 
     return (
         <div>
-            <ListItem key={credential.id} alignItems="flex-start">
+            <ListItem key={credId} alignItems="flex-start">
                 <ListItemAvatar>
                     <Avatar variant="rounded" className={itemColor()}>
                         <VpnKeyIcon />
