@@ -43,7 +43,7 @@ export default function CredentialsList({ refresh, doRefresh }) {
   const classes = useStyles();
   const [credentials, setCredentials] = useState([])
   const [userIsManager, setUserIsManager] = useState(false)
-  const { get, response, loading } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
+  const { get, response, loading } = useFetch(process.env.REACT_APP_API_FETCH_URI, { cachePolicy: "no-cache", credentials: "same-origin" })
   let { id } = useParams();
   const context = useContext(UserContext)
 
@@ -65,7 +65,6 @@ export default function CredentialsList({ refresh, doRefresh }) {
       setCredentials([])
     }
     else {
-      console.log(getCredentials)
       setCredentials(getCredentials)
     }
   }
@@ -81,13 +80,6 @@ export default function CredentialsList({ refresh, doRefresh }) {
     setUserIsManager(userIsManager)
   }
 
-  const [showFilter, setShowFilter] = useState(false)
-
-  function handleFilter() {
-    setShowFilter(!showFilter)
-  }
-
-  //TODO A PARTE QUE O BOTAO DO FILTRO LIGA
   return (
     <div>
       {loading && <CircularProgress color="primary"/>}
@@ -95,12 +87,12 @@ export default function CredentialsList({ refresh, doRefresh }) {
         <Typography component="h1" variant="h5">
           <FormattedMessage id="ProjectSettings.credentials" />
         </Typography>
-        <IconButton end='end' className={classes.filter} onClick={handleFilter}>
-          <FilterListIcon />
-        </IconButton>
+       
         <List dense={false} style={{ maxHeight: '70%', overflow: 'scroll' }}>
+          
           {credentials && credentials.map(credential => {
-            return <CredentialsItem key={credential.id} credential={credential.credentials} refresh={doRefresh} credId={credential.id}/>
+            //Isto está a fazer maps a mais
+            return <CredentialsItem key={Math.random()*10000} credential={credential.credentials} refresh={doRefresh} credId={credential.id}/>
           })}
         </List>
       </Container>

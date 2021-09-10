@@ -300,6 +300,7 @@ module.exports = {
     deleteWidgetTemplates: async function(){
         const uri  = `${ES_URL}etl-templates/`
         await fetch.makeDeleteRequest(uri)
+        await fetch.makePutRequest(uri)
     },
 
     addIdToSchedule: async function(id) {

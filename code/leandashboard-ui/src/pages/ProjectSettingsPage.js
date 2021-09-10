@@ -16,7 +16,7 @@ export default function ProjectSettingsPage() {
     const [refresh, setRefresh] = useState(false)
     const [project, setProject] = useState()
     const [users, setUsers] = useState([])
-    const { get, del, response } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
+    const { get, del, response } = useFetch(process.env.REACT_APP_API_FETCH_URI, { cachePolicy: "no-cache", credentials: "same-origin" })
 
     useEffect(() => {
         getProjectById()

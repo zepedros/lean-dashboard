@@ -9,7 +9,7 @@ import TemplateWidget from "./TemplateWidget";
 export default function WidgetSettingsWidget({ widgetId }) {
     const [widget, setWidget] = useState()
     const [errorResponse, setErrorResponse] = useState()
-    const { get, response, error } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
+    const { get, response, error } = useFetch(process.env.REACT_APP_API_FETCH_URI, { cachePolicy: "no-cache", credentials: "same-origin" })
     let { id, dashboardId } = useParams();
 
     async function getWidget() {

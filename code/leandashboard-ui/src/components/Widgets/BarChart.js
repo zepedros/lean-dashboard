@@ -53,13 +53,13 @@ const BarChart = ({widget}) => {
     <div>
     <Card {...widget}>
       <CardHeader
-        title="TITLE"
+        title="Bar Chart"
       />
       <Divider />
       <CardContent>
         <Box
           sx={{
-            height: 400,
+            height: 200,
             position: 'relative'
           }}
         >
@@ -69,15 +69,7 @@ const BarChart = ({widget}) => {
           />
         </Box>
       </CardContent>
-      <Divider />
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'flex-end',
-          p: 2
-        }}
-      >
-      </Box>
+      
     </Card>
     </div>
   );

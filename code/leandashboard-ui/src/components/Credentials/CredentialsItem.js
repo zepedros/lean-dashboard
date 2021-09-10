@@ -58,7 +58,7 @@ export default function CredentialsItem({ credential, refresh, credId }) {
     const [deleteOpenDialog, setDeleteOpenDialog] = useState(false);
     const [editOpenDialog, setEditOpenDialog] = useState(false);
     const [showMore, setShowMore] = useState(false)
-    const { del, response } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
+    const { del, response } = useFetch(process.env.REACT_APP_API_FETCH_URI, { cachePolicy: "no-cache", credentials: "same-origin" })
     const credentialInfo = credential.credential
     let { id } = useParams();
     function handleClick() {
@@ -66,7 +66,7 @@ export default function CredentialsItem({ credential, refresh, credId }) {
     }
     const colors = [styles.orange, styles.purple, styles.pink, styles.green, styles.blue]
     const itemColor = () => {
-        return (colors[Math.floor(Math.random() * colors.length)])
+        return (colors[0])
     }
     const buildCredential = () => {
         let result = []

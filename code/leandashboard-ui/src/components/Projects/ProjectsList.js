@@ -5,7 +5,6 @@ import List from '@material-ui/core/List';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import AddIcon from '@material-ui/icons/Add';
-import FilterListIcon from '@material-ui/icons/FilterList';
 import { useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import AddDialog from '../Common/AddDialog.js';
@@ -37,35 +36,23 @@ const useStyles = makeStyles((theme) => ({
     color: 'white',
 
   },
-  filter: {
-    position: "relative",
-    left: "45%"
-  },
 }));
 
 export default function ProjectsList({ projects, refresh, userIsManager }) {
   const classes = useStyles();
-  const [showFilter, setShowFilter] = useState(false)
   const [showDialog, setShowDialog] = useState(false)
 
-  function handleFilter() {
-    setShowFilter(!showFilter)
-  }
-
+ 
   function handleOpenDialog() {
     setShowDialog(true)
   }
 
-  //TODO A PARTE QUE O BOTAO DO FILTRO LIGA
   return (
     <div>
       <Container className={classes.root}>
         <Typography component="h1" variant="h5">
           <FormattedMessage id="Projects.projects" />
         </Typography>
-        <IconButton end='end' className={classes.filter} onClick={handleFilter}>
-          <FilterListIcon />
-        </IconButton>
         <List dense={false} style={{ maxHeight: '70%', overflow: 'scroll' }}>
           {projects && projects.map(project => {
             return <ProjectItem key={project.id} project={project} />

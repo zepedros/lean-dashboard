@@ -24,7 +24,7 @@ export default function AddWidgetDialog({ showDialog, setShowDialog, source, tem
     const [params, setParams] = useState([])
     const [date, setDate] = useState(new Date())
     const [credentialsProject, setCredentials] = useState([])
-    const { get, post, response } = useFetch('http://localhost:3000/api', { credentials: "same-origin" })
+    const { get, post, response } = useFetch(process.env.REACT_APP_API_FETCH_URI, { credentials: "same-origin" })
     let { id, dashboardId } = useParams();
 
     useEffect(() => { loadCredentials() }, [])

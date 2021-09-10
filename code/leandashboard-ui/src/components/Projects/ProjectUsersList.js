@@ -40,12 +40,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ProjectUsersList({ users, refresh, deleteUser }) {
     const classes = useStyles();
-    const [showFilter, setShowFilter] = useState(false)
     const [showDialog, setShowDialog] = useState(false)
-
-    function handleFilter() {
-        setShowFilter(!showFilter)
-    }
 
     function handleOpenDialog() {
         setShowDialog(true)
@@ -59,11 +54,7 @@ export default function ProjectUsersList({ users, refresh, deleteUser }) {
                 <Typography component="h1" variant="h5">
                     <FormattedMessage id="Settings.userManagement" />
                 </Typography>
-                <Tooltip title="Add Roles" aria-label="add" placement="left">
-                    <IconButton end='end' className={classes.filter} onClick={handleFilter}>
-                        <FilterListIcon />
-                    </IconButton>
-                </Tooltip>
+                
                 {users.length === 0 ?
                     <Typography component="h1" variant="h5">
                         No users

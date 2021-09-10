@@ -29,7 +29,7 @@ export default function AddCredentials({doRefresh}) {
   const [jiraCredential, setJiraCredential] = useState({ email: "", token: "", APIPath: "", APIVersion: "2" })
   const [squashCredential, setSquashCredential] = useState({ username: "", password: "", APIPath: "" })
   const [azureCredential, setAzureCredential] = useState({ email: "", token: "", Instance: "" })
-  const { post, response } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
+  const { post, response } = useFetch(process.env.REACT_APP_API_FETCH_URI, { cachePolicy: "no-cache", credentials: "same-origin" })
   let { id } = useParams();
   const classes = useStyles();
   const textField = (text, value, onChange) => {

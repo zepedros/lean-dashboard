@@ -29,10 +29,6 @@ const useStyles = makeStyles((theme) => ({
         background: 'linear-gradient(45deg, #3CAA91 30%, #3CAA91 90%)',
         color: 'white',
     },
-    filter: {
-        position: "relative",
-        left: "45%"
-    },
     dashboardTitle: {
         marginTop: '-2%',
         textAlign: 'left',
@@ -53,7 +49,7 @@ export default function WidgetSettingsList({ name, widgets, refresh, doRefresh }
     const [activeDialog, setDialog] = useState(false);
     let { id, dashboardId } = useParams();
 
-    const { get, response } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
+    const { get, response } = useFetch(process.env.REACT_APP_API_FETCH_URI, { cachePolicy: "no-cache", credentials: "same-origin" })
 
     async function getWidget(wId) {
         const widgetResponse = await get(`/api/lean/projects/${id}/dashboard/${dashboardId}/widgets/${wId}`)

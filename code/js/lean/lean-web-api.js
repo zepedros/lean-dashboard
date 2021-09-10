@@ -1,7 +1,7 @@
 'use strict';
 
-function webapi(app, services, auth, authization) {
-
+function webapi(app, services, auth, authization, express) {
+    const path = require('path');
     const theWebApi = {
 
         createProject: function (req, res) {
@@ -373,6 +373,13 @@ function webapi(app, services, auth, authization) {
     }, theWebApi.logout)
     app.post('/api/lean/users/:username/roles', theWebApi.giveUserRole)
     app.delete('/api/lean/users/:username/roles/:role', theWebApi.removeRoleFromUser)
+
+    if (process.env.NODE_ENV === 'production') {
+        app.use(express.static(path.join(__dirname, '../leandashboard-ui/build')));
+        app.get('/*', function (req, res) {
+            res.sendFile(path.join(__dirname, '../leandashboard-ui/build', 'index.html'));
+        })
+    }
 
     return theWebApi;
 }

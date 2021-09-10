@@ -16,7 +16,7 @@ export default function AddProjectDialog({ showDialog, setShowDialog, title, typ
     const [date, setDate] = useState(new Date())
     const [nameError, setNameError] = useState(false)
     const [descriptionError, setDescriptionError] = useState(false)
-    const { post } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
+    const { post } = useFetch(process.env.REACT_APP_API_FETCH_URI, { cachePolicy: "no-cache", credentials: "same-origin" })
 
     function handleClose() {
         setInput({ name: "", description: "" })

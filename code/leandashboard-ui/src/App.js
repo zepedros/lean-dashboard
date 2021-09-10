@@ -24,7 +24,7 @@ import SlideShow from './components/Dashboard/SlideShowDashboard'
 import { I18nProvider, LOCALES } from './i18n';
 
 function App() {
-  const { get, post } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
+  const { get, post } = useFetch(process.env.REACT_APP_API_FETCH_URI, { cachePolicy: "no-cache", credentials: "same-origin" })
   const userRepository = createRepository(get, post)
   const [userCredentials, setUserCredentials] = useState(userRepository.isLoggedIn())
 
@@ -32,6 +32,7 @@ function App() {
     if (userCredentials?.password) {
       post("/lean/login", userCredentials).then((response) => {
         if (response.statusCode === 200) {
+          document.cookie = `session=${JSON.stringify(userCredentials)}; expires=0`
           get(`/api/lean/users/${userCredentials.username}/roles`).then((res) => {
             sessionStorage.setItem('user-rbac', JSON.stringify(res))
           })
@@ -51,6 +52,22 @@ function App() {
       userRepository.logout(history, setUserCredentials);
     }
   }
+  const [session, setSession] = useState("");
+
+  const onStorageUpdate = (e) => {
+    const { key, newValue } = e;
+    if (key === "session") {
+      setSession(newValue);
+    }
+  };
+
+  useEffect(() => {
+    setUserCredentials(userRepository.isLoggedIn())
+    currentSessionContext.credentials = userCredentials
+    setSession(localStorage.getItem("session") || "");
+    console.log('EFFECT: ' + userCredentials)
+    window.addEventListener("storage", onStorageUpdate, true);
+  }, [session, setSession]);
 
   if(!localStorage.getItem("key")) localStorage.setItem("key",LOCALES.ENGLISH)
 
@@ -62,7 +79,7 @@ function App() {
             <Switch>
               <Route exact path="/" component={HomePage} />
               <Route exact path="/signIn" component={SignIn}>
-                {userCredentials && <Redirect to="/projects" />}
+                {document.cookie.split("=")[1] && userCredentials && session != "" && <Redirect to="/projects" />}
               </Route>
               <Route exact path="/signUp" component={SignUp} />
               <Route exact path="/about" component={About} />

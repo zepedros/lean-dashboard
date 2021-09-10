@@ -12,7 +12,7 @@ export default function ProjectsPage() {
     const [projects, setProjects] = useState([])
     const [refresh, setRefreshProjects] = useState(false)
     const [userIsManager, setUserIsManager] = useState(false)
-    const { get, response, loading } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
+    const { get, response, loading } = useFetch(process.env.REACT_APP_API_FETCH_URI, { cachePolicy: "no-cache", credentials: "same-origin" })
     const context = useContext(UserContext)
 
     useEffect(() => {
@@ -64,23 +64,20 @@ export default function ProjectsPage() {
 
     return (
         <div>
-            {
-                loading ?
-                    <CircularProgress color="primary" />
-                    :
+
                     <div>
                         <Hidden mdUp>
                             <Grid item xs={12} sm={12} md={12}>
-                                <NavBar component={<ProjectsList projects={projects} refresh={doRefresh} userIsManager={userIsManager} />} title={"LeanDashboard"} />
+                                <NavBar component={loading ? <CircularProgress color="primary" />: <ProjectsList projects={projects} refresh={doRefresh} userIsManager={userIsManager} /> } title={"LeanDashboard"} />
                             </Grid>
                         </Hidden>
                         <Hidden smDown>
                             <Grid item xs={12} sm={12} md={12}>
-                                <NavBar component={<ProjectsTable projects={projects} refresh={doRefresh} userIsManager={userIsManager} />} title={"LeanDashboard"} />
+                                <NavBar component={loading ? <CircularProgress color="primary" /> : <ProjectsTable projects={projects} refresh={doRefresh} userIsManager={userIsManager} />} title={"LeanDashboard"} />
                             </Grid>
                         </Hidden>
                     </div>
-            }
+            
         </div>
 
     );

@@ -3,7 +3,7 @@ import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Widget from "../Widgets/Widget";
 import { makeStyles } from '@material-ui/core/styles';
-import {  Typography } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 import {FormattedMessage} from 'react-intl';
 import GoBack from '../Common/GoBack';
 import {useLocation} from 'react-router-dom'
@@ -18,17 +18,18 @@ const useStyles = makeStyles((theme) => ({
         marginLeft: '-2.2%',
         width: '94%'
     },
+   
+    cont:{
+        marginTop: '-3%',
+        textAlign: 'left',
+        marginLeft: '80%',
+    },
     dashboardTitle: {
         marginTop: '0',
         textAlign: 'left',
         marginLeft: '0%',
         color: '#3CAA91'
     },
-    cont:{
-        marginTop: '-3%',
-        textAlign: 'left',
-        marginLeft: '80%',
-    }
 }));
 
 export default function DashboardWidgets({ name, widgets,description,refresh }) {
@@ -39,9 +40,7 @@ export default function DashboardWidgets({ name, widgets,description,refresh }) 
     let { id,dashboardId } = useParams();
 
     return (
-        <div>
-            <GoBack link={`/projects/${id}/dashboards`}/>
-            
+        <div>            
             {
                 widgets ?
                     <div>
@@ -49,6 +48,8 @@ export default function DashboardWidgets({ name, widgets,description,refresh }) 
                         <div>
                         <Container maxWidth={false} >
                             <Grid container>
+                            <GoBack link={`/projects/${id}/dashboards`}/>
+
                         <Typography component="h1" variant="h5" className={classes.dashboardTitle}>
                             {name}
                         </Typography>

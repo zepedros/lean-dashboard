@@ -25,7 +25,7 @@ export default function NameDescForm(props) {
     const [newName, setNewName] = useState(props.project.name)
     const [newDescription, setNewDescription] = useState(props.project.description)
     const classes = useStyles();
-    const { put, response } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
+    const { put, response } = useFetch(process.env.REACT_APP_API_FETCH_URI, { cachePolicy: "no-cache", credentials: "same-origin" })
     let { id } = useParams();
 
     async function submit() {
@@ -62,7 +62,7 @@ export default function NameDescForm(props) {
                 </Grid>
                 <Grid item>
                     <TextareaAutosize
-                        rowsMax={4}
+                        maxRows={4}
                         aria-label="maximum height"
                         value={newDescription}
                         className={classes.descriptionText}

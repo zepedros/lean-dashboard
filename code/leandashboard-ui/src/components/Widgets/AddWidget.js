@@ -32,10 +32,6 @@ const useStyles = makeStyles((theme) => ({
     padding: '0 30px',
     boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
   },
-  filter: {
-    position: "relative",
-    left: "45%"
-  },
   container: {
     marginLeft: '-2.2%',
     width: '94%'
@@ -44,9 +40,8 @@ card: {
   display: 'flex',
   flexDirection: 'column',
   textAlign: "bottom",
-  width: "400px",
-  height: "300px",
-  backgroundColor: '',
+  width: "300px",
+  //height: "410px",
 },
 }));
 
@@ -59,7 +54,7 @@ export default function AddWidget() {
   const [activeDialog, setDialog] = useState(false);
   let { id, dashboardId } = useParams();
 
-  const { get, response, loading } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
+  const { get, response, loading } = useFetch(process.env.REACT_APP_API_FETCH_URI, { cachePolicy: "no-cache", credentials: "same-origin" })
 
   useEffect(() => { loadTemplates() }, [])
 

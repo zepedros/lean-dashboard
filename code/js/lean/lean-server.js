@@ -1,6 +1,6 @@
 'use strict'
 
-const DEFAULT_PORT = 8000;
+const DEFAULT_PORT = process.env.PORT || 8000;
 
 const PORT = process.argv[2] || DEFAULT_PORT;
 
@@ -9,12 +9,6 @@ async function setup() {
     const express = require('express');
     const path = require('path');
     const app = express();
-    if (process.env.NODE_ENV === 'production') {
-        app.use(express.static(path.join(__dirname, '../leandashboard-ui/build')));
-        app.get('/*', function (req, res) {
-            res.sendFile(path.join(__dirname, '../leandashboard-ui/build', 'index.html'));
-        })
-    }
     const bodyParser = require('body-parser');
 
     app.use(bodyParser.json());
@@ -74,7 +68,7 @@ async function setup() {
     const scheduler = require('../etl/scheduler/etl-scheduler')
     scheduler.widgetMapBuilder()
     const services = servicesCreator(db, auth);
-    const webapi = webApiCreator(app, services, auth, authization);
+    const webapi = webApiCreator(app, services, auth, authization, express);
 
     return app
 }
@@ -82,6 +76,6 @@ async function setup() {
 
 setup().then(app => {
     app.listen(PORT);
-    console.log(`Listening at port ${PORT}\nAccess http://localhost:8000/ to start`);
+    console.log(`Listening at port ${PORT}\nAccess http://localhost:${PORT}/ to start`);
 })
 

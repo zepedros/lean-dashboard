@@ -27,7 +27,6 @@ import ClearIcon from '@material-ui/icons/Clear';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import FaceIcon from '@material-ui/icons/Face';
-import FilterListIcon from '@material-ui/icons/FilterList';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import React, { useEffect, useState } from 'react';
@@ -75,10 +74,6 @@ const useStyles = makeStyles((theme) => ({
     height: 48,
     padding: '0 30px',
     boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-  },
-  filter: {
-    position: "relative",
-    left: "45%"
   },
   root: {
     backgroundColor: 'orange'

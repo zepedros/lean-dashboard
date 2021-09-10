@@ -37,11 +37,7 @@ const useStyles = makeStyles((theme) => ({
         bottom: '15%',
         background: 'linear-gradient(45deg, #3CAA91 30%, #3CAA91 90%)',
         color: 'white',
-    },
-    filter: {
-        position: "relative",
-        left: "45%"
-    },
+    }
 }));
 
 export default function AddWidgetList() {
@@ -53,7 +49,7 @@ export default function AddWidgetList() {
     const [activeDialog, setDialog] = useState(false);
     let { id, dashboardId } = useParams();
 
-    const { get, response, loading } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
+    const { get, response, loading } = useFetch(process.env.REACT_APP_API_FETCH_URI, { cachePolicy: "no-cache", credentials: "same-origin" })
 
     useEffect(() => { loadTemplates() }, [])
 

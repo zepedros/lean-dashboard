@@ -15,7 +15,7 @@ export default function ChangePasswordDialog({ showDialog, setShowDialog }) {
     const [input, setInput] = useState({ newPassword: "", confirmNewPassword: "" })
     const [newPassowrdError, setNewPassowordError] = useState(false)
     const [confirmNewPassowrdError, setconfirmNewPassowordError] = useState(false)
-    const { put } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
+    const { put } = useFetch(process.env.REACT_APP_API_FETCH_URI, { cachePolicy: "no-cache", credentials: "same-origin" })
     const context = useContext(UserContext)
 
     function handleClose() {

@@ -100,7 +100,11 @@
     "supertest": "^6.1.3"
   },
   "scripts": {
+<<<<<<< HEAD
     "start": "node js/lean/lean-server.js",
+=======
+    "start": "node lean/lean-server.js",
+>>>>>>> 2f2673fc276352fc12b1f7071be3289769ecc4f0
     "build": "npm install && npm i @authization/authization && cd leandashboard-ui/ && npm install && npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

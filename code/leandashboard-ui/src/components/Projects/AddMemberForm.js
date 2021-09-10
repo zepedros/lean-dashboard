@@ -34,7 +34,7 @@ export default function AddMemberForm({refresh}) {
   const classes = useStyles();
   const [input, setInput] = useState({ username: "" })
   const [usernameError, setUsernameError] = useState(false)
-  const { post } = useFetch('http://localhost:3000/api', { cachePolicy: "no-cache", credentials: "same-origin" })
+  const { post } = useFetch(process.env.REACT_APP_API_FETCH_URI, { cachePolicy: "no-cache", credentials: "same-origin" })
   let { id } = useParams();
 
   function addMember(){

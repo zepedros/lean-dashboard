@@ -48,7 +48,9 @@ export function createRepository(get, post) {
         //returns credentials if any
         isLoggedIn: () => {
             let credentials = localStorage.getItem(KEY)
-            if(!credentials) credentials = sessionStorage.getItem(KEY)
+            if(!credentials) {
+                credentials = document.cookie.split("=")[1]
+            }
             return credentials ? JSON.parse(credentials) : undefined
         },
         login: (username, password, remember, history, set) => {
@@ -57,6 +59,8 @@ export function createRepository(get, post) {
             post("/lean/login", { username: username, password: password }).then((response) => {
                 if (response.statusCode === 200) {
                     const credentials = { username: username }
+                    document.cookie = `session=${JSON.stringify(credentials)}; expires=0`
+                    localStorage.setItem("session", username)
                     set(credentials)
                     if (remember) localStorage.setItem(KEY, JSON.stringify({ username: username, password: password }))
                     else sessionStorage.setItem(KEY, JSON.stringify(credentials))
@@ -74,11 +78,13 @@ export function createRepository(get, post) {
         logout: (history, set) => {
             post("/lean/logout").then((response) => {
                 if (response.statusCode === 200) {
+                    document.cookie = `session=; expires=Thu, 01 Jan 1970 00:00:00 GMT`
                     set()
                     console.log('log out')
                     localStorage.removeItem(KEY)
                     sessionStorage.removeItem(KEY)
                     sessionStorage.removeItem('user-rbac')
+                    localStorage.setItem("session", "")
                     history.push('/')
                     return createRepository(get,post)
                 }
