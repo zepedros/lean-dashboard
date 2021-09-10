@@ -355,9 +355,10 @@ function services(db, auth) {
         },
 
         getAllUsers: async function(userMakingRequest) {
-            if (userMakingRequest.id !== 1) return Promise.reject((error.makeErrorResponse(error.UNAUTHORIZED, "You don't have access to this resource")))
+            const userIsManager = await auth.checkIfUserHasRole(userMakingRequest, 'manager')
+            if (userMakingRequest.id !== 1 && !userIsManager) return Promise.reject((error.makeErrorResponse(error.UNAUTHORIZED, "You don't have access to this resource")))
             const users = await auth.getAllUsers()
-            return users.filter(user => user.id !== 1)
+            return users.filter(user => user.id !== 1 && user.id !== userMakingRequest.id)
         },
 
         getUserById: async function (userId, userMakingRequest) {
@@ -367,7 +368,8 @@ function services(db, auth) {
 
         getUserByUsername: async function (username, userMakingRequest) {
             if (!userMakingRequest) return Promise.reject((error.makeErrorResponse(error.UNAUTHORIZED, "You are not logged in")))
-            if (username !== userMakingRequest.username && userMakingRequest.id !== 1) return Promise.reject((error.makeErrorResponse(error.FORBIDDEN, "You can't retrieve another user's info")))
+            const userIsManager = await auth.checkIfUserHasRole(userMakingRequest, 'manager')
+            if (username !== userMakingRequest.username && userMakingRequest.id !== 1 && !userIsManager) return Promise.reject((error.makeErrorResponse(error.FORBIDDEN, "You can't retrieve another user's info")))
             const ret = await auth.getUserByUsername(username)
             delete ret.password
             return ret
@@ -375,11 +377,12 @@ function services(db, auth) {
 
         deleteUser: async function (userToDelete, userMakingRequest) {
             //For now, only the super user can delete accounts
-            if (userMakingRequest.id !== 1) {
+            const userIsManager = await auth.checkIfUserHasRole(userMakingRequest, 'manager')
+            if (userMakingRequest.id !== 1 && !userIsManager) {
                 return Promise.reject((error.makeErrorResponse(error.FORBIDDEN, "You can't delete this user's account")))
             }
             const userToDeleteInfo = await auth.getUserByUsername(userToDelete)
-            const userIsManager = await auth.checkIfUserHasRole(userToDeleteInfo, 'manager')
+            //const userIsManager = await auth.checkIfUserHasRole(userToDeleteInfo, 'manager')
             return await this.getProjects(userToDelete, userToDeleteInfo)
                 .then(projects => {
                     projects.forEach(project => this.removeUserFromProject(project.id, userToDelete, userMakingRequest))
@@ -407,7 +410,8 @@ function services(db, auth) {
                 )
             }
 
-            if (userMakingRequest.username !== username && userMakingRequest.id !== 1) {
+            const userIsManager = await auth.checkIfUserHasRole(userMakingRequest, 'manager')
+            if (userMakingRequest.username !== username && userMakingRequest.id !== 1 && !userIsManager) {
                 return Promise.reject(
                     error.makeErrorResponse(error.FORBIDDEN, 'You cannot edit this users information.')
                 )
@@ -430,7 +434,8 @@ function services(db, auth) {
                 )
             }
 
-            if (userMakingRequest.username !== username && userMakingRequest.id !== 1) {
+            const userIsManager = await auth.checkIfUserHasRole(userMakingRequest, 'manager')
+            if (userMakingRequest.username !== username && userMakingRequest.id !== 1 && !userIsManager) {
                 return Promise.reject(
                     error.makeErrorResponse(error.FORBIDDEN, 'You cannot edit this users information.')
                 )
@@ -494,6 +499,8 @@ function services(db, auth) {
 
 
         giveUserRole: async function (usernameToGiveRole, userMakingRequest, role, endDate) {
+            const userIsManager = await auth.checkIfUserHasRole(userMakingRequest, 'manager')
+            if (userMakingRequest.id !== 1 && !userIsManager) return Promise.reject((error.makeErrorResponse(error.UNAUTHORIZED, "You can't manage user roles")))
             //verify if a role was given in the body
             if (!role) throw error.makeErrorResponse(error.ARGUMENT_ERROR, "Please indicate in the body a role to give to the user")
 
@@ -512,6 +519,8 @@ function services(db, auth) {
         },
 
         removeRoleFromUser: async function (usernameToRemoveRole, userMakingRequest, role) {
+            const userIsManager = await auth.checkIfUserHasRole(userMakingRequest, 'manager')
+            if (userMakingRequest.id !== 1 && !userIsManager) return Promise.reject((error.makeErrorResponse(error.UNAUTHORIZED, "You can't manage user roles")))
             //verify if a role was given in the body
             if (!role) throw error.makeErrorResponse(error.ARGUMENT_ERROR, "Please indicate in the body a role to give to the user")
 
@@ -608,7 +617,8 @@ function services(db, auth) {
                 })
         },
         getUserRoles: async function (username, userMakingRequest) {
-            if (userMakingRequest.username === username || userMakingRequest.id === 1) {
+            const userIsManager = await auth.checkIfUserHasRole(userMakingRequest, 'manager')
+            if (userMakingRequest.username === username || userMakingRequest.id === 1 || userIsManager) {
                 const userInfo = await this.getUserByUsername(username, userMakingRequest)
                 return auth.getUserRoles(userInfo)
             }
