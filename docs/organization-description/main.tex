@@ -59,17 +59,49 @@ DB\_PASSWORD= 1234 \\
 DB\_CONNECTION\_LIMIT= 5 \\
 DATABASE= authization \\
 DBMS= postgres \\
+ELASTIC\_URL= http://localhost:9200/ \\
 
 \section{Application Front-end}
-Some of the pages for the application have already begun being developed, without the use of the API developed in the back-end. These can be tested with the help of the following instructions:
+The client application can be run by having NodeJS and the React library. To fully use the application, the Back-end must be running as well.
+You can run the Front-end application with the help of the following instructions:
 
 \begin{center}
 \begin{steps}
   \item Open directory \path{lean-dashboard\code\leandashboard-ui}
+  \item Setup a .env file for the application. This file should be located in \path{lean-dashboard\code\leandashboard-ui}. This file only requires the API fetch URI as following: REACT\_APP\_API\_FETCH\_URI= \url{http://localhost:3000/api}, where "localhost:3000" is the port where the front-end application is running.
   \item Open the terminal and run the command \textbf{npm install package.json}
   \item Run the command \textbf{npm start}
   \item Wait for your browser to open a window with the application, or access \url{http://localhost:3000/} to open the application manually
  
 \end{steps}
 \end{center}
+
+\section{Deployed Application}
+The Back-end and Front-end applications were deployed using the Heroku platform. This application can be used by accessing the following link on your preferred browser: \url{https://isel-leic-lean-dashboard.herokuapp.com/}
+
+\section{Data Source Credentials}
+The Lean Dashboard application requires access to other platforms to obtain the necessary widget information. The team created test data across the various sources required for the application. These can be inserted on the Project Settings page on the Front-end application or using the Credentials endpoints of the Back-end's web API.
+The credentials used by the team were the following:
+\begin{itemize}
+ \item JIRA:
+	\begin{itemize}
+	  \item E-mail: leandashboardproject@gmail.com
+	  \item Token: LPcyGdZolN906MvzdwPHF045
+	  \item API Path: leandashboard.atlassian.net
+	\end{itemize}
+ \item SQUASH:
+	\begin{itemize}
+	  \item Username: guest\_tpl
+	  \item Password: password
+	  \item API Path: demo.squashtest.org
+	  \item Project Name: When setting up a widget for Squash you might require to insert a project's name. The team has used Sandbox \#2
+	\end{itemize}
+ \item AZURE:
+	\begin{itemize}
+	  \item E-mail: leandashboardproject@gmail.com
+	  \item Token: cwryfikv3hrslmoqiz4wz2otexf7o5aj4qtouhm37ndglel5dkbq
+	  \item Instance: dev.azure.com/leandashboardproject
+	  \item Iteration Name: When setting up a widget for Azure you might require to insert an iteration's name, these range from Sprint 1 to 6.
+	\end{itemize}
+\end{itemize}
 \end{document}
