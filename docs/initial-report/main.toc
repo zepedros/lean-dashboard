@@ -1,10 +1,10 @@
 \babel@toc {english}{}
-\contentsline {chapter}{\numberline {1}Introduction}{5}%
-\contentsline {section}{\numberline {1.1}Report Organization}{5}%
-\contentsline {chapter}{\numberline {2}Functionalities}{7}%
-\contentsline {chapter}{\numberline {3}Architecture}{9}%
-\contentsline {section}{\numberline {3.1}Architecture Principles and Components}{9}%
-\contentsline {section}{\numberline {3.2}Software Architecture}{10}%
+\contentsline {chapter}{\numberline {1}Introduction}{6}%
+\contentsline {section}{\numberline {1.1}Report Organization}{6}%
+\contentsline {chapter}{\numberline {2}Functionalities}{8}%
+\contentsline {chapter}{\numberline {3}Architecture}{10}%
+\contentsline {section}{\numberline {3.1}Architecture Principles and Components}{10}%
+\contentsline {section}{\numberline {3.2}Software Architecture}{11}%
 \contentsline {chapter}{\numberline {4}Server Implementation}{12}%
 \contentsline {section}{\numberline {4.1}Lean Server and Extract, Transform and Load(ETL) structure}{12}%
 \contentsline {section}{\numberline {4.2}Data Model}{15}%
